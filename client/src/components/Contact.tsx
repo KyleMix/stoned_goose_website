@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,6 +25,13 @@ const formSchema = z.object({
 });
 
 export default function Contact() {
+  const [status, setStatus] = useState<
+    | { type: "success"; message: string }
+    | { type: "error"; message: string }
+    | null
+  >(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,16 +42,48 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Build a mailto link so it opens in the user's email client
-    const mailto = `mailto:contact@stonedgooseproductions.com?subject=${encodeURIComponent(
-      values.subject,
-    )}&body=${encodeURIComponent(
-      `Name: ${values.name}\nEmail: ${values.email}\n\n${values.message}`,
-    )}`;
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setStatus(null);
+    setIsSubmitting(true);
 
-    window.location.href = mailto;
-    form.reset();
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/contact@stonedgooseproductions.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            subject: values.subject,
+            message: values.message,
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to send message. Please try again.");
+      }
+
+      setStatus({
+        type: "success",
+        message: "Message sent! We'll get back to you soon.",
+      });
+      form.reset();
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again shortly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -98,7 +138,7 @@ export default function Contact() {
                     <h3 className="text-xl font-bold text-white mb-1">
                       Call Us
                     </h3>
-                    <p className="text-gray-400">+1 (555) HONK-NOW</p>
+                    <p className="text-gray-400">(360) 323-0667</p>
                   </div>
                 </div>
 
@@ -199,10 +239,20 @@ export default function Contact() {
                 />
                 <Button
                   type="submit"
+                  disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-primary to-primary/80 text-black font-bold uppercase hover:scale-[1.02] transition-transform"
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
+                {status && (
+                  <p
+                    className={`text-sm ${
+                      status.type === "success" ? "text-green-400" : "text-red-400"
+                    }`}
+                  >
+                    {status.message}
+                  </p>
+                )}
               </form>
             </Form>
           </motion.div>
