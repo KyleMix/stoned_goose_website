@@ -1,0 +1,80 @@
+{
+  "colorScheme": "dark",
+  "fonts": [
+    {
+      "family": "Urbanist",
+      "role": "body"
+    },
+    {
+      "family": "Raleway",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#FFFFFF",
+    "accent": "#222831",
+    "background": "#3C4149",
+    "textPrimary": "#222831",
+    "link": "#222831"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Urbanist",
+      "heading": "Urbanist"
+    },
+    "fontStacks": {
+      "heading": [
+        "Raleway",
+        "sans-serif"
+      ],
+      "body": [
+        "Urbanist",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Urbanist",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "40px",
+      "h2": "40px",
+      "body": "16px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 12,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "input": {
+      "borderColor": "#CCCCCC",
+      "borderRadius": "0px"
+    }
+  },
+  "images": {
+    "logo": "File saved at: attached_assets/logo.png",
+    "favicon": "File saved at: attached_assets/favicon.png",
+    "ogImage": "File saved at: attached_assets/ogImage.png"
+  },
+  "__framework_hints": [],
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "The logo in the header matches the brand name 'Stoned Goose Productions' and is visible, making it the primary brand logo.",
+    "confidence": 0.9
+  },
+  "personality": {
+    "tone": "modern",
+    "energy": "medium",
+    "targetAudience": "young adults, creatives, and casual shoppers"
+  },
+  "designSystem": {
+    "framework": "unknown",
+    "componentLibrary": null
+  },
+  "confidence": {
+    "buttons": 0.5,
+    "colors": 0.8,
+    "overall": 0.65
+  }
+}

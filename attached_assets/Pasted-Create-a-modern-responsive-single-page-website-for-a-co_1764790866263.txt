@@ -1,0 +1,101 @@
+Create a modern, responsive single-page website for a comedy production company called **Stoned Goose Productions**.
+
+Overall vibe:
+- Fun, irreverent, and playful, but still clean and professional.
+- Use a visually striking hero section with a stylized goose mascot or silhouette and a tagline like: “Stoned Goose Productions – High-Flying Comedy, Zero Gravity.”
+- Color palette: dark background (for a “club” feel) with bright accent colors (neon yellow/green and a contrasting accent like purple or teal).
+- Use bold headings and easy-to-read sans-serif fonts.
+
+Technical requirements:
+- Use **HTML, CSS, and JavaScript only** (no backend).
+- The layout must be responsive and look good on desktop and mobile.
+- Add smooth scrolling navigation when clicking menu links.
+- Include hover effects on buttons and cards.
+
+Navigation:
+Create a sticky top navigation bar with links that scroll to these sections:
+- Home
+- Upcoming Shows
+- Services
+- Comedians
+- Merch
+- Media
+- Contact
+
+1. Hero / Home section:
+- Big headline: “Stoned Goose Productions”
+- Subheadline: “Producing unforgettable stand-up, showcases, and comedy chaos.”
+- A call-to-action button: “See Upcoming Shows” that scrolls to the Upcoming Shows section.
+- Background image or gradient that feels like a comedy club (spotlights, stage, or abstract shapes).
+
+2. Upcoming Shows section:
+- Title: “Upcoming Shows”
+- Display a grid or list of show cards. Each show card should include:
+  - Show name
+  - Date & time
+  - Venue name & city
+  - Short description
+  - “Get Tickets” button (use placeholder links like `#`).
+- Include at least 3 example shows with sample data.
+- Add a subtle badge like “New” on the soonest upcoming show.
+
+3. Services section:
+- Title: “What We Do”
+- Brief intro paragraph about Stoned Goose Productions (e.g., booking, producing live shows, festivals, corporate events, etc.).
+- Use 3–4 service cards with icons and short descriptions, such as:
+  - “Live Show Production”
+  - “Comedian Booking”
+  - “Corporate & Private Events”
+  - “Podcast & Media Collaborations”
+
+4. Comedians section:
+- Title: “Our Comedians”
+- Grid of comedian profile cards, each including:
+  - Comedian photo (use placeholder images)
+  - Name
+  - One-line style description (e.g., “High-energy storyteller with a love for absurdity.”)
+  - Optional social media icons (use placeholder `href` links).
+
+5. Merch section:
+- Title: “Merch”
+- Short intro: “Rep the Goose.”
+- Display product cards for example merch items:
+  - T-shirts
+  - Hoodies
+  - Hats
+  - Stickers
+- Each card should have:
+  - Product image (placeholder)
+  - Name
+  - Price
+  - “Shop Now” button (placeholder link).
+- You can use a simple grid layout for the products.
+
+6. Media section:
+- Title: “Media”
+- Include:
+  - Embedded YouTube video or placeholder video thumbnail for stand-up clips or show reels.
+  - A small gallery of 4–6 images (use placeholders) from shows (crowd, stage, comedians).
+  - Optional: a section for podcast or press links, styled as simple cards.
+
+7. Contact section:
+- Title: “Contact”
+- Brief text: “Booking, collaborations, or just want to honk at us? Get in touch.”
+- Contact form with:
+  - Name (required)
+  - Email (required)
+  - Subject
+  - Message textarea
+  - Submit button
+- For now, just prevent default form submission with JavaScript and show an alert like “Thanks for reaching out to Stoned Goose Productions! We’ll get back to you soon.”
+
+Footer:
+- Simple footer with:
+  - Copyright notice: “© [CURRENT YEAR] Stoned Goose Productions. All rights reserved.”
+  - Social media icons/links (Instagram, TikTok, YouTube – placeholder links).
+  - Small text: “Made with questionable decisions and great punchlines.”
+
+Extra polish:
+- Add smooth scroll behavior for internal links.
+- Use subtle animations (e.g., fade-in on scroll for sections, hover scale on cards).
+- Make sure headings, sections, and buttons all clearly match the Stoned Goose Productions brand and comedy theme.
