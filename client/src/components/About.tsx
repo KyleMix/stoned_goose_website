@@ -28,6 +28,13 @@ const pillars = [
   },
 ];
 
+const teamMembers = [
+  { name: "Kyle Mixon" },
+  { name: "Joseph Humphrey" },
+  { name: "Brendan Meek" },
+  { name: "Samuel Tweed" },
+];
+
 export default function About() {
   return (
     <section id="about" className="py-20 bg-muted/10 relative overflow-hidden">
@@ -66,6 +73,45 @@ export default function About() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <h3 className="text-3xl md:text-5xl font-display uppercase text-white mb-3">
+              Meet the <span className="text-primary">Crew</span>
+            </h3>
+            <p className="text-gray-400 font-marker text-xl rotate-1">Faces behind the productions.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group"
+              >
+                <div className="relative overflow-hidden rounded-xl aspect-square mb-4 border-2 border-transparent group-hover:border-primary transition-colors">
+                  <div className="absolute inset-0 bg-primary/15 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay" />
+
+                  <div className="w-full h-full bg-gradient-to-br from-primary/15 via-background to-background flex items-center justify-center text-white/70 uppercase tracking-wide font-display text-lg">
+                    Photo Coming Soon
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h4 className="text-2xl font-display uppercase text-white">{member.name}</h4>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
