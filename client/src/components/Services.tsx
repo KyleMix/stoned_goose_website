@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mic2, CalendarRange, Users, Radio } from "lucide-react";
+import { Mic2, CalendarRange, Users, Radio, Camera } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const services = [
@@ -27,6 +27,13 @@ const services = [
     icon: Radio,
     color: "text-pink-500",
   },
+  {
+    title: "Headshots & Promo Shoots",
+    description:
+      "Professional headshots and press kits to spotlight comedians, staff, and partners in the best light.",
+    icon: Camera,
+    color: "text-amber-400",
+  },
 ];
 
 export default function Services() {
@@ -45,11 +52,11 @@ export default function Services() {
             What We <span className="text-secondary">Do</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            We don't just tell jokes. We build the stage for them.
+            We don't just tell jokes. We build the stage for them—and capture the headshots to match.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={index}
