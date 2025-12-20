@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { Film, Handshake, Mic2, Sparkles } from "lucide-react";
 
+import brendanPhoto from "@assets/generated_images/brendan.png";
+import josephPhoto from "@assets/generated_images/joseph.jpg";
+import kylePhoto from "@assets/generated_images/kyle.png";
+import samPhoto from "@assets/generated_images/sam.png";
+
 const pillars = [
   {
     title: "Production & Ops",
@@ -29,10 +34,10 @@ const pillars = [
 ];
 
 const teamMembers = [
-  { name: "Kyle Mixon" },
-  { name: "Joseph Humphrey" },
-  { name: "Brendan Meeks" },
-  { name: "Samuel Tweed" },
+  { name: "Kyle Mixon", photo: kylePhoto },
+  { name: "Joseph Humphrey", photo: josephPhoto },
+  { name: "Brendan Meeks", photo: brendanPhoto },
+  { name: "Samuel Tweed", photo: samPhoto },
 ];
 
 export default function About() {
@@ -99,11 +104,14 @@ export default function About() {
                 className="group"
               >
                 <div className="relative overflow-hidden rounded-xl aspect-square mb-4 border-2 border-transparent group-hover:border-primary transition-colors">
-                  <div className="absolute inset-0 bg-primary/15 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/60 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
 
-                  <div className="w-full h-full bg-gradient-to-br from-primary/15 via-background to-background flex items-center justify-center text-white/70 uppercase tracking-wide font-display text-lg">
-                    Photo Coming Soon
-                  </div>
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
 
                 <div className="text-center">
