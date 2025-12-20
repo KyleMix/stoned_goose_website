@@ -64,7 +64,7 @@ async function fetchFromEventbrite(): Promise<EventResponse> {
 
   const endpoint =
     EVENTBRITE_ENDPOINT ??
-    `https://www.eventbriteapi.com/v3/organizers/${EVENTBRITE_ORGANIZER_ID}/events/?status=live&order_by=start_desc&expand=venue,logo`;
+    `https://www.eventbriteapi.com/v3/organizers/${EVENTBRITE_ORGANIZER_ID}/events/?status=live&order_by=start_desc&expand=venue`;
 
   const response = await fetch(endpoint, {
     headers: {
@@ -88,7 +88,6 @@ async function fetchFromEventbrite(): Promise<EventResponse> {
         end: event.end?.local ?? null,
         url: event.url ?? null,
         summary: event.summary ?? "More details available on Eventbrite.",
-        imageUrl: event.logo?.url ?? null,
         venue: event.venue
           ? {
               name: event.venue.name ?? undefined,
