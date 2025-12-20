@@ -55,6 +55,7 @@ interface EventbriteEvent {
   end?: { local?: string };
   url?: string;
   summary?: string | null;
+  logo?: { url?: string | null } | null;
   venue_id?: string | null;
 }
 
@@ -76,6 +77,7 @@ interface SimplifiedEvent {
   end: string | null;
   url: string | null;
   summary: string;
+  imageUrl?: string | null;
   venue?: {
     name?: string;
     address?: string;
@@ -149,7 +151,7 @@ async function fetchEvents(): Promise<SimplifiedEvent[]> {
   }
 
   const { events = [] } = await fetchFromEventbrite<{ events?: EventbriteEvent[] }>(
-    `https://www.eventbriteapi.com/v3/organizers/${EVENTBRITE_ORGANIZER_ID}/events/?status=live&order_by=start_desc`,
+    `https://www.eventbriteapi.com/v3/organizers/${EVENTBRITE_ORGANIZER_ID}/events/?status=live&order_by=start_desc&expand=logo`,
   );
 
   const simplified = await Promise.all(
@@ -163,6 +165,7 @@ async function fetchEvents(): Promise<SimplifiedEvent[]> {
         end: event.end?.local ?? null,
         url: event.url ?? null,
         summary: event.summary ?? "More details available on Eventbrite.",
+        imageUrl: event.logo?.url ?? null,
         venue,
       } satisfies SimplifiedEvent;
     }),

@@ -18,6 +18,7 @@ type EventResponse = {
     end: string | null;
     url: string | null;
     summary: string;
+    imageUrl?: string | null;
     venue?: {
       name?: string;
       address?: string;
@@ -35,6 +36,7 @@ type EventbriteEvent = {
   end?: { local?: string | null };
   url?: string | null;
   summary?: string | null;
+  logo?: { url?: string | null } | null;
   venue?: {
     name?: string | null;
     address?: {
@@ -175,6 +177,7 @@ export default function UpcomingShows() {
         city: formatLocation(event.venue),
         description: event.summary,
         eventbriteUrl: event.url ?? EVENTBRITE_PROFILE_URL,
+        imageUrl: event.imageUrl,
         isNew: false,
       })) ?? []
     );
@@ -239,6 +242,19 @@ export default function UpcomingShows() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="bg-card border-border hover:border-primary/50 transition-colors duration-300 h-full flex flex-col overflow-hidden group relative">
+                  {show.imageUrl ? (
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={show.imageUrl}
+                        alt={show.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                    </div>
+                  ) : (
+                    <div className="h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-60" />
+                  )}
                   {show.isNew && (
                     <Badge className="absolute top-4 right-4 bg-secondary hover:bg-secondary text-white z-10 uppercase tracking-wider font-bold">
                       New
