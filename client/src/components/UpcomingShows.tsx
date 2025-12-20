@@ -28,6 +28,77 @@ type EventResponse = {
   }[];
 };
 
+type EventbriteEvent = {
+  id: string;
+  name?: { text?: string | null };
+  start?: { local?: string | null };
+  end?: { local?: string | null };
+  url?: string | null;
+  summary?: string | null;
+  venue?: {
+    name?: string | null;
+    address?: {
+      address_1?: string | null;
+      city?: string | null;
+      region?: string | null;
+      country?: string | null;
+    } | null;
+  } | null;
+};
+
+type EventbriteResponse = {
+  events?: EventbriteEvent[];
+};
+
+const EVENTBRITE_TOKEN = import.meta.env.VITE_EVENTBRITE_TOKEN as string | undefined;
+const EVENTBRITE_ORGANIZER_ID = import.meta.env
+  .VITE_EVENTBRITE_ORGANIZER_ID as string | undefined;
+const EVENTBRITE_ENDPOINT = import.meta.env.VITE_EVENTBRITE_ENDPOINT as string | undefined;
+
+async function fetchFromEventbrite(): Promise<EventResponse> {
+  if (!EVENTBRITE_TOKEN || !EVENTBRITE_ORGANIZER_ID) {
+    throw new Error("Eventbrite credentials are not configured.");
+  }
+
+  const endpoint =
+    EVENTBRITE_ENDPOINT ??
+    `https://www.eventbriteapi.com/v3/organizers/${EVENTBRITE_ORGANIZER_ID}/events/?status=live&order_by=start_desc&expand=venue`;
+
+  const response = await fetch(endpoint, {
+    headers: {
+      Authorization: `Bearer ${EVENTBRITE_TOKEN}`,
+    },
+  });
+
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(`Eventbrite request failed (${response.status}): ${message || "Unknown error"}`);
+  }
+
+  const data = (await response.json()) as EventbriteResponse;
+
+  return {
+    events:
+      data.events?.map((event) => ({
+        id: event.id,
+        name: event.name?.text ?? "Untitled Event",
+        start: event.start?.local ?? null,
+        end: event.end?.local ?? null,
+        url: event.url ?? null,
+        summary: event.summary ?? "More details available on Eventbrite.",
+        venue: event.venue
+          ? {
+              name: event.venue.name ?? undefined,
+              address: event.venue.address?.address_1 ?? undefined,
+              city: event.venue.address?.city ?? undefined,
+              region: event.venue.address?.region ?? undefined,
+              country: event.venue.address?.country ?? undefined,
+            }
+          : undefined,
+      })) ?? [],
+  };
+}
+
 function formatDate(value: string | null) {
   if (!value) return "Date TBD";
   const date = new Date(value);
@@ -65,11 +136,20 @@ export default function UpcomingShows() {
   const query = useQuery<EventResponse>({
     queryKey: ["api", "eventbrite"],
     queryFn: async () => {
-      const res = await fetch("/api/eventbrite");
-      if (!res.ok) {
-        throw new Error("Unable to load shows right now.");
+      try {
+        return await fetchFromEventbrite();
+      } catch (clientError) {
+        // Fall back to the backend proxy if client-side credentials are missing or invalid
+        const res = await fetch("/api/eventbrite");
+        if (!res.ok) {
+          throw new Error(
+            clientError instanceof Error
+              ? clientError.message
+              : "Unable to load shows right now.",
+          );
+        }
+        return res.json();
       }
-      return res.json();
     },
     staleTime: 60_000,
   });
