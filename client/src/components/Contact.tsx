@@ -124,9 +124,13 @@ export default function Contact() {
                     <h3 className="text-xl font-bold text-white mb-1">
                       Email Us
                     </h3>
-                    <p className="text-gray-400">
+                    <a
+                      href="mailto:contact@stonedgooseproductions.com"
+                      className="text-gray-400"
+                      aria-label="Email contact@stonedgooseproductions.com"
+                    >
                       contact@stonedgooseproductions.com
-                    </p>
+                    </a>
                   </div>
                 </div>
 
@@ -138,7 +142,13 @@ export default function Contact() {
                     <h3 className="text-xl font-bold text-white mb-1">
                       Call Us
                     </h3>
-                    <p className="text-gray-400">(360) 323-0667</p>
+                    <a
+                      href="tel:+13603230667"
+                      className="text-gray-400"
+                      aria-label="Call (360) 323-0667"
+                    >
+                      (360) 323-0667
+                    </a>
                   </div>
                 </div>
 
