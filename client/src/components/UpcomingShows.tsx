@@ -1,40 +1,105 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Ticket } from "lucide-react";
+import { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 
 const EVENTBRITE_PROFILE_URL =
   "https://www.eventbrite.com/o/stoned-goose-productions-107337391771";
 
-const shows = [
-  {
-    id: 1,
-    title: "Comedy Night At The BeatDrop: Brandon White",
-    date: "Jan 16, 2026",
-    time: "8:00 PM",
-    venue: "The BeatDrop",
-    city: "Lacey, WA",
-    description:
-      "Brandon White is headlining the Stoned Goose Monthly Stand Up Night @ The BeatDrop in Lacey, WA.",
-    eventbriteUrl: "https://www.eventbrite.com/e/stand-up-comedy-stoned-goose-productions-brandon-white-tickets-1976967260294?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=ebdsshcopyurl",
-    isNew: false,
-  },
-  {
-    id: 2,
-    title: "Comedy Night At The BeatDrop: Logan Cantrell",
-    date: "Feb 20, 2026",
-    time: "8:00 PM",
-    venue: "The The BeatDrop",
-    city: "Lacey, WA",
-    description: "Logan Cantrell is headlining the Stoned Goose Monthly Stand Up Night @ The BeatDrop in Lacey, WA.",
-    eventbriteUrl: "https://www.eventbrite.com/e/stand-up-comedy-stoned-goose-productions-logan-cantrell-tickets-1977432286199?aff=oddtdtcreator",
-    isNew: true,
-  },
-  // Add more shows here…
-];
+type EventResponse = {
+  events: {
+    id: string;
+    name: string;
+    start: string | null;
+    end: string | null;
+    url: string | null;
+    summary: string;
+    venue?: {
+      name?: string;
+      address?: string;
+      city?: string;
+      region?: string;
+      country?: string;
+    };
+  }[];
+};
+
+function formatDate(value: string | null) {
+  if (!value) return "Date TBD";
+  const date = new Date(value);
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
+}
+
+function formatTime(value: string | null) {
+  if (!value) return "Time TBD";
+  const date = new Date(value);
+
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(date);
+}
+
+function formatLocation(
+  venue?: EventResponse["events"][number]["venue"],
+): string {
+  const parts = [venue?.address, venue?.city, venue?.region]
+    .filter(Boolean)
+    .join(", ");
+
+  return parts || "Location TBD";
+}
 
 export default function UpcomingShows() {
+  const { toast } = useToast();
+
+  const query = useQuery<EventResponse>({
+    queryKey: ["api", "eventbrite"],
+    queryFn: async () => {
+      const res = await fetch("/api/eventbrite");
+      if (!res.ok) {
+        throw new Error("Unable to load shows right now.");
+      }
+      return res.json();
+    },
+    staleTime: 60_000,
+  });
+
+  useEffect(() => {
+    if (query.isError) {
+      toast({
+        title: "Could not load shows",
+        description: (query.error as Error).message,
+        variant: "destructive",
+      });
+    }
+  }, [query.isError, query.error, toast]);
+
+  const shows = useMemo(() => {
+    return (
+      query.data?.events.map((event) => ({
+        id: event.id,
+        title: event.name,
+        date: formatDate(event.start),
+        time: formatTime(event.start),
+        venue: event.venue?.name ?? "Venue TBD",
+        city: formatLocation(event.venue),
+        description: event.summary,
+        eventbriteUrl: event.url ?? EVENTBRITE_PROFILE_URL,
+        isNew: false,
+      })) ?? []
+    );
+  }, [query.data]);
+
   const hasShows = shows.length > 0;
 
   return (
@@ -64,8 +129,27 @@ export default function UpcomingShows() {
           </Button>
         </motion.div>
 
+        {query.isError && (
+          <p className="text-sm text-red-400 mb-6">
+            We couldn&apos;t load shows right now. Please try again in a moment.
+          </p>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {hasShows ? (
+          {query.isLoading ? (
+            Array.from({ length: 3 }).map((_, index) => (
+              <Card key={index} className="bg-card border-border h-full animate-pulse">
+                <CardHeader>
+                  <div className="h-6 bg-muted rounded w-3/4" />
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="h-4 bg-muted rounded w-1/2" />
+                  <div className="h-4 bg-muted rounded w-2/3" />
+                  <div className="h-24 bg-muted rounded" />
+                </CardContent>
+              </Card>
+            ))
+          ) : hasShows ? (
             shows.map((show, index) => (
               <motion.div
                 key={show.id}
@@ -98,7 +182,7 @@ export default function UpcomingShows() {
                     <div className="flex items-center text-gray-400 gap-2">
                       <MapPin className="w-4 h-4 text-secondary" />
                       <span className="text-sm font-mono">
-                        {show.venue}, {show.city}
+                        {show.venue} • {show.city}
                       </span>
                     </div>
                     <p className="text-gray-300 mt-4 leading-relaxed">
@@ -132,14 +216,14 @@ export default function UpcomingShows() {
             >
               <Card className="bg-card border-border h-full flex flex-col overflow-hidden">
                 <CardHeader>
-                  <h3 className="text-2xl font-display uppercase text-white">Stay tuned!</h3>
+                  <h3 className="text-2xl font-display uppercase text-white">
+                    No upcoming shows yet
+                  </h3>
                 </CardHeader>
 
                 <CardContent className="flex-grow space-y-4 text-gray-300 leading-relaxed">
-                  <p>We don&apos;t have any shows on the calendar right now.</p>
                   <p>
-                    Check back soon or follow Stoned Goose Productions to be the first to
-                    hear when the next lineup drops.
+                    We don&apos;t have any shows on the calendar right now. Follow Stoned Goose Productions to be the first to hear when the next lineup drops.
                   </p>
                 </CardContent>
 
