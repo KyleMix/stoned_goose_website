@@ -5,19 +5,26 @@ import { FaInstagram, FaFacebook } from "react-icons/fa6";
 import andrewRiversImg from "@assets/generated_images/andrew-rivers.jpg";
 import caseyMclainImg from "@assets/generated_images/casey-mclain.jpg";
 import christianMateoImg from "@assets/generated_images/christian-mateo.jpg";
+import davidweedImg from "@assets/generated_images/david-weed.png";
 import derekGladsonImg from "@assets/generated_images/derek-gladson.jpg";
+import ezraImg from "@assets/generated_images/ezra.png";
 import garettIversonImg from "@assets/generated_images/garrett-iverson.jpg";
 import gavinHowellsImg from "@assets/generated_images/gavin-howells.jpg";
 import jacobBarberImg from "@assets/generated_images/jacob-barber.jpg";
 import jessEverettImg from "@assets/generated_images/jess-everett.jpg";
 import karanSharmaImg from "@assets/generated_images/karan-sharma.jpg";
+import kayleendunnImg from "@assets/generated_images/kayleen-dunn.png";
+import lonnieImg from "@assets/generated_images/lonnie-williams.png";
 import lukeSevereidImg from "@assets/generated_images/luke-severeid.jpg";
 import lynetteManningImg from "@assets/generated_images/lynette-manning.jpg";
 import minLinImg from "@assets/generated_images/min-lin.jpg";
+import sethImg from "@assets/generated_images/seth-fairchild.png";
 import stevenRineImg from "@assets/generated_images/steven-rine.jpg";
 import tonyCardozaImg from "@assets/generated_images/tony-cardoza.jpg";
 import trentonCottonImg from "@assets/generated_images/trenton-cotton.jpg";
 import tylerSmithImg from "@assets/generated_images/tyler-smith.jpg";
+import xavierImg from "@assets/generated_images/xavier.png";
+import yoshiImg from "@assets/generated_images/yoshi.png";
 
 type Comedian = {
   name: string;
@@ -44,13 +51,23 @@ const comedians: Comedian[] = [
     image: christianMateoImg,
     instagram: "https://www.instagram.com/christianmateo.comedy/",
   },
+    {
+    name: "David Weed",
+    image: davidweedImg,
+    instagram: "https://www.instagram.com/davidweedcomedy/",
+  },
   {
     name: "Derek Gladson",
     image: derekGladsonImg,
     instagram: "https://www.instagram.com/derekgladsoncomedy/",
     facebook: "https://www.facebook.com/derek.gladson",
   },
-    {
+  {
+    name: "Ezra Bonillas",
+    image: ezraImg,
+    instagram: "https://www.instagram.com/ezrabonillas/",
+  },
+  {
     name: "Garrett Iverson",
     image: garettIversonImg,
     instagram: "https://www.instagram.com/garrettiversoncomedy/",
@@ -81,6 +98,16 @@ const comedians: Comedian[] = [
     facebook: "https://www.facebook.com/sharmakaran",
   },
   {
+    name: "Kayleen Dunn",
+    image: kayleendunnImg,
+    instagram: "https://www.instagram.com/dunnwithcomedy/",
+  },
+   {
+    name: "Lonnie Williams",
+    image: lonnieImg,
+    instagram: "https://www.instagram.com/swagdaddysensei/",
+  },
+  {
     name: "Luke Severeid",
     image: lukeSevereidImg,
     instagram: "https://www.instagram.com/lukesevereid/",
@@ -97,6 +124,12 @@ const comedians: Comedian[] = [
     image: minLinImg,
     instagram: "https://www.instagram.com/min_lin_comedy/",
     facebook: "https://www.facebook.com/minlinsunny",
+  },
+  {
+    name: "Seth Fairchild",
+    image: sethImg,
+    instagram: "https://www.instagram.com/sethfcomedy/",
+    facebook: "https://www.facebook.com/seth.fairchild.77",
   },
   {
     name: "Steven Rine",
@@ -121,6 +154,17 @@ const comedians: Comedian[] = [
     image: tylerSmithImg,
     instagram: "https://www.instagram.com/dr_tyler_smith/",
     facebook: "https://www.facebook.com/DrTylerSmith",
+  },
+  {
+    name: "Xavier Rake",
+    image: xavierImg,
+    instagram: "https://www.instagram.com/jokedeal3r/",
+  },
+  {
+    name: "Yoshi Obayashi",
+    image: yoshiImg,
+    instagram: "https://www.instagram.com/yoshiobayashi/",
+    facebook: "https://www.facebook.com/yoshiobayashi",
   },
 ];
 
