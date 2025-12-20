@@ -31,7 +31,7 @@ const pillars = [
 const teamMembers = [
   { name: "Kyle Mixon" },
   { name: "Joseph Humphrey" },
-  { name: "Brendan Meek" },
+  { name: "Brendan Meeks" },
   { name: "Samuel Tweed" },
 ];
 
