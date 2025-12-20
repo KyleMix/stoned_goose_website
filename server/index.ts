@@ -26,6 +26,20 @@ loadEnv(path.join(rootDir, ".env"));
 const app = express();
 app.use(express.json());
 
+// Global error handlers to capture unexpected crashes for easier debugging
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception:", err);
+  // keep the process alive long enough for logs to be written
+  setTimeout(() => process.exit(1), 100);
+});
+process.on("unhandledRejection", (reason) => {
+  console.error("Unhandled Rejection:", reason);
+  setTimeout(() => process.exit(1), 100);
+});
+
+// Simple health endpoint for quick readiness checks
+app.get("/health", (_req, res) => res.json({ ok: true }));
+
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 const EVENTBRITE_TOKEN = process.env.EVENTBRITE_TOKEN;
 const EVENTBRITE_ORGANIZER_ID = process.env.EVENTBRITE_ORGANIZER_ID;
@@ -189,4 +203,10 @@ app.get("*", (_req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
+  // Debugging helper: ensure the process doesn't exit immediately in some environments
+  // (remove this once we've confirmed stability).
+  if (process.env.DEBUG_KEEP_ALIVE !== "false") {
+    console.log("Debug: keeping process alive (process.stdin.resume())");
+    process.stdin.resume();
+  }
 });

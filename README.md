@@ -12,11 +12,18 @@ This project is a Vite + React single-page app backed by a lightweight Express s
 
 2. Create an `.env.local` file at the repo root with your Eventbrite credentials (do **not** commit this file):
 
+   - Use `.env.example` as a template and fill in your real tokens. **Do not** commit `.env.local` to git.
+
    ```bash
+   # copy the example and edit
+   cp .env.example .env.local
+   # edit .env.local and add real values (example below):
    EVENTBRITE_TOKEN=your_private_token
    EVENTBRITE_ORGANIZER_ID=your_organizer_id
    PORT=3000 # optional, defaults to 3000
    ```
+
+   **Security note:** If you accidentally exposed tokens (e.g., pasted here), rotate/revoke them immediately in the Eventbrite dashboard and create new credentials.
 
 3. Run the API server:
 

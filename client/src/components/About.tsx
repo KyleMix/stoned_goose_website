@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+$env:NODE_ENV="development"; tsx server/index.tsimport { motion } from "framer-motion";
 import { Film, Handshake, Mic2, Sparkles } from "lucide-react";
 
 import brendanPhoto from "@assets/generated_images/brendan.png";
