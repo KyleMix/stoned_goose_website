@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 const COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all";
 const COLLECTION_API_URL = "/api/fourthwall/products";
+const COLLECTION_JSON_URL = `${COLLECTION_URL}/products.json`;
 
 type StoreProduct = {
   id: string;
@@ -19,6 +20,8 @@ export default function Merch() {
   const [products, setProducts] = useState<StoreProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [useEmbed, setUseEmbed] = useState(false);
+  const [embedLoaded, setEmbedLoaded] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -54,6 +57,15 @@ export default function Merch() {
           );
         }
 
+        const response = await fetch(COLLECTION_JSON_URL, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Unable to reach the Fourthwall store right now.");
+        }
+
+        const data = await response.json();
         const rawProducts = Array.isArray(data?.products) ? data.products : [];
 
         if (!rawProducts.length) {
@@ -101,6 +113,17 @@ export default function Merch() {
             : rawMessage;
 
         setError(friendlyMessage);
+        const friendlyMessage = normalized.includes("fetch") || normalized.includes("network")
+          ? "We couldn't reach the Fourthwall store from here. Use the buttons below to browse the live shop."
+          : rawMessage;
+
+        setError(friendlyMessage);
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Something went wrong while loading products."
+        );
+        setUseEmbed(true);
       } finally {
         setIsLoading(false);
       }
@@ -193,6 +216,7 @@ export default function Merch() {
         </motion.div>
 
         {isLoading && (
+        {!useEmbed && isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[0, 1, 2].map((index) => (
               <motion.div
@@ -216,6 +240,7 @@ export default function Merch() {
         )}
 
         {!isLoading && products.length > 0 && (
+        {!useEmbed && !isLoading && products.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cards}
           </div>
@@ -246,6 +271,34 @@ export default function Merch() {
               </Button>
             </div>
           </div>
+        )}
+        {useEmbed && (
+          <div className="relative overflow-hidden rounded-xl border border-border bg-card">
+            {!embedLoaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 gap-2 text-white z-10">
+                <div className="h-10 w-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                <p className="text-sm font-mono text-primary">Loading the live store...</p>
+              </div>
+            )}
+            <iframe
+              src={COLLECTION_URL}
+              title="Stoned Goose Productions Fourthwall Store"
+              className="w-full h-[900px]"
+              loading="lazy"
+              onLoad={() => setEmbedLoaded(true)}
+            />
+            {error && (
+              <div className="p-4 bg-black/60 text-primary text-sm border-t border-border">
+                {error} Showing the live store instead.
+              </div>
+            )}
+          </div>
+        )}
+
+        {error && !useEmbed && (
+          <p className="mt-4 text-primary text-sm">
+            {error} Try opening the collection directly.
+          </p>
         )}
       </div>
     </section>
