@@ -218,6 +218,9 @@ app.get("/api/fourthwall/products", async (_req, res) => {
     const response = await fetch(FOURTHWALL_COLLECTION_URL, {
       headers: { Accept: "application/json" },
       signal: controller.signal,
+  try {
+    const response = await fetch(FOURTHWALL_COLLECTION_URL, {
+      headers: { Accept: "application/json" },
     });
 
     if (!response.ok) {
@@ -242,6 +245,7 @@ app.get("/api/fourthwall/products", async (_req, res) => {
       throw new Error("Received malformed JSON from Fourthwall");
     }
 
+    const data = await response.json();
     const products = Array.isArray((data as any)?.products) ? (data as any).products : [];
 
     cachedFourthwallProducts = { products, timestamp: Date.now() };
@@ -254,6 +258,8 @@ app.get("/api/fourthwall/products", async (_req, res) => {
       .json({ error: "Unable to reach the Fourthwall store right now." });
   } finally {
     clearTimeout(timeout);
+    console.error("Fourthwall proxy error", error);
+    return res.status(500).json({ error: "Unable to load merch" });
   }
 });
 
