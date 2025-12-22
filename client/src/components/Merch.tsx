@@ -19,6 +19,8 @@ export default function Merch() {
   const [products, setProducts] = useState<StoreProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [useEmbed, setUseEmbed] = useState(false);
+  const [embedLoaded, setEmbedLoaded] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -101,6 +103,8 @@ export default function Merch() {
             : rawMessage;
 
         setError(friendlyMessage);
+        setEmbedLoaded(false);
+        setUseEmbed(true);
       } finally {
         setIsLoading(false);
       }
@@ -244,7 +248,42 @@ export default function Merch() {
               >
                 Try again
               </Button>
+              {!useEmbed && (
+                <Button
+                  variant="outline"
+                  className="border-secondary text-secondary hover:bg-secondary/20"
+                  onClick={() => {
+                    setEmbedLoaded(false);
+                    setUseEmbed(true);
+                  }}
+                >
+                  Try embedded store
+                </Button>
+              )}
             </div>
+            {useEmbed && (
+              <div className="mt-4">
+                <p className="text-sm text-primary mb-2">
+                  Trying the embedded store below. If it stays blank, open the live store in a new tab.
+                </p>
+                <div className="relative overflow-hidden rounded-xl border border-border bg-black/50">
+                  {!embedLoaded && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/60">
+                      <div className="w-10 h-10 border-2 border-secondary border-t-transparent rounded-full animate-spin" />
+                      <p className="text-sm text-primary">Loading the live store…</p>
+                    </div>
+                  )}
+                  <iframe
+                    src={COLLECTION_URL}
+                    title="Stoned Goose Productions Fourthwall Store"
+                    loading="lazy"
+                    className="w-full h-[720px] border-0"
+                    allow="clipboard-write; encrypted-media"
+                    onLoad={() => setEmbedLoaded(true)}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
