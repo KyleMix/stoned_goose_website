@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all";
+const COLLECTION_API_URL = "/api/fourthwall/products";
 const COLLECTION_JSON_URL = `${COLLECTION_URL}/products.json`;
 
 type StoreProduct = {
@@ -27,6 +28,7 @@ export default function Merch() {
 
     async function fetchProducts() {
       try {
+        const response = await fetch(COLLECTION_API_URL, {
         const response = await fetch(COLLECTION_JSON_URL, {
           signal: controller.signal,
         });
@@ -71,6 +73,17 @@ export default function Merch() {
         setProducts(mappedProducts);
       } catch (err) {
         console.error(err);
+        const rawMessage =
+          err instanceof Error
+            ? err.message
+            : "Something went wrong while loading products.";
+
+        const normalized = rawMessage.toLowerCase();
+        const friendlyMessage = normalized.includes("fetch") || normalized.includes("network")
+          ? "We couldn't reach the Fourthwall store from here. Use the buttons below to browse the live shop."
+          : rawMessage;
+
+        setError(friendlyMessage);
         setError(
           err instanceof Error
             ? err.message
@@ -168,6 +181,7 @@ export default function Merch() {
           </Button>
         </motion.div>
 
+        {isLoading && (
         {!useEmbed && isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[0, 1, 2].map((index) => (
@@ -191,12 +205,39 @@ export default function Merch() {
           </div>
         )}
 
+        {!isLoading && products.length > 0 && (
         {!useEmbed && !isLoading && products.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cards}
           </div>
         )}
 
+        {!isLoading && !products.length && (
+          <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4 text-white">
+            <div className="flex items-center gap-3">
+              <ShoppingBag className="w-5 h-5 text-secondary" />
+              <h3 className="text-xl font-bold">Merch is loading elsewhere</h3>
+            </div>
+            <p className="text-primary text-sm">
+              {error || "We couldn’t load items from the store right now."}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                className="bg-secondary hover:bg-secondary/80 text-white font-bold uppercase"
+                onClick={() => window.open(COLLECTION_URL, "_blank", "noreferrer,noopener")}
+              >
+                Browse the live store
+              </Button>
+              <Button
+                variant="outline"
+                className="border-border text-white hover:bg-white hover:text-black"
+                onClick={() => window.location.reload()}
+              >
+                Try again
+              </Button>
+            </div>
+          </div>
+        )}
         {useEmbed && (
           <div className="relative overflow-hidden rounded-xl border border-border bg-card">
             {!embedLoaded && (
