@@ -43,6 +43,8 @@ app.get("/health", (_req, res) => res.json({ ok: true }));
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 const EVENTBRITE_TOKEN = process.env.EVENTBRITE_TOKEN;
 const EVENTBRITE_ORGANIZER_ID = process.env.EVENTBRITE_ORGANIZER_ID;
+const FOURTHWALL_COLLECTION_URL =
+  "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
 
 const CACHE_TTL_MS = 60_000;
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -90,6 +92,11 @@ interface SimplifiedEvent {
 let cachedEvents: { timestamp: number; events: SimplifiedEvent[] } = {
   timestamp: 0,
   events: [],
+};
+
+let cachedFourthwallProducts: { timestamp: number; products: unknown[] } = {
+  timestamp: 0,
+  products: [],
 };
 
 const requestLog: number[] = [];
@@ -190,6 +197,47 @@ app.get("/api/eventbrite", async (_req, res) => {
   } catch (error) {
     console.error("Eventbrite proxy error", error);
     return res.status(500).json({ error: "Unable to fetch events" });
+  }
+});
+
+app.get("/api/fourthwall/products", async (_req, res) => {
+  if (isRateLimited()) {
+    return res
+      .status(429)
+      .json({ error: "Too many requests. Please try again soon." });
+  }
+
+  if (Date.now() - cachedFourthwallProducts.timestamp < CACHE_TTL_MS) {
+    return res.json({ products: cachedFourthwallProducts.products, cached: true });
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+
+  try {
+    const response = await fetch(FOURTHWALL_COLLECTION_URL, {
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Fourthwall request failed: ${response.status} ${text}`);
+    }
+
+    const data = await response.json();
+    const products = Array.isArray((data as any)?.products) ? (data as any).products : [];
+
+    cachedFourthwallProducts = { products, timestamp: Date.now() };
+    return res.json({ products });
+  } catch (error) {
+    const isAbort = error instanceof Error && error.name === "AbortError";
+    console.error("Fourthwall proxy error", error);
+    return res
+      .status(isAbort ? 504 : 502)
+      .json({ error: "Unable to reach the Fourthwall store right now." });
+  } finally {
+    clearTimeout(timeout);
   }
 });
 
