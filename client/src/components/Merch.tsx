@@ -29,6 +29,34 @@ export default function Merch() {
     async function fetchProducts() {
       try {
         const response = await fetch(COLLECTION_API_URL, {
+          signal: controller.signal,
+        });
+
+        const contentType = response.headers.get("content-type") ?? "";
+        const responseText = await response.text();
+
+        if (!response.ok) {
+          throw new Error(
+            responseText || "Unable to reach the Fourthwall store right now.",
+          );
+        }
+
+        if (!contentType.includes("application/json")) {
+          throw new Error(
+            "The store returned an unexpected response. Please use the buttons below to view the live shop.",
+          );
+        }
+
+        let data: any;
+        try {
+          data = JSON.parse(responseText);
+        } catch (parseError) {
+          console.error("Error parsing Fourthwall response", parseError, responseText);
+          throw new Error(
+            "We received malformed data from the store. Please try again or use the live store link.",
+          );
+        }
+
         const response = await fetch(COLLECTION_JSON_URL, {
           signal: controller.signal,
         });
@@ -79,6 +107,12 @@ export default function Merch() {
             : "Something went wrong while loading products.";
 
         const normalized = rawMessage.toLowerCase();
+        const friendlyMessage =
+          normalized.includes("fetch") || normalized.includes("network")
+            ? "We couldn't reach the Fourthwall store from here. Use the buttons below to browse the live shop."
+            : rawMessage;
+
+        setError(friendlyMessage);
         const friendlyMessage = normalized.includes("fetch") || normalized.includes("network")
           ? "We couldn't reach the Fourthwall store from here. Use the buttons below to browse the live shop."
           : rawMessage;
