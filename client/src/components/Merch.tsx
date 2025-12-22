@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 const COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all";
 const COLLECTION_API_URL = "/api/fourthwall/products";
-const COLLECTION_JSON_URL = `${COLLECTION_URL}/products.json`;
 
 type StoreProduct = {
   id: string;
@@ -28,16 +27,16 @@ export default function Merch() {
 
     async function fetchProducts() {
       try {
-        const response = await fetch(COLLECTION_API_URL, {
+        const productsResponse = await fetch(COLLECTION_API_URL, {
           signal: controller.signal,
         });
 
-        const contentType = response.headers.get("content-type") ?? "";
-        const responseText = await response.text();
+        const contentType = productsResponse.headers.get("content-type") ?? "";
+        const responseBody = await productsResponse.text();
 
-        if (!response.ok) {
+        if (!productsResponse.ok) {
           throw new Error(
-            responseText || "Unable to reach the Fourthwall store right now.",
+            responseBody || "Unable to reach the Fourthwall store right now.",
           );
         }
 
@@ -49,23 +48,14 @@ export default function Merch() {
 
         let data: any;
         try {
-          data = JSON.parse(responseText);
+          data = JSON.parse(responseBody);
         } catch (parseError) {
-          console.error("Error parsing Fourthwall response", parseError, responseText);
+          console.error("Error parsing Fourthwall response", parseError, responseBody);
           throw new Error(
             "We received malformed data from the store. Please try again or use the live store link.",
           );
         }
 
-        const response = await fetch(COLLECTION_JSON_URL, {
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error("Unable to reach the Fourthwall store right now.");
-        }
-
-        const data = await response.json();
         const rawProducts = Array.isArray(data?.products) ? data.products : [];
 
         if (!rawProducts.length) {
@@ -113,16 +103,7 @@ export default function Merch() {
             : rawMessage;
 
         setError(friendlyMessage);
-        const friendlyMessage = normalized.includes("fetch") || normalized.includes("network")
-          ? "We couldn't reach the Fourthwall store from here. Use the buttons below to browse the live shop."
-          : rawMessage;
-
-        setError(friendlyMessage);
-        setError(
-          err instanceof Error
-            ? err.message
-            : "Something went wrong while loading products."
-        );
+        setEmbedLoaded(false);
         setUseEmbed(true);
       } finally {
         setIsLoading(false);
@@ -216,7 +197,6 @@ export default function Merch() {
         </motion.div>
 
         {isLoading && (
-        {!useEmbed && isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[0, 1, 2].map((index) => (
               <motion.div
@@ -233,6 +213,74 @@ export default function Merch() {
                     <div className="h-4 bg-white/10 rounded w-1/4" />
                   </div>
                   <div className="mt-auto h-10 bg-white/10 rounded" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {!isLoading && products.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cards}
+          </div>
+        )}
+
+        {!isLoading && !products.length && (
+          <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4 text-white">
+            <div className="flex items-center gap-3">
+              <ShoppingBag className="w-5 h-5 text-secondary" />
+              <h3 className="text-xl font-bold">Merch is loading elsewhere</h3>
+            </div>
+            <p className="text-primary text-sm">
+              {error || "We couldn’t load items from the store right now."}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                className="bg-secondary hover:bg-secondary/80 text-white font-bold uppercase"
+                onClick={() => window.open(COLLECTION_URL, "_blank", "noreferrer,noopener")}
+              >
+                Browse the live store
+              </Button>
+              <Button
+                variant="outline"
+                className="border-border text-white hover:bg-white hover:text-black"
+                onClick={() => window.location.reload()}
+              >
+                Try again
+              </Button>
+              {!useEmbed && (
+                <Button
+                  variant="outline"
+                  className="border-secondary text-secondary hover:bg-secondary/20"
+                  onClick={() => {
+                    setEmbedLoaded(false);
+                    setUseEmbed(true);
+                  }}
+                >
+                  Try embedded store
+                </Button>
+              )}
+            </div>
+            {useEmbed && (
+              <div className="mt-4">
+                <p className="text-sm text-primary mb-2">
+                  Trying the embedded store below. If it stays blank, open the live store in a new tab.
+                </p>
+                <div className="relative overflow-hidden rounded-xl border border-border bg-black/50">
+                  {!embedLoaded && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/60">
+                      <div className="w-10 h-10 border-2 border-secondary border-t-transparent rounded-full animate-spin" />
+                      <p className="text-sm text-primary">Loading the live store…</p>
+                    </div>
+                  )}
+                  <iframe
+                    src={COLLECTION_URL}
+                    title="Stoned Goose Productions Fourthwall Store"
+                    loading="lazy"
+                    className="w-full h-[720px] border-0"
+                    allow="clipboard-write; encrypted-media"
+                    onLoad={() => setEmbedLoaded(true)}
+                  />
                 </div>
               </motion.div>
             ))}
@@ -280,25 +328,7 @@ export default function Merch() {
                 <p className="text-sm font-mono text-primary">Loading the live store...</p>
               </div>
             )}
-            <iframe
-              src={COLLECTION_URL}
-              title="Stoned Goose Productions Fourthwall Store"
-              className="w-full h-[900px]"
-              loading="lazy"
-              onLoad={() => setEmbedLoaded(true)}
-            />
-            {error && (
-              <div className="p-4 bg-black/60 text-primary text-sm border-t border-border">
-                {error} Showing the live store instead.
-              </div>
-            )}
           </div>
-        )}
-
-        {error && !useEmbed && (
-          <p className="mt-4 text-primary text-sm">
-            {error} Try opening the collection directly.
-          </p>
         )}
       </div>
     </section>
