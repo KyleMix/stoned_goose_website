@@ -282,6 +282,50 @@ export default function Merch() {
                     onLoad={() => setEmbedLoaded(true)}
                   />
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {!isLoading && products.length > 0 && (
+        {!useEmbed && !isLoading && products.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cards}
+          </div>
+        )}
+
+        {!isLoading && !products.length && (
+          <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4 text-white">
+            <div className="flex items-center gap-3">
+              <ShoppingBag className="w-5 h-5 text-secondary" />
+              <h3 className="text-xl font-bold">Merch is loading elsewhere</h3>
+            </div>
+            <p className="text-primary text-sm">
+              {error || "We couldn’t load items from the store right now."}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                className="bg-secondary hover:bg-secondary/80 text-white font-bold uppercase"
+                onClick={() => window.open(COLLECTION_URL, "_blank", "noreferrer,noopener")}
+              >
+                Browse the live store
+              </Button>
+              <Button
+                variant="outline"
+                className="border-border text-white hover:bg-white hover:text-black"
+                onClick={() => window.location.reload()}
+              >
+                Try again
+              </Button>
+            </div>
+          </div>
+        )}
+        {useEmbed && (
+          <div className="relative overflow-hidden rounded-xl border border-border bg-card">
+            {!embedLoaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 gap-2 text-white z-10">
+                <div className="h-10 w-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                <p className="text-sm font-mono text-primary">Loading the live store...</p>
               </div>
             )}
           </div>
