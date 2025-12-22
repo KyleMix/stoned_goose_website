@@ -201,10 +201,23 @@ app.get("/api/eventbrite", async (_req, res) => {
 });
 
 app.get("/api/fourthwall/products", async (_req, res) => {
+  if (isRateLimited()) {
+    return res
+      .status(429)
+      .json({ error: "Too many requests. Please try again soon." });
+  }
+
   if (Date.now() - cachedFourthwallProducts.timestamp < CACHE_TTL_MS) {
     return res.json({ products: cachedFourthwallProducts.products, cached: true });
   }
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+
+  try {
+    const response = await fetch(FOURTHWALL_COLLECTION_URL, {
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
   try {
     const response = await fetch(FOURTHWALL_COLLECTION_URL, {
       headers: { Accept: "application/json" },
@@ -221,6 +234,13 @@ app.get("/api/fourthwall/products", async (_req, res) => {
     cachedFourthwallProducts = { products, timestamp: Date.now() };
     return res.json({ products });
   } catch (error) {
+    const isAbort = error instanceof Error && error.name === "AbortError";
+    console.error("Fourthwall proxy error", error);
+    return res
+      .status(isAbort ? 504 : 502)
+      .json({ error: "Unable to reach the Fourthwall store right now." });
+  } finally {
+    clearTimeout(timeout);
     console.error("Fourthwall proxy error", error);
     return res.status(500).json({ error: "Unable to load merch" });
   }
