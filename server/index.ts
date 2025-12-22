@@ -228,6 +228,23 @@ app.get("/api/fourthwall/products", async (_req, res) => {
       throw new Error(`Fourthwall request failed: ${response.status} ${text}`);
     }
 
+    const contentType = response.headers.get("content-type") ?? "";
+    const rawBody = await response.text();
+
+    if (!contentType.includes("application/json")) {
+      throw new Error(
+        `Fourthwall returned unexpected content-type: ${contentType || "unknown"}. Body: ${rawBody.slice(0, 200)}`,
+      );
+    }
+
+    let data: unknown;
+    try {
+      data = JSON.parse(rawBody);
+    } catch (parseError) {
+      console.error("Fourthwall JSON parse error", parseError, rawBody.slice(0, 200));
+      throw new Error("Received malformed JSON from Fourthwall");
+    }
+
     const data = await response.json();
     const products = Array.isArray((data as any)?.products) ? (data as any).products : [];
 
