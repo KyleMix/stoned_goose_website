@@ -51,6 +51,13 @@ const FOURTHWALL_API_PASSWORD =
   process.env.FOURTHWALL_API_PASSWORD ?? process.env.VITE_FOURTHWALL_API_PASSWORD;
 const FOURTHWALL_API_BASE_URL =
   process.env.FOURTHWALL_API_BASE_URL ?? "https://api.fourthwall.com/open-api/v1";
+const FOURTHWALL_STOREFRONT_TOKEN =
+  process.env.FOURTHWALL_STOREFRONT_TOKEN ??
+  process.env.VITE_FOURTHWALL_STOREFRONT_TOKEN ??
+  "ptkn_2901bb98-e959-48d0-994b-2ce37dfb8a8a";
+const FOURTHWALL_STOREFRONT_API_BASE_URL =
+  process.env.FOURTHWALL_STOREFRONT_API_BASE_URL ??
+  "https://storefront.fourthwall.com/api/storefront/v1";
 const FOURTHWALL_PRODUCT_LIMIT = Number(process.env.FOURTHWALL_PRODUCT_LIMIT ?? 24);
 const FOURTHWALL_COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
@@ -199,11 +206,56 @@ function getFourthwallAuthHeader() {
   return `Basic ${token}`;
 }
 
+function getStorefrontHeaders() {
+  if (!FOURTHWALL_STOREFRONT_TOKEN) return null;
+
+  return {
+    Accept: "application/json",
+    Authorization: `Bearer ${FOURTHWALL_STOREFRONT_TOKEN}`,
+    "X-Storefront-Token": FOURTHWALL_STOREFRONT_TOKEN,
+  };
+}
+
+async function fetchStorefrontProducts(signal: AbortSignal) {
+  if (!FOURTHWALL_STOREFRONT_TOKEN) return null;
+
+  const params = new URLSearchParams({
+    limit: String(FOURTHWALL_PRODUCT_LIMIT),
+    storefront_token: FOURTHWALL_STOREFRONT_TOKEN,
+  });
+
+  const response = await fetch(
+    `${FOURTHWALL_STOREFRONT_API_BASE_URL}/products?${params.toString()}`,
+    {
+      headers: getStorefrontHeaders() ?? { Accept: "application/json" },
+      signal,
+    },
+  );
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      `Fourthwall storefront request failed: ${response.status} ${text}`,
+    );
+  }
+
+  return await response.json();
+}
+
 async function fetchFourthwallProducts() {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8_000);
 
   try {
+    if (FOURTHWALL_STOREFRONT_TOKEN) {
+      try {
+        const storefrontData = await fetchStorefrontProducts(controller.signal);
+        if (storefrontData) return storefrontData;
+      } catch (error) {
+        console.warn("Fourthwall storefront fetch failed, falling back", error);
+      }
+    }
+
     const authHeader = getFourthwallAuthHeader();
     if (authHeader) {
       const params = new URLSearchParams({ limit: String(FOURTHWALL_PRODUCT_LIMIT) });
