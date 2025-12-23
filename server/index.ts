@@ -20,7 +20,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, "..");
 
-loadEnv(path.join(rootDir, ".env.local"));
 loadEnv(path.join(rootDir, ".env"));
 
 const app = express();
