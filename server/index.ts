@@ -155,6 +155,33 @@ function isRateLimited() {
   return false;
 }
 
+function getStoreProxyHeaders(headers: Headers) {
+  const passthroughHeaders: Record<string, string> = {};
+  const cacheControl = headers.get("cache-control");
+  const etag = headers.get("etag");
+  const lastModified = headers.get("last-modified");
+
+  if (cacheControl) passthroughHeaders["cache-control"] = cacheControl;
+  if (etag) passthroughHeaders.etag = etag;
+  if (lastModified) passthroughHeaders["last-modified"] = lastModified;
+
+  return passthroughHeaders;
+}
+
+function rewriteStoreHtml(html: string) {
+  const storeOrigin = new URL(FOURTHWALL_STORE_BASE).origin;
+  return html.replaceAll(storeOrigin, "/merch/store");
+}
+
+function isAllowedImageHost(hostname: string) {
+  return (
+    hostname === "cdn.fourthwall.com" ||
+    hostname === "images.fourthwall.com" ||
+    hostname.endsWith(".fourthwall.com") ||
+    hostname.endsWith(".fourthwallcdn.com")
+  );
+}
+
 async function fetchFromEventbrite<T>(url: string): Promise<T> {
   if (!EVENTBRITE_TOKEN) {
     throw new Error("EVENTBRITE_TOKEN is not configured");
