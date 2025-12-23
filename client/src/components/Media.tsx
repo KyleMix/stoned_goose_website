@@ -10,142 +10,37 @@ type YouTubeVideo = {
   publishedAt?: string;
 };
 
-// YouTube channel (still useful contextually)
-const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@stonedgooseproductions";
-
-const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY as
-  | string
-  | undefined;
-const YOUTUBE_CHANNEL_ID = import.meta.env.VITE_YOUTUBE_CHANNEL_ID as
-  | string
-  | undefined;
-const YOUTUBE_CHANNEL_HANDLE =
-  (import.meta.env.VITE_YOUTUBE_CHANNEL_HANDLE as string | undefined) ??
-  "stonedgooseproductions";
 const YOUTUBE_MAX_RESULTS = Number(import.meta.env.VITE_YOUTUBE_MAX_RESULTS ?? 6);
 
-type YouTubeSearchResponse = {
-  items?: {
-    id?: { videoId?: string | null };
-    snippet?: {
-      title?: string | null;
-      publishedAt?: string | null;
-      thumbnails?: {
-        high?: { url?: string | null } | null;
-        medium?: { url?: string | null } | null;
-        default?: { url?: string | null } | null;
-      } | null;
-    } | null;
-  }[];
-};
-
-function mapSearchItemsToVideos(items: YouTubeSearchResponse["items"]): YouTubeVideo[] {
-  if (!items?.length) return [];
-
-  return items
-    .map((item) => {
-      const id = item.id?.videoId ?? undefined;
-      const title = item.snippet?.title ?? "Untitled video";
-      const thumbnail =
-        item.snippet?.thumbnails?.high?.url ??
-        item.snippet?.thumbnails?.medium?.url ??
-        item.snippet?.thumbnails?.default?.url ??
-        (id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "");
-
-      if (!id) return null;
-
-      return {
-        id,
-        title,
-        url: `https://www.youtube.com/watch?v=${id}`,
-        thumbnail,
-        publishedAt: item.snippet?.publishedAt ?? undefined,
-      } satisfies YouTubeVideo;
-    })
-    .filter(Boolean) as YouTubeVideo[];
-}
-
-function parseRssFeed(xml: string): YouTubeVideo[] {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(xml, "text/xml");
-  const entries = Array.from(doc.querySelectorAll("entry")).slice(0, YOUTUBE_MAX_RESULTS);
-
-  return entries
-    .map((entry) => {
-      const id =
-        entry.querySelector("yt\\:videoId")?.textContent ??
-        entry.querySelector("videoId")?.textContent ??
-        undefined;
-      const title = entry.querySelector("title")?.textContent ?? "Untitled video";
-      const publishedAt = entry.querySelector("published")?.textContent ?? undefined;
-      const url =
-        entry.querySelector("link")?.getAttribute("href") ??
-        (id ? `https://www.youtube.com/watch?v=${id}` : YOUTUBE_CHANNEL_URL);
-
-      if (!id) return null;
-
-      return {
-        id,
-        title,
-        url,
-        publishedAt,
-        thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
-      } satisfies YouTubeVideo;
-    })
-    .filter(Boolean) as YouTubeVideo[];
-}
-
-function getYouTubeFeedUrl() {
-  if (YOUTUBE_CHANNEL_ID) {
-    return `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(YOUTUBE_CHANNEL_ID)}`;
-  }
-
-  const handle = YOUTUBE_CHANNEL_HANDLE?.replace(/^@/, "");
-  if (!handle) return null;
-
-  return `https://www.youtube.com/feeds/videos.xml?user=${encodeURIComponent(handle)}`;
-}
-
 async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
-  if (YOUTUBE_API_KEY && YOUTUBE_CHANNEL_ID) {
-    const params = new URLSearchParams({
-      key: YOUTUBE_API_KEY,
-      channelId: YOUTUBE_CHANNEL_ID,
-      part: "snippet",
-      order: "date",
-      maxResults: String(YOUTUBE_MAX_RESULTS),
-      type: "video",
-    });
+  const response = await fetch("/api/youtube/latest");
 
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/search?${params.toString()}`);
-
-    if (!response.ok) {
-      const message = await response.text();
-      throw new Error(
-        `YouTube API request failed (${response.status}): ${message || "Unknown error fetching videos."}`,
-      );
+  if (!response.ok) {
+    let message = "Unable to load YouTube videos right now.";
+    const text = await response.text();
+    if (text) {
+      try {
+        const data = JSON.parse(text) as { error?: string };
+        if (data?.error) {
+          message = data.error;
+        } else {
+          message = text;
+        }
+      } catch {
+        message = text;
+      }
     }
-
-    const data = (await response.json()) as YouTubeSearchResponse;
-    const videos = mapSearchItemsToVideos(data.items);
-
-    if (videos.length) return videos;
+    throw new Error(message);
   }
 
-  const feedUrl = getYouTubeFeedUrl();
-  if (feedUrl) {
-    const feedResponse = await fetch(feedUrl);
-
-    if (!feedResponse.ok) {
-      throw new Error("Unable to load YouTube videos right now.");
-    }
-
-    const xml = await feedResponse.text();
-    const videos = parseRssFeed(xml);
-    if (videos.length) return videos;
-  }
-
-  throw new Error("YouTube channel configuration is missing or returned no videos.");
+  const data = (await response.json()) as { videos?: YouTubeVideo[] };
+  return (data.videos ?? []).map((video) => ({
+    id: video.id,
+    title: video.title ?? "Untitled video",
+    url: video.url,
+    thumbnail: video.thumbnail ?? `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`,
+    publishedAt: video.publishedAt,
+  }));
 }
 
 // Instagram reel thumbnails
