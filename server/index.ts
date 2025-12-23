@@ -21,6 +21,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, "..");
 
 loadEnv(path.join(rootDir, ".env"));
+loadEnv(path.join(rootDir, ".env.local"));
 
 const app = express();
 app.use(express.json());
@@ -40,10 +41,14 @@ process.on("unhandledRejection", (reason) => {
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
-const EVENTBRITE_TOKEN = process.env.EVENTBRITE_TOKEN;
-const EVENTBRITE_ORGANIZER_ID = process.env.EVENTBRITE_ORGANIZER_ID;
-const FOURTHWALL_API_USERNAME = process.env.FOURTHWALL_API_USERNAME;
-const FOURTHWALL_API_PASSWORD = process.env.FOURTHWALL_API_PASSWORD;
+const EVENTBRITE_TOKEN =
+  process.env.EVENTBRITE_TOKEN ?? process.env.VITE_EVENTBRITE_TOKEN;
+const EVENTBRITE_ORGANIZER_ID =
+  process.env.EVENTBRITE_ORGANIZER_ID ?? process.env.VITE_EVENTBRITE_ORGANIZER_ID;
+const FOURTHWALL_API_USERNAME =
+  process.env.FOURTHWALL_API_USERNAME ?? process.env.VITE_FOURTHWALL_API_USERNAME;
+const FOURTHWALL_API_PASSWORD =
+  process.env.FOURTHWALL_API_PASSWORD ?? process.env.VITE_FOURTHWALL_API_PASSWORD;
 const FOURTHWALL_API_BASE_URL =
   process.env.FOURTHWALL_API_BASE_URL ?? "https://api.fourthwall.com/open-api/v1";
 const FOURTHWALL_PRODUCT_LIMIT = Number(process.env.FOURTHWALL_PRODUCT_LIMIT ?? 24);
@@ -477,8 +482,6 @@ app.get("/api/fourthwall/products", async (_req, res) => {
     return res
       .status(isAbort ? 504 : 502)
       .json({ error: "Unable to reach the Fourthwall store right now." });
-  } finally {
-    clearTimeout(timeout);
   }
 });
 
