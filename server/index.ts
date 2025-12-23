@@ -57,7 +57,7 @@ const FOURTHWALL_STOREFRONT_TOKEN =
   "ptkn_2901bb98-e959-48d0-994b-2ce37dfb8a8a";
 const FOURTHWALL_STOREFRONT_API_BASE_URL =
   process.env.FOURTHWALL_STOREFRONT_API_BASE_URL ??
-  "https://storefront.fourthwall.com/api/storefront/v1";
+  "https://storefront-api.fourthwall.com/v1";
 const FOURTHWALL_PRODUCT_LIMIT = Number(process.env.FOURTHWALL_PRODUCT_LIMIT ?? 24);
 const FOURTHWALL_COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
@@ -207,27 +207,20 @@ function getFourthwallAuthHeader() {
 }
 
 function getStorefrontHeaders() {
-  if (!FOURTHWALL_STOREFRONT_TOKEN) return null;
-
   return {
     Accept: "application/json",
-    Authorization: `Bearer ${FOURTHWALL_STOREFRONT_TOKEN}`,
-    "X-Storefront-Token": FOURTHWALL_STOREFRONT_TOKEN,
   };
 }
 
-async function fetchStorefrontProducts(signal: AbortSignal) {
-  if (!FOURTHWALL_STOREFRONT_TOKEN) return null;
-
-  const params = new URLSearchParams({
-    limit: String(FOURTHWALL_PRODUCT_LIMIT),
-    storefront_token: FOURTHWALL_STOREFRONT_TOKEN,
-  });
-
+async function fetchStorefrontJson(
+  path: string,
+  signal: AbortSignal,
+  params: URLSearchParams,
+) {
   const response = await fetch(
-    `${FOURTHWALL_STOREFRONT_API_BASE_URL}/products?${params.toString()}`,
+    `${FOURTHWALL_STOREFRONT_API_BASE_URL}${path}?${params.toString()}`,
     {
-      headers: getStorefrontHeaders() ?? { Accept: "application/json" },
+      headers: getStorefrontHeaders(),
       signal,
     },
   );
@@ -240,6 +233,65 @@ async function fetchStorefrontProducts(signal: AbortSignal) {
   }
 
   return await response.json();
+}
+
+function resolveStorefrontCollections(data: any) {
+  if (Array.isArray(data?.collections)) return data.collections;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.items)) return data.items;
+  return [];
+}
+
+async function fetchStorefrontProducts(signal: AbortSignal) {
+  if (!FOURTHWALL_STOREFRONT_TOKEN) return null;
+
+  const params = new URLSearchParams({
+    limit: String(FOURTHWALL_PRODUCT_LIMIT),
+    storefront_token: FOURTHWALL_STOREFRONT_TOKEN,
+  });
+
+  try {
+    return await fetchStorefrontJson("/products", signal, params);
+  } catch (error) {
+    console.warn("Fourthwall storefront products fetch failed", error);
+  }
+
+  const collections = await fetchStorefrontJson("/collections", signal, params);
+  const collectionList = resolveStorefrontCollections(collections);
+  const fallbackCollection = collectionList.find((collection: any) => {
+    const handle = collection?.handle ?? collection?.slug ?? "";
+    const title = collection?.title ?? collection?.name ?? "";
+    return handle.toLowerCase() === "all" || title.toLowerCase() === "all";
+  });
+  const selectedCollection = fallbackCollection ?? collectionList[0];
+  const collectionProducts =
+    selectedCollection?.products ??
+    selectedCollection?.items ??
+    selectedCollection?.data;
+
+  if (Array.isArray(collectionProducts) && collectionProducts.length) {
+    return { products: collectionProducts };
+  }
+
+  const collectionId =
+    selectedCollection?.id ??
+    selectedCollection?.handle ??
+    selectedCollection?.slug ??
+    selectedCollection?.collection_id;
+
+  if (collectionId) {
+    try {
+      return await fetchStorefrontJson(
+        `/collections/${collectionId}/products`,
+        signal,
+        params,
+      );
+    } catch (error) {
+      console.warn("Fourthwall storefront collection fetch failed", error);
+    }
+  }
+
+  return collections;
 }
 
 async function fetchFourthwallProducts() {
