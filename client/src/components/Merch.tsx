@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { ShoppingBag, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const COLLECTION_URL =
-  "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all";
+const STORE_BASE_PATH = "/merch/store";
+const COLLECTION_PATH = `${STORE_BASE_PATH}/collections/all`;
 const COLLECTION_API_URL = "/api/fourthwall/products";
+const IMAGE_PROXY_PATH = "/api/fourthwall/image?url=";
 
 type StoreProduct = {
   id: string;
@@ -21,6 +22,7 @@ export default function Merch() {
   const [error, setError] = useState<string | null>(null);
   const [useEmbed, setUseEmbed] = useState(false);
   const [embedLoaded, setEmbedLoaded] = useState(false);
+  const [embedUrl, setEmbedUrl] = useState(COLLECTION_PATH);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -74,12 +76,17 @@ export default function Merch() {
 
             if (!handle || !price || !imageSrc) return null;
 
+            const productLink = `${STORE_BASE_PATH}/products/${encodeURIComponent(
+              handle,
+            )}`;
+            const proxiedImage = `${IMAGE_PROXY_PATH}${encodeURIComponent(imageSrc)}`;
+
             return {
               id: String(product.id ?? handle),
               name: product.title || product.name || "Product",
               price: price.startsWith("$") ? price : `$${price}`,
-              image: imageSrc,
-              link: `${COLLECTION_URL.replace("/collections/all", "")}/products/${handle}`,
+              image: proxiedImage,
+              link: productLink,
             };
           })
           .filter(Boolean) as StoreProduct[];
@@ -103,6 +110,7 @@ export default function Merch() {
             : rawMessage;
 
         setError(friendlyMessage);
+        setEmbedUrl(COLLECTION_PATH);
         setEmbedLoaded(false);
         setUseEmbed(true);
       } finally {
@@ -138,9 +146,18 @@ export default function Merch() {
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
               <Button
                 className="bg-primary hover:bg-primary/80 text-black font-bold uppercase transform translate-y-4 group-hover:translate-y-0 transition-transform"
-                onClick={() =>
-                  window.open(product.link, "_blank", "noreferrer,noopener")
-                }
+                onClick={() => {
+                  const newWindow = window.open(
+                    product.link,
+                    "_blank",
+                    "noreferrer,noopener",
+                  );
+                  if (!newWindow) {
+                    setEmbedUrl(product.link);
+                    setEmbedLoaded(false);
+                    setUseEmbed(true);
+                  }
+                }}
               >
                 View on Store
               </Button>
@@ -161,7 +178,18 @@ export default function Merch() {
             <div className="mt-auto">
               <Button
                 className="w-full bg-secondary hover:bg-secondary/80 text-white font-bold uppercase"
-                onClick={() => window.open(product.link, "_blank", "noreferrer,noopener")}
+                onClick={() => {
+                  const newWindow = window.open(
+                    product.link,
+                    "_blank",
+                    "noreferrer,noopener",
+                  );
+                  if (!newWindow) {
+                    setEmbedUrl(product.link);
+                    setEmbedLoaded(false);
+                    setUseEmbed(true);
+                  }
+                }}
               >
                 <ShoppingBag className="mr-2 w-4 h-4" /> Buy Now
               </Button>
@@ -190,7 +218,18 @@ export default function Merch() {
           <Button
             variant="outline"
             className="border-white text-white hover:bg-white hover:text-black"
-            onClick={() => window.open(COLLECTION_URL, "_blank", "noreferrer,noopener")}
+            onClick={() => {
+              const newWindow = window.open(
+                COLLECTION_PATH,
+                "_blank",
+                "noreferrer,noopener",
+              );
+              if (!newWindow) {
+                setEmbedUrl(COLLECTION_PATH);
+                setEmbedLoaded(false);
+                setUseEmbed(true);
+              }
+            }}
           >
             View All Products <ExternalLink className="ml-2 w-4 h-4" />
           </Button>
@@ -237,7 +276,18 @@ export default function Merch() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 className="bg-secondary hover:bg-secondary/80 text-white font-bold uppercase"
-                onClick={() => window.open(COLLECTION_URL, "_blank", "noreferrer,noopener")}
+                onClick={() => {
+                  const newWindow = window.open(
+                    COLLECTION_PATH,
+                    "_blank",
+                    "noreferrer,noopener",
+                  );
+                  if (!newWindow) {
+                    setEmbedUrl(COLLECTION_PATH);
+                    setEmbedLoaded(false);
+                    setUseEmbed(true);
+                  }
+                }}
               >
                 Browse the live store
               </Button>
@@ -253,6 +303,7 @@ export default function Merch() {
                   variant="outline"
                   className="border-secondary text-secondary hover:bg-secondary/20"
                   onClick={() => {
+                    setEmbedUrl(COLLECTION_PATH);
                     setEmbedLoaded(false);
                     setUseEmbed(true);
                   }}
@@ -279,7 +330,7 @@ export default function Merch() {
                 </div>
               )}
               <iframe
-                src={COLLECTION_URL}
+                src={embedUrl}
                 title="Stoned Goose Productions Fourthwall Store"
                 loading="lazy"
                 className="w-full h-[720px] border-0"
