@@ -45,8 +45,7 @@ const EVENTBRITE_TOKEN = process.env.EVENTBRITE_TOKEN;
 const EVENTBRITE_ORGANIZER_ID = process.env.EVENTBRITE_ORGANIZER_ID;
 const FOURTHWALL_COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
-const FOURTHWALL_STORE_BASE =
-  "https://stoned-goose-productions-zgm-shop.fourthwall.com";
+const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@stonedgooseproductions";
 
 const CACHE_TTL_MS = 60_000;
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -101,10 +100,44 @@ let cachedFourthwallProducts: { timestamp: number; products: unknown[] } = {
   products: [],
 };
 
-const cachedFourthwallStoreHtml: Record<
-  string,
-  { timestamp: number; html: string; headers: Record<string, string> }
-> = {};
+interface YouTubeVideo {
+  id: string;
+  title: string;
+  url: string;
+  thumbnail: string;
+  publishedAt?: string;
+}
+
+type YouTubeSearchResponse = {
+  items?: {
+    id?: { videoId?: string | null };
+    snippet?: {
+      title?: string | null;
+      publishedAt?: string | null;
+      thumbnails?: {
+        high?: { url?: string | null } | null;
+        medium?: { url?: string | null } | null;
+        default?: { url?: string | null } | null;
+      } | null;
+    } | null;
+  }[];
+};
+
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY ?? process.env.VITE_YOUTUBE_API_KEY;
+const YOUTUBE_CHANNEL_ID =
+  process.env.YOUTUBE_CHANNEL_ID ?? process.env.VITE_YOUTUBE_CHANNEL_ID;
+const YOUTUBE_CHANNEL_HANDLE =
+  process.env.YOUTUBE_CHANNEL_HANDLE ??
+  process.env.VITE_YOUTUBE_CHANNEL_HANDLE ??
+  "stonedgooseproductions";
+const YOUTUBE_MAX_RESULTS = Number(
+  process.env.YOUTUBE_MAX_RESULTS ?? process.env.VITE_YOUTUBE_MAX_RESULTS ?? 6,
+);
+
+let cachedYouTubeVideos: { timestamp: number; videos: YouTubeVideo[] } = {
+  timestamp: 0,
+  videos: [],
+};
 
 const requestLog: number[] = [];
 
@@ -217,6 +250,128 @@ async function fetchEvents(): Promise<SimplifiedEvent[]> {
   return simplified;
 }
 
+function mapSearchItemsToVideos(items: YouTubeSearchResponse["items"]): YouTubeVideo[] {
+  if (!items?.length) return [];
+
+  return items
+    .map((item) => {
+      const id = item.id?.videoId ?? undefined;
+      const title = item.snippet?.title ?? "Untitled video";
+      const thumbnail =
+        item.snippet?.thumbnails?.high?.url ??
+        item.snippet?.thumbnails?.medium?.url ??
+        item.snippet?.thumbnails?.default?.url ??
+        (id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "");
+
+      if (!id) return null;
+
+      return {
+        id,
+        title,
+        url: `https://www.youtube.com/watch?v=${id}`,
+        thumbnail,
+        publishedAt: item.snippet?.publishedAt ?? undefined,
+      } satisfies YouTubeVideo;
+    })
+    .filter(Boolean) as YouTubeVideo[];
+}
+
+function parseRssFeed(xml: string): YouTubeVideo[] {
+  const entries = xml.match(/<entry>[\s\S]*?<\/entry>/g) ?? [];
+  const videos = entries
+    .slice(0, YOUTUBE_MAX_RESULTS)
+    .map((entry) => {
+      const videoIdMatch =
+        entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/) ??
+        entry.match(/<videoId>([^<]+)<\/videoId>/);
+      const id = videoIdMatch?.[1]?.trim();
+      const titleMatch = entry.match(/<title>([\s\S]*?)<\/title>/);
+      const title = titleMatch?.[1]?.trim() ?? "Untitled video";
+      const publishedMatch = entry.match(/<published>([^<]+)<\/published>/);
+      const publishedAt = publishedMatch?.[1]?.trim();
+      const linkMatch = entry.match(/<link[^>]*href="([^"]+)"[^>]*>/);
+      const url =
+        linkMatch?.[1]?.trim() ?? (id ? `https://www.youtube.com/watch?v=${id}` : "");
+
+      if (!id) return null;
+
+      return {
+        id,
+        title,
+        url: url || YOUTUBE_CHANNEL_URL,
+        thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+        publishedAt,
+      } satisfies YouTubeVideo;
+    })
+    .filter(Boolean) as YouTubeVideo[];
+
+  return videos;
+}
+
+function getYouTubeFeedUrl() {
+  if (YOUTUBE_CHANNEL_ID) {
+    return `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(YOUTUBE_CHANNEL_ID)}`;
+  }
+
+  const handle = YOUTUBE_CHANNEL_HANDLE?.replace(/^@/, "");
+  if (!handle) return null;
+
+  return `https://www.youtube.com/feeds/videos.xml?user=${encodeURIComponent(handle)}`;
+}
+
+async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
+  if (YOUTUBE_API_KEY && YOUTUBE_CHANNEL_ID) {
+    const params = new URLSearchParams({
+      key: YOUTUBE_API_KEY,
+      channelId: YOUTUBE_CHANNEL_ID,
+      part: "snippet",
+      order: "date",
+      maxResults: String(YOUTUBE_MAX_RESULTS),
+      type: "video",
+    });
+
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?${params.toString()}`,
+      );
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(
+          `YouTube API request failed (${response.status}): ${
+            message || "Unknown error fetching videos."
+          }`,
+        );
+      }
+
+      const data = (await response.json()) as YouTubeSearchResponse;
+      const videos = mapSearchItemsToVideos(data.items);
+      if (videos.length) return videos;
+    } catch (error) {
+      console.error("YouTube API fetch error", error);
+    }
+  }
+
+  const feedUrl = getYouTubeFeedUrl();
+  if (feedUrl) {
+    const feedResponse = await fetch(feedUrl);
+    if (!feedResponse.ok) {
+      const message = await feedResponse.text();
+      throw new Error(
+        `YouTube RSS feed request failed (${feedResponse.status}): ${
+          message || "Unable to load feed."
+        }`,
+      );
+    }
+
+    const xml = await feedResponse.text();
+    const videos = parseRssFeed(xml);
+    if (videos.length) return videos;
+  }
+
+  throw new Error("YouTube channel configuration is missing or returned no videos.");
+}
+
 app.get("/api/eventbrite", async (_req, res) => {
   if (isRateLimited()) {
     return res.status(429).json({ error: "Too many requests. Please try again soon." });
@@ -293,131 +448,24 @@ app.get("/api/fourthwall/products", async (_req, res) => {
   }
 });
 
-async function handleFourthwallStoreProxy(req: express.Request, res: express.Response) {
+app.get("/api/youtube/latest", async (_req, res) => {
   if (isRateLimited()) {
-    return res
-      .status(429)
-      .send("Too many requests. Please try again soon.");
+    return res.status(429).json({ error: "Too many requests. Please try again soon." });
   }
 
-  const storePath = req.path === "/merch/store" ? "/" : req.path.replace("/merch/store", "");
-  const incomingUrl = new URL(req.originalUrl, "http://localhost");
-  const upstreamUrl = new URL(`${FOURTHWALL_STORE_BASE}${storePath}`);
-  upstreamUrl.search = incomingUrl.search;
-
-  const cacheKey = `${storePath}${incomingUrl.search}`;
-  const cached = cachedFourthwallStoreHtml[cacheKey];
-  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
-    res.set(cached.headers);
-    res.set("content-type", "text/html; charset=utf-8");
-    return res.send(cached.html);
+  if (Date.now() - cachedYouTubeVideos.timestamp < CACHE_TTL_MS) {
+    return res.json({ videos: cachedYouTubeVideos.videos, cached: true });
   }
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8_000);
 
   try {
-    const response = await fetch(upstreamUrl.toString(), {
-      headers: { Accept: "text/html" },
-      signal: controller.signal,
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      return res.status(response.status).send(text);
-    }
-
-    const contentType = response.headers.get("content-type") ?? "text/html";
-    const passthroughHeaders = getStoreProxyHeaders(response.headers);
-
-    if (contentType.includes("text/html")) {
-      const rawHtml = await response.text();
-      const rewrittenHtml = rewriteStoreHtml(rawHtml);
-      cachedFourthwallStoreHtml[cacheKey] = {
-        timestamp: Date.now(),
-        html: rewrittenHtml,
-        headers: passthroughHeaders,
-      };
-      res.set(passthroughHeaders);
-      res.set("content-type", "text/html; charset=utf-8");
-      return res.send(rewrittenHtml);
-    }
-
-    const buffer = Buffer.from(await response.arrayBuffer());
-    res.set(passthroughHeaders);
-    res.set("content-type", contentType);
-    return res.send(buffer);
+    const videos = await fetchYouTubeVideos();
+    cachedYouTubeVideos = { videos, timestamp: Date.now() };
+    return res.json({ videos });
   } catch (error) {
-    const isAbort = error instanceof Error && error.name === "AbortError";
-    console.error("Fourthwall store proxy error", error);
-    return res
-      .status(isAbort ? 504 : 502)
-      .send("Unable to reach the Fourthwall store right now.");
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
-app.get("/merch/store", handleFourthwallStoreProxy);
-app.get("/merch/store/*", handleFourthwallStoreProxy);
-
-app.get("/api/fourthwall/image", async (req, res) => {
-  if (isRateLimited()) {
-    return res
-      .status(429)
-      .json({ error: "Too many requests. Please try again soon." });
-  }
-
-  const rawUrl = typeof req.query.url === "string" ? req.query.url : "";
-  if (!rawUrl) {
-    return res.status(400).json({ error: "Missing url parameter." });
-  }
-
-  let imageUrl: URL;
-  try {
-    imageUrl = new URL(rawUrl);
-  } catch (error) {
-    return res.status(400).json({ error: "Invalid image URL." });
-  }
-
-  if (!["http:", "https:"].includes(imageUrl.protocol)) {
-    return res.status(400).json({ error: "Invalid image URL protocol." });
-  }
-
-  if (!isAllowedImageHost(imageUrl.hostname)) {
-    return res.status(403).json({ error: "Image host is not allowed." });
-  }
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8_000);
-
-  try {
-    const response = await fetch(imageUrl.toString(), {
-      headers: { Accept: "image/*" },
-      signal: controller.signal,
-    });
-
-    if (!response.ok) {
-      return res
-        .status(response.status)
-        .json({ error: "Unable to fetch image." });
-    }
-
-    const contentType = response.headers.get("content-type") ?? "image/*";
-    const passthroughHeaders = getStoreProxyHeaders(response.headers);
-    const buffer = Buffer.from(await response.arrayBuffer());
-
-    res.set(passthroughHeaders);
-    res.set("content-type", contentType);
-    return res.send(buffer);
-  } catch (error) {
-    const isAbort = error instanceof Error && error.name === "AbortError";
-    console.error("Fourthwall image proxy error", error);
-    return res
-      .status(isAbort ? 504 : 502)
-      .json({ error: "Unable to reach the image host right now." });
-  } finally {
-    clearTimeout(timeout);
+    const message =
+      error instanceof Error ? error.message : "Unable to fetch YouTube videos.";
+    console.error("YouTube proxy error", error);
+    return res.status(500).json({ error: message });
   }
 });
 
