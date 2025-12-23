@@ -19,6 +19,9 @@ const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY as
 const YOUTUBE_CHANNEL_ID = import.meta.env.VITE_YOUTUBE_CHANNEL_ID as
   | string
   | undefined;
+const YOUTUBE_CHANNEL_HANDLE =
+  (import.meta.env.VITE_YOUTUBE_CHANNEL_HANDLE as string | undefined) ??
+  "stonedgooseproductions";
 const YOUTUBE_MAX_RESULTS = Number(import.meta.env.VITE_YOUTUBE_MAX_RESULTS ?? 6);
 
 type YouTubeSearchResponse = {
@@ -92,6 +95,17 @@ function parseRssFeed(xml: string): YouTubeVideo[] {
     .filter(Boolean) as YouTubeVideo[];
 }
 
+function getYouTubeFeedUrl() {
+  if (YOUTUBE_CHANNEL_ID) {
+    return `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(YOUTUBE_CHANNEL_ID)}`;
+  }
+
+  const handle = YOUTUBE_CHANNEL_HANDLE?.replace(/^@/, "");
+  if (!handle) return null;
+
+  return `https://www.youtube.com/feeds/videos.xml?user=${encodeURIComponent(handle)}`;
+}
+
 async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
   if (YOUTUBE_API_KEY && YOUTUBE_CHANNEL_ID) {
     const params = new URLSearchParams({
@@ -118,10 +132,9 @@ async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
     if (videos.length) return videos;
   }
 
-  if (YOUTUBE_CHANNEL_ID) {
-    const feedResponse = await fetch(
-      `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(YOUTUBE_CHANNEL_ID)}`,
-    );
+  const feedUrl = getYouTubeFeedUrl();
+  if (feedUrl) {
+    const feedResponse = await fetch(feedUrl);
 
     if (!feedResponse.ok) {
       throw new Error("Unable to load YouTube videos right now.");
