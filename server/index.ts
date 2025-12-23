@@ -45,6 +45,8 @@ const EVENTBRITE_TOKEN = process.env.EVENTBRITE_TOKEN;
 const EVENTBRITE_ORGANIZER_ID = process.env.EVENTBRITE_ORGANIZER_ID;
 const FOURTHWALL_COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
+const FOURTHWALL_STORE_BASE =
+  "https://stoned-goose-productions-zgm-shop.fourthwall.com";
 
 const CACHE_TTL_MS = 60_000;
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -99,6 +101,11 @@ let cachedFourthwallProducts: { timestamp: number; products: unknown[] } = {
   products: [],
 };
 
+const cachedFourthwallStoreHtml: Record<
+  string,
+  { timestamp: number; html: string; headers: Record<string, string> }
+> = {};
+
 const requestLog: number[] = [];
 
 function isRateLimited() {
@@ -113,6 +120,33 @@ function isRateLimited() {
 
   requestLog.push(now);
   return false;
+}
+
+function getStoreProxyHeaders(headers: Headers) {
+  const passthroughHeaders: Record<string, string> = {};
+  const cacheControl = headers.get("cache-control");
+  const etag = headers.get("etag");
+  const lastModified = headers.get("last-modified");
+
+  if (cacheControl) passthroughHeaders["cache-control"] = cacheControl;
+  if (etag) passthroughHeaders.etag = etag;
+  if (lastModified) passthroughHeaders["last-modified"] = lastModified;
+
+  return passthroughHeaders;
+}
+
+function rewriteStoreHtml(html: string) {
+  const storeOrigin = new URL(FOURTHWALL_STORE_BASE).origin;
+  return html.replaceAll(storeOrigin, "/merch/store");
+}
+
+function isAllowedImageHost(hostname: string) {
+  return (
+    hostname === "cdn.fourthwall.com" ||
+    hostname === "images.fourthwall.com" ||
+    hostname.endsWith(".fourthwall.com") ||
+    hostname.endsWith(".fourthwallcdn.com")
+  );
 }
 
 async function fetchFromEventbrite<T>(url: string): Promise<T> {
@@ -254,6 +288,134 @@ app.get("/api/fourthwall/products", async (_req, res) => {
     return res
       .status(isAbort ? 504 : 502)
       .json({ error: "Unable to reach the Fourthwall store right now." });
+  } finally {
+    clearTimeout(timeout);
+  }
+});
+
+async function handleFourthwallStoreProxy(req: express.Request, res: express.Response) {
+  if (isRateLimited()) {
+    return res
+      .status(429)
+      .send("Too many requests. Please try again soon.");
+  }
+
+  const storePath = req.path === "/merch/store" ? "/" : req.path.replace("/merch/store", "");
+  const incomingUrl = new URL(req.originalUrl, "http://localhost");
+  const upstreamUrl = new URL(`${FOURTHWALL_STORE_BASE}${storePath}`);
+  upstreamUrl.search = incomingUrl.search;
+
+  const cacheKey = `${storePath}${incomingUrl.search}`;
+  const cached = cachedFourthwallStoreHtml[cacheKey];
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    res.set(cached.headers);
+    res.set("content-type", "text/html; charset=utf-8");
+    return res.send(cached.html);
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+
+  try {
+    const response = await fetch(upstreamUrl.toString(), {
+      headers: { Accept: "text/html" },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      return res.status(response.status).send(text);
+    }
+
+    const contentType = response.headers.get("content-type") ?? "text/html";
+    const passthroughHeaders = getStoreProxyHeaders(response.headers);
+
+    if (contentType.includes("text/html")) {
+      const rawHtml = await response.text();
+      const rewrittenHtml = rewriteStoreHtml(rawHtml);
+      cachedFourthwallStoreHtml[cacheKey] = {
+        timestamp: Date.now(),
+        html: rewrittenHtml,
+        headers: passthroughHeaders,
+      };
+      res.set(passthroughHeaders);
+      res.set("content-type", "text/html; charset=utf-8");
+      return res.send(rewrittenHtml);
+    }
+
+    const buffer = Buffer.from(await response.arrayBuffer());
+    res.set(passthroughHeaders);
+    res.set("content-type", contentType);
+    return res.send(buffer);
+  } catch (error) {
+    const isAbort = error instanceof Error && error.name === "AbortError";
+    console.error("Fourthwall store proxy error", error);
+    return res
+      .status(isAbort ? 504 : 502)
+      .send("Unable to reach the Fourthwall store right now.");
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+app.get("/merch/store", handleFourthwallStoreProxy);
+app.get("/merch/store/*", handleFourthwallStoreProxy);
+
+app.get("/api/fourthwall/image", async (req, res) => {
+  if (isRateLimited()) {
+    return res
+      .status(429)
+      .json({ error: "Too many requests. Please try again soon." });
+  }
+
+  const rawUrl = typeof req.query.url === "string" ? req.query.url : "";
+  if (!rawUrl) {
+    return res.status(400).json({ error: "Missing url parameter." });
+  }
+
+  let imageUrl: URL;
+  try {
+    imageUrl = new URL(rawUrl);
+  } catch (error) {
+    return res.status(400).json({ error: "Invalid image URL." });
+  }
+
+  if (!["http:", "https:"].includes(imageUrl.protocol)) {
+    return res.status(400).json({ error: "Invalid image URL protocol." });
+  }
+
+  if (!isAllowedImageHost(imageUrl.hostname)) {
+    return res.status(403).json({ error: "Image host is not allowed." });
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+
+  try {
+    const response = await fetch(imageUrl.toString(), {
+      headers: { Accept: "image/*" },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      return res
+        .status(response.status)
+        .json({ error: "Unable to fetch image." });
+    }
+
+    const contentType = response.headers.get("content-type") ?? "image/*";
+    const passthroughHeaders = getStoreProxyHeaders(response.headers);
+    const buffer = Buffer.from(await response.arrayBuffer());
+
+    res.set(passthroughHeaders);
+    res.set("content-type", contentType);
+    return res.send(buffer);
+  } catch (error) {
+    const isAbort = error instanceof Error && error.name === "AbortError";
+    console.error("Fourthwall image proxy error", error);
+    return res
+      .status(isAbort ? 504 : 502)
+      .json({ error: "Unable to reach the image host right now." });
   } finally {
     clearTimeout(timeout);
   }
