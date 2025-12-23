@@ -43,6 +43,11 @@ app.get("/health", (_req, res) => res.json({ ok: true }));
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 const EVENTBRITE_TOKEN = process.env.EVENTBRITE_TOKEN;
 const EVENTBRITE_ORGANIZER_ID = process.env.EVENTBRITE_ORGANIZER_ID;
+const FOURTHWALL_API_USERNAME = process.env.FOURTHWALL_API_USERNAME;
+const FOURTHWALL_API_PASSWORD = process.env.FOURTHWALL_API_PASSWORD;
+const FOURTHWALL_API_BASE_URL =
+  process.env.FOURTHWALL_API_BASE_URL ?? "https://api.fourthwall.com/open-api/v1";
+const FOURTHWALL_PRODUCT_LIMIT = Number(process.env.FOURTHWALL_PRODUCT_LIMIT ?? 24);
 const FOURTHWALL_COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
 const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@stonedgooseproductions";
@@ -180,6 +185,59 @@ function isAllowedImageHost(hostname: string) {
     hostname.endsWith(".fourthwall.com") ||
     hostname.endsWith(".fourthwallcdn.com")
   );
+}
+
+function getFourthwallAuthHeader() {
+  if (!FOURTHWALL_API_USERNAME || !FOURTHWALL_API_PASSWORD) return null;
+  const token = Buffer.from(
+    `${FOURTHWALL_API_USERNAME}:${FOURTHWALL_API_PASSWORD}`,
+  ).toString("base64");
+  return `Basic ${token}`;
+}
+
+async function fetchFourthwallProducts() {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+
+  try {
+    const authHeader = getFourthwallAuthHeader();
+    if (authHeader) {
+      const params = new URLSearchParams({ limit: String(FOURTHWALL_PRODUCT_LIMIT) });
+      const response = await fetch(
+        `${FOURTHWALL_API_BASE_URL}/products?${params.toString()}`,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: authHeader,
+          },
+          signal: controller.signal,
+        },
+      );
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(
+          `Fourthwall API request failed: ${response.status} ${text}`,
+        );
+      }
+
+      return await response.json();
+    }
+
+    const response = await fetch(FOURTHWALL_COLLECTION_URL, {
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Fourthwall request failed: ${response.status} ${text}`);
+    }
+
+    return await response.json();
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 async function fetchFromEventbrite<T>(url: string): Promise<T> {
@@ -402,38 +460,15 @@ app.get("/api/fourthwall/products", async (_req, res) => {
     return res.json({ products: cachedFourthwallProducts.products, cached: true });
   }
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8_000);
-
   try {
-    const response = await fetch(FOURTHWALL_COLLECTION_URL, {
-      headers: { Accept: "application/json" },
-      signal: controller.signal,
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      throw new Error(`Fourthwall request failed: ${response.status} ${text}`);
-    }
-
-    const contentType = response.headers.get("content-type") ?? "";
-    const rawBody = await response.text();
-
-    if (!contentType.includes("application/json")) {
-      throw new Error(
-        `Fourthwall returned unexpected content-type: ${contentType || "unknown"}. Body: ${rawBody.slice(0, 200)}`,
-      );
-    }
-
-    let data: unknown;
-    try {
-      data = JSON.parse(rawBody);
-    } catch (parseError) {
-      console.error("Fourthwall JSON parse error", parseError, rawBody.slice(0, 200));
-      throw new Error("Received malformed JSON from Fourthwall");
-    }
-
-    const products = Array.isArray((data as any)?.products) ? (data as any).products : [];
+    const data = await fetchFourthwallProducts();
+    const products = Array.isArray((data as any)?.products)
+      ? (data as any).products
+      : Array.isArray((data as any)?.data)
+        ? (data as any).data
+        : Array.isArray((data as any)?.items)
+          ? (data as any).items
+          : [];
 
     cachedFourthwallProducts = { products, timestamp: Date.now() };
     return res.json({ products });

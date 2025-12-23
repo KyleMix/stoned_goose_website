@@ -16,6 +16,34 @@ type StoreProduct = {
   link: string;
 };
 
+function formatPrice(price: unknown, currencyCode?: string) {
+  if (typeof price === "string") {
+    return price.startsWith("$") ? price : `$${price}`;
+  }
+  if (typeof price === "number") {
+    const amount = price > 1000 ? price / 100 : price;
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currencyCode ?? "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  }
+  return "";
+}
+
+function extractImageUrl(product: any) {
+  return (
+    product.images?.[0]?.src ||
+    product.images?.[0]?.url ||
+    product.image?.src ||
+    product.primary_image?.url ||
+    product.preview_image?.url ||
+    product.featured_image?.src ||
+    product.featured_media?.src
+  );
+}
+
 export default function Merch() {
   const [products, setProducts] = useState<StoreProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -59,32 +87,46 @@ export default function Merch() {
         }
 
         const rawProducts = Array.isArray(data?.products) ? data.products : [];
+        const apiProducts = Array.isArray(data?.data) ? data.data : [];
+        const apiItems = Array.isArray(data?.items) ? data.items : [];
+        const sourceProducts =
+          rawProducts.length ? rawProducts : apiProducts.length ? apiProducts : apiItems;
 
-        if (!rawProducts.length) {
+        if (!sourceProducts.length) {
           throw new Error("No products found in the collection.");
         }
 
-        const mappedProducts: StoreProduct[] = rawProducts
+        const mappedProducts: StoreProduct[] = sourceProducts
           .map((product: any) => {
-            const handle = product.handle || product.id || product.title;
-            const price = product.variants?.[0]?.price ?? product.price;
-            const imageSrc =
-              product.images?.[0]?.src ||
-              product.image?.src ||
-              product.featured_image?.src ||
-              product.featured_media?.src;
+            const handle =
+              product.handle ||
+              product.slug ||
+              product.id ||
+              product.product_id ||
+              product.title;
+            const price =
+              product.variants?.[0]?.price ??
+              product.price ??
+              product.pricing?.price ??
+              product.default_price?.amount ??
+              product.default_price?.price ??
+              product.prices?.[0]?.amount;
+            const currency = product.currency ?? product.default_price?.currency;
+            const imageSrc = extractImageUrl(product);
+            const formattedPrice = formatPrice(price, currency);
 
-            if (!handle || !price || !imageSrc) return null;
+            if (!handle || !formattedPrice || !imageSrc) return null;
 
-            const productLink = `${STORE_BASE_URL}/products/${encodeURIComponent(
-              handle,
-            )}`;
+            const productLink =
+              product.url ||
+              product.storefront_url ||
+              `${STORE_BASE_URL}/products/${encodeURIComponent(handle)}`;
             const proxiedImage = `${IMAGE_PROXY_PATH}${encodeURIComponent(imageSrc)}`;
 
             return {
               id: String(product.id ?? handle),
               name: product.title || product.name || "Product",
-              price: price.startsWith("$") ? price : `$${price}`,
+              price: formattedPrice,
               image: proxiedImage,
               link: productLink,
             };
