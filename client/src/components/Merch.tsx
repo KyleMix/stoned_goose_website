@@ -40,8 +40,34 @@ function extractImageUrl(product: any) {
     product.primary_image?.url ||
     product.preview_image?.url ||
     product.featured_image?.src ||
-    product.featured_media?.src
+    product.featured_media?.src ||
+    product.media?.[0]?.src ||
+    product.media?.[0]?.url
   );
+}
+
+function extractPrice(product: any) {
+  const price =
+    product.variants?.[0]?.price ??
+    product.price ??
+    product.pricing?.price ??
+    product.default_price?.amount ??
+    product.default_price?.price ??
+    product.prices?.[0]?.amount ??
+    product.price_range?.minimum_price?.amount ??
+    product.price_range?.minimum_price?.price ??
+    product.price_range?.min?.amount ??
+    product.min_price?.amount ??
+    product.min_price ??
+    product.price?.amount;
+  const currency =
+    product.currency ??
+    product.default_price?.currency ??
+    product.price_range?.minimum_price?.currency ??
+    product.min_price?.currency ??
+    product.price?.currency;
+
+  return { price, currency };
 }
 
 export default function Merch() {
@@ -103,15 +129,9 @@ export default function Merch() {
               product.slug ||
               product.id ||
               product.product_id ||
-              product.title;
-            const price =
-              product.variants?.[0]?.price ??
-              product.price ??
-              product.pricing?.price ??
-              product.default_price?.amount ??
-              product.default_price?.price ??
-              product.prices?.[0]?.amount;
-            const currency = product.currency ?? product.default_price?.currency;
+              product.title ||
+              product.name;
+            const { price, currency } = extractPrice(product);
             const imageSrc = extractImageUrl(product);
             const formattedPrice = formatPrice(price, currency);
 
@@ -120,6 +140,9 @@ export default function Merch() {
             const productLink =
               product.url ||
               product.storefront_url ||
+              product.storefrontUrl ||
+              product.permalink ||
+              product.links?.storefront ||
               `${STORE_BASE_URL}/products/${encodeURIComponent(handle)}`;
             const proxiedImage = `${IMAGE_PROXY_PATH}${encodeURIComponent(imageSrc)}`;
 
