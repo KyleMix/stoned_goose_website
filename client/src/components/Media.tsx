@@ -17,17 +17,13 @@ async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
 
   if (!response.ok) {
     let message = "Unable to load YouTube videos right now.";
-    const text = await response.text();
-    if (text) {
-      try {
-        const data = JSON.parse(text) as { error?: string };
-        if (data?.error) {
-          message = data.error;
-        } else {
-          message = text;
-        }
-      } catch {
-        message = text;
+    const contentType = response.headers.get("content-type") ?? "";
+    if (contentType.includes("application/json")) {
+      const data = (await response.json()) as { error?: string; message?: string };
+      if (data?.error) {
+        message = data.error;
+      } else if (data?.message) {
+        message = data.message;
       }
     }
     throw new Error(message);
