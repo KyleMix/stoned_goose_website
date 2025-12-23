@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { ShoppingBag, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const STORE_BASE_PATH = "/merch/store";
-const COLLECTION_PATH = `${STORE_BASE_PATH}/collections/all`;
+const STORE_BASE_URL = "https://stoned-goose-productions-zgm-shop.fourthwall.com";
+const COLLECTION_PATH = `${STORE_BASE_URL}/collections/all`;
 const COLLECTION_API_URL = "/api/fourthwall/products";
 const IMAGE_PROXY_PATH = "/api/fourthwall/image?url=";
 
@@ -76,7 +76,7 @@ export default function Merch() {
 
             if (!handle || !price || !imageSrc) return null;
 
-            const productLink = `${STORE_BASE_PATH}/products/${encodeURIComponent(
+            const productLink = `${STORE_BASE_URL}/products/${encodeURIComponent(
               handle,
             )}`;
             const proxiedImage = `${IMAGE_PROXY_PATH}${encodeURIComponent(imageSrc)}`;
