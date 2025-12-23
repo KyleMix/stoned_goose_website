@@ -537,6 +537,50 @@ app.get("/api/fourthwall/products", async (_req, res) => {
   }
 });
 
+app.get("/api/fourthwall/image", async (req, res) => {
+  const imageUrl = typeof req.query.url === "string" ? req.query.url : "";
+
+  if (!imageUrl) {
+    return res.status(400).json({ error: "Missing image URL." });
+  }
+
+  let parsedUrl: URL;
+  try {
+    parsedUrl = new URL(imageUrl);
+  } catch (error) {
+    console.error("Invalid image URL", error);
+    return res.status(400).json({ error: "Invalid image URL." });
+  }
+
+  if (!isAllowedImageHost(parsedUrl.hostname)) {
+    return res.status(403).json({ error: "Image host not allowed." });
+  }
+
+  try {
+    const response = await fetch(parsedUrl.toString());
+
+    if (!response.ok) {
+      const text = await response.text();
+      return res
+        .status(response.status)
+        .json({ error: `Image fetch failed: ${text || response.status}` });
+    }
+
+    const passthroughHeaders = getStoreProxyHeaders(response.headers);
+    const contentType = response.headers.get("content-type");
+    if (contentType) {
+      passthroughHeaders["content-type"] = contentType;
+    }
+
+    res.set(passthroughHeaders);
+    const buffer = Buffer.from(await response.arrayBuffer());
+    return res.send(buffer);
+  } catch (error) {
+    console.error("Fourthwall image proxy error", error);
+    return res.status(502).json({ error: "Unable to fetch image." });
+  }
+});
+
 app.get("/api/youtube/latest", async (_req, res) => {
   if (isRateLimited()) {
     return res.status(429).json({ error: "Too many requests. Please try again soon." });
