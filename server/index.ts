@@ -67,8 +67,15 @@ const FOURTHWALL_STOREFRONT_API_BASE_URL = normalizeStorefrontApiUrl(
     "https://storefront-api.fourthwall.com/v1",
 );
 const FOURTHWALL_PRODUCT_LIMIT = Number(process.env.FOURTHWALL_PRODUCT_LIMIT ?? 24);
-const FOURTHWALL_COLLECTION_URL =
-  "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
+const FOURTHWALL_STORE_BASE_URL =
+  process.env.FOURTHWALL_STORE_BASE_URL ??
+  "https://stoned-goose-productions-zgm-shop.fourthwall.com";
+const FOURTHWALL_COLLECTION_URLS = [
+  `${FOURTHWALL_STORE_BASE_URL}/collections/all/products.json`,
+  `${FOURTHWALL_STORE_BASE_URL}/collections/all?format=json`,
+  `${FOURTHWALL_STORE_BASE_URL}/collections/all/products?format=json`,
+  `${FOURTHWALL_STORE_BASE_URL}/products.json`,
+];
 const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@stonedgooseproductions";
 
 const CACHE_TTL_MS = 60_000;
@@ -213,6 +220,46 @@ function getStorefrontHeaders() {
   };
 }
 
+function getFourthwallCollectionHeaders() {
+  return {
+    Accept: "application/json",
+    "User-Agent":
+      "Mozilla/5.0 (compatible; StonedGooseStorefront/1.0; +https://stonedgoose.com)",
+  };
+}
+
+async function fetchFourthwallCollection(signal: AbortSignal) {
+  let lastError: Error | null = null;
+  const headers = getFourthwallCollectionHeaders();
+
+  for (const url of FOURTHWALL_COLLECTION_URLS) {
+    const requestUrl = url.includes("products.json")
+      ? `${url}${url.includes("?") ? "&" : "?"}limit=${FOURTHWALL_PRODUCT_LIMIT}`
+      : url;
+
+    try {
+      const response = await fetch(requestUrl, {
+        headers,
+        signal,
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(
+          `Fourthwall collection request failed: ${response.status} ${text}`,
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+    }
+  }
+
+  if (lastError) throw lastError;
+  return null;
+}
+
 async function fetchStorefrontJson(
   path: string,
   signal: AbortSignal,
@@ -301,19 +348,8 @@ async function fetchFourthwallProducts() {
 
   try {
     try {
-      const collectionResponse = await fetch(FOURTHWALL_COLLECTION_URL, {
-        headers: { Accept: "application/json" },
-        signal: controller.signal,
-      });
-
-      if (!collectionResponse.ok) {
-        const text = await collectionResponse.text();
-        throw new Error(
-          `Fourthwall collection request failed: ${collectionResponse.status} ${text}`,
-        );
-      }
-
-      return await collectionResponse.json();
+      const collectionResponse = await fetchFourthwallCollection(controller.signal);
+      if (collectionResponse) return collectionResponse;
     } catch (error) {
       console.warn("Fourthwall collection fetch failed, falling back", error);
     }
@@ -357,17 +393,11 @@ async function fetchFourthwallProducts() {
       }
     }
 
-    const response = await fetch(FOURTHWALL_COLLECTION_URL, {
-      headers: { Accept: "application/json" },
-      signal: controller.signal,
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      throw new Error(`Fourthwall request failed: ${response.status} ${text}`);
-    }
-
-    return await response.json();
+    const finalCollectionResponse = await fetchFourthwallCollection(
+      controller.signal,
+    );
+    if (finalCollectionResponse) return finalCollectionResponse;
+    throw new Error("Fourthwall request failed: No collection response.");
   } finally {
     clearTimeout(timeout);
   }
