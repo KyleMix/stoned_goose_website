@@ -59,9 +59,7 @@ const FOURTHWALL_API_PASSWORD =
 const FOURTHWALL_API_BASE_URL =
   process.env.FOURTHWALL_API_BASE_URL ?? "https://api.fourthwall.com/open-api/v1";
 const FOURTHWALL_STOREFRONT_TOKEN =
-  process.env.FOURTHWALL_STOREFRONT_TOKEN ??
-  process.env.VITE_FOURTHWALL_STOREFRONT_TOKEN ??
-  "ptkn_2901bb98-e959-48d0-994b-2ce37dfb8a8a";
+  process.env.FOURTHWALL_STOREFRONT_TOKEN ?? process.env.VITE_FOURTHWALL_STOREFRONT_TOKEN;
 const FOURTHWALL_STOREFRONT_API_BASE_URL = normalizeStorefrontApiUrl(
   process.env.NEXT_PUBLIC_FW_API_URL ??
     process.env.FOURTHWALL_STOREFRONT_API_BASE_URL ??
@@ -719,9 +717,15 @@ app.get("/api/fourthwall/products", async (_req, res) => {
   } catch (error) {
     const isAbort = error instanceof Error && error.name === "AbortError";
     console.error("Fourthwall proxy error", error);
+    const isStorefrontUnconfigured = !FOURTHWALL_STOREFRONT_TOKEN;
+    const operatorHint = isStorefrontUnconfigured
+      ? " Configure FOURTHWALL_STOREFRONT_TOKEN (or VITE_FOURTHWALL_STOREFRONT_TOKEN) to enable the storefront API fallback."
+      : "";
     return res
       .status(isAbort ? 504 : 502)
-      .json({ error: "Unable to reach the Fourthwall store right now." });
+      .json({
+        error: `Unable to reach the Fourthwall store right now.${operatorHint}`,
+      });
   }
 });
 
