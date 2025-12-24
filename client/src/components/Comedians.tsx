@@ -210,7 +210,7 @@ export default function Comedians() {
                     <a
                       href={comedian.instagram}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       aria-label={`${comedian.name} on Instagram`}
                     >
                       <FaInstagram className="w-5 h-5 text-white hover:text-primary cursor-pointer" />
@@ -220,7 +220,7 @@ export default function Comedians() {
                     <a
                       href={comedian.facebook}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       aria-label={`${comedian.name} on Facebook`}
                     >
                       <FaFacebook className="w-5 h-5 text-white hover:text-primary cursor-pointer" />

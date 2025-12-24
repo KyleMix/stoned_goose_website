@@ -101,7 +101,7 @@ export default function Media() {
           <motion.a
             href={featured.url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -159,7 +159,7 @@ export default function Media() {
                     key={video.id}
                     href={video.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -193,7 +193,7 @@ export default function Media() {
               key={reel.id}
               href={reel.url}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
