@@ -275,7 +275,9 @@ export default function Merch() {
               if (fallbackProducts.length) {
                 data = { products: fallbackProducts };
               } else {
-                throw new Error("No products found in the collection.");
+                setProducts([]);
+                setError("No products found in the collection.");
+                return;
               }
             }
 
@@ -288,7 +290,9 @@ export default function Merch() {
             const sourceProducts = normalizeSourceProducts(data);
 
             if (!sourceProducts.length) {
-              throw new Error("No products found in the collection.");
+              setProducts([]);
+              setError("No products found in the collection.");
+              return;
             }
 
             const mappedProducts: StoreProduct[] = sourceProducts
@@ -336,7 +340,9 @@ export default function Merch() {
             );
 
             if (!readyProducts.length) {
-              throw new Error("Unable to load product details from the store.");
+              setProducts([]);
+              setError("Unable to load product details from the store.");
+              return;
             }
 
             setProducts(readyProducts);
