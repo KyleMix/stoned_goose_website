@@ -170,23 +170,23 @@ const comedians: Comedian[] = [
 
 export default function Comedians() {
   return (
-    <section id="comedians" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="comedians" className="py-12 md:py-16 bg-background">
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <h2 className="text-4xl md:text-6xl font-display uppercase text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-display uppercase text-white mb-3">
             Our <span className="text-primary">Friends</span>
           </h2>
-          <p className="text-gray-400 font-marker text-xl rotate-1">
+          <p className="text-gray-400 font-marker text-lg rotate-1">
             Comedians We Have Worked With.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {comedians.map((comedian, index) => (
             <motion.div
               key={comedian.name}
@@ -196,7 +196,7 @@ export default function Comedians() {
               transition={{ delay: index * 0.05 }}
               className="group relative"
             >
-              <div className="relative overflow-hidden rounded-lg aspect-square mb-4 border-2 border-transparent group-hover:border-primary transition-colors">
+              <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-3 border border-transparent group-hover:border-primary transition-colors">
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay" />
                 <img
                   src={comedian.image}
@@ -230,7 +230,7 @@ export default function Comedians() {
               </div>
 
               <div className="text-center">
-                <h3 className="text-2xl font-display uppercase text-white mb-2">
+                <h3 className="text-lg md:text-xl font-display uppercase text-white">
                   {comedian.name}
                 </h3>
               </div>
