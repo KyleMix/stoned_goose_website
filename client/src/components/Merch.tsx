@@ -9,9 +9,7 @@ const COLLECTION_PATH = `${STORE_BASE_URL}/collections/${COLLECTION_HANDLE}`;
 const COLLECTION_API_URL = "/api/fourthwall/products";
 const IMAGE_PROXY_PATH = "/api/fourthwall/image?url=";
 const STOREFRONT_API_BASE_URL = "https://storefront-api.fourthwall.com/v1";
-const STOREFRONT_TOKEN =
-  import.meta.env.VITE_FOURTHWALL_STOREFRONT_TOKEN ??
-  "ptkn_2901bb98-e959-48d0-994b-2ce37dfb8a8a";
+const STOREFRONT_TOKEN = import.meta.env.VITE_FOURTHWALL_STOREFRONT_TOKEN;
 
 type StoreProduct = {
   id: string;
@@ -355,7 +353,11 @@ export default function Merch() {
                 ? "We couldn't reach the Fourthwall store from here. Use the buttons below to browse the live shop."
                 : rawMessage;
 
-            lastErrorMessage = friendlyMessage;
+            const operatorHint = !STOREFRONT_TOKEN
+              ? " If you're the site operator, set VITE_FOURTHWALL_STOREFRONT_TOKEN (client) or FOURTHWALL_STOREFRONT_TOKEN (server) to enable the storefront API fallback."
+              : "";
+
+            lastErrorMessage = `${friendlyMessage}${operatorHint}`;
             if (attempt < maxAttempts) {
               setError(`${friendlyMessage} Retrying... (${attempt}/${maxAttempts})`);
               await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
