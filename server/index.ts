@@ -2,6 +2,7 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { Readable } from "stream";
+import type { ReadableStream as WebReadableStream } from "stream/web";
 import { fileURLToPath } from "url";
 
 function loadEnv(filePath: string) {
@@ -189,11 +190,6 @@ function getStoreProxyHeaders(headers: Headers) {
   if (lastModified) passthroughHeaders["last-modified"] = lastModified;
 
   return passthroughHeaders;
-}
-
-function rewriteStoreHtml(html: string) {
-  const storeOrigin = new URL(FOURTHWALL_STORE_BASE).origin;
-  return html.replaceAll(storeOrigin, "/merch/store");
 }
 
 function isAllowedImageHost(hostname: string) {
@@ -770,7 +766,7 @@ app.get("/api/fourthwall/image", async (req, res) => {
       return res.send(buffer);
     }
 
-    const stream = Readable.fromWeb(response.body);
+    const stream = Readable.fromWeb(response.body as WebReadableStream);
     return stream.pipe(res);
   } catch (error) {
     console.error("Fourthwall image proxy error", error);
