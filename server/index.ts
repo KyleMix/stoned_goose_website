@@ -306,6 +306,24 @@ async function fetchFourthwallProducts() {
   const timeout = setTimeout(() => controller.abort(), 8_000);
 
   try {
+    try {
+      const collectionResponse = await fetch(FOURTHWALL_COLLECTION_URL, {
+        headers: { Accept: "application/json" },
+        signal: controller.signal,
+      });
+
+      if (!collectionResponse.ok) {
+        const text = await collectionResponse.text();
+        throw new Error(
+          `Fourthwall collection request failed: ${collectionResponse.status} ${text}`,
+        );
+      }
+
+      return await collectionResponse.json();
+    } catch (error) {
+      console.warn("Fourthwall collection fetch failed, falling back", error);
+    }
+
     if (FOURTHWALL_STOREFRONT_TOKEN) {
       try {
         const storefrontData = await fetchStorefrontProducts(controller.signal);
