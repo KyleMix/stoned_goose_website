@@ -384,14 +384,21 @@ function resolveFourthwallHandle(product: any) {
 }
 
 function resolveFourthwallImage(product: any) {
+  const directImage = typeof product?.image === "string" ? product.image : null;
+  const imageList = Array.isArray(product?.images) ? product.images : [];
+  const firstImage = imageList[0];
+  const listImage = typeof firstImage === "string" ? firstImage : null;
   return (
+    directImage ??
     product?.image?.transformedUrl ??
     product?.image?.transformed_url ??
     product?.image?.url ??
     product?.primary_image?.url ??
     product?.preview_image?.url ??
+    product?.primary_image?.src ??
     product?.featured_image?.src ??
     product?.featured_media?.src ??
+    listImage ??
     product?.images?.[0]?.src ??
     product?.images?.[0]?.url ??
     product?.media?.[0]?.src ??
