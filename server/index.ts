@@ -329,26 +329,32 @@ async function fetchFourthwallProducts() {
 
     const authHeader = getFourthwallAuthHeader();
     if (authHeader) {
-      const params = new URLSearchParams({ limit: String(FOURTHWALL_PRODUCT_LIMIT) });
-      const response = await fetch(
-        `${FOURTHWALL_API_BASE_URL}/products?${params.toString()}`,
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: authHeader,
+      try {
+        const params = new URLSearchParams({
+          limit: String(FOURTHWALL_PRODUCT_LIMIT),
+        });
+        const response = await fetch(
+          `${FOURTHWALL_API_BASE_URL}/products?${params.toString()}`,
+          {
+            headers: {
+              Accept: "application/json",
+              Authorization: authHeader,
+            },
+            signal: controller.signal,
           },
-          signal: controller.signal,
-        },
-      );
-
-      if (!response.ok) {
-        const text = await response.text();
-        throw new Error(
-          `Fourthwall API request failed: ${response.status} ${text}`,
         );
-      }
 
-      return await response.json();
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(
+            `Fourthwall API request failed: ${response.status} ${text}`,
+          );
+        }
+
+        return await response.json();
+      } catch (error) {
+        console.warn("Fourthwall API fetch failed, falling back", error);
+      }
     }
 
     const response = await fetch(FOURTHWALL_COLLECTION_URL, {
