@@ -205,7 +205,7 @@ export default function UpcomingShows() {
             <a
               href={EVENTBRITE_PROFILE_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               View all shows on Eventbrite
             </a>
@@ -294,7 +294,7 @@ export default function UpcomingShows() {
                       <a
                         href={show.eventbriteUrl ?? EVENTBRITE_PROFILE_URL}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         <Ticket className="mr-2 w-4 h-4" />
                         Get Tickets on Eventbrite
@@ -328,7 +328,7 @@ export default function UpcomingShows() {
                     asChild
                     className="w-full bg-white text-black hover:bg-primary hover:text-black transition-colors font-bold uppercase"
                   >
-                    <a href={EVENTBRITE_PROFILE_URL} target="_blank" rel="noreferrer">
+                    <a href={EVENTBRITE_PROFILE_URL} target="_blank" rel="noopener noreferrer">
                       <Ticket className="mr-2 w-4 h-4" />
                       Visit Eventbrite Profile
                     </a>
