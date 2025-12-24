@@ -34,6 +34,10 @@ function formatPrice(price: unknown, currencyCode?: string) {
 
 function extractImageUrl(product: any) {
   return (
+    product.image?.transformedUrl ||
+    product.image?.transformed_url ||
+    product.image?.url ||
+    product.image?.src ||
     product.images?.[0]?.src ||
     product.images?.[0]?.url ||
     product.image?.src ||
@@ -47,7 +51,12 @@ function extractImageUrl(product: any) {
 }
 
 function extractPrice(product: any) {
+  const unitPrice = product.variants?.[0]?.unitPrice || product.variants?.[0]?.unit_price;
   const price =
+    product.price?.amount ??
+    product.price?.value ??
+    unitPrice?.amount ??
+    unitPrice?.value ??
     product.variants?.[0]?.price ??
     product.price ??
     product.pricing?.price ??
@@ -61,6 +70,10 @@ function extractPrice(product: any) {
     product.min_price ??
     product.price?.amount;
   const currency =
+    product.price?.currencyCode ??
+    product.price?.currency ??
+    unitPrice?.currencyCode ??
+    unitPrice?.currency ??
     product.currency ??
     product.default_price?.currency ??
     product.price_range?.minimum_price?.currency ??
@@ -112,11 +125,15 @@ export default function Merch() {
           );
         }
 
-        const rawProducts = Array.isArray(data?.products) ? data.products : [];
+        const normalizedProducts = Array.isArray(data?.products) ? data.products : [];
         const apiProducts = Array.isArray(data?.data) ? data.data : [];
         const apiItems = Array.isArray(data?.items) ? data.items : [];
         const sourceProducts =
-          rawProducts.length ? rawProducts : apiProducts.length ? apiProducts : apiItems;
+          normalizedProducts.length
+            ? normalizedProducts
+            : apiProducts.length
+              ? apiProducts
+              : apiItems;
 
         if (!sourceProducts.length) {
           throw new Error("No products found in the collection.");
@@ -132,12 +149,14 @@ export default function Merch() {
               product.title ||
               product.name;
             const { price, currency } = extractPrice(product);
-            const imageSrc = extractImageUrl(product);
+            const imageSrc =
+              typeof product.image === "string" ? product.image : extractImageUrl(product);
             const formattedPrice = formatPrice(price, currency);
 
             if (!handle || !formattedPrice || !imageSrc) return null;
 
             const productLink =
+              product.link ||
               product.url ||
               product.storefront_url ||
               product.storefrontUrl ||
