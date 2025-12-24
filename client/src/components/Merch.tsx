@@ -4,7 +4,8 @@ import { ShoppingBag, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const STORE_BASE_URL = "https://stoned-goose-productions-zgm-shop.fourthwall.com";
-const COLLECTION_PATH = `${STORE_BASE_URL}/collections/all`;
+const COLLECTION_HANDLE = "og-bigboy";
+const COLLECTION_PATH = `${STORE_BASE_URL}/collections/${COLLECTION_HANDLE}`;
 const COLLECTION_API_URL = "/api/fourthwall/products";
 const IMAGE_PROXY_PATH = "/api/fourthwall/image?url=";
 const STOREFRONT_API_BASE_URL = "https://storefront-api.fourthwall.com/v1";
@@ -148,7 +149,10 @@ async function fetchStorefrontProducts(signal: AbortSignal) {
   const fallbackCollection = collectionList.find((collection: any) => {
     const handle = collection?.handle ?? collection?.slug ?? "";
     const title = collection?.title ?? collection?.name ?? "";
-    return handle.toLowerCase() === "all" || title.toLowerCase() === "all";
+    return (
+      handle.toLowerCase() === COLLECTION_HANDLE ||
+      title.toLowerCase().replace(/\s+/g, "-") === COLLECTION_HANDLE
+    );
   });
   const selectedCollection = fallbackCollection ?? collectionList[0];
   const collectionProducts =
