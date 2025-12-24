@@ -102,11 +102,6 @@ function normalizeSourceProducts(data: any) {
   return [];
 }
 
-function resolveCollectionList(data: any) {
-  if (Array.isArray(data?.collections)) return data.collections;
-  return normalizeSourceProducts(data);
-}
-
 async function fetchStorefrontJson(
   path: string,
   signal: AbortSignal,
@@ -144,17 +139,13 @@ async function fetchStorefrontProducts(signal: AbortSignal) {
     limit: "24",
   });
 
-  const collections = await fetchStorefrontJson("/collections", signal, params);
-  const collectionList = resolveCollectionList(collections);
-  const fallbackCollection = collectionList.find((collection: any) => {
-    const handle = collection?.handle ?? collection?.slug ?? "";
-    const title = collection?.title ?? collection?.name ?? "";
-    return (
-      handle.toLowerCase() === COLLECTION_HANDLE ||
-      title.toLowerCase().replace(/\s+/g, "-") === COLLECTION_HANDLE
-    );
-  });
-  const selectedCollection = fallbackCollection ?? collectionList[0];
+  const collectionResponse = await fetchStorefrontJson(
+    `/collections/${COLLECTION_HANDLE}`,
+    signal,
+    params,
+  );
+  const selectedCollection =
+    collectionResponse?.collection ?? collectionResponse?.data ?? collectionResponse;
   const collectionProducts =
     selectedCollection?.products ??
     selectedCollection?.items ??
@@ -186,6 +177,29 @@ export default function Merch() {
   const [products, setProducts] = useState<StoreProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const fallbackProducts = useMemo<StoreProduct[]>(
+    () => [
+      {
+        id: "collection-card-1",
+        name: "Shop the OG Bigboy Collection",
+        price: "View collection",
+        link: COLLECTION_PATH,
+      },
+      {
+        id: "collection-card-2",
+        name: "Fresh merch from the Goose",
+        price: "See all items",
+        link: COLLECTION_PATH,
+      },
+      {
+        id: "collection-card-3",
+        name: "Limited drops available now",
+        price: "Shop now",
+        link: COLLECTION_PATH,
+      },
+    ],
+    [],
+  );
 
   useEffect(() => {
     const controller = new AbortController();
@@ -358,9 +372,9 @@ export default function Merch() {
   }, []);
 
   const cards = useMemo(() => {
-    if (!products.length) return null;
+    const displayProducts = products.length ? products : fallbackProducts;
 
-    return products.map((product, index) => (
+    return displayProducts.map((product, index) => (
       <motion.div
         key={product.id}
         initial={{ opacity: 0, y: 20 }}
@@ -486,36 +500,13 @@ export default function Merch() {
           </div>
         )}
 
-        {!isLoading && products.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cards}
-          </div>
+        {!isLoading && error && (
+          <div className="mb-6 text-sm text-primary/80">{error}</div>
         )}
 
-        {!isLoading && !products.length && (
-          <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4 text-white">
-            <div className="flex items-center gap-3">
-              <ShoppingBag className="w-5 h-5 text-secondary" />
-              <h3 className="text-xl font-bold">Merch is loading elsewhere</h3>
-            </div>
-            <p className="text-primary text-sm">
-              {error || "We couldn’t load items from the store right now."}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button
-                className="bg-secondary hover:bg-secondary/80 text-white font-bold uppercase"
-                onClick={() => window.location.assign(COLLECTION_PATH)}
-              >
-                Browse the live store
-              </Button>
-              <Button
-                variant="outline"
-                className="border-border text-white hover:bg-white hover:text-black"
-                onClick={() => window.location.reload()}
-              >
-                Try again
-              </Button>
-            </div>
+        {!isLoading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cards}
           </div>
         )}
       </div>
