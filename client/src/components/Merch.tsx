@@ -353,9 +353,10 @@ export default function Merch() {
                 ? "We couldn't reach the Fourthwall store from here. Use the buttons below to browse the live shop."
                 : rawMessage;
 
-            const operatorHint = !STOREFRONT_TOKEN
-              ? " If you're the site operator, set VITE_FOURTHWALL_STOREFRONT_TOKEN (client) or FOURTHWALL_STOREFRONT_TOKEN (server) to enable the storefront API fallback."
-              : "";
+            const operatorHint =
+              !STOREFRONT_TOKEN && normalized.includes("fourthwall")
+                ? " If you're the site operator, set VITE_FOURTHWALL_STOREFRONT_TOKEN (client) or FOURTHWALL_STOREFRONT_TOKEN (server) to enable the storefront API fallback."
+                : "";
 
             lastErrorMessage = `${friendlyMessage}${operatorHint}`;
             if (attempt < maxAttempts) {
