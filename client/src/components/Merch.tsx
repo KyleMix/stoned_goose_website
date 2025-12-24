@@ -180,22 +180,28 @@ export default function Merch() {
   const fallbackProducts = useMemo<StoreProduct[]>(
     () => [
       {
-        id: "collection-card-1",
-        name: "Shop the OG Bigboy Collection",
-        price: "View collection",
-        link: COLLECTION_PATH,
+        id: "fallback-metal-goose",
+        name: "Metal Goose",
+        price: "$20.00",
+        image:
+          "https://imgproxy.fourthwall.com/nK-fkZy-5MEkDLgk8xIgoQq36Y24jQ1ZqxdL_mEcEJo/w:720/sm:1/enc/Gu1IR7MUbcgba4BR/VUFOWu2YdDg_bxKR/1BO009Oyox07oSwj/2Vd8TBKaNocVdaCQ/F6J4LL9NRD-ARSe2/XEEN-00bk0ioA8PG/WRFFyn3A9my1icUo/FIwRmUeTpAM9VMZZ/A796akSBBbnre5hF/pYKImNbjI-dYMXuR/84dTf0mpp1MIVwWC/M5oEl2rlTrPhLSl3/pnS4W5-Az_Ys0VwA/ulG6VEoXbjWzDdqN/BA2Zcjxyf54",
+        link: `${STORE_BASE_URL}/products/metal-goose`,
       },
       {
-        id: "collection-card-2",
-        name: "Fresh merch from the Goose",
-        price: "See all items",
-        link: COLLECTION_PATH,
+        id: "fallback-logo-hoodie",
+        name: "LOGO Hoodie",
+        price: "$29.00",
+        image:
+          "https://imgproxy.fourthwall.com/IzxPYUtLlWWb7GIA724u79IZ-mfpp0WJzq-7bXOtAXc/w:720/sm:1/enc/nlub6SC6F-XwZu4s/cO4uq50ELA_bpBJZ/ZAe1zpmZZdJyZT_E/4HAtAF84_G9PVQle/nGB8SuBzvPFA5JcZ/rF09JPww9_u4GUZa/Ze92kTjkBVtIdDGL/kWRsvL5dqqXLfY8b/xMxGSJ4XUsCne5Ln/0sBEZYHn92ZRFtxt/Um-KED7e1L-BH00X/miAUqR2M-9t0Qg3k/U4415CkejZhF9V6u/jDoKi8u9oDrIKgc8/mcCKeA9dTOo",
+        link: `${STORE_BASE_URL}/products/logo-hoodie`,
       },
       {
-        id: "collection-card-3",
-        name: "Limited drops available now",
-        price: "Shop now",
-        link: COLLECTION_PATH,
+        id: "fallback-sick-hat",
+        name: "Sick Hat",
+        price: "$18.50",
+        image:
+          "https://imgproxy.fourthwall.com/xVX63E9ebyPcCc2kiCj74mUBq6gFgq9HqYlswMwnMO4/w:720/sm:1/enc/WpBg2905LccQle1j/ImWNDBsu_u3OhxMr/Wd1G3jUPdk9Xc6tQ/p17vBm57d-MmdUed/Z2YnFRxEN6VCDsyH/bpSJWZWnCVP-3lfG/a9w90hR2L2UxS-Wn/TrS7WdUtLUHENs8n/keBHUO9hfTYfBTT6/qEKu2Yv5KOIxtWJc/qha8URNi06B2o0Fn/MK-x9u9sljpd1c_q/Zt3H7I9gR_vXjhCh/TXKFRul35dDrhb1w/Rxx8qk41WFg",
+        link: `${STORE_BASE_URL}/products/sick-hat`,
       },
     ],
     [],
