@@ -88,6 +88,7 @@ async function fetchFromEventbrite(): Promise<EventResponse> {
         end: event.end?.local ?? null,
         url: event.url ?? null,
         summary: event.summary ?? "More details available on Eventbrite.",
+        imageUrl: event.logo?.url ?? null,
         venue: event.venue
           ? {
               name: event.venue.name ?? undefined,
