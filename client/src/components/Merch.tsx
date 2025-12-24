@@ -113,9 +113,9 @@ async function fetchStorefrontJson(
     storefront_token: STOREFRONT_TOKEN,
   });
   if (params) {
-    for (const [key, value] of params.entries()) {
+    params.forEach((value, key) => {
       mergedParams.set(key, value);
-    }
+    });
   }
 
   const response = await fetch(`${STOREFRONT_API_BASE_URL}${path}?${mergedParams}`, {
@@ -288,7 +288,7 @@ export default function Merch() {
             const sourceProducts = normalizeSourceProducts(data);
 
             if (!sourceProducts.length) {
-              throw new Error("No products found in the collection.");
+              throw new Error("That Is Some Sick Merch...");
             }
 
             const mappedProducts: StoreProduct[] = sourceProducts
