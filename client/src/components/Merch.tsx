@@ -87,9 +87,6 @@ export default function Merch() {
   const [products, setProducts] = useState<StoreProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [useEmbed, setUseEmbed] = useState(false);
-  const [embedLoaded, setEmbedLoaded] = useState(false);
-  const [embedUrl, setEmbedUrl] = useState(COLLECTION_PATH);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -194,9 +191,6 @@ export default function Merch() {
             : rawMessage;
 
         setError(friendlyMessage);
-        setEmbedUrl(COLLECTION_PATH);
-        setEmbedLoaded(false);
-        setUseEmbed(true);
       } finally {
         setIsLoading(false);
       }
@@ -236,11 +230,7 @@ export default function Merch() {
                     "_blank",
                     "noreferrer,noopener",
                   );
-                  if (!newWindow) {
-                    setEmbedUrl(product.link);
-                    setEmbedLoaded(false);
-                    setUseEmbed(true);
-                  }
+                  if (!newWindow) window.location.assign(product.link);
                 }}
               >
                 View on Store
@@ -268,11 +258,7 @@ export default function Merch() {
                     "_blank",
                     "noreferrer,noopener",
                   );
-                  if (!newWindow) {
-                    setEmbedUrl(product.link);
-                    setEmbedLoaded(false);
-                    setUseEmbed(true);
-                  }
+                  if (!newWindow) window.location.assign(product.link);
                 }}
               >
                 <ShoppingBag className="mr-2 w-4 h-4" /> Buy Now
@@ -303,21 +289,17 @@ export default function Merch() {
             variant="outline"
             className="border-white text-white hover:bg-white hover:text-black"
             onClick={() => {
-              const newWindow = window.open(
-                COLLECTION_PATH,
-                "_blank",
-                "noreferrer,noopener",
-              );
-              if (!newWindow) {
-                setEmbedUrl(COLLECTION_PATH);
-                setEmbedLoaded(false);
-                setUseEmbed(true);
-              }
-            }}
-          >
-            View All Products <ExternalLink className="ml-2 w-4 h-4" />
-          </Button>
-        </motion.div>
+            const newWindow = window.open(
+              COLLECTION_PATH,
+              "_blank",
+              "noreferrer,noopener",
+            );
+            if (!newWindow) window.location.assign(COLLECTION_PATH);
+          }}
+        >
+          View All Products <ExternalLink className="ml-2 w-4 h-4" />
+        </Button>
+      </motion.div>
 
         {isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -342,7 +324,7 @@ export default function Merch() {
           </div>
         )}
 
-        {!useEmbed && !isLoading && products.length > 0 && (
+        {!isLoading && products.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cards}
           </div>
@@ -360,18 +342,7 @@ export default function Merch() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 className="bg-secondary hover:bg-secondary/80 text-white font-bold uppercase"
-                onClick={() => {
-                  const newWindow = window.open(
-                    COLLECTION_PATH,
-                    "_blank",
-                    "noreferrer,noopener",
-                  );
-                  if (!newWindow) {
-                    setEmbedUrl(COLLECTION_PATH);
-                    setEmbedLoaded(false);
-                    setUseEmbed(true);
-                  }
-                }}
+                onClick={() => window.location.assign(COLLECTION_PATH)}
               >
                 Browse the live store
               </Button>
@@ -382,45 +353,6 @@ export default function Merch() {
               >
                 Try again
               </Button>
-              {!useEmbed && (
-                <Button
-                  variant="outline"
-                  className="border-secondary text-secondary hover:bg-secondary/20"
-                  onClick={() => {
-                    setEmbedUrl(COLLECTION_PATH);
-                    setEmbedLoaded(false);
-                    setUseEmbed(true);
-                  }}
-                >
-                  Try embedded store
-                </Button>
-              )}
-            </div>
-          </div>
-        )}
-
-        {useEmbed && (
-          <div className="mt-6">
-            {!products.length && (
-              <p className="text-sm text-primary mb-2">
-                Trying the embedded store below. If it stays blank, open the live store in a new tab.
-              </p>
-            )}
-            <div className="relative overflow-hidden rounded-xl border border-border bg-black/50">
-              {!embedLoaded && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/60">
-                  <div className="w-10 h-10 border-2 border-secondary border-t-transparent rounded-full animate-spin" />
-                  <p className="text-sm text-primary">Loading the live store…</p>
-                </div>
-              )}
-              <iframe
-                src={embedUrl}
-                title="Stoned Goose Productions Fourthwall Store"
-                loading="lazy"
-                className="w-full h-[720px] border-0"
-                allow="clipboard-write; encrypted-media"
-                onLoad={() => setEmbedLoaded(true)}
-              />
             </div>
           </div>
         )}
