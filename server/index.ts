@@ -1,6 +1,7 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
+import { Readable } from "stream";
 import { fileURLToPath } from "url";
 
 function loadEnv(filePath: string) {
@@ -41,6 +42,12 @@ process.on("unhandledRejection", (reason) => {
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
+
+function normalizeStorefrontApiUrl(baseUrl: string) {
+  const trimmed = baseUrl.trim().replace(/\/+$/, "");
+  return trimmed.endsWith("/v1") ? trimmed : `${trimmed}/v1`;
+}
+
 const EVENTBRITE_TOKEN =
   process.env.EVENTBRITE_TOKEN ?? process.env.VITE_EVENTBRITE_TOKEN;
 const EVENTBRITE_ORGANIZER_ID =
@@ -55,9 +62,11 @@ const FOURTHWALL_STOREFRONT_TOKEN =
   process.env.FOURTHWALL_STOREFRONT_TOKEN ??
   process.env.VITE_FOURTHWALL_STOREFRONT_TOKEN ??
   "ptkn_2901bb98-e959-48d0-994b-2ce37dfb8a8a";
-const FOURTHWALL_STOREFRONT_API_BASE_URL =
-  process.env.FOURTHWALL_STOREFRONT_API_BASE_URL ??
-  "https://storefront-api.fourthwall.com/v1";
+const FOURTHWALL_STOREFRONT_API_BASE_URL = normalizeStorefrontApiUrl(
+  process.env.NEXT_PUBLIC_FW_API_URL ??
+    process.env.FOURTHWALL_STOREFRONT_API_BASE_URL ??
+    "https://storefront-api.fourthwall.com/v1",
+);
 const FOURTHWALL_PRODUCT_LIMIT = Number(process.env.FOURTHWALL_PRODUCT_LIMIT ?? 24);
 const FOURTHWALL_COLLECTION_URL =
   "https://stoned-goose-productions-zgm-shop.fourthwall.com/collections/all/products.json";
@@ -191,8 +200,6 @@ function rewriteStoreHtml(html: string) {
 
 function isAllowedImageHost(hostname: string) {
   return (
-    hostname === "cdn.fourthwall.com" ||
-    hostname === "images.fourthwall.com" ||
     hostname.endsWith(".fourthwall.com") ||
     hostname.endsWith(".fourthwallcdn.com")
   );
@@ -346,6 +353,116 @@ async function fetchFourthwallProducts() {
   } finally {
     clearTimeout(timeout);
   }
+}
+
+function resolveFourthwallHandle(product: any) {
+  return (
+    product?.handle ??
+    product?.slug ??
+    product?.product_id ??
+    product?.productId ??
+    product?.id
+  );
+}
+
+function resolveFourthwallImage(product: any) {
+  return (
+    product?.image?.transformedUrl ??
+    product?.image?.transformed_url ??
+    product?.image?.url ??
+    product?.primary_image?.url ??
+    product?.preview_image?.url ??
+    product?.featured_image?.src ??
+    product?.featured_media?.src ??
+    product?.images?.[0]?.src ??
+    product?.images?.[0]?.url ??
+    product?.media?.[0]?.src ??
+    product?.media?.[0]?.url
+  );
+}
+
+function resolveFourthwallPrice(product: any) {
+  const unitPrice =
+    product?.variants?.[0]?.unitPrice ??
+    product?.variants?.[0]?.unit_price ??
+    product?.variants?.[0]?.price;
+  const amount =
+    product?.price?.amount ??
+    product?.price?.value ??
+    unitPrice?.amount ??
+    unitPrice?.value ??
+    product?.default_price?.amount ??
+    product?.default_price?.price ??
+    product?.pricing?.price ??
+    product?.price ??
+    product?.prices?.[0]?.amount ??
+    product?.price_range?.minimum_price?.amount ??
+    product?.price_range?.minimum_price?.price ??
+    product?.price_range?.min?.amount ??
+    product?.min_price?.amount ??
+    product?.min_price;
+  const currencyCode =
+    product?.price?.currencyCode ??
+    product?.price?.currency ??
+    unitPrice?.currencyCode ??
+    unitPrice?.currency ??
+    product?.default_price?.currency ??
+    product?.price_range?.minimum_price?.currency ??
+    product?.min_price?.currency ??
+    product?.currency;
+
+  if (amount === undefined || amount === null) return null;
+
+  return { amount, currencyCode };
+}
+
+function normalizeFourthwallProducts(data: any) {
+  const products = Array.isArray(data?.products)
+    ? data.products
+    : Array.isArray(data?.data)
+      ? data.data
+      : Array.isArray(data?.items)
+        ? data.items
+        : [];
+  const checkoutBase = process.env.NEXT_PUBLIC_FW_CHECKOUT;
+  const normalized = products
+    .map((product: any) => {
+      const handle = resolveFourthwallHandle(product);
+      const price = resolveFourthwallPrice(product);
+      const image = resolveFourthwallImage(product);
+      const link =
+        (checkoutBase && handle
+          ? `${checkoutBase.replace(/\/+$/, "")}/products/${handle}`
+          : null) ??
+        product?.link ??
+        product?.url ??
+        product?.storefront_url ??
+        product?.storefrontUrl ??
+        product?.permalink ??
+        product?.links?.storefront;
+
+      if (!handle || !price || !image || !link) return null;
+
+      return {
+        id: String(product?.id ?? handle),
+        name: product?.title ?? product?.name ?? "Product",
+        price: {
+          amount: price.amount,
+          currencyCode: price.currencyCode ?? "USD",
+        },
+        image,
+        link,
+      };
+    })
+    .filter(Boolean);
+
+  return normalized as Array<{
+    id: string;
+    name: string;
+    price: { amount: number | string; currencyCode: string };
+    image: string;
+    link: string;
+  }>;
 }
 
 async function fetchFromEventbrite<T>(url: string): Promise<T> {
@@ -570,13 +687,7 @@ app.get("/api/fourthwall/products", async (_req, res) => {
 
   try {
     const data = await fetchFourthwallProducts();
-    const products = Array.isArray((data as any)?.products)
-      ? (data as any).products
-      : Array.isArray((data as any)?.data)
-        ? (data as any).data
-        : Array.isArray((data as any)?.items)
-          ? (data as any).items
-          : [];
+    const products = normalizeFourthwallProducts(data);
 
     cachedFourthwallProducts = { products, timestamp: Date.now() };
     return res.json({ products });
@@ -604,7 +715,7 @@ app.get("/api/fourthwall/image", async (req, res) => {
     return res.status(400).json({ error: "Invalid image URL." });
   }
 
-  if (!isAllowedImageHost(parsedUrl.hostname)) {
+  if (parsedUrl.protocol !== "https:" || !isAllowedImageHost(parsedUrl.hostname)) {
     return res.status(403).json({ error: "Image host not allowed." });
   }
 
@@ -619,14 +730,19 @@ app.get("/api/fourthwall/image", async (req, res) => {
     }
 
     const passthroughHeaders = getStoreProxyHeaders(response.headers);
-    const contentType = response.headers.get("content-type");
-    if (contentType) {
-      passthroughHeaders["content-type"] = contentType;
-    }
+    const contentType =
+      response.headers.get("content-type") ?? "application/octet-stream";
+    passthroughHeaders["content-type"] = contentType;
 
     res.set(passthroughHeaders);
-    const buffer = Buffer.from(await response.arrayBuffer());
-    return res.send(buffer);
+
+    if (!response.body) {
+      const buffer = Buffer.from(await response.arrayBuffer());
+      return res.send(buffer);
+    }
+
+    const stream = Readable.fromWeb(response.body);
+    return stream.pipe(res);
   } catch (error) {
     console.error("Fourthwall image proxy error", error);
     return res.status(502).json({ error: "Unable to fetch image." });
