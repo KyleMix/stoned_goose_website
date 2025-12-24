@@ -37,13 +37,18 @@ function formatPrice(price: unknown, currencyCode?: string) {
 }
 
 function extractImageUrl(product: any) {
+  const directImage = typeof product.image === "string" ? product.image : undefined;
+  const firstImage = Array.isArray(product.images) ? product.images[0] : undefined;
+  const firstImageUrl = typeof firstImage === "string" ? firstImage : undefined;
   return (
+    directImage ||
     product.image?.transformedUrl ||
     product.image?.transformed_url ||
     product.image?.url ||
     product.image?.src ||
     product.images?.[0]?.transformedUrl ||
     product.images?.[0]?.transformed_url ||
+    firstImageUrl ||
     product.images?.[0]?.src ||
     product.images?.[0]?.url ||
     product.image?.src ||
