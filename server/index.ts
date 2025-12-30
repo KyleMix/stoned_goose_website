@@ -2,6 +2,8 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { getEventbriteShows } from "./eventbrite";
+import { getYouTubeVideos } from "./youtube";
 
 function loadEnv(filePath: string) {
   if (!fs.existsSync(filePath)) return;
@@ -27,6 +29,33 @@ const app = express();
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const publicDir = path.join(__dirname, "../dist/public");
+const api = express.Router();
+
+api.get("/eventbrite", async (_req, res) => {
+  try {
+    const data = await getEventbriteShows();
+    res.json(data);
+  } catch (error) {
+    console.error("Eventbrite fetch failed", error);
+    res.status(502).json({
+      updatedAt: null,
+      events: [],
+      error: "Unable to load Eventbrite shows.",
+    });
+  }
+});
+
+api.get("/youtube", async (_req, res) => {
+  try {
+    const videos = await getYouTubeVideos();
+    res.json({ videos });
+  } catch (error) {
+    console.error("YouTube fetch failed", error);
+    res.status(502).json({ videos: [] });
+  }
+});
+
+app.use("/api", api);
 app.use(express.static(publicDir));
 app.get("*", (_req, res, next) => {
   if (publicDir && !publicDir.includes("dist")) return next();

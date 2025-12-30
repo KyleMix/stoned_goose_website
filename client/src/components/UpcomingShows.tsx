@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Ticket } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { eventbriteShows } from "@/data/eventbrite";
+import { eventbriteShows, type EventbriteShowData } from "@/data/eventbrite";
 
 const EVENTBRITE_PROFILE_URL =
   "https://www.eventbrite.com/o/stoned-goose-productions-107337391771";
@@ -39,9 +39,28 @@ function formatLocation(venue?: (typeof eventbriteShows.events)[number]["venue"]
 }
 
 export default function UpcomingShows() {
+  const [showData, setShowData] = useState<EventbriteShowData>(eventbriteShows);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch("/api/eventbrite")
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: EventbriteShowData | null) => {
+        if (data && isMounted) {
+          setShowData(data);
+        }
+      })
+      .catch(() => undefined);
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const shows = useMemo(() => {
     return (
-      eventbriteShows.events.map((event) => ({
+      showData.events.map((event) => ({
         id: event.id,
         title: event.name,
         date: formatDate(event.start),
@@ -54,7 +73,7 @@ export default function UpcomingShows() {
         isNew: false,
       })) ?? []
     );
-  }, []);
+  }, [showData.events]);
 
   const hasShows = shows.length > 0;
 
