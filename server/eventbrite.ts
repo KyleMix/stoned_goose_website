@@ -157,8 +157,14 @@ function parseEventbriteShows(html: string): EventbriteShowData {
   jsonLd.forEach((entry) => collectEvents(entry, events));
 
   const mapped = events.map(mapEvent).filter((event) => Boolean(event.name));
+  const uniqueEvents = new Map<string, EventbriteShow>();
+  mapped.forEach((event) => {
+    if (!uniqueEvents.has(event.id)) {
+      uniqueEvents.set(event.id, event);
+    }
+  });
   const now = Date.now();
-  const upcoming = mapped
+  const upcoming = Array.from(uniqueEvents.values())
     .filter((event) => {
       if (!event.start) return false;
       const startTime = Date.parse(event.start);
