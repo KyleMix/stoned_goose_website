@@ -36,7 +36,7 @@ function parseAttr(block: string, tag: string, attr: string): string | null {
 }
 
 function parseYouTubeFeed(xml: string): YouTubeVideo[] {
-  const entries = xml.match(/<entry>[\\s\\S]*?<\\/entry>/gi) ?? [];
+  const entries = xml.match(/<entry>[\s\S]*?<\/entry>/gi) ?? [];
   return entries.map((entry) => {
     const id = parseXmlTag(entry, "yt:videoId") ?? "";
     const title = parseXmlTag(entry, "title") ?? "Untitled Video";
