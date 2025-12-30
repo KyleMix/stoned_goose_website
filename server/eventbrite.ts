@@ -157,8 +157,14 @@ function parseEventbriteShows(html: string): EventbriteShowData {
   jsonLd.forEach((entry) => collectEvents(entry, events));
 
   const mapped = events.map(mapEvent).filter((event) => Boolean(event.name));
+  const now = Date.now();
   const upcoming = mapped
-    .filter((event) => !event.start || !Number.isNaN(Date.parse(event.start)))
+    .filter((event) => {
+      if (!event.start) return false;
+      const startTime = Date.parse(event.start);
+      if (Number.isNaN(startTime)) return false;
+      return startTime >= now;
+    })
     .sort((a, b) => {
       const aTime = a.start ? Date.parse(a.start) : 0;
       const bTime = b.start ? Date.parse(b.start) : 0;
