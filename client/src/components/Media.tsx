@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { PlayCircle, Youtube, Instagram } from "lucide-react";
+import { useEffect, useState } from "react";
 
 type YouTubeVideo = {
   id: string;
@@ -10,8 +11,7 @@ type YouTubeVideo = {
 };
 
 const YOUTUBE_MAX_RESULTS = 6;
-
-const youtubeVideos: YouTubeVideo[] = [];
+const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@stonedgooseproductions";
 
 // Instagram reel thumbnails
 import reelThumb1 from "../assets/media/Halloween.png";
@@ -34,6 +34,25 @@ const instagramReels = [
 ];
 
 export default function Media() {
+  const [youtubeVideos, setYoutubeVideos] = useState<YouTubeVideo[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch("/api/youtube")
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: { videos?: YouTubeVideo[] } | null) => {
+        if (data?.videos && isMounted) {
+          setYoutubeVideos(data.videos.slice(0, YOUTUBE_MAX_RESULTS));
+        }
+      })
+      .catch(() => undefined);
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const featured = youtubeVideos[0];
   const videoDelayCount = youtubeVideos.length || YOUTUBE_MAX_RESULTS;
 
@@ -97,9 +116,14 @@ export default function Media() {
             </div>
           </motion.a>
         ) : (
-          <div className="relative aspect-video bg-black/60 rounded-xl overflow-hidden mb-12 border border-white/10 flex items-center justify-center text-gray-400">
+          <a
+            href={YOUTUBE_CHANNEL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative aspect-video bg-black/60 rounded-xl overflow-hidden mb-12 border border-white/10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"
+          >
             No videos available yet. Check out our channel for the latest uploads.
-          </div>
+          </a>
         )}
 
         {/* Grid: specific YouTube vids + specific Instagram reels */}
@@ -135,7 +159,16 @@ export default function Media() {
             ))
           ) : (
             <div className="col-span-2 md:col-span-4 text-center text-gray-400 py-6 border border-dashed border-white/10 rounded-lg">
-              No videos to display right now. Check back soon!
+              No videos to display right now. Visit our{" "}
+              <a
+                href={YOUTUBE_CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                YouTube channel
+              </a>{" "}
+              for the latest uploads.
             </div>
           )}
 
