@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import heroBg from "@assets/generated_images/dark_comedy_club_stage_with_neon_spotlights.png";
 
+const coverVideoSrc = "/covervideo.mp4";
+
 export default function Hero() {
   const scrollToShows = () => {
     document.getElementById("shows")?.scrollIntoView({ behavior: "smooth" });
@@ -18,11 +20,16 @@ export default function Hero() {
         <div
           className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background z-10"
         />
-        <img
-          src={heroBg}
-          alt="Comedy Club Stage"
+        <video
           className="w-full h-full object-cover"
-        />
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={heroBg}
+        >
+          <source src={coverVideoSrc} type="video/mp4" />
+        </video>
       </div>
 
       {/* Content */}
