@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import heroBg from "@assets/generated_images/dark_comedy_club_stage_with_neon_spotlights.png";
 
-const coverVideoSrc = "/covervideo.mov";
+const coverVideoSrc = "/covervideo.mp4";
 
 export default function Hero() {
   const scrollToShows = () => {
@@ -26,7 +26,6 @@ export default function Hero() {
           muted
           loop
           playsInline
-          poster={heroBg}
         >
           <source src={coverVideoSrc} type="video/quicktime" />
         </video>
