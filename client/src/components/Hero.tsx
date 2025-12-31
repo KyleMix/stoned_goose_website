@@ -25,7 +25,7 @@ export default function Hero() {
           loop
           playsInline
         >
-          <source src={coverVideoSrc} type="video/mp4" />
+          <source src={coverVideoSrc} type="video/quicktime" />
         </video>
       </div>
 
