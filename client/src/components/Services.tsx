@@ -44,8 +44,13 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-muted/20 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+    <section
+      id="services"
+      className="py-20 relative overflow-hidden bg-gradient-to-b from-muted/40 via-background/20 to-muted/40"
+    >
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      <div className="pointer-events-none absolute -top-20 left-1/2 h-48 w-[80%] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 left-1/2 h-56 w-[80%] -translate-x-1/2 rounded-full bg-secondary/10 blur-3xl" />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -57,9 +62,26 @@ export default function Services() {
           <h2 className="text-4xl md:text-6xl font-display uppercase text-white mb-4">
             What We <span className="text-secondary">Do</span>
           </h2>
+          <p className="text-primary/80 uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-3">
+            We book revenue-generating services.
+          </p>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
             We don't just tell jokes. We build the stage for them—and capture the headshots to match.
           </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wide text-primary-foreground shadow-lg shadow-primary/30 transition hover:-translate-y-0.5 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Request a Quote
+            </Link>
+            <Link
+              href="/#services"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              View Services
+            </Link>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
