@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mic2, CalendarRange, Users, Radio, Camera } from "lucide-react";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const services = [
@@ -43,6 +44,8 @@ const services = [
 ];
 
 export default function Services() {
+  const [, setLocation] = useLocation();
+
   return (
     <section id="services" className="py-20 bg-muted/20 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
@@ -71,24 +74,56 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Link
-                href={`/?service=${service.slug}#contact`}
-                className="group block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              <Card
+                className="group bg-card/50 border-border hover:border-white/20 transition-all duration-300 h-full hover:-translate-y-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                role="link"
+                tabIndex={0}
+                onClick={() => setLocation(`/services#${service.slug}`)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setLocation(`/services#${service.slug}`);
+                  }
+                }}
               >
-                <Card className="bg-card/50 border-border hover:border-white/20 transition-all duration-300 h-full hover:-translate-y-2">
-                  <CardHeader>
-                    <service.icon className={`w-12 h-12 mb-4 ${service.color}`} />
-                    <CardTitle className="text-xl font-display uppercase text-white">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-400 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
+                <CardHeader>
+                  <service.icon className={`w-12 h-12 mb-4 ${service.color}`} />
+                  <CardTitle className="text-xl font-display uppercase text-white">
+                    {service.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex h-full flex-col">
+                  <p className="text-gray-400 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="uppercase"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setLocation(`/services#${service.slug}`);
+                      }}
+                    >
+                      View Details
+                    </Button>
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="uppercase"
+                    >
+                      <a
+                        href="/#contact"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        Book Now
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
