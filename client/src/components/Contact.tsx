@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,6 +41,24 @@ export default function Contact() {
       message: "",
     },
   });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const searchParams = new URLSearchParams(window.location.search);
+    const serviceParam = searchParams.get("service");
+    if (!serviceParam) return;
+
+    const serviceTitle = serviceParam
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+    if (!form.getValues("subject")) {
+      form.setValue("subject", `Service Inquiry: ${serviceTitle}`, {
+        shouldDirty: true,
+      });
+    }
+  }, [form]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setStatus(null);
