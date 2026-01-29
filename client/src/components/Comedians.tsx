@@ -8,7 +8,6 @@ import christianMateoImg from "@assets/generated_images/christian-mateo.jpg";
 import davidweedImg from "@assets/generated_images/david-weed.png";
 import derekGladsonImg from "@assets/generated_images/derek-gladson.jpg";
 import ezraImg from "@assets/generated_images/ezra.png";
-import garettIversonImg from "@assets/generated_images/garrett-iverson.jpg";
 import gavinHowellsImg from "@assets/generated_images/gavin-howells.jpg";
 import jacobBarberImg from "@assets/generated_images/jacob-barber.jpg";
 import jessEverettImg from "@assets/generated_images/jess-everett.jpg";
@@ -66,12 +65,6 @@ const comedians: Comedian[] = [
     name: "Ezra Bonillas",
     image: ezraImg,
     instagram: "https://www.instagram.com/ezrabonillas/",
-  },
-  {
-    name: "Garrett Iverson",
-    image: garettIversonImg,
-    instagram: "https://www.instagram.com/garrettiversoncomedy/",
-    facebook: "https://www.facebook.com/garrett.iverson.71",
   },
   {
     name: "Gavin Howells",

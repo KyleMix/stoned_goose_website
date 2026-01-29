@@ -5,6 +5,7 @@ import brendanPhoto from "@assets/generated_images/brendan.png";
 import josephPhoto from "@assets/generated_images/joseph.jpg";
 import kylePhoto from "@assets/generated_images/kyle.png";
 import samPhoto from "@assets/generated_images/sam.png";
+import garrettphoto from "@assets/generated_images/garrett-iverson.jpg";
 
 const pillars = [
   {
@@ -38,6 +39,7 @@ const teamMembers = [
   { name: "Joseph Humphrey", photo: josephPhoto },
   { name: "Brendan Meeks", photo: brendanPhoto },
   { name: "Samuel Tweed", photo: samPhoto },
+  { name: "Garrett Iverson", photo: garrettphoto },
 ];
 
 export default function About() {
@@ -93,7 +95,7 @@ export default function About() {
             <p className="text-gray-400 font-marker text-xl rotate-1">Faces behind the productions.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="flex flex-nowrap justify-center gap-6 overflow-x-auto pb-2">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -101,7 +103,7 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="group"
+                className=" min-w-[200px] max-w-[200px]"
               >
                 <div className="relative overflow-hidden rounded-xl aspect-square mb-4 border-2 border-transparent group-hover:border-primary transition-colors">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/60 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
@@ -109,7 +111,7 @@ export default function About() {
                   <img
                     src={member.photo}
                     alt={member.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition duration-300 ease-out filter grayscale group-hover:grayscale-0 group-hover:scale-[1.02]"
                     loading="lazy"
                   />
                 </div>
