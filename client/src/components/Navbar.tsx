@@ -1,3 +1,5 @@
+import { useState, useEffect, type MouseEvent } from "react";
+import { Menu, Ticket } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,7 +19,7 @@ import {
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "Upcoming Shows", href: "#shows" },
-  { name: "Services", href: "#services" },
+  { name: "Services", href: "/services" },
   { name: "About", href: "#about" },
   { name: "Comedians", href: "#comedians" },
   { name: "Merch", href: "#merch" },
@@ -78,6 +80,22 @@ export default function Navbar() {
     }
   };
 
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+    closeOnNavigate = false
+  ) => {
+    if (href.startsWith("#")) {
+      event.preventDefault();
+      scrollToSection(href);
+      return;
+    }
+
+    if (closeOnNavigate) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -129,8 +147,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(item.href);
+                handleNavClick(e, item.href);
               }}
               className="text-sm font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide"
             >
@@ -168,8 +185,7 @@ export default function Navbar() {
                     key={item.name}
                     href={item.href}
                     onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(item.href);
+                      handleNavClick(e, item.href, true);
                     }}
                     className="text-2xl font-display uppercase text-white hover:text-primary transition-colors"
                   >
