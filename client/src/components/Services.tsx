@@ -18,6 +18,7 @@ const services = [
     description: "From intimate clubs to theaters, we handle everything from booking to stage management.",
     icon: Mic2,
     color: "text-primary",
+    path: "/live-show-production",
   },
   {
     title: "Comedian Booking",
@@ -25,6 +26,7 @@ const services = [
     description: "Need talent? We have a roster of the funniest people you've never heard of (yet).",
     icon: Users,
     color: "text-secondary",
+    path: "/comedian-booking",
   },
   {
     title: "Corporate Events",
@@ -32,21 +34,24 @@ const services = [
     description: "Make your company party less awkward. We bring the laughs, you bring the open bar.",
     icon: CalendarRange,
     color: "text-blue-400",
+    path: "/corporate-events",
   },
   {
     title: "Media & Podcasts",
-    slug: "media-podcasts",
+    slug: "media-and-podcasts",
     description: "Full service audio/video production for comedy specials and podcast series.",
     icon: Radio,
     color: "text-pink-500",
+    path: "/media-and-podcasts",
   },
   {
     title: "Headshots & Promo Shoots",
-    slug: "headshots-promo-shoots",
+    slug: "headshots-and-promo",
     description:
       "Professional headshots and press kits to spotlight comedians, staff, and partners in the best light.",
     icon: Camera,
     color: "text-amber-400",
+    path: "/headshots-and-promo",
   },
 ];
 
@@ -197,7 +202,7 @@ export default function Services() {
               Request a Quote
             </Link>
             <Link
-              href="/#services"
+              href="/services"
               className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               View Services
@@ -218,11 +223,11 @@ export default function Services() {
                 className="group bg-card/50 border-border hover:border-white/20 transition-all duration-300 h-full hover:-translate-y-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 role="link"
                 tabIndex={0}
-                onClick={() => setLocation(`/services#${service.slug}`)}
+                onClick={() => setLocation(service.path)}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
-                    setLocation(`/services#${service.slug}`);
+                    setLocation(service.path);
                   }
                 }}
               >
@@ -243,7 +248,7 @@ export default function Services() {
                       className="uppercase"
                       onClick={(event) => {
                         event.stopPropagation();
-                        setLocation(`/services#${service.slug}`);
+                        setLocation(service.path);
                       }}
                     >
                       View Details
