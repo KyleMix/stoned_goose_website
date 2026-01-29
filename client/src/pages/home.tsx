@@ -15,8 +15,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <UpcomingShows />
         <Services />
+        <UpcomingShows />
         <About />
         <Comedians />
         <Merch />
