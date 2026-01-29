@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import SeoHead from "@/components/seo/SeoHead";
+import { servicePages } from "@/data/servicePages";
 
 const services = [
   {
@@ -68,7 +70,7 @@ const services = [
   },
   {
     title: "Media & Podcasts",
-    slug: "media-podcasts",
+    slug: "media-and-podcasts",
     summary:
       "Audio and video production that captures comic voices with broadcast-ready quality.",
     benefits: [
@@ -89,7 +91,7 @@ const services = [
   },
   {
     title: "Headshots & Promo Shoots",
-    slug: "headshots-promo-shoots",
+    slug: "headshots-and-promo",
     summary:
       "Photography that sells the bit—clean, modern, and ready for press kits.",
     benefits: [
@@ -113,6 +115,11 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <SeoHead
+        title="Comedy Production Services | Olympia & South Sound | Stoned Goose Productions"
+        description="Book live show production, comedian booking, corporate comedy, media, and headshot services across Olympia, Lacey, Tacoma, and the South Sound."
+        path="/services"
+      />
       <Navbar />
       <main className="pt-28 pb-20">
         <section className="py-16">
@@ -125,15 +132,32 @@ export default function ServicesPage() {
                 A full stack of comedy production support.
               </h1>
               <p className="text-lg text-gray-300 leading-relaxed">
-                From intimate shows to large-scale activations, we make it easy
-                to book, produce, and promote comedy. Explore each service below
-                and book the one that fits your next event.
+                From Olympia to Tacoma and across the South Sound, we make it
+                easy to book, produce, and promote comedy. Explore each service
+                below and request a quote for your next show, corporate event,
+                or media project.
               </p>
+              <div className="mt-6 rounded-2xl border border-border/60 bg-card/40 p-6">
+                <p className="text-sm uppercase tracking-[0.3em] text-secondary mb-4">
+                  Quick links
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {servicePages.map((service) => (
+                    <a
+                      key={service.slug}
+                      href={`/${service.slug}`}
+                      className="rounded-full border border-border/60 px-4 py-2 text-sm uppercase tracking-wide text-gray-200 hover:border-primary hover:text-primary transition-colors"
+                    >
+                      {service.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
               <div className="mt-10 flex flex-wrap gap-3">
                 {services.map((service) => (
                   <a
                     key={service.slug}
-                    href={`#${service.slug}`}
+                    href={`/${service.slug}`}
                     className="rounded-full border border-border/60 px-4 py-2 text-sm uppercase tracking-wide text-gray-200 hover:border-primary hover:text-primary transition-colors"
                   >
                     {service.title}
@@ -149,20 +173,27 @@ export default function ServicesPage() {
             {services.map((service) => (
               <article
                 key={service.slug}
-                id={service.slug}
                 className="scroll-mt-28 rounded-2xl border border-border/60 bg-card/40 p-8 md:p-10"
               >
                 <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
                   <div className="lg:w-1/3">
-                    <h2 className="text-3xl font-display uppercase text-white">
+                    <a
+                      href={`/${service.slug}`}
+                      className="text-3xl font-display uppercase text-white hover:text-primary transition-colors"
+                    >
                       {service.title}
-                    </h2>
+                    </a>
                     <p className="mt-4 text-gray-300 leading-relaxed">
                       {service.summary}
                     </p>
-                    <Button asChild className="mt-6 uppercase">
-                      <a href="/#contact">Book Now</a>
-                    </Button>
+                    <div className="mt-6 flex flex-wrap gap-3">
+                      <Button asChild className="uppercase">
+                        <a href={`/${service.slug}`}>View Service Page</a>
+                      </Button>
+                      <Button asChild variant="outline" className="uppercase">
+                        <a href="/#contact">Request a Quote</a>
+                      </Button>
+                    </div>
                   </div>
                   <div className="grid gap-6 md:grid-cols-3 lg:w-2/3">
                     <div>
