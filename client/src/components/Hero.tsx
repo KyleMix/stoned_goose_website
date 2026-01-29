@@ -7,6 +7,9 @@ export default function Hero() {
   const scrollToShows = () => {
     document.getElementById("shows")?.scrollIntoView({ behavior: "smooth" });
   };
+  const scrollToServices = () => {
+    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
@@ -36,6 +39,10 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+            Now booking corporate events + media production
+          </div>
+
           <h2 className="text-primary font-marker text-2xl md:text-4xl mb-4 -rotate-2">
             LIVE. LOCAL. COMEDY.
           </h2>
@@ -54,22 +61,20 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
-              onClick={scrollToShows}
+              onClick={scrollToServices}
               size="lg"
               className="bg-primary text-black hover:bg-primary/90 text-lg px-8 py-6 font-bold uppercase tracking-wide hover:scale-105 transition-transform box-glow"
             >
-              See Upcoming Shows
+              Book a Service
             </Button>
 
             <Button
               variant="outline"
               size="lg"
               className="border-primary/50 text-primary hover:bg-primary/10 text-lg px-8 py-6 font-bold uppercase tracking-wide hover:scale-105 transition-transform"
-              onClick={() =>
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={scrollToShows}
             >
-              Book Us
+              Upcoming Shows
             </Button>
           </div>
         </motion.div>
