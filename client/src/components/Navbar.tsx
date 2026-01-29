@@ -1,7 +1,5 @@
 import { useState, useEffect, type MouseEvent } from "react";
 import { Menu, Ticket } from "lucide-react";
-import { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logo from "@assets/logo.png";
