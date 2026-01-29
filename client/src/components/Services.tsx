@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Mic2, CalendarRange, Users, Radio, Camera } from "lucide-react";
 import { useLocation } from "wouter";
-import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
