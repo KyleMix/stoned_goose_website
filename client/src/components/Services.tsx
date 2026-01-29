@@ -1,34 +1,40 @@
 import { motion } from "framer-motion";
 import { Mic2, CalendarRange, Users, Radio, Camera } from "lucide-react";
+import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const services = [
   {
     title: "Live Show Production",
+    slug: "live-show-production",
     description: "From intimate clubs to theaters, we handle everything from booking to stage management.",
     icon: Mic2,
     color: "text-primary",
   },
   {
     title: "Comedian Booking",
+    slug: "comedian-booking",
     description: "Need talent? We have a roster of the funniest people you've never heard of (yet).",
     icon: Users,
     color: "text-secondary",
   },
   {
     title: "Corporate Events",
+    slug: "corporate-events",
     description: "Make your company party less awkward. We bring the laughs, you bring the open bar.",
     icon: CalendarRange,
     color: "text-blue-400",
   },
   {
     title: "Media & Podcasts",
+    slug: "media-podcasts",
     description: "Full service audio/video production for comedy specials and podcast series.",
     icon: Radio,
     color: "text-pink-500",
   },
   {
     title: "Headshots & Promo Shoots",
+    slug: "headshots-promo-shoots",
     description:
       "Professional headshots and press kits to spotlight comedians, staff, and partners in the best light.",
     icon: Camera,
@@ -65,19 +71,24 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="bg-card/50 border-border hover:border-white/20 transition-all duration-300 h-full hover:-translate-y-2">
-                <CardHeader>
-                  <service.icon className={`w-12 h-12 mb-4 ${service.color}`} />
-                  <CardTitle className="text-xl font-display uppercase text-white">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-400 leading-relaxed">
-                    {service.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <Link
+                href={`/?service=${service.slug}#contact`}
+                className="group block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                <Card className="bg-card/50 border-border hover:border-white/20 transition-all duration-300 h-full hover:-translate-y-2">
+                  <CardHeader>
+                    <service.icon className={`w-12 h-12 mb-4 ${service.color}`} />
+                    <CardTitle className="text-xl font-display uppercase text-white">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-400 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             </motion.div>
           ))}
         </div>
