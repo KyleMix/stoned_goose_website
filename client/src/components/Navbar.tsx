@@ -1,5 +1,7 @@
 import { useState, useEffect, type MouseEvent } from "react";
 import { Menu, Ticket } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logo from "@assets/logo.png";
@@ -155,9 +157,9 @@ export default function Navbar() {
           <Button
             variant="default"
             className="bg-primary text-black hover:bg-primary/90 hover:scale-105 transition-all font-bold uppercase"
-            onClick={() => scrollToSection("#shows")}
+            onClick={() => scrollToSection("#services")}
           >
-            <Ticket className="mr-2 h-4 w-4" /> Tickets
+            Book Services
           </Button>
         </div>
 
