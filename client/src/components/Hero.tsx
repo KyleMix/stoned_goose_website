@@ -1,9 +1,34 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const coverVideoSrc = "/covervideo.mp4"; // ✅ served from client/public
+const coverPosterSrc = "/opengraph.jpg";
 
 export default function Hero() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    handleChange();
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handleChange);
+    } else {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", handleChange);
+      } else {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
+
   const scrollToShows = () => {
     document.getElementById("shows")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -17,17 +42,27 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden isolate"
     >
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        >
-          <source src={coverVideoSrc} type="video/mp4" />
-        </video>
+        {prefersReducedMotion ? (
+          <img
+            className="absolute inset-0 h-full w-full object-cover"
+            src={coverPosterSrc}
+            alt=""
+            aria-hidden="true"
+          />
+        ) : (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={coverPosterSrc}
+            aria-hidden="true"
+          >
+            <source src={coverVideoSrc} type="video/mp4" />
+          </video>
+        )}
 
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background" />
