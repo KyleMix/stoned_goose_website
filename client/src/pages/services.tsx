@@ -1,8 +1,15 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import SeoHead from "@/components/seo/SeoHead";
 import { servicePages } from "@/data/servicePages";
+import { Card, CardContent } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 const services = [
   {
@@ -112,7 +119,86 @@ const services = [
   },
 ];
 
+const venuePartnerFormSchema = z.object({
+  venueName: z.string().min(2, "Add your venue name"),
+  capacity: z.string().min(1, "Share the room capacity"),
+  preferredNights: z.string().min(2, "Tell us which nights work best"),
+  revenueSplitPreference: z.string().min(2, "Share your preferred split"),
+  email: z.string().email("Add a valid contact email"),
+});
+
 export default function ServicesPage() {
+  const [partnerStatus, setPartnerStatus] = useState<
+    | { type: "success"; message: string }
+    | { type: "error"; message: string }
+    | null
+  >(null);
+  const [isPartnerSubmitting, setIsPartnerSubmitting] = useState(false);
+
+  const venuePartnerForm = useForm<z.infer<typeof venuePartnerFormSchema>>({
+    resolver: zodResolver(venuePartnerFormSchema),
+    defaultValues: {
+      venueName: "",
+      capacity: "",
+      preferredNights: "",
+      revenueSplitPreference: "",
+      email: "",
+    },
+  });
+
+  async function onVenuePartnerSubmit(values: z.infer<typeof venuePartnerFormSchema>) {
+    setPartnerStatus(null);
+    setIsPartnerSubmitting(true);
+
+    const subject = "Venue Partnership Inquiry";
+    const message = [
+      `Venue name: ${values.venueName}`,
+      `Capacity: ${values.capacity}`,
+      `Preferred nights: ${values.preferredNights}`,
+      `Revenue split preference: ${values.revenueSplitPreference}`,
+      `Contact email: ${values.email}`,
+    ].join("\n");
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/contact@stonedgooseproductions.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: "Venue Partner Program",
+            email: values.email,
+            subject,
+            message,
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to send partnership inquiry. Please try again.");
+      }
+
+      setPartnerStatus({
+        type: "success",
+        message: "Thanks! We'll be in touch about a venue partnership.",
+      });
+      venuePartnerForm.reset();
+    } catch (error) {
+      setPartnerStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again shortly.",
+      });
+    } finally {
+      setIsPartnerSubmitting(false);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <SeoHead
@@ -230,6 +316,153 @@ export default function ServicesPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="venue-partner-program" className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+              <div className="space-y-4">
+                <p className="text-sm uppercase tracking-[0.4em] text-secondary">
+                  Venue Partner Program
+                </p>
+                <h2 className="text-4xl md:text-5xl font-display uppercase text-white">
+                  Let&apos;s build a recurring comedy night together.
+                </h2>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  We collaborate with venue teams to program consistent shows, co-market the run,
+                  and structure revenue splits that make the night a win for everyone.
+                </p>
+                <div className="rounded-2xl border border-border/60 bg-card/40 p-6 text-gray-300">
+                  <p className="text-sm uppercase tracking-[0.3em] text-secondary mb-3">
+                    What we align on
+                  </p>
+                  <ul className="space-y-2 text-sm">
+                    <li>• Expected audience capacity and room flow.</li>
+                    <li>• Ideal weeknights or weekend slots.</li>
+                    <li>• Revenue split expectations for ticketing or bar sales.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <Card className="bg-card/50 border-border/60">
+                <CardContent className="p-6">
+                  <Form {...venuePartnerForm}>
+                    <form
+                      onSubmit={venuePartnerForm.handleSubmit(onVenuePartnerSubmit)}
+                      className="space-y-4"
+                    >
+                      <FormField
+                        control={venuePartnerForm.control}
+                        name="venueName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Venue name</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Stone & Sparrow Taproom"
+                                {...field}
+                                className="bg-white/5 border-white/10 focus:border-primary text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={venuePartnerForm.control}
+                        name="capacity"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Capacity</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="120 seated / 180 standing"
+                                {...field}
+                                className="bg-white/5 border-white/10 focus:border-primary text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={venuePartnerForm.control}
+                        name="preferredNights"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Preferred nights</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Thursdays, monthly Saturdays"
+                                {...field}
+                                className="bg-white/5 border-white/10 focus:border-primary text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={venuePartnerForm.control}
+                        name="revenueSplitPreference"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Revenue split preference</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="70/30 door split or bar minimum"
+                                {...field}
+                                className="bg-white/5 border-white/10 focus:border-primary text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={venuePartnerForm.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Contact email</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="venue@email.com"
+                                {...field}
+                                className="bg-white/5 border-white/10 focus:border-primary text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <p className="text-xs uppercase tracking-wide text-gray-400">
+                        Subject: Venue Partnership Inquiry
+                      </p>
+                      <Button
+                        type="submit"
+                        disabled={isPartnerSubmitting}
+                        className="w-full bg-gradient-to-r from-secondary to-secondary/80 text-black font-bold uppercase hover:scale-[1.02] transition-transform"
+                      >
+                        {isPartnerSubmitting ? "Sending..." : "Submit Inquiry"}
+                      </Button>
+                      {partnerStatus && (
+                        <p
+                          className={`text-sm ${
+                            partnerStatus.type === "success"
+                              ? "text-green-400"
+                              : "text-red-400"
+                          }`}
+                        >
+                          {partnerStatus.message}
+                        </p>
+                      )}
+                    </form>
+                  </Form>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
       </main>
