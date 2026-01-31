@@ -205,6 +205,12 @@ export default function Services() {
             >
               View Services
             </Link>
+            <Link
+              href="/services#venue-partner-program"
+              className="inline-flex items-center justify-center rounded-full border border-secondary/50 bg-secondary/10 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-secondary transition hover:-translate-y-0.5 hover:border-secondary hover:bg-secondary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Venue Partner Program
+            </Link>
           </div>
         </motion.div>
 
@@ -256,6 +262,38 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <Card className="border border-secondary/40 bg-gradient-to-br from-secondary/15 via-card/40 to-transparent">
+            <CardContent className="p-8 md:p-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-3">
+                <p className="text-sm uppercase tracking-[0.4em] text-secondary">
+                  Venue Partner Program
+                </p>
+                <h3 className="text-2xl md:text-3xl font-display uppercase text-white">
+                  Bring consistent comedy to your room.
+                </h3>
+                <p className="text-gray-300 max-w-xl">
+                  Collaborate on recurring nights, co-marketing, and revenue splits tailored to
+                  your venue&apos;s footprint.
+                </p>
+              </div>
+              <Button
+                asChild
+                className="uppercase bg-secondary text-black hover:bg-secondary/90"
+              >
+                <Link href="/services#venue-partner-program">
+                  Join the Program
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
