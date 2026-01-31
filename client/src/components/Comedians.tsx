@@ -3,6 +3,7 @@ import { FaInstagram, FaFacebook } from "react-icons/fa6";
 
 // Real comedian headshots (from your Excel file)
 import andrewRiversImg from "@assets/generated_images/andrew-rivers.jpg";
+import brandonWhiteImg from "@assets/generated_images/brandon-white.jpg";
 import caseyMclainImg from "@assets/generated_images/casey-mclain.jpg";
 import christianMateoImg from "@assets/generated_images/christian-mateo.jpg";
 import davidweedImg from "@assets/generated_images/david-weed.png";
@@ -38,6 +39,12 @@ const comedians: Comedian[] = [
     image: andrewRiversImg,
     instagram: "https://www.instagram.com/andrewjrivers/",
     facebook: "https://www.facebook.com/andrewriverscomedy",
+  },
+  {
+    name: "Brandon White",
+    image: brandonWhiteImg,
+    instagram: "https://www.instagram.com/brandonwhitecomedy/",
+    facebook: "https://www.facebook.com/brandon.white.98871",
   },
   {
     name: "Casey McLain",
