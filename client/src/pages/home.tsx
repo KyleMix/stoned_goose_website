@@ -9,6 +9,7 @@ import Media from "@/components/Media";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SeoHead from "@/components/seo/SeoHead";
+import SponsorsPartners from "@/components/SponsorsPartners";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <About />
         <Comedians />
         <Merch />
+        <SponsorsPartners />
         <Media />
         <Contact />
       </main>
