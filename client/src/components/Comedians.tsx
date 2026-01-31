@@ -6,6 +6,7 @@ import andrewRiversImg from "@assets/generated_images/andrew-rivers.jpg";
 import brandonWhiteImg from "@assets/generated_images/brandon-white.jpg";
 import caseyMclainImg from "@assets/generated_images/casey-mclain.jpg";
 import christianMateoImg from "@assets/generated_images/christian-mateo.jpg";
+import cloeNomicImg from "@assets/generated_images/cloe-nomic.jpg";
 import davidweedImg from "@assets/generated_images/david-weed.png";
 import derekGladsonImg from "@assets/generated_images/derek-gladson.jpg";
 import ezraImg from "@assets/generated_images/ezra.png";
@@ -52,12 +53,18 @@ const comedians: Comedian[] = [
     instagram: "https://www.instagram.com/caseymclaincomedy/",
     facebook: "https://www.facebook.com/casey.mclain.5",
   },
-    {
+  {
     name: "Christian Mateo",
     image: christianMateoImg,
     instagram: "https://www.instagram.com/christianmateo.comedy/",
   },
-    {
+  {
+    name: "Cloe Nomic",
+    image: cloeNomicImg,
+    instagram: "https://www.instagram.com/clonipps/",
+    facebook: "https://www.facebook.com/cloey.peachez",
+  },
+  {
     name: "David Weed",
     image: davidweedImg,
     instagram: "https://www.instagram.com/davidweedcomedy/",
