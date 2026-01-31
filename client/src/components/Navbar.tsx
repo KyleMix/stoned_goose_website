@@ -1,4 +1,5 @@
 import { useState, useEffect, type MouseEvent } from "react";
+import { useLocation } from "wouter";
 import { Menu, Ticket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -61,6 +62,8 @@ const socialLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [location, setLocation] = useLocation();
+  const isHome = location === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,7 +86,7 @@ export default function Navbar() {
     href: string,
     closeOnNavigate = false
   ) => {
-    if (href.startsWith("#")) {
+    if (isHome && href.startsWith("#")) {
       event.preventDefault();
       scrollToSection(href);
       return;
@@ -92,6 +95,13 @@ export default function Navbar() {
     if (closeOnNavigate) {
       setIsOpen(false);
     }
+  };
+
+  const getNavHref = (href: string) => {
+    if (isHome || !href.startsWith("#")) {
+      return href;
+    }
+    return `/${href}`;
   };
 
   return (
@@ -107,10 +117,9 @@ export default function Navbar() {
         <div className="flex items-center gap-6">
           {/* Logo */}
           <a
-            href="#home"
+            href={getNavHref("#home")}
             onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#home");
+              handleNavClick(e, "#home");
             }}
             className="flex items-center gap-2 group"
           >
@@ -143,7 +152,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <a
               key={item.name}
-              href={item.href}
+              href={getNavHref(item.href)}
               onClick={(e) => {
                 handleNavClick(e, item.href);
               }}
@@ -155,7 +164,13 @@ export default function Navbar() {
           <Button
             variant="default"
             className="bg-primary text-black hover:bg-primary/90 hover:scale-105 transition-all font-bold uppercase"
-            onClick={() => scrollToSection("#services")}
+            onClick={() => {
+              if (isHome) {
+                scrollToSection("#services");
+                return;
+              }
+              setLocation("/#services");
+            }}
           >
             Book Services
           </Button>
@@ -181,7 +196,7 @@ export default function Navbar() {
                 {navItems.map((item) => (
                   <a
                     key={item.name}
-                    href={item.href}
+                    href={getNavHref(item.href)}
                     onClick={(e) => {
                       handleNavClick(e, item.href, true);
                     }}
