@@ -69,15 +69,12 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-        
         <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm uppercase tracking-wide">
           {footerLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="rounded-full border border-border/60 px-4 py-2 text-xs uppercase tracking-[0.2em] text-gray-300 hover:border-primary hover:text-primary transition-colors"
-              className="text-gray-400 hover:text-primary transition-colors"
+              className="rounded-full border border-border/60 px-4 py-2 text-xs uppercase tracking-[0.2em] text-gray-300 transition-colors hover:border-primary hover:text-primary"
             >
               {link.label}
             </a>
