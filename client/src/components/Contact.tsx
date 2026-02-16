@@ -66,7 +66,7 @@ export default function Contact() {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/contact@stonedgooseproductions.com",
+        "https://formsubmit.co/ajax/kyle@stonedgooseproductions.com",
         {
           method: "POST",
           headers: {
@@ -143,11 +143,11 @@ export default function Contact() {
                       Email Us
                     </h3>
                     <a
-                      href="mailto:contact@stonedgooseproductions.com"
+                      href="mailto:kyle@stonedgooseproductions.com"
                       className="text-gray-400"
-                      aria-label="Email contact@stonedgooseproductions.com"
+                      aria-label="Email kyle@stonedgooseproductions.com"
                     >
-                      contact@stonedgooseproductions.com
+                      kyle@stonedgooseproductions.com
                     </a>
                   </div>
                 </div>

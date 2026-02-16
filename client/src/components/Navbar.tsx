@@ -55,7 +55,7 @@ const socialLinks = [
   },
   {
     label: "Email",
-    href: "mailto:contact@stonedgooseproductions.com",
+    href: "mailto:kyle@stonedgooseproductions.com",
     Icon: FaEnvelope,
   },
 ];
