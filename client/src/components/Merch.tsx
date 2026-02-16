@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ShoppingBag, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionHeading, SectionShell } from "@/components/SectionShell";
 
 const STORE_BASE_URL = "https://stoned-goose-productions-zgm-shop.fourthwall.com";
 const COLLECTION_HANDLE = "og-bigboy";
@@ -43,20 +44,20 @@ const products: StoreProduct[] = [
 
 export default function Merch() {
   return (
-    <section id="merch" className="py-20 bg-muted/10">
-      <div className="container mx-auto px-4">
+    <SectionShell id="merch" surface="muted">
+      <div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4"
         >
-          <div>
-            <h2 className="text-4xl md:text-6xl font-display uppercase text-white">
-              Fresh <span className="text-secondary">Merch</span>
-            </h2>
-            <p className="text-primary font-mono mt-2">Rep the Goose. Look cool. Be happy.</p>
-          </div>
+          <SectionHeading
+            align="left"
+            title={<>Fresh <span className="text-secondary">Merch</span></>}
+            subtitle="Rep the Goose. Look cool. Be happy."
+            className="max-w-2xl"
+          />
           <Button
             variant="outline"
             className="border-white text-white hover:bg-white hover:text-black"
@@ -146,6 +147,6 @@ export default function Merch() {
           ))}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
