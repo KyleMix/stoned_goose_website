@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { FaInstagram, FaFacebook } from "react-icons/fa6";
 
 // Real comedian headshots (from your Excel file)
-import andrewRiversImg from "@assets/generated_images/andrew-rivers.jpg";
 import brandonWhiteImg from "@assets/generated_images/brandon-white.jpg";
 import caseyMclainImg from "@assets/generated_images/casey-mclain.jpg";
 import christianMateoImg from "@assets/generated_images/christian-mateo.jpg";
@@ -14,7 +13,7 @@ import gavinHowellsImg from "@assets/generated_images/gavin-howells.jpg";
 import jacobBarberImg from "@assets/generated_images/jacob-barber.jpg";
 import jessEverettImg from "@assets/generated_images/jess-everett.jpg";
 import karanSharmaImg from "@assets/generated_images/karan-sharma.jpg";
-import kayleendunnImg from "@assets/generated_images/kayleen-dunn.png";
+import kayleendunnImg from "@assets/generated_images/kayleen-dunn.jpg";
 import lonnieImg from "@assets/generated_images/lonnie-williams.png";
 import lukeSevereidImg from "@assets/generated_images/luke-severeid.jpg";
 import lynetteManningImg from "@assets/generated_images/lynette-manning.jpg";
@@ -35,12 +34,7 @@ type Comedian = {
 };
 
 const comedians: Comedian[] = [
-  {
-    name: "Andrew Rivers",
-    image: andrewRiversImg,
-    instagram: "https://www.instagram.com/andrewjrivers/",
-    facebook: "https://www.facebook.com/andrewriverscomedy",
-  },
+
   {
     name: "Brandon White",
     image: brandonWhiteImg,
