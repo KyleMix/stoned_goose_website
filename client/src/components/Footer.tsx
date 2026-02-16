@@ -44,6 +44,9 @@ const footerLinks = [
   { label: "Services", href: "/services" },
   { label: "Comic Submissions", href: "/comic-submissions" },
   { label: "Upcoming Shows", href: "/#shows" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Sponsorships", href: "/sponsorships" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -67,11 +70,14 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+        
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm uppercase tracking-wide">
           {footerLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               className="rounded-full border border-border/60 px-4 py-2 text-xs uppercase tracking-[0.2em] text-gray-300 hover:border-primary hover:text-primary transition-colors"
+              className="text-gray-400 hover:text-primary transition-colors"
             >
               {link.label}
             </a>

@@ -5,6 +5,34 @@ import { Button } from "@/components/ui/button";
 const coverVideoSrc = "/covervideo.mp4"; // ✅ served from client/public
 const coverPosterSrc = "/opengraph.jpg";
 
+const heroPaths = [
+  {
+    title: "Book a Show",
+    description: "Bring a high-impact comedy night to your venue, company event, or private experience.",
+    href: "/#services",
+    cta: "Start Booking",
+    featured: true,
+  },
+  {
+    title: "Get Tickets",
+    description: "See what's next in Olympia and across the South Sound—then lock in your seats.",
+    href: "/#shows",
+    cta: "Browse Shows",
+  },
+  {
+    title: "Sponsor a Show",
+    description: "Put your brand in front of local comedy fans through on-site and digital placements.",
+    href: "/#sponsors",
+    cta: "See Sponsorships",
+  },
+  {
+    title: "Comic Submissions",
+    description: "Submit your details to be considered for future lineups, features, and hosted events.",
+    href: "/#submissions",
+    cta: "Submit as a Comic",
+  },
+];
+
 export default function Hero() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -28,13 +56,6 @@ export default function Hero() {
       }
     };
   }, []);
-
-  const scrollToShows = () => {
-    document.getElementById("shows")?.scrollIntoView({ behavior: "smooth" });
-  };
-  const scrollToServices = () => {
-    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section
@@ -94,23 +115,34 @@ export default function Hero() {
             Crafting cinematic stand-up, curated showcases, and comedy chaos across your city.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              onClick={scrollToServices}
-              size="lg"
-              className="bg-primary text-black hover:bg-primary/90 text-lg px-8 py-6 font-bold uppercase tracking-wide hover:scale-105 transition-transform box-glow"
-            >
-              Book a Service
-            </Button>
-
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-primary/50 text-primary hover:bg-primary/10 text-lg px-8 py-6 font-bold uppercase tracking-wide hover:scale-105 transition-transform"
-              onClick={scrollToShows}
-            >
-              Upcoming Shows
-            </Button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-5xl mx-auto text-left">
+            {heroPaths.map((path) => (
+              <div
+                key={path.title}
+                className={`rounded-2xl border p-5 md:p-6 bg-black/35 backdrop-blur-sm h-full ${
+                  path.featured
+                    ? "border-primary/80 shadow-[0_0_40px_rgba(250,204,21,0.2)]"
+                    : "border-white/15"
+                }`}
+              >
+                <h3 className="text-white text-xl font-display uppercase tracking-wide mb-2">
+                  {path.title}
+                </h3>
+                <p className="text-gray-300 text-sm md:text-base mb-5">{path.description}</p>
+                <Button
+                  asChild
+                  size="lg"
+                  variant={path.featured ? "default" : "outline"}
+                  className={`w-full font-bold uppercase tracking-wide ${
+                    path.featured
+                      ? "bg-primary text-black hover:bg-primary/90"
+                      : "border-primary/40 text-primary hover:bg-primary/10"
+                  }`}
+                >
+                  <a href={path.href}>{path.cta}</a>
+                </Button>
+              </div>
+            ))}
           </div>
 
           <div className="mt-4">
