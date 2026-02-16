@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { PlayCircle, Youtube, Instagram } from "lucide-react";
 import { useEffect, useState } from "react";
+import { SectionHeading, SectionShell } from "@/components/SectionShell";
 
 type YouTubeVideo = {
   id: string;
@@ -57,21 +58,19 @@ export default function Media() {
   const videoDelayCount = youtubeVideos.length || YOUTUBE_MAX_RESULTS;
 
   return (
-    <section id="media" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <SectionShell id="media" surface="elevated">
+      <div>
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-display uppercase text-white mb-4">
-            Media <span className="text-primary">&</span> Clips
-          </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
-            Watch clips, reels, and full sets from Stoned Goose Productions.
-          </p>
+          <SectionHeading
+            title={<>Media <span className="text-primary">&</span> Clips</>}
+            subtitle="Watch clips, reels, and full sets from Stoned Goose Productions."
+          />
         </motion.div>
 
         {/* Featured YouTube video */}
@@ -203,6 +202,6 @@ export default function Media() {
           ))}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

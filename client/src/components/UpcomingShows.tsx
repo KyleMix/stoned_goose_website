@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { eventbriteShows, type EventbriteShow, type EventbriteShowData } from "@/data/eventbrite";
+import { SectionHeading, SectionShell } from "@/components/SectionShell";
 
 const EVENTBRITE_PROFILE_URL =
   "https://www.eventbrite.com/o/stoned-goose-productions-107337391771";
@@ -119,20 +120,20 @@ export default function UpcomingShows() {
   };
 
   return (
-    <section id="shows" className="py-20 bg-background relative">
-      <div className="container mx-auto px-4">
+    <SectionShell id="shows" surface="base">
+      <div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+          className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between"
         >
-          <div className="text-center md:text-left">
-            <h2 className="text-4xl md:text-6xl font-display uppercase text-white mb-4">
-              Upcoming <span className="text-primary">Shows</span>
-            </h2>
-            <div className="h-1 w-24 bg-secondary mx-auto md:mx-0" />
-          </div>
+          <SectionHeading
+            align="left"
+            className="max-w-3xl"
+            title={<>Upcoming <span className="text-primary">Shows</span></>}
+            subtitle="Live lineups, presales, and ticket drops across Olympia and the South Sound."
+          />
 
           <Button asChild variant="outline" className="font-bold uppercase">
             <a
@@ -316,6 +317,6 @@ export default function UpcomingShows() {
           )}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

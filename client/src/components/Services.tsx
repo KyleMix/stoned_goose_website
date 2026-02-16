@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { SectionHeading, SectionShell } from "@/components/SectionShell";
 
 const services = [
   {
@@ -168,30 +169,27 @@ export default function Services() {
   }
 
   return (
-    <section
+    <SectionShell
       id="services"
-      className="py-20 relative overflow-hidden bg-gradient-to-b from-muted/40 via-background/20 to-muted/40"
+      surface="elevated"
+      className="overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       <div className="pointer-events-none absolute -top-20 left-1/2 h-48 w-[80%] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 left-1/2 h-56 w-[80%] -translate-x-1/2 rounded-full bg-secondary/10 blur-3xl" />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-display uppercase text-white mb-4">
-            What We <span className="text-secondary">Do</span>
-          </h2>
-          <p className="text-primary/80 uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-3">
-            We book revenue-generating services.
-          </p>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            We don't just tell jokes. We build the stage for them—and capture the headshots to match.
-          </p>
+          <SectionHeading
+            title={<>What We <span className="text-secondary">Do</span></>}
+            eyebrow="We book revenue-generating services"
+            subtitle="We don't just tell jokes. We build the stage for them—and capture the headshots to match."
+          />
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/#contact"
@@ -488,6 +486,6 @@ export default function Services() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

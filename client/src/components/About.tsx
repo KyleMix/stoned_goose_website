@@ -6,6 +6,7 @@ import josephPhoto from "@assets/generated_images/joseph.jpg";
 import kylePhoto from "@assets/generated_images/kyle.png";
 import samPhoto from "@assets/generated_images/sam.png";
 import garrettphoto from "@assets/generated_images/garrett-iverson.jpg";
+import { SectionHeading, SectionShell } from "@/components/SectionShell";
 
 const pillars = [
   {
@@ -44,23 +45,20 @@ const teamMembers = [
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-muted/10 relative overflow-hidden">
+    <SectionShell id="about" surface="muted" className="overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="mb-14"
         >
-          <h2 className="text-4xl md:text-6xl font-display uppercase text-white mb-4">
-            About the <span className="text-primary">Team</span>
-          </h2>
-          <p className="text-gray-400 max-w-3xl mx-auto text-lg">
-            Stoned Goose Productions is a crew of producers, performers, and media pros
-            building cinematic comedy experiences across the Pacific Northwest.
-          </p>
+          <SectionHeading
+            title={<>About the <span className="text-primary">Team</span></>}
+            subtitle="Stoned Goose Productions is a crew of producers, performers, and media pros building cinematic comedy experiences across the Pacific Northwest."
+          />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -87,12 +85,12 @@ export default function About() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-10"
+            className="mb-10"
           >
-            <h3 className="text-3xl md:text-5xl font-display uppercase text-white mb-3">
-              Meet the <span className="text-primary">Crew</span>
-            </h3>
-            <p className="text-gray-400 font-marker text-xl rotate-1">Faces behind the productions.</p>
+            <SectionHeading
+              title={<>Meet the <span className="text-primary">Crew</span></>}
+              subtitle="Faces behind the productions."
+            />
           </motion.div>
 
           <div className="flex flex-nowrap justify-center gap-6 overflow-x-auto pb-2">
@@ -124,6 +122,6 @@ export default function About() {
           </div>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaInstagram, FaFacebook } from "react-icons/fa6";
+import { SectionHeading, SectionShell } from "@/components/SectionShell";
 
 // Real comedian headshots (from your Excel file)
 import brandonWhiteImg from "@assets/generated_images/brandon-white.jpg";
@@ -171,20 +172,18 @@ const comedians: Comedian[] = [
 
 export default function Comedians() {
   return (
-    <section id="comedians" className="py-12 md:py-16 bg-background">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <SectionShell id="comedians" surface="base" spacing="compact">
+      <div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="mb-10"
         >
-          <h2 className="text-3xl md:text-5xl font-display uppercase text-white mb-3">
-            Our <span className="text-primary">Friends</span>
-          </h2>
-          <p className="text-gray-400 font-marker text-lg rotate-1">
-            Comedians We Have Worked With.
-          </p>
+          <SectionHeading
+            title={<>Our <span className="text-primary">Friends</span></>}
+            subtitle="Comedians we have worked with."
+          />
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -257,6 +256,6 @@ export default function Comedians() {
           </a>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
