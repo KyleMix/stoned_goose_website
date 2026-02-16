@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { SectionHeading, SectionShell } from "@/components/SectionShell";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -105,23 +106,18 @@ export default function Contact() {
   }
 
   return (
-    <section
-      id="contact"
-      className="py-20 bg-gradient-to-b from-background to-black"
-    >
-      <div className="container mx-auto px-4">
+    <SectionShell id="contact" surface="elevated">
+      <div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-display uppercase text-white mb-4">
-            Get in <span className="text-secondary">Touch</span>
-          </h2>
-          <p className="text-gray-400">
-            Booking, collaborations, or just want to honk at us?
-          </p>
+          <SectionHeading
+            title={<>Get in <span className="text-secondary">Touch</span></>}
+            subtitle="Booking, collaborations, or just want to honk at us?"
+          />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -286,6 +282,6 @@ export default function Contact() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
