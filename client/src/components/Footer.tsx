@@ -40,21 +40,47 @@ const socialLinks = [
   },
 ];
 
-const footerLinks = [
-  { label: "Services", href: "/services" },
-  { label: "Comic Submissions", href: "/comic-submissions" },
-  { label: "Upcoming Shows", href: "/#shows" },
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Sponsorships", href: "/sponsorships" },
-  { label: "Contact", href: "/#contact" },
+type FooterLink = {
+  label: string;
+  href: string;
+  cta?: boolean;
+};
+
+type FooterLinkGroup = {
+  title: string;
+  links: FooterLink[];
+};
+
+const footerLinkGroups: FooterLinkGroup[] = [
+  {
+    title: "Company",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Upcoming Shows", href: "/#shows" },
+      { label: "Comic Submissions", href: "/comic-submissions" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "Services", href: "/services" },
+      { label: "Sponsorships", href: "/sponsorships" },
+    ],
+  },
+  {
+    title: "Connect",
+    links: [
+      { label: "Book a Show", href: "/#contact", cta: true },
+      { label: "Contact", href: "/#contact", cta: true },
+    ],
+  },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10 py-12">
+    <footer className="border-t border-white/10 bg-black py-12">
       <div className="container mx-auto px-4 text-center">
-        <div className="flex justify-center gap-6 mb-8">
+        <div className="mb-8 flex justify-center gap-6">
           {socialLinks.map(({ label, href, Icon }) => (
             <a
               key={label}
@@ -62,30 +88,42 @@ export default function Footer() {
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer" : undefined}
               aria-label={label}
-              className="text-gray-400 hover:text-primary transition-colors transform hover:scale-110"
+              className="text-gray-400 transition-colors transform hover:scale-110 hover:text-primary"
             >
-              <Icon className="w-6 h-6" />
+              <Icon className="h-6 w-6" />
             </a>
           ))}
         </div>
 
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm uppercase tracking-wide">
-          {footerLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="rounded-full border border-border/60 px-4 py-2 text-xs uppercase tracking-[0.2em] text-gray-300 transition-colors hover:border-primary hover:text-primary"
-            >
-              {link.label}
-            </a>
+        <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
+          {footerLinkGroups.map((group) => (
+            <div key={group.title} className="space-y-3">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">
+                {group.title}
+              </h3>
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-2">
+                {group.links.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={`rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em] transition-colors ${
+                      link.cta
+                        ? "border-primary bg-primary/10 text-primary hover:bg-primary/20"
+                        : "border-border/60 text-gray-300 hover:border-primary hover:text-primary"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
-        <p className="text-gray-500 text-sm mb-2">
-          &copy; {new Date().getFullYear()} Stoned Goose Productions. All rights
-          reserved.
+        <p className="mb-2 text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} Stoned Goose Productions. All rights reserved.
         </p>
-        <p className="text-gray-600 text-xs font-mono">Website Design by Kyle Mixon.</p>
+        <p className="text-xs font-mono text-gray-600">Website Design by Kyle Mixon.</p>
       </div>
     </footer>
   );
