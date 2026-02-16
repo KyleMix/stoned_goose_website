@@ -19,6 +19,7 @@ const navItems = [
   { name: "Home", href: "#home" },
   { name: "Upcoming Shows", href: "#shows" },
   { name: "Services", href: "/services" },
+  { name: "Sponsorships", href: "/sponsorships" },
   { name: "About", href: "#about" },
   { name: "Comedians", href: "#comedians" },
   { name: "Merch", href: "#merch" },

@@ -238,6 +238,24 @@ export default function Comedians() {
             </motion.div>
           ))}
         </div>
+        <div className="mt-10 rounded-2xl border border-primary/30 bg-card/40 p-6 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-secondary mb-3">
+            Roster pipeline
+          </p>
+          <h3 className="text-2xl font-display uppercase text-white mb-3">
+            Want to work with us?
+          </h3>
+          <p className="text-gray-300 mb-5 max-w-2xl mx-auto">
+            We keep a rolling submission pipeline for future showcases and feature sets.
+            Send your latest tape and details for review.
+          </p>
+          <a
+            href="/comic-submissions"
+            className="inline-flex items-center rounded-full border border-primary px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-primary hover:bg-primary/10 transition-colors"
+          >
+            Submit to the roster
+          </a>
+        </div>
       </div>
     </section>
   );
