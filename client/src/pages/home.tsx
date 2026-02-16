@@ -24,12 +24,16 @@ export default function Home() {
         <Hero />
         <Services />
         <UpcomingShows />
+        <section id="sponsors">
+          <SponsorsPartners />
+        </section>
+        <section id="submissions">
+          <Contact />
+        </section>
         <About />
         <Comedians />
         <Merch />
-        <SponsorsPartners />
         <Media />
-        <Contact />
       </main>
       <Footer />
     </div>
