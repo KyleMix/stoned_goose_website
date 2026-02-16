@@ -40,6 +40,13 @@ const socialLinks = [
   },
 ];
 
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Sponsorships", href: "/sponsorships" },
+  { label: "Contact", href: "/#contact" },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 py-12">
@@ -59,6 +66,18 @@ export default function Footer() {
           ))}
         </div>
         
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-4 text-sm uppercase tracking-wide">
+          {footerLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-gray-400 hover:text-primary transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
         <p className="text-gray-500 text-sm mb-2">
           &copy; {new Date().getFullYear()} Stoned Goose Productions. All rights reserved. 
         </p>
