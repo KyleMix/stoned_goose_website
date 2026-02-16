@@ -9,7 +9,7 @@ import { eventbriteShows, type EventbriteShow, type EventbriteShowData } from "@
 
 const EVENTBRITE_PROFILE_URL =
   "https://www.eventbrite.com/o/stoned-goose-productions-107337391771";
-const SHOW_UPDATES_EMAIL = "contact@stonedgooseproductions.com";
+const SHOW_UPDATES_EMAIL = "kyle@stonedgooseproductions.com";
 
 function formatDate(value: string | null) {
   if (!value) return "Date TBD";
