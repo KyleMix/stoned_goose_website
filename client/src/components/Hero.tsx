@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { SectionShell } from "@/components/SectionShell";
 
 const coverVideoSrc = "/covervideo.mp4"; // ✅ served from client/public
 const coverPosterSrc = "/opengraph.jpg";
@@ -55,9 +56,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
+    <SectionShell
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden isolate"
+      surface="base"
+      spacing="none"
+      contained={false}
+      className="isolate flex min-h-screen items-center justify-center"
     >
       <div className="absolute inset-0 -z-10 pointer-events-none">
         {prefersReducedMotion ? (
@@ -86,7 +90,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background" />
       </div>
 
-      <div className="container relative z-10 px-4 text-center">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -167,6 +171,6 @@ export default function Hero() {
       >
         <span className="text-sm uppercase tracking-widest">Scroll Down</span>
       </motion.div>
-    </section>
+    </SectionShell>
   );
 }
