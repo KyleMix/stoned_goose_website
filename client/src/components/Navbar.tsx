@@ -63,6 +63,7 @@ const socialLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
   const [location, setLocation] = useLocation();
   const isHome = location === "/";
 
@@ -73,6 +74,63 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const setSectionFromHash = () => {
+      const currentHash = window.location.hash;
+      if (currentHash) {
+        setActiveSection(currentHash);
+      } else {
+        setActiveSection("#home");
+      }
+    };
+
+    setSectionFromHash();
+    window.addEventListener("hashchange", setSectionFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", setSectionFromHash);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isHome) {
+      return;
+    }
+
+    const hashSectionIds = navItems
+      .filter(({ href }) => href.startsWith("#"))
+      .map(({ href }) => href.slice(1));
+
+    const sections = hashSectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    if (!sections.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleEntry?.target?.id) {
+          setActiveSection(`#${visibleEntry.target.id}`);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0.2, 0.4, 0.6],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [isHome]);
 
   const scrollToSection = (href: string) => {
     setIsOpen(false);
@@ -103,6 +161,35 @@ export default function Navbar() {
       return href;
     }
     return `/${href}`;
+  };
+
+  const isItemActive = (href: string) => {
+    if (href.startsWith("#")) {
+      return isHome && activeSection === href;
+    }
+
+    return location === href;
+  };
+
+  const getDesktopNavClasses = (href: string) => {
+    const baseClasses =
+      "text-sm uppercase tracking-wide transition-all rounded-full border px-3 py-1.5";
+    const activeClasses =
+      "font-semibold text-primary border-primary bg-primary/15 underline underline-offset-4";
+    const inactiveClasses =
+      "font-medium text-gray-300 border-transparent hover:text-primary hover:border-primary/40";
+
+    return `${baseClasses} ${isItemActive(href) ? activeClasses : inactiveClasses}`;
+  };
+
+  const getMobileNavClasses = (href: string) => {
+    const baseClasses =
+      "text-2xl font-display uppercase transition-all rounded-lg border-l-4 pl-3 py-1";
+    const activeClasses =
+      "font-semibold text-primary border-primary bg-primary/10 underline underline-offset-4";
+    const inactiveClasses = "text-white border-l-transparent hover:text-primary";
+
+    return `${baseClasses} ${isItemActive(href) ? activeClasses : inactiveClasses}`;
   };
 
   return (
@@ -157,7 +244,7 @@ export default function Navbar() {
               onClick={(e) => {
                 handleNavClick(e, item.href);
               }}
-              className="text-sm font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wide"
+              className={getDesktopNavClasses(item.href)}
             >
               {item.name}
             </a>
@@ -201,7 +288,7 @@ export default function Navbar() {
                     onClick={(e) => {
                       handleNavClick(e, item.href, true);
                     }}
-                    className="text-2xl font-display uppercase text-white hover:text-primary transition-colors"
+                    className={getMobileNavClasses(item.href)}
                   >
                     {item.name}
                   </a>
