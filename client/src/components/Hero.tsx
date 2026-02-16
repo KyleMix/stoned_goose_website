@@ -112,6 +112,15 @@ export default function Hero() {
               Upcoming Shows
             </Button>
           </div>
+
+          <div className="mt-4">
+            <a
+              href="/comic-submissions"
+              className="text-sm uppercase tracking-[0.2em] text-gray-200 hover:text-primary transition-colors"
+            >
+              Comedian? Submit your tape for roster review.
+            </a>
+          </div>
         </motion.div>
       </div>
 
