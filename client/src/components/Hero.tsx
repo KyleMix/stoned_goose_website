@@ -5,31 +5,28 @@ import { Button } from "@/components/ui/button";
 const coverVideoSrc = "/covervideo.mp4"; // ✅ served from client/public
 const coverPosterSrc = "/opengraph.jpg";
 
-const heroPaths = [
-  {
-    title: "Book a Show",
-    description: "Bring a high-impact comedy night to your venue, company event, or private experience.",
-    href: "/#services",
-    cta: "Start Booking",
-    featured: true,
-  },
-  {
-    title: "Get Tickets",
-    description: "See what's next in Olympia and across the South Sound—then lock in your seats.",
-    href: "/#shows",
-    cta: "Browse Shows",
-  },
+const primaryHeroPath = {
+  title: "Book a Show",
+  description: "Bring a high-impact comedy night to your venue, company event, or private experience.",
+  href: "/#services",
+  cta: "Start Booking",
+};
+
+const secondaryHeroPath = {
+  title: "Get Tickets",
+  description: "See what's next in Olympia and across the South Sound—then lock in your seats.",
+  href: "/#shows",
+  cta: "Browse Shows",
+};
+
+const tertiaryHeroLinks = [
   {
     title: "Sponsor a Show",
-    description: "Put your brand in front of local comedy fans through on-site and digital placements.",
     href: "/#sponsors",
-    cta: "See Sponsorships",
   },
   {
     title: "Comic Submissions",
-    description: "Submit your details to be considered for future lineups, features, and hosted events.",
     href: "/#submissions",
-    cta: "Submit as a Comic",
   },
 ];
 
@@ -115,44 +112,51 @@ export default function Hero() {
             Crafting cinematic stand-up, curated showcases, and comedy chaos across your city.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-5xl mx-auto text-left">
-            {heroPaths.map((path) => (
-              <div
-                key={path.title}
-                className={`rounded-2xl border p-5 md:p-6 bg-black/35 backdrop-blur-sm h-full ${
-                  path.featured
-                    ? "border-primary/80 shadow-[0_0_40px_rgba(250,204,21,0.2)]"
-                    : "border-white/15"
-                }`}
+          <div className="max-w-4xl mx-auto text-left">
+            <div className="rounded-2xl border border-primary/80 p-6 md:p-8 bg-black/40 backdrop-blur-sm shadow-[0_0_50px_rgba(250,204,21,0.28)]">
+              <h3 className="text-white text-2xl md:text-3xl font-display uppercase tracking-wide mb-3">
+                {primaryHeroPath.title}
+              </h3>
+              <p className="text-gray-100 text-base md:text-lg mb-6 max-w-2xl">
+                {primaryHeroPath.description}
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="w-full sm:w-auto px-10 h-14 text-base md:text-lg font-extrabold uppercase tracking-[0.12em] bg-primary text-black hover:bg-primary/90"
               >
-                <h3 className="text-white text-xl font-display uppercase tracking-wide mb-2">
-                  {path.title}
-                </h3>
-                <p className="text-gray-300 text-sm md:text-base mb-5">{path.description}</p>
-                <Button
-                  asChild
-                  size="lg"
-                  variant={path.featured ? "default" : "outline"}
-                  className={`w-full font-bold uppercase tracking-wide ${
-                    path.featured
-                      ? "bg-primary text-black hover:bg-primary/90"
-                      : "border-primary/40 text-primary hover:bg-primary/10"
-                  }`}
+                <a href={primaryHeroPath.href}>{primaryHeroPath.cta}</a>
+              </Button>
+            </div>
+
+            <div className="mt-4 rounded-xl border border-white/15 p-5 md:p-6 bg-black/25 backdrop-blur-sm">
+              <h4 className="text-white text-lg font-display uppercase tracking-wide mb-2">
+                {secondaryHeroPath.title}
+              </h4>
+              <p className="text-gray-300 text-sm md:text-base mb-4">{secondaryHeroPath.description}</p>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto font-semibold uppercase tracking-wide border-white/40 text-white/90 hover:bg-white/10 hover:text-white"
+              >
+                <a href={secondaryHeroPath.href}>{secondaryHeroPath.cta}</a>
+              </Button>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm md:text-base uppercase tracking-[0.14em]">
+              {tertiaryHeroLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  className="text-gray-300 hover:text-primary transition-colors"
                 >
-                  <a href={path.href}>{path.cta}</a>
-                </Button>
-              </div>
-            ))}
+                  {link.title}
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-4">
-            <a
-              href="/comic-submissions"
-              className="text-sm uppercase tracking-[0.2em] text-gray-200 hover:text-primary transition-colors"
-            >
-              Comedian? Submit your tape for roster review.
-            </a>
-          </div>
         </motion.div>
       </div>
 
