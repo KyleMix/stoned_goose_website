@@ -7,6 +7,7 @@ import LocalBusinessJsonLd from "@/components/seo/LocalBusinessJsonLd";
 import Home from "@/pages/home";
 import ServicesPage from "@/pages/services";
 import ServiceDetailPage from "@/pages/service-detail";
+import BookAShowPage from "@/pages/book-a-show";
 import NotFound from "@/pages/not-found";
 import SponsorshipsPage from "@/pages/sponsorships";
 
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/services" component={ServicesPage} />
       <Route path="/sponsorships" component={SponsorshipsPage} />
+      <Route path="/book-a-show" component={BookAShowPage} />
       <Route path="/live-show-production">
         <ServiceDetailPage slug="live-show-production" />
       </Route>
