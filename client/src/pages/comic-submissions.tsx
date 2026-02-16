@@ -73,7 +73,7 @@ export default function ComicSubmissionsPage() {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/comicsubmissions@stonedgooseproductions.com",
+        "https://formsubmit.co/ajax/kyle@stonedgooseproductions.com",
         {
           method: "POST",
           headers: {
@@ -171,7 +171,7 @@ export default function ComicSubmissionsPage() {
                     you directly for next steps.
                   </p>
                   <p className="text-sm text-secondary uppercase tracking-[0.2em]">
-                    Dedicated endpoint: comicsubmissions@stonedgooseproductions.com
+                    Dedicated endpoint: kyle@stonedgooseproductions.com
                   </p>
                 </CardContent>
               </Card>

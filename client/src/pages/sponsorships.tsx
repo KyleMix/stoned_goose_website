@@ -116,7 +116,7 @@ export default function SponsorshipsPage() {
 
     try {
       const response = await fetch(
-        "https://formsubmit.co/ajax/contact@stonedgooseproductions.com",
+        "https://formsubmit.co/ajax/kyle@stonedgooseproductions.com",
         {
           method: "POST",
           headers: {

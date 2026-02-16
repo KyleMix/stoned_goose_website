@@ -27,7 +27,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
     {
       "@type": "ContactPoint",
       contactType: "Sales",
-      email: "contact@stonedgooseproductions.com",
+      email: "kyle@stonedgooseproductions.com",
       telephone: "TODO: Add phone number",
     },
   ],
