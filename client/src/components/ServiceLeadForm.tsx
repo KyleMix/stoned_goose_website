@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { submitLeadForm } from "@/lib/leadFormSubmission";
 
 const leadFormSchema = z.object({
   name: z.string().min(2, "Add your name"),
@@ -55,26 +56,12 @@ export default function ServiceLeadForm({ serviceTitle }: ServiceLeadFormProps) 
     ].join("\n");
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/contact@stonedgooseproductions.com",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name: values.name,
-            email: values.email,
-            subject,
-            message,
-          }),
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error("We couldn’t send the request. Please try again.");
-      }
+      await submitLeadForm({
+        name: values.name,
+        email: values.email,
+        subject,
+        message,
+      });
 
       setStatus({
         type: "success",
