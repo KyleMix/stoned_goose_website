@@ -40,6 +40,13 @@ const socialLinks = [
   },
 ];
 
+const footerLinks = [
+  { label: "Services", href: "/services" },
+  { label: "Comic Submissions", href: "/comic-submissions" },
+  { label: "Upcoming Shows", href: "/#shows" },
+  { label: "Contact", href: "/#contact" },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 py-12">
@@ -58,13 +65,24 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        
+
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          {footerLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="rounded-full border border-border/60 px-4 py-2 text-xs uppercase tracking-[0.2em] text-gray-300 hover:border-primary hover:text-primary transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
         <p className="text-gray-500 text-sm mb-2">
-          &copy; {new Date().getFullYear()} Stoned Goose Productions. All rights reserved. 
+          &copy; {new Date().getFullYear()} Stoned Goose Productions. All rights
+          reserved.
         </p>
-        <p className="text-gray-600 text-xs font-mono">
-          Website Design by Kyle Mixon.
-        </p>
+        <p className="text-gray-600 text-xs font-mono">Website Design by Kyle Mixon.</p>
       </div>
     </footer>
   );
