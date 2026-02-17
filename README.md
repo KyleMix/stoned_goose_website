@@ -2,6 +2,8 @@
 
 This project is a Vite + React single-page app backed by a lightweight Express server for API proxying.
 
+Source code is available under `client/src`, with a top-level `src` symlink for tooling/workflow compatibility.
+
 ## Getting started
 
 1. Install dependencies:
