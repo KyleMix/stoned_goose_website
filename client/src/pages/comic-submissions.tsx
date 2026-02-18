@@ -120,7 +120,7 @@ export default function ComicSubmissionsPage() {
         path="/comic-submissions"
       />
       <Navbar />
-      <main className="pt-28 pb-20">
+      <main className="pb-20">
         <section className="py-8">
           <div className="container mx-auto px-4 max-w-5xl space-y-8">
             <div className="max-w-3xl">
