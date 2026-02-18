@@ -1,11 +1,10 @@
 import { useState, useEffect, type MouseEvent } from "react";
 import { useLocation } from "wouter";
-import { Menu, Ticket } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logo from "@assets/logo.png";
 
-// social icons from react-icons
 import {
   FaInstagram,
   FaFacebook,
@@ -30,7 +29,7 @@ const navItems = [
 const socialLinks = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/stonedgooseproductions/", 
+    href: "https://www.instagram.com/stonedgooseproductions/",
     Icon: FaInstagram,
   },
   {
@@ -69,7 +68,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 12);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -78,11 +77,7 @@ export default function Navbar() {
   useEffect(() => {
     const setSectionFromHash = () => {
       const currentHash = window.location.hash;
-      if (currentHash) {
-        setActiveSection(currentHash);
-      } else {
-        setActiveSection("#home");
-      }
+      setActiveSection(currentHash || "#home");
     };
 
     setSectionFromHash();
@@ -171,87 +166,81 @@ export default function Navbar() {
     return location === href;
   };
 
-  const getDesktopNavClasses = (href: string) => {
-    const baseClasses =
-      "text-sm uppercase tracking-wide transition-all rounded-full border px-3 py-1.5";
-    const activeClasses =
-      "font-semibold text-primary border-primary bg-primary/15 underline underline-offset-4";
-    const inactiveClasses =
-      "font-medium text-gray-300 border-transparent hover:text-primary hover:border-primary/40";
+  const desktopNavClasses = (href: string) =>
+    [
+      "inline-flex min-h-10 items-center rounded-full px-3 py-2 text-[13px] font-semibold uppercase tracking-[0.12em] transition-colors duration-200",
+      isItemActive(href)
+        ? "bg-primary text-black"
+        : "text-gray-200 hover:bg-white/10 hover:text-white",
+    ].join(" ");
 
-    return `${baseClasses} ${isItemActive(href) ? activeClasses : inactiveClasses}`;
-  };
-
-  const getMobileNavClasses = (href: string) => {
-    const baseClasses =
-      "text-2xl font-display uppercase transition-all rounded-lg border-l-4 pl-3 py-1";
-    const activeClasses =
-      "font-semibold text-primary border-primary bg-primary/10 underline underline-offset-4";
-    const inactiveClasses = "text-white border-l-transparent hover:text-primary";
-
-    return `${baseClasses} ${isItemActive(href) ? activeClasses : inactiveClasses}`;
-  };
+  const mobileNavClasses = (href: string) =>
+    [
+      "block rounded-lg px-4 py-3 text-base font-semibold uppercase tracking-[0.12em] transition-colors duration-200",
+      isItemActive(href)
+        ? "bg-primary text-black"
+        : "text-white hover:bg-white/10 hover:text-primary",
+    ].join(" ");
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-primary/20 py-2"
-          : "bg-transparent py-4"
+          ? "border-b border-white/10 bg-background/95 shadow-[0_8px_20px_rgba(0,0,0,0.3)] backdrop-blur"
+          : "bg-black/35 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between gap-4">
-        {/* LEFT: Logo + Socials */}
-        <div className="flex items-center gap-6">
-          {/* Logo */}
-          <a
-            href={getNavHref("#home")}
-            onClick={(e) => {
-              handleNavClick(e, "#home");
-            }}
-            className="flex items-center gap-2 group"
-          >
-            <img
-              src={logo}
-              alt="Stoned Goose Logo"
-              className="h-16 w-auto object-contain group-hover:scale-105 transition-transform"
-            />
-          </a>
+      <nav className="mx-auto flex h-20 w-full max-w-[1360px] items-center gap-4 px-4 sm:px-6 lg:px-8">
+        <a
+          href={getNavHref("#home")}
+          onClick={(e) => {
+            handleNavClick(e, "#home");
+          }}
+          className="flex shrink-0 items-center gap-2"
+        >
+          <img
+            src={logo}
+            alt="Stoned Goose Logo"
+            className="h-12 w-auto object-contain transition-transform duration-200 hover:scale-[1.02]"
+          />
+        </a>
 
-          {/* Social icons (desktop) */}
-          <div className="hidden md:flex items-center gap-2">
-            {socialLinks.map(({ label, href, Icon }) => (
+        <div className="hidden min-w-0 flex-1 items-center justify-center lg:flex">
+          <div className="flex flex-nowrap items-center gap-1 xl:gap-2">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={getNavHref(item.href)}
+                onClick={(e) => {
+                  handleNavClick(e, item.href);
+                }}
+                className={desktopNavClasses(item.href)}
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden shrink-0 items-center gap-2 lg:flex">
+          <div className="hidden items-center gap-1 xl:flex">
+            {socialLinks.slice(0, 4).map(({ label, href, Icon }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noreferrer" : undefined}
                 aria-label={label}
-                className="p-2 rounded-full border border-border/60 hover:border-primary hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
+                className="rounded-full border border-white/20 p-2 text-gray-300 transition-colors hover:border-primary hover:text-primary"
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="h-4 w-4" />
               </a>
             ))}
           </div>
-        </div>
 
-        {/* RIGHT: Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={getNavHref(item.href)}
-              onClick={(e) => {
-                handleNavClick(e, item.href);
-              }}
-              className={getDesktopNavClasses(item.href)}
-            >
-              {item.name}
-            </a>
-          ))}
           <Button
             variant="default"
-            className="bg-primary text-black hover:bg-primary/90 hover:scale-105 transition-all font-bold uppercase"
+            className="min-h-10 rounded-full px-5 text-xs font-bold uppercase tracking-[0.14em] text-black"
             onClick={() => {
               if (isHome) {
                 scrollToSection("#services");
@@ -264,38 +253,53 @@ export default function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile Nav */}
-        <div className="md:hidden">
+        <div className="ml-auto lg:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:text-primary"
+                className="h-11 w-11 rounded-full border border-white/20 text-white hover:border-primary hover:text-primary"
+                aria-label="Open navigation menu"
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="bg-black/95 border-l-primary/20 w-[300px]"
+              className="w-[320px] border-l border-white/15 bg-black/95 px-6"
             >
-              <div className="flex flex-col gap-8 mt-10">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={getNavHref(item.href)}
-                    onClick={(e) => {
-                      handleNavClick(e, item.href, true);
-                    }}
-                    className={getMobileNavClasses(item.href)}
-                  >
-                    {item.name}
-                  </a>
-                ))}
+              <div className="mt-10 flex flex-col gap-6">
+                <Button
+                  className="min-h-11 rounded-full text-sm font-bold uppercase tracking-[0.14em] text-black"
+                  onClick={() => {
+                    if (isHome) {
+                      scrollToSection("#services");
+                      return;
+                    }
+                    setLocation("/#services");
+                    setIsOpen(false);
+                  }}
+                >
+                  Book Services
+                </Button>
 
-                {/* Social icons in mobile menu */}
-                <div className="pt-4 border-t border-border/40 flex flex-wrap gap-3">
+                <div className="flex flex-col gap-2">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.name}
+                      href={getNavHref(item.href)}
+                      onClick={(e) => {
+                        handleNavClick(e, item.href, true);
+                      }}
+                      className={mobileNavClasses(item.href)}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-2 border-t border-white/10 pt-6">
                   {socialLinks.map(({ label, href, Icon }) => (
                     <a
                       key={label}
@@ -303,9 +307,9 @@ export default function Navbar() {
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noreferrer" : undefined}
                       aria-label={label}
-                      className="p-2 rounded-full border border-border/60 hover:border-primary hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
+                      className="rounded-full border border-white/20 p-2 text-gray-300 transition-colors hover:border-primary hover:text-primary"
                     >
-                      <Icon className="w-4 h-4" />
+                      <Icon className="h-4 w-4" />
                     </a>
                   ))}
                 </div>
@@ -313,7 +317,7 @@ export default function Navbar() {
             </SheetContent>
           </Sheet>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

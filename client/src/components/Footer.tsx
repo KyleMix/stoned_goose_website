@@ -78,9 +78,9 @@ const footerLinkGroups: FooterLinkGroup[] = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black py-12">
-      <div className="container mx-auto px-4 text-center">
-        <div className="mb-8 flex justify-center gap-6">
+    <footer className="border-t border-white/10 bg-black py-16">
+      <div className="mx-auto w-full max-w-6xl px-4 text-center sm:px-6">
+        <div className="mb-10 flex flex-wrap justify-center gap-3 sm:gap-4">
           {socialLinks.map(({ label, href, Icon }) => (
             <a
               key={label}
@@ -88,25 +88,25 @@ export default function Footer() {
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer" : undefined}
               aria-label={label}
-              className="text-gray-400 transition-colors transform hover:scale-110 hover:text-primary"
+              className="rounded-full border border-white/20 p-2 text-gray-300 transition-colors hover:border-primary hover:text-primary"
             >
-              <Icon className="h-6 w-6" />
+              <Icon className="h-4 w-4" />
             </a>
           ))}
         </div>
 
-        <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
+        <div className="mb-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {footerLinkGroups.map((group) => (
             <div key={group.title} className="space-y-3">
               <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">
                 {group.title}
               </h3>
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-2">
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 {group.links.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em] transition-colors ${
+                    className={`rounded-full border px-4 py-2 text-sm uppercase tracking-[0.12em] transition-colors ${
                       link.cta
                         ? "border-primary bg-primary/10 text-primary hover:bg-primary/20"
                         : "border-border/60 text-gray-300 hover:border-primary hover:text-primary"
