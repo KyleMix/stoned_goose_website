@@ -55,7 +55,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
       <JsonLd id={`service-${service.slug}`} data={serviceSchema} />
       <JsonLd id={`faq-${service.slug}`} data={faqSchema} />
       <Navbar />
-      <main className="pt-28 pb-20">
+      <main className="pb-20">
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">

@@ -148,7 +148,7 @@ export default function BookAShowPage() {
       />
       <JsonLd id="book-a-show-service" data={serviceSchema} />
       <Navbar />
-      <main className="pt-28 pb-20">
+      <main className="pb-20">
         <section className="py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <p className="text-sm uppercase tracking-[0.4em] text-secondary mb-4">
