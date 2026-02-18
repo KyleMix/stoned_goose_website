@@ -207,7 +207,7 @@ export default function ServicesPage() {
         path="/services"
       />
       <Navbar />
-      <main className="pt-28 pb-20">
+      <main className="pb-20">
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl">

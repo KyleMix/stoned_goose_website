@@ -34,6 +34,8 @@
 }
 
 :root {
+  --header-height: 80px;
+
   /* Branding File Colors Incorporated */
   /* Background: #3C4149 (Slate Grey) -> HSL: 218 10% 26% */
   /* Accent: #222831 (Dark Charcoal) -> HSL: 216 18% 16% */
@@ -80,6 +82,18 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-wide font-bold;
   }
+
+  main {
+    padding-top: var(--header-height);
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 16px);
+  }
+}
+
+.hero-section {
+  min-height: calc(100vh - var(--header-height));
 }
 
 @layer utilities {

@@ -61,7 +61,7 @@ export default function Hero() {
       surface="base"
       spacing="none"
       contained={false}
-      className="isolate flex min-h-screen items-center justify-center"
+      className="hero-section isolate flex items-center justify-center"
     >
       <div className="absolute inset-0 -z-10 pointer-events-none">
         {prefersReducedMotion ? (

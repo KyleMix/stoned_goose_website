@@ -1,4 +1,4 @@
-import { useState, useEffect, type MouseEvent } from "react";
+import { useState, useEffect, useRef, type MouseEvent } from "react";
 import { useLocation } from "wouter";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -60,11 +60,53 @@ const socialLinks = [
 ];
 
 export default function Navbar() {
+  const headerRef = useRef<HTMLElement | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
   const [location, setLocation] = useLocation();
   const isHome = location === "/";
+
+  useEffect(() => {
+    const setHeaderHeight = () => {
+      const headerHeight = headerRef.current?.offsetHeight ?? 0;
+      document.documentElement.style.setProperty("--header-height", `${headerHeight}px`);
+    };
+
+    let resizeTimeout: number | undefined;
+    const handleResize = () => {
+      if (resizeTimeout) {
+        window.clearTimeout(resizeTimeout);
+      }
+
+      resizeTimeout = window.setTimeout(() => {
+        setHeaderHeight();
+      }, 120);
+    };
+
+    setHeaderHeight();
+
+    const resizeObserver = new ResizeObserver(() => {
+      setHeaderHeight();
+    });
+
+    if (headerRef.current) {
+      resizeObserver.observe(headerRef.current);
+    }
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+
+    return () => {
+      if (resizeTimeout) {
+        window.clearTimeout(resizeTimeout);
+      }
+
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -184,6 +226,7 @@ export default function Navbar() {
 
   return (
     <header
+      ref={headerRef}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "border-b border-white/10 bg-background/95 shadow-[0_8px_20px_rgba(0,0,0,0.3)] backdrop-blur"
