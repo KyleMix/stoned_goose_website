@@ -115,7 +115,6 @@ export default function About() {
 
                 <div className="text-center">
                   <h4 className="text-xl font-display uppercase text-white">{member.name}</h4>
-                  <p className="text-xs uppercase tracking-[0.18em] text-primary/80 mt-1">{member.role}</p>
                 </div>
               </motion.div>
             ))}
