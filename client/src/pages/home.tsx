@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import UpcomingShows from "@/components/UpcomingShows";
+import Services from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SeoHead from "@/components/seo/SeoHead";
@@ -18,6 +20,10 @@ export default function Home() {
       <main>
         <Hero />
         <UpcomingShows />
+        <section id="services-overview">
+          <Services />
+        </section>
+        <Testimonials />
         <section id="sponsors">
           <SponsorsPartners />
         </section>
