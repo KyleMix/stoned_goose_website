@@ -6,6 +6,7 @@ import {
   FaPatreon,
   FaEnvelope,
 } from "react-icons/fa6";
+import logo from "@assets/logo.png";
 
 const socialLinks = [
   {
@@ -80,6 +81,13 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black py-16">
       <div className="mx-auto w-full max-w-6xl px-4 text-center sm:px-6">
+        <div className="mb-8">
+          <img
+            src={logo}
+            alt="Stoned Goose Productions"
+            className="h-16 w-auto object-contain mx-auto opacity-90"
+          />
+        </div>
         <div className="mb-10 flex flex-wrap justify-center gap-3 sm:gap-4">
           {socialLinks.map(({ label, href, Icon }) => (
             <a

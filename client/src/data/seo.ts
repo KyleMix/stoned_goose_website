@@ -21,22 +21,19 @@ export const LOCAL_BUSINESS_SCHEMA = {
     "https://www.tiktok.com/@stonedgooseproductions?_t=zt-8xjcguh7awp&_r=1",
     "https://www.youtube.com/@stonedgooseproductions",
     "https://www.patreon.com/cw/StonedGooseProductions",
-    "TODO: Add LinkedIn URL",
   ],
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "Sales",
       email: "kyle@stonedgooseproductions.com",
-      telephone: "TODO: Add phone number",
+      telephone: "+13603230667",
     },
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "TODO: Add street address",
-    addressLocality: "TODO: Add city (Olympia/Lacey/Tacoma)",
+    addressLocality: "Olympia",
     addressRegion: "WA",
-    postalCode: "TODO: Add postal code",
     addressCountry: "US",
   },
 };
