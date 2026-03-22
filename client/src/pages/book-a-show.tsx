@@ -18,50 +18,28 @@ const packageTiers = [
   {
     name: "Starter Showcase",
     price: "$750+",
-    includes: [
-      "Curated lineup for 60-120 guests",
-      "Host + 2-3 touring or regional comedians",
-      "Basic run-of-show and venue coordination",
-    ],
+    description: "A curated lineup for 60-120 guests — host, 2-3 comedians, basic run-of-show and venue coordination.",
   },
   {
     name: "Featured Night",
     price: "$1,500+",
-    includes: [
-      "Best for ticketed nights with 120-250 attendees",
-      "Headliner + featured support + emcee",
-      "Promo copy + launch guidance + day-of talent management",
-    ],
+    description: "Ideal for ticketed nights with 120-250 attendees. Headliner, featured support, emcee, promo copy, and day-of talent management.",
   },
   {
     name: "Premium Event",
     price: "$2,750+",
-    includes: [
-      "Corporate, festivals, and anchor programming",
-      "Custom lineup strategy for brand or fundraising goals",
-      "Full production planning with white-glove coordination",
-    ],
+    description: "Corporate events, festivals, and anchor programming. Custom lineup strategy, full production planning, and white-glove coordination.",
   },
 ];
 
-const proofPoints = [
-  "South Sound promoter relationships with local and touring talent",
-  "Audience-first lineup strategy based on venue and event goals",
-  "Fast turnarounds with clear pricing and scope alignment",
-  "Production-minded planning to reduce day-of surprises",
-];
-
-const qualificationSchema = z.object({
+const inquirySchema = z.object({
   name: z.string().min(2, "Add your name"),
   email: z.string().email("Add a valid email"),
-  venueType: z.string().min(1, "Select your venue type"),
   eventDate: z.string().min(1, "Add a date or timeframe"),
-  audienceSize: z.string().min(1, "Select your audience size"),
-  budgetBand: z.string().min(1, "Select a budget band"),
-  details: z.string().min(10, "Share a bit about your goals"),
+  details: z.string().min(10, "Tell us a bit about your event"),
 });
 
-type QualificationValues = z.infer<typeof qualificationSchema>;
+type InquiryValues = z.infer<typeof inquirySchema>;
 
 export default function BookAShowPage() {
   const [status, setStatus] = useState<
@@ -71,20 +49,17 @@ export default function BookAShowPage() {
   >(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<QualificationValues>({
-    resolver: zodResolver(qualificationSchema),
+  const form = useForm<InquiryValues>({
+    resolver: zodResolver(inquirySchema),
     defaultValues: {
       name: "",
       email: "",
-      venueType: "",
       eventDate: "",
-      audienceSize: "",
-      budgetBand: "",
       details: "",
     },
   });
 
-  async function onSubmit(values: QualificationValues) {
+  async function onSubmit(values: InquiryValues) {
     setStatus(null);
     setIsSubmitting(true);
 
@@ -92,11 +67,8 @@ export default function BookAShowPage() {
     const message = [
       `Name: ${values.name}`,
       `Email: ${values.email}`,
-      `Venue type: ${values.venueType}`,
       `Event date: ${values.eventDate}`,
-      `Audience size: ${values.audienceSize}`,
-      `Budget band: ${values.budgetBand}`,
-      `Event goals: ${values.details}`,
+      `About the event: ${values.details}`,
     ].join("\n");
 
     try {
@@ -109,7 +81,7 @@ export default function BookAShowPage() {
 
       setStatus({
         type: "success",
-        message: "Thanks! We’ll follow up with a recommended package shortly.",
+        message: "Got it — we'll be in touch soon.",
       });
       form.reset();
     } catch (error) {
@@ -130,7 +102,7 @@ export default function BookAShowPage() {
     "@type": "Service",
     name: "Comedy Show Booking",
     description:
-      "Book curated comedy shows with tiered packages for venues, private events, and corporate programs.",
+      "Book curated comedy shows for venues, private events, and corporate programs across the South Sound.",
     areaServed: AREA_SERVED,
     provider: {
       "@type": "LocalBusiness",
@@ -143,100 +115,52 @@ export default function BookAShowPage() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <SeoHead
         title="Book a Comedy Show | Stoned Goose Productions"
-        description="Explore package tiers, proof points, and submit a short qualification form to book a comedy show in the South Sound."
+        description="Book a comedy show with Stoned Goose Productions in the South Sound. Tell us about your event and we'll take it from there."
         path="/book-a-show"
       />
       <JsonLd id="book-a-show-service" data={serviceSchema} />
       <Navbar />
       <main className="pb-20">
+        {/* Hero */}
         <section className="py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-3xl">
             <p className="text-sm uppercase tracking-[0.4em] text-secondary mb-4">
               Book a Show
             </p>
             <h1 className="text-4xl md:text-6xl font-display uppercase text-white mb-6">
-              Stand-Up Packages Built for Your Room
+              Let&apos;s put on a show together.
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Whether you&apos;re launching a first comedy night or scaling a recurring
-              series, we pair the right talent mix with production support so your
-              event lands with audiences and sponsors.
+              We work with venues, promoters, and event teams across the South Sound to build
+              comedy nights that actually land. Tell us about your event and we&apos;ll figure
+              out the rest together.
             </p>
           </div>
         </section>
 
-        <section className="py-10">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-display uppercase text-white mb-6">
-              Package Tiers
-            </h2>
-            <div className="grid gap-6 md:grid-cols-3">
-              {packageTiers.map((tier) => (
-                <Card key={tier.name} className="bg-card/40 border-border/60">
-                  <CardContent className="p-6 space-y-4">
-                    <div>
-                      <p className="text-sm uppercase tracking-[0.3em] text-secondary mb-2">
-                        {tier.name}
-                      </p>
-                      <p className="text-2xl font-display text-white">{tier.price}</p>
-                    </div>
-                    <ul className="space-y-2 text-gray-300 text-sm leading-relaxed">
-                      {tier.includes.map((item) => (
-                        <li key={item}>• {item}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-10">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-2xl md:text-3xl font-display uppercase text-white mb-6">
-              Why buyers choose us
-            </h2>
-            <div className="rounded-2xl border border-border/60 bg-card/40 p-6">
-              <ul className="space-y-3 text-gray-300">
-                {proofPoints.map((point) => (
-                  <li key={point}>• {point}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section id="qualification-form" className="py-12">
-          <div className="container mx-auto px-4 grid gap-10 lg:grid-cols-[1fr_1.1fr] items-start">
-            <div className="space-y-4">
+        {/* Inquiry Form */}
+        <section id="inquiry" className="py-8">
+          <div className="container mx-auto px-4 grid gap-10 lg:grid-cols-[1fr_1.2fr] items-start max-w-5xl">
+            <div className="space-y-5">
               <h2 className="text-2xl md:text-3xl font-display uppercase text-white">
-                Short qualification form
+                Tell us about your event
               </h2>
-              <p className="text-gray-400">
-                Give us a quick snapshot of your venue, audience, and budget so we
-                can route you to the right package and talent options on the first
-                reply.
+              <p className="text-gray-400 leading-relaxed">
+                No need to come in with a budget in mind or a fully formed plan.
+                Just give us a rough idea of what you&apos;re going for — we&apos;ll
+                follow up within 1-2 business days with ideas and next steps.
               </p>
-              <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-gray-300">
-                <p className="text-sm uppercase tracking-wide text-gray-400 mb-3">
-                  What happens next
-                </p>
-                <ul className="space-y-2">
-                  <li>• We review fit and availability within 1-2 business days</li>
-                  <li>• You get tier recommendations matched to your goals</li>
-                  <li>• We align talent options and timeline for booking</li>
-                </ul>
-              </div>
+              <ul className="space-y-2 text-gray-400 text-sm leading-relaxed">
+                <li>• South Sound promoter relationships with local and touring talent</li>
+                <li>• Audience-first lineups matched to your room and vibe</li>
+                <li>• Clear scope and fast turnarounds — no runaround</li>
+              </ul>
             </div>
 
             <Card className="bg-card/50 border-border/60">
               <CardContent className="p-6">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    <p className="text-xs uppercase tracking-[0.3em] text-secondary">
-                      Contact
-                    </p>
                     <FormField
                       control={form.control}
                       name="name"
@@ -271,89 +195,18 @@ export default function BookAShowPage() {
                         </FormItem>
                       )}
                     />
-
-                    <p className="pt-2 text-xs uppercase tracking-[0.3em] text-secondary">
-                      Lead qualification
-                    </p>
-                    <FormField
-                      control={form.control}
-                      name="venueType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white">Venue type</FormLabel>
-                          <FormControl>
-                            <select
-                              {...field}
-                              className="w-full h-10 rounded-md border border-white/10 bg-white/5 px-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                            >
-                              <option value="" className="text-black">Select one</option>
-                              <option value="Comedy club" className="text-black">Comedy club</option>
-                              <option value="Brewery / bar" className="text-black">Brewery / bar</option>
-                              <option value="Theater / performing arts" className="text-black">Theater / performing arts</option>
-                              <option value="Corporate / private event" className="text-black">Corporate / private event</option>
-                              <option value="Other" className="text-black">Other</option>
-                            </select>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
                     <FormField
                       control={form.control}
                       name="eventDate"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Target date</FormLabel>
+                          <FormLabel className="text-white">When are you thinking?</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="Date or timeframe"
+                              placeholder="A date, month, or rough timeframe"
                               className="bg-white/5 border-white/10 focus:border-primary text-white"
                             />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="audienceSize"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white">Audience size</FormLabel>
-                          <FormControl>
-                            <select
-                              {...field}
-                              className="w-full h-10 rounded-md border border-white/10 bg-white/5 px-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                            >
-                              <option value="" className="text-black">Select one</option>
-                              <option value="Under 75" className="text-black">Under 75</option>
-                              <option value="75-150" className="text-black">75-150</option>
-                              <option value="150-300" className="text-black">150-300</option>
-                              <option value="300+" className="text-black">300+</option>
-                            </select>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="budgetBand"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white">Budget band</FormLabel>
-                          <FormControl>
-                            <select
-                              {...field}
-                              className="w-full h-10 rounded-md border border-white/10 bg-white/5 px-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                            >
-                              <option value="" className="text-black">Select one</option>
-                              <option value="Under $1k" className="text-black">Under $1k</option>
-                              <option value="$1k-$2.5k" className="text-black">$1k-$2.5k</option>
-                              <option value="$2.5k-$5k" className="text-black">$2.5k-$5k</option>
-                              <option value="$5k+" className="text-black">$5k+</option>
-                            </select>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -364,12 +217,12 @@ export default function BookAShowPage() {
                       name="details"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Goals / notes</FormLabel>
+                          <FormLabel className="text-white">What are you putting together?</FormLabel>
                           <FormControl>
                             <Textarea
                               {...field}
-                              placeholder="Anything else that helps us qualify your show"
-                              className="min-h-[100px] bg-white/5 border-white/10 focus:border-primary text-white"
+                              placeholder="Venue, vibe, audience size, goals — whatever you've got"
+                              className="min-h-[110px] bg-white/5 border-white/10 focus:border-primary text-white"
                             />
                           </FormControl>
                           <FormMessage />
@@ -382,7 +235,7 @@ export default function BookAShowPage() {
                       disabled={isSubmitting}
                       className="w-full bg-gradient-to-r from-secondary to-secondary/80 text-black font-bold uppercase hover:scale-[1.02] transition-transform"
                     >
-                      {isSubmitting ? "Sending..." : "Get Qualified"}
+                      {isSubmitting ? "Sending..." : "Let's Talk"}
                     </Button>
                     {status && (
                       <p
@@ -397,6 +250,27 @@ export default function BookAShowPage() {
                 </Form>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Package reference — soft, not a menu */}
+        <section className="py-14">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <h2 className="text-xl md:text-2xl font-display uppercase text-white mb-2">
+              How we typically scope shows
+            </h2>
+            <p className="text-gray-400 text-sm mb-8">
+              These are starting points — we build around your room, not the other way around.
+            </p>
+            <div className="grid gap-4 md:grid-cols-3">
+              {packageTiers.map((tier) => (
+                <div key={tier.name} className="rounded-xl border border-border/40 bg-card/30 p-5 space-y-2">
+                  <p className="text-xs uppercase tracking-[0.3em] text-secondary">{tier.name}</p>
+                  <p className="text-lg font-display text-white">{tier.price}</p>
+                  <p className="text-sm text-gray-400 leading-relaxed">{tier.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>

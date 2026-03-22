@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import SeoHead from "@/components/seo/SeoHead";
-import { servicePages } from "@/data/servicePages";
 import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -16,106 +15,31 @@ const services = [
     title: "Live Show Production",
     slug: "live-show-production",
     summary:
-      "End-to-end production for comedy shows of any size, keeping the room tight and the punchlines landing.",
-    benefits: [
-      "Reliable, repeatable show flow that protects audience energy.",
-      "Experienced producers coordinating talent, tech, and venues.",
-      "Hands-on support to keep every set on schedule.",
-    ],
-    deliverables: [
-      "Venue booking and show logistics planning.",
-      "Stage management, run-of-show, and talent coordination.",
-      "On-site production support and post-show recap.",
-    ],
-    idealClients: [
-      "Comedy clubs and theaters booking recurring shows.",
-      "Promoters scaling a new live comedy series.",
-      "Festivals adding a comedy program or special event.",
-    ],
+      "End-to-end production for comedy shows of any size. We handle the stage, the schedule, and the surprises so you can focus on the room.",
   },
   {
     title: "Comedian Booking",
     slug: "comedian-booking",
     summary:
-      "Match the right comics to the right crowd with a roster built for every room and vibe.",
-    benefits: [
-      "Curated talent that aligns with your audience.",
-      "Fast turnaround on availability and contracts.",
-      "Flexible lineups for one-off sets or long runs.",
-    ],
-    deliverables: [
-      "Talent sourcing, vetting, and booking coordination.",
-      "Contract management, scheduling, and travel details.",
-      "Comedian communications and show-day briefings.",
-    ],
-    idealClients: [
-      "Venues needing a consistent talent pipeline.",
-      "Brands hosting comedy activations or launches.",
-      "Event producers building polished lineups fast.",
-    ],
+      "The right comics for your crowd — sourced, vetted, and ready to go. One-off sets or a long run, we keep your lineup fresh.",
   },
   {
     title: "Corporate Events",
     slug: "corporate-events",
     summary:
-      "Custom comedy experiences that keep teams engaged without crossing lines.",
-    benefits: [
-      "Clean, tailored humor that fits your culture.",
-      "Seasoned hosts that keep the agenda moving.",
-      "Stress-free coordination with internal stakeholders.",
-    ],
-    deliverables: [
-      "Comedian recommendations based on company goals.",
-      "Show run-of-show and timing integration.",
-      "Tech coordination for in-person or hybrid events.",
-    ],
-    idealClients: [
-      "HR teams planning quarterly or annual events.",
-      "Sales kickoffs or product launch celebrations.",
-      "Conference organizers needing live entertainment.",
-    ],
+      "Comedy that fits your culture and keeps the room engaged without crossing lines. We work with your team so the night runs smooth.",
   },
   {
     title: "Media & Podcasts",
     slug: "media-and-podcasts",
     summary:
-      "Audio and video production that captures comic voices with broadcast-ready quality.",
-    benefits: [
-      "Consistent sound and lighting across episodes.",
-      "Creative direction to keep content sharp.",
-      "Post-production polish for multiple platforms.",
-    ],
-    deliverables: [
-      "Studio setup, recording, and episode engineering.",
-      "Video capture, editing, and highlight clips.",
-      "Distribution support for podcast and social.",
-    ],
-    idealClients: [
-      "Comedians launching or leveling up a podcast.",
-      "Brands creating comedy-forward video series.",
-      "Studios producing specials or live recordings.",
-    ],
+      "Audio and video production that captures comic voices with broadcast-ready quality — from studio sessions to highlight clips.",
   },
   {
     title: "Headshots & Promo Shoots",
     slug: "headshots-and-promo",
     summary:
-      "Photography that sells the bit—clean, modern, and ready for press kits.",
-    benefits: [
-      "Fast, collaborative sessions with clear direction.",
-      "Multiple looks to cover web, posters, and socials.",
-      "Retouching that keeps performers recognizable.",
-    ],
-    deliverables: [
-      "Styled headshot sessions in studio or on location.",
-      "Retouched image gallery optimized for press use.",
-      "Optional promo assets for posters and social.",
-    ],
-    idealClients: [
-      "Comedians building or refreshing a press kit.",
-      "Show runners needing cohesive talent imagery.",
-      "Partners seeking branded promotional photography.",
-    ],
+      "Photography that sells the bit. Clean, modern shots ready for press kits, posters, and socials.",
   },
 ];
 
@@ -123,8 +47,8 @@ const venuePartnerFormSchema = z.object({
   venueName: z.string().min(2, "Add your venue name"),
   capacity: z.string().min(1, "Share the room capacity"),
   preferredNights: z.string().min(2, "Tell us which nights work best"),
-  revenueSplitPreference: z.string().min(2, "Share your preferred split"),
   email: z.string().email("Add a valid contact email"),
+  notes: z.string().optional(),
 });
 
 export default function ServicesPage() {
@@ -141,8 +65,8 @@ export default function ServicesPage() {
       venueName: "",
       capacity: "",
       preferredNights: "",
-      revenueSplitPreference: "",
       email: "",
+      notes: "",
     },
   });
 
@@ -155,9 +79,9 @@ export default function ServicesPage() {
       `Venue name: ${values.venueName}`,
       `Capacity: ${values.capacity}`,
       `Preferred nights: ${values.preferredNights}`,
-      `Revenue split preference: ${values.revenueSplitPreference}`,
       `Contact email: ${values.email}`,
-    ].join("\n");
+      values.notes ? `Notes: ${values.notes}` : "",
+    ].filter(Boolean).join("\n");
 
     try {
       const response = await fetch(
@@ -183,7 +107,7 @@ export default function ServicesPage() {
 
       setPartnerStatus({
         type: "success",
-        message: "Thanks! We'll be in touch about a venue partnership.",
+        message: "Got it — we'll be in touch soon.",
       });
       venuePartnerForm.reset();
     } catch (error) {
@@ -208,141 +132,72 @@ export default function ServicesPage() {
       />
       <Navbar />
       <main className="pb-20">
+        {/* Hero */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.4em] text-secondary mb-4">
-                Services
-              </p>
-              <h1 className="text-4xl md:text-6xl font-display uppercase text-white mb-6">
-                A full stack of comedy production support.
-              </h1>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                From Olympia to Tacoma and across the South Sound, we make it
-                easy to book, produce, and promote comedy. Explore each service
-                below and request a quote for your next show, corporate event,
-                or media project.
-              </p>
-              <div className="mt-6 rounded-2xl border border-border/60 bg-card/40 p-6">
-                <p className="text-sm uppercase tracking-[0.3em] text-secondary mb-4">
-                  Quick links
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {servicePages.map((service) => (
-                    <a
-                      key={service.slug}
-                      href={`/${service.slug}`}
-                      className="rounded-full border border-border/60 px-4 py-2 text-sm uppercase tracking-wide text-gray-200 hover:border-primary hover:text-primary transition-colors"
-                    >
-                      {service.title}
-                    </a>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-10 flex flex-wrap gap-3">
-                {services.map((service) => (
-                  <a
-                    key={service.slug}
-                    href={`/${service.slug}`}
-                    className="rounded-full border border-border/60 px-4 py-2 text-sm uppercase tracking-wide text-gray-200 hover:border-primary hover:text-primary transition-colors"
-                  >
-                    {service.title}
-                  </a>
-                ))}
-              </div>
-            </div>
+          <div className="container mx-auto px-4 max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.4em] text-secondary mb-4">
+              Services
+            </p>
+            <h1 className="text-4xl md:text-6xl font-display uppercase text-white mb-6">
+              Whatever your show needs, we&apos;ve got it covered.
+            </h1>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              From Olympia to Tacoma, we help venues, promoters, and brands put
+              on comedy that actually works. Browse what we do below — or just{" "}
+              <a href="/#contact" className="text-secondary underline underline-offset-4 hover:text-secondary/80 transition-colors">
+                reach out and tell us what you&apos;re building
+              </a>.
+            </p>
           </div>
         </section>
 
+        {/* Service cards */}
         <section className="py-10">
-          <div className="container mx-auto px-4 space-y-10">
+          <div className="container mx-auto px-4 space-y-6 max-w-5xl">
             {services.map((service) => (
               <article
                 key={service.slug}
-                className="scroll-mt-28 rounded-2xl border border-border/60 bg-card/40 p-8 md:p-10"
+                className="rounded-2xl border border-border/60 bg-card/40 p-8 flex flex-col sm:flex-row sm:items-center gap-6"
               >
-                <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
-                  <div className="lg:w-1/3">
-                    <a
-                      href={`/${service.slug}`}
-                      className="text-3xl font-display uppercase text-white hover:text-primary transition-colors"
-                    >
-                      {service.title}
-                    </a>
-                    <p className="mt-4 text-gray-300 leading-relaxed">
-                      {service.summary}
-                    </p>
-                    <div className="mt-6 flex flex-wrap gap-3">
-                      <Button asChild className="uppercase">
-                        <a href={`/${service.slug}`}>View Service Page</a>
-                      </Button>
-                      <Button asChild variant="outline" className="uppercase">
-                        <a href="/#contact">Request a Quote</a>
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="grid gap-6 md:grid-cols-3 lg:w-2/3">
-                    <div>
-                      <h3 className="text-sm uppercase tracking-[0.3em] text-secondary mb-3">
-                        Benefits
-                      </h3>
-                      <ul className="space-y-2 text-gray-300 text-sm leading-relaxed">
-                        {service.benefits.map((benefit) => (
-                          <li key={benefit}>• {benefit}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-sm uppercase tracking-[0.3em] text-secondary mb-3">
-                        Deliverables
-                      </h3>
-                      <ul className="space-y-2 text-gray-300 text-sm leading-relaxed">
-                        {service.deliverables.map((deliverable) => (
-                          <li key={deliverable}>• {deliverable}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-sm uppercase tracking-[0.3em] text-secondary mb-3">
-                        Ideal Clients
-                      </h3>
-                      <ul className="space-y-2 text-gray-300 text-sm leading-relaxed">
-                        {service.idealClients.map((client) => (
-                          <li key={client}>• {client}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+                <div className="flex-1">
+                  <a
+                    href={`/${service.slug}`}
+                    className="text-2xl font-display uppercase text-white hover:text-primary transition-colors"
+                  >
+                    {service.title}
+                  </a>
+                  <p className="mt-3 text-gray-300 leading-relaxed max-w-xl">
+                    {service.summary}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3 shrink-0">
+                  <Button asChild className="uppercase">
+                    <a href={`/${service.slug}`}>Learn More</a>
+                  </Button>
+                  <Button asChild variant="outline" className="uppercase">
+                    <a href="/#contact">Get in Touch</a>
+                  </Button>
                 </div>
               </article>
             ))}
           </div>
         </section>
 
+        {/* Venue Partner Program */}
         <section id="venue-partner-program" className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 max-w-5xl">
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
               <div className="space-y-4">
                 <p className="text-sm uppercase tracking-[0.4em] text-secondary">
                   Venue Partner Program
                 </p>
                 <h2 className="text-4xl md:text-5xl font-display uppercase text-white">
-                  Let&apos;s build a recurring comedy night together.
+                  Want to run a comedy night at your spot?
                 </h2>
                 <p className="text-lg text-gray-300 leading-relaxed">
-                  We collaborate with venue teams to program consistent shows, co-market the run,
-                  and structure revenue splits that make the night a win for everyone.
+                  We collaborate with venue teams to build recurring shows that work for your
+                  room and your crowd. Drop us your details and we&apos;ll take it from there.
                 </p>
-                <div className="rounded-2xl border border-border/60 bg-card/40 p-6 text-gray-300">
-                  <p className="text-sm uppercase tracking-[0.3em] text-secondary mb-3">
-                    What we align on
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li>• Expected audience capacity and room flow.</li>
-                    <li>• Ideal weeknights or weekend slots.</li>
-                    <li>• Revenue split expectations for ticketing or bar sales.</li>
-                  </ul>
-                </div>
               </div>
 
               <Card className="bg-card/50 border-border/60">
@@ -374,7 +229,7 @@ export default function ServicesPage() {
                         name="capacity"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">Capacity</FormLabel>
+                            <FormLabel className="text-white">Room capacity</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="120 seated / 180 standing"
@@ -391,7 +246,7 @@ export default function ServicesPage() {
                         name="preferredNights"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">Preferred nights</FormLabel>
+                            <FormLabel className="text-white">Best nights for your venue</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Thursdays, monthly Saturdays"
@@ -405,27 +260,10 @@ export default function ServicesPage() {
                       />
                       <FormField
                         control={venuePartnerForm.control}
-                        name="revenueSplitPreference"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-white">Revenue split preference</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="70/30 door split or bar minimum"
-                                {...field}
-                                className="bg-white/5 border-white/10 focus:border-primary text-white"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={venuePartnerForm.control}
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">Contact email</FormLabel>
+                            <FormLabel className="text-white">Your email</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="venue@email.com"
@@ -437,15 +275,29 @@ export default function ServicesPage() {
                           </FormItem>
                         )}
                       />
-                      <p className="text-xs uppercase tracking-wide text-gray-400">
-                        Subject: Venue Partnership Inquiry
-                      </p>
+                      <FormField
+                        control={venuePartnerForm.control}
+                        name="notes"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-white">Anything else? <span className="text-gray-500 font-normal">(optional)</span></FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Revenue split ideas, questions, whatever's on your mind"
+                                {...field}
+                                className="bg-white/5 border-white/10 focus:border-primary text-white"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                       <Button
                         type="submit"
                         disabled={isPartnerSubmitting}
                         className="w-full bg-gradient-to-r from-secondary to-secondary/80 text-black font-bold uppercase hover:scale-[1.02] transition-transform"
                       >
-                        {isPartnerSubmitting ? "Sending..." : "Submit Inquiry"}
+                        {isPartnerSubmitting ? "Sending..." : "Let's Talk"}
                       </Button>
                       {partnerStatus && (
                         <p
