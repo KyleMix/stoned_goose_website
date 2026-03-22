@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionShell } from "@/components/SectionShell";
 
@@ -165,11 +166,13 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/50"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/50 hover:text-white/80 transition-colors cursor-pointer"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        onClick={() => document.querySelector("#shows")?.scrollIntoView({ behavior: "smooth" })}
       >
-        <span className="text-sm uppercase tracking-widest">Scroll Down</span>
+        <span className="text-xs uppercase tracking-widest">Scroll Down</span>
+        <ChevronDown className="w-5 h-5" />
       </motion.div>
     </SectionShell>
   );
