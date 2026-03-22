@@ -15,14 +15,13 @@ import {
 } from "react-icons/fa6";
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Upcoming Shows", href: "#shows" },
+  { name: "Home", href: "/" },
+  { name: "Shows", href: "#shows" },
   { name: "Services", href: "/services" },
-  { name: "Sponsorships", href: "/sponsorships" },
-  { name: "About", href: "#about" },
-  { name: "Comedians", href: "#comedians" },
-  { name: "Merch", href: "#merch" },
-  { name: "Media", href: "#media" },
+  { name: "Comedians", href: "/comedians" },
+  { name: "About", href: "/about" },
+  { name: "Media", href: "/media" },
+  { name: "Merch", href: "/merch" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -235,10 +234,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-20 w-full max-w-[1360px] items-center gap-4 px-4 sm:px-6 lg:px-8">
         <a
-          href={getNavHref("#home")}
-          onClick={(e) => {
-            handleNavClick(e, "#home");
-          }}
+          href="/"
           className="flex shrink-0 items-center gap-2"
         >
           <img
@@ -284,13 +280,7 @@ export default function Navbar() {
           <Button
             variant="default"
             className="min-h-10 rounded-full px-5 text-xs font-bold uppercase tracking-[0.14em] text-black"
-            onClick={() => {
-              if (isHome) {
-                scrollToSection("#services");
-                return;
-              }
-              setLocation("/#services");
-            }}
+            onClick={() => setLocation("/services")}
           >
             Book Services
           </Button>
@@ -316,11 +306,7 @@ export default function Navbar() {
                 <Button
                   className="min-h-11 rounded-full text-sm font-bold uppercase tracking-[0.14em] text-black"
                   onClick={() => {
-                    if (isHome) {
-                      scrollToSection("#services");
-                      return;
-                    }
-                    setLocation("/#services");
+                    setLocation("/services");
                     setIsOpen(false);
                   }}
                 >

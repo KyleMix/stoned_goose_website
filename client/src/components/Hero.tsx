@@ -10,7 +10,7 @@ const coverPosterSrc = "/opengraph.jpg";
 const primaryHeroPath = {
   title: "Book a Show",
   description: "Bring a high-impact comedy night to your venue, company event, or private experience.",
-  href: "/#services",
+  href: "/services",
   cta: "Start Booking",
 };
 
@@ -24,11 +24,11 @@ const secondaryHeroPath = {
 const tertiaryHeroLinks = [
   {
     title: "Sponsor a Show",
-    href: "/#sponsors",
+    href: "/sponsorships",
   },
   {
     title: "Comic Submissions",
-    href: "/#submissions",
+    href: "/comic-submissions",
   },
 ];
 

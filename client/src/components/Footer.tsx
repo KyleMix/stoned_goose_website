@@ -54,24 +54,27 @@ type FooterLinkGroup = {
 
 const footerLinkGroups: FooterLinkGroup[] = [
   {
-    title: "Company",
+    title: "Explore",
     links: [
       { label: "Home", href: "/" },
-      { label: "Upcoming Shows", href: "/#shows" },
-      { label: "Comic Submissions", href: "/comic-submissions" },
+      { label: "Comedians", href: "/comedians" },
+      { label: "About", href: "/about" },
+      { label: "Media", href: "/media" },
+      { label: "Merch", href: "/merch" },
     ],
   },
   {
     title: "Services",
     links: [
       { label: "Services", href: "/services" },
+      { label: "Comic Submissions", href: "/comic-submissions" },
       { label: "Sponsorships", href: "/sponsorships" },
     ],
   },
   {
     title: "Connect",
     links: [
-      { label: "Book a Show", href: "/#contact", cta: true },
+      { label: "Book a Show", href: "/services", cta: true },
       { label: "Contact", href: "/#contact", cta: true },
     ],
   },
