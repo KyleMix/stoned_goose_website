@@ -60,6 +60,8 @@ const pricingTiers = [
     name: "Starter",
     description: "Perfect for intimate shows and first-time bookers.",
     priceNote: "Best for clubs & pop-ups",
+    startingAt: "Starting at $750",
+    popular: false,
     services: [
       "Talent sourcing + booking",
       "Basic run-of-show planning",
@@ -70,6 +72,8 @@ const pricingTiers = [
     name: "Pro",
     description: "Level up with pro production and content coverage.",
     priceNote: "Best for theaters & corporate events",
+    startingAt: "Starting at $2,000",
+    popular: true,
     services: [
       "Full booking + contracts management",
       "Production staffing & tech specs",
@@ -80,6 +84,8 @@ const pricingTiers = [
     name: "Premium",
     description: "White-glove, end-to-end show production.",
     priceNote: "Best for festivals & branded activations",
+    startingAt: "Starting at $5,000",
+    popular: false,
     services: [
       "Executive producing & creative direction",
       "On-site video/audio capture",
@@ -311,15 +317,27 @@ export default function Services() {
           {pricingTiers.map((tier) => (
             <Card
               key={tier.name}
-              className="bg-card/40 border-border/60 hover:border-secondary/50 transition-colors"
+              className={`relative bg-card/40 border hover:border-secondary/50 transition-colors ${
+                tier.popular
+                  ? "border-secondary/70 shadow-[0_0_30px_rgba(168,85,247,0.18)]"
+                  : "border-border/60"
+              }`}
             >
-              <CardHeader>
+              {tier.popular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center rounded-full bg-secondary px-4 py-1 text-xs font-bold uppercase tracking-widest text-black shadow-lg">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+              <CardHeader className={tier.popular ? "pt-8" : ""}>
                 <CardTitle className="text-2xl font-display uppercase text-white">
                   {tier.name}
                 </CardTitle>
                 <p className="text-sm uppercase tracking-widest text-secondary">
                   {tier.priceNote}
                 </p>
+                <p className="text-lg font-semibold text-primary mt-1">{tier.startingAt}</p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-gray-400">{tier.description}</p>
@@ -331,6 +349,17 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+                <Button
+                  asChild
+                  className={`w-full mt-2 uppercase font-bold ${
+                    tier.popular
+                      ? "bg-secondary text-black hover:bg-secondary/90"
+                      : "bg-white/10 text-white hover:bg-white/20 border border-white/20"
+                  }`}
+                  variant={tier.popular ? "default" : "ghost"}
+                >
+                  <a href="/#contact">Get a Quote</a>
+                </Button>
               </CardContent>
             </Card>
           ))}

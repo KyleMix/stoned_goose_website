@@ -9,6 +9,7 @@ import SeoHead from "@/components/seo/SeoHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const services = [
   {
@@ -314,6 +315,78 @@ export default function ServicesPage() {
                   </Form>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+        {/* FAQ */}
+        <section className="py-16">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.4em] text-secondary mb-4">FAQ</p>
+            <h2 className="text-4xl md:text-5xl font-display uppercase text-white mb-10">
+              Common Questions
+            </h2>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="how-far-ahead">
+                <AccordionTrigger>How far in advance should I book?</AccordionTrigger>
+                <AccordionContent>
+                  We recommend reaching out at least 3–4 weeks ahead for most shows. For larger
+                  events, festivals, or corporate engagements, 6–8 weeks gives us room to source the
+                  best talent and build a production plan that fits your vision. That said, we've
+                  pulled off last-minute shows too — just ask.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="corporate-clean">
+                <AccordionTrigger>Can you keep it clean for a corporate audience?</AccordionTrigger>
+                <AccordionContent>
+                  Absolutely. We work closely with every client to understand the audience and set
+                  clear content guidelines for our comedians. Clean, crowd-appropriate comedy is
+                  something we do well — your HR department will thank you.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="what-included">
+                <AccordionTrigger>What's included in the production fee?</AccordionTrigger>
+                <AccordionContent>
+                  It depends on the package, but most shows include talent sourcing and booking,
+                  contract management, run-of-show planning, and day-of coordination. Pro and Premium
+                  packages add photo/video coverage, staffing, and post-event content. Request a
+                  quote and we'll walk you through exactly what's covered.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="venue-provide">
+                <AccordionTrigger>Do you provide the venue, or do I?</AccordionTrigger>
+                <AccordionContent>
+                  Either works. If you have a venue, great — we'll show up and make it happen. If
+                  you need a space, we have established venue partners across Olympia, Lacey, and
+                  Tacoma and can help you find the right fit for your audience size and vibe.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="ticket-sales">
+                <AccordionTrigger>How do ticket sales and revenue splits work?</AccordionTrigger>
+                <AccordionContent>
+                  We handle ticketing through Eventbrite for most public shows. For venue partner
+                  programs, we work out a revenue split that makes sense for both sides based on
+                  room capacity, night of week, and production costs. We're flexible — reach out and
+                  let's talk numbers.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="what-makes-different">
+                <AccordionTrigger>What makes Stoned Goose different from just hiring a comedian directly?</AccordionTrigger>
+                <AccordionContent>
+                  When you book through us, you get full production support — not just a phone number
+                  and a handshake. We handle logistics, contracts, stage management, promotion, and
+                  content. We've built relationships with comedians across the Pacific Northwest, so
+                  you get talent that's right for your specific crowd, not just whoever's available.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+
+            <div className="mt-10 rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+              <p className="text-gray-300 mb-4">
+                Don&apos;t see your question here?
+              </p>
+              <Button asChild className="uppercase font-bold">
+                <a href="/#contact">Ask Us Directly</a>
+              </Button>
             </div>
           </div>
         </section>
