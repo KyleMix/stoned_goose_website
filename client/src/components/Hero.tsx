@@ -165,8 +165,32 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Trust stats bar */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/50 hover:text-white/80 transition-colors cursor-pointer"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+        className="absolute bottom-20 left-0 right-0 z-10 px-4"
+      >
+        <div className="mx-auto max-w-3xl">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            {[
+              { value: "50+", label: "Shows Produced" },
+              { value: "20+", label: "Comedians Booked" },
+              { value: "5,000+", label: "Tickets Sold" },
+              { value: "8+", label: "Venue Partners" },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-2 text-white/80">
+                <span className="text-primary font-display text-xl font-bold">{stat.value}</span>
+                <span className="text-xs uppercase tracking-widest text-white/50">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/50 hover:text-white/80 transition-colors cursor-pointer"
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         onClick={() => document.querySelector("#shows")?.scrollIntoView({ behavior: "smooth" })}
