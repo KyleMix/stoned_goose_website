@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,7 +21,6 @@ import { SectionHeading, SectionShell } from "@/components/SectionShell";
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -38,28 +37,9 @@ export default function Contact() {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
       message: "",
     },
   });
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const searchParams = new URLSearchParams(window.location.search);
-    const serviceParam = searchParams.get("service");
-    if (!serviceParam) return;
-
-    const serviceTitle = serviceParam
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
-    if (!form.getValues("subject")) {
-      form.setValue("subject", `Service Inquiry: ${serviceTitle}`, {
-        shouldDirty: true,
-      });
-    }
-  }, [form]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setStatus(null);
@@ -77,7 +57,7 @@ export default function Contact() {
           body: JSON.stringify({
             name: values.name,
             email: values.email,
-            subject: values.subject,
+            subject: "Website Contact",
             message: values.message,
           }),
         },
@@ -115,8 +95,8 @@ export default function Contact() {
           className="mb-16"
         >
           <SectionHeading
-            title={<>Get in <span className="text-secondary">Touch</span></>}
-            subtitle="Booking, collaborations, or just want to honk at us?"
+            title={<>We want to <span className="text-secondary">work with you</span></>}
+            subtitle="Booking, partnerships, or just want to start a conversation?"
           />
         </motion.div>
 
@@ -229,30 +209,13 @@ export default function Contact() {
                 />
                 <FormField
                   control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">Subject</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Booking Inquiry"
-                          {...field}
-                          className="bg-white/5 border-white/10 focus:border-primary text-white"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
                   name="message"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-white">Message</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="How can we help?"
+                          placeholder="Tell us what you're working on — we'll take it from there."
                           {...field}
                           className="bg-white/5 border-white/10 focus:border-primary text-white min-h-[120px]"
                         />
@@ -266,7 +229,7 @@ export default function Contact() {
                   disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-primary to-primary/80 text-black font-bold uppercase hover:scale-[1.02] transition-transform"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? "Sending..." : "Let's Talk"}
                 </Button>
                 {status && (
                   <p
