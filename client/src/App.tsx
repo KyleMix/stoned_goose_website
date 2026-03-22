@@ -11,6 +11,10 @@ import ComicSubmissionsPage from "@/pages/comic-submissions";
 import BookAShowPage from "@/pages/book-a-show";
 import NotFound from "@/pages/not-found";
 import SponsorshipsPage from "@/pages/sponsorships";
+import AboutPage from "@/pages/about";
+import ComediansPage from "@/pages/comedians";
+import MediaPage from "@/pages/media";
+import MerchPage from "@/pages/merch";
 
 function Router() {
   return (
@@ -20,6 +24,10 @@ function Router() {
       <Route path="/comic-submissions" component={ComicSubmissionsPage} />
       <Route path="/sponsorships" component={SponsorshipsPage} />
       <Route path="/book-a-show" component={BookAShowPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/comedians" component={ComediansPage} />
+      <Route path="/media" component={MediaPage} />
+      <Route path="/merch" component={MerchPage} />
       <Route path="/live-show-production">
         <ServiceDetailPage slug="live-show-production" />
       </Route>

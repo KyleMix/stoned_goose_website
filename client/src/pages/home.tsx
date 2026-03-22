@@ -1,11 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import UpcomingShows from "@/components/UpcomingShows";
-import Services from "@/components/Services";
-import About from "@/components/About";
-import Comedians from "@/components/Comedians";
-import Merch from "@/components/Merch";
-import Media from "@/components/Media";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SeoHead from "@/components/seo/SeoHead";
@@ -22,18 +17,13 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Services />
         <UpcomingShows />
         <section id="sponsors">
           <SponsorsPartners />
         </section>
-        <section id="submissions">
+        <section id="contact">
           <Contact />
         </section>
-        <About />
-        <Comedians />
-        <Merch />
-        <Media />
       </main>
       <Footer />
     </div>
