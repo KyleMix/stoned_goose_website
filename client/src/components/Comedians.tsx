@@ -196,12 +196,13 @@ export default function Comedians() {
               transition={{ delay: index * 0.05 }}
               className="group relative"
             >
-              <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-3 border border-transparent group-hover:border-primary transition-colors">
+              <div className="relative overflow-hidden rounded-lg aspect-square mb-3 border border-transparent group-hover:border-primary transition-colors">
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay" />
                 <img
                   src={comedian.image}
                   alt={comedian.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
 
                 {/* Social Overlay */}

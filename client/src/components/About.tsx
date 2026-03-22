@@ -36,11 +36,11 @@ const pillars = [
 ];
 
 const teamMembers = [
-  { name: "Kyle Mixon", photo: kylePhoto },
-  { name: "Joseph Humphrey", photo: josephPhoto },
-  { name: "Brendan Meeks", photo: brendanPhoto },
-  { name: "Samuel Tweed", photo: samPhoto },
-  { name: "Garrett Iverson", photo: garrettphoto },
+  { name: "Kyle Mixon", role: "Founder & Producer", photo: kylePhoto },
+  { name: "Joseph Humphrey", role: "Media & Production", photo: josephPhoto },
+  { name: "Brendan Meeks", role: "Creative Director", photo: brendanPhoto },
+  { name: "Samuel Tweed", role: "Stage Manager", photo: samPhoto },
+  { name: "Garrett Iverson", role: "Photographer", photo: garrettphoto },
 ];
 
 export default function About() {
@@ -101,11 +101,10 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className=" min-w-[200px] max-w-[200px]"
+                className="group min-w-[200px] max-w-[200px]"
               >
                 <div className="relative overflow-hidden rounded-xl aspect-square mb-4 border-2 border-transparent group-hover:border-primary transition-colors">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/60 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
-
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/60 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
                   <img
                     src={member.photo}
                     alt={member.name}
@@ -115,7 +114,8 @@ export default function About() {
                 </div>
 
                 <div className="text-center">
-                  <h4 className="text-2xl font-display uppercase text-white">{member.name}</h4>
+                  <h4 className="text-xl font-display uppercase text-white">{member.name}</h4>
+                  <p className="text-xs uppercase tracking-[0.18em] text-primary/80 mt-1">{member.role}</p>
                 </div>
               </motion.div>
             ))}
