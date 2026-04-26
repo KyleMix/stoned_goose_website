@@ -8,6 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function ShopPage() {
+  // Hide imageless products until owner pastes the Fourthwall image URLs.
+  // Single-letter placeholder cards alongside photographed cards read inconsistent.
+  const visibleProducts = products.filter((p) => p.image);
+
   return (
     <>
       <PageHeader
@@ -23,7 +27,7 @@ export default function ShopPage() {
       <section className="border-b border-bone/10 bg-ink py-12 md:py-16">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-baseline justify-between gap-4 px-5 md:px-10">
           <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-            {products.length} products / external checkout via Fourthwall
+            {visibleProducts.length} products / external checkout via Fourthwall
           </p>
           <a
             href={shopCopy.collectionUrl}
@@ -39,7 +43,7 @@ export default function ShopPage() {
       <section className="bg-ink py-12 md:py-16">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((p, i) => (
+            {visibleProducts.map((p, i) => (
               <li
                 key={p.url}
                 className={`group relative border-bone/15 ${
@@ -55,20 +59,12 @@ export default function ShopPage() {
                   className="flex h-full flex-col justify-between p-6 md:p-8"
                 >
                   <div className="relative aspect-square w-full overflow-hidden bg-haze-500">
-                    {p.image ? (
-                      <img
-                        src={p.image}
-                        alt={p.name}
-                        loading="lazy"
-                        className="h-full w-full object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter,transform] duration-500 group-hover:scale-[1.02] group-hover:[filter:grayscale(0)_contrast(1)]"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center">
-                        <span className="font-display text-3xl text-bone/40">
-                          {p.name[0]}
-                        </span>
-                      </div>
-                    )}
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter,transform] duration-500 group-hover:scale-[1.02] group-hover:[filter:grayscale(0)_contrast(1)]"
+                    />
                     <span
                       aria-hidden
                       className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"

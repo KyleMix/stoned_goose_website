@@ -44,6 +44,14 @@ export function ContactForm({
       payload[key] = String(value);
     });
 
+    // Honeypot: bots fill every field; humans never see this one.
+    // formsubmit drops the message when _honey is non-empty.
+    if (payload._honey && payload._honey.trim() !== "") {
+      setStatus("success");
+      event.currentTarget.reset();
+      return;
+    }
+
     try {
       const response = await fetch(
         `https://formsubmit.co/ajax/${site.contact.email}`,
@@ -67,6 +75,15 @@ export function ContactForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-7" noValidate>
       {children}
+
+      <input
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
         <button

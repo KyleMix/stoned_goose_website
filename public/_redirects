@@ -1,0 +1,7 @@
+# Cloudflare Pages and Netlify both honor this file format.
+# Old slug → new target. 308 keeps method on POSTs (we don't have any, but it's correct).
+/about               /members      308
+/media               /watch        308
+/comic-submissions   /submit       308
+/sponsorships        /sponsor      308
+/book-a-show         /services     308
