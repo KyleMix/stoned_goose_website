@@ -8,7 +8,10 @@ export type Product = {
 const FW = "https://stoned-goose-productions-zgm-shop.fourthwall.com";
 
 // Product images live on Fourthwall's imgproxy CDN. We embed them directly so
-// the build stays static — no hotlinking concerns since they're public CDN.
+// the build stays static. No hotlinking concerns since they're public CDN.
+//
+// TODO(owner): products with `image: ""` are hidden from /shop until URLs land.
+// Open the product on Fourthwall, copy the imgproxy URL, paste it here.
 export const products: Product[] = [
   {
     name: "Metal Goose",

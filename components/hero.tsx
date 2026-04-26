@@ -36,7 +36,7 @@ export function Hero() {
             {hero.subhead}
           </p>
           <p className="col-span-12 font-display text-3xl italic leading-snug text-bone md:col-span-5 md:text-right md:text-4xl">
-            live. local. comedy.
+            {hero.italicLine}
           </p>
         </div>
 

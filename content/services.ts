@@ -65,7 +65,7 @@ export const services: Service[] = [
     metaDescription:
       "Book comedians for Olympia, Lacey, and Tacoma events. Curated talent matching, contracts, and scheduling handled by Stoned Goose.",
     summary:
-      "Curated comedian booking that matches your audience, timeline, and tone—serving Olympia, Lacey, Tacoma, and the South Sound.",
+      "Curated comedian booking that matches your audience, timeline, and tone. Serving Olympia, Lacey, Tacoma, and the South Sound.",
     whatYouGet: [
       "Talent recommendations aligned with your audience and brand.",
       "Availability checks, contracts, and schedule coordination.",

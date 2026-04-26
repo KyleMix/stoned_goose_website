@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/section-header";
 export const metadata: Metadata = {
   title: "Members",
   description:
-    "Meet the crew behind Stoned Goose Productions — producers, performers, and media pros building comedy experiences across the Pacific Northwest.",
+    "Meet the crew behind Stoned Goose Productions. Producers, performers, and media pros building comedy experiences across the Pacific Northwest.",
 };
 
 export default function MembersPage() {
@@ -105,6 +105,11 @@ export default function MembersPage() {
                   <p className="mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/55">
                     {m.role}
                   </p>
+                  {m.bio ? (
+                    <p className="mt-5 max-w-prose font-body text-base leading-relaxed text-ink/80 md:text-lg">
+                      {m.bio}
+                    </p>
+                  ) : null}
                 </div>
               </li>
             ))}

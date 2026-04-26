@@ -5,6 +5,15 @@ export type Reel = {
   platform: "instagram" | "youtube";
 };
 
+export type YouTubeVideo = {
+  id: string;
+  title: string;
+};
+
+// Hardcoded YouTube channel grid. Static export, no /api/youtube. Owner pastes
+// videos here in display order. Empty array hides the grid section on /watch.
+export const youtubeVideos: YouTubeVideo[] = [];
+
 export const reels: Reel[] = [
   {
     title: "Halloween Comedy Costume Contest",

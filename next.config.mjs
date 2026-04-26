@@ -3,6 +3,10 @@ const nextConfig = {
   output: "export",
   images: {
     unoptimized: true,
+    remotePatterns: [
+      { protocol: "https", hostname: "imgproxy.fourthwall.com" },
+      { protocol: "https", hostname: "i.ytimg.com" },
+    ],
   },
   trailingSlash: false,
   // Codespaces forwards a public *.app.github.dev URL to local 127.0.0.1,
