@@ -1,0 +1,123 @@
+import Link from "next/link";
+import { site } from "@/content/site";
+
+const explore = [
+  { label: "Home", href: "/" },
+  { label: "Comedians", href: "/comedians" },
+  { label: "Members", href: "/members" },
+  { label: "Watch", href: "/watch" },
+  { label: "Shop", href: "/shop" },
+];
+
+const services = [
+  { label: "Services", href: "/services" },
+  { label: "Comic Submissions", href: "/submit" },
+  { label: "Sponsorships", href: "/sponsor" },
+];
+
+const connect = [
+  { label: "Book a Show", href: "/services" },
+  { label: "Contact", href: "/contact" },
+];
+
+const socials: Array<{ label: string; href: string }> = [
+  { label: "Instagram", href: site.social.instagram },
+  { label: "Facebook", href: site.social.facebook },
+  { label: "TikTok", href: site.social.tiktok },
+  { label: "YouTube", href: site.social.youtube },
+  { label: "Patreon", href: site.social.patreon },
+];
+
+export function Footer() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="relative border-t border-bone/15 bg-ink text-bone">
+      <div className="mx-auto max-w-[1400px] px-5 pb-10 pt-20 md:px-10 md:pt-32">
+        <div className="grid gap-12 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <p className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/45">
+              [ Issue 001 / Olympia, WA ]
+            </p>
+            <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-display md:text-7xl">
+              Stoned
+              <br />
+              Goose
+              <span className="text-hazard">.</span>
+            </h2>
+            <p className="mt-6 max-w-md font-body text-sm text-bone/70">
+              {site.description}
+            </p>
+            <div className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-bone/60">
+              <p>{site.contact.email}</p>
+              <p>{site.contact.phone}</p>
+              <p>{site.contact.locality}, {site.contact.region}</p>
+            </div>
+          </div>
+
+          <FooterColumn label="Explore" items={explore} number="01" />
+          <FooterColumn label="Services" items={services} number="02" />
+          <FooterColumn label="Connect" items={connect} number="03" />
+        </div>
+
+        <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-bone/10 pt-8">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone/60 transition-colors hover:text-hazard"
+              >
+                {s.label} <span aria-hidden>↗</span>
+              </a>
+            ))}
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/40">
+            <p>© {year} Stoned Goose Productions</p>
+            <p>Website Design by Kyle Mixon.</p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        aria-hidden
+        className="select-none overflow-hidden whitespace-nowrap pb-6 text-center font-display tracking-display text-bone/[0.04]"
+        style={{ fontSize: "clamp(8rem, 28vw, 24rem)", lineHeight: 0.8 }}
+      >
+        STONED GOOSE
+      </div>
+    </footer>
+  );
+}
+
+function FooterColumn({
+  label,
+  number,
+  items,
+}: {
+  label: string;
+  number: string;
+  items: Array<{ label: string; href: string }>;
+}) {
+  return (
+    <div className="md:col-span-2">
+      <p className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/40">
+        {number} / {label}
+      </p>
+      <ul className="mt-4 space-y-2">
+        {items.map((it) => (
+          <li key={it.href}>
+            <Link
+              href={it.href}
+              className="font-body text-sm text-bone/85 transition-colors hover:text-hazard"
+            >
+              {it.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
