@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/about", "destination": "/members", "permanent": true },
+    { "source": "/media", "destination": "/watch", "permanent": true },
+    { "source": "/comic-submissions", "destination": "/submit", "permanent": true },
+    { "source": "/sponsorships", "destination": "/sponsor", "permanent": true },
+    { "source": "/book-a-show", "destination": "/services", "permanent": true }
+  ]
+}
