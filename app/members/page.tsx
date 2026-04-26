@@ -15,13 +15,13 @@ export default function MembersPage() {
     <>
       <section className="relative border-b border-bone/10 bg-ink pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <p className="font-mono text-[10px] uppercase tracking-eyebrow text-hazard">
+          <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
             [ The Crew / Issue 001 ]
           </p>
           <h1 className="heading-display mt-4 text-[clamp(3rem,11vw,9rem)] text-bone">
             Members<span className="text-hazard">.</span>
           </h1>
-          <p className="mt-8 max-w-2xl font-body text-base leading-relaxed text-bone/70 md:text-lg">
+          <p className="mt-8 max-w-2xl font-body text-base leading-relaxed text-bone/85 md:text-lg">
             {aboutCopy.subhead}
           </p>
         </div>
@@ -45,13 +45,13 @@ export default function MembersPage() {
                 key={p.title}
                 className="relative bg-ink p-8 transition-colors hover:bg-bone/[0.025] md:p-10"
               >
-                <span className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/40">
+                <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
                   /0{i + 1}
                 </span>
                 <h3 className="heading-display mt-3 text-3xl text-bone md:text-4xl">
                   {p.title}
                 </h3>
-                <p className="mt-4 max-w-md font-body text-sm text-bone/70 md:text-base">
+                <p className="mt-4 max-w-md font-body text-sm text-bone/85 md:text-base">
                   {p.body}
                 </p>
               </li>
@@ -79,7 +79,7 @@ export default function MembersPage() {
                 key={m.slug}
                 className="group grid grid-cols-12 items-center gap-6 py-8 md:gap-10 md:py-12"
               >
-                <span className="col-span-2 font-mono text-xs uppercase tracking-eyebrow text-ink/45 md:col-span-1">
+                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-ink/45 md:col-span-1">
                   {m.index}
                 </span>
                 <div className="col-span-10 md:col-span-3">
@@ -102,7 +102,7 @@ export default function MembersPage() {
                   <h3 className="heading-display text-[clamp(2.4rem,8vw,5.5rem)] text-ink">
                     {m.name}
                   </h3>
-                  <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em] text-ink/55">
+                  <p className="mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/55">
                     {m.role}
                   </p>
                 </div>
@@ -110,9 +110,6 @@ export default function MembersPage() {
             ))}
           </ul>
 
-          <p className="mt-10 max-w-prose font-mono text-[11px] uppercase tracking-[0.22em] text-ink/45">
-            * Bios coming next round. Flagged for direction review.
-          </p>
         </div>
       </section>
 
@@ -120,7 +117,7 @@ export default function MembersPage() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
-              <p className="font-mono text-[10px] uppercase tracking-eyebrow text-hazard">
+              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
                 Open Stage Door
               </p>
               <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
@@ -128,20 +125,20 @@ export default function MembersPage() {
               </h2>
             </div>
             <div className="md:col-span-5">
-              <p className="font-body text-base text-bone/70 md:text-lg">
+              <p className="font-body text-base text-bone/85 md:text-lg">
                 We keep a rolling submission pipeline for future showcases and
                 feature sets. Send your latest tape and details for review.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="/submit"
-                  className="inline-flex h-12 items-center bg-hazard px-6 font-mono text-xs uppercase tracking-[0.22em] text-ink hover:bg-bone"
+                  className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
                 >
                   Submit to the roster ↗
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex h-12 items-center border border-bone/30 px-6 font-mono text-xs uppercase tracking-[0.22em] text-bone hover:border-hazard hover:text-hazard"
+                  className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
                 >
                   Talk to a producer ↗
                 </Link>

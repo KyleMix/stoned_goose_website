@@ -25,7 +25,7 @@ export function ContactBlock() {
               href={`mailto:${site.contact.email}`}
               className="group mt-10 block"
             >
-              <span className="font-mono text-[11px] uppercase tracking-eyebrow text-bone/45">
+              <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
                 Email
               </span>
               <p className="mt-2 break-all font-display text-3xl tracking-tight text-bone transition-colors group-hover:text-hazard md:text-5xl">
@@ -36,7 +36,7 @@ export function ContactBlock() {
               href={`tel:${site.contact.phoneTel}`}
               className="group mt-8 block"
             >
-              <span className="font-mono text-[11px] uppercase tracking-eyebrow text-bone/45">
+              <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
                 Phone
               </span>
               <p className="mt-2 font-display text-3xl tracking-tight text-bone transition-colors group-hover:text-hazard md:text-5xl">
@@ -46,20 +46,20 @@ export function ContactBlock() {
           </div>
 
           <div className="md:col-span-5">
-            <p className="font-mono text-[11px] uppercase tracking-eyebrow text-bone/45">
+            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
               Find us
             </p>
             <p className="mt-2 font-display text-2xl text-bone md:text-3xl">
               {site.contact.address}
             </p>
-            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2 font-mono text-xs uppercase tracking-eyebrow text-bone/55">
+            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/55">
               {site.serviceAreas.map((area) => (
                 <li key={area}>{area}</li>
               ))}
             </ul>
             <a
               href="/contact"
-              className="mt-10 inline-flex h-12 items-center bg-hazard px-6 font-mono text-xs uppercase tracking-[0.22em] text-ink transition-colors hover:bg-bone"
+              className="mt-10 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone"
             >
               Send a message ↗
             </a>

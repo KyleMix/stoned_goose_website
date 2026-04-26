@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
 type Props = {
+  /** @deprecated retained for compat; index labels removed for design pass */
   index?: string;
   eyebrow?: string;
   title: ReactNode;
@@ -11,7 +12,6 @@ type Props = {
 };
 
 export function SectionHeader({
-  index,
   eyebrow,
   title,
   subtitle,
@@ -26,17 +26,16 @@ export function SectionHeader({
         className,
       )}
     >
-      {(index || eyebrow) && (
-        <div className="flex items-baseline gap-3 font-mono text-[10px] uppercase tracking-eyebrow text-bone/55">
-          {index && <span className="text-hazard">{index}</span>}
-          {eyebrow && <span>{eyebrow}</span>}
+      {eyebrow && (
+        <div className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+          <span>{eyebrow}</span>
         </div>
       )}
       <h2 className="heading-display text-[clamp(2.4rem,7vw,5.5rem)] text-bone text-balance">
         {title}
       </h2>
       {subtitle && (
-        <p className="max-w-2xl font-body text-base leading-relaxed text-bone/70 md:text-lg">
+        <p className="max-w-2xl font-body text-base leading-relaxed text-bone/85 md:text-lg">
           {subtitle}
         </p>
       )}
