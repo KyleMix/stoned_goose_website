@@ -110,9 +110,6 @@ export default function MembersPage() {
             ))}
           </ul>
 
-          <p className="mt-10 max-w-prose font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/45">
-            * Bios coming next round. Flagged for direction review.
-          </p>
         </div>
       </section>
 
