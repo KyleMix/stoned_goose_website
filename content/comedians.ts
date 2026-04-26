@@ -5,6 +5,12 @@ export type Comedian = {
   facebook?: string;
 };
 
+// Owner-editable. Clarifies the "Our Friends." framing per audit.
+export const comediansCopy = {
+  subhead:
+    "Booked, produced, or platformed by Stoned Goose. Plus the friends who keep showing up.",
+};
+
 export const comedians: Comedian[] = [
   {
     name: "Brandon White",

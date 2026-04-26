@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { comedians } from "@/content/comedians";
+import { comedians, comediansCopy } from "@/content/comedians";
 import { PageHeader } from "@/components/page-header";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function ComediansPage() {
             Our <span className="italic text-hazard">Friends</span>
           </>
         }
-        body="Comedians we have worked with."
+        body={comediansCopy.subhead}
       />
 
       <section className="bg-ink py-16 md:py-20">

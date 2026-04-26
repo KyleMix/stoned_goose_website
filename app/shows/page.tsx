@@ -89,12 +89,21 @@ export default function ShowsPage() {
                 {featuredSpecial.blurb}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/watch"
-                  className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
-                >
-                  Watch now ↗
-                </Link>
+                {featuredSpecial.videoUrl ? (
+                  <Link
+                    href="/watch"
+                    className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                  >
+                    Watch now ↗
+                  </Link>
+                ) : (
+                  <span
+                    className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65"
+                    aria-label="Special not yet available"
+                  >
+                    Coming soon
+                  </span>
+                )}
                 <a
                   href={featuredSpecial.comedianHandle}
                   target="_blank"
