@@ -32,7 +32,7 @@ export function Testimonials() {
               key={t.name}
               className="grid grid-cols-12 gap-x-6 border-t border-ink/15 pt-8"
             >
-              <span className="col-span-2 font-mono text-xs uppercase tracking-eyebrow text-ink/45">
+              <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-ink/45">
                 /0{i + 1}
               </span>
               <figure className="col-span-10">
@@ -42,7 +42,7 @@ export function Testimonials() {
                   </span>
                   {t.quote}
                 </blockquote>
-                <figcaption className="mt-5 font-mono text-[11px] uppercase tracking-[0.22em] text-ink/55">
+                <figcaption className="mt-5 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/55">
                   <span className="text-ink">{t.name}</span> {" / "} {t.role}
                 </figcaption>
               </figure>
@@ -56,7 +56,7 @@ export function Testimonials() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex h-12 items-center bg-ink px-6 font-mono text-xs uppercase tracking-[0.22em] text-bone transition-colors hover:bg-hazard hover:text-ink"
+            className="inline-flex h-12 items-center bg-ink px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone transition-colors hover:bg-hazard hover:text-ink"
           >
             Start a Conversation ↗
           </Link>

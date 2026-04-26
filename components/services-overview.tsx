@@ -22,7 +22,7 @@ export function ServicesOverview() {
               }
               subtitle={servicesIntro.subhead}
             />
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-mono text-[11px] uppercase tracking-[0.22em] text-bone/65">
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65">
               <Link href="/contact" className="hover:text-hazard">
                 Request a Quote ↗
               </Link>
@@ -44,7 +44,7 @@ export function ServicesOverview() {
                 key={s.slug}
                 className="group relative grid grid-cols-12 items-baseline gap-4 border-t border-bone/15 py-7 last:border-b transition-colors hover:bg-bone/[0.025]"
               >
-                <span className="col-span-2 font-mono text-xs uppercase tracking-eyebrow text-bone/40 md:col-span-1">
+                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
                   /{String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="col-span-10 md:col-span-7">
@@ -54,14 +54,14 @@ export function ServicesOverview() {
                   >
                     {s.title}
                   </Link>
-                  <p className="mt-2 max-w-prose font-body text-sm text-bone/65 md:text-base">
+                  <p className="mt-2 max-w-prose font-body text-sm text-bone/85 md:text-base">
                     {s.blurb}
                   </p>
                 </div>
                 <Link
                   href={`/services/${s.slug}`}
                   aria-label={`Read about ${s.title}`}
-                  className="col-span-12 mt-2 font-mono text-[11px] uppercase tracking-[0.22em] text-bone/55 transition-colors hover:text-hazard md:col-span-4 md:mt-0 md:text-right"
+                  className="col-span-12 mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-hazard md:col-span-4 md:mt-0 md:text-right"
                 >
                   Read brief ↗
                 </Link>

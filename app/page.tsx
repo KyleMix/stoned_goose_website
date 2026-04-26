@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero";
+import { StatsBand } from "@/components/stats-band";
 import { Marquee } from "@/components/marquee";
 import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
 import { ServicesOverview } from "@/components/services-overview";
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <StatsBand />
       <Marquee items={marqueeWords} />
       <UpcomingShowsBlock />
       <ServicesOverview />

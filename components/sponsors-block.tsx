@@ -24,7 +24,7 @@ export function SponsorsBlock() {
             />
             <Link
               href="/sponsor"
-              className="mt-10 inline-flex h-12 items-center gap-3 border border-bone/30 px-6 font-mono text-xs uppercase tracking-[0.22em] text-bone transition-colors hover:border-hazard hover:bg-hazard hover:text-ink"
+              className="mt-10 inline-flex h-12 items-center gap-3 border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone transition-colors hover:border-hazard hover:bg-hazard hover:text-ink"
             >
               Start a Sponsorship <span aria-hidden>→</span>
             </Link>
@@ -36,7 +36,7 @@ export function SponsorsBlock() {
                 key={b}
                 className="flex items-baseline gap-4 border-t border-bone/15 py-5 last:border-b"
               >
-                <span className="font-mono text-xs uppercase tracking-eyebrow text-hazard">
+                <span className="font-body text-xs font-medium uppercase tracking-[0.18em] text-hazard">
                   /0{i + 1}
                 </span>
                 <span className="font-display text-2xl text-bone md:text-3xl">

@@ -28,7 +28,7 @@ export function UpcomingShowsBlock() {
               href={site.social.eventbrite}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 inline-flex h-12 items-center gap-3 border border-bone/30 px-6 font-mono text-xs uppercase tracking-[0.22em] text-bone transition-colors hover:border-hazard hover:bg-hazard hover:text-ink"
+              className="mt-10 inline-flex h-12 items-center gap-3 border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone transition-colors hover:border-hazard hover:bg-hazard hover:text-ink"
             >
               View all shows on Eventbrite <span aria-hidden>↗</span>
             </a>
@@ -36,7 +36,7 @@ export function UpcomingShowsBlock() {
 
           <div className="md:col-span-7">
             <div className="border-y border-bone/15 px-1 py-12 md:py-16">
-              <p className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/45">
+              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
                 Currently — empty calendar
               </p>
               <p className="mt-4 font-display text-3xl leading-[1.05] text-bone md:text-5xl">
@@ -47,7 +47,7 @@ export function UpcomingShowsBlock() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex h-12 items-center bg-hazard px-6 font-mono text-xs uppercase tracking-[0.22em] text-ink hover:bg-bone"
+                  className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
                 >
                   Get presale codes ↗
                 </Link>
@@ -55,7 +55,7 @@ export function UpcomingShowsBlock() {
                   href={site.social.eventbrite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs uppercase tracking-[0.22em] text-bone/65 hover:text-hazard"
+                  className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
                 >
                   See all dates ↗
                 </a>
