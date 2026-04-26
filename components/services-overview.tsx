@@ -1,73 +1,65 @@
 import Link from "next/link";
-import { services, servicesIntro } from "@/content/home";
-import { SectionHeader } from "@/components/section-header";
+import { services } from "@/content/home";
 
+// Tight TV-guide style listing. Just titles. The detail pages carry the
+// depth — the home is for orientation, not selling.
 export function ServicesOverview() {
   return (
     <section
       id="services"
       aria-label="Services"
-      className="relative border-b border-bone/10 bg-ink py-24 md:py-32"
+      className="relative bg-ink py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <SectionHeader
-              index="03"
-              eyebrow={servicesIntro.eyebrow}
-              title={
-                <>
-                  What We <span className="italic text-hazard">Do</span>
-                </>
-              }
-              subtitle={servicesIntro.subhead}
-            />
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65">
-              <Link href="/contact" className="hover:text-hazard">
-                Request a Quote ↗
-              </Link>
-              <Link href="/services" className="hover:text-hazard">
-                View Services ↗
-              </Link>
-              <Link
-                href="/services#venue-partner-program"
-                className="hover:text-hazard"
-              >
-                Venue Partner Program ↗
-              </Link>
-            </div>
+        <div className="grid gap-10 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-4">
+            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+              Now hiring out
+            </p>
+            <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
+              We do five things.
+            </h2>
           </div>
 
-          <ol className="md:col-span-7">
+          <ol className="md:col-span-8">
             {services.map((s, i) => (
               <li
                 key={s.slug}
-                className="group relative grid grid-cols-12 items-baseline gap-4 border-t border-bone/15 py-7 last:border-b transition-colors hover:bg-bone/[0.025]"
+                className="group grid grid-cols-12 items-baseline border-t border-bone/15 py-5 last:border-b transition-colors hover:bg-bone/[0.025]"
               >
                 <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
                   /{String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="col-span-10 md:col-span-7">
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="font-display text-2xl text-bone transition-colors group-hover:text-hazard md:text-4xl"
-                  >
-                    {s.title}
-                  </Link>
-                  <p className="mt-2 max-w-prose font-body text-sm text-bone/85 md:text-base">
-                    {s.blurb}
-                  </p>
-                </div>
                 <Link
                   href={`/services/${s.slug}`}
-                  aria-label={`Read about ${s.title}`}
-                  className="col-span-12 mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-hazard md:col-span-4 md:mt-0 md:text-right"
+                  className="col-span-9 font-display text-2xl text-bone transition-colors group-hover:text-hazard md:col-span-9 md:text-3xl"
                 >
-                  Read brief ↗
+                  {s.title}
                 </Link>
+                <span
+                  aria-hidden
+                  className="col-span-1 text-right font-body text-base text-bone/40 transition-colors group-hover:text-hazard md:col-span-2"
+                >
+                  ↗
+                </span>
               </li>
             ))}
           </ol>
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-bone/15 pt-8 md:mt-14">
+          <Link
+            href="/services"
+            className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+          >
+            See all services ↗
+          </Link>
+          <Link
+            href="/contact"
+            className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+          >
+            Or just email us ↗
+          </Link>
         </div>
       </div>
     </section>
