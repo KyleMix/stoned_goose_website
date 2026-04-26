@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { products, shopCopy } from "@/content/shop";
 import { PageHeader } from "@/components/page-header";
 
@@ -59,11 +60,12 @@ export default function ShopPage() {
                   className="flex h-full flex-col justify-between p-6 md:p-8"
                 >
                   <div className="relative aspect-square w-full overflow-hidden bg-haze-500">
-                    <img
+                    <Image
                       src={p.image}
                       alt={p.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter,transform] duration-500 group-hover:scale-[1.02] group-hover:[filter:grayscale(0)_contrast(1)]"
+                      fill
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                      className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter,transform] duration-500 group-hover:scale-[1.02] group-hover:[filter:grayscale(0)_contrast(1)]"
                     />
                     <span
                       aria-hidden

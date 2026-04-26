@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/section-header";
 export const metadata: Metadata = {
   title: "Members",
   description:
-    "Meet the crew behind Stoned Goose Productions — producers, performers, and media pros building comedy experiences across the Pacific Northwest.",
+    "Meet the crew behind Stoned Goose Productions. Producers, performers, and media pros building comedy experiences across the Pacific Northwest.",
 };
 
 export default function MembersPage() {

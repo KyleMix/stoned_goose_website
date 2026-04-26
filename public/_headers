@@ -1,0 +1,9 @@
+# Cloudflare Pages and Netlify both honor this format.
+# OG image routes from app/<route>/opengraph-image.tsx ship without a .png
+# extension; force the correct MIME so social scrapers render the card.
+
+/*/opengraph-image
+  Content-Type: image/png
+
+/services/*/opengraph-image
+  Content-Type: image/png

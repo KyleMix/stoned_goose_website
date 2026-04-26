@@ -8,7 +8,7 @@ import { TextField } from "@/components/form-field";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Live show production, comedian booking, corporate events, media & podcasts, and headshots & promo shoots — across Olympia, Lacey, Tacoma, and the South Sound.",
+    "Live show production, comedian booking, corporate events, media and podcasts, and headshots and promo shoots. Across Olympia, Lacey, Tacoma, and the South Sound.",
 };
 
 export default function ServicesPage() {
@@ -21,7 +21,7 @@ export default function ServicesPage() {
             Services<span className="text-hazard">.</span>
           </>
         }
-        body="We don't just tell jokes. We build the stage for them—and capture the headshots to match."
+        body="We don't just tell jokes. We build the stage for them. And capture the headshots to match."
       />
 
       <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
