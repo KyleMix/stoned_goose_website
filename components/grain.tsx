@@ -1,6 +1,6 @@
 // SVG-based grain overlay. Used site-wide via the root layout.
 // Tiny payload, no PNG. Honors prefers-reduced-motion (no animation by default).
-export function Grain({ opacity = 0.18 }: { opacity?: number }) {
+export function Grain({ opacity = 0.12 }: { opacity?: number }) {
   return (
     <div
       aria-hidden

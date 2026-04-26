@@ -36,28 +36,25 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-5 pb-10 pt-20 md:px-10 md:pt-32">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/45">
-              [ Issue 001 / Olympia, WA ]
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+              Olympia, WA
             </p>
-            <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-display md:text-7xl">
-              Stoned
-              <br />
-              Goose
-              <span className="text-hazard">.</span>
+            <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-[-0.02em] md:text-7xl">
+              Stoned Goose<span className="text-hazard">.</span>
             </h2>
-            <p className="mt-6 max-w-md font-body text-sm text-bone/70">
+            <p className="mt-6 max-w-md font-body text-sm text-bone/80">
               {site.description}
             </p>
-            <div className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-bone/60">
+            <div className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-bone/70">
               <p>{site.contact.email}</p>
               <p>{site.contact.phone}</p>
               <p>{site.contact.locality}, {site.contact.region}</p>
             </div>
           </div>
 
-          <FooterColumn label="Explore" items={explore} number="01" />
-          <FooterColumn label="Services" items={services} number="02" />
-          <FooterColumn label="Connect" items={connect} number="03" />
+          <FooterColumn label="Explore" items={explore} />
+          <FooterColumn label="Services" items={services} />
+          <FooterColumn label="Connect" items={connect} />
         </div>
 
         <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-bone/10 pt-8">
@@ -68,43 +65,34 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone/60 transition-colors hover:text-hazard"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-hazard"
               >
                 {s.label} <span aria-hidden>↗</span>
               </a>
             ))}
           </div>
-          <div className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/40">
+          <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
             <p>© {year} Stoned Goose Productions</p>
             <p>Website Design by Kyle Mixon.</p>
           </div>
         </div>
       </div>
 
-      <div
-        aria-hidden
-        className="select-none overflow-hidden whitespace-nowrap pb-6 text-center font-display tracking-display text-bone/[0.04]"
-        style={{ fontSize: "clamp(8rem, 28vw, 24rem)", lineHeight: 0.8 }}
-      >
-        STONED GOOSE
-      </div>
     </footer>
   );
 }
 
 function FooterColumn({
   label,
-  number,
   items,
 }: {
   label: string;
-  number: string;
   items: Array<{ label: string; href: string }>;
 }) {
   return (
     <div className="md:col-span-2">
-      <p className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/40">
-        {number} / {label}
+      <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+        {label}
       </p>
       <ul className="mt-4 space-y-2">
         {items.map((it) => (

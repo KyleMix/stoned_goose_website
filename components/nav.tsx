@@ -36,13 +36,11 @@ export function Nav() {
         <Link
           href="/"
           aria-label={`${site.shortName} home`}
-          className="group flex items-center gap-3"
+          className="group inline-flex items-baseline"
         >
-          <span className="font-display text-xl tracking-display text-bone md:text-2xl">
+          <span className="font-display text-xl leading-none tracking-[-0.02em] text-bone md:text-[1.4rem]">
             Stoned Goose
-          </span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-eyebrow text-bone/50 md:inline">
-            Productions
+            <span aria-hidden className="text-hazard">.</span>
           </span>
         </Link>
 
@@ -51,21 +49,18 @@ export function Nav() {
             <Link
               key={item.href}
               href={item.href}
-              className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone/70 transition-colors hover:text-hazard"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-hazard"
             >
               {item.label}
             </Link>
           ))}
-        </nav>
-
-        <div className="hidden md:block">
           <Link
             href="/services"
-            className="inline-flex h-10 items-center justify-center border border-bone/30 px-5 font-mono text-[11px] uppercase tracking-[0.22em] text-bone transition-colors hover:border-hazard hover:bg-hazard hover:text-ink"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 transition-colors hover:text-hazard"
           >
-            Book a Show
+            Book a Show ↗
           </Link>
-        </div>
+        </nav>
 
         <button
           type="button"
@@ -109,10 +104,10 @@ export function Nav() {
                   onClick={() => setOpen(false)}
                   className="flex items-baseline justify-between py-5"
                 >
-                  <span className="font-display text-4xl uppercase tracking-display text-bone">
+                  <span className="font-display text-4xl uppercase tracking-[-0.02em] text-bone">
                     {item.label}
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/40">
+                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </Link>
@@ -123,11 +118,11 @@ export function Nav() {
             <Link
               href="/services"
               onClick={() => setOpen(false)}
-              className="flex h-12 w-full items-center justify-center bg-hazard font-mono text-xs uppercase tracking-[0.22em] text-ink"
+              className="flex h-12 w-full items-center justify-center bg-hazard font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink"
             >
               Book a Show
             </Link>
-            <p className="font-mono text-[10px] uppercase tracking-eyebrow text-bone/40">
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
               {site.contact.email}
             </p>
           </div>
