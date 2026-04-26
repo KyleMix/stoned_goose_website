@@ -1,3 +1,6 @@
+// TODO(owner): figures below are placeholders pending verification.
+// House rule: no invented stats. Confirm or replace each value.
+// Mirror any updates in public/sponsorship-one-sheet.txt.
 export const sponsorshipStats = [
   {
     label: "Monthly in-room audience",

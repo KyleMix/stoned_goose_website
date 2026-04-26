@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { reels, watchCopy } from "@/content/watch";
+import { reels, watchCopy, youtubeVideos } from "@/content/watch";
 import { featuredSpecial } from "@/content/shows";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
@@ -58,17 +58,19 @@ export default function WatchPage() {
                   className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex h-20 w-20 items-center justify-center bg-hazard text-ink md:h-28 md:w-28">
-                    <span aria-hidden className="text-3xl md:text-5xl">
-                      ▸
+                  {featuredSpecial.videoUrl ? (
+                    <span className="flex h-20 w-20 items-center justify-center bg-hazard text-ink md:h-28 md:w-28">
+                      <span aria-hidden className="text-3xl md:text-5xl">
+                        ▸
+                      </span>
                     </span>
-                  </span>
+                  ) : (
+                    <span className="bg-ink/85 px-5 py-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-bone backdrop-blur-sm md:text-xs">
+                      Coming soon
+                    </span>
+                  )}
                 </div>
               </div>
-              <p className="mt-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
-                * Video URL pending. Drop a YouTube embed in
-                content/shows.ts &gt; featuredSpecial.videoUrl when ready.
-              </p>
             </div>
 
             <div className="md:col-span-4">
@@ -150,6 +152,65 @@ export default function WatchPage() {
           </ul>
         </div>
       </section>
+
+      {youtubeVideos.length > 0 ? (
+        <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                From the channel
+              </h2>
+              <a
+                href={site.social.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              >
+                @stonedgooseproductions ↗
+              </a>
+            </div>
+            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {youtubeVideos.map((v) => (
+                <li key={v.id}>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${v.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
+                    <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
+                      <Image
+                        src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+                        alt={v.title}
+                        fill
+                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                        className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)]"
+                      />
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="flex h-14 w-14 items-center justify-center bg-hazard text-ink">
+                          <span aria-hidden className="text-xl">
+                            ▸
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <p className="mt-3 font-display text-xl text-bone group-hover:text-hazard md:text-2xl">
+                      {v.title}
+                    </p>
+                    <p className="mt-1 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+                      YouTube
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
 
       <section className="bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
