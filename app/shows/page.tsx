@@ -10,7 +10,7 @@ import { TextField } from "@/components/form-field";
 export const metadata: Metadata = {
   title: "Shows",
   description:
-    "Live lineups, presales, and ticket drops across Olympia and the South Sound — plus Xavier Rake's full comedy special.",
+    "Live lineups, presales, and ticket drops across Olympia and the South Sound. Plus Xavier Rake's full comedy special.",
 };
 
 function formatDate(value: string | null) {
@@ -33,8 +33,43 @@ function formatTime(value: string | null) {
 export default function ShowsPage() {
   const hasShows = upcomingShows.length > 0;
 
+  const eventsJsonLd = upcomingShows.map((show) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: show.name,
+    description: show.summary,
+    startDate: show.start,
+    endDate: show.end,
+    url: show.url ?? site.social.eventbrite,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: show.venue?.name,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: show.venue?.address,
+        addressLocality: show.venue?.city,
+        addressRegion: show.venue?.region,
+        addressCountry: show.venue?.country ?? "US",
+      },
+    },
+    organizer: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+    },
+  }));
+
   return (
     <>
+      {eventsJsonLd.map((evt, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(evt) }}
+        />
+      ))}
       <PageHeader
         eyebrow="Tour Diary"
         title={
@@ -181,7 +216,7 @@ export default function ShowsPage() {
           ) : (
             <div className="border-y border-bone/15 px-1 py-12 md:py-16">
               <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
-                Currently — empty calendar
+                Currently. Empty calendar.
               </p>
               <p className="mt-4 max-w-3xl font-display text-3xl leading-[1.05] text-bone md:text-5xl">
                 {showsCopy.emptyState}

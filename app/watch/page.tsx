@@ -4,11 +4,12 @@ import { reels, watchCopy, youtubeVideos } from "@/content/watch";
 import { featuredSpecial } from "@/content/shows";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
+import { ReelCard } from "@/components/reel-card";
 
 export const metadata: Metadata = {
   title: "Watch",
   description:
-    "Clips, reels, and full sets from Stoned Goose Productions — including Xavier Rake's full comedy special.",
+    "Clips, reels, and full sets from Stoned Goose Productions. Xavier Rake's full comedy special drops here.",
 };
 
 export default function WatchPage() {
@@ -113,41 +114,7 @@ export default function WatchPage() {
           </div>
           <ul className="grid gap-6 sm:grid-cols-2">
             {reels.map((r) => (
-              <li key={r.url}>
-                <a
-                  href={r.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block"
-                >
-                  <div className="relative aspect-[9/16] w-full overflow-hidden bg-haze-500">
-                    <Image
-                      src={r.poster}
-                      alt={r.title}
-                      fill
-                      sizes="(min-width: 640px) 45vw, 90vw"
-                      className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)]"
-                    />
-                    <span
-                      aria-hidden
-                      className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="flex h-14 w-14 items-center justify-center bg-hazard text-ink">
-                        <span aria-hidden className="text-xl">
-                          ▸
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                  <p className="mt-3 font-display text-xl text-bone group-hover:text-hazard md:text-2xl">
-                    {r.title}
-                  </p>
-                  <p className="mt-1 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
-                    Instagram Reel
-                  </p>
-                </a>
-              </li>
+              <ReelCard key={r.url} title={r.title} url={r.url} poster={r.poster} />
             ))}
           </ul>
         </div>

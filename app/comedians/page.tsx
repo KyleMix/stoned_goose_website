@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/page-header";
 export const metadata: Metadata = {
   title: "Comedians",
   description:
-    "Comedians on the Stoned Goose Productions roster — the funniest people in the Pacific Northwest.",
+    "Comedians on the Stoned Goose Productions roster. The funniest people in the Pacific Northwest.",
 };
 
 export default function ComediansPage() {

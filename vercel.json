@@ -6,5 +6,11 @@
     { "source": "/comic-submissions", "destination": "/submit", "permanent": true },
     { "source": "/sponsorships", "destination": "/sponsor", "permanent": true },
     { "source": "/book-a-show", "destination": "/services", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/:path*/opengraph-image",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+    }
   ]
 }

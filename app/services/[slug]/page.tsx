@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services } from "@/content/services";
+import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
@@ -39,8 +40,29 @@ export default async function ServiceDetailPage(props: {
   const idx = services.findIndex((s) => s.slug === slug);
   const next = services[(idx + 1) % services.length];
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: svc.title,
+    description: svc.metaDescription,
+    serviceType: svc.title,
+    url: `${site.url}/services/${svc.slug}`,
+    areaServed: site.serviceAreas,
+    provider: {
+      "@type": "LocalBusiness",
+      name: site.name,
+      url: site.url,
+      email: site.contact.email,
+      telephone: site.contact.phoneTel,
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <PageHeader
         eyebrow="Service / Brief"
         title={
