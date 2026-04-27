@@ -1,7 +1,6 @@
 // Stats render with the literal `value` string. Until the owner provides
 // verified figures, leave value as `null` and the page renders a placeholder
-// dash. House rule: no invented stats. Mirror any updates in
-// public/sponsorship-one-sheet.txt when one lands.
+// dash. House rule: no invented stats.
 export type SponsorshipStat = {
   label: string;
   value: string | null;
