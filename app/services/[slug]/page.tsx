@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { BreadcrumbList, FAQPage, Service } from "schema-dts";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
 import { StickyQuoteRail } from "@/components/sticky-quote-rail";
+import { jsonLdString } from "@/lib/jsonld";
 
 type Params = { slug: string };
 
@@ -41,14 +43,13 @@ export default async function ServiceDetailPage(props: {
   const idx = services.findIndex((s) => s.slug === slug);
   const next = services[(idx + 1) % services.length];
 
-  const serviceJsonLd = {
-    "@context": "https://schema.org",
+  const serviceJsonLd: Service = {
     "@type": "Service",
     name: svc.title,
     description: svc.metaDescription,
     serviceType: svc.title,
     url: `${site.url}/services/${svc.slug}`,
-    areaServed: site.serviceAreas,
+    areaServed: [...site.serviceAreas],
     provider: {
       "@type": "LocalBusiness",
       name: site.name,
@@ -58,8 +59,7 @@ export default async function ServiceDetailPage(props: {
     },
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
+  const breadcrumbJsonLd: BreadcrumbList = {
     "@type": "BreadcrumbList",
     itemListElement: [
       {
@@ -77,15 +77,31 @@ export default async function ServiceDetailPage(props: {
     ],
   };
 
+  const faqJsonLd: FAQPage = {
+    "@type": "FAQPage",
+    mainEntity: svc.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(serviceJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdString(faqJsonLd) }}
       />
       <PageHeader
         eyebrow="Service / Brief"
@@ -153,6 +169,8 @@ export default async function ServiceDetailPage(props: {
                 source={`/services/${svc.slug}`}
                 submitLabel="Request Quote"
                 formName="quote"
+                schema="quote"
+                staticPayload={{ service: svc.slug }}
                 successEvents={[
                   {
                     name: "Quote Submitted",
@@ -196,7 +214,6 @@ export default async function ServiceDetailPage(props: {
                   rows={4}
                   placeholder={`What are you putting together? Anything specific to ${svc.title.toLowerCase()}?`}
                 />
-                <input type="hidden" name="service" value={svc.slug} />
               </ContactForm>
             </div>
           </div>

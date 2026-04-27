@@ -4,27 +4,56 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run sync || true",
     "build": "next build",
+    "postbuild": "tsx scripts/build-shows-feeds.ts",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "analyze": "ANALYZE=true next build",
+    "sync": "npm run sync:shows && npm run sync:facebook-events && npm run sync:youtube && npm run sync:fourthwall && npm run sync:instagram && npm run sync:facebook && npm run sync:patreon",
+    "sync:shows": "tsx scripts/sync-shows.ts",
+    "sync:youtube": "tsx scripts/sync-youtube.ts",
+    "sync:fourthwall": "tsx scripts/sync-fourthwall.ts",
+    "sync:instagram": "tsx scripts/sync-instagram.ts",
+    "sync:facebook": "tsx scripts/sync-facebook.ts",
+    "sync:facebook-events": "tsx scripts/sync-facebook-events.ts",
+    "sync:patreon": "tsx scripts/sync-patreon.ts",
+    "refresh:instagram-token": "tsx scripts/refresh-instagram-token.ts",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs}": [
+      "next lint --fix --file"
+    ]
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-dialog": "^1.1.15",
     "clsx": "^2.1.1",
+    "feed": "^5.2.1",
     "framer-motion": "^11.11.17",
+    "ics": "^3.12.0",
     "next": "15.5.15",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.74.0",
+    "schema-dts": "^2.0.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.2.4",
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.14.0",
     "eslint-config-next": "15.5.15",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.14",
+    "tsx": "^4.21.0",
     "typescript": "^5.6.3"
   },
   "engines": {

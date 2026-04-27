@@ -1,3 +1,5 @@
+import generatedShows from "./.generated/shows.json";
+
 export type Show = {
   id: string;
   name: string;
@@ -22,12 +24,22 @@ export type Show = {
   ticketPrice?: string;
   /** Display-only door time. e.g. "Doors 7pm". */
   doorTime?: string;
+  /** Where this row came from. Set by sync scripts. Manual entries default
+   *  to "manual". Lets the owner audit the merge order at a glance. */
+  source?: "eventbrite" | "facebook" | "manual";
 };
 
-// Static export, no API. Live Eventbrite feed lived at /api/eventbrite in the
-// previous build; today the calendar is empty per the original site's empty-state.
-// Add real shows here when they're confirmed.
-export const upcomingShows: Show[] = [];
+// Static export, no API. Hand-edited by the owner when the sync scripts
+// aren't wired up. When content/.generated/shows.json exists and is non-empty
+// (written by scripts/sync-shows.ts at prebuild), that file overrides this list.
+const manualShows: Show[] = [];
+
+const fromGenerated =
+  Array.isArray(generatedShows) && generatedShows.length > 0
+    ? (generatedShows as Show[])
+    : null;
+
+export const upcomingShows: Show[] = fromGenerated ?? manualShows;
 
 // Optional presale strip on /shows. Renders only when populated.
 // Owner-editable: drop in a code, expiration date (YYYY-MM-DD), and venue name
