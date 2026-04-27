@@ -1,3 +1,5 @@
+import generatedYoutube from "./.generated/youtube.json";
+
 export type Reel = {
   title: string;
   url: string;
@@ -12,7 +14,15 @@ export type YouTubeVideo = {
 
 // Hardcoded YouTube channel grid. Static export, no /api/youtube. Owner pastes
 // videos here in display order. Empty array hides the grid section on /watch.
-export const youtubeVideos: YouTubeVideo[] = [];
+const manualYoutubeVideos: YouTubeVideo[] = [];
+
+const fromGeneratedYoutube =
+  Array.isArray(generatedYoutube) && generatedYoutube.length > 0
+    ? (generatedYoutube as YouTubeVideo[])
+    : null;
+
+export const youtubeVideos: YouTubeVideo[] =
+  fromGeneratedYoutube ?? manualYoutubeVideos;
 
 export const reels: Reel[] = [
   {

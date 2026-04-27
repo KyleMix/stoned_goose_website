@@ -4,11 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run sync || true",
     "build": "next build",
     "postbuild": "tsx scripts/build-shows-feeds.ts",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sync": "npm run sync:shows && npm run sync:youtube && npm run sync:fourthwall",
+    "sync:shows": "tsx scripts/sync-shows.ts",
+    "sync:youtube": "tsx scripts/sync-youtube.ts",
+    "sync:fourthwall": "tsx scripts/sync-fourthwall.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

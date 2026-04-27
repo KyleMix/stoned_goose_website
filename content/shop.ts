@@ -1,3 +1,5 @@
+import generatedProducts from "./.generated/products.json";
+
 export type Product = {
   name: string;
   price: string;
@@ -11,8 +13,8 @@ const FW = "https://stoned-goose-productions-zgm-shop.fourthwall.com";
 // the build stays static. No hotlinking concerns since they're public CDN.
 //
 // TODO(owner): products with `image: ""` are hidden from /shop until URLs land.
-// Open the product on Fourthwall, copy the imgproxy URL, paste it here.
-export const products: Product[] = [
+// Run `npm run sync:fourthwall` to refresh from the API instead.
+const manualProducts: Product[] = [
   {
     name: "Metal Goose",
     price: "$20.00",
@@ -125,6 +127,13 @@ export const products: Product[] = [
     image: "",
   },
 ];
+
+const fromGeneratedProducts =
+  Array.isArray(generatedProducts) && generatedProducts.length > 0
+    ? (generatedProducts as Product[])
+    : null;
+
+export const products: Product[] = fromGeneratedProducts ?? manualProducts;
 
 export const shopCopy = {
   heading: "Fresh Merch",
