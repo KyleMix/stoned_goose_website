@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { track } from "@/lib/analytics";
 
 type Props = {
   title: string;
@@ -36,7 +37,11 @@ export function ReelCard({ title, url, poster }: Props) {
         ) : (
           <button
             type="button"
-            onClick={() => embedSrc && setLoaded(true)}
+            onClick={() => {
+              if (!embedSrc) return;
+              track("Reel Play", { reel: title });
+              setLoaded(true);
+            }}
             disabled={!embedSrc}
             aria-label={`Play ${title}`}
             className="group absolute inset-0 block h-full w-full"
@@ -69,6 +74,7 @@ export function ReelCard({ title, url, poster }: Props) {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track("Outbound Click", { destination: "instagram" })}
           className="text-bone/65 hover:text-hazard"
         >
           open on instagram ↗

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/content/site";
+import { track } from "@/lib/analytics";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -56,6 +57,7 @@ export function Nav() {
           ))}
           <Link
             href="/services"
+            onClick={() => track("CTA Click", { cta: "nav-book-a-show" })}
             className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 transition-colors hover:text-hazard"
           >
             Book a Show ↗
@@ -117,7 +119,10 @@ export function Nav() {
           <div className="space-y-3 pt-8">
             <Link
               href="/services"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                track("CTA Click", { cta: "nav-book-a-show-mobile" });
+                setOpen(false);
+              }}
               className="flex h-12 w-full items-center justify-center bg-hazard font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink"
             >
               Book a Show

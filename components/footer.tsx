@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { site } from "@/content/site";
+import { track } from "@/lib/analytics";
 
 const explore = [
   { label: "Home", href: "/" },
@@ -20,12 +23,12 @@ const connect = [
   { label: "Contact", href: "/contact" },
 ];
 
-const socials: Array<{ label: string; href: string }> = [
-  { label: "Instagram", href: site.social.instagram },
-  { label: "Facebook", href: site.social.facebook },
-  { label: "TikTok", href: site.social.tiktok },
-  { label: "YouTube", href: site.social.youtube },
-  { label: "Patreon", href: site.social.patreon },
+const socials: Array<{ label: string; href: string; destination: string }> = [
+  { label: "Instagram", href: site.social.instagram, destination: "instagram" },
+  { label: "Facebook", href: site.social.facebook, destination: "facebook" },
+  { label: "TikTok", href: site.social.tiktok, destination: "tiktok" },
+  { label: "YouTube", href: site.social.youtube, destination: "youtube" },
+  { label: "Patreon", href: site.social.patreon, destination: "patreon" },
 ];
 
 export function Footer() {
@@ -65,6 +68,9 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  track("Outbound Click", { destination: s.destination })
+                }
                 className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-hazard"
               >
                 {s.label} <span aria-hidden>↗</span>

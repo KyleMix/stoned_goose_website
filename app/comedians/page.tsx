@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/page-header";
 export const metadata: Metadata = {
   title: "Comedians",
   description:
-    "Comedians on the Stoned Goose Productions roster. The funniest people in the Pacific Northwest.",
+    "Comedians booked, produced, and platformed by Stoned Goose Productions across Olympia, Lacey, Tacoma, and the South Sound.",
 };
 
 export default function ComediansPage() {

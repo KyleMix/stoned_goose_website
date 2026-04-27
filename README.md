@@ -154,7 +154,7 @@ npx lighthouse http://localhost:4173/shop --only-categories=performance,accessib
 
 Targets: 90+ across Performance, Accessibility, Best Practices, SEO.
 
-Log results below as scores land.
+Log results below as scores land. Note any score below 90 and the cause.
 
 | Route | Performance | Accessibility | Best Practices | SEO | Run date |
 |---|---|---|---|---|---|
@@ -163,11 +163,12 @@ Log results below as scores land.
 | `/services` | TBD | TBD | TBD | TBD | TBD |
 | `/watch` | TBD | TBD | TBD | TBD | TBD |
 | `/shop` | TBD | TBD | TBD | TBD | TBD |
+| `/sponsor` | TBD | TBD | TBD | TBD | TBD |
 
 > Lighthouse runs require a Chromium binary, which the build container does
 > not ship. Run locally before sign-off using the commands above, or paste
-> scores from a deployed preview (Vercel/Cloudflare). Don't merge without a
-> row populated.
+> scores from a deployed preview (Vercel/Cloudflare). Don't merge without
+> a row populated.
 
 ### Latest static-export verification (2026-04-27)
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { upcomingShows } from "@/content/shows";
 import { site } from "@/content/site";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 
 // Tight home-page version. Empty state shown verbatim; a future state with
 // real shows renders a 3-row preview, then defers detail to /shows.
@@ -58,14 +59,15 @@ export function UpcomingShowsBlock() {
               >
                 See the shows page ↗
               </Link>
-              <a
+              <TrackedAnchor
+                destination="eventbrite"
                 href={site.social.eventbrite}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
               >
                 Eventbrite ↗
-              </a>
+              </TrackedAnchor>
             </div>
           </div>
         </div>
