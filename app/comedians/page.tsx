@@ -25,6 +25,9 @@ export default function ComediansPage() {
 
       <section className="bg-ink py-16 md:py-20">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <p className="mb-12 font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
+            {comediansCopy.kicker}
+          </p>
           <ul className="grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {comedians.map((c) => (
               <li key={c.name} className="group">

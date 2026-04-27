@@ -4,6 +4,7 @@ import { RotatingBumper } from "@/components/rotating-bumper";
 import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
 import { ServicesOverview } from "@/components/services-overview";
 import { MailingListCapture } from "@/components/mailing-list-capture";
+import { PressStrip } from "@/components/press-strip";
 import { marqueeWords, mission } from "@/content/home";
 
 export default function HomePage() {
@@ -19,6 +20,8 @@ export default function HomePage() {
       <RotatingBumper slot="aside" />
 
       <ServicesOverview />
+
+      <PressStrip />
 
       {mission ? (
         <section className="border-y border-bone/10 bg-ink py-24 md:py-32">

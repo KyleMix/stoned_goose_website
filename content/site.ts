@@ -32,6 +32,17 @@ export const site = {
   ],
 } as const;
 
+// Optional press quotes. Renders a slim row on home + /sponsor when populated.
+// Owner-editable. House rule: no invented quotes. Each quote must be real and
+// attributable. Drop entries here when press lands.
+export type PressItem = {
+  quote: string;
+  outlet: string;
+  url?: string;
+};
+
+export const press: PressItem[] = [];
+
 export const nav = [
   { label: "Shows", href: "/shows" },
   { label: "Members", href: "/members" },

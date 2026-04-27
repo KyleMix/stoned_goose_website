@@ -6,9 +6,13 @@ export type Comedian = {
 };
 
 // Owner-editable. Clarifies the "Our Friends." framing per audit.
+// `subhead` is the body line under the H1.
+// `kicker` is the slim mono kicker line that sits between the H1 and the grid.
 export const comediansCopy = {
   subhead:
     "Booked, produced, or platformed by Stoned Goose. Plus the friends who keep showing up.",
+  kicker:
+    "Comics we've booked, comics we run with, comics we'll book again.",
 };
 
 export const comedians: Comedian[] = [
