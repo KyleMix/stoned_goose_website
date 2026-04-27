@@ -7,11 +7,12 @@ import { PageHeader } from "@/components/page-header";
 import { ReelCard } from "@/components/reel-card";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 
 export const metadata: Metadata = {
   title: "Watch",
   description:
-    "Clips, reels, and full sets from Stoned Goose Productions. Xavier Rake's full comedy special drops here.",
+    "Watch Stoned Goose Productions clips, reels, and Xavier Rake's full comedy special when it lands.",
 };
 
 export default function WatchPage() {
@@ -35,14 +36,15 @@ export default function WatchPage() {
             <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
               Featured / Full Special
             </p>
-            <a
+            <TrackedAnchor
+              destination="instagram"
               href={featuredSpecial.comedianHandle}
               target="_blank"
               rel="noopener noreferrer"
               className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
             >
               {featuredSpecial.title} on Instagram ↗
-            </a>
+            </TrackedAnchor>
           </div>
 
           <article className="grid gap-8 md:grid-cols-12">
@@ -64,14 +66,15 @@ export default function WatchPage() {
               <p className="mt-6 font-body text-base text-bone/85 md:text-lg">
                 {featuredSpecial.blurb}
               </p>
-              <a
+              <TrackedAnchor
+                destination="youtube"
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:bg-hazard hover:text-ink"
               >
                 Channel on YouTube ↗
-              </a>
+              </TrackedAnchor>
             </div>
           </article>
         </div>
@@ -83,14 +86,15 @@ export default function WatchPage() {
             <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
               Reels
             </h2>
-            <a
+            <TrackedAnchor
+              destination="instagram"
               href={site.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
             >
               @stonedgooseproductions ↗
-            </a>
+            </TrackedAnchor>
           </div>
           <ul className="grid gap-6 sm:grid-cols-2">
             {reels.map((r) => (
@@ -107,19 +111,21 @@ export default function WatchPage() {
               <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
                 From the channel
               </h2>
-              <a
+              <TrackedAnchor
+                destination="youtube"
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
               >
                 @stonedgooseproductions ↗
-              </a>
+              </TrackedAnchor>
             </div>
             <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {youtubeVideos.map((v) => (
                 <li key={v.id}>
-                  <a
+                  <TrackedAnchor
+                    destination="youtube"
                     href={`https://www.youtube.com/watch?v=${v.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -151,7 +157,7 @@ export default function WatchPage() {
                     <p className="mt-1 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
                       YouTube
                     </p>
-                  </a>
+                  </TrackedAnchor>
                 </li>
               ))}
             </ul>
@@ -167,14 +173,15 @@ export default function WatchPage() {
           <p className="mt-4 max-w-2xl font-body text-base text-bone/85 md:text-lg">
             {watchCopy.emptyClipsLine}
           </p>
-          <a
+          <TrackedAnchor
+            destination="youtube"
             href={site.social.youtube}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
           >
             Open the channel ↗
-          </a>
+          </TrackedAnchor>
         </div>
       </section>
 

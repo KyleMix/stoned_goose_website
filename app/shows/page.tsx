@@ -5,6 +5,7 @@ import { featuredSpecial, presale, showsCopy, upcomingShows } from "@/content/sh
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 
 export const metadata: Metadata = {
   title: "Shows",
@@ -170,14 +171,15 @@ export default function ShowsPage() {
                     Coming soon
                   </span>
                 )}
-                <a
+                <TrackedAnchor
+                  destination="instagram"
                   href={featuredSpecial.comedianHandle}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
                 >
                   @jokedeal3r ↗
-                </a>
+                </TrackedAnchor>
               </div>
             </div>
           </div>
@@ -191,14 +193,15 @@ export default function ShowsPage() {
             <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
               Upcoming dates
             </h2>
-            <a
+            <TrackedAnchor
+              destination="eventbrite"
               href={site.social.eventbrite}
               target="_blank"
               rel="noopener noreferrer"
               className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
             >
               View all on Eventbrite ↗
-            </a>
+            </TrackedAnchor>
           </div>
 
           {hasShows ? (
@@ -243,14 +246,15 @@ export default function ShowsPage() {
                     </div>
                     <div className="col-span-12 md:col-span-3 md:text-right">
                       {show.ticketUrl ? (
-                        <a
+                        <TrackedAnchor
+                          destination="ticketing"
                           href={show.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
                         >
                           Get tickets ↗
-                        </a>
+                        </TrackedAnchor>
                       ) : (
                         <span className="inline-flex h-11 items-center border border-bone/30 px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65">
                           {status === "free"
@@ -272,14 +276,15 @@ export default function ShowsPage() {
                 {showsCopy.emptyState}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a
+                <TrackedAnchor
+                  destination="eventbrite"
                   href={site.social.eventbrite}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
                 >
                   See all dates on Eventbrite ↗
-                </a>
+                </TrackedAnchor>
               </div>
             </div>
           )}

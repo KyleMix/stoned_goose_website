@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { products, shopCopy } from "@/content/shop";
 import { PageHeader } from "@/components/page-header";
 import { ShopProductCard } from "@/components/shop-product-card";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Rep the Goose. Look cool. Be happy.",
+  description:
+    "Shop Stoned Goose Productions merch. Hoodies, hats, stickers, and the metal goose. Checkout handled by Fourthwall.",
 };
 
 export default function ShopPage() {
@@ -30,14 +32,15 @@ export default function ShopPage() {
           <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
             {visibleProducts.length} products / external checkout via Fourthwall
           </p>
-          <a
+          <TrackedAnchor
+            destination="fourthwall"
             href={shopCopy.collectionUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
           >
             View OG Bigboy collection ↗
-          </a>
+          </TrackedAnchor>
         </div>
       </section>
 
@@ -60,14 +63,15 @@ export default function ShopPage() {
             })}
           </ul>
           <div className="mt-10 flex justify-end">
-            <a
+            <TrackedAnchor
+              destination="fourthwall"
               href={shopCopy.storeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
             >
               More merch on Fourthwall ↗
-            </a>
+            </TrackedAnchor>
           </div>
         </div>
       </section>
@@ -82,14 +86,15 @@ export default function ShopPage() {
             Checkout, sizing, and shipping are handled by Fourthwall. Use the
             store link if you want the full collection or supporter pricing.
           </p>
-          <a
+          <TrackedAnchor
+            destination="fourthwall"
             href={shopCopy.storeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-8 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
           >
             Open the store ↗
-          </a>
+          </TrackedAnchor>
         </div>
       </section>
     </>
