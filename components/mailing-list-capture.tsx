@@ -25,7 +25,7 @@ export function MailingListCapture({ page }: Props) {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload: Record<string, string> = {
-      _subject: `Mailing list signup — ${page}`,
+      _subject: `Mailing list signup. ${page}`,
       _captcha: "false",
       source: `Mailing list / ${page}`,
       page,
