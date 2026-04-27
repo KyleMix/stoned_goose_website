@@ -57,11 +57,34 @@ export default async function ServiceDetailPage(props: {
     },
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Services",
+        item: `${site.url}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: svc.title,
+        item: `${site.url}/services/${svc.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <PageHeader
         eyebrow="Service / Brief"

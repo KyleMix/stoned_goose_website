@@ -164,6 +164,28 @@ Log results below as scores land.
 | `/watch` | TBD | TBD | TBD | TBD | TBD |
 | `/shop` | TBD | TBD | TBD | TBD | TBD |
 
+> Lighthouse runs require a Chromium binary, which the build container does
+> not ship. Run locally before sign-off using the commands above, or paste
+> scores from a deployed preview (Vercel/Cloudflare). Don't merge without a
+> row populated.
+
+### Latest static-export verification (2026-04-27)
+
+Run from the build container against `npm run build` output served by `npx serve out`.
+
+- `npm run build` — green, 33 routes generated (10 pages + 5 service slugs + 10 OG cards + 8 service slug variants).
+- `npm run lint` — green, zero warnings.
+- `npm run typecheck` — green.
+- Smoke checks via `curl`:
+  - `/`, `/shows`, `/services`, `/watch`, `/shop`, `/sitemap.xml` all 200.
+  - Per-route `/<path>/opengraph-image` 200 with PNG response.
+  - `out/about/index.html` ships meta-refresh to `/members/`; `out/_redirects`
+    ships 308s for all five legacy slugs.
+  - Layout `LocalBusiness` JSON-LD present on every page.
+  - `Service` + `BreadcrumbList` JSON-LD present on `/services/<slug>`.
+  - `Event` JSON-LD scaffolded on `/shows`, currently empty (no shows on calendar).
+- `out/sitemap.xml` enumerates 15 URLs (10 statics + 5 service slugs).
+
 ## Project docs
 
 - `AUDIT.md`: snapshot audit driving the `site/audit-fixes` branch.
