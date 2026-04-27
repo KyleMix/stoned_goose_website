@@ -4,6 +4,7 @@ import { services, pricingTiers } from "@/content/services";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField } from "@/components/form-field";
+import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -123,7 +124,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-ink py-20 md:py-24">
+      <section id="quote" className="bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
@@ -144,10 +145,17 @@ export default function ServicesPage() {
               </ul>
             </div>
             <div className="md:col-span-7">
+              <p className="mb-6 font-body text-sm text-bone/65">
+                Share your event basics. We map talent, tech, and run-of-show against your audience and budget.
+              </p>
               <ContactForm
                 subject="Quick Quote"
                 source="Services page"
                 submitLabel="Request Quote"
+                formName="quote"
+                successEvents={[
+                  { name: "Quote Submitted", props: { service: "general" } },
+                ]}
               >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField
@@ -185,11 +193,14 @@ export default function ServicesPage() {
                   autoComplete="email"
                   placeholder="you@email.com"
                 />
+                <input type="hidden" name="service" value="general" />
               </ContactForm>
             </div>
           </div>
         </div>
       </section>
+
+      <StickyQuoteRail label="All services" targetId="quote" />
     </>
   );
 }

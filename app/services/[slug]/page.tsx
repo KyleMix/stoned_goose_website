@@ -6,6 +6,7 @@ import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
+import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 
 type Params = { slug: string };
 
@@ -132,7 +133,7 @@ export default async function ServiceDetailPage(props: {
         </div>
       </section>
 
-      <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+      <section id="quote" className="border-b border-bone/10 bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
@@ -144,10 +145,20 @@ export default async function ServiceDetailPage(props: {
               </p>
             </div>
             <div className="md:col-span-7">
+              <p className="mb-6 font-body text-sm text-bone/65">
+                {svc.whatYouGet[0]}
+              </p>
               <ContactForm
-                subject={`Quote — ${svc.title}`}
+                subject={`Quote. ${svc.title}`}
                 source={`/services/${svc.slug}`}
                 submitLabel="Request Quote"
+                formName="quote"
+                successEvents={[
+                  {
+                    name: "Quote Submitted",
+                    props: { service: svc.slug, tier: "unspecified" },
+                  },
+                ]}
               >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField
@@ -185,7 +196,7 @@ export default async function ServiceDetailPage(props: {
                   rows={4}
                   placeholder={`What are you putting together? Anything specific to ${svc.title.toLowerCase()}?`}
                 />
-                <input type="hidden" name="service" value={svc.title} />
+                <input type="hidden" name="service" value={svc.slug} />
               </ContactForm>
             </div>
           </div>
@@ -199,18 +210,28 @@ export default async function ServiceDetailPage(props: {
           </h2>
           <ul className="mt-10 divide-y divide-bone/15 border-y border-bone/15">
             {svc.faqs.map((f, i) => (
-              <li key={i} className="grid grid-cols-12 gap-x-6 py-7">
-                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
-                  /0{i + 1}
-                </span>
-                <div className="col-span-10 md:col-span-11">
-                  <h3 className="font-display text-2xl text-bone md:text-3xl">
-                    {f.q}
-                  </h3>
-                  <p className="mt-3 max-w-prose font-body text-base text-bone/85">
-                    {f.a}
-                  </p>
-                </div>
+              <li key={i} className="py-7">
+                <details className="group grid grid-cols-12 gap-x-6">
+                  <summary className="col-span-12 grid cursor-pointer grid-cols-12 items-baseline gap-x-6 list-none [&::-webkit-details-marker]:hidden">
+                    <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
+                      /0{i + 1}
+                    </span>
+                    <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-hazard md:col-span-10 md:text-3xl">
+                      {f.q}
+                    </h3>
+                    <span
+                      aria-hidden
+                      className="col-span-1 text-right font-body text-xl text-bone/55 transition-transform duration-200 group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <div className="col-span-12 mt-4 md:col-start-2 md:col-span-11">
+                    <p className="max-w-prose font-body text-base text-bone/85">
+                      {f.a}
+                    </p>
+                  </div>
+                </details>
               </li>
             ))}
           </ul>
@@ -237,6 +258,8 @@ export default async function ServiceDetailPage(props: {
           </div>
         </div>
       </section>
+
+      <StickyQuoteRail label={svc.title} targetId="quote" />
     </>
   );
 }

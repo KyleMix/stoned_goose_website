@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { hero } from "@/content/home";
+import { track } from "@/lib/analytics";
 
 export function Hero() {
   return (
@@ -45,6 +48,7 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 md:mt-12">
           <Link
             href={hero.primary.href}
+            onClick={() => track("CTA Click", { cta: "hero-primary" })}
             className="group inline-flex h-12 items-center gap-3 bg-hazard px-7 font-body text-sm font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone"
           >
             {hero.primary.label}

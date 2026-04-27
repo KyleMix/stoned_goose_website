@@ -1,7 +1,13 @@
 "use client";
 
-import { type FormEvent, type ReactNode, useState } from "react";
+import { type FormEvent, type ReactNode, useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
+import { track } from "@/lib/analytics";
+
+type SuccessEvent = {
+  name: string;
+  props?: Record<string, string>;
+};
 
 type Props = {
   /** formsubmit.co subject line for the email */
@@ -14,6 +20,10 @@ type Props = {
   errorText?: string;
   /** Submit button label */
   submitLabel: string;
+  /** Plausible "Form Submit" prop. e.g. "contact", "quote", "mailing-list". */
+  formName?: string;
+  /** Additional Plausible events to fire on success. */
+  successEvents?: SuccessEvent[];
   /** The form fields to render */
   children: ReactNode;
 };
@@ -26,15 +36,27 @@ export function ContactForm({
   successText = "Got it. We'll be in touch shortly.",
   errorText = `Something went wrong. Email ${site.contact.email} and we'll handle it directly.`,
   submitLabel,
+  formName,
+  successEvents,
   children,
 }: Props) {
   const [status, setStatus] = useState<Status>("idle");
+  const referrerRef = useRef<HTMLInputElement>(null);
+
+  // document.referrer is captured client-side once we hydrate. Lets the
+  // formsubmit email show where the lead came from.
+  useEffect(() => {
+    if (referrerRef.current && typeof document !== "undefined") {
+      referrerRef.current.value = document.referrer || "";
+    }
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const payload: Record<string, string> = {
       _subject: subject,
       _captcha: "false",
@@ -48,7 +70,7 @@ export function ContactForm({
     // formsubmit drops the message when _honey is non-empty.
     if (payload._honey && payload._honey.trim() !== "") {
       setStatus("success");
-      event.currentTarget.reset();
+      form.reset();
       return;
     }
 
@@ -66,7 +88,16 @@ export function ContactForm({
       );
       if (!response.ok) throw new Error("Submission failed");
       setStatus("success");
-      event.currentTarget.reset();
+      form.reset();
+
+      if (formName) {
+        track("Form Submit", { form: formName });
+      }
+      if (successEvents) {
+        for (const evt of successEvents) {
+          track(evt.name, evt.props);
+        }
+      }
     } catch {
       setStatus("error");
     }
@@ -84,6 +115,7 @@ export function ContactForm({
         aria-hidden="true"
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
+      <input ref={referrerRef} type="hidden" name="referrer" defaultValue="" />
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
         <button

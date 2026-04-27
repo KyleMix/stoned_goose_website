@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Grain } from "@/components/grain";
+import { RouteFocusManager } from "@/components/route-focus-manager";
 import { site } from "@/content/site";
 
 const display = Fraunces({
@@ -31,8 +32,8 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Olympia & South Sound Comedy Production`,
-    template: `%s | ${site.name}`,
+    default: `${site.name} · Olympia & South Sound Comedy Production`,
+    template: `%s · ${site.name}`,
   },
   description: site.description,
   openGraph: {
@@ -83,9 +84,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Nav />
-        <main id="main">{children}</main>
+        <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
         <Grain />
+        <RouteFocusManager />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
