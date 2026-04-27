@@ -1,20 +1,26 @@
-// TODO(owner): figures below are placeholders pending verification.
-// House rule: no invented stats. Confirm or replace each value.
-// Mirror any updates in public/sponsorship-one-sheet.txt.
-export const sponsorshipStats = [
+// Stats render with the literal `value` string. Until the owner provides
+// verified figures, leave value as `null` and the page renders a placeholder
+// dash. House rule: no invented stats.
+export type SponsorshipStat = {
+  label: string;
+  value: string | null;
+  detail: string;
+};
+
+export const sponsorshipStats: SponsorshipStat[] = [
   {
     label: "Monthly in-room audience",
-    value: "1,200+",
+    value: null,
     detail: "Across recurring Olympia + South Sound comedy events.",
   },
   {
     label: "Average social impressions",
-    value: "85K+",
+    value: null,
     detail: "Organic + collaborative partner reach each month.",
   },
   {
     label: "Video views",
-    value: "30K+",
+    value: null,
     detail: "Short-form clips, highlights, and promo reels.",
   },
 ];

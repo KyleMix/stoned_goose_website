@@ -3,6 +3,8 @@ import { Marquee } from "@/components/marquee";
 import { RotatingBumper } from "@/components/rotating-bumper";
 import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
 import { ServicesOverview } from "@/components/services-overview";
+import { MailingListCapture } from "@/components/mailing-list-capture";
+import { PressStrip } from "@/components/press-strip";
 import { marqueeWords, mission } from "@/content/home";
 
 export default function HomePage() {
@@ -19,6 +21,8 @@ export default function HomePage() {
 
       <ServicesOverview />
 
+      <PressStrip />
+
       {mission ? (
         <section className="border-y border-bone/10 bg-ink py-24 md:py-32">
           <div className="mx-auto max-w-[1100px] px-5 md:px-10">
@@ -34,6 +38,8 @@ export default function HomePage() {
           </div>
         </section>
       ) : null}
+
+      <MailingListCapture page="home" />
 
       <RotatingBumper slot="outro" />
     </>

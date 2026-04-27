@@ -2,7 +2,7 @@ import Link from "next/link";
 import { services } from "@/content/home";
 
 // Tight TV-guide style listing. Just titles. The detail pages carry the
-// depth — the home is for orientation, not selling.
+// depth. The home is for orientation, not selling.
 export function ServicesOverview() {
   return (
     <section

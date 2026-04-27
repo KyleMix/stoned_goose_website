@@ -83,6 +83,7 @@ export default function SubmitPage() {
                 source="Submit page"
                 submitLabel="Submit for review"
                 successText="Submission received. We review every tape and will reach out if there's a roster fit."
+                formName="comic-submission"
               >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField

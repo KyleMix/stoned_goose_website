@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   /** Top-left clinical eyebrow line. Lowercase preserves the late-night-cable vibe. */
   eyebrow?: string;
-  /** The statement itself. Short. Declarative. Don't try to be funny — the format is the joke. */
+  /** The statement itself. Short. Declarative. Don't try to be funny. The format is the joke. */
   children: ReactNode;
   /** Bottom kicker. Optional. */
   footnote?: string;
@@ -17,7 +17,7 @@ type Props = {
 
 // A black-field interstitial card, modeled on Adult Swim cable bumpers.
 // Lots of negative space, one short statement, tiny brand bug. Don't put
-// links or buttons in here — bumpers are pauses, not destinations.
+// links or buttons in here. Bumpers are pauses, not destinations.
 export function Bumper({
   eyebrow,
   children,
