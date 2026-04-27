@@ -3,11 +3,20 @@ import Image from "next/image";
 import { reels, watchCopy, youtubeVideos } from "@/content/watch";
 import { featuredSpecial } from "@/content/shows";
 import { site } from "@/content/site";
+import {
+  facebookPosts,
+  instagramPosts,
+  patreonPosts,
+  tiktokVideos,
+} from "@/content/social";
 import { PageHeader } from "@/components/page-header";
 import { ReelCard } from "@/components/reel-card";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
+import { InstagramFeed } from "@/components/instagram-feed";
+import { FacebookRow } from "@/components/facebook-row";
+import { TikTokCard } from "@/components/tiktok-card";
 
 export const metadata: Metadata = {
   title: "Watch",
@@ -104,6 +113,76 @@ export default function WatchPage() {
         </div>
       </section>
 
+      {instagramPosts.length > 0 ? (
+        <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                From the feed
+              </h2>
+              <TrackedAnchor
+                destination="instagram"
+                href={site.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              >
+                Open Instagram ↗
+              </TrackedAnchor>
+            </div>
+            <InstagramFeed posts={instagramPosts} />
+          </div>
+        </section>
+      ) : null}
+
+      {facebookPosts.length > 0 ? (
+        <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                From Facebook
+              </h2>
+              <TrackedAnchor
+                destination="facebook"
+                href={site.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              >
+                Open Facebook ↗
+              </TrackedAnchor>
+            </div>
+            <FacebookRow posts={facebookPosts} />
+          </div>
+        </section>
+      ) : null}
+
+      {tiktokVideos.length > 0 ? (
+        <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+              <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                TikTok
+              </h2>
+              <TrackedAnchor
+                destination="tiktok"
+                href={site.social.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              >
+                @stonedgooseproductions ↗
+              </TrackedAnchor>
+            </div>
+            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {tiktokVideos.map((v) => (
+                <TikTokCard key={v.url} url={v.url} title={v.title} poster={v.poster} />
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
       {youtubeVideos.length > 0 ? (
         <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
           <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -182,6 +261,55 @@ export default function WatchPage() {
           >
             Open the channel ↗
           </TrackedAnchor>
+        </div>
+      </section>
+
+      <section
+        aria-label="Support on Patreon"
+        className="border-b border-bone/10 bg-ink py-16 md:py-20"
+      >
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="grid gap-10 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-7">
+              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+                Patreon
+              </p>
+              <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
+                Back the <span className="italic text-hazard">crew</span>.
+              </h2>
+              <p className="mt-6 max-w-xl font-body text-base text-bone/85 md:text-lg">
+                Patreon supporters bankroll the cinematics, the editor hours,
+                and the next dumb idea. Tier up if you want to ride along.
+              </p>
+              {patreonPosts.length > 0 ? (
+                <ul className="mt-8 space-y-3 border-y border-bone/15 py-6">
+                  {patreonPosts.map((p) => (
+                    <li key={p.link}>
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-body text-sm text-bone hover:text-hazard"
+                      >
+                        / {p.title} ↗
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+            <div className="md:col-span-5 md:text-right">
+              <TrackedAnchor
+                destination="patreon"
+                href={site.social.patreon}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+              >
+                Support on Patreon ↗
+              </TrackedAnchor>
+            </div>
+          </div>
         </div>
       </section>
 

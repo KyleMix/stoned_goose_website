@@ -94,6 +94,15 @@ function writeRss(shows: Show[]) {
   writeFileSync(join(OUT_DIR, "feed.xml"), feed.rss2(), "utf8");
 }
 
+function writeIndexNowKey() {
+  const key = process.env.INDEXNOW_KEY;
+  if (!key) return;
+  const safe = key.replace(/[^A-Za-z0-9-]/g, "");
+  if (!safe) return;
+  writeFileSync(join(process.cwd(), "out", `${safe}.txt`), safe, "utf8");
+  console.log(`[shows-feeds] wrote IndexNow key file ${safe}.txt`);
+}
+
 function main() {
   if (!existsSync(join(process.cwd(), "out"))) {
     console.warn("[shows-feeds] /out missing. Run after next build. Skipping.");
@@ -111,6 +120,7 @@ function main() {
 
   writeIcs("feed.ics", events.map((x) => x.evt));
   writeRss(upcomingShows);
+  writeIndexNowKey();
 
   console.log(
     `[shows-feeds] wrote ${events.length} per-show .ics + feed.ics + feed.xml`,

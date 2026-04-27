@@ -145,17 +145,49 @@ Unset = no analytics ship. See `.env.example` for the rest.
 
 ### Integration cheat sheet
 
-Every integration is a build-time pull. Tokens are read by `sync:*` scripts
-only and never reach the client bundle. Schedule rebuilds via GitHub Actions
-when token rotation matters.
+Every integration is a build-time pull or click-to-load embed. Tokens are
+read by `sync:*` scripts only and never reach the client bundle. Schedule
+rebuilds via GitHub Actions when token rotation matters.
 
 | Service | Auth | Token expiry | Owner setup |
 |---|---|---|---|
 | Eventbrite | Personal token | Long-lived | Generate in Eventbrite account settings |
 | YouTube | API key | Long-lived | Google Cloud Console, restrict to YouTube Data API v3 |
 | Fourthwall | Basic auth | Long-lived | Fourthwall Open API credentials |
-| Plausible | Public domain | n/a | Already configured via `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` |
-| GSC / Bing | Verification meta tag | Long-lived | Paste token into env var |
+| Instagram | Long-lived user token | ~60 days | Meta for Developers app + Graph API. Refresh with `npm run refresh:instagram-token`. |
+| Facebook | Page token | ~60 days (same Meta app) | Same Meta app, Page-level perms |
+| TikTok | None (embeds) | n/a | Paste video URLs into `content/social.ts` `tiktokVideos` |
+| Patreon | None (RSS) | n/a | Paste public RSS URL into `PATREON_RSS_URL` |
+| Plausible | Public domain | n/a | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` |
+| GSC / Bing | Verification meta tag | Long-lived | `NEXT_PUBLIC_GSC_VERIFICATION` / `NEXT_PUBLIC_BING_VERIFICATION` |
+| IndexNow | Random key | Long-lived | `INDEXNOW_KEY` (postbuild writes the key file into /out) |
+
+### Instagram token rotation
+
+Long-lived IG tokens last ~60 days and can be refreshed any time after the
+first 24 hours for another 60 days.
+
+```bash
+INSTAGRAM_ACCESS_TOKEN=<current> npm run refresh:instagram-token
+gh secret set INSTAGRAM_ACCESS_TOKEN --body '<new token>'
+```
+
+The daily `refresh-instagram.yml` cron will fail loudly when the token dies
+so the owner notices before the feed goes stale.
+
+### Newsletter (open follow-up decision)
+
+`formsubmit` collects emails into the owner's inbox. That's a list, not a
+sender. When the owner is ready to actually broadcast, three open-source-
+friendly options to evaluate (none is wired up yet):
+
+- **Buttondown** (paid, simple, hosted)
+- **Kit / ConvertKit** (paid, marketing focus)
+- **Listmonk** (self-host, MIT, requires a server, breaks the static-only
+  posture; would need a build-time API call from a sync script)
+
+The static-export constraint means the only zero-server option is Listmonk
+called from a sync script. Decide before wiring.
 
 ## Forms
 
