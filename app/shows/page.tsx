@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import type { Event, Offer } from "schema-dts";
 import { featuredSpecial, presale, showsCopy, upcomingShows } from "@/content/shows";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { TrackedAnchor } from "@/components/tracked-anchor";
+import { AddToCalendar } from "@/components/add-to-calendar";
+import { jsonLdString } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Shows",
   description:
     "Live lineups, presales, and ticket drops across Olympia and the South Sound. Plus Xavier Rake's full comedy special.",
+  alternates: {
+    canonical: "/shows",
+    types: {
+      "application/rss+xml": "/shows/feed.xml",
+      "text/calendar": "/shows/feed.ics",
+    },
+  },
 };
 
 function formatDate(value: string | null) {
@@ -33,31 +43,32 @@ function formatTime(value: string | null) {
 export default function ShowsPage() {
   const hasShows = upcomingShows.length > 0;
 
-  const eventsJsonLd = upcomingShows.map((show) => {
+  const eventsJsonLd: Event[] = upcomingShows.map((show) => {
     const ticketLink = show.ticketUrl ?? show.url ?? site.social.eventbrite;
-    const offers = show.ticketUrl
+    const offer: Offer | undefined = show.ticketUrl
       ? {
           "@type": "Offer",
           url: show.ticketUrl,
           availability: "https://schema.org/InStock",
+          priceCurrency: "USD",
           ...(show.ticketPrice ? { price: show.ticketPrice } : {}),
         }
       : undefined;
 
     return {
-      "@context": "https://schema.org",
       "@type": "Event",
       name: show.name,
       description: show.summary,
-      startDate: show.start,
-      endDate: show.end,
+      startDate: show.start ?? undefined,
+      endDate: show.end ?? undefined,
       url: ticketLink,
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       isAccessibleForFree: show.status === "free",
+      ...(show.imageUrl ? { image: show.imageUrl } : {}),
       location: {
         "@type": "Place",
-        name: show.venue?.name,
+        name: show.venue?.name ?? "TBD",
         address: {
           "@type": "PostalAddress",
           streetAddress: show.venue?.address,
@@ -71,7 +82,7 @@ export default function ShowsPage() {
         name: site.name,
         url: site.url,
       },
-      ...(offers ? { offers } : {}),
+      ...(offer ? { offers: offer } : {}),
     };
   });
 
@@ -81,7 +92,7 @@ export default function ShowsPage() {
         <script
           key={i}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(evt) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString(evt) }}
         />
       ))}
       <PageHeader
@@ -193,15 +204,31 @@ export default function ShowsPage() {
             <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
               Upcoming dates
             </h2>
-            <TrackedAnchor
-              destination="eventbrite"
-              href={site.social.eventbrite}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
-            >
-              View all on Eventbrite ↗
-            </TrackedAnchor>
+            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+              {hasShows ? (
+                <a
+                  href="/shows/feed.ics"
+                  className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+                >
+                  Subscribe (.ics) ↗
+                </a>
+              ) : null}
+              <a
+                href="/shows/feed.xml"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              >
+                RSS ↗
+              </a>
+              <TrackedAnchor
+                destination="eventbrite"
+                href={site.social.eventbrite}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              >
+                View all on Eventbrite ↗
+              </TrackedAnchor>
+            </div>
           </div>
 
           {hasShows ? (
@@ -244,7 +271,7 @@ export default function ShowsPage() {
                         </p>
                       )}
                     </div>
-                    <div className="col-span-12 md:col-span-3 md:text-right">
+                    <div className="col-span-12 flex flex-wrap items-center gap-3 md:col-span-3 md:justify-end">
                       {show.ticketUrl ? (
                         <TrackedAnchor
                           destination="ticketing"
@@ -262,6 +289,16 @@ export default function ShowsPage() {
                             : "Details soon"}
                         </span>
                       )}
+                      {show.start ? (
+                        <AddToCalendar
+                          showId={show.id}
+                          title={show.name}
+                          description={show.summary}
+                          start={show.start}
+                          end={show.end}
+                          location={venueLine}
+                        />
+                      ) : null}
                     </div>
                   </li>
                 );

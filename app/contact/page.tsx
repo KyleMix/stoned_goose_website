@@ -74,6 +74,7 @@ export default function ContactPage() {
                 successText="Message sent! We'll get back to you soon."
                 errorText="Something went wrong. Please try again shortly."
                 formName="contact"
+                schema="contact"
               >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField

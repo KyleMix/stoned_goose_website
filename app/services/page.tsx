@@ -153,6 +153,8 @@ export default function ServicesPage() {
                 source="Services page"
                 submitLabel="Request Quote"
                 formName="quote"
+                schema="generalQuote"
+                staticPayload={{ service: "general" }}
                 successEvents={[
                   { name: "Quote Submitted", props: { service: "general" } },
                 ]}
@@ -193,7 +195,6 @@ export default function ServicesPage() {
                   autoComplete="email"
                   placeholder="you@email.com"
                 />
-                <input type="hidden" name="service" value="general" />
               </ContactForm>
             </div>
           </div>
