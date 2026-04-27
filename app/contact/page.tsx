@@ -3,6 +3,7 @@ import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
+import { TrackedAnchor } from "@/components/tracked-anchor";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -50,6 +51,32 @@ export default function ContactPage() {
                   {site.contact.phone}
                 </p>
               </a>
+
+              <ul className="mt-6 flex flex-wrap items-center gap-3 font-body text-[11px] font-medium uppercase tracking-[0.18em]">
+                {site.contact.smsEnabled ? (
+                  <li>
+                    <a
+                      href={`sms:${site.contact.phoneTel}`}
+                      className="inline-flex h-10 items-center border border-bone/30 px-4 text-bone hover:border-hazard hover:text-hazard"
+                    >
+                      Text us
+                    </a>
+                  </li>
+                ) : null}
+                {site.contact.whatsapp ? (
+                  <li>
+                    <TrackedAnchor
+                      destination="whatsapp"
+                      href={`https://wa.me/${site.contact.whatsapp}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-10 items-center bg-hazard px-4 text-ink hover:bg-bone"
+                    >
+                      WhatsApp ↗
+                    </TrackedAnchor>
+                  </li>
+                ) : null}
+              </ul>
 
               <div className="mt-10">
                 <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">

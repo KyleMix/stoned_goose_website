@@ -9,6 +9,12 @@ export const site = {
     email: "kyle@stonedgooseproductions.com",
     phone: "(360) 323-0667",
     phoneTel: "+13603230667",
+    /** Optional WhatsApp number in E.164 format without the leading +.
+     *  Set to a string to render the wa.me CTA on /contact. */
+    whatsapp: null as string | null,
+    /** Toggle the SMS click-to-chat link on /contact. Uses the same number
+     *  as the tel: link, just a different scheme. */
+    smsEnabled: true,
     address: "Stoned Goose Productions, Comedy-friendly location",
     locality: "Olympia",
     region: "WA",
@@ -21,6 +27,13 @@ export const site = {
     patreon: "https://www.patreon.com/cw/StonedGooseProductions",
     eventbrite: "https://www.eventbrite.com/o/stoned-goose-productions-107337391771",
     fourthwall: "https://stoned-goose-productions-zgm-shop.fourthwall.com",
+  },
+  /** Podcast slots for the future "Listen" surface on /watch. Default null
+   *  hides the section. Owner pastes IDs / RSS URL when the show ships. */
+  podcasts: {
+    spotifyShowId: null as string | null,
+    applePodcastsId: null as string | null,
+    rssUrl: null as string | null,
   },
   serviceAreas: [
     "Olympia, WA",

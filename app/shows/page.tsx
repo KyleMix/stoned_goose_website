@@ -8,6 +8,7 @@ import { PageHeader } from "@/components/page-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { AddToCalendar } from "@/components/add-to-calendar";
+import { ShareButton } from "@/components/share-button";
 import { jsonLdString } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
@@ -299,6 +300,12 @@ export default function ShowsPage() {
                           location={venueLine}
                         />
                       ) : null}
+                      <ShareButton
+                        title={show.name}
+                        text={show.summary}
+                        url={`${site.url}/shows#${show.id}`}
+                        surface="show"
+                      />
                     </div>
                   </li>
                 );
