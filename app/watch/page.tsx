@@ -6,6 +6,7 @@ import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ReelCard } from "@/components/reel-card";
 import { MailingListCapture } from "@/components/mailing-list-capture";
+import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 
 export const metadata: Metadata = {
   title: "Watch",
@@ -46,33 +47,11 @@ export default function WatchPage() {
 
           <article className="grid gap-8 md:grid-cols-12">
             <div className="relative md:col-span-8">
-              <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
-                <Image
-                  src={featuredSpecial.poster}
-                  alt={`${featuredSpecial.title} - ${featuredSpecial.subtitle}`}
-                  fill
-                  sizes="(min-width: 768px) 66vw, 100vw"
-                  className="object-cover [filter:grayscale(1)_contrast(1.1)]"
-                  priority
-                />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {featuredSpecial.videoUrl ? (
-                    <span className="flex h-20 w-20 items-center justify-center bg-hazard text-ink md:h-28 md:w-28">
-                      <span aria-hidden className="text-3xl md:text-5xl">
-                        ▸
-                      </span>
-                    </span>
-                  ) : (
-                    <span className="bg-ink/85 px-5 py-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-bone backdrop-blur-sm md:text-xs">
-                      Coming soon
-                    </span>
-                  )}
-                </div>
-              </div>
+              <FeaturedSpecialPlayer
+                poster={featuredSpecial.poster}
+                alt={`${featuredSpecial.title} - ${featuredSpecial.subtitle}`}
+                videoUrl={featuredSpecial.videoUrl}
+              />
             </div>
 
             <div className="md:col-span-4">

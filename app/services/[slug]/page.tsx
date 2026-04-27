@@ -210,18 +210,28 @@ export default async function ServiceDetailPage(props: {
           </h2>
           <ul className="mt-10 divide-y divide-bone/15 border-y border-bone/15">
             {svc.faqs.map((f, i) => (
-              <li key={i} className="grid grid-cols-12 gap-x-6 py-7">
-                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
-                  /0{i + 1}
-                </span>
-                <div className="col-span-10 md:col-span-11">
-                  <h3 className="font-display text-2xl text-bone md:text-3xl">
-                    {f.q}
-                  </h3>
-                  <p className="mt-3 max-w-prose font-body text-base text-bone/85">
-                    {f.a}
-                  </p>
-                </div>
+              <li key={i} className="py-7">
+                <details className="group grid grid-cols-12 gap-x-6">
+                  <summary className="col-span-12 grid cursor-pointer grid-cols-12 items-baseline gap-x-6 list-none [&::-webkit-details-marker]:hidden">
+                    <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
+                      /0{i + 1}
+                    </span>
+                    <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-hazard md:col-span-10 md:text-3xl">
+                      {f.q}
+                    </h3>
+                    <span
+                      aria-hidden
+                      className="col-span-1 text-right font-body text-xl text-bone/55 transition-transform duration-200 group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <div className="col-span-12 mt-4 md:col-start-2 md:col-span-11">
+                    <p className="max-w-prose font-body text-base text-bone/85">
+                      {f.a}
+                    </p>
+                  </div>
+                </details>
               </li>
             ))}
           </ul>

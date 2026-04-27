@@ -13,6 +13,15 @@ export type Show = {
     region?: string;
     country?: string;
   };
+  /** Direct ticketing URL. When null, CTA reflects `status`. */
+  ticketUrl?: string | null;
+  /** "ticketed" → "Get tickets". "free" → "Free / at the door".
+   *  "tba" → "Details soon". Defaults to "tba" when omitted. */
+  status?: "ticketed" | "free" | "tba";
+  /** Display-only ticket price. e.g. "$15", "Pay-what-you-can". */
+  ticketPrice?: string;
+  /** Display-only door time. e.g. "Doors 7pm". */
+  doorTime?: string;
 };
 
 // Static export, no API. Live Eventbrite feed lived at /api/eventbrite in the
