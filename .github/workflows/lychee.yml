@@ -1,0 +1,46 @@
+name: Link check
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+jobs:
+  lychee:
+    name: Lychee link check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.sha }}
+          restore-keys: lychee-
+      - name: Run lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Walk markdown + project files + the social URLs in content/site.ts.
+          args: >-
+            --no-progress
+            --cache
+            --max-cache-age 1d
+            --accept 200..=299,403,429
+            --exclude-mail
+            --exclude "https?://(localhost|127\\.0\\.0\\.1)"
+            './**/*.md'
+            './content/site.ts'
+            './README.md'
+          fail: false
+          format: markdown
+          output: ./lychee-report.md
+      - name: Open issue on broken links
+        if: ${{ env.lychee_exit_code != 0 }}
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Lychee link check found broken links"
+          content-filepath: ./lychee-report.md
+          labels: link-check, bug
