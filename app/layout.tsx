@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Grain } from "@/components/grain";
+import { RouteFocusManager } from "@/components/route-focus-manager";
 import { site } from "@/content/site";
 
 const display = Fraunces({
@@ -83,9 +84,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Nav />
-        <main id="main">{children}</main>
+        <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
         <Grain />
+        <RouteFocusManager />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

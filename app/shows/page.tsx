@@ -32,33 +32,47 @@ function formatTime(value: string | null) {
 export default function ShowsPage() {
   const hasShows = upcomingShows.length > 0;
 
-  const eventsJsonLd = upcomingShows.map((show) => ({
-    "@context": "https://schema.org",
-    "@type": "Event",
-    name: show.name,
-    description: show.summary,
-    startDate: show.start,
-    endDate: show.end,
-    url: show.url ?? site.social.eventbrite,
-    eventStatus: "https://schema.org/EventScheduled",
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    location: {
-      "@type": "Place",
-      name: show.venue?.name,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: show.venue?.address,
-        addressLocality: show.venue?.city,
-        addressRegion: show.venue?.region,
-        addressCountry: show.venue?.country ?? "US",
+  const eventsJsonLd = upcomingShows.map((show) => {
+    const ticketLink = show.ticketUrl ?? show.url ?? site.social.eventbrite;
+    const offers = show.ticketUrl
+      ? {
+          "@type": "Offer",
+          url: show.ticketUrl,
+          availability: "https://schema.org/InStock",
+          ...(show.ticketPrice ? { price: show.ticketPrice } : {}),
+        }
+      : undefined;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: show.name,
+      description: show.summary,
+      startDate: show.start,
+      endDate: show.end,
+      url: ticketLink,
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      isAccessibleForFree: show.status === "free",
+      location: {
+        "@type": "Place",
+        name: show.venue?.name,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: show.venue?.address,
+          addressLocality: show.venue?.city,
+          addressRegion: show.venue?.region,
+          addressCountry: show.venue?.country ?? "US",
+        },
       },
-    },
-    organizer: {
-      "@type": "Organization",
-      name: site.name,
-      url: site.url,
-    },
-  }));
+      organizer: {
+        "@type": "Organization",
+        name: site.name,
+        url: site.url,
+      },
+      ...(offers ? { offers } : {}),
+    };
+  });
 
   return (
     <>
@@ -189,46 +203,65 @@ export default function ShowsPage() {
 
           {hasShows ? (
             <ul className="divide-y divide-bone/15 border-y border-bone/15">
-              {upcomingShows.map((show) => (
-                <li
-                  key={show.id}
-                  className="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 py-7"
-                >
-                  <div className="col-span-12 md:col-span-3">
-                    <p className="font-display text-2xl text-bone md:text-3xl">
-                      {formatDate(show.start)}
-                    </p>
-                    <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                      {formatTime(show.start)}
-                    </p>
-                  </div>
-                  <div className="col-span-12 md:col-span-6">
-                    <h3 className="font-display text-2xl text-bone md:text-3xl">
-                      {show.name}
-                    </h3>
-                    <p className="mt-1 font-body text-sm text-bone/85">
-                      {[show.venue?.name, show.venue?.city, show.venue?.region]
-                        .filter(Boolean)
-                        .join(" / ")}
-                    </p>
-                    {show.summary && (
-                      <p className="mt-3 max-w-prose font-body text-sm text-bone/70">
-                        {show.summary}
+              {upcomingShows.map((show) => {
+                const status = show.status ?? "tba";
+                const venueLine = [show.venue?.name, show.venue?.city, show.venue?.region]
+                  .filter(Boolean)
+                  .join(" / ");
+                return (
+                  <li
+                    key={show.id}
+                    className="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 py-7"
+                  >
+                    <div className="col-span-12 md:col-span-3">
+                      <p className="font-display text-2xl text-bone md:text-3xl">
+                        {formatDate(show.start)}
                       </p>
-                    )}
-                  </div>
-                  <div className="col-span-12 md:col-span-3 md:text-right">
-                    <a
-                      href={show.url ?? site.social.eventbrite}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
-                    >
-                      Tickets ↗
-                    </a>
-                  </div>
-                </li>
-              ))}
+                      <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                        {show.doorTime ?? formatTime(show.start)}
+                      </p>
+                    </div>
+                    <div className="col-span-12 md:col-span-6">
+                      <h3 className="font-display text-2xl text-bone md:text-3xl">
+                        {show.name}
+                      </h3>
+                      {venueLine && (
+                        <p className="mt-1 font-body text-sm text-bone/85">
+                          {venueLine}
+                        </p>
+                      )}
+                      {show.ticketPrice && (
+                        <p className="mt-1 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+                          {show.ticketPrice}
+                        </p>
+                      )}
+                      {show.summary && (
+                        <p className="mt-3 max-w-prose font-body text-sm text-bone/70">
+                          {show.summary}
+                        </p>
+                      )}
+                    </div>
+                    <div className="col-span-12 md:col-span-3 md:text-right">
+                      {show.ticketUrl ? (
+                        <a
+                          href={show.ticketUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                        >
+                          Get tickets ↗
+                        </a>
+                      ) : (
+                        <span className="inline-flex h-11 items-center border border-bone/30 px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65">
+                          {status === "free"
+                            ? "Free / at the door"
+                            : "Details soon"}
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <div className="border-y border-bone/15 px-1 py-12 md:py-16">
