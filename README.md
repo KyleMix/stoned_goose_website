@@ -27,12 +27,22 @@ Dev server runs at http://localhost:3000.
 
 ```bash
 npm run dev        # local dev
-npm run build      # static export to /out
+npm run build      # static export to /out (runs prebuild syncs + postbuild feeds)
 npm run lint       # next lint
 npm run typecheck  # tsc --noEmit
+npm run analyze    # ANALYZE=true next build, opens bundle-analyzer in browser
+npm run sync       # umbrella: runs every sync:* script in sequence
+
+# Build-time content feeds. Each script tolerates missing env vars and
+# network failures so static builds always succeed (the previous JSON
+# stays in place when a sync can't run).
+npm run sync:shows        # Eventbrite organizer events
+npm run sync:youtube      # latest videos from configured YT channel
+npm run sync:fourthwall   # products + imgproxy URLs from Fourthwall
 ```
 
-`build` and `lint` must pass before any commit.
+`build`, `lint`, and `typecheck` must pass before any commit. A husky
+pre-commit hook runs ESLint on staged TS/TSX via lint-staged.
 
 ## Deploy
 
@@ -133,42 +143,80 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=stonedgooseproductions.com
 
 Unset = no analytics ship. See `.env.example` for the rest.
 
+### Integration cheat sheet
+
+Every integration is a build-time pull or click-to-load embed. Tokens are
+read by `sync:*` scripts only and never reach the client bundle. Schedule
+rebuilds via GitHub Actions when token rotation matters.
+
+| Service | Auth | Token expiry | Owner setup |
+|---|---|---|---|
+| Eventbrite | Personal token | Long-lived | Generate in Eventbrite account settings |
+| YouTube | API key | Long-lived | Google Cloud Console, restrict to YouTube Data API v3 |
+| Fourthwall | Basic auth | Long-lived | Fourthwall Open API credentials |
+| Instagram | Long-lived user token | ~60 days | Meta for Developers app + Graph API. Refresh with `npm run refresh:instagram-token`. |
+| Facebook | Page token | ~60 days (same Meta app) | Same Meta app, Page-level perms |
+| TikTok | None (embeds) | n/a | Paste video URLs into `content/social.ts` `tiktokVideos` |
+| Patreon | None (RSS) | n/a | Paste public RSS URL into `PATREON_RSS_URL` |
+| Plausible | Public domain | n/a | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` |
+| GSC / Bing | Verification meta tag | Long-lived | `NEXT_PUBLIC_GSC_VERIFICATION` / `NEXT_PUBLIC_BING_VERIFICATION` |
+| IndexNow | Random key | Long-lived | `INDEXNOW_KEY` (postbuild writes the key file into /out) |
+
+### Instagram token rotation
+
+Long-lived IG tokens last ~60 days and can be refreshed any time after the
+first 24 hours for another 60 days.
+
+```bash
+INSTAGRAM_ACCESS_TOKEN=<current> npm run refresh:instagram-token
+gh secret set INSTAGRAM_ACCESS_TOKEN --body '<new token>'
+```
+
+The daily `refresh-instagram.yml` cron will fail loudly when the token dies
+so the owner notices before the feed goes stale.
+
+### Newsletter (open follow-up decision)
+
+`formsubmit` collects emails into the owner's inbox. That's a list, not a
+sender. When the owner is ready to actually broadcast, three open-source-
+friendly options to evaluate (none is wired up yet):
+
+- **Buttondown** (paid, simple, hosted)
+- **Kit / ConvertKit** (paid, marketing focus)
+- **Listmonk** (self-host, MIT, requires a server, breaks the static-only
+  posture; would need a build-time API call from a sync script)
+
+The static-export constraint means the only zero-server option is Listmonk
+called from a sync script. Decide before wiring.
+
 ## Forms
 
 All forms route through `components/contact-form.tsx`, which posts to `formsubmit.co/ajax/${site.contact.email}`. A hidden `_honey` field acts as the spam honeypot.
 
 ## Lighthouse
 
-Run locally on the static export.
+Lighthouse CI runs on every PR via `.github/workflows/lighthouse.yml` and
+fails when any of Performance, Accessibility, Best Practices, or SEO drops
+below 90. Reports upload as a workflow artifact.
+
+To run locally against the static export:
 
 ```bash
 npm run build
-npx serve out -p 4173
-# in another shell
-npx lighthouse http://localhost:4173/                                --only-categories=performance,accessibility,best-practices,seo --view
-npx lighthouse http://localhost:4173/shows --only-categories=performance,accessibility,best-practices,seo --view
-npx lighthouse http://localhost:4173/services --only-categories=performance,accessibility,best-practices,seo --view
-npx lighthouse http://localhost:4173/watch --only-categories=performance,accessibility,best-practices,seo --view
-npx lighthouse http://localhost:4173/shop --only-categories=performance,accessibility,best-practices,seo --view
+npx --yes @lhci/cli@0.14.x autorun --config=./.lighthouserc.json
 ```
 
 Targets: 90+ across Performance, Accessibility, Best Practices, SEO.
 
-Log results below as scores land. Note any score below 90 and the cause.
+Latest scores get logged here per route. Update after each Lighthouse CI run.
 
-| Route | Performance | Accessibility | Best Practices | SEO | Run date |
+| Route | Perf | A11y | BP | SEO | Run |
 |---|---|---|---|---|---|
 | `/` | TBD | TBD | TBD | TBD | TBD |
 | `/shows` | TBD | TBD | TBD | TBD | TBD |
 | `/services` | TBD | TBD | TBD | TBD | TBD |
 | `/watch` | TBD | TBD | TBD | TBD | TBD |
-| `/shop` | TBD | TBD | TBD | TBD | TBD |
-| `/sponsor` | TBD | TBD | TBD | TBD | TBD |
-
-> Lighthouse runs require a Chromium binary, which the build container does
-> not ship. Run locally before sign-off using the commands above, or paste
-> scores from a deployed preview (Vercel/Cloudflare). Don't merge without
-> a row populated.
+| `/contact` | TBD | TBD | TBD | TBD | TBD |
 
 ### Latest static-export verification (2026-04-27)
 

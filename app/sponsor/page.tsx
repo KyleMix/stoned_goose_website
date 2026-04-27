@@ -77,6 +77,7 @@ export default function SponsorPage() {
                 submitLabel="Send the deck"
                 successText="Got it. We'll send the one-sheet shortly."
                 formName="one-sheet-request"
+                schema="sponsorInquiry"
               >
                 <div className="grid gap-6 sm:grid-cols-3">
                   <TextField
@@ -163,6 +164,7 @@ export default function SponsorPage() {
                 submitLabel="Submit Sponsorship Inquiry"
                 successText="Thanks! We received your sponsorship inquiry and will follow up shortly."
                 formName="sponsor-inquiry"
+                schema="sponsorBooking"
               >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField

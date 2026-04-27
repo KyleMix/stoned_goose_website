@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import type { Person } from "schema-dts";
 import { aboutCopy, members, pillars } from "@/content/members";
+import { site } from "@/content/site";
 import { SectionHeader } from "@/components/section-header";
+import { jsonLdString } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Members",
@@ -11,8 +14,33 @@ export const metadata: Metadata = {
 };
 
 export default function MembersPage() {
+  // Person JSON-LD only for crew members with editorial bios. Skip placeholders
+  // so we don't ship empty `description` fields.
+  const personJsonLd: Person[] = members
+    .filter((m) => Boolean(m.bio))
+    .map((m) => ({
+      "@type": "Person",
+      name: m.name,
+      jobTitle: m.role,
+      description: m.bio,
+      image: `${site.url}${m.photo}`,
+      worksFor: {
+        "@type": "Organization",
+        name: site.name,
+        url: site.url,
+      },
+      url: `${site.url}/members`,
+    }));
+
   return (
     <>
+      {personJsonLd.map((p, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdString(p) }}
+        />
+      ))}
       <section className="relative border-b border-bone/10 bg-ink pb-16 pt-32 md:pb-24 md:pt-40">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">

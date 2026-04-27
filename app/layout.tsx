@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import type { LocalBusiness } from "schema-dts";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Grain } from "@/components/grain";
 import { RouteFocusManager } from "@/components/route-focus-manager";
 import { site } from "@/content/site";
+import { jsonLdString } from "@/lib/jsonld";
 
 const display = Fraunces({
   subsets: ["latin"],
@@ -61,6 +63,41 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+  const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
+  const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
+
+  const sameAs = [
+    site.social.instagram,
+    site.social.facebook,
+    site.social.tiktok,
+    site.social.youtube,
+    site.social.patreon,
+    site.social.eventbrite,
+    site.social.fourthwall,
+  ];
+
+  const localBusiness: LocalBusiness = {
+    "@type": "LocalBusiness",
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    areaServed: [...site.serviceAreas],
+    sameAs,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "Sales",
+        email: site.contact.email,
+        telephone: site.contact.phoneTel,
+      },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: site.contact.locality,
+      addressRegion: site.contact.region,
+      addressCountry: "US",
+    },
+  };
 
   return (
     <html
@@ -74,6 +111,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             data-domain={plausibleDomain}
             src="https://plausible.io/js/script.js"
           />
+        ) : null}
+        {gscVerification ? (
+          <meta name="google-site-verification" content={gscVerification} />
+        ) : null}
+        {bingVerification ? (
+          <meta name="msvalidate.01" content={bingVerification} />
         ) : null}
       </head>
       <body className="bg-ink text-bone" suppressHydrationWarning>
@@ -90,36 +133,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <RouteFocusManager />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: site.name,
-              url: site.url,
-              areaServed: site.serviceAreas,
-              sameAs: [
-                site.social.instagram,
-                site.social.facebook,
-                site.social.tiktok,
-                site.social.youtube,
-                site.social.patreon,
-              ],
-              contactPoint: [
-                {
-                  "@type": "ContactPoint",
-                  contactType: "Sales",
-                  email: site.contact.email,
-                  telephone: site.contact.phoneTel,
-                },
-              ],
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: site.contact.locality,
-                addressRegion: site.contact.region,
-                addressCountry: "US",
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString(localBusiness) }}
         />
       </body>
     </html>

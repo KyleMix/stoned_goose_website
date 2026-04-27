@@ -1,3 +1,9 @@
+import bundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -6,6 +12,9 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "imgproxy.fourthwall.com" },
       { protocol: "https", hostname: "i.ytimg.com" },
+      { protocol: "https", hostname: "scontent.cdninstagram.com" },
+      { protocol: "https", hostname: "scontent-*.cdninstagram.com" },
+      { protocol: "https", hostname: "*.fbcdn.net" },
     ],
   },
   trailingSlash: false,
@@ -15,4 +24,4 @@ const nextConfig = {
   allowedDevOrigins: ["127.0.0.1", "localhost", "*.app.github.dev"],
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
