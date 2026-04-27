@@ -6,6 +6,7 @@ import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
+import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 
 type Params = { slug: string };
 
@@ -132,7 +133,7 @@ export default async function ServiceDetailPage(props: {
         </div>
       </section>
 
-      <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+      <section id="quote" className="border-b border-bone/10 bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
@@ -144,10 +145,20 @@ export default async function ServiceDetailPage(props: {
               </p>
             </div>
             <div className="md:col-span-7">
+              <p className="mb-6 font-body text-sm text-bone/65">
+                {svc.whatYouGet[0]}
+              </p>
               <ContactForm
-                subject={`Quote — ${svc.title}`}
+                subject={`Quote. ${svc.title}`}
                 source={`/services/${svc.slug}`}
                 submitLabel="Request Quote"
+                formName="quote"
+                successEvents={[
+                  {
+                    name: "Quote Submitted",
+                    props: { service: svc.slug, tier: "unspecified" },
+                  },
+                ]}
               >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField
@@ -185,7 +196,7 @@ export default async function ServiceDetailPage(props: {
                   rows={4}
                   placeholder={`What are you putting together? Anything specific to ${svc.title.toLowerCase()}?`}
                 />
-                <input type="hidden" name="service" value={svc.title} />
+                <input type="hidden" name="service" value={svc.slug} />
               </ContactForm>
             </div>
           </div>
@@ -237,6 +248,8 @@ export default async function ServiceDetailPage(props: {
           </div>
         </div>
       </section>
+
+      <StickyQuoteRail label={svc.title} targetId="quote" />
     </>
   );
 }

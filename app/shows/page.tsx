@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { featuredSpecial, showsCopy, upcomingShows } from "@/content/shows";
+import { featuredSpecial, presale, showsCopy, upcomingShows } from "@/content/shows";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
-import { ContactForm } from "@/components/contact-form";
-import { TextField } from "@/components/form-field";
+import { MailingListCapture } from "@/components/mailing-list-capture";
 
 export const metadata: Metadata = {
   title: "Shows",
@@ -79,6 +78,24 @@ export default function ShowsPage() {
         }
         body={showsCopy.subhead}
       />
+
+      {presale ? (
+        <aside
+          aria-label="Active presale"
+          className="border-y-2 border-hazard bg-ink"
+        >
+          <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-5 py-3 md:px-10">
+            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone">
+              Presale code{" "}
+              <span className="text-hazard">{presale.code}</span> for{" "}
+              {presale.venueName}
+            </p>
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.22em] text-bone/65">
+              Expires {formatDate(presale.expiresAt)}
+            </p>
+          </div>
+        </aside>
+      ) : null}
 
       {/* Featured: Xavier Rake's full special */}
       <section className="border-b border-bone/10 bg-ink py-16 md:py-24">
@@ -236,43 +253,7 @@ export default function ShowsPage() {
         </div>
       </section>
 
-      {/* Mailing list */}
-      <section className="bg-ink py-20 md:py-24">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-10 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-6">
-              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
-                {showsCopy.emailPitch.eyebrow}
-              </p>
-              <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
-                {showsCopy.emailPitch.heading}
-              </h2>
-              <p className="mt-6 max-w-md font-body text-base text-bone/85 md:text-lg">
-                {showsCopy.emailPitch.body}
-              </p>
-            </div>
-            <div className="md:col-span-6">
-              <ContactForm
-                subject="Show announcements + presale signup"
-                source="Shows page"
-                submitLabel="Sign me up"
-                successText={showsCopy.emailPitch.success}
-              >
-                <TextField
-                  id="shows-email"
-                  name="email"
-                  label="Email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="you@email.com"
-                />
-                <input type="hidden" name="interest" value="Show announcements + presale codes" />
-              </ContactForm>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MailingListCapture page="shows" />
     </>
   );
 }

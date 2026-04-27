@@ -5,6 +5,7 @@ import { featuredSpecial } from "@/content/shows";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ReelCard } from "@/components/reel-card";
+import { MailingListCapture } from "@/components/mailing-list-capture";
 
 export const metadata: Metadata = {
   title: "Watch",
@@ -197,6 +198,8 @@ export default function WatchPage() {
           </a>
         </div>
       </section>
+
+      <MailingListCapture page="watch" />
     </>
   );
 }
