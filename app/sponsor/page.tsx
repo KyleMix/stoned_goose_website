@@ -6,6 +6,7 @@ import {
   TextField,
   TextAreaField,
 } from "@/components/form-field";
+import { PressStrip } from "@/components/press-strip";
 
 export const metadata: Metadata = {
   title: "Sponsor",
@@ -27,20 +28,6 @@ export default function SponsorPage() {
         body="Sponsor recurring live comedy experiences and get in front of engaged audiences in Olympia, Lacey, Tacoma, and beyond."
       />
 
-      <section className="border-b border-bone/10 bg-ink py-12 md:py-16">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-baseline justify-between gap-4 px-5 md:px-10">
-          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-            Need the deck? Grab the one-sheet.
-          </p>
-          <a
-            href="/sponsorship-one-sheet.txt"
-            className="font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 hover:text-hazard"
-          >
-            Download Sponsorship One-Sheet ↗
-          </a>
-        </div>
-      </section>
-
       <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
@@ -50,7 +37,7 @@ export default function SponsorPage() {
             {sponsorshipStats.map((s) => (
               <li key={s.label} className="bg-ink p-8 md:p-10">
                 <p className="font-display text-5xl text-bone md:text-6xl">
-                  {s.value}
+                  {s.value ?? <span className="text-bone/35">—</span>}
                 </p>
                 <p className="mt-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
                   {s.label}
@@ -61,6 +48,63 @@ export default function SponsorPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <PressStrip />
+
+      <section
+        id="one-sheet"
+        className="border-b border-bone/10 bg-ink py-16 md:py-20"
+      >
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="grid gap-10 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-5">
+              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+                One-sheet
+              </p>
+              <h2 className="heading-display mt-4 text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                Request the deck.
+              </h2>
+              <p className="mt-4 max-w-md font-body text-sm text-bone/85">
+                Tell us where to send it. We&apos;ll follow up with the sponsor deck and a quick intro.
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <ContactForm
+                subject="One-sheet request"
+                source="Sponsor / one-sheet"
+                submitLabel="Send the deck"
+                successText="Got it. We'll send the one-sheet shortly."
+                formName="one-sheet-request"
+              >
+                <div className="grid gap-6 sm:grid-cols-3">
+                  <TextField
+                    id="onesheet-name"
+                    name="name"
+                    label="Name"
+                    required
+                    autoComplete="name"
+                  />
+                  <TextField
+                    id="onesheet-email"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                  />
+                  <TextField
+                    id="onesheet-company"
+                    name="company"
+                    label="Company"
+                    required
+                    autoComplete="organization"
+                  />
+                </div>
+              </ContactForm>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -118,6 +162,7 @@ export default function SponsorPage() {
                 source="Sponsor page"
                 submitLabel="Submit Sponsorship Inquiry"
                 successText="Thanks! We received your sponsorship inquiry and will follow up shortly."
+                formName="sponsor-inquiry"
               >
                 <div className="grid gap-6 sm:grid-cols-2">
                   <TextField
