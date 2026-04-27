@@ -3,6 +3,7 @@ import { Marquee } from "@/components/marquee";
 import { RotatingBumper } from "@/components/rotating-bumper";
 import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
 import { ServicesOverview } from "@/components/services-overview";
+import { MailingListCapture } from "@/components/mailing-list-capture";
 import { marqueeWords, mission } from "@/content/home";
 
 export default function HomePage() {
@@ -34,6 +35,8 @@ export default function HomePage() {
           </div>
         </section>
       ) : null}
+
+      <MailingListCapture page="home" />
 
       <RotatingBumper slot="outro" />
     </>

@@ -20,6 +20,17 @@ export type Show = {
 // Add real shows here when they're confirmed.
 export const upcomingShows: Show[] = [];
 
+// Optional presale strip on /shows. Renders only when populated.
+// Owner-editable: drop in a code, expiration date (YYYY-MM-DD), and venue name
+// to push a presale without touching components. Set back to null when expired.
+export type Presale = {
+  code: string;
+  expiresAt: string;
+  venueName: string;
+};
+
+export const presale: Presale | null = null;
+
 export const featuredSpecial = {
   title: "Xavier Rake",
   subtitle: "Full Comedy Special",
