@@ -98,6 +98,8 @@ or inconsistency, **low** is polish.
   `clip-path` inset). Mouse is blocked but Tab still lands on the nav
   links inside. Needs `inert` while closed so focus skips the hidden
   tree.
+  Resolved in this commit: added `inert` (when closed) and `aria-hidden`
+  to the mobile overlay container.
 - **[high] Marquee doubled track is read aloud doubled.**
   `components/marquee.tsx:14-15,32-43`. The marquee renders
   `[...items, ...items]` for a seamless loop, then maps the doubled

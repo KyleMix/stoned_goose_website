@@ -105,6 +105,12 @@ export function Nav() {
       </div>
 
       <div
+        // `inert` keeps Tab from landing on the hidden nav tree when the
+        // overlay is collapsed. Cast through Record so the React 18 JSX
+        // typings (which don't yet declare `inert`) don't reject the
+        // attribute that browsers honor natively.
+        {...({ inert: open ? undefined : "" } as Record<string, unknown>)}
+        aria-hidden={!open}
         className={cn(
           "fixed inset-0 top-16 z-40 origin-top bg-ink transition-[clip-path,opacity] duration-500 md:hidden",
           open
