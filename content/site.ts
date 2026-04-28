@@ -15,7 +15,11 @@ export const site = {
     /** Toggle the SMS click-to-chat link on /contact. Uses the same number
      *  as the tel: link, just a different scheme. */
     smsEnabled: true,
-    address: "Stoned Goose Productions, Comedy-friendly location",
+    // We don't have a fixed venue. The "Find us" line on /contact summarizes
+    // the touring footprint; the service-areas list right below it covers the
+    // specifics. JSON-LD `addressLocality` + `addressRegion` (Olympia, WA) is
+    // what search engines pick up.
+    address: "Touring Olympia and the South Sound.",
     locality: "Olympia",
     region: "WA",
   },
