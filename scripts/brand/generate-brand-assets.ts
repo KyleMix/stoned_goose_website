@@ -8,6 +8,8 @@
 // on-ink variant. Run with `npm run brand:generate`. Commit the outputs.
 //
 // Outputs (all under public/brand/):
+//   stoned-goose-mark.png          (master, untouched)
+//   stoned-goose-mark-illustration.png  bone-on-transparent illustration crop
 //   stoned-goose-mark-on-ink.png   illustration centered on a black square (2000)
 //   stoned-goose-mark-on-bone.png  illustration recolored ink on a bone square
 //   og-mark.png                    256x256 on-ink mark for OG card watermark
@@ -34,10 +36,22 @@ const BONE = { r: 239, g: 233, b: 221, alpha: 1 };
 const CROP = { left: 220, top: 60, width: 1960, height: 1740 } as const;
 const SQUARE = 2000;
 
-async function illustrationOnInk(): Promise<Buffer> {
-  const cropped = await sharp(SRC)
-    .extract(CROP)
+// Source is white-on-solid-black. Convert the black background to transparent
+// so the bone-colored illustration floats on whatever surface it lands on.
+// Strategy: lift the red channel as the alpha channel (white=255 stays opaque,
+// black=0 becomes transparent). Then recolor the surviving pixels to bone.
+async function illustrationTransparent(): Promise<Buffer> {
+  const cropped = await sharp(SRC).extract(CROP).removeAlpha().toBuffer();
+  const alpha = await sharp(cropped).extractChannel(0).toBuffer();
+  const tinted = await sharp(cropped)
+    .removeAlpha()
+    .tint({ r: 239, g: 233, b: 221 })
     .toBuffer();
+  return sharp(tinted).joinChannel(alpha).png().toBuffer();
+}
+
+async function illustrationOnInk(): Promise<Buffer> {
+  const transparent = await illustrationTransparent();
   return sharp({
     create: {
       width: SQUARE,
@@ -48,7 +62,7 @@ async function illustrationOnInk(): Promise<Buffer> {
   })
     .composite([
       {
-        input: cropped,
+        input: transparent,
         top: Math.round((SQUARE - CROP.height) / 2),
         left: Math.round((SQUARE - CROP.width) / 2),
       },
@@ -58,12 +72,15 @@ async function illustrationOnInk(): Promise<Buffer> {
 }
 
 async function illustrationOnBone(): Promise<Buffer> {
-  // The cropped illustration is white-on-black. To produce a bone-friendly
-  // ink-on-bone version, invert the colors then composite onto a bone canvas.
-  const cropped = await sharp(SRC)
-    .extract(CROP)
-    .negate({ alpha: false })
+  // For bone surfaces: take the cropped white-on-black, recolor the white
+  // pixels to ink and use the inverted red channel as alpha.
+  const cropped = await sharp(SRC).extract(CROP).removeAlpha().toBuffer();
+  const alpha = await sharp(cropped).extractChannel(0).toBuffer();
+  const tinted = await sharp(cropped)
+    .removeAlpha()
+    .tint({ r: 10, g: 10, b: 10 })
     .toBuffer();
+  const inkOnTransparent = await sharp(tinted).joinChannel(alpha).png().toBuffer();
   return sharp({
     create: {
       width: SQUARE,
@@ -74,7 +91,7 @@ async function illustrationOnBone(): Promise<Buffer> {
   })
     .composite([
       {
-        input: cropped,
+        input: inkOnTransparent,
         top: Math.round((SQUARE - CROP.height) / 2),
         left: Math.round((SQUARE - CROP.width) / 2),
       },
@@ -86,6 +103,14 @@ async function illustrationOnBone(): Promise<Buffer> {
 async function main() {
   await mkdir(OUT, { recursive: true });
   console.log("Generating brand assets from", SRC);
+
+  const transparent = await illustrationTransparent();
+  await sharp(transparent).toFile(
+    join(OUT, "stoned-goose-mark-illustration.png"),
+  );
+  console.log(
+    `  -> stoned-goose-mark-illustration.png (${CROP.width}x${CROP.height}, transparent bg)`,
+  );
 
   const onInk = await illustrationOnInk();
   await sharp(onInk).toFile(join(OUT, "stoned-goose-mark-on-ink.png"));
