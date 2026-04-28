@@ -112,6 +112,24 @@ async function main() {
     `  -> stoned-goose-mark-illustration.png (${CROP.width}x${CROP.height}, transparent bg)`,
   );
 
+  // Small + WebP variants for in-flow placements (nav, hero status, footer,
+  // mobile menu, 404 hero). The 1960x1740 master is overkill for a 24-200px
+  // render and the static export ships it raw because next.config.mjs runs
+  // images.unoptimized: true. A 512px source + WebP shrinks the per-page
+  // mark payload from ~760KB to ~10-30KB depending on browser support.
+  const SMALL_W = 512;
+  const SMALL_H = Math.round((CROP.height / CROP.width) * SMALL_W);
+  await sharp(transparent)
+    .resize(SMALL_W, SMALL_H)
+    .png({ compressionLevel: 9 })
+    .toFile(join(OUT, "stoned-goose-mark-sm.png"));
+  console.log(`  -> stoned-goose-mark-sm.png (${SMALL_W}x${SMALL_H})`);
+  await sharp(transparent)
+    .resize(SMALL_W, SMALL_H)
+    .webp({ quality: 88 })
+    .toFile(join(OUT, "stoned-goose-mark-sm.webp"));
+  console.log(`  -> stoned-goose-mark-sm.webp (${SMALL_W}x${SMALL_H})`);
+
   const onInk = await illustrationOnInk();
   await sharp(onInk).toFile(join(OUT, "stoned-goose-mark-on-ink.png"));
   console.log("  -> stoned-goose-mark-on-ink.png (2000x2000)");

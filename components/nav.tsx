@@ -41,11 +41,10 @@ export function Nav() {
           className="group inline-flex items-center gap-2"
         >
           <Image
-            src="/brand/stoned-goose-mark-illustration.png"
+            src="/brand/stoned-goose-mark-sm.webp"
             alt=""
             width={28}
-            height={24}
-            priority
+            height={25}
             className={cn(
               "h-6 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
               "group-hover:translate-x-0 group-hover:opacity-90",
@@ -118,11 +117,11 @@ export function Nav() {
           className="flex h-full flex-col justify-between px-6 pb-12 pt-8"
         >
           <Image
-            src="/brand/stoned-goose-mark-illustration.png"
+            src="/brand/stoned-goose-mark-sm.webp"
             alt=""
             width={120}
-            height={106}
-            priority
+            height={107}
+            loading="lazy"
             className="mb-8 block h-24 w-auto opacity-90"
           />
           <ul className="flex flex-col">
