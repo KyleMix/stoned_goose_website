@@ -5,6 +5,7 @@ import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
 import { ServicesOverview } from "@/components/services-overview";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { PressStrip } from "@/components/press-strip";
+import { InstagramStrip } from "@/components/instagram-strip";
 import { marqueeWords, mission } from "@/content/home";
 
 export default function HomePage() {
@@ -20,6 +21,8 @@ export default function HomePage() {
       <RotatingBumper slot="aside" />
 
       <ServicesOverview />
+
+      <InstagramStrip />
 
       <PressStrip />
 
