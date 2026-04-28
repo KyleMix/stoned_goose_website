@@ -149,11 +149,11 @@ export function ContactForm({
         />
         <input ref={referrerRef} type="hidden" name="referrer" defaultValue="" />
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+        <div className="flex flex-col items-stretch gap-3 pt-2 md:flex-row md:flex-wrap md:items-center md:gap-x-6 md:gap-y-3">
           <button
             type="submit"
             disabled={status === "loading"}
-            className="group inline-flex h-12 items-center gap-3 bg-hazard px-7 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone disabled:opacity-50"
+            className="group inline-flex h-12 w-full items-center justify-center gap-3 bg-hazard px-7 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone disabled:opacity-50 md:w-auto md:justify-start"
           >
             {status === "loading" ? "Sending..." : submitLabel}
             <span aria-hidden className="transition-transform group-hover:translate-x-1">

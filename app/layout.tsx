@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import type { LocalBusiness } from "schema-dts";
 import "./globals.css";
@@ -54,11 +54,32 @@ export const metadata: Metadata = {
     images: ["/opengraph.jpg"],
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
+    icon: [
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/brand/favicon-64.png", sizes: "64x64", type: "image/png" },
+      { url: "/brand/favicon-128.png", sizes: "128x128", type: "image/png" },
+      { url: "/brand/favicon-256.png", sizes: "256x256", type: "image/png" },
+      { url: "/brand/favicon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/brand/favicon-256.png",
+    apple: "/brand/apple-touch-icon.png",
   },
+  manifest: "/manifest.webmanifest",
   alternates: { canonical: site.url },
   robots: { index: true, follow: true },
+  appleWebApp: {
+    capable: true,
+    title: site.shortName,
+    statusBarStyle: "black-translucent",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0A0A0A",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

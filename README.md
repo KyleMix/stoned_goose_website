@@ -258,6 +258,38 @@ Latest scores get logged here per route. Update after each Lighthouse CI run.
 | `/watch` | TBD | TBD | TBD | TBD | TBD |
 | `/contact` | TBD | TBD | TBD | TBD | TBD |
 
+### Lighthouse, UI polish pass (2026-04-28)
+
+The polish-pass branch (`claude/ui-polish-mobile-logo-001`) ships favicon
++ apple-touch-icon + manifest + per-route OG corner mark, plus the mobile
+composition pass. Lighthouse cannot be measured from the codespace
+container directly (no Chrome shipped), so authoritative numbers come
+from the `.github/workflows/lighthouse.yml` run that fires on every PR.
+
+| Route | Perf | A11y | BP | SEO | Run |
+|---|---|---|---|---|---|
+| `/` | TBD (PR CI) | TBD | TBD | TBD | UI polish PR |
+| `/shows` | TBD | TBD | TBD | TBD | UI polish PR |
+| `/services` | TBD | TBD | TBD | TBD | UI polish PR |
+| `/watch` | TBD | TBD | TBD | TBD | UI polish PR |
+| `/contact` | TBD | TBD | TBD | TBD | UI polish PR |
+
+If any score lands below 90 the workflow will fail loud; investigate the
+artifact before merging.
+
+### Latest static-export verification (2026-04-28, UI polish pass)
+
+- `npm run build` green, all routes including new `/manifest.webmanifest`
+  + `/brand/*` assets land in `/out`.
+- `npm run lint` and `npm run typecheck` green.
+- Per-route OG cards render with the 88px Stoned Goose mark in the
+  top-right corner (data-URI embedded at build time, no fs hit per render).
+- Old static-slug meta-refresh stubs (`/about`, `/media`,
+  `/comic-submissions`, `/sponsorships`, `/book-a-show`) intact, plus
+  `_redirects` (Cloudflare/Netlify) and `vercel.json` redirects.
+- Manifest references the favicon set; `theme-color` and
+  `apple-mobile-web-app-capable` ship in every route's `<head>`.
+
 ### Latest static-export verification (2026-04-27)
 
 Run from the build container against `npm run build` output served by `npx serve out`.

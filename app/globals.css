@@ -7,10 +7,20 @@
     --font-display: "Fraunces", Georgia, serif;
     --font-body: "Inter", ui-sans-serif, system-ui;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    /* Anchor scroll offset = nav height + 24px breathing room. Used by
+       [id] scroll-margin-top so #anchors don't crash into the fixed nav. */
+    --scroll-offset: 88px;
   }
 
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --scroll-offset: 104px;
+    }
   }
 
   html,
@@ -30,10 +40,20 @@
     color: #0a0a0a;
   }
 
+  ::-moz-selection {
+    background: #f2ea00;
+    color: #0a0a0a;
+  }
+
+  /* Anchor scroll lands below the fixed nav with breathing room. */
+  [id] {
+    scroll-margin-top: var(--scroll-offset);
+  }
+
   /* Editorial baseline focus */
   :focus-visible {
     outline: 2px solid #f2ea00;
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
 
   /* Nicer h tags by default; pages still override */
@@ -101,6 +121,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {

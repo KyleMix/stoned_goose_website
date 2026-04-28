@@ -3,8 +3,10 @@
 import type { ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 
+// min-h-[48px] guarantees a 48px tap target on mobile per WCAG / Apple HIG.
+// text-base prevents iOS Safari's auto-zoom on focus (16px+ disables it).
 const baseInputClass =
-  "block w-full bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0";
+  "block w-full min-h-[48px] bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0";
 
 const errorInputClass = "border-hazard";
 
@@ -48,6 +50,7 @@ export type TextFieldProps = {
   placeholder?: string;
   required?: boolean;
   autoComplete?: string;
+  inputMode?: "text" | "email" | "tel" | "numeric" | "decimal" | "search" | "url";
   defaultValue?: string;
 };
 
@@ -62,6 +65,21 @@ function useOptionalFormContext() {
   }
 }
 
+// Map input type to a sensible inputMode default so mobile keyboards land on
+// the right glyph set without each caller having to remember.
+function defaultInputMode(type: TextFieldProps["type"]): TextFieldProps["inputMode"] {
+  switch (type) {
+    case "email":
+      return "email";
+    case "tel":
+      return "tel";
+    case "url":
+      return "url";
+    default:
+      return undefined;
+  }
+}
+
 export function TextField({
   id,
   name,
@@ -70,12 +88,14 @@ export function TextField({
   placeholder,
   required,
   autoComplete,
+  inputMode,
   defaultValue,
 }: TextFieldProps) {
   const ctx = useOptionalFormContext();
   const error = ctx?.formState?.errors?.[name]?.message as string | undefined;
   const errorId = `${id}-error`;
   const reg = ctx?.register?.(name);
+  const resolvedInputMode = inputMode ?? defaultInputMode(type);
 
   return (
     <div className="space-y-2">
@@ -87,6 +107,7 @@ export function TextField({
         type={type}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        inputMode={resolvedInputMode}
         defaultValue={ctx ? undefined : defaultValue}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={error ? errorId : undefined}
