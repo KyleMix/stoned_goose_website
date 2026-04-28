@@ -38,29 +38,16 @@ export function Nav() {
         <Link
           href="/"
           aria-label={`${site.shortName} home`}
-          className="group inline-flex items-center gap-2"
+          className="inline-flex items-center transition-opacity hover:opacity-80 focus-visible:opacity-80"
         >
           <Image
             src="/brand/stoned-goose-mark-sm.webp"
-            alt=""
-            width={28}
-            height={28}
-            className={cn(
-              "h-7 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
-              "group-hover:translate-x-0 group-hover:opacity-90",
-              "group-focus-visible:translate-x-0 group-focus-visible:opacity-90",
-              "motion-reduce:translate-x-0 motion-reduce:opacity-90 motion-reduce:transition-none",
-            )}
+            alt={`${site.shortName} home`}
+            width={40}
+            height={40}
+            priority
+            className="block h-10 w-auto md:h-11"
           />
-          <span className="font-display text-xl leading-none tracking-[-0.02em] text-bone md:text-[1.4rem]">
-            Stoned Goose
-            <span
-              aria-hidden
-              className="text-hazard transition-[text-decoration-color] group-hover:underline group-hover:decoration-hazard group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-hazard group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
-            >
-              .
-            </span>
-          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
