@@ -1,3 +1,4 @@
+import { z } from "zod";
 import instagramRaw from "@/content/feeds/instagram.json";
 import youtubeRaw from "@/content/feeds/youtube.json";
 import facebookRaw from "@/content/feeds/facebook.json";
@@ -7,9 +8,91 @@ import type {
   YouTubeFeed,
 } from "@/content/feeds/types";
 
-export const instagramFeed = instagramRaw as InstagramFeed;
-export const youtubeFeed = youtubeRaw as YouTubeFeed;
-export const facebookFeed = facebookRaw as FacebookFeed;
+const FeedStatusSchema = z.enum(["ok", "stale", "error"]);
+
+const ManifestBase = {
+  fetchedAt: z.string(),
+  status: FeedStatusSchema,
+  errorMessage: z.string().nullable(),
+};
+
+const InstagramPostSchema = z.object({
+  id: z.string(),
+  permalink: z.string(),
+  mediaType: z.enum(["IMAGE", "VIDEO", "CAROUSEL_ALBUM", "REEL"]),
+  mediaUrl: z.string(),
+  thumbnailUrl: z.string().nullable(),
+  caption: z.string().nullable(),
+  timestamp: z.string(),
+});
+
+const YouTubeVideoSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+  thumbnailUrl: z.string(),
+  publishedAt: z.string(),
+  durationSeconds: z.number().nullable(),
+});
+
+const FacebookPostSchema = z.object({
+  id: z.string(),
+  permalink: z.string(),
+  message: z.string().nullable(),
+  createdAt: z.string(),
+  attachmentImageUrl: z.string().nullable(),
+});
+
+const InstagramFeedSchema = z.object({
+  ...ManifestBase,
+  source: z.literal("instagram"),
+  posts: z.array(InstagramPostSchema),
+});
+
+const YouTubeFeedSchema = z.object({
+  ...ManifestBase,
+  source: z.literal("youtube"),
+  videos: z.array(YouTubeVideoSchema),
+});
+
+const FacebookFeedSchema = z.object({
+  ...ManifestBase,
+  source: z.literal("facebook"),
+  posts: z.array(FacebookPostSchema),
+});
+
+// Validate at module load. A malformed feed file fails the build with a
+// clear stack and the offending field path. Catches API drift early.
+function parseOrThrow<T>(
+  schema: z.ZodType<T>,
+  raw: unknown,
+  label: string,
+): T {
+  const result = schema.safeParse(raw);
+  if (!result.success) {
+    const issues = result.error.issues
+      .map((i) => `${i.path.join(".")}: ${i.message}`)
+      .join("; ");
+    throw new Error(`[feeds] invalid ${label}: ${issues}`);
+  }
+  return result.data;
+}
+
+export const instagramFeed: InstagramFeed = parseOrThrow(
+  InstagramFeedSchema,
+  instagramRaw,
+  "content/feeds/instagram.json",
+);
+export const youtubeFeed: YouTubeFeed = parseOrThrow(
+  YouTubeFeedSchema,
+  youtubeRaw,
+  "content/feeds/youtube.json",
+);
+export const facebookFeed: FacebookFeed = parseOrThrow(
+  FacebookFeedSchema,
+  facebookRaw,
+  "content/feeds/facebook.json",
+);
 
 export function isFresh(
   feed: { fetchedAt: string },

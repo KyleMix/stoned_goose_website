@@ -29,3 +29,7 @@ next-env.d.ts
 # editor
 .vscode
 .idea
+
+# feed fetch error logs (written by scripts/feeds/fetch-* on failure;
+# the committed JSON stays in place)
+content/feeds/*.error.log

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 import { facebookFeed } from "@/lib/feeds";
 import { site } from "@/content/site";
+import { FeedLink } from "@/components/feed-link";
 
 // Lazy-loaded Facebook page plugin iframe. The iframe is not rendered into
 // the DOM until the wrapper scrolls into view. When the cached feed is in
@@ -67,20 +68,16 @@ export function FacebookPagePlugin() {
           <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
             From <span className="italic text-hazard">Facebook</span>
           </h2>
-          <a
+          <FeedLink
+            platform="facebook"
+            placement="shows-fb-plugin"
             href={site.social.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() =>
-              track("Feed Click", {
-                platform: "facebook",
-                placement: "shows-fb-plugin",
-              })
-            }
             className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
           >
             Open page ↗
-          </a>
+          </FeedLink>
         </div>
 
         <div

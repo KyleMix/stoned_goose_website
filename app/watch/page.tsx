@@ -10,6 +10,7 @@ import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { TikTokCard } from "@/components/tiktok-card";
+import { FeedLink } from "@/components/feed-link";
 import { instagramFeed, youtubeFeed, relativeAge } from "@/lib/feeds";
 import { FeedFreshness } from "@/components/feed-freshness";
 
@@ -183,8 +184,9 @@ export default function WatchPage() {
             <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {channelVideos.map((v) => (
                 <li key={v.id}>
-                  <TrackedAnchor
-                    destination="youtube"
+                  <FeedLink
+                    platform="youtube"
+                    placement="watch-grid"
                     href={`https://www.youtube.com/watch?v=${v.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -217,7 +219,7 @@ export default function WatchPage() {
                     <p className="mt-1 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
                       YouTube
                     </p>
-                  </TrackedAnchor>
+                  </FeedLink>
                 </li>
               ))}
             </ul>
