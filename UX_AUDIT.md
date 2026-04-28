@@ -150,6 +150,10 @@ or inconsistency, **low** is polish.
   "Or just contact us ↗". The `/contact` page has the email link as a
   display element, so the existing destination is functional but the
   microcopy is misleading.
+  Resolved in this commit: copy updated to "Or just contact us ↗" so
+  the destination matches the promise. The `/contact` page itself
+  exposes a real `mailto:` link as the first thing in the column, so
+  email is still one click further if the user wants it.
 - **[low] Phone field on `/submit` could hint a numeric keypad on
   mobile.**
   `app/submit/page.tsx:105-112`. `type="tel"` already triggers the

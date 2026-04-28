@@ -58,7 +58,7 @@ export function ServicesOverview() {
             href="/contact"
             className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
           >
-            Or just email us ↗
+            Or just contact us ↗
           </Link>
         </div>
       </div>
