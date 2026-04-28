@@ -149,6 +149,19 @@ export function ContactForm({
         />
         <input ref={referrerRef} type="hidden" name="referrer" defaultValue="" />
 
+        <noscript>
+          <p className="font-body text-sm text-bone/85">
+            This form needs JavaScript. Email{" "}
+            <a
+              href={`mailto:${site.contact.email}`}
+              className="text-hazard underline underline-offset-2"
+            >
+              {site.contact.email}
+            </a>{" "}
+            directly and we&apos;ll handle it from there.
+          </p>
+        </noscript>
+
         <div className="flex flex-col items-stretch gap-3 pt-2 md:flex-row md:flex-wrap md:items-center md:gap-x-6 md:gap-y-3">
           <button
             type="submit"

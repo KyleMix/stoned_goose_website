@@ -129,6 +129,18 @@ export function MailingListCapture({ page }: Props) {
                   ? `Something went wrong. Email ${site.contact.email} directly.`
                   : "No spam. Unsubscribe whenever."}
             </p>
+            <noscript>
+              <p className="mt-2 font-body text-xs text-bone/85">
+                Sign-up needs JavaScript. Email{" "}
+                <a
+                  href={`mailto:${site.contact.email}?subject=Mailing%20list%20signup`}
+                  className="text-hazard underline underline-offset-2"
+                >
+                  {site.contact.email}
+                </a>{" "}
+                with the subject &ldquo;Mailing list signup&rdquo; and we&apos;ll add you.
+              </p>
+            </noscript>
           </form>
         </div>
       </div>
