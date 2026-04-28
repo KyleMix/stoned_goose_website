@@ -57,11 +57,25 @@ export function Footer() {
             <p className="mt-6 max-w-md font-body text-sm text-bone/80">
               {site.description}
             </p>
-            <div className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-bone/70">
-              <p>{site.contact.email}</p>
-              <p>{site.contact.phone}</p>
-              <p>{site.contact.locality}, {site.contact.region}</p>
-            </div>
+            <ul className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-bone/70">
+              <li>
+                <a
+                  href={`mailto:${site.contact.email}`}
+                  className="transition-colors hover:text-hazard"
+                >
+                  {site.contact.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${site.contact.phoneTel}`}
+                  className="transition-colors hover:text-hazard"
+                >
+                  {site.contact.phone}
+                </a>
+              </li>
+              <li>{site.contact.locality}, {site.contact.region}</li>
+            </ul>
           </div>
 
           <FooterColumn label="Explore" items={explore} />
