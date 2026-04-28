@@ -43,7 +43,11 @@ export default function ComediansPage() {
                     aria-hidden
                     className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-0"
                   />
-                  <div className="absolute inset-x-0 bottom-0 z-10 flex translate-y-full items-center justify-center gap-4 bg-gradient-to-t from-ink/95 to-transparent px-4 py-4 transition-transform duration-300 group-hover:translate-y-0">
+                  {/* Desktop: slide-up overlay on hover. Hidden on mobile via
+                      hidden + md:flex because hover doesn't exist on touch.
+                      Mobile renders the chips inline below the portrait so
+                      tap targets are real, not gated behind a hover state. */}
+                  <div className="absolute inset-x-0 bottom-0 z-10 hidden translate-y-full items-center justify-center gap-4 bg-gradient-to-t from-ink/95 to-transparent px-4 py-4 transition-transform duration-300 group-hover:translate-y-0 group-focus-within:translate-y-0 md:flex">
                     {c.instagram && (
                       <a
                         href={c.instagram}
@@ -71,6 +75,32 @@ export default function ComediansPage() {
                 <h3 className="mt-4 font-display text-xl text-bone md:text-2xl">
                   {c.name}
                 </h3>
+                {(c.instagram || c.facebook) && (
+                  <div className="mt-2 flex gap-4 md:hidden">
+                    {c.instagram && (
+                      <a
+                        href={c.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${c.name} on Instagram`}
+                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone/70 active:text-hazard"
+                      >
+                        IG ↗
+                      </a>
+                    )}
+                    {c.facebook && (
+                      <a
+                        href={c.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${c.name} on Facebook`}
+                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone/70 active:text-hazard"
+                      >
+                        FB ↗
+                      </a>
+                    )}
+                  </div>
+                )}
               </li>
             ))}
           </ul>

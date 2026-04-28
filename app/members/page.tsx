@@ -111,6 +111,10 @@ export default function MembersPage() {
                   {m.index}
                 </span>
                 <div className="col-span-10 md:col-span-3">
+                  {/* Halftone-to-color reveal is hover-only by design. On
+                      mobile the halftone state stays, since the editorial
+                      treatment IS the look and the reveal would require
+                      tap-to-toggle UI that competes with reading the bio. */}
                   <div className="relative aspect-[3/4] w-full max-w-[220px] overflow-hidden">
                     <Image
                       src={m.photo}
