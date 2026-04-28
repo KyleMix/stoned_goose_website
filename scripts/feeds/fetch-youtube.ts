@@ -8,6 +8,7 @@
 import { site } from "../../content/site";
 import type { YouTubeFeed, YouTubeVideo } from "../../content/feeds/types";
 import { logFailure, writeFeed } from "./_helpers";
+import { YouTubeFeedSchema, parseOrThrow } from "./schema";
 
 const SOURCE = "youtube" as const;
 const LIMIT = 12;
@@ -110,6 +111,7 @@ async function main() {
       errorMessage: null,
       videos: [],
     };
+    parseOrThrow(YouTubeFeedSchema, feed, "youtube fetch output");
     writeFeed(SOURCE, feed);
     console.log("[feeds:youtube] wrote 0 videos");
     return;
@@ -141,6 +143,7 @@ async function main() {
     errorMessage: null,
     videos,
   };
+  parseOrThrow(YouTubeFeedSchema, feed, "youtube fetch output");
   writeFeed(SOURCE, feed);
   console.log(`[feeds:youtube] wrote ${videos.length} videos`);
 }
