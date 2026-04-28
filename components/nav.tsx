@@ -87,7 +87,7 @@ export function Nav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="relative flex h-10 w-10 items-center justify-center md:hidden"
+          className="relative flex h-11 w-11 items-center justify-center md:hidden"
         >
           <span
             className={cn(

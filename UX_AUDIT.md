@@ -109,6 +109,7 @@ or inconsistency, **low** is polish.
 - **[medium] Mobile hamburger button is 40x40, under the 44x44 WCAG 2.2
   AA tap target minimum (2.5.8).**
   `components/nav.tsx:90`. Bump to 44x44 without changing the icon.
+  Resolved in this commit: `h-10 w-10` -> `h-11 w-11` on the hamburger.
 - **[medium] No live region announces form success or error.**
   `components/contact-form.tsx:164-173`. The success/error paragraphs
   use `role="status"` and `role="alert"` correctly, but they live
