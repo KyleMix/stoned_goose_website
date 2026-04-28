@@ -73,7 +73,7 @@ export default function MembersPage() {
                 key={p.title}
                 className="relative bg-ink p-8 transition-colors hover:bg-bone/[0.025] md:p-10"
               >
-                <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
+                <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                   /0{i + 1}
                 </span>
                 <h3 className="heading-display mt-3 text-3xl text-bone md:text-4xl">
@@ -107,7 +107,7 @@ export default function MembersPage() {
                 key={m.slug}
                 className="group grid grid-cols-12 items-center gap-6 py-8 md:gap-10 md:py-12"
               >
-                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-ink/45 md:col-span-1">
+                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-ink/70 md:col-span-1">
                   {m.index}
                 </span>
                 <div className="col-span-10 md:col-span-3">

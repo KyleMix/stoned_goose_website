@@ -122,7 +122,7 @@ export function MailingListCapture({ page }: Props) {
             />
             <input ref={referrerRef} type="hidden" name="referrer" defaultValue="" />
             <input type="hidden" name="page" value={page} />
-            <p className="mt-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+            <p className="mt-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
               {status === "success"
                 ? "You're on the list. See you at the next show."
                 : status === "error"

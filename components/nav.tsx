@@ -141,7 +141,7 @@ export function Nav() {
                   <span className="font-display text-4xl uppercase tracking-[-0.02em] text-bone">
                     {item.label}
                   </span>
-                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
+                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </Link>
@@ -159,7 +159,7 @@ export function Nav() {
             >
               Book a Show
             </Link>
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
               {site.contact.email}
             </p>
           </div>

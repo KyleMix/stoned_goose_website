@@ -230,7 +230,7 @@ export default async function ServiceDetailPage(props: {
               <li key={i} className="py-7">
                 <details className="group grid grid-cols-12 gap-x-6">
                   <summary className="col-span-12 grid cursor-pointer grid-cols-12 items-baseline gap-x-6 list-none [&::-webkit-details-marker]:hidden">
-                    <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
+                    <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/55 md:col-span-1">
                       /0{i + 1}
                     </span>
                     <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-hazard md:col-span-10 md:text-3xl">
@@ -290,7 +290,7 @@ function Block({ title, items }: { title: string; items: string[] }) {
       <ul className="mt-6 space-y-4">
         {items.map((item, i) => (
           <li key={i} className="flex items-baseline gap-4">
-            <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">
+            <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/55">
               /0{i + 1}
             </span>
             <span className="font-body text-base text-bone/85">{item}</span>

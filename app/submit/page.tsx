@@ -39,7 +39,7 @@ export default function SubmitPage() {
               <ul className="mt-6 space-y-4">
                 {requirements.map((r, i) => (
                   <li key={i} className="flex items-baseline gap-4">
-                    <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/40">
+                    <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/55">
                       /0{i + 1}
                     </span>
                     <span className="font-body text-base text-bone/85">{r}</span>

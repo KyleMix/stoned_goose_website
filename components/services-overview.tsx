@@ -27,7 +27,7 @@ export function ServicesOverview() {
                 key={s.slug}
                 className="group grid grid-cols-12 items-baseline border-t border-bone/15 py-5 last:border-b transition-colors hover:bg-bone/[0.025]"
               >
-                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
+                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/55 md:col-span-1">
                   /{String(i + 1).padStart(2, "0")}
                 </span>
                 <Link
@@ -38,7 +38,7 @@ export function ServicesOverview() {
                 </Link>
                 <span
                   aria-hidden
-                  className="col-span-1 text-right font-body text-base text-bone/40 transition-colors group-hover:text-hazard md:col-span-2"
+                  className="col-span-1 text-right font-body text-base text-bone/55 transition-colors group-hover:text-hazard md:col-span-2"
                 >
                   ↗
                 </span>

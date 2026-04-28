@@ -33,7 +33,7 @@ export default function ServicesPage() {
                 key={s.slug}
                 className="group grid grid-cols-12 items-baseline gap-x-6 gap-y-3 border-t border-bone/15 py-7 last:border-b transition-colors hover:bg-bone/[0.025]"
               >
-                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
+                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/55 md:col-span-1">
                   /{String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="col-span-10 md:col-span-7">

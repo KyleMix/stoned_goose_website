@@ -314,7 +314,7 @@ export default function ShowsPage() {
             </ul>
           ) : (
             <div className="border-y border-bone/15 px-1 py-12 md:py-16">
-              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                 Currently. Empty calendar.
               </p>
               <p className="mt-4 max-w-3xl font-display text-3xl leading-[1.05] text-bone md:text-5xl">

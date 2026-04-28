@@ -37,7 +37,7 @@ export function Bumper({
     >
       <div className="mx-auto flex max-w-[900px] flex-col items-center px-5 text-center">
         {eyebrow && (
-          <p className="font-body text-[10px] font-medium uppercase tracking-[0.32em] text-bone/40">
+          <p className="font-body text-[10px] font-medium uppercase tracking-[0.32em] text-bone/55">
             {eyebrow}
           </p>
         )}
@@ -52,7 +52,7 @@ export function Bumper({
         </p>
 
         {footnote && (
-          <p className="mt-8 font-body text-[10px] font-medium uppercase tracking-[0.32em] text-bone/40">
+          <p className="mt-8 font-body text-[10px] font-medium uppercase tracking-[0.32em] text-bone/55">
             {footnote}
           </p>
         )}

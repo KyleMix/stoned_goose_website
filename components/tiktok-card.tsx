@@ -86,7 +86,7 @@ export function TikTokCard({ url, title, poster }: Props) {
         )}
       </div>
       <p className="mt-3 font-display text-xl text-bone md:text-2xl">{title}</p>
-      <p className="mt-1 flex items-center gap-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+      <p className="mt-1 flex items-center gap-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
         <span>TikTok</span>
         <a
           href={url}

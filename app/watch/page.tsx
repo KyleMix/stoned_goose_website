@@ -216,7 +216,7 @@ export default function WatchPage() {
                     <p className="mt-3 font-display text-xl text-bone group-hover:text-hazard md:text-2xl">
                       {v.title}
                     </p>
-                    <p className="mt-1 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+                    <p className="mt-1 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                       YouTube
                     </p>
                   </FeedLink>

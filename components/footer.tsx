@@ -48,7 +48,7 @@ export function Footer() {
               loading="lazy"
               className="block h-24 w-auto opacity-90 md:h-28"
             />
-            <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+            <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
               Olympia, WA
             </p>
             <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-[-0.02em] md:text-7xl">
@@ -100,7 +100,7 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+          <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
             <p>© {year} Stoned Goose Productions</p>
             <p>Website Design by Kyle Mixon.</p>
           </div>
@@ -120,7 +120,7 @@ function FooterColumn({
 }) {
   return (
     <div className="md:col-span-2">
-      <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+      <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
         {label}
       </p>
       <ul className="mt-4 space-y-2">
