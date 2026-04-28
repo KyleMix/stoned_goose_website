@@ -9,6 +9,7 @@ import { MailingListCapture } from "@/components/mailing-list-capture";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { AddToCalendar } from "@/components/add-to-calendar";
 import { ShareButton } from "@/components/share-button";
+import { FacebookPagePlugin } from "@/components/facebook-page-plugin";
 import { jsonLdString } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
@@ -334,6 +335,8 @@ export default function ShowsPage() {
           )}
         </div>
       </section>
+
+      <FacebookPagePlugin />
 
       <MailingListCapture page="shows" />
     </>

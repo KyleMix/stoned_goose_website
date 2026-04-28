@@ -146,21 +146,59 @@ Unset = no analytics ship. See `.env.example` for the rest.
 ### Integration cheat sheet
 
 Every integration is a build-time pull or click-to-load embed. Tokens are
-read by `sync:*` scripts only and never reach the client bundle. Schedule
-rebuilds via GitHub Actions when token rotation matters.
+read by `sync:*` and `feeds:*` scripts only, never reach the client
+bundle. Schedule rebuilds via GitHub Actions when token rotation matters.
 
-| Service | Auth | Token expiry | Owner setup |
-|---|---|---|---|
-| Eventbrite | Personal token | Long-lived | Generate in Eventbrite account settings |
-| YouTube | API key | Long-lived | Google Cloud Console, restrict to YouTube Data API v3 |
-| Fourthwall | Basic auth | Long-lived | Fourthwall Open API credentials |
-| Instagram | Long-lived user token | ~60 days | Meta for Developers app + Graph API. Refresh with `npm run refresh:instagram-token`. |
-| Facebook | Page token | ~60 days (same Meta app) | Same Meta app, Page-level perms |
-| TikTok | None (embeds) | n/a | Paste video URLs into `content/social.ts` `tiktokVideos` |
-| Patreon | None (RSS) | n/a | Paste public RSS URL into `PATREON_RSS_URL` |
-| Plausible | Public domain | n/a | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` |
-| GSC / Bing | Verification meta tag | Long-lived | `NEXT_PUBLIC_GSC_VERIFICATION` / `NEXT_PUBLIC_BING_VERIFICATION` |
-| IndexNow | Random key | Long-lived | `INDEXNOW_KEY` (postbuild writes the key file into /out) |
+| Service | Script | Auth | Token expiry | Owner setup |
+|---|---|---|---|---|
+| Eventbrite | `sync:shows` | Personal token | Long-lived | Generate in Eventbrite account settings |
+| Fourthwall | `sync:fourthwall` | Basic auth | Long-lived | Fourthwall Open API credentials |
+| Instagram | `feeds:instagram` | Long-lived user token | ~60 days | Meta for Developers app + Graph API. Refresh with `npm run refresh:instagram-token`. |
+| YouTube | `feeds:youtube` | API key | Long-lived | Google Cloud Console, restrict to YouTube Data API v3. Channel ID in `content/site.ts`. |
+| Facebook | `feeds:facebook` | Page token | ~60 days (extend to never-expiring) | Same Meta app as Instagram, Page-level perms. Page ID in `content/site.ts`. |
+| Facebook Events | `sync:facebook-events` | Page token (same as above) | Same | Reuses the page token + `FACEBOOK_PAGE_ID` env var |
+| TikTok | n/a | None (embeds) | n/a | Paste video URLs into `content/social.ts` `tiktokVideos` |
+| Patreon | `sync:patreon` | None (RSS) | n/a | Paste public RSS URL into `PATREON_RSS_URL` |
+| Plausible | n/a | Public domain | n/a | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` |
+| GSC / Bing | n/a | Verification meta tag | Long-lived | `NEXT_PUBLIC_GSC_VERIFICATION` / `NEXT_PUBLIC_BING_VERIFICATION` |
+| IndexNow | postbuild | Random key | Long-lived | `INDEXNOW_KEY` (postbuild writes the key file into /out) |
+
+### Social feeds (Instagram, YouTube, Facebook)
+
+Three platforms refresh on a single 6-hour cron via
+`.github/workflows/refresh-feeds.yml`. The workflow runs each fetch
+script under `continue-on-error`, so a single platform outage does not
+block the others, and commits any diff to `content/feeds/*.json` with
+`[skip ci]` so the push does not loop.
+
+Required GitHub Actions secrets:
+
+```
+INSTAGRAM_ACCESS_TOKEN         long-lived IG user token (~60 day expiry)
+YOUTUBE_API_KEY                YouTube Data API v3 key
+FACEBOOK_PAGE_ACCESS_TOKEN     page-level access token (extend to never-expiring)
+```
+
+Channel and page IDs live in `content/site.ts` (public values, safe to
+commit), not in env. Set `site.social.youtubeChannelId` and
+`site.social.facebookPageId` once and forget.
+
+Manual run:
+
+```bash
+INSTAGRAM_ACCESS_TOKEN=xxx npm run feeds:instagram
+YOUTUBE_API_KEY=yyy        npm run feeds:youtube
+FACEBOOK_PAGE_ACCESS_TOKEN=zzz npm run feeds:facebook
+npm run feeds:all   # all three in sequence
+```
+
+Manual cron trigger: `Actions → Refresh social feeds → Run workflow`.
+
+Build-time validation: `lib/feeds.ts` parses each JSON through Zod on
+import. A malformed feed file fails the build with a clear field-path
+error so API drift surfaces immediately.
+
+Full token-setup walkthrough lives at [`docs/feeds.md`](docs/feeds.md).
 
 ### Instagram token rotation
 
@@ -172,8 +210,10 @@ INSTAGRAM_ACCESS_TOKEN=<current> npm run refresh:instagram-token
 gh secret set INSTAGRAM_ACCESS_TOKEN --body '<new token>'
 ```
 
-The daily `refresh-instagram.yml` cron will fail loudly when the token dies
-so the owner notices before the feed goes stale.
+When the token dies, the next `refresh-feeds.yml` run will write
+`content/feeds/instagram.error.log` (gitignored) and the cached posts go
+stale. The "Feed Stale Render" Plausible event also fires on the home
+page so the staleness shows up in analytics.
 
 ### Newsletter (open follow-up decision)
 
