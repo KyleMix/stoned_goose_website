@@ -1,0 +1,63 @@
+# Refresh social feeds (Instagram, YouTube, Facebook) every 6 hours.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions):
+#   INSTAGRAM_ACCESS_TOKEN        long-lived IG user token (~60 day expiry)
+#   YOUTUBE_API_KEY               YouTube Data API v3 key
+#   FACEBOOK_PAGE_ACCESS_TOKEN    page-level access token (prefer never-expiring)
+#
+# The fetch scripts skip silently when their env vars are unset, so this
+# workflow stays green even before the secrets are configured. Failures on
+# any one platform do not block the others (continue-on-error: true).
+#
+# Each successful run that produces a diff in content/feeds/*.json is
+# committed back to the branch with [skip ci] so this workflow does not
+# loop itself. The host's auto-deploy hook picks up the change.
+
+name: Refresh social feeds
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: Pull latest social content
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch Instagram
+        continue-on-error: true
+        run: npm run feeds:instagram
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+
+      - name: Fetch YouTube
+        continue-on-error: true
+        run: npm run feeds:youtube
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+
+      - name: Fetch Facebook
+        continue-on-error: true
+        run: npm run feeds:facebook
+        env:
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+
+      - name: Commit refreshed feeds
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(feeds): refresh social content [skip ci]"
+          file_pattern: "content/feeds/*.json"
