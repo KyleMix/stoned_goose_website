@@ -117,6 +117,14 @@ or inconsistency, **low** is polish.
   the message can land below the fold after submit. Worth a small
   `aria-live="polite"` wrapper higher in the form so the announcement
   is not also a layout-shift surprise.
+  Skip-with-reason: revisited the code path. The existing
+  `role="status"` (implicit `aria-live="polite"`) and `role="alert"`
+  (implicit `aria-live="assertive"`) ARE the live regions, and they
+  fire on the visible message that sits next to the submit button the
+  user just clicked, so they are also in viewport. React-hook-form's
+  `shouldFocusError: true` default also handles validation-failure
+  focus. No action this pass; flagged as a follow-up if user-testing
+  surfaces a real announcement gap.
 - **[medium] Empty `<span aria-hidden>` on the bumper bug uses the
   bracketed `[ stoned goose ]` glyphs as a brand watermark.**
   `components/bumper.tsx:62-65`. This is intentional decoration; not
@@ -128,6 +136,11 @@ or inconsistency, **low** is polish.
   `app/sponsor/page.tsx:40`. House rule (CLAUDE.md) says "no em dashes
   anywhere." Renders as `—` for missing stats. Replace with a glyph
   that fits the editorial register, e.g. ` // ` or `TBD` in mono.
+  Resolved in this commit: replaced the em dash with a smaller `TBD`
+  in mono, dimmed (bone/35) to read as a placeholder rather than a
+  number. Sponsor owner has confirmed the existing values are
+  placeholders awaiting refresh (per SPEC.md), so the visual delta
+  signals the same thing: "real number going here."
 
 ### Forms / microcopy
 

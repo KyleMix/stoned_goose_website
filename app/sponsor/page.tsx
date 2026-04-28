@@ -37,7 +37,11 @@ export default function SponsorPage() {
             {sponsorshipStats.map((s) => (
               <li key={s.label} className="bg-ink p-8 md:p-10">
                 <p className="font-display text-5xl text-bone md:text-6xl">
-                  {s.value ?? <span className="text-bone/35">—</span>}
+                  {s.value ?? (
+                    <span className="font-mono text-2xl tracking-[0.18em] text-bone/35 md:text-3xl">
+                      TBD
+                    </span>
+                  )}
                 </p>
                 <p className="mt-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
                   {s.label}
