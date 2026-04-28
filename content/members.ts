@@ -16,7 +16,7 @@ export const members: Member[] = [
     slug: "kyle-mixon",
     name: "Kyle Mixon",
     role: "Founder & Producer",
-    photo: "/images/members/kyle.png",
+    photo: "/images/members/kyle.webp",
     index: "01",
   },
   {
@@ -30,21 +30,21 @@ export const members: Member[] = [
     slug: "brendan-meeks",
     name: "Brendan Meeks",
     role: "Creative Director",
-    photo: "/images/members/brendan.png",
+    photo: "/images/members/brendan.webp",
     index: "03",
   },
   {
     slug: "samuel-tweed",
     name: "Samuel Tweed",
     role: "Stage Manager",
-    photo: "/images/members/sam.png",
+    photo: "/images/members/sam.webp",
     index: "04",
   },
   {
     slug: "garrett-iverson",
     name: "Garrett Iverson",
     role: "Photographer",
-    photo: "/images/members/garrett-iverson.jpg",
+    photo: "/images/members/garrett-iverson.webp",
     index: "05",
   },
 ];
