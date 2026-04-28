@@ -40,7 +40,7 @@ running codebase as of 2026-04-28.
 ### User-facing surfaces
 
 | Path | Type | Notes |
-|---|---|---|
+| --- | --- | --- |
 | `/` | home | hero, marquee, 3x rotating bumpers, upcoming shows block, services overview, instagram strip, press strip (empty), mission slot (empty), mailing list capture |
 | `/shows` | static | featured special player, upcoming shows from Eventbrite feed, mailing list capture |
 | `/watch` | static | featured special, reels grid, YouTube grid, IG/FB feeds, TikTok cards, mailing list capture |
