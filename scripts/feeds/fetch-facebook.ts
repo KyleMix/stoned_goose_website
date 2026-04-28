@@ -7,6 +7,7 @@
 import { site } from "../../content/site";
 import type { FacebookFeed, FacebookPost } from "../../content/feeds/types";
 import { logFailure, writeFeed } from "./_helpers";
+import { FacebookFeedSchema, parseOrThrow } from "./schema";
 
 const SOURCE = "facebook" as const;
 const LIMIT = 12;
@@ -86,6 +87,7 @@ async function main() {
     errorMessage: null,
     posts,
   };
+  parseOrThrow(FacebookFeedSchema, feed, "facebook fetch output");
   writeFeed(SOURCE, feed);
   console.log(`[feeds:facebook] wrote ${posts.length} posts`);
 }

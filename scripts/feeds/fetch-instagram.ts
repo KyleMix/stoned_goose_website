@@ -6,6 +6,7 @@
 //   INSTAGRAM_ACCESS_TOKEN
 import type { InstagramFeed, InstagramPost } from "../../content/feeds/types";
 import { logFailure, writeFeed } from "./_helpers";
+import { InstagramFeedSchema, parseOrThrow } from "./schema";
 
 const SOURCE = "instagram" as const;
 const LIMIT = 12;
@@ -85,6 +86,7 @@ async function main() {
     posts,
   };
 
+  parseOrThrow(InstagramFeedSchema, feed, "instagram fetch output");
   writeFeed(SOURCE, feed);
   console.log(`[feeds:instagram] wrote ${posts.length} posts`);
 }

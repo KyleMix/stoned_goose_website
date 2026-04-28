@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run sync || true",
+    "prebuild": "npm run feeds:validate && (npm run sync || true)",
     "build": "next build",
     "postbuild": "tsx scripts/build-shows-feeds.ts",
     "start": "next start",
@@ -20,6 +20,7 @@
     "feeds:youtube": "tsx scripts/feeds/fetch-youtube.ts",
     "feeds:facebook": "tsx scripts/feeds/fetch-facebook.ts",
     "feeds:all": "npm run feeds:instagram && npm run feeds:youtube && npm run feeds:facebook",
+    "feeds:validate": "tsx scripts/feeds/validate-feeds.ts",
     "refresh:instagram-token": "tsx scripts/refresh-instagram-token.ts",
     "prepare": "husky"
   },
