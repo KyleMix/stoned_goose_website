@@ -197,3 +197,57 @@ or inconsistency, **low** is polish.
   from every footer column. Adding tel/mailto in the footer would also
   be reasonable; flagging as a follow-up rather than this pass to keep
   the footer changes diff small.
+
+## Pass summary
+
+### Shipped
+
+| Severity | Area | Commit | One-line |
+| --- | --- | --- | --- |
+| high | nav | `e546ee9` | mobile menu overlay marked `inert` + `aria-hidden` while closed so Tab no longer lands on hidden links |
+| high | marquee | `a86a7cd` | decorative doubled-track ticker `aria-hidden` so AT does not announce every word twice |
+| medium | nav | `29bfd00` | hamburger button bumped 40x40 -> 44x44 to clear WCAG 2.2 SC 2.5.8 |
+| medium | sponsor | `608726c` | em dash literal stat placeholder replaced with mono `TBD` (CLAUDE.md house rule) |
+| medium | services-overview | `7f5097b` | "Or just email us" CTA renamed to "Or just contact us" so copy matches the destination |
+| low | deps | `2f4ec11` | `framer-motion` uninstalled (unused, ship size unaffected) |
+
+### Skipped this pass
+
+- **Form aria-live region** (medium): existing `role="status"` and
+  `role="alert"` are already correct live regions, and react-hook-form's
+  `shouldFocusError: true` default handles validation-failure focus.
+  Real announcement gap not demonstrated. Keep watching.
+- **Bumper `aria-hidden`** stays. The cable-bumper jokes are visual
+  gags by design (CLAUDE.md "Adult Swim register"). AT users get a
+  meaningful pause; the headlines and CTAs around the bumpers carry
+  the load.
+- **`/comedians` and `/members` halftone-only on mobile** stays.
+  Tap-to-toggle would compete with reading the bio inline; documented
+  in `app/members/page.tsx:113-115`.
+- **Marquee pause-on-hover**: brand-voice question. The cable-bumper
+  energy reads as "always on." Owner call before adding.
+
+### Follow-ups worth a second pass
+
+- **Footer phone + email as real `tel:` / `mailto:` links.** The
+  contact page already exposes them as such, but every footer column
+  carries the same strings as plain text. Click-to-call from the
+  footer is a real mobile usability win; held back this pass to keep
+  the footer change small. (low / medium effort)
+- **Form success state could be more decisive on long forms** (sponsor
+  inquiry, comic submission). Current pattern: form fields clear, a
+  small status message appears next to the submit button. Replacing
+  the form with a success card would be a stronger "you're done"
+  signal, but adds component-level state and risks losing the user's
+  retry path on an accidental dismissal. Deferred until real user
+  feedback says it is needed.
+- **Bundle: split heavy client components into islands.** Hero, nav,
+  footer all hydrate as full client components because of small
+  `track()` calls in `onClick` handlers. Extracting the click
+  trackers into thin client islands would let the visible chrome
+  ship as server components. Out of scope for an a11y/UX pass; would
+  net real TBT savings on a future perf-focused PR.
+- **Lighthouse CI flagged a `color-contrast` violation on `/`** during
+  the perf-followup PR (#104) audit. Likely the bone/45 mono micro
+  text on grain. Worth a focused contrast pass. Not a UX-pass blocker;
+  CI Accessibility category still scored 0.96.
