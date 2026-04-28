@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { hero } from "@/content/home";
 import { track } from "@/lib/analytics";
@@ -18,11 +19,23 @@ export function Hero() {
       />
 
       <div className="relative mx-auto max-w-[1400px] px-5 pb-16 pt-32 md:px-10 md:pb-20 md:pt-36">
-        {/* The single mono use, per the spec: a status banner. */}
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
-          Now booking{" "}
-          <span className="text-bone">corporate events + media production</span>
-        </p>
+        {/* The single mono use, per the spec: a status banner. The 32px mark
+            sits left as a quiet brand-anchor: opacity holds it back so the
+            wordmark below stays the focal point. */}
+        <div className="flex items-center gap-3">
+          <Image
+            src="/brand/stoned-goose-mark-illustration.png"
+            alt=""
+            width={32}
+            height={28}
+            priority
+            className="h-7 w-auto opacity-60"
+          />
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
+            Now booking{" "}
+            <span className="text-bone">corporate events + media production</span>
+          </p>
+        </div>
 
         {/* Two-line lockup, same display size, left-aligned, period-as-accent. */}
         <h1 className="heading-display mt-8 text-[clamp(3.5rem,12vw,11rem)] text-bone">
