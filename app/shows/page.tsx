@@ -118,7 +118,7 @@ export default function ShowsPage() {
               <span className="text-hazard">{presale.code}</span> for{" "}
               {presale.venueName}
             </p>
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.22em] text-bone/65">
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/65">
               Expires {formatDate(presale.expiresAt)}
             </p>
           </div>

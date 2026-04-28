@@ -66,7 +66,7 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
               </button>
             </Dialog.Trigger>
           ) : (
-            <span className="border border-hazard bg-ink/85 px-5 py-3 font-body text-[11px] font-semibold uppercase tracking-[0.22em] text-bone backdrop-blur-sm md:text-xs">
+            <span className="border border-hazard bg-ink/85 px-5 py-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone backdrop-blur-sm md:text-xs">
               Coming soon
             </span>
           )}

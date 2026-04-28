@@ -30,7 +30,7 @@ export function Hero() {
             height={36}
             className="h-9 w-auto opacity-60"
           />
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-bone/55">
             Now booking{" "}
             <span className="text-bone">corporate events + media production</span>
           </p>
