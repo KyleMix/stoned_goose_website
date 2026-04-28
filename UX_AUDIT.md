@@ -167,6 +167,8 @@ or inconsistency, **low** is polish.
   effects ship as Tailwind classes + CSS transitions. Removing it cuts
   one transitive tree from `node_modules`. Won't change ship size
   (already tree-shaken away) but reduces install + lockfile churn.
+  Resolved in this commit: `npm uninstall framer-motion`. Build, lint,
+  typecheck stay green; no imports anywhere referenced it.
 
 ### Trust / polish
 
