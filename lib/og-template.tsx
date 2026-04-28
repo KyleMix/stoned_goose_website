@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 const INK = "#0A0A0A";
@@ -9,15 +11,23 @@ const HAZE_DIM = "rgba(239, 233, 221, 0.35)";
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
+// Read the corner mark once at module load so each ImageResponse can embed
+// it as a data URI without hitting the filesystem per render. Static export
+// runs this in Node at build time.
+const markBuffer = readFileSync(
+  join(process.cwd(), "public/brand/og-mark.png"),
+);
+const markDataUrl = `data:image/png;base64,${markBuffer.toString("base64")}`;
+
 type OgInput = {
   eyebrow: string;
   title: string;
 };
 
-// Templated OG card. ImageResponse uses Satori, which falls back to its
-// bundled Inter-like font when no font is supplied. Good enough for share
-// cards. Layout: ink background, mono eyebrow top, big serif-ish title with
-// hazard period, brand line bottom-left, URL bottom-right.
+// Templated OG card. Layout: ink background, mono eyebrow top, big serif-ish
+// title with hazard period, brand line bottom-left, URL bottom-right, and a
+// quiet illustration mark in the top-right corner. The mark is a brand
+// signoff, not the focal point: route name keeps the room.
 export function ogImageResponse({ eyebrow, title }: OgInput) {
   return new ImageResponse(
     (
@@ -58,7 +68,8 @@ export function ogImageResponse({ eyebrow, title }: OgInput) {
           }}
         >
           <span>{eyebrow}</span>
-          <span>Stoned Goose<span style={{ color: HAZARD }}>.</span></span>
+          {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders via Satori, next/image is not supported here. */}
+          <img src={markDataUrl} alt="" width={88} height={88} style={{ opacity: 0.9 }} />
         </div>
 
         <div

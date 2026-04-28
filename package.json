@@ -22,6 +22,7 @@
     "feeds:all": "npm run feeds:instagram && npm run feeds:youtube && npm run feeds:facebook",
     "feeds:validate": "tsx scripts/feeds/validate-feeds.ts",
     "refresh:instagram-token": "tsx scripts/refresh-instagram-token.ts",
+    "brand:generate": "tsx scripts/brand/generate-brand-assets.ts",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -54,6 +55,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "postcss": "^8.4.49",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.14",
     "tsx": "^4.21.0",
     "typescript": "^5.6.3"
