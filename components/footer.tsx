@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
 import { track } from "@/lib/analytics";
@@ -39,7 +40,15 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-5 pb-10 pt-20 md:px-10 md:pt-32">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+            <Image
+              src="/brand/stoned-goose-mark-illustration.png"
+              alt=""
+              width={160}
+              height={142}
+              priority={false}
+              className="block h-16 w-auto opacity-90 md:h-20"
+            />
+            <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
               Olympia, WA
             </p>
             <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-[-0.02em] md:text-7xl">

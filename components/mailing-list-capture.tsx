@@ -86,8 +86,8 @@ export function MailingListCapture({ page }: Props) {
             className="md:col-span-7"
             aria-label="Mailing list email capture"
           >
-            <div className="flex flex-wrap items-end gap-4">
-              <label className="flex-1 min-w-[220px]">
+            <div className="flex flex-col items-stretch gap-4 md:flex-row md:flex-wrap md:items-end">
+              <label className="flex-1 md:min-w-[220px]">
                 <span className="block font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                   Email
                 </span>
@@ -96,14 +96,15 @@ export function MailingListCapture({ page }: Props) {
                   name="email"
                   required
                   autoComplete="email"
+                  inputMode="email"
                   placeholder="you@email.com"
-                  className="mt-2 block w-full bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0"
+                  className="mt-2 block min-h-[48px] w-full bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0"
                 />
               </label>
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="group inline-flex h-12 shrink-0 items-center gap-3 bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone disabled:opacity-50"
+                className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone disabled:opacity-50 md:w-auto md:justify-start"
               >
                 {status === "loading" ? "Sending..." : "Sign me up"}
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">

@@ -1,0 +1,15 @@
+{
+  "name": "Stoned Goose Productions",
+  "short_name": "Stoned Goose",
+  "description": "Live shows, comedian booking, corporate events, media production, and headshots across Olympia, Lacey, Tacoma, and the South Sound.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    { "src": "/brand/favicon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "/brand/favicon-256.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "/brand/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/brand/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

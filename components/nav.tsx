@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -37,11 +38,29 @@ export function Nav() {
         <Link
           href="/"
           aria-label={`${site.shortName} home`}
-          className="group inline-flex items-baseline"
+          className="group inline-flex items-center gap-2"
         >
+          <Image
+            src="/brand/stoned-goose-mark-illustration.png"
+            alt=""
+            width={28}
+            height={24}
+            priority
+            className={cn(
+              "h-6 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
+              "group-hover:translate-x-0 group-hover:opacity-90",
+              "group-focus-visible:translate-x-0 group-focus-visible:opacity-90",
+              "motion-reduce:translate-x-0 motion-reduce:opacity-90 motion-reduce:transition-none",
+            )}
+          />
           <span className="font-display text-xl leading-none tracking-[-0.02em] text-bone md:text-[1.4rem]">
             Stoned Goose
-            <span aria-hidden className="text-hazard">.</span>
+            <span
+              aria-hidden
+              className="text-hazard transition-[text-decoration-color] group-hover:underline group-hover:decoration-hazard group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-hazard group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
+            >
+              .
+            </span>
           </span>
         </Link>
 
@@ -96,8 +115,16 @@ export function Nav() {
       >
         <nav
           aria-label="Mobile primary"
-          className="flex h-full flex-col justify-between px-6 pb-12 pt-10"
+          className="flex h-full flex-col justify-between px-6 pb-12 pt-8"
         >
+          <Image
+            src="/brand/stoned-goose-mark-illustration.png"
+            alt=""
+            width={120}
+            height={106}
+            priority
+            className="mb-8 block h-24 w-auto opacity-90"
+          />
           <ul className="flex flex-col">
             {nav.map((item, i) => (
               <li key={item.href} className="border-b border-bone/10">
