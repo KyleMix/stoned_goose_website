@@ -105,6 +105,7 @@ or inconsistency, **low** is polish.
   `[...items, ...items]` for a seamless loop, then maps the doubled
   list to visible spans. Screen readers announce every item twice. The
   marquee is decorative; the section needs `aria-hidden="true"`.
+  Resolved in this commit: `aria-hidden` added on the marquee root.
 - **[medium] Mobile hamburger button is 40x40, under the 44x44 WCAG 2.2
   AA tap target minimum (2.5.8).**
   `components/nav.tsx:90`. Bump to 44x44 without changing the icon.

@@ -17,6 +17,11 @@ export function Marquee({
   const track = [...items, ...items];
   return (
     <div
+      // Decorative cable-bumper-style ticker. The track is the items array
+      // doubled for a seamless loop, so screen readers would announce every
+      // item twice. Hide from the a11y tree; sighted users get the ticker,
+      // AT users get the headings and CTAs around it.
+      aria-hidden
       className={cn(
         "marquee relative w-full overflow-hidden border-y border-bone/15 bg-ink py-5",
         className,
