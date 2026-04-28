@@ -1,9 +1,7 @@
-"use client";
-
 import Image from "next/image";
-import { track } from "@/lib/analytics";
 import { instagramFeed } from "@/lib/feeds";
 import { site } from "@/content/site";
+import { FeedLink } from "@/components/feed-link";
 
 // Home-page Instagram strip. Six most recent posts, three columns on
 // mobile and six on desktop. Click opens the permalink in a new tab.
@@ -31,20 +29,16 @@ export function InstagramStrip() {
               <span className="text-hazard">.</span>
             </h2>
           </div>
-          <a
+          <FeedLink
+            platform="instagram"
+            placement="home-strip"
             href={site.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() =>
-              track("Feed Click", {
-                platform: "instagram",
-                placement: "home-strip",
-              })
-            }
             className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
           >
             Open Instagram ↗
-          </a>
+          </FeedLink>
         </div>
         <ul className="grid grid-cols-3 gap-2 md:grid-cols-6 md:gap-3">
           {posts.map((post) => {
@@ -52,16 +46,12 @@ export function InstagramStrip() {
             const label = post.caption?.slice(0, 80) || "Instagram post";
             return (
               <li key={post.id} className="aspect-square">
-                <a
+                <FeedLink
+                  platform="instagram"
+                  placement="home-strip"
                   href={post.permalink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() =>
-                    track("Feed Click", {
-                      platform: "instagram",
-                      placement: "home-strip",
-                    })
-                  }
                   aria-label={label}
                   className="group relative block h-full w-full overflow-hidden bg-haze-500"
                 >
@@ -88,7 +78,7 @@ export function InstagramStrip() {
                       Reel
                     </span>
                   ) : null}
-                </a>
+                </FeedLink>
               </li>
             );
           })}

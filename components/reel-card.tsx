@@ -8,6 +8,9 @@ type Props = {
   title: string;
   url: string;
   poster: string;
+  /** Plausible "Feed Click" placement key. Defaults to watch-reels since
+   *  that's the only current consumer. */
+  placement?: "watch-reels" | "watch-grid" | "home-strip" | "shows-fb-plugin";
 };
 
 function extractInstagramId(url: string): string | null {
@@ -18,7 +21,7 @@ function extractInstagramId(url: string): string | null {
 // Click-to-load Instagram embed. First paint ships a poster only, no third-party
 // JS or iframes. Clicking the play button swaps in the official IG embed iframe,
 // which loads its own JS lazily. "Open on Instagram" link survives as a fallback.
-export function ReelCard({ title, url, poster }: Props) {
+export function ReelCard({ title, url, poster, placement = "watch-reels" }: Props) {
   const [loaded, setLoaded] = useState(false);
   const id = extractInstagramId(url);
   const embedSrc = id ? `https://www.instagram.com/reel/${id}/embed/` : null;
@@ -74,7 +77,9 @@ export function ReelCard({ title, url, poster }: Props) {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => track("Outbound Click", { destination: "instagram" })}
+          onClick={() =>
+            track("Feed Click", { platform: "instagram", placement })
+          }
           className="text-bone/65 hover:text-hazard"
         >
           open on instagram ↗
