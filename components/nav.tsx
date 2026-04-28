@@ -44,9 +44,9 @@ export function Nav() {
             src="/brand/stoned-goose-mark-sm.webp"
             alt=""
             width={28}
-            height={25}
+            height={28}
             className={cn(
-              "h-6 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
+              "h-7 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
               "group-hover:translate-x-0 group-hover:opacity-90",
               "group-focus-visible:translate-x-0 group-focus-visible:opacity-90",
               "motion-reduce:translate-x-0 motion-reduce:opacity-90 motion-reduce:transition-none",
@@ -125,10 +125,10 @@ export function Nav() {
           <Image
             src="/brand/stoned-goose-mark-sm.webp"
             alt=""
-            width={120}
-            height={107}
+            width={144}
+            height={144}
             loading="lazy"
-            className="mb-8 block h-24 w-auto opacity-90"
+            className="mb-8 block h-36 w-auto opacity-90"
           />
           <ul className="flex flex-col">
             {nav.map((item, i) => (

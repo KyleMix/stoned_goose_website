@@ -1,20 +1,23 @@
-// Generates illustration-only brand assets from the master logo PNG.
+// Generates brand assets from the master logo PNG.
 //
-// Source asset (`public/brand/stoned-goose-mark.png`) is a 2400x2400 lockup
-// that bakes the goose illustration above the "STONED GOOSE PRODUCTIONS"
-// wordmark. House rule keeps the illustration and the Fraunces wordmark as
-// separate identities, so this script crops the illustration and generates
-// the favicon set, apple-touch-icon, OG corner mark, and a clean square
-// on-ink variant. Run with `npm run brand:generate`. Commit the outputs.
+// Source asset (`public/brand/stoned-goose-mark.png`) is the 2400x2400
+// "Stoned Goose Productions" lockup (smoking goose illustration plus
+// the wordmark beneath). The full lockup is the brand mark and ships
+// uncropped wherever the mark appears in flow (nav, hero status row,
+// footer, mobile menu, 404). The illustration-only crop is kept around
+// because at favicon sizes (16-32 px) the wordmark turns to mush and
+// the goose silhouette reads better. So:
 //
 // Outputs (all under public/brand/):
-//   stoned-goose-mark.png          (master, untouched)
-//   stoned-goose-mark-illustration.png  bone-on-transparent illustration crop
-//   stoned-goose-mark-on-ink.png   illustration centered on a black square (2000)
-//   stoned-goose-mark-on-bone.png  illustration recolored ink on a bone square
-//   og-mark.png                    256x256 on-ink mark for OG card watermark
-//   apple-touch-icon.png           180x180 on-ink, padded for iOS rounding
-//   favicon-{16,32,64,128,256,512}.png
+//   stoned-goose-mark.png            (master, untouched)
+//   stoned-goose-mark-sm.png         512x512 full lockup, transparent bg, bone-tinted
+//   stoned-goose-mark-sm.webp        same as above, ~10x smaller payload
+//   stoned-goose-mark-illustration.png  bone-on-transparent illustration crop (legacy)
+//   stoned-goose-mark-on-ink.png     illustration centered on a black square (2000)
+//   stoned-goose-mark-on-bone.png    illustration recolored ink on a bone square
+//   og-mark.png                      256x256 illustration crop for OG card watermark
+//   apple-touch-icon.png             180x180 illustration crop, padded for iOS rounding
+//   favicon-{16,32,64,128,256,512}.png  illustration crop downscaled
 //
 // The vector SVG that the brief mentions is not generated. Source is raster.
 // If a vector lands later, drop it at public/brand/stoned-goose-mark.svg and
@@ -37,9 +40,19 @@ const CROP = { left: 220, top: 60, width: 1960, height: 1740 } as const;
 const SQUARE = 2000;
 
 // Source is white-on-solid-black. Convert the black background to transparent
-// so the bone-colored illustration floats on whatever surface it lands on.
+// so the bone-colored mark floats on whatever surface it lands on.
 // Strategy: lift the red channel as the alpha channel (white=255 stays opaque,
 // black=0 becomes transparent). Then recolor the surviving pixels to bone.
+async function fullLockupTransparent(): Promise<Buffer> {
+  const flat = await sharp(SRC).removeAlpha().toBuffer();
+  const alpha = await sharp(flat).extractChannel(0).toBuffer();
+  const tinted = await sharp(flat)
+    .removeAlpha()
+    .tint({ r: 239, g: 233, b: 221 })
+    .toBuffer();
+  return sharp(tinted).joinChannel(alpha).png().toBuffer();
+}
+
 async function illustrationTransparent(): Promise<Buffer> {
   const cropped = await sharp(SRC).extract(CROP).removeAlpha().toBuffer();
   const alpha = await sharp(cropped).extractChannel(0).toBuffer();
@@ -113,22 +126,24 @@ async function main() {
   );
 
   // Small + WebP variants for in-flow placements (nav, hero status, footer,
-  // mobile menu, 404 hero). The 1960x1740 master is overkill for a 24-200px
+  // mobile menu, 404 hero). The 2400x2400 master is overkill for a 24-200px
   // render and the static export ships it raw because next.config.mjs runs
   // images.unoptimized: true. A 512px source + WebP shrinks the per-page
   // mark payload from ~760KB to ~10-30KB depending on browser support.
-  const SMALL_W = 512;
-  const SMALL_H = Math.round((CROP.height / CROP.width) * SMALL_W);
-  await sharp(transparent)
-    .resize(SMALL_W, SMALL_H)
+  // These ship the FULL lockup (illustration + wordmark) so placements
+  // never look "cut off."
+  const SMALL = 512;
+  const fullLockup = await fullLockupTransparent();
+  await sharp(fullLockup)
+    .resize(SMALL, SMALL)
     .png({ compressionLevel: 9 })
     .toFile(join(OUT, "stoned-goose-mark-sm.png"));
-  console.log(`  -> stoned-goose-mark-sm.png (${SMALL_W}x${SMALL_H})`);
-  await sharp(transparent)
-    .resize(SMALL_W, SMALL_H)
+  console.log(`  -> stoned-goose-mark-sm.png (${SMALL}x${SMALL})`);
+  await sharp(fullLockup)
+    .resize(SMALL, SMALL)
     .webp({ quality: 88 })
     .toFile(join(OUT, "stoned-goose-mark-sm.webp"));
-  console.log(`  -> stoned-goose-mark-sm.webp (${SMALL_W}x${SMALL_H})`);
+  console.log(`  -> stoned-goose-mark-sm.webp (${SMALL}x${SMALL})`);
 
   const onInk = await illustrationOnInk();
   await sharp(onInk).toFile(join(OUT, "stoned-goose-mark-on-ink.png"));

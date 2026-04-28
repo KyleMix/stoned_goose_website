@@ -26,9 +26,9 @@ export function Hero() {
           <Image
             src="/brand/stoned-goose-mark-sm.webp"
             alt=""
-            width={32}
-            height={28}
-            className="h-7 w-auto opacity-60"
+            width={36}
+            height={36}
+            className="h-9 w-auto opacity-60"
           />
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
             Now booking{" "}
