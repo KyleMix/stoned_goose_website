@@ -34,8 +34,8 @@ export const services = [
 ];
 
 // Marquee uses brand copy + roster names + service areas. No invented taglines.
-// TODO(owner): "5,000+ Tickets Sold" is a stat. House rule says no invented stats.
-// Confirm the figure or replace the line.
+// "5,000+ Tickets Sold" was removed pending owner confirmation per the
+// no-invented-stats house rule. Drop it back in once the figure is verified.
 export const marqueeWords = [
   "Stoned Goose Productions",
   "Live. Local. Comedy.",
@@ -44,7 +44,6 @@ export const marqueeWords = [
   "Tacoma",
   "South Sound",
   "Now Booking",
-  "5,000+ Tickets Sold",
   "Pacific Northwest",
 ];
 
