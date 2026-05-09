@@ -1,6 +1,7 @@
 "use client";
 
 import type { OpenMic } from "@/content/open-mics";
+import { OpenMicUpdateDialog } from "@/components/open-mic-update-dialog";
 
 type Props = {
   mics: OpenMic[];
@@ -24,10 +25,17 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
         const active = selectedId === m.id;
         return (
           <li key={m.id}>
-            <button
-              type="button"
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => onSelect(m.id)}
-              className={`group block w-full text-left transition-colors ${
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelect(m.id);
+                }
+              }}
+              className={`group block w-full cursor-pointer text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-hazard ${
                 active ? "bg-bone/[0.04]" : "hover:bg-bone/[0.025]"
               }`}
             >
@@ -53,7 +61,7 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
                     </p>
                   ) : null}
                 </div>
-                <div className="col-span-12 mt-2 md:col-span-3 md:mt-0 md:text-right">
+                <div className="col-span-12 mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 md:col-span-3 md:mt-0 md:flex-col md:items-end">
                   {m.signupUrl ? (
                     <a
                       href={m.signupUrl}
@@ -65,9 +73,10 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
                       Signup ↗
                     </a>
                   ) : null}
+                  <OpenMicUpdateDialog mic={m} />
                 </div>
               </div>
-            </button>
+            </div>
           </li>
         );
       })}
