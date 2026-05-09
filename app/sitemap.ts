@@ -11,17 +11,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/shows",
-    "/members",
-    "/comedians",
+    "/open-mics",
     "/watch",
-    "/services",
+    "/roster",
+    "/book",
     "/shop",
-    "/sponsor",
-    "/submit",
     "/contact",
   ];
 
-  const serviceRoutes = services.map((s) => `/services/${s.slug}`);
+  const serviceRoutes = services.map((s) => `/book/${s.slug}`);
 
   return [...staticRoutes, ...serviceRoutes].map((path) => ({
     url: `${base}${path}`,

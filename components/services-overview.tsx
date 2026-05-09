@@ -17,7 +17,7 @@ export function ServicesOverview() {
               Now hiring out
             </p>
             <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
-              We do five things.
+              We do four things.
             </h2>
           </div>
 
@@ -31,7 +31,7 @@ export function ServicesOverview() {
                   /{String(i + 1).padStart(2, "0")}
                 </span>
                 <Link
-                  href={`/services/${s.slug}`}
+                  href={`/book/${s.slug}`}
                   className="col-span-9 font-display text-2xl text-bone transition-colors group-hover:text-hazard md:col-span-9 md:text-3xl"
                 >
                   {s.title}
@@ -49,10 +49,10 @@ export function ServicesOverview() {
 
         <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-bone/15 pt-8 md:mt-14">
           <Link
-            href="/services"
+            href="/book"
             className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
           >
-            See all services ↗
+            Book us ↗
           </Link>
           <Link
             href="/contact"

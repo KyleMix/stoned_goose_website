@@ -3,12 +3,14 @@
 import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 import { track } from "@/lib/analytics";
 
-type FeedPlatform = "instagram" | "youtube" | "facebook";
+type FeedPlatform = "instagram" | "youtube" | "facebook" | "tiktok";
 type FeedPlacement =
   | "watch-grid"
   | "watch-reels"
+  | "watch-latest"
   | "home-strip"
-  | "shows-fb-plugin";
+  | "shows-fb-plugin"
+  | "news-feed";
 
 type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
   platform: FeedPlatform;

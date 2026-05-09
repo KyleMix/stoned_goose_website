@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import type { Person } from "schema-dts";
 import { aboutCopy, members, pillars } from "@/content/members";
+import { comedians, comediansCopy } from "@/content/comedians";
 import { site } from "@/content/site";
+import { PageHeader } from "@/components/page-header";
 import { SectionHeader } from "@/components/section-header";
 import { jsonLdString } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Members",
+  title: "Roster",
   description:
-    "Meet the crew behind Stoned Goose Productions. Producers, performers, and media pros building comedy experiences across the Pacific Northwest.",
+    "The Stoned Goose Productions roster. The crew running the operation and the comics in our regular rotation across the Pacific Northwest.",
+  alternates: {
+    canonical: "/roster",
+  },
 };
 
-export default function MembersPage() {
-  // Person JSON-LD only for crew members with editorial bios. Skip placeholders
-  // so we don't ship empty `description` fields.
+export default function RosterPage() {
   const personJsonLd: Person[] = members
     .filter((m) => Boolean(m.bio))
     .map((m) => ({
@@ -29,7 +31,7 @@ export default function MembersPage() {
         name: site.name,
         url: site.url,
       },
-      url: `${site.url}/members`,
+      url: `${site.url}/roster`,
     }));
 
   return (
@@ -41,24 +43,20 @@ export default function MembersPage() {
           dangerouslySetInnerHTML={{ __html: jsonLdString(p) }}
         />
       ))}
-      <section className="relative border-b border-bone/10 bg-ink pb-16 pt-32 md:pb-24 md:pt-40">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
-            [ The Crew / Issue 001 ]
-          </p>
-          <h1 className="heading-display mt-4 text-[clamp(3rem,11vw,9rem)] text-bone">
-            Members<span className="text-hazard">.</span>
-          </h1>
-          <p className="mt-8 max-w-2xl font-body text-base leading-relaxed text-bone/85 md:text-lg">
-            {aboutCopy.subhead}
-          </p>
-        </div>
-      </section>
+
+      <PageHeader
+        eyebrow="The Roster"
+        title={
+          <>
+            Roster<span className="text-hazard">.</span>
+          </>
+        }
+        body={aboutCopy.subhead}
+      />
 
       <section className="relative border-b border-bone/10 bg-ink py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
-            index="01"
             eyebrow="The Operation"
             title={
               <>
@@ -91,11 +89,10 @@ export default function MembersPage() {
       <section className="relative border-b border-bone/10 bg-bone py-20 text-ink md:py-28">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
-            index="02"
             eyebrow={aboutCopy.crewSubhead}
             title={
               <>
-                Meet the <span className="italic">Crew</span>
+                The <span className="italic">Crew</span>
               </>
             }
             className="[&_h2]:text-ink [&_p]:text-ink/70 [&_span]:text-ink/55"
@@ -111,10 +108,6 @@ export default function MembersPage() {
                   {m.index}
                 </span>
                 <div className="col-span-10 md:col-span-3">
-                  {/* Halftone-to-color reveal is hover-only by design. On
-                      mobile the halftone state stays, since the editorial
-                      treatment IS the look and the reveal would require
-                      tap-to-toggle UI that competes with reading the bio. */}
                   <div className="relative aspect-[3/4] w-full max-w-[220px] overflow-hidden">
                     <Image
                       src={m.photo}
@@ -152,42 +145,95 @@ export default function MembersPage() {
               </li>
             ))}
           </ul>
-
         </div>
       </section>
 
-      <section className="relative bg-ink py-24 md:py-32">
+      <section className="bg-ink py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-10 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7">
-              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
-                Open Stage Door
-              </p>
-              <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
-                Want to <span className="italic text-hazard">work</span> with us?
-              </h2>
-            </div>
-            <div className="md:col-span-5">
-              <p className="font-body text-base text-bone/85 md:text-lg">
-                We keep a rolling submission pipeline for future showcases and
-                feature sets. Send your latest tape and details for review.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/submit"
-                  className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
-                >
-                  Submit to the roster ↗
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
-                >
-                  Talk to a producer ↗
-                </Link>
-              </div>
-            </div>
-          </div>
+          <SectionHeader
+            eyebrow="Our Friends"
+            title={
+              <>
+                Comics in the <span className="italic text-hazard">rotation</span>
+              </>
+            }
+            subtitle={comediansCopy.subhead}
+          />
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
+            {comediansCopy.kicker}
+          </p>
+          <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {comedians.map((c) => (
+              <li key={c.name} className="group">
+                <div className="relative aspect-[3/4] w-full overflow-hidden">
+                  <Image
+                    src={c.photo}
+                    alt={c.name}
+                    fill
+                    sizes="(min-width: 1024px) 18vw, (min-width: 768px) 22vw, 45vw"
+                    className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-0"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 z-10 hidden translate-y-full items-center justify-center gap-4 bg-gradient-to-t from-ink/95 to-transparent px-4 py-4 transition-transform duration-300 group-hover:translate-y-0 group-focus-within:translate-y-0 md:flex">
+                    {c.instagram && (
+                      <a
+                        href={c.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${c.name} on Instagram`}
+                        className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone hover:text-hazard"
+                      >
+                        IG ↗
+                      </a>
+                    )}
+                    {c.facebook && (
+                      <a
+                        href={c.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${c.name} on Facebook`}
+                        className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone hover:text-hazard"
+                      >
+                        FB ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <h3 className="mt-4 font-display text-xl text-bone md:text-2xl">
+                  {c.name}
+                </h3>
+                {(c.instagram || c.facebook) && (
+                  <div className="mt-2 flex gap-4 md:hidden">
+                    {c.instagram && (
+                      <a
+                        href={c.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${c.name} on Instagram`}
+                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone/70 active:text-hazard"
+                      >
+                        IG ↗
+                      </a>
+                    )}
+                    {c.facebook && (
+                      <a
+                        href={c.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${c.name} on Facebook`}
+                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone/70 active:text-hazard"
+                      >
+                        FB ↗
+                      </a>
+                    )}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </>

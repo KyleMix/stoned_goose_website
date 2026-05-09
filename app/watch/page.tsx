@@ -1,30 +1,27 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { watchCopy } from "@/content/watch";
 import { featuredSpecial } from "@/content/shows";
 import { site } from "@/content/site";
-import { patreonPosts, tiktokVideos } from "@/content/social";
+import { patreonPosts } from "@/content/social";
+import { news } from "@/content/news";
 import { PageHeader } from "@/components/page-header";
-import { ReelCard } from "@/components/reel-card";
+import { SectionHeader } from "@/components/section-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
-import { TikTokCard } from "@/components/tiktok-card";
-import { FeedLink } from "@/components/feed-link";
+import { NewsFeed } from "@/components/news-feed";
 import { instagramFeed, youtubeFeed, relativeAge } from "@/lib/feeds";
 import { FeedFreshness } from "@/components/feed-freshness";
 
 export const metadata: Metadata = {
   title: "Watch",
   description:
-    "Watch Stoned Goose Productions clips, reels, and Xavier Rake's full comedy special when it lands.",
+    "Featured comedy special, latest social posts, and announcements from Stoned Goose Productions.",
 };
 
 export default function WatchPage() {
-  const reelPosts = instagramFeed.posts
-    .filter((p) => p.mediaType === "REEL" || p.mediaType === "VIDEO")
-    .slice(0, 4);
-  const channelVideos = youtubeFeed.videos.slice(0, 8);
+  const feedFresh =
+    instagramFeed.posts.length > 0 || youtubeFeed.videos.length > 0;
 
   return (
     <>
@@ -90,18 +87,26 @@ export default function WatchPage() {
         </div>
       </section>
 
-      {reelPosts.length > 0 ? (
-        <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
-          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-              <div>
-                <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
-                  Reels
-                </h2>
-                <p className="mt-2 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  Updated {relativeAge(instagramFeed.fetchedAt)}
-                </p>
-              </div>
+      <section
+        id="latest"
+        className="border-b border-bone/10 bg-ink py-20 md:py-24"
+      >
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
+            <SectionHeader
+              eyebrow="Latest"
+              title={
+                <>
+                  From the <span className="italic text-hazard">feed</span>
+                </>
+              }
+              subtitle={
+                feedFresh
+                  ? `Auto-synced. Instagram updated ${relativeAge(instagramFeed.fetchedAt)}. YouTube updated ${relativeAge(youtubeFeed.fetchedAt)}.`
+                  : "Auto-synced from Instagram, YouTube, and TikTok. Posts here when we post there."
+              }
+            />
+            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
               <TrackedAnchor
                 destination="instagram"
                 href={site.social.instagram}
@@ -109,68 +114,8 @@ export default function WatchPage() {
                 rel="noopener noreferrer"
                 className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
               >
-                @stonedgooseproductions ↗
+                Instagram ↗
               </TrackedAnchor>
-            </div>
-            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {reelPosts.map((post) => (
-                <ReelCard
-                  key={post.id}
-                  title={post.caption?.slice(0, 80) || "Instagram Reel"}
-                  url={post.permalink}
-                  poster={post.thumbnailUrl ?? post.mediaUrl}
-                />
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : (
-        <FeedFreshness
-          source="instagram"
-          fetchedAt={instagramFeed.fetchedAt}
-          status={instagramFeed.status}
-          placement="watch-reels"
-        />
-      )}
-
-      {tiktokVideos.length > 0 ? (
-        <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
-          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-              <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
-                TikTok
-              </h2>
-              <TrackedAnchor
-                destination="tiktok"
-                href={site.social.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
-              >
-                @stonedgooseproductions ↗
-              </TrackedAnchor>
-            </div>
-            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {tiktokVideos.map((v) => (
-                <TikTokCard key={v.url} url={v.url} title={v.title} poster={v.poster} />
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
-
-      {channelVideos.length > 0 ? (
-        <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
-          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-            <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-              <div>
-                <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
-                  From the channel
-                </h2>
-                <p className="mt-2 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  Updated {relativeAge(youtubeFeed.fetchedAt)}
-                </p>
-              </div>
               <TrackedAnchor
                 destination="youtube"
                 href={site.social.youtube}
@@ -178,61 +123,70 @@ export default function WatchPage() {
                 rel="noopener noreferrer"
                 className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
               >
-                @stonedgooseproductions ↗
+                YouTube ↗
+              </TrackedAnchor>
+              <TrackedAnchor
+                destination="tiktok"
+                href={site.social.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              >
+                TikTok ↗
               </TrackedAnchor>
             </div>
-            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {channelVideos.map((v) => (
-                <li key={v.id}>
-                  <FeedLink
-                    platform="youtube"
-                    placement="watch-grid"
-                    href={`https://www.youtube.com/watch?v=${v.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block"
-                  >
-                    <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
-                      <Image
-                        src={v.thumbnailUrl}
-                        alt={v.title}
-                        fill
-                        sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
-                        className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)]"
-                        unoptimized
-                      />
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="flex h-14 w-14 items-center justify-center bg-hazard text-ink">
-                          <span aria-hidden className="text-xl">
-                            ▸
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                    <p className="mt-3 font-display text-xl text-bone group-hover:text-hazard md:text-2xl">
-                      {v.title}
-                    </p>
-                    <p className="mt-1 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
-                      YouTube
-                    </p>
-                  </FeedLink>
+          </div>
+          <NewsFeed limit={12} />
+          {!feedFresh ? (
+            <div className="mt-10">
+              <FeedFreshness
+                source="instagram"
+                fetchedAt={instagramFeed.fetchedAt}
+                status={instagramFeed.status}
+                placement="watch-latest"
+              />
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      {news.length > 0 ? (
+        <section
+          id="from-the-goose"
+          className="border-b border-bone/10 bg-ink py-20 md:py-24"
+        >
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <SectionHeader
+              eyebrow="From the Goose"
+              title={
+                <>
+                  News &amp; <span className="italic text-hazard">notes</span>
+                </>
+              }
+              subtitle="Hand-written announcements. Show drops, behind-the-scenes, and the things that don't fit on Instagram."
+            />
+            <ul className="mt-10 divide-y divide-bone/15 border-y border-bone/15">
+              {news.map((post) => (
+                <li key={post.slug} className="py-7">
+                  <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <h3 className="mt-2 font-display text-2xl text-bone md:text-3xl">
+                    {post.title}
+                  </h3>
+                  <p className="mt-3 max-w-prose font-body text-base text-bone/85">
+                    {post.summary}
+                  </p>
                 </li>
               ))}
             </ul>
           </div>
         </section>
-      ) : (
-        <FeedFreshness
-          source="youtube"
-          fetchedAt={youtubeFeed.fetchedAt}
-          status={youtubeFeed.status}
-          placement="watch-grid"
-        />
-      )}
+      ) : null}
 
       <section className="bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">

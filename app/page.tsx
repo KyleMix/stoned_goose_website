@@ -5,7 +5,10 @@ import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
 import { ServicesOverview } from "@/components/services-overview";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { PressStrip } from "@/components/press-strip";
-import { InstagramStrip } from "@/components/instagram-strip";
+import { LatestStrip } from "@/components/latest-strip";
+import { OpenMicTeaser } from "@/components/open-mic-teaser";
+import { RosterTeaser } from "@/components/roster-teaser";
+import { ShopStrip } from "@/components/shop-strip";
 import { marqueeWords, mission } from "@/content/home";
 
 export default function HomePage() {
@@ -18,11 +21,17 @@ export default function HomePage() {
 
       <UpcomingShowsBlock />
 
+      <OpenMicTeaser />
+
+      <LatestStrip limit={6} />
+
       <RotatingBumper slot="aside" />
+
+      <RosterTeaser limit={8} />
 
       <ServicesOverview />
 
-      <InstagramStrip />
+      <ShopStrip limit={3} />
 
       <PressStrip />
 

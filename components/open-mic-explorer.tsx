@@ -1,0 +1,144 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import { useMemo, useState } from "react";
+import type { OpenMic, OpenMicDay } from "@/content/open-mics";
+import { OpenMicList } from "@/components/open-mic-list";
+
+// Map is dynamically imported with SSR disabled because Leaflet touches
+// `window`. This wrapper keeps the page server-rendered while the map
+// hydrates client-side.
+const OpenMicMap = dynamic(
+  () => import("@/components/open-mic-map").then((m) => m.OpenMicMap),
+  { ssr: false, loading: () => <MapSkeleton /> },
+);
+
+const ALL_DAYS: OpenMicDay[] = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+type Props = {
+  mics: OpenMic[];
+};
+
+export function OpenMicExplorer({ mics }: Props) {
+  const [day, setDay] = useState<OpenMicDay | "all">("all");
+  const [city, setCity] = useState<string>("all");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const cities = useMemo(() => {
+    const set = new Set(mics.map((m) => m.city));
+    return Array.from(set).sort();
+  }, [mics]);
+
+  const filtered = useMemo(() => {
+    return mics.filter((m) => {
+      if (day !== "all" && m.day !== day) return false;
+      if (city !== "all" && m.city !== city) return false;
+      return true;
+    });
+  }, [mics, day, city]);
+
+  return (
+    <div className="grid gap-10 md:grid-cols-12">
+      <aside className="md:col-span-4">
+        <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+          Filter
+        </p>
+        <fieldset className="mt-4">
+          <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            Day
+          </legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Chip active={day === "all"} onClick={() => setDay("all")}>
+              All
+            </Chip>
+            {ALL_DAYS.map((d) => (
+              <Chip
+                key={d}
+                active={day === d}
+                onClick={() => setDay(d)}
+              >
+                {d.slice(0, 3)}
+              </Chip>
+            ))}
+          </div>
+        </fieldset>
+        {cities.length > 0 ? (
+          <fieldset className="mt-6">
+            <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+              City
+            </legend>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Chip active={city === "all"} onClick={() => setCity("all")}>
+                All
+              </Chip>
+              {cities.map((c) => (
+                <Chip
+                  key={c}
+                  active={city === c}
+                  onClick={() => setCity(c)}
+                >
+                  {c}
+                </Chip>
+              ))}
+            </div>
+          </fieldset>
+        ) : null}
+        <p className="mt-6 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+          {filtered.length} {filtered.length === 1 ? "mic" : "mics"}
+        </p>
+      </aside>
+      <div className="md:col-span-8">
+        <OpenMicMap
+          mics={filtered}
+          selectedId={selectedId}
+          onSelect={setSelectedId}
+        />
+        <div className="mt-8">
+          <OpenMicList
+            mics={filtered}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Chip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`inline-flex h-9 items-center border px-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
+        active
+          ? "border-hazard bg-hazard text-ink"
+          : "border-bone/30 text-bone/85 hover:border-hazard hover:text-hazard"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function MapSkeleton() {
+  return (
+    <div className="aspect-[4/3] w-full animate-pulse border border-bone/15 bg-haze-500 md:aspect-[16/10]" />
+  );
+}

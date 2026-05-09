@@ -8,16 +8,16 @@ type Suggestion = { href: string; label: string };
 
 const ALL: Record<string, Suggestion> = {
   shows: { href: "/shows", label: "Upcoming shows" },
-  submit: { href: "/submit", label: "Comic submissions" },
-  services: { href: "/services", label: "Services" },
+  openMics: { href: "/open-mics", label: "Open Mic Explorer" },
+  book: { href: "/book", label: "Book us" },
   shop: { href: "/shop", label: "Shop" },
-  sponsor: { href: "/sponsor", label: "Sponsor a show" },
+  sponsor: { href: "/book#sponsors", label: "Sponsor a show" },
   contact: { href: "/contact", label: "Contact" },
   watch: { href: "/watch", label: "Watch" },
-  members: { href: "/members", label: "The crew" },
+  roster: { href: "/roster", label: "The roster" },
 };
 
-const DEFAULTS: Suggestion[] = [ALL.shows, ALL.services, ALL.contact];
+const DEFAULTS: Suggestion[] = [ALL.shows, ALL.book, ALL.contact];
 
 // Static heuristic. Maps the misfired path to a small set of likely intents
 // without server logic, so it keeps working in static export.
@@ -32,13 +32,13 @@ function suggestionsForPath(path: string): Suggestion[] {
     }
   }
   if (p.includes("show") || p.includes("ticket")) add(ALL.shows);
-  if (p.includes("submit") || p.includes("comic")) add(ALL.submit);
-  if (p.includes("book") || p.includes("service")) add(ALL.services);
+  if (p.includes("open") || p.includes("mic")) add(ALL.openMics);
+  if (p.includes("book") || p.includes("service") || p.includes("submit") || p.includes("collab")) add(ALL.book);
   if (p.includes("merch") || p.includes("shop") || p.includes("store")) add(ALL.shop);
   if (p.includes("sponsor")) add(ALL.sponsor);
   if (p.includes("contact") || p.includes("reach")) add(ALL.contact);
-  if (p.includes("watch") || p.includes("video") || p.includes("media")) add(ALL.watch);
-  if (p.includes("about") || p.includes("crew") || p.includes("member") || p.includes("team")) add(ALL.members);
+  if (p.includes("watch") || p.includes("video") || p.includes("media") || p.includes("news")) add(ALL.watch);
+  if (p.includes("about") || p.includes("crew") || p.includes("member") || p.includes("team") || p.includes("roster") || p.includes("comic")) add(ALL.roster);
 
   if (picks.length === 0) return DEFAULTS;
   for (const fallback of DEFAULTS) {

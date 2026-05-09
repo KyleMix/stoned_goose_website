@@ -7,20 +7,20 @@ import { track } from "@/lib/analytics";
 
 const explore = [
   { label: "Home", href: "/" },
-  { label: "Comedians", href: "/comedians" },
-  { label: "Members", href: "/members" },
+  { label: "Shows", href: "/shows" },
+  { label: "Open Mics", href: "/open-mics" },
   { label: "Watch", href: "/watch" },
+  { label: "Roster", href: "/roster" },
   { label: "Shop", href: "/shop" },
 ];
 
-const services = [
-  { label: "Services", href: "/services" },
-  { label: "Comic Submissions", href: "/submit" },
-  { label: "Sponsorships", href: "/sponsor" },
+const work = [
+  { label: "Book Us", href: "/book" },
+  { label: "Sponsor a Show", href: "/book#sponsors" },
 ];
 
 const connect = [
-  { label: "Book a Show", href: "/services" },
+  { label: "Tickets.", href: "/shows" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -65,7 +65,7 @@ export function Footer() {
           </div>
 
           <FooterColumn label="Explore" items={explore} />
-          <FooterColumn label="Services" items={services} />
+          <FooterColumn label="Work With Us" items={work} />
           <FooterColumn label="Connect" items={connect} />
         </div>
 

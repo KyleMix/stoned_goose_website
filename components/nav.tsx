@@ -75,11 +75,11 @@ export function Nav() {
             </Link>
           ))}
           <Link
-            href="/services"
-            onClick={() => track("CTA Click", { cta: "nav-book-a-show" })}
+            href="/shows"
+            onClick={() => track("CTA Click", { cta: "nav-tickets" })}
             className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 transition-colors hover:text-hazard"
           >
-            Book a Show ↗
+            Tickets<span className="text-hazard">.</span> ↗
           </Link>
         </nav>
 
@@ -145,14 +145,14 @@ export function Nav() {
           </ul>
           <div className="space-y-3 pt-8">
             <Link
-              href="/services"
+              href="/shows"
               onClick={() => {
-                track("CTA Click", { cta: "nav-book-a-show-mobile" });
+                track("CTA Click", { cta: "nav-tickets-mobile" });
                 setOpen(false);
               }}
               className="flex h-12 w-full items-center justify-center bg-hazard font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink"
             >
-              Book a Show
+              Tickets.
             </Link>
             <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
               {site.contact.email}

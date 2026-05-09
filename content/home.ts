@@ -8,29 +8,28 @@ export const hero = {
   subhead:
     "Crafting cinematic stand-up, curated showcases, and comedy chaos across your city.",
   primary: {
-    title: "Book a Show",
-    body: "Bring a high-impact comedy night to your venue, company event, or private experience.",
-    label: "Start Booking",
-    href: "/services",
-  },
-  secondary: {
-    title: "Get Tickets",
+    title: "Tickets.",
     body: "See what's next in Olympia and across the South Sound, then lock in your seats.",
     label: "Browse Shows",
     href: "/shows",
   },
+  secondary: {
+    title: "Open Mic Explorer",
+    body: "Find an open mic in the Pacific Northwest. New rooms, weekly signups, mapped.",
+    label: "Find a mic",
+    href: "/open-mics",
+  },
   tertiary: [
-    { label: "Sponsor a Show", href: "/sponsor" },
-    { label: "Comic Submissions", href: "/submit" },
+    { label: "Book Us", href: "/book" },
+    { label: "Sponsor a Show", href: "/book#sponsors" },
   ],
 };
 
 export const services = [
   { title: "Live Show Production", slug: "live-show-production" },
-  { title: "Comedian Booking", slug: "comedian-booking" },
-  { title: "Corporate Events", slug: "corporate-events" },
+  { title: "Film Your Comedy Set", slug: "film-your-comedy-set" },
   { title: "Media & Podcasts", slug: "media-and-podcasts" },
-  { title: "Headshots & Promo Shoots", slug: "headshots-and-promo" },
+  { title: "Collaboration", slug: "collaboration" },
 ];
 
 // Marquee uses brand copy + roster names + service areas. No invented taglines.

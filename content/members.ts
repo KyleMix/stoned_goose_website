@@ -5,12 +5,12 @@ export type Member = {
   photo: string;
   index: string;
   // Optional 2-3 sentence editorial bio. Owner provides copy. Renders under
-  // role on /members when present. House rule: no em dashes.
+  // role on /roster when present. House rule: no em dashes.
   bio?: string;
 };
 
 // Bios are intentionally absent. Existing site lists only name + role per member.
-// Owner: paste bio strings on each member to render them on /members.
+// Owner: paste bio strings on each member to render them on /roster.
 export const members: Member[] = [
   {
     slug: "kyle-mixon",

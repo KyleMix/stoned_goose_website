@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Leaflet base styles. Pulled in globally so the dynamically-imported
+   open-mic-map can mount with correct tile + control sizing. */
+@import "leaflet/dist/leaflet.css";
+
 @layer base {
   :root {
     --font-display: "Fraunces", Georgia, serif;
