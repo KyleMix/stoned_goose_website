@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run feeds:validate && (npm run sync || true) && npm run build:placeholders",
+    "prebuild": "(npm run feeds:all || true) && npm run feeds:validate && (npm run sync || true) && npm run build:placeholders",
     "build:placeholders": "tsx scripts/build-placeholders.ts",
     "build": "next build",
     "postbuild": "tsx scripts/build-shows-feeds.ts && pagefind --site out --output-path out/pagefind",
