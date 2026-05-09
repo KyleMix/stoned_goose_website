@@ -6,6 +6,12 @@ GitHub Action runs the fetch scripts every 6 hours, normalizes results
 into typed JSON under `content/feeds/`, and commits the change. The
 host's auto-deploy hook ships the new build.
 
+YouTube additionally refreshes during the host build itself: `prebuild`
+runs `npm run feeds:youtube` so every Vercel deploy pulls the latest
+videos when `YOUTUBE_API_KEY` is set in the host's environment. The
+script skips silently when the key is missing, so deploys without it
+remain green.
+
 ## Architecture at a glance
 
 ```
@@ -119,6 +125,9 @@ Uses YouTube Data API v3. API keys are long-lived and quota-restricted
 5. Click the key → Restrict key → API restrictions → "YouTube Data
    API v3" only. Save.
 6. Store the value as `YOUTUBE_API_KEY` in GitHub Actions secrets.
+7. Also add `YOUTUBE_API_KEY` to the Vercel project's Environment
+   Variables (Production + Preview) so the prebuild fetch runs there
+   too. Vercel → Project → Settings → Environment Variables.
 
 Find the channel ID:
 
