@@ -118,12 +118,12 @@ export function Nav() {
           className="flex h-full flex-col justify-between px-6 pb-12 pt-8"
         >
           <Image
-            src="/brand/stoned-goose-mark-illustration.png"
-            alt=""
-            width={120}
-            height={106}
+            src="/brand/stoned-goose-logo-full.png"
+            alt="Stoned Goose Productions"
+            width={240}
+            height={240}
             priority
-            className="mb-8 block h-24 w-auto opacity-90"
+            className="mb-8 block h-32 w-auto"
           />
           <ul className="flex flex-col">
             {nav.map((item, i) => (
