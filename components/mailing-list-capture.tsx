@@ -14,18 +14,6 @@ type Status = "idle" | "loading" | "success" | "error";
 // Slim email capture used at the bottom of /, /shows, /watch.
 // Posts to the same formsubmit endpoint as the rest of the site so the owner
 // gets every signup in their inbox. Honeypot, optional Plausible event.
-//
-// TODO(esp): replace the formsubmit POST below with a real ESP embed. Once
-// the owner picks Kit (ConvertKit) or Beehiiv, swap the fetch URL and
-// payload key:
-//   Kit:      POST https://app.kit.com/forms/<form_id>/subscriptions
-//             body: email_address=<email>
-//   Beehiiv:  POST https://api.beehiiv.com/v2/publications/<pub_id>/subscriptions
-//             (use the public landing-page subscribe URL — not the v2 API
-//             which requires a server-held API key)
-// Both endpoints are CORS-friendly. Keep the honeypot, swap the payload
-// shape, and update the success-event copy. Contact form stays on
-// formsubmit; only this newsletter capture moves.
 export function MailingListCapture({ page }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const referrerRef = useRef<HTMLInputElement>(null);
