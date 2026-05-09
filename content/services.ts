@@ -9,6 +9,8 @@ export type Service = {
   process: string[];
   pricing: string;
   faqs: { q: string; a: string }[];
+  /** Marks the entry as awaiting real copy. Detail page renders a draft notice. */
+  draft?: boolean;
 };
 
 export const services: Service[] = [
@@ -58,94 +60,32 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "comedian-booking",
-    title: "Comedian Booking",
+    slug: "film-your-comedy-set",
+    title: "Film Your Comedy Set",
     metaTitle:
-      "Comedian Booking | Olympia & South Sound | Stoned Goose Productions",
+      "Film Your Comedy Set | Stoned Goose Productions",
     metaDescription:
-      "Book comedians for Olympia, Lacey, and Tacoma events. Curated talent matching, contracts, and scheduling handled by Stoned Goose.",
+      "Multi-cam capture and edit of your stand-up set in the Pacific Northwest. Talk to us about packages.",
     summary:
-      "Curated comedian booking that matches your audience, timeline, and tone. Serving Olympia, Lacey, Tacoma, and the South Sound.",
+      "Get your set on tape. Multi-cam capture, clean audio, and edited video you can actually post.",
     whatYouGet: [
-      "Talent recommendations aligned with your audience and brand.",
-      "Availability checks, contracts, and schedule coordination.",
-      "Clear communication leading into show day.",
+      "TODO: copy needed.",
     ],
     idealFor: [
-      "Venues that need recurring or rotating lineups.",
-      "Corporate and private events seeking clean, reliable talent.",
-      "Producers assembling a fast, polished comedy bill.",
+      "TODO: copy needed.",
     ],
     process: [
-      "Share your event date, tone, and budget expectations.",
-      "Receive a shortlist of comedians with bios and rates.",
-      "We confirm the lineup and handle contracts and logistics.",
+      "TODO: copy needed.",
     ],
     pricing:
-      "Booking rates vary by talent level and event format. Request a quote for a tailored lineup.",
+      "Pricing varies by set length and deliverables. Request a quote.",
     faqs: [
       {
-        q: "Can you book comedians for corporate events in Tacoma?",
-        a: "Yes. We regularly book clean, corporate-ready comedians for Tacoma and South Sound events.",
-      },
-      {
-        q: "Do you handle contracts and travel details?",
-        a: "We manage contracts, scheduling, and any travel requirements so your team can focus on the event.",
-      },
-      {
-        q: "How many comedians can we book for one show?",
-        a: "We can build anything from a single headliner to a full lineup, depending on your run time and budget.",
-      },
-      {
-        q: "What should we send to start the booking process?",
-        a: "Let us know your date, venue or format, and audience size. We'll reply with available talent and pricing.",
+        q: "What does a typical filming look like?",
+        a: "TODO: copy needed.",
       },
     ],
-  },
-  {
-    slug: "corporate-events",
-    title: "Corporate Events",
-    metaTitle:
-      "Corporate Event Comedy | Olympia & South Sound | Stoned Goose Productions",
-    metaDescription:
-      "Corporate comedy and event production for Olympia, Lacey, and Tacoma teams. Clean, tailored shows with full coordination.",
-    summary:
-      "Tailored comedy programming for corporate events that keeps teams engaged without crossing lines in Olympia, Lacey, and Tacoma.",
-    whatYouGet: [
-      "Clean, customized comedy aligned with your culture.",
-      "Experienced hosts and producers who keep the agenda moving.",
-      "Hybrid-ready coordination for in-person or streamed events.",
-    ],
-    idealFor: [
-      "Company celebrations, retreats, and holiday parties.",
-      "Conference entertainment and client appreciation.",
-      "Team-building events needing a memorable anchor.",
-    ],
-    process: [
-      "Align on audience profile, goals, and desired tone.",
-      "Receive tailored talent and production recommendations.",
-      "We coordinate rehearsals, tech, and show execution.",
-    ],
-    pricing:
-      "Corporate packages are customized by audience size and production needs. Request a quote to get started.",
-    faqs: [
-      {
-        q: "Do you provide clean comedy for corporate audiences?",
-        a: "Yes. We specialize in clean, professional shows that respect your brand guidelines and audience mix.",
-      },
-      {
-        q: "Can you support hybrid or virtual events?",
-        a: "We can coordinate tech and talent for in-person, hybrid, or fully virtual comedy events.",
-      },
-      {
-        q: "Where do you offer corporate event production?",
-        a: "We serve Olympia, Lacey, Tacoma, and the greater South Sound, with travel options available.",
-      },
-      {
-        q: "How quickly can we book a corporate event?",
-        a: "Four weeks is ideal, but we can often book faster depending on availability and scope.",
-      },
-    ],
+    draft: true,
   },
   {
     slug: "media-and-podcasts",
@@ -193,49 +133,32 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "headshots-and-promo",
-    title: "Headshots & Promo Shoots",
+    slug: "collaboration",
+    title: "Collaboration",
     metaTitle:
-      "Headshots & Promo Shoots | Olympia & South Sound | Stoned Goose Productions",
+      "Collaboration | Stoned Goose Productions",
     metaDescription:
-      "Professional headshots and promo shoots in Olympia, Lacey, and Tacoma. Clean, modern images for comedians and teams.",
+      "Open the door to a collaboration with Stoned Goose Productions.",
     summary:
-      "Fast, collaborative headshot and promo sessions that deliver press-ready visuals across the South Sound.",
+      "Got a project that needs a comedy partner? Pitch us. We'll see what fits.",
     whatYouGet: [
-      "Directed sessions for clean, modern headshots.",
-      "Multiple looks optimized for web, posters, and socials.",
-      "Retouched galleries delivered quickly.",
+      "TODO: copy needed.",
     ],
     idealFor: [
-      "Comedians updating press kits and promo assets.",
-      "Show runners needing cohesive talent imagery.",
-      "Teams looking for branded, professional photos.",
+      "TODO: copy needed.",
     ],
     process: [
-      "Plan the look, wardrobe, and shot list.",
-      "Capture in-studio or on-location sessions.",
-      "Deliver edited selections and usage guidance.",
+      "TODO: copy needed.",
     ],
     pricing:
-      "Session pricing varies by shot count and location. Request a quote to build the right package.",
+      "Project-based. Send the pitch and we'll respond with terms.",
     faqs: [
       {
-        q: "Do you offer headshots in Olympia and Lacey?",
-        a: "Yes. We shoot headshots across Olympia, Lacey, Tacoma, and the greater South Sound.",
-      },
-      {
-        q: "How many looks can we capture in one session?",
-        a: "Most sessions include multiple looks; we'll align on the shot list during booking.",
-      },
-      {
-        q: "Can you provide images for press kits and posters?",
-        a: "Absolutely. We deliver retouched, high-resolution files suited for press kits, posters, and social media.",
-      },
-      {
-        q: "How soon will we receive final images?",
-        a: "Typical turnaround is 5-7 business days, with rush options available.",
+        q: "What kind of collaborations are you open to?",
+        a: "TODO: copy needed.",
       },
     ],
+    draft: true,
   },
 ];
 

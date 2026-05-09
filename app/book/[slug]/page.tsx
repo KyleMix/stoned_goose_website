@@ -48,7 +48,7 @@ export default async function ServiceDetailPage(props: {
     name: svc.title,
     description: svc.metaDescription,
     serviceType: svc.title,
-    url: `${site.url}/services/${svc.slug}`,
+    url: `${site.url}/book/${svc.slug}`,
     areaServed: [...site.serviceAreas],
     provider: {
       "@type": "LocalBusiness",
@@ -65,14 +65,14 @@ export default async function ServiceDetailPage(props: {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Services",
-        item: `${site.url}/services`,
+        name: "Book Us",
+        item: `${site.url}/book`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: svc.title,
-        item: `${site.url}/services/${svc.slug}`,
+        item: `${site.url}/book/${svc.slug}`,
       },
     ],
   };
@@ -120,6 +120,19 @@ export default async function ServiceDetailPage(props: {
         body={svc.summary}
       />
 
+      {svc.draft ? (
+        <aside
+          aria-label="Draft notice"
+          className="border-y-2 border-hazard bg-ink"
+        >
+          <div className="mx-auto max-w-[1400px] px-5 py-3 md:px-10">
+            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone">
+              Draft<span className="text-hazard">.</span> Final copy lands soon. Send a quote request and we&apos;ll fill in the details with you.
+            </p>
+          </div>
+        </aside>
+      ) : null}
+
       <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-px overflow-hidden border border-bone/15 md:grid-cols-2">
@@ -149,7 +162,7 @@ export default async function ServiceDetailPage(props: {
         </div>
       </section>
 
-      <section id="quote" className="border-b border-bone/10 bg-ink py-20 md:py-24">
+      <section id="quote" className="scroll-mt-24 border-b border-bone/10 bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
@@ -166,7 +179,7 @@ export default async function ServiceDetailPage(props: {
               </p>
               <ContactForm
                 subject={`Quote. ${svc.title}`}
-                source={`/services/${svc.slug}`}
+                source={`/book/${svc.slug}`}
                 submitLabel="Request Quote"
                 formName="quote"
                 schema="quote"
@@ -267,7 +280,7 @@ export default async function ServiceDetailPage(props: {
               </p>
             </div>
             <Link
-              href={`/services/${next.slug}`}
+              href={`/book/${next.slug}`}
               className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
             >
               Read {next.title} ↗

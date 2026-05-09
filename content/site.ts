@@ -4,7 +4,7 @@ export const site = {
   tagline: "LIVE. LOCAL. COMEDY.",
   url: "https://www.stonedgooseproductions.com",
   description:
-    "Live shows, comedian booking, corporate events, media production, and headshots across Olympia, Lacey, Tacoma, and the South Sound.",
+    "Live shows, comedy production, podcast and media work, and the Open Mic Explorer for the Pacific Northwest. Based in Olympia, working across Lacey, Tacoma, and the South Sound.",
   contact: {
     email: "kyle@stonedgooseproductions.com",
     phone: "(360) 323-0667",
@@ -51,7 +51,7 @@ export const site = {
   ],
 } as const;
 
-// Optional press quotes. Renders a slim row on home + /sponsor when populated.
+// Optional press quotes. Renders a slim row on home + /book when populated.
 // Owner-editable. House rule: no invented quotes. Each quote must be real and
 // attributable. Drop entries here when press lands.
 export type PressItem = {
@@ -64,10 +64,9 @@ export const press: PressItem[] = [];
 
 export const nav = [
   { label: "Shows", href: "/shows" },
-  { label: "Members", href: "/members" },
-  { label: "Comedians", href: "/comedians" },
+  { label: "Open Mics", href: "/open-mics" },
   { label: "Watch", href: "/watch" },
-  { label: "Services", href: "/services" },
+  { label: "Roster", href: "/roster" },
+  { label: "Book Us", href: "/book" },
   { label: "Shop", href: "/shop" },
-  { label: "Contact", href: "/contact" },
 ] as const;

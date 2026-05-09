@@ -10,7 +10,12 @@ type Props = {
   source: FeedSource;
   fetchedAt: string;
   status: FeedStatus;
-  placement: "watch-grid" | "watch-reels" | "home-strip" | "shows-fb-plugin";
+  placement:
+    | "watch-grid"
+    | "watch-reels"
+    | "watch-latest"
+    | "home-strip"
+    | "shows-fb-plugin";
 };
 
 // Renders nothing visually. Fires "Feed Stale Render" once per mount when

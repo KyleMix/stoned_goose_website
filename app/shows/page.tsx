@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import type { Event, Offer } from "schema-dts";
-import { featuredSpecial, presale, showsCopy, upcomingShows } from "@/content/shows";
+import { presale, showsCopy, upcomingShows } from "@/content/shows";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
@@ -15,7 +13,7 @@ import { jsonLdString } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Shows",
   description:
-    "Live lineups, presales, and ticket drops across Olympia and the South Sound. Plus Xavier Rake's full comedy special.",
+    "Live lineups, presales, and ticket drops across Olympia and the South Sound.",
   alternates: {
     canonical: "/shows",
     types: {
@@ -124,80 +122,6 @@ export default function ShowsPage() {
           </div>
         </aside>
       ) : null}
-
-      {/* Featured: Xavier Rake's full special */}
-      <section className="border-b border-bone/10 bg-ink py-16 md:py-24">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
-              Featured Production
-            </p>
-            <Link
-              href="/watch"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
-            >
-              Watch the special ↗
-            </Link>
-          </div>
-
-          <div className="grid gap-10 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7">
-              <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
-                <Image
-                  src={featuredSpecial.poster}
-                  alt={`${featuredSpecial.title} - ${featuredSpecial.subtitle}`}
-                  fill
-                  sizes="(min-width: 768px) 58vw, 100vw"
-                  className="object-cover [filter:grayscale(1)_contrast(1.1)]"
-                  priority
-                />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
-                />
-              </div>
-            </div>
-            <div className="md:col-span-5">
-              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                {featuredSpecial.subtitle}
-              </p>
-              <h2 className="heading-display mt-3 text-[clamp(3rem,8vw,6rem)] text-bone">
-                {featuredSpecial.title}
-                <span className="text-hazard">.</span>
-              </h2>
-              <p className="mt-6 font-body text-base text-bone/85 md:text-lg">
-                {featuredSpecial.blurb}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {featuredSpecial.videoUrl ? (
-                  <Link
-                    href="/watch"
-                    className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
-                  >
-                    Watch now ↗
-                  </Link>
-                ) : (
-                  <span
-                    className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65"
-                    aria-label="Special not yet available"
-                  >
-                    Coming soon
-                  </span>
-                )}
-                <TrackedAnchor
-                  destination="instagram"
-                  href={featuredSpecial.comedianHandle}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
-                >
-                  @jokedeal3r ↗
-                </TrackedAnchor>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Upcoming list */}
       <section className="border-b border-bone/10 bg-ink py-20 md:py-24">

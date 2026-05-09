@@ -10,8 +10,8 @@ type Props = {
   targetId: string;
 };
 
-// Slim sticky rail that nudges visitors to the quote form on /services and
-// /services/[slug]. Hidden until the user scrolls past the page header (300px),
+// Slim sticky rail that nudges visitors to the quote form on /book and
+// /book/[slug]. Hidden until the user scrolls past the page header (300px),
 // hidden again once the target form is in view. Honors prefers-reduced-motion
 // by skipping the slide-in transition.
 export function StickyQuoteRail({ label, targetId }: Props) {
