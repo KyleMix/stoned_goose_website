@@ -61,6 +61,19 @@ export const sponsorBookingSchema = z.object({
   _honey: z.string().optional(),
 });
 
+export const openMicUpdateSchema = z.object({
+  micId: z.string(),
+  micName: z.string(),
+  field: z.enum(["location", "time", "day", "signup", "host", "closed", "other"]),
+  correction: z.string().trim().min(2, "Tell us what changed"),
+  email: z
+    .string()
+    .trim()
+    .email("Use a real email")
+    .or(z.literal("")),
+  _honey: z.string().optional(),
+});
+
 // Named lookup so server components can pass a string instead of a schema
 // instance (Zod objects can't cross the server -> client component boundary).
 export const formSchemas = {
@@ -70,6 +83,7 @@ export const formSchemas = {
   submit: submitSchema,
   sponsorInquiry: sponsorInquirySchema,
   sponsorBooking: sponsorBookingSchema,
+  openMicUpdate: openMicUpdateSchema,
 } as const;
 
 export type FormSchemaName = keyof typeof formSchemas;

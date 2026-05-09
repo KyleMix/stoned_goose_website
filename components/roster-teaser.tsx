@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { comedians } from "@/content/comedians";
+import { getPlaceholder } from "@/lib/placeholders";
 
 export function RosterTeaser({ limit = 8 }: { limit?: number }) {
   const slice = comedians.slice(0, limit);
@@ -32,7 +33,9 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
           </Link>
         </div>
         <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-4 lg:grid-cols-8">
-          {slice.map((c) => (
+          {slice.map((c) => {
+            const blur = getPlaceholder(c.photo);
+            return (
             <li key={c.name} className="group">
               <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
@@ -40,6 +43,7 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
                   alt={c.name}
                   fill
                   sizes="(min-width: 1024px) 12vw, (min-width: 640px) 22vw, 45vw"
+                  {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}
                   className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                 />
                 <span
@@ -51,7 +55,8 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
                 {c.name}
               </p>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </div>
     </section>

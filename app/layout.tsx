@@ -6,6 +6,8 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Grain } from "@/components/grain";
 import { RouteFocusManager } from "@/components/route-focus-manager";
+import { SearchPalette } from "@/components/search-palette";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/content/site";
 import { jsonLdString } from "@/lib/jsonld";
 
@@ -148,10 +150,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Nav />
-        <main id="main" tabIndex={-1}>{children}</main>
+        <main id="main" tabIndex={-1} data-pagefind-body>
+          {children}
+        </main>
         <Footer />
         <Grain />
         <RouteFocusManager />
+        <SearchPalette />
+        <SmoothScroll />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdString(localBusiness) }}

@@ -60,18 +60,14 @@ export default function NotFound() {
   return (
     <section className="relative flex min-h-[88svh] flex-col items-start bg-ink pt-32 md:pt-40">
       <div className="mx-auto w-full max-w-[1400px] px-5 md:px-10">
-        <div className="relative h-[140px] w-[140px] md:h-[200px] md:w-[200px]">
+        <div className="relative h-[180px] w-[180px] md:h-[260px] md:w-[260px]">
           <Image
-            src="/brand/stoned-goose-mark-illustration.png"
-            alt=""
+            src="/brand/stoned-goose-logo-full.png"
+            alt="Stoned Goose Productions"
             fill
-            sizes="(min-width: 768px) 200px, 140px"
-            className="object-contain opacity-80"
+            sizes="(min-width: 768px) 260px, 180px"
+            className="object-contain"
             priority
-          />
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply"
           />
         </div>
         <p className="mt-10 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
