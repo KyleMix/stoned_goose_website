@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { SectionHeader } from "@/components/section-header";
 import { jsonLdString } from "@/lib/jsonld";
+import { getPlaceholder } from "@/lib/placeholders";
 
 export const metadata: Metadata = {
   title: "Roster",
@@ -114,6 +115,9 @@ export default function RosterPage() {
                       alt={m.name}
                       fill
                       sizes="(min-width: 768px) 220px, 60vw"
+                      {...(getPlaceholder(m.photo)
+                        ? { placeholder: "blur" as const, blurDataURL: getPlaceholder(m.photo)! }
+                        : {})}
                       className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                       priority={i < 2}
                     />
@@ -171,6 +175,9 @@ export default function RosterPage() {
                     alt={c.name}
                     fill
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 22vw, 45vw"
+                    {...(getPlaceholder(c.photo)
+                      ? { placeholder: "blur" as const, blurDataURL: getPlaceholder(c.photo)! }
+                      : {})}
                     className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                   />
                   <span
