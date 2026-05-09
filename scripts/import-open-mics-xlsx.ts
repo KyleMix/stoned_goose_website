@@ -42,11 +42,11 @@ type RegionLabel = {
   country: string;
 };
 
+// Only Washington and Oregon mics ship on the map. The workbook also has
+// Vancouver CAN and California USA sheets; those are intentionally skipped.
 const SHEET_REGIONS: Record<string, RegionLabel> = {
-  "Vancouver CAN": { region: "BC", country: "Canada" },
   "Washington USA": { region: "WA", country: "USA" },
   "Oregon USA": { region: "OR", country: "USA" },
-  "California USA": { region: "CA", country: "USA" },
 };
 
 function isHeaderRow(r: Row): boolean {
