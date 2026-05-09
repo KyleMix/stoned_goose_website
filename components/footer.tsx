@@ -41,11 +41,11 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <Image
-              src="/brand/stoned-goose-mark-illustration.png"
+              src="/brand/stoned-goose-mark-sm.webp"
               alt=""
               width={160}
               height={142}
-              priority={false}
+              loading="lazy"
               className="block h-16 w-auto opacity-90 md:h-20"
             />
             <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">

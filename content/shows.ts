@@ -60,7 +60,7 @@ export const featuredSpecial = {
   // Placeholder. Flagged. Owner needs to drop in the real video URL or
   // YouTube embed ID when ready.
   videoUrl: null as string | null,
-  poster: "/images/comedians/xavier.png",
+  poster: "/images/comedians/xavier.webp",
   comedianHandle: "https://www.instagram.com/jokedeal3r/",
 };
 

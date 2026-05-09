@@ -62,7 +62,7 @@ export default function NotFound() {
       <div className="mx-auto w-full max-w-[1400px] px-5 md:px-10">
         <div className="relative h-[140px] w-[140px] md:h-[200px] md:w-[200px]">
           <Image
-            src="/brand/stoned-goose-mark-illustration.png"
+            src="/brand/stoned-goose-mark-sm.webp"
             alt=""
             fill
             sizes="(min-width: 768px) 200px, 140px"

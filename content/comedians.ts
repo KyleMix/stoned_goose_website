@@ -18,7 +18,7 @@ export const comediansCopy = {
 export const comedians: Comedian[] = [
   {
     name: "Brandon White",
-    photo: "/images/comedians/brandon-white.jpg",
+    photo: "/images/comedians/brandon-white.webp",
     instagram: "https://www.instagram.com/brandonwhitecomedy/",
     facebook: "https://www.facebook.com/brandon.white.98871",
   },
@@ -35,13 +35,13 @@ export const comedians: Comedian[] = [
   },
   {
     name: "Cloe Nomic",
-    photo: "/images/comedians/cloe-nomic.jpg",
+    photo: "/images/comedians/cloe-nomic.webp",
     instagram: "https://www.instagram.com/clonipps/",
     facebook: "https://www.facebook.com/cloey.peachez",
   },
   {
     name: "David Weed",
-    photo: "/images/comedians/david-weed.png",
+    photo: "/images/comedians/david-weed.webp",
     instagram: "https://www.instagram.com/davidweedcomedy/",
   },
   {
@@ -52,7 +52,7 @@ export const comedians: Comedian[] = [
   },
   {
     name: "Ezra Bonillas",
-    photo: "/images/comedians/ezra.png",
+    photo: "/images/comedians/ezra.webp",
     instagram: "https://www.instagram.com/ezrabonillas/",
   },
   {
@@ -63,7 +63,7 @@ export const comedians: Comedian[] = [
   },
   {
     name: "Jacob Barber",
-    photo: "/images/comedians/jacob-barber.jpg",
+    photo: "/images/comedians/jacob-barber.webp",
     instagram: "https://www.instagram.com/jacob_is_a_comedian/",
     facebook: "https://www.facebook.com/jacob.barber.167",
   },
@@ -81,12 +81,12 @@ export const comedians: Comedian[] = [
   },
   {
     name: "Kayleen Dunn",
-    photo: "/images/comedians/kayleen-dunn.jpg",
+    photo: "/images/comedians/kayleen-dunn.webp",
     instagram: "https://www.instagram.com/dunnwithcomedy/",
   },
   {
     name: "Lonnie Williams",
-    photo: "/images/comedians/lonnie-williams.png",
+    photo: "/images/comedians/lonnie-williams.webp",
     instagram: "https://www.instagram.com/swagdaddysensei/",
   },
   {
@@ -109,7 +109,7 @@ export const comedians: Comedian[] = [
   },
   {
     name: "Seth Fairchild",
-    photo: "/images/comedians/seth-fairchild.png",
+    photo: "/images/comedians/seth-fairchild.webp",
     instagram: "https://www.instagram.com/sethfcomedy/",
     facebook: "https://www.facebook.com/seth.fairchild.77",
   },
@@ -127,7 +127,7 @@ export const comedians: Comedian[] = [
   },
   {
     name: "Trenton Cotton",
-    photo: "/images/comedians/trenton-cotton.jpg",
+    photo: "/images/comedians/trenton-cotton.webp",
     instagram: "https://www.instagram.com/trentoncottencomedy/",
     facebook: "https://www.facebook.com/trenton.cotten",
   },
@@ -139,12 +139,12 @@ export const comedians: Comedian[] = [
   },
   {
     name: "Xavier Rake",
-    photo: "/images/comedians/xavier.png",
+    photo: "/images/comedians/xavier.webp",
     instagram: "https://www.instagram.com/jokedeal3r/",
   },
   {
     name: "Yoshi Obayashi",
-    photo: "/images/comedians/yoshi.png",
+    photo: "/images/comedians/yoshi.webp",
     instagram: "https://www.instagram.com/yoshiobayashi/",
     facebook: "https://www.facebook.com/yoshiobayashi",
   },

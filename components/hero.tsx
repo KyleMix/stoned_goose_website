@@ -24,11 +24,10 @@ export function Hero() {
             wordmark below stays the focal point. */}
         <div className="flex items-center gap-3">
           <Image
-            src="/brand/stoned-goose-mark-illustration.png"
+            src="/brand/stoned-goose-mark-sm.webp"
             alt=""
             width={32}
             height={28}
-            priority
             className="h-7 w-auto opacity-60"
           />
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
