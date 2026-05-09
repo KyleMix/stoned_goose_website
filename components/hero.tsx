@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { hero } from "@/content/home";
 import { track } from "@/lib/analytics";
+import { TextEffect } from "@/components/text-effect";
 
 export function Hero() {
   return (
@@ -37,12 +38,18 @@ export function Hero() {
           </p>
         </div>
 
-        {/* Two-line lockup, same display size, left-aligned, period-as-accent. */}
+        {/* Two-line lockup, same display size, left-aligned, period-as-accent.
+            Per-letter rise on mount via TextEffect. Reduced-motion renders
+            the static string. */}
         <h1 className="heading-display mt-8 text-[clamp(3.5rem,12vw,11rem)] text-bone">
-          <span className="block">Stoned Goose</span>
-          <span className="block">
-            Productions<span className="text-hazard">.</span>
-          </span>
+          <TextEffect as="span" text="Stoned Goose" className="block" />
+          <TextEffect
+            as="span"
+            text="Productions"
+            className="block"
+            delay={0.35}
+            trailing={<span className="text-hazard">.</span>}
+          />
         </h1>
 
         {/* Baseline-aligned row: subhead left, italic tagline right.

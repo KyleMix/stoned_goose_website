@@ -5,6 +5,7 @@
 /* Leaflet base styles. Pulled in globally so the dynamically-imported
    open-mic-map can mount with correct tile + control sizing. */
 @import "leaflet/dist/leaflet.css";
+@import "leaflet.markercluster/dist/MarkerCluster.css";
 
 @layer base {
   :root {

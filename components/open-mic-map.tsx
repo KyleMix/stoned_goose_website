@@ -27,6 +27,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<unknown | null>(null);
   const markersRef = useRef<Map<string, unknown>>(new Map());
+  const clusterRef = useRef<unknown | null>(null);
   const onSelectRef = useRef(onSelect);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
 
@@ -40,7 +41,18 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
 
     async function init() {
       if (!containerRef.current) return;
-      const L = await import("leaflet");
+      const leafletModule = await import("leaflet");
+      // Leaflet's ESM bundle exports the L object as default; some bundlers
+      // expose it as the namespace itself. Coalesce to whichever shape we got.
+      const L: typeof import("leaflet") =
+        (leafletModule as unknown as { default?: typeof import("leaflet") })
+          .default ?? leafletModule;
+      // leaflet.markercluster is a side-effect plugin that extends window.L
+      // rather than its own export. We have to expose the same Leaflet
+      // instance globally before importing the plugin so the plugin's
+      // L.markerClusterGroup attaches to the L we use below.
+      (window as unknown as { L: typeof import("leaflet") }).L = L;
+      await import("leaflet.markercluster");
       if (disposed || !containerRef.current) return;
       leafletRef.current = L;
 
@@ -67,14 +79,37 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
         iconAnchor: [11, 11],
       });
 
+      // Cluster group spiderfies dense pins (Olympia/Tacoma overlap at low
+      // zoom). Cluster icons styled in the global CSS block below to match
+      // the hazard-yellow pin language.
+      const cluster = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        spiderfyOnMaxZoom: true,
+        chunkedLoading: true,
+        maxClusterRadius: 48,
+        iconCreateFunction: (c) => {
+          const count = c.getChildCount();
+          const size = count >= 25 ? 56 : count >= 10 ? 46 : 36;
+          return L.divIcon({
+            html: `<span aria-hidden="true">${count}</span>`,
+            className: "open-mic-cluster",
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2],
+          });
+        },
+      });
+
       mics.forEach((m) => {
-        const marker = L.marker([m.lat, m.lng], { icon }).addTo(map);
+        const marker = L.marker([m.lat, m.lng], { icon });
         marker.bindPopup(
           `<strong>${escapeHtml(m.name)}</strong><br/>${escapeHtml(m.venue)}<br/>${escapeHtml(m.day)} / ${escapeHtml(m.time)}`,
         );
         marker.on("click", () => onSelectRef.current?.(m.id));
+        cluster.addLayer(marker);
         markersRef.current.set(m.id, marker);
       });
+      map.addLayer(cluster);
+      clusterRef.current = cluster;
 
       if (mics.length > 1) {
         const bounds = L.latLngBounds(mics.map((m) => [m.lat, m.lng]));
@@ -83,6 +118,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
 
       cleanup = () => {
         markersRef.current.clear();
+        clusterRef.current = null;
         map.remove();
         mapRef.current = null;
       };
@@ -98,11 +134,24 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
 
   useEffect(() => {
     if (!selectedId) return;
-    const map = mapRef.current as { setView?: (latlng: [number, number], zoom: number) => unknown } | null;
     const marker = markersRef.current.get(selectedId) as
       | { openPopup?: () => unknown; getLatLng?: () => { lat: number; lng: number } }
       | undefined;
-    if (!map || !marker?.getLatLng || !map.setView) return;
+    if (!marker?.getLatLng) return;
+    // markercluster handles zoom-and-spiderfy via `zoomToShowLayer` so a
+    // clustered marker actually opens. Falls back to setView for unclustered
+    // contexts (defensive — should always be clustered now).
+    const cluster = clusterRef.current as
+      | { zoomToShowLayer?: (m: unknown, cb: () => void) => void }
+      | null;
+    if (cluster?.zoomToShowLayer) {
+      cluster.zoomToShowLayer(marker, () => marker.openPopup?.());
+      return;
+    }
+    const map = mapRef.current as
+      | { setView?: (latlng: [number, number], zoom: number) => unknown }
+      | null;
+    if (!map?.setView) return;
     const { lat, lng } = marker.getLatLng();
     map.setView([lat, lng], 13);
     marker.openPopup?.();
@@ -129,6 +178,26 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
           border: 2px solid #0a0a0a;
           border-radius: 9999px;
           box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.35);
+        }
+        .open-mic-cluster {
+          background: transparent;
+          border: 0;
+        }
+        .open-mic-cluster span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          background: #f1c40f;
+          color: #0a0a0a;
+          border: 2px solid #0a0a0a;
+          border-radius: 9999px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          box-shadow: 0 0 0 4px rgba(241, 196, 15, 0.35);
         }
         .leaflet-popup-content {
           font-family: ui-sans-serif, system-ui, sans-serif;

@@ -74,6 +74,21 @@ export function Nav() {
               {item.label}
             </Link>
           ))}
+          <button
+            type="button"
+            aria-label="Search the site"
+            onClick={() => {
+              track("Search Open", { source: "nav" });
+              window.dispatchEvent(
+                new KeyboardEvent("keydown", { key: "k", metaKey: true }),
+              );
+            }}
+            className="inline-flex items-center gap-2 border border-bone/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/65 transition-colors hover:border-hazard hover:text-hazard"
+          >
+            <span aria-hidden>/</span>
+            <span>Search</span>
+            <span aria-hidden className="opacity-60">⌘K</span>
+          </button>
           <Link
             href="/shows"
             onClick={() => track("CTA Click", { cta: "nav-tickets" })}
@@ -118,12 +133,12 @@ export function Nav() {
           className="flex h-full flex-col justify-between px-6 pb-12 pt-8"
         >
           <Image
-            src="/brand/stoned-goose-mark-illustration.png"
-            alt=""
-            width={120}
-            height={106}
+            src="/brand/stoned-goose-logo-full.png"
+            alt="Stoned Goose Productions"
+            width={240}
+            height={240}
             priority
-            className="mb-8 block h-24 w-auto opacity-90"
+            className="mb-8 block h-32 w-auto"
           />
           <ul className="flex flex-col">
             {nav.map((item, i) => (
