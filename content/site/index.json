@@ -1,0 +1,42 @@
+{
+  "name": "Stoned Goose Productions",
+  "shortName": "Stoned Goose",
+  "tagline": "LIVE. LOCAL. COMEDY.",
+  "url": "https://www.stonedgooseproductions.com",
+  "description": "Live shows, comedy production, podcast and media work, and the Open Mic Explorer for the Pacific Northwest. Based in Olympia, working across Lacey, Tacoma, and the South Sound.",
+  "contact": {
+    "email": "kyle@stonedgooseproductions.com",
+    "phone": "(360) 323-0667",
+    "phoneTel": "+13603230667",
+    "whatsapp": null,
+    "smsEnabled": true,
+    "address": "Stoned Goose Productions, Comedy-friendly location",
+    "locality": "Olympia",
+    "region": "WA"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/stonedgooseproductions/",
+    "facebook": "https://www.facebook.com/profile.php?id=61573095812128",
+    "tiktok": "https://www.tiktok.com/@stonedgooseproductions",
+    "youtube": "https://www.youtube.com/@stonedgooseproductions",
+    "patreon": "https://www.patreon.com/cw/StonedGooseProductions",
+    "eventbrite": "https://www.eventbrite.com/o/stoned-goose-productions-107337391771",
+    "fourthwall": "https://stoned-goose-productions-zgm-shop.fourthwall.com",
+    "youtubeChannelId": "UCgCjo7wBTKSxBxYYJXx_jIw",
+    "facebookPageId": ""
+  },
+  "podcasts": {
+    "spotifyShowId": null,
+    "applePodcastsId": null,
+    "rssUrl": null
+  },
+  "serviceAreas": [
+    "Olympia, WA",
+    "Lacey, WA",
+    "Tacoma, WA",
+    "South Sound",
+    "Thurston County, WA",
+    "Pierce County, WA"
+  ],
+  "press": []
+}

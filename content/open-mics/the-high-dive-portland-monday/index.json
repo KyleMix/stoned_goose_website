@@ -1,0 +1,14 @@
+{
+  "name": "The High Dive",
+  "venue": "The High Dive",
+  "address": "1406 SE 12th Ave",
+  "city": "Portland",
+  "region": "OR",
+  "lat": 45.508279423208975,
+  "lng": -122.68066157015335,
+  "day": "Monday",
+  "time": "10",
+  "host": "https://www.facebook.com/ian.albanese",
+  "signupUrl": "",
+  "notes": "FB email the host on monday for a spot"
+}

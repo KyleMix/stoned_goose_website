@@ -1,0 +1,14 @@
+{
+  "name": "Joe's bar",
+  "venue": "Joe's bar",
+  "address": "500 S King St",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.61609571984436,
+  "lng": -122.33147688258182,
+  "day": "Thursday",
+  "time": "10:30pm",
+  "host": "",
+  "signupUrl": "",
+  "notes": "Only Comedy. Free. Set 4/Refrain from disrespecting the venue. Age 21+. Wheelchair accessible. Must buy something (food, drink)"
+}

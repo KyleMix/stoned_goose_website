@@ -1,8 +1,13 @@
-export const watchCopy = {
-  heading: "Media & Clips",
-  subhead: "Watch clips, reels, and full sets from Stoned Goose Productions.",
-  emptyClipsLine:
-    "No videos available yet. Check out our channel for the latest uploads.",
+// Watch shim. Reads the Keystatic-managed singleton for copy plus the
+// hand-picked top-videos list. Owner edits both at /admin.
+
+import watchData from "./watch-copy/index.json";
+
+type WatchCopy = {
+  heading: string;
+  subhead: string;
+  emptyClipsLine: string;
+  youtubeVideos?: { url: string; title: string }[];
 };
 
 export type YouTubeVideoLink = {
@@ -11,6 +16,14 @@ export type YouTubeVideoLink = {
   title: string;
 };
 
-// Top 5 YouTube videos featured on /watch. Owner-editable. Add or replace
-// entries as new uploads land. Leave the array empty to hide the section.
-export const youtubeVideos: YouTubeVideoLink[] = [];
+const raw = watchData as WatchCopy;
+
+export const watchCopy = {
+  heading: raw.heading,
+  subhead: raw.subhead,
+  emptyClipsLine: raw.emptyClipsLine,
+};
+
+// Top 5 YouTube videos featured on /watch. CMS-editable through the watch
+// copy singleton. Leave empty to hide the grid section.
+export const youtubeVideos: YouTubeVideoLink[] = raw.youtubeVideos ?? [];

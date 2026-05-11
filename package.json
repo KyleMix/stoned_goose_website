@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "prebuild": "(npm run feeds:all || true) && npm run feeds:validate && (npm run sync || true) && npm run build:placeholders",
+    "dev": "npm run content:index && next dev",
+    "prebuild": "(npm run feeds:all || true) && npm run feeds:validate && (npm run sync || true) && npm run content:index && npm run build:placeholders",
+    "content:index": "tsx scripts/build-content-index.ts",
     "build:placeholders": "tsx scripts/build-placeholders.ts",
     "build": "next build",
     "postbuild": "tsx scripts/build-shows-feeds.ts && pagefind --site out --output-path out/pagefind",
@@ -34,6 +35,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@keystatic/core": "^0.5.50",
+    "@keystatic/next": "^5.0.4",
     "@radix-ui/react-dialog": "^1.1.15",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

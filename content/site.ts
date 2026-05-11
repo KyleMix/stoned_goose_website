@@ -1,63 +1,103 @@
-export const site = {
-  name: "Stoned Goose Productions",
-  shortName: "Stoned Goose",
-  tagline: "LIVE. LOCAL. COMEDY.",
-  url: "https://www.stonedgooseproductions.com",
-  description:
-    "Live shows, comedy production, podcast and media work, and the Open Mic Explorer for the Pacific Northwest. Based in Olympia, working across Lacey, Tacoma, and the South Sound.",
-  contact: {
-    email: "kyle@stonedgooseproductions.com",
-    phone: "(360) 323-0667",
-    phoneTel: "+13603230667",
-    /** Optional WhatsApp number in E.164 format without the leading +.
-     *  Set to a string to render the wa.me CTA on /contact. */
-    whatsapp: null as string | null,
-    /** Toggle the SMS click-to-chat link on /contact. Uses the same number
-     *  as the tel: link, just a different scheme. */
-    smsEnabled: true,
-    address: "Stoned Goose Productions, Comedy-friendly location",
-    locality: "Olympia",
-    region: "WA",
-  },
-  social: {
-    instagram: "https://www.instagram.com/stonedgooseproductions/",
-    facebook: "https://www.facebook.com/profile.php?id=61573095812128",
-    tiktok: "https://www.tiktok.com/@stonedgooseproductions",
-    youtube: "https://www.youtube.com/@stonedgooseproductions",
-    patreon: "https://www.patreon.com/cw/StonedGooseProductions",
-    eventbrite: "https://www.eventbrite.com/o/stoned-goose-productions-107337391771",
-    fourthwall: "https://stoned-goose-productions-zgm-shop.fourthwall.com",
-    /** Public Facebook page ID. Read by scripts/feeds/fetch-facebook and the
-     *  page-plugin iframe on /shows. Owner-editable. Empty disables both. */
-    facebookPageId: "" as string,
-  },
-  /** Podcast slots for the future "Listen" surface on /watch. Default null
-   *  hides the section. Owner pastes IDs / RSS URL when the show ships. */
-  podcasts: {
-    spotifyShowId: null as string | null,
-    applePodcastsId: null as string | null,
-    rssUrl: null as string | null,
-  },
-  serviceAreas: [
-    "Olympia, WA",
-    "Lacey, WA",
-    "Tacoma, WA",
-    "South Sound",
-    "Thurston County, WA",
-    "Pierce County, WA",
-  ],
-} as const;
+// Site config shim. Reads the Keystatic-managed JSON written by the admin
+// at /admin and re-exports the typed shape components have always imported.
 
-// Optional press quotes. Renders a slim row on home + /book when populated.
-// Owner-editable. House rule: no invented quotes. Each quote must be real and
-// attributable. Drop entries here when press lands.
+import siteData from "./site/index.json";
+
 export type PressItem = {
   quote: string;
   outlet: string;
   url?: string;
 };
 
-export const press: PressItem[] = [];
+type SiteShape = {
+  name: string;
+  shortName: string;
+  tagline: string;
+  url: string;
+  description: string;
+  contact: {
+    email: string;
+    phone: string;
+    phoneTel: string;
+    whatsapp: string | null;
+    smsEnabled: boolean;
+    address: string;
+    locality: string;
+    region: string;
+  };
+  social: {
+    instagram: string;
+    facebook: string;
+    tiktok: string;
+    youtube: string;
+    patreon: string;
+    eventbrite: string;
+    fourthwall: string;
+    youtubeChannelId: string;
+    facebookPageId: string;
+  };
+  podcasts: {
+    spotifyShowId: string | null;
+    applePodcastsId: string | null;
+    rssUrl: string | null;
+  };
+  serviceAreas: readonly string[];
+};
+
+// Normalize the JSON shape so the types and defaults match what call sites
+// expect. Empty strings on optional fields are coerced to null.
+const raw = siteData as unknown as {
+  name: string;
+  shortName: string;
+  tagline: string;
+  url: string;
+  description: string;
+  contact: {
+    email: string;
+    phone: string;
+    phoneTel: string;
+    whatsapp?: string;
+    smsEnabled?: boolean;
+    address: string;
+    locality: string;
+    region: string;
+  };
+  social: SiteShape["social"];
+  podcasts: {
+    spotifyShowId?: string;
+    applePodcastsId?: string;
+    rssUrl?: string;
+  };
+  serviceAreas: string[];
+  press?: PressItem[];
+};
+
+export const site: SiteShape = {
+  name: raw.name,
+  shortName: raw.shortName,
+  tagline: raw.tagline,
+  url: raw.url,
+  description: raw.description,
+  contact: {
+    email: raw.contact.email,
+    phone: raw.contact.phone,
+    phoneTel: raw.contact.phoneTel,
+    whatsapp: raw.contact.whatsapp ? raw.contact.whatsapp : null,
+    smsEnabled: raw.contact.smsEnabled ?? true,
+    address: raw.contact.address,
+    locality: raw.contact.locality,
+    region: raw.contact.region,
+  },
+  social: raw.social,
+  podcasts: {
+    spotifyShowId: raw.podcasts.spotifyShowId ? raw.podcasts.spotifyShowId : null,
+    applePodcastsId: raw.podcasts.applePodcastsId ? raw.podcasts.applePodcastsId : null,
+    rssUrl: raw.podcasts.rssUrl ? raw.podcasts.rssUrl : null,
+  },
+  serviceAreas: raw.serviceAreas,
+};
+
+export const press: PressItem[] = raw.press ?? [];
 
 export const nav = [
   { label: "Shows", href: "/shows" },

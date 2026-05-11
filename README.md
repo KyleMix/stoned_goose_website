@@ -61,6 +61,35 @@ Push to a connected branch. Vercel reads `next.config.mjs` and ships the static 
 
 If the host honors none of those (rare), the meta-refresh stubs in `public/<old-slug>/index.html` still bounce visitors from old URLs to the new ones.
 
+## Admin (`/admin`)
+
+Owner-side CMS for editing site content from a browser, including phone.
+Backed by Keystatic. Schema lives in `keystatic.config.ts`. Editable content
+files live under `content/` and the admin saves commits to GitHub via
+Keystatic Cloud (free auth tier). Static export rules out a server-side API
+route, so dev and production both speak to GitHub through Keystatic Cloud.
+
+### One-time setup
+
+1. Sign in at `https://keystatic.cloud` with the GitHub account that owns
+   this repo. Create a Keystatic Cloud project linked to `KyleMix/stoned_goose_website`.
+2. Install the Keystatic GitHub App when prompted (scoped to this repo).
+3. Set `NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT` in your local `.env.local` and
+   in your host's environment variables (Vercel / Cloudflare / Netlify).
+
+### Daily use
+
+`npm run dev`, open `http://localhost:3000/admin`, click "Sign in with
+GitHub", edit content. Each save commits to the repo on `main`. The host
+picks up the push and auto-deploys, so the change is live in about a
+minute or two.
+
+`/admin` is `Disallow`ed in `robots.txt` and the page sets `noindex`. Each
+collection and singleton has a `previewUrl`, so the "View" button in the
+admin opens the live page in a new tab. Images uploaded through the admin
+are auto-resized by the `Optimize images` GitHub Action before the host
+builds (see `.github/workflows/optimize-images.yml`).
+
 ## Repo layout
 
 ```

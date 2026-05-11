@@ -1,0 +1,14 @@
+{
+  "name": "Triangle pub",
+  "venue": "Triangle pub",
+  "address": "9454 Delridge Way SW",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.616708400091554,
+  "lng": -122.32291730373083,
+  "day": "Thursday",
+  "time": "10pm",
+  "host": "",
+  "signupUrl": "",
+  "notes": "Free. Parking. on street"
+}
