@@ -40,7 +40,7 @@ export default function BookPage() {
             href="#venues"
             className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
           >
-            Venues ↓
+            All services ↓
           </a>
           <a
             href="#corporate"
@@ -63,14 +63,13 @@ export default function BookPage() {
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
-            eyebrow="For Venues"
+            eyebrow="All services"
             title={
               <>
-                Bring consistent <span className="italic text-hazard">comedy</span>{" "}
-                to your room.
+                Pick the <span className="italic text-hazard">lane</span> that fits.
               </>
             }
-            subtitle="Recurring nights, one-off shows, talent buying, run-of-show. We handle the comedy operation so the venue can run the bar."
+            subtitle="Live shows, on-camera production, podcasts, collaboration. Each one ships a brief and a quote form."
           />
           <ol className="mt-10">
             {services.map((s, i) => (

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Booking, partnerships, or just want to start a conversation? Get in touch with Stoned Goose Productions.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {

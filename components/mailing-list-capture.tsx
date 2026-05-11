@@ -36,11 +36,14 @@ export function MailingListCapture({ page }: Props) {
       payload[key] = String(value);
     });
 
-    if (payload._honey && payload._honey.trim() !== "") {
+    // Honeypot: humans never see _honey; bots fill it.
+    const honey = formData.get("_honey");
+    if (typeof honey === "string" && honey.trim() !== "") {
       setStatus("success");
       form.reset();
       return;
     }
+    delete payload._honey;
 
     try {
       const response = await fetch(
@@ -86,49 +89,64 @@ export function MailingListCapture({ page }: Props) {
             className="md:col-span-7"
             aria-label="Mailing list email capture"
           >
-            <div className="flex flex-col items-stretch gap-4 md:flex-row md:flex-wrap md:items-end">
-              <label className="flex-1 md:min-w-[220px]">
-                <span className="block font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  Email
-                </span>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  autoComplete="email"
-                  inputMode="email"
-                  placeholder="you@email.com"
-                  className="mt-2 block min-h-[48px] w-full bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0"
-                />
-              </label>
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone disabled:opacity-50 md:w-auto md:justify-start"
+            {status === "success" ? (
+              <div
+                role="status"
+                aria-live="polite"
+                className="border-y border-hazard/40 py-6 motion-safe:animate-fade-in"
               >
-                {status === "loading" ? "Sending..." : "Sign me up"}
-                <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </button>
-            </div>
-            <input
-              type="text"
-              name="_honey"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              className="absolute left-[-9999px] h-0 w-0 opacity-0"
-            />
-            <input ref={referrerRef} type="hidden" name="referrer" defaultValue="" />
-            <input type="hidden" name="page" value={page} />
-            <p className="mt-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
-              {status === "success"
-                ? "You're on the list. See you at the next show."
-                : status === "error"
-                  ? `Something went wrong. Email ${site.contact.email} directly.`
-                  : "No spam. Unsubscribe whenever."}
-            </p>
+                <p className="font-display text-3xl text-bone md:text-4xl">
+                  Locked <span className="italic text-hazard">in</span>.
+                </p>
+                <p className="mt-2 font-body text-sm text-bone/85">
+                  You&apos;re on the list. See you at the next show.
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="flex flex-col items-stretch gap-4 md:flex-row md:flex-wrap md:items-end">
+                  <label className="flex-1 md:min-w-[220px]">
+                    <span className="block font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                      Email
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      autoComplete="email"
+                      inputMode="email"
+                      placeholder="you@email.com"
+                      className="mt-2 block min-h-[48px] w-full bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone disabled:opacity-50 md:w-auto md:justify-start"
+                  >
+                    {status === "loading" ? "Sending..." : "Sign me up"}
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+                </div>
+                <input
+                  type="text"
+                  name="_honey"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                />
+                <input ref={referrerRef} type="hidden" name="referrer" defaultValue="" />
+                <input type="hidden" name="page" value={page} />
+                <p className="mt-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+                  {status === "error"
+                    ? `Something went wrong. Email ${site.contact.email} directly.`
+                    : "No spam. Unsubscribe whenever."}
+                </p>
+              </>
+            )}
           </form>
         </div>
       </div>

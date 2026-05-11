@@ -25,16 +25,9 @@ export const hero = {
   ],
 };
 
-export const services = [
-  { title: "Live Show Production", slug: "live-show-production" },
-  { title: "Film Your Comedy Set", slug: "film-your-comedy-set" },
-  { title: "Media & Podcasts", slug: "media-and-podcasts" },
-  { title: "Collaboration", slug: "collaboration" },
-];
-
 // Marquee uses brand copy + roster names + service areas. No invented taglines.
-// TODO(owner): "5,000+ Tickets Sold" is a stat. House rule says no invented stats.
-// Confirm the figure or replace the line.
+// House rule: no invented stats. Owner can swap any entry below for owner-
+// editable copy as the brand expands.
 export const marqueeWords = [
   "Stoned Goose Productions",
   "Live. Local. Comedy.",
@@ -43,7 +36,7 @@ export const marqueeWords = [
   "Tacoma",
   "South Sound",
   "Now Booking",
-  "5,000+ Tickets Sold",
+  "Lights On. Jokes Loaded.",
   "Pacific Northwest",
 ];
 

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { upcomingShows } from "@/content/shows";
 
 type Suggestion = { href: string; label: string };
 
@@ -48,8 +49,25 @@ function suggestionsForPath(path: string): Suggestion[] {
   return picks.slice(0, 3);
 }
 
+function nextShowLine(): { date: string; venue: string; href: string } | null {
+  const next = upcomingShows[0];
+  if (!next?.start) return null;
+  let date = "Date TBD";
+  try {
+    date = new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+    }).format(new Date(next.start));
+  } catch {
+    // fall through with TBD
+  }
+  const venue = next.venue?.name ?? next.venue?.city ?? "TBD";
+  return { date, venue, href: `/shows#${next.id}` };
+}
+
 export default function NotFound() {
   const [picks, setPicks] = useState<Suggestion[]>(DEFAULTS);
+  const nextShow = nextShowLine();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -105,6 +123,29 @@ export default function NotFound() {
               </Link>
             </li>
           ))}
+          {nextShow ? (
+            <li>
+              <Link
+                href={nextShow.href}
+                className="group flex items-baseline justify-between gap-4 py-5"
+              >
+                <span className="flex items-baseline gap-4">
+                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
+                    /now
+                  </span>
+                  <span className="font-display text-2xl text-bone group-hover:text-hazard md:text-3xl">
+                    Next on stage. {nextShow.date}. {nextShow.venue}.
+                  </span>
+                </span>
+                <span
+                  aria-hidden
+                  className="font-body text-base text-bone/55 group-hover:text-hazard"
+                >
+                  ↗
+                </span>
+              </Link>
+            </li>
+          ) : null}
         </ul>
 
         <div className="mt-10 flex flex-wrap gap-3 pb-20">

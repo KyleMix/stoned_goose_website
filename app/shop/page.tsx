@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Shop",
   description:
     "Shop Stoned Goose Productions merch. Hoodies, hats, stickers, and the metal goose. Checkout handled by Fourthwall.",
+  alternates: {
+    canonical: "/shop",
+  },
 };
 
 export default function ShopPage() {

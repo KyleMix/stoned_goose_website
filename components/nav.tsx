@@ -5,7 +5,20 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/content/site";
+import { upcomingShows } from "@/content/shows";
 import { track } from "@/lib/analytics";
+
+function formatNextShowDate(iso: string | null): string | null {
+  if (!iso) return null;
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+    }).format(new Date(iso));
+  } catch {
+    return null;
+  }
+}
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -159,6 +172,19 @@ export function Nav() {
             ))}
           </ul>
           <div className="space-y-3 pt-8">
+            {(() => {
+              const next = upcomingShows[0];
+              if (!next) return null;
+              const date = formatNextShowDate(next.start);
+              const venue = next.venue?.name ?? next.venue?.city ?? null;
+              if (!date && !venue) return null;
+              return (
+                <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <span className="text-hazard">Next on stage. </span>
+                  {[date, venue].filter(Boolean).join(". ")}
+                </p>
+              );
+            })()}
             <Link
               href="/shows"
               onClick={() => {

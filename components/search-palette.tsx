@@ -151,7 +151,7 @@ export function SearchPalette() {
               )}
               {status === "empty" && (
                 <p className="px-5 py-4 font-body text-sm text-bone/55">
-                  No matches. Try a comic name, a city, or a service.
+                  Nothing matches that. The map is bigger than the search box.
                 </p>
               )}
               {status === "error" && (

@@ -7,6 +7,8 @@
         "http://localhost/shows.html",
         "http://localhost/book.html",
         "http://localhost/watch.html",
+        "http://localhost/roster.html",
+        "http://localhost/open-mics.html",
         "http://localhost/contact.html"
       ],
       "numberOfRuns": 1,

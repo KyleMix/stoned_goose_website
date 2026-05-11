@@ -1,7 +1,21 @@
-# Cloudflare Pages and Netlify both honor this file format.
-# Old slug → new target. 308 keeps method on POSTs (we don't have any, but it's correct).
-/about               /members      308
-/media               /watch        308
-/comic-submissions   /submit       308
-/sponsorships        /sponsor      308
-/book-a-show         /services     308
+# Cloudflare Pages and Netlify both honor this format.
+# Mirror of vercel.json `redirects` so both hosts behave identically.
+# Old slug -> current IA target. 308 keeps method on POSTs.
+
+# About / team
+/about               /roster              308
+/members             /roster              308
+/comedians           /roster              308
+
+# Media / watch
+/media               /watch                308
+
+# Booking funnel (everything collapsed to /book)
+/book-a-show         /book                 308
+/services            /book                 308
+/submit              /book                 308
+/comic-submissions   /book                 308
+
+# Sponsor funnel collapsed to anchor on /book
+/sponsor             /book#sponsors        308
+/sponsorships        /book#sponsors        308

@@ -57,6 +57,7 @@ export function ContactForm({
 }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const referrerRef = useRef<HTMLInputElement>(null);
+  const honeyRef = useRef<HTMLInputElement>(null);
 
   const resolvedSchema = schema ? formSchemas[schema] : undefined;
 
@@ -79,6 +80,15 @@ export function ContactForm({
   }, []);
 
   async function onSubmit(values: FieldValues) {
+    // Honeypot lives outside the Zod schema so RHF doesn't strip it during
+    // validation. Bots fill every field; humans never see this input.
+    const honey = honeyRef.current?.value ?? "";
+    if (honey.trim() !== "") {
+      setStatus("success");
+      methods.reset();
+      return;
+    }
+
     setStatus("loading");
 
     const payload: Record<string, string> = {
@@ -91,14 +101,6 @@ export function ContactForm({
     for (const [key, value] of Object.entries(values)) {
       if (value == null) continue;
       payload[key] = String(value);
-    }
-
-    // Honeypot: bots fill every field; humans never see this one.
-    // formsubmit drops the message when _honey is non-empty.
-    if (payload._honey && payload._honey.trim() !== "") {
-      setStatus("success");
-      methods.reset();
-      return;
     }
 
     try {
@@ -140,8 +142,9 @@ export function ContactForm({
         {children}
 
         <input
+          ref={honeyRef}
           type="text"
-          {...methods.register("_honey")}
+          name="_honey"
           tabIndex={-1}
           autoComplete="off"
           aria-hidden="true"

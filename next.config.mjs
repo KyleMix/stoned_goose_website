@@ -8,13 +8,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   output: "export",
   images: {
+    // Static export disables the next/image loader, so the remotePatterns
+    // allowlist is unreachable. Every external image must already render via
+    // a raw <img>/<Image unoptimized> path.
     unoptimized: true,
-    remotePatterns: [
-      { protocol: "https", hostname: "imgproxy.fourthwall.com" },
-      { protocol: "https", hostname: "i.ytimg.com" },
-      { protocol: "https", hostname: "*.cdninstagram.com" },
-      { protocol: "https", hostname: "*.fbcdn.net" },
-    ],
   },
   trailingSlash: false,
   // Codespaces forwards a public *.app.github.dev URL to local 127.0.0.1,

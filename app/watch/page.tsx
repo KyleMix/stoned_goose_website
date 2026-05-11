@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Watch",
   description:
     "Featured comedy special, latest social posts, and announcements from Stoned Goose Productions.",
+  alternates: {
+    canonical: "/watch",
+  },
 };
 
 export default function WatchPage() {

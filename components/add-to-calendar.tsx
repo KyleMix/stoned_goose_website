@@ -1,6 +1,6 @@
 "use client";
 
-import { type MouseEvent, useState } from "react";
+import { type MouseEvent, useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 
 type Props = {
@@ -51,6 +51,25 @@ function buildOutlookUrl({ title, description, start, end, location }: Omit<Prop
 export function AddToCalendar(props: Props) {
   const { showId, title, description, start, end, location } = props;
   const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function handle(event: globalThis.MouseEvent) {
+      if (!rootRef.current) return;
+      if (event.target instanceof Node && rootRef.current.contains(event.target)) return;
+      setOpen(false);
+    }
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", handle);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", handle);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   if (!start) return null;
 
@@ -71,6 +90,7 @@ export function AddToCalendar(props: Props) {
 
   return (
     <details
+      ref={rootRef}
       className="relative inline-block"
       open={open}
       onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}

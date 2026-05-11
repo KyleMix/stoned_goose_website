@@ -158,53 +158,12 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   }, [selectedId]);
 
   return (
-    <>
-      <div
-        ref={containerRef}
-        role="region"
-        aria-label="Open mics map"
-        className="aspect-[4/3] w-full overflow-hidden border border-bone/15 bg-haze-500 md:aspect-[16/10]"
-      />
-      <style jsx global>{`
-        .open-mic-pin {
-          background: transparent;
-          border: 0;
-        }
-        .open-mic-pin span {
-          display: block;
-          width: 22px;
-          height: 22px;
-          background: #f1c40f;
-          border: 2px solid #0a0a0a;
-          border-radius: 9999px;
-          box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.35);
-        }
-        .open-mic-cluster {
-          background: transparent;
-          border: 0;
-        }
-        .open-mic-cluster span {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 100%;
-          background: #f1c40f;
-          color: #0a0a0a;
-          border: 2px solid #0a0a0a;
-          border-radius: 9999px;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
-          font-size: 13px;
-          font-weight: 600;
-          letter-spacing: 0.05em;
-          box-shadow: 0 0 0 4px rgba(241, 196, 15, 0.35);
-        }
-        .leaflet-popup-content {
-          font-family: ui-sans-serif, system-ui, sans-serif;
-          font-size: 12px;
-        }
-      `}</style>
-    </>
+    <div
+      ref={containerRef}
+      role="region"
+      aria-label="Open mics map"
+      className="aspect-[4/3] w-full overflow-hidden border border-bone/15 bg-haze-500 md:aspect-[16/10]"
+    />
   );
 }
 

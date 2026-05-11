@@ -260,6 +260,47 @@ export default function ShowsPage() {
         </div>
       </section>
 
+      {hasShows ? (
+        <section
+          aria-label="Subscribe to shows calendar"
+          className="border-b border-bone/10 bg-ink py-16 md:py-20"
+        >
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <div className="grid gap-8 md:grid-cols-12 md:items-end">
+              <div className="md:col-span-7">
+                <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+                  Subscribe
+                </p>
+                <h2 className="heading-display mt-3 text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                  Drop the dates straight into your <span className="italic text-hazard">calendar</span>.
+                </h2>
+                <p className="mt-4 max-w-xl font-body text-base text-bone/85 md:text-lg">
+                  Subscribe once and new shows arrive in Apple Calendar, Google Calendar, or anything that reads .ics. No emails, no reminders we did not write.
+                </p>
+              </div>
+              <ul className="md:col-span-5 flex flex-wrap items-center gap-3 md:justify-end">
+                <li>
+                  <a
+                    href="/shows/feed.ics"
+                    className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                  >
+                    Add .ics feed ↗
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/shows/feed.xml"
+                    className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+                  >
+                    RSS ↗
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <FacebookPagePlugin />
 
       <MailingListCapture page="shows" />

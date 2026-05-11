@@ -76,7 +76,10 @@ export function ogImageResponse({ eyebrow, title }: OgInput) {
           style={{
             display: "flex",
             alignItems: "baseline",
-            fontSize: 240,
+            // 1200px wide minus 90px padding on each side leaves ~1020px.
+            // Scale the title down as character count climbs so long service
+            // names like "Live Show Production" stay on one line.
+            fontSize: title.length <= 6 ? 240 : title.length <= 12 ? 180 : title.length <= 18 ? 130 : 100,
             fontWeight: 800,
             lineHeight: 1,
             letterSpacing: "-0.04em",

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { services } from "@/content/home";
+import { services } from "@/content/services";
 
 // Tight TV-guide style listing. Just titles. The detail pages carry the
 // depth. The home is for orientation, not selling.

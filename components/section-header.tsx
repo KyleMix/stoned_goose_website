@@ -2,8 +2,6 @@ import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
 type Props = {
-  /** @deprecated retained for compat; index labels removed for design pass */
-  index?: string;
   eyebrow?: string;
   title: ReactNode;
   subtitle?: ReactNode;
