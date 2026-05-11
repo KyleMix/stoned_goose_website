@@ -37,7 +37,6 @@ npm run sync       # umbrella: runs every sync:* script in sequence
 # network failures so static builds always succeed (the previous JSON
 # stays in place when a sync can't run).
 npm run sync:shows        # Eventbrite organizer events
-npm run sync:youtube      # latest videos from configured YT channel
 npm run sync:fourthwall   # products + imgproxy URLs from Fourthwall
 ```
 
@@ -130,7 +129,7 @@ These fields ship empty or with TODO markers. Drop in real content to light them
 | `content/home.ts` | `bumpers.*` | Three slot pools, three drafts each. Edit copy in place. |
 | `content/home.ts` | `hero.italicLine` | Hero right-column italic. Owner-editable. |
 | `content/comedians.ts` | `comediansCopy.subhead` | "Our Friends." clarifier. Edit if a different framing fits better. |
-| `content/watch.ts` | `youtubeVideos` | When populated, renders a YouTube grid section above the channel block. |
+| `content/watch.ts` | `youtubeVideos` | When populated, renders a grid of up to 5 linked YouTube videos in the Channel section on `/watch`. |
 | `content/shop.ts` | `products[].image` | 15 products with `image: ""` are hidden from `/shop`. Paste Fourthwall imgproxy URLs to restore. |
 | `content/sponsorships.ts` | `sponsorshipStats[].value` | Three values flagged with TODO(owner). Confirm or replace. |
 
@@ -154,7 +153,7 @@ bundle. Schedule rebuilds via GitHub Actions when token rotation matters.
 | Eventbrite | `sync:shows` | Personal token | Long-lived | Generate in Eventbrite account settings |
 | Fourthwall | `sync:fourthwall` | Basic auth | Long-lived | Fourthwall Open API credentials |
 | Instagram | `feeds:instagram` | Long-lived user token | ~60 days | Meta for Developers app + Graph API. Refresh with `npm run refresh:instagram-token`. |
-| YouTube | `feeds:youtube` | API key | Long-lived | Google Cloud Console, restrict to YouTube Data API v3. Channel ID in `content/site.ts`. |
+| YouTube | n/a | None (hand-curated links) | n/a | Paste up to 5 video URLs into `content/watch.ts` `youtubeVideos` |
 | Facebook | `feeds:facebook` | Page token | ~60 days (extend to never-expiring) | Same Meta app as Instagram, Page-level perms. Page ID in `content/site.ts`. |
 | Facebook Events | `sync:facebook-events` | Page token (same as above) | Same | Reuses the page token + `FACEBOOK_PAGE_ID` env var |
 | TikTok | n/a | None (embeds) | n/a | Paste video URLs into `content/social.ts` `tiktokVideos` |
@@ -163,33 +162,33 @@ bundle. Schedule rebuilds via GitHub Actions when token rotation matters.
 | GSC / Bing | n/a | Verification meta tag | Long-lived | `NEXT_PUBLIC_GSC_VERIFICATION` / `NEXT_PUBLIC_BING_VERIFICATION` |
 | IndexNow | postbuild | Random key | Long-lived | `INDEXNOW_KEY` (postbuild writes the key file into /out) |
 
-### Social feeds (Instagram, YouTube, Facebook)
+### Social feeds (Instagram, Facebook)
 
-Three platforms refresh on a single 6-hour cron via
+Instagram and Facebook refresh on a single 6-hour cron via
 `.github/workflows/refresh-feeds.yml`. The workflow runs each fetch
 script under `continue-on-error`, so a single platform outage does not
-block the others, and commits any diff to `content/feeds/*.json` with
+block the other, and commits any diff to `content/feeds/*.json` with
 `[skip ci]` so the push does not loop.
+
+YouTube is no longer auto-fetched. Top 5 videos are hand-picked via
+`content/watch.ts` `youtubeVideos`. No API key, no cron.
 
 Required GitHub Actions secrets:
 
 ```
 INSTAGRAM_ACCESS_TOKEN         long-lived IG user token (~60 day expiry)
-YOUTUBE_API_KEY                YouTube Data API v3 key
 FACEBOOK_PAGE_ACCESS_TOKEN     page-level access token (extend to never-expiring)
 ```
 
-Channel and page IDs live in `content/site.ts` (public values, safe to
-commit), not in env. Set `site.social.youtubeChannelId` and
-`site.social.facebookPageId` once and forget.
+Page ID lives in `content/site.ts` (public value, safe to commit), not in
+env. Set `site.social.facebookPageId` once and forget.
 
 Manual run:
 
 ```bash
 INSTAGRAM_ACCESS_TOKEN=xxx npm run feeds:instagram
-YOUTUBE_API_KEY=yyy        npm run feeds:youtube
 FACEBOOK_PAGE_ACCESS_TOKEN=zzz npm run feeds:facebook
-npm run feeds:all   # all three in sequence
+npm run feeds:all   # both in sequence
 ```
 
 Manual cron trigger: `Actions → Refresh social feeds → Run workflow`.

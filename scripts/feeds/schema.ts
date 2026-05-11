@@ -23,15 +23,6 @@ const InstagramPostSchema = z.object({
   timestamp: z.string(),
 });
 
-const YouTubeVideoSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string(),
-  thumbnailUrl: z.string(),
-  publishedAt: z.string(),
-  durationSeconds: z.number().nullable(),
-});
-
 const FacebookPostSchema = z.object({
   id: z.string(),
   permalink: z.string(),
@@ -44,12 +35,6 @@ export const InstagramFeedSchema = z.object({
   ...ManifestBase,
   source: z.literal("instagram"),
   posts: z.array(InstagramPostSchema),
-});
-
-export const YouTubeFeedSchema = z.object({
-  ...ManifestBase,
-  source: z.literal("youtube"),
-  videos: z.array(YouTubeVideoSchema),
 });
 
 export const FacebookFeedSchema = z.object({

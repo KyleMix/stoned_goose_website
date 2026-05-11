@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "(npm run feeds:youtube || true) && npm run feeds:validate && (npm run sync || true)",
     "prebuild": "(npm run feeds:all || true) && npm run feeds:validate && (npm run sync || true) && npm run build:placeholders",
     "build:placeholders": "tsx scripts/build-placeholders.ts",
     "build": "next build",
@@ -20,9 +19,8 @@
     "sync:patreon": "tsx scripts/sync-patreon.ts",
     "sync:open-mics": "tsx scripts/sync-open-mics.ts",
     "feeds:instagram": "tsx scripts/feeds/fetch-instagram.ts",
-    "feeds:youtube": "tsx scripts/feeds/fetch-youtube.ts",
     "feeds:facebook": "tsx scripts/feeds/fetch-facebook.ts",
-    "feeds:all": "npm run feeds:instagram && npm run feeds:youtube && npm run feeds:facebook",
+    "feeds:all": "npm run feeds:instagram && npm run feeds:facebook",
     "feeds:validate": "tsx scripts/feeds/validate-feeds.ts",
     "refresh:instagram-token": "tsx scripts/refresh-instagram-token.ts",
     "brand:generate": "tsx scripts/brand/generate-brand-assets.ts",

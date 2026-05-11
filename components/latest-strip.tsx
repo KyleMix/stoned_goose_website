@@ -9,8 +9,8 @@ type Props = {
 };
 
 // Home-page strip pulling from the unified news feed (curated posts +
-// auto-synced Instagram + YouTube + TikTok). Replaces the old
-// InstagramStrip. Renders nothing when the feed is empty.
+// auto-synced Instagram + TikTok). Replaces the old InstagramStrip.
+// Renders nothing when the feed is empty.
 export function LatestStrip({ limit = 6 }: Props) {
   const items = buildNewsFeed().slice(0, limit);
   if (items.length === 0) return null;
@@ -86,9 +86,7 @@ export function LatestStrip({ limit = 6 }: Props) {
                           ? item.isVideo
                             ? "Reel"
                             : "IG"
-                          : item.kind === "youtube"
-                            ? "YT"
-                            : "TT"
+                          : "TT"
                       }
                     />
                   </FeedLink>

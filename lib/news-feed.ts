@@ -1,15 +1,14 @@
-import { instagramFeed, youtubeFeed } from "@/lib/feeds";
+import { instagramFeed } from "@/lib/feeds";
 import { tiktokVideos } from "@/content/social";
 import { news } from "@/content/news";
 import type { NewsItem } from "@/components/news-card";
 
 // Builds a unified news feed by interleaving curated posts (content/news.ts)
-// with auto-synced social items (Instagram + YouTube + manually-curated
-// TikTok). Sorted newest first. Used by /watch and the home Latest strip.
+// with auto-synced Instagram + manually-curated TikTok. Sorted newest first.
+// Used by /watch and the home Latest strip.
 //
 // TikTok lacks a date field in content/social.ts, so it falls back to "now".
-// That's good enough for ordering since Instagram + YouTube provide real
-// timestamps.
+// That's good enough for ordering since Instagram provides real timestamps.
 
 export function buildNewsFeed(): NewsItem[] {
   const items: NewsItem[] = [];
@@ -34,17 +33,6 @@ export function buildNewsFeed(): NewsItem[] {
       href: post.permalink,
       isVideo: post.mediaType === "REEL" || post.mediaType === "VIDEO",
       date: post.timestamp,
-    });
-  }
-
-  for (const v of youtubeFeed.videos) {
-    items.push({
-      kind: "youtube",
-      id: v.id,
-      title: v.title,
-      poster: v.thumbnailUrl,
-      href: `https://www.youtube.com/watch?v=${v.id}`,
-      date: v.publishedAt,
     });
   }
 

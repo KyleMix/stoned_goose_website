@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { watchCopy } from "@/content/watch";
+import { watchCopy, youtubeVideos } from "@/content/watch";
 import { featuredSpecial } from "@/content/shows";
 import { site } from "@/content/site";
 import { patreonPosts } from "@/content/social";
@@ -10,7 +10,8 @@ import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { NewsFeed } from "@/components/news-feed";
-import { instagramFeed, youtubeFeed, relativeAge } from "@/lib/feeds";
+import { TopVideosGrid } from "@/components/top-videos-grid";
+import { instagramFeed, relativeAge } from "@/lib/feeds";
 import { FeedFreshness } from "@/components/feed-freshness";
 
 export const metadata: Metadata = {
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
 };
 
 export default function WatchPage() {
-  const feedFresh =
-    instagramFeed.posts.length > 0 || youtubeFeed.videos.length > 0;
+  const feedFresh = instagramFeed.posts.length > 0;
+  const hasTopVideos = youtubeVideos.length > 0;
 
   return (
     <>
@@ -102,8 +103,8 @@ export default function WatchPage() {
               }
               subtitle={
                 feedFresh
-                  ? `Auto-synced. Instagram updated ${relativeAge(instagramFeed.fetchedAt)}. YouTube updated ${relativeAge(youtubeFeed.fetchedAt)}.`
-                  : "Auto-synced from Instagram, YouTube, and TikTok. Posts here when we post there."
+                  ? `Auto-synced. Instagram updated ${relativeAge(instagramFeed.fetchedAt)}.`
+                  : "Auto-synced from Instagram and TikTok. Posts here when we post there."
               }
             />
             <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
@@ -188,23 +189,48 @@ export default function WatchPage() {
         </section>
       ) : null}
 
-      <section className="bg-ink py-20 md:py-24">
+      <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
-            Channel
-          </h2>
-          <p className="mt-4 max-w-2xl font-body text-base text-bone/85 md:text-lg">
-            {watchCopy.emptyClipsLine}
-          </p>
-          <TrackedAnchor
-            destination="youtube"
-            href={site.social.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
-          >
-            Open the channel ↗
-          </TrackedAnchor>
+          <div className="flex flex-wrap items-baseline justify-between gap-4">
+            <div>
+              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+                Channel
+              </p>
+              <h2 className="heading-display mt-3 text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                Top <span className="italic text-hazard">videos</span>
+              </h2>
+            </div>
+            <TrackedAnchor
+              destination="youtube"
+              href={site.social.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+            >
+              YouTube channel ↗
+            </TrackedAnchor>
+          </div>
+
+          {hasTopVideos ? (
+            <div className="mt-10">
+              <TopVideosGrid videos={youtubeVideos} />
+            </div>
+          ) : (
+            <>
+              <p className="mt-6 max-w-2xl font-body text-base text-bone/85 md:text-lg">
+                {watchCopy.emptyClipsLine}
+              </p>
+              <TrackedAnchor
+                destination="youtube"
+                href={site.social.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+              >
+                Open the channel ↗
+              </TrackedAnchor>
+            </>
+          )}
         </div>
       </section>
 

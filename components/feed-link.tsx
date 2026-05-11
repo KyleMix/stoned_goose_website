@@ -3,7 +3,7 @@
 import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 import { track } from "@/lib/analytics";
 
-type FeedPlatform = "instagram" | "youtube" | "facebook" | "tiktok";
+type FeedPlatform = "instagram" | "facebook" | "tiktok";
 type FeedPlacement =
   | "watch-grid"
   | "watch-reels"
