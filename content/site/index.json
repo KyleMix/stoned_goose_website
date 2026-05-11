@@ -8,7 +8,6 @@
     "email": "kyle@stonedgooseproductions.com",
     "phone": "(360) 323-0667",
     "phoneTel": "+13603230667",
-    "whatsapp": null,
     "smsEnabled": true,
     "address": "Stoned Goose Productions, Comedy-friendly location",
     "locality": "Olympia",
@@ -22,21 +21,15 @@
     "patreon": "https://www.patreon.com/cw/StonedGooseProductions",
     "eventbrite": "https://www.eventbrite.com/o/stoned-goose-productions-107337391771",
     "fourthwall": "https://stoned-goose-productions-zgm-shop.fourthwall.com",
-    "youtubeChannelId": "UCgCjo7wBTKSxBxYYJXx_jIw",
-    "facebookPageId": ""
+    "youtubeChannelId": "UCgCjo7wBTKSxBxYYJXx_jIw"
   },
-  "podcasts": {
-    "spotifyShowId": null,
-    "applePodcastsId": null,
-    "rssUrl": null
-  },
+  "podcasts": {},
   "serviceAreas": [
     "Olympia, WA",
     "Lacey, WA",
     "Tacoma, WA",
     "South Sound",
-    "Thurston County, WA",
-    "Pierce County, WA"
+    "Thurston County, WA"
   ],
   "press": []
 }
