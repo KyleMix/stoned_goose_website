@@ -196,7 +196,7 @@ export default config({
       },
     }),
 
-    // ----- Watch copy -----
+    // ----- Watch copy + top YouTube videos -----
     watchCopy: singleton({
       label: "Watch copy",
       path: "content/watch-copy/",
@@ -206,6 +206,19 @@ export default config({
         heading: fields.text({ label: "Heading" }),
         subhead: fields.text({ label: "Subhead", validation: noEmDash }),
         emptyClipsLine: fields.text({ label: "Empty clips line", validation: noEmDash }),
+        youtubeVideos: fields.array(
+          fields.object({
+            url: fields.text({
+              label: "URL or 11-char id",
+              description: "Full YouTube URL or just the video id.",
+            }),
+            title: fields.text({ label: "Title" }),
+          }),
+          {
+            label: "Top YouTube videos (max 5 render on /watch)",
+            itemLabel: (p) => p.fields.title.value,
+          },
+        ),
       },
     }),
 

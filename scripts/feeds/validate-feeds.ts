@@ -1,4 +1,4 @@
-// Validate all three feed JSON files at build time. Wired into the
+// Validate both feed JSON files at build time. Wired into the
 // prebuild step so a malformed feed file (hand-edit, drifted API
 // response, anything) fails the build with a clear field-path error.
 //
@@ -9,7 +9,6 @@ import { join } from "node:path";
 import {
   FacebookFeedSchema,
   InstagramFeedSchema,
-  YouTubeFeedSchema,
   parseOrThrow,
 } from "./schema";
 
@@ -32,14 +31,9 @@ parseOrThrow(
   "content/feeds/instagram.json",
 );
 parseOrThrow(
-  YouTubeFeedSchema,
-  loadJson("youtube.json"),
-  "content/feeds/youtube.json",
-);
-parseOrThrow(
   FacebookFeedSchema,
   loadJson("facebook.json"),
   "content/feeds/facebook.json",
 );
 
-console.log("[feeds] validate: 3 feeds OK");
+console.log("[feeds] validate: 2 feeds OK");

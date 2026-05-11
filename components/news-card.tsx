@@ -14,14 +14,6 @@ export type NewsItem =
       date: string;
     }
   | {
-      kind: "youtube";
-      id: string;
-      title: string;
-      poster: string;
-      href: string;
-      date: string;
-    }
-  | {
       kind: "tiktok";
       id: string;
       title: string;
@@ -41,7 +33,6 @@ export type NewsItem =
 
 const labels: Record<NewsItem["kind"], string> = {
   instagram: "Instagram",
-  youtube: "YouTube",
   tiktok: "TikTok",
   post: "Update",
 };
@@ -107,7 +98,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           aria-hidden
           className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
         />
-        {item.kind === "youtube" || item.kind === "tiktok" || (item.kind === "instagram" && item.isVideo) ? (
+        {item.kind === "tiktok" || (item.kind === "instagram" && item.isVideo) ? (
           <span className="absolute right-2 top-2 inline-flex items-center bg-hazard px-2 py-0.5 font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-ink">
             ▸
           </span>

@@ -1,10 +1,8 @@
 import instagramRaw from "@/content/feeds/instagram.json";
-import youtubeRaw from "@/content/feeds/youtube.json";
 import facebookRaw from "@/content/feeds/facebook.json";
 import type {
   FacebookFeed,
   InstagramFeed,
-  YouTubeFeed,
 } from "@/content/feeds/types";
 
 // Build-time validation lives in scripts/feeds/validate-feeds.ts (wired
@@ -12,7 +10,6 @@ import type {
 // here is a typed cast so Zod stays out of the client bundle.
 
 export const instagramFeed = instagramRaw as InstagramFeed;
-export const youtubeFeed = youtubeRaw as YouTubeFeed;
 export const facebookFeed = facebookRaw as FacebookFeed;
 
 export function isFresh(

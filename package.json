@@ -20,9 +20,8 @@
     "sync:patreon": "tsx scripts/sync-patreon.ts",
     "sync:open-mics": "tsx scripts/sync-open-mics.ts",
     "feeds:instagram": "tsx scripts/feeds/fetch-instagram.ts",
-    "feeds:youtube": "tsx scripts/feeds/fetch-youtube.ts",
     "feeds:facebook": "tsx scripts/feeds/fetch-facebook.ts",
-    "feeds:all": "npm run feeds:instagram && npm run feeds:youtube && npm run feeds:facebook",
+    "feeds:all": "npm run feeds:instagram && npm run feeds:facebook",
     "feeds:validate": "tsx scripts/feeds/validate-feeds.ts",
     "refresh:instagram-token": "tsx scripts/refresh-instagram-token.ts",
     "brand:generate": "tsx scripts/brand/generate-brand-assets.ts",
@@ -72,7 +71,8 @@
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.14",
     "tsx": "^4.21.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "xlsx": "^0.18.5"
   },
   "engines": {
     "node": ">=20.0.0"
