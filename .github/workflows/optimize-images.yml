@@ -1,0 +1,53 @@
+# Auto-optimize images committed by the Keystatic admin (or any other
+# source). Mobile uploads from phone cameras commit straight to GitHub and
+# can be 6 MB+. This workflow resizes them in place and pushes the
+# optimized version back, so the host's build sees the lighter file.
+#
+# Triggers on push to any branch when files under public/images/** or
+# public/brand/** change. The optimizer is idempotent: if a file is already
+# under target width and weight, it skips. So this safely re-runs without
+# bloating commits.
+
+name: Optimize images
+
+on:
+  push:
+    paths:
+      - "public/images/**"
+      - "public/brand/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: optimize-images-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    name: Resize and re-encode
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Avoid a feedback loop with our own commit message tag.
+    if: ${{ !contains(github.event.head_commit.message, '[skip optimize]') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Optimize images
+        run: npm run optimize:images
+
+      - name: Commit optimized images
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(images): auto-optimize uploads [skip optimize]"
+          file_pattern: "public/images/** public/brand/**"

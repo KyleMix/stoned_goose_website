@@ -47,6 +47,7 @@ export default config({
       label: "Site config",
       path: "content/site/",
       format: { data: "json" },
+      previewUrl: "/",
       schema: {
         name: fields.text({ label: "Brand name", validation: { length: { min: 2 } } }),
         shortName: fields.text({ label: "Short name", validation: { length: { min: 2 } } }),
@@ -103,6 +104,7 @@ export default config({
       label: "Home page",
       path: "content/home/",
       format: { data: "json" },
+      previewUrl: "/",
       schema: {
         hero: fields.object({
           eyebrow: fields.text({ label: "Status banner (eyebrow)", validation: noEmDash }),
@@ -157,6 +159,7 @@ export default config({
       label: "Shows copy",
       path: "content/shows-copy/",
       format: { data: "json" },
+      previewUrl: "/shows",
       schema: {
         heading: fields.text({ label: "Heading" }),
         subhead: fields.text({ label: "Subhead", multiline: true, validation: noEmDash }),
@@ -198,6 +201,7 @@ export default config({
       label: "Watch copy",
       path: "content/watch-copy/",
       format: { data: "json" },
+      previewUrl: "/watch",
       schema: {
         heading: fields.text({ label: "Heading" }),
         subhead: fields.text({ label: "Subhead", validation: noEmDash }),
@@ -210,6 +214,7 @@ export default config({
       label: "Roster copy",
       path: "content/roster-copy/",
       format: { data: "json" },
+      previewUrl: "/roster",
       schema: {
         comedians: fields.object({
           subhead: fields.text({ label: "Subhead", multiline: true, validation: noEmDash }),
@@ -236,6 +241,7 @@ export default config({
       label: "Open mics copy",
       path: "content/open-mics-copy/",
       format: { data: "json" },
+      previewUrl: "/open-mics",
       schema: {
         subhead: fields.text({ label: "Subhead", multiline: true, validation: noEmDash }),
         kicker: fields.text({ label: "Kicker", validation: noEmDash }),
@@ -247,6 +253,7 @@ export default config({
       label: "Shop copy",
       path: "content/shop-copy/",
       format: { data: "json" },
+      previewUrl: "/shop",
       schema: {
         heading: fields.text({ label: "Heading" }),
         subhead: fields.text({ label: "Subhead", validation: noEmDash }),
@@ -260,6 +267,7 @@ export default config({
       label: "Sponsorships",
       path: "content/sponsorships/",
       format: { data: "json" },
+      previewUrl: "/book#sponsors",
       schema: {
         stats: fields.array(
           fields.object({
@@ -294,6 +302,7 @@ export default config({
       path: "content/news/*",
       format: { contentField: "body" },
       entryLayout: "content",
+      previewUrl: "/watch#from-the-goose",
       columns: ["title", "date"],
       schema: {
         slug: fields.slug({
@@ -330,6 +339,7 @@ export default config({
       slugField: "slug",
       path: "content/services/*",
       format: { data: "json" },
+      previewUrl: "/book/{slug}",
       columns: ["title"],
       schema: {
         slug: fields.slug({ name: { label: "Slug (URL segment)" } }),
@@ -375,6 +385,7 @@ export default config({
       slugField: "name",
       path: "content/pricing-tiers/*",
       format: { data: "json" },
+      previewUrl: "/book#corporate",
       schema: {
         name: fields.slug({ name: { label: "Name" } }),
         bestFor: fields.text({ label: "Best for (eyebrow)" }),
@@ -392,6 +403,7 @@ export default config({
       slugField: "slug",
       path: "content/comedians/*",
       format: { data: "json" },
+      previewUrl: "/roster",
       columns: ["name"],
       schema: {
         slug: fields.slug({ name: { label: "Slug" } }),
@@ -412,6 +424,7 @@ export default config({
       slugField: "slug",
       path: "content/members/*",
       format: { data: "json" },
+      previewUrl: "/roster",
       columns: ["name", "role"],
       schema: {
         slug: fields.slug({ name: { label: "Slug" } }),
@@ -440,6 +453,7 @@ export default config({
       slugField: "id",
       path: "content/shows/*",
       format: { data: "json" },
+      previewUrl: "/shows",
       columns: ["name", "start"],
       schema: {
         id: fields.slug({ name: { label: "Show id" } }),
@@ -481,6 +495,7 @@ export default config({
       slugField: "name",
       path: "content/shop-products/*",
       format: { data: "json" },
+      previewUrl: "/shop",
       columns: ["name", "price"],
       schema: {
         name: fields.slug({ name: { label: "Product name" } }),
@@ -499,6 +514,7 @@ export default config({
       slugField: "id",
       path: "content/open-mics/*",
       format: { data: "json" },
+      previewUrl: "/open-mics",
       columns: ["name", "day", "city"],
       schema: {
         id: fields.slug({ name: { label: "Slug" } }),
@@ -542,6 +558,7 @@ export default config({
       slugField: "title",
       path: "content/tiktok/*",
       format: { data: "json" },
+      previewUrl: "/watch#latest",
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         url: fields.url({ label: "TikTok URL" }),

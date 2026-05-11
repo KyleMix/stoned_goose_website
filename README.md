@@ -85,7 +85,11 @@ GitHub", edit content. Each save commits to the repo on `main`. The host
 picks up the push and auto-deploys, so the change is live in about a
 minute or two.
 
-`/admin` is `Disallow`ed in `robots.txt` and the page sets `noindex`.
+`/admin` is `Disallow`ed in `robots.txt` and the page sets `noindex`. Each
+collection and singleton has a `previewUrl`, so the "View" button in the
+admin opens the live page in a new tab. Images uploaded through the admin
+are auto-resized by the `Optimize images` GitHub Action before the host
+builds (see `.github/workflows/optimize-images.yml`).
 
 ## Repo layout
 

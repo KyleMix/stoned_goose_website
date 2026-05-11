@@ -1,0 +1,48 @@
+/* Brand layer for the Keystatic admin. Reasserts the three font families and
+   the hazard-yellow accent so the editor reads as Stoned Goose, not generic.
+   Keystatic ships its own design system (React Aria + Spectrum-like). We
+   override sparingly: typography on headings, accent color on buttons. */
+
+.sg-admin {
+  --sg-bone: #efe9dd;
+  --sg-ink: #0a0a0a;
+  --sg-hazard: #f2ea00;
+  --sg-haze: rgba(10, 10, 10, 0.55);
+}
+
+.sg-admin {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+.sg-admin h1,
+.sg-admin h2,
+.sg-admin h3 {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+.sg-admin code,
+.sg-admin kbd,
+.sg-admin pre {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Hazard yellow on the primary "Save changes" button. Keystatic ships
+   with a blue/indigo accent by default; this swaps to brand color without
+   touching the rest of the design system. */
+.sg-admin [data-status="primary"],
+.sg-admin button[type="submit"][data-color="accent"] {
+  background: var(--sg-hazard) !important;
+  color: var(--sg-ink) !important;
+  border-color: var(--sg-hazard) !important;
+}
+
+.sg-admin [data-status="primary"]:hover,
+.sg-admin button[type="submit"][data-color="accent"]:hover {
+  background: var(--sg-bone) !important;
+}
+
+/* Focus rings stay hazard so they read as brand, not generic blue. */
+.sg-admin *:focus-visible {
+  outline-color: var(--sg-hazard) !important;
+}
