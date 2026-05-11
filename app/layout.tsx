@@ -1,15 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
-import type { LocalBusiness } from "schema-dts";
 import "./globals.css";
-import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
-import { Grain } from "@/components/grain";
-import { RouteFocusManager } from "@/components/route-focus-manager";
-import { SearchPalette } from "@/components/search-palette";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/content/site";
-import { jsonLdString } from "@/lib/jsonld";
 
 const display = Fraunces({
   subsets: ["latin"],
@@ -84,83 +76,13 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
-  const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
-  const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
-
-  const sameAs = [
-    site.social.instagram,
-    site.social.facebook,
-    site.social.tiktok,
-    site.social.youtube,
-    site.social.patreon,
-    site.social.eventbrite,
-    site.social.fourthwall,
-  ];
-
-  const localBusiness: LocalBusiness = {
-    "@type": "LocalBusiness",
-    name: site.name,
-    url: site.url,
-    description: site.description,
-    areaServed: [...site.serviceAreas],
-    sameAs,
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        contactType: "Sales",
-        email: site.contact.email,
-        telephone: site.contact.phoneTel,
-      },
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: site.contact.locality,
-      addressRegion: site.contact.region,
-      addressCountry: "US",
-    },
-  };
-
   return (
     <html
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
-      <head>
-        {plausibleDomain ? (
-          <script
-            defer
-            data-domain={plausibleDomain}
-            src="https://plausible.io/js/script.js"
-          />
-        ) : null}
-        {gscVerification ? (
-          <meta name="google-site-verification" content={gscVerification} />
-        ) : null}
-        {bingVerification ? (
-          <meta name="msvalidate.01" content={bingVerification} />
-        ) : null}
-      </head>
       <body className="bg-ink text-bone" suppressHydrationWarning>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-hazard focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:text-ink"
-        >
-          Skip to content
-        </a>
-        <Nav />
-        <main id="main" tabIndex={-1} data-pagefind-body>
-          {children}
-        </main>
-        <Footer />
-        <Grain />
-        <RouteFocusManager />
-        <SearchPalette />
-        <SmoothScroll />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdString(localBusiness) }}
-        />
+        {children}
       </body>
     </html>
   );
