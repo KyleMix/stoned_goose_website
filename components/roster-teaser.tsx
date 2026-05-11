@@ -40,7 +40,7 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
               <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
                   src={c.photo}
-                  alt={c.name}
+                  alt={c.photoAlt || c.name}
                   fill
                   sizes="(min-width: 1024px) 12vw, (min-width: 640px) 22vw, 45vw"
                   {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}

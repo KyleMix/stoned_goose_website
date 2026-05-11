@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
+import { contactCopy } from "@/content/contact-copy";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
@@ -18,14 +19,14 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Direct Line"
+        eyebrow={contactCopy.eyebrow}
         title={
           <>
-            We want to{" "}
-            <span className="italic text-hazard">work with you</span>
+            {contactCopy.titleLead}{" "}
+            <span className="italic text-hazard">{contactCopy.titleEmphasis}</span>
           </>
         }
-        body="Booking, partnerships, or just want to start a conversation?"
+        body={contactCopy.body}
       />
 
       <section className="bg-ink py-20 md:py-28">
@@ -37,7 +38,7 @@ export default function ContactPage() {
                 className="group block"
               >
                 <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  Email
+                  {contactCopy.emailLabel}
                 </span>
                 <p className="mt-2 break-all font-display text-2xl tracking-tight text-bone transition-colors group-hover:text-hazard md:text-4xl">
                   {site.contact.email}
@@ -48,7 +49,7 @@ export default function ContactPage() {
                 className="group mt-8 block"
               >
                 <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  Phone
+                  {contactCopy.phoneLabel}
                 </span>
                 <p className="mt-2 font-display text-2xl tracking-tight text-bone transition-colors group-hover:text-hazard md:text-4xl">
                   {site.contact.phone}
@@ -62,7 +63,7 @@ export default function ContactPage() {
                       href={`sms:${site.contact.phoneTel}`}
                       className="inline-flex h-10 items-center border border-bone/30 px-4 text-bone hover:border-hazard hover:text-hazard"
                     >
-                      Text us
+                      {contactCopy.textCtaLabel}
                     </a>
                   </li>
                 ) : null}
@@ -75,7 +76,7 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="inline-flex h-10 items-center bg-hazard px-4 text-ink hover:bg-bone"
                     >
-                      WhatsApp ↗
+                      {contactCopy.whatsappCtaLabel} ↗
                     </TrackedAnchor>
                   </li>
                 ) : null}
@@ -83,7 +84,7 @@ export default function ContactPage() {
 
               <div className="mt-10">
                 <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  Find us
+                  {contactCopy.findUsLabel}
                 </span>
                 <p className="mt-2 font-display text-xl text-bone md:text-2xl">
                   {site.contact.address}
@@ -100,9 +101,9 @@ export default function ContactPage() {
               <ContactForm
                 subject="New site contact form message"
                 source="Contact page"
-                submitLabel="Let's Talk"
-                successText="Message sent! We'll get back to you soon."
-                errorText="Something went wrong. Please try again shortly."
+                submitLabel={contactCopy.form.submitLabel}
+                successText={contactCopy.form.successText}
+                errorText={contactCopy.form.errorText}
                 formName="contact"
                 schema="contact"
               >
@@ -110,14 +111,14 @@ export default function ContactPage() {
                   <TextField
                     id="contact-name"
                     name="name"
-                    label="Name"
+                    label={contactCopy.form.nameLabel}
                     required
                     autoComplete="name"
                   />
                   <TextField
                     id="contact-email"
                     name="email"
-                    label="Email"
+                    label={contactCopy.form.emailLabel}
                     type="email"
                     required
                     autoComplete="email"
@@ -126,10 +127,10 @@ export default function ContactPage() {
                 <TextAreaField
                   id="contact-message"
                   name="message"
-                  label="Message"
+                  label={contactCopy.form.messageLabel}
                   required
                   rows={6}
-                  placeholder="Tell us what you're putting together."
+                  placeholder={contactCopy.form.messagePlaceholder}
                 />
               </ContactForm>
             </div>

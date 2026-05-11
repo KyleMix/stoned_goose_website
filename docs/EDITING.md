@@ -24,16 +24,17 @@ If you bookmark `/admin` it will redirect to `/keystatic`. Either works.
 
 Left-nav groups in the editor map to the site like this:
 
-| Group           | What's in it                                                | Where it shows                        |
-| --------------- | ----------------------------------------------------------- | ------------------------------------- |
-| Site copy       | Brand name, tagline, contact info, social links, press      | Everywhere (footer, meta, contact)    |
-| Site copy: Home | Hero copy, section headlines, CTAs                          | `/`                                   |
-| Roster          | Members + comedians (name, bio, headshot, links)            | `/roster`                             |
-| Booking         | Services + pricing tiers                                    | `/book` and `/book/[slug]`            |
-| Shows           | Manual show overrides (date, venue, ticket URL)             | `/shows`                              |
-| Merch           | Manual product overrides                                    | `/shop`                               |
-| Open mics       | Recurring mic listings                                      | `/open-mics`                          |
-| Posts          | News articles, TikTok video picks                            | News and watch pages                  |
+| Group              | What's in it                                                                       | Where it shows                        |
+| ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------- |
+| Site copy          | Brand name, tagline, contact info, social links, press, primary nav, footer, SEO   | Everywhere (nav, footer, meta)        |
+| Site copy: Home    | Hero copy, section headlines, CTAs                                                 | `/`                                   |
+| Site copy: Contact | Eyebrow, title, body, label strings, form copy                                     | `/contact`                            |
+| Roster             | Members + comedians (name, bio, headshot, alt text, links, draft flag)             | `/roster`                             |
+| Booking            | Services + pricing tiers                                                           | `/book` and `/book/[slug]`            |
+| Shows              | Manual show overrides (date, venue, ticket URL, poster alt, draft flag)            | `/shows`                              |
+| Merch              | Manual product overrides (price, link, image alt, draft flag)                      | `/shop`                               |
+| Open mics          | Recurring mic listings                                                             | `/open-mics`                          |
+| Posts              | News articles (featured + draft), TikTok video picks (draft + alt)                 | News and watch pages                  |
 
 Anything not in that list is either auto-pulled from a feed (Instagram,
 Facebook, YouTube, Eventbrite, Fourthwall) or lives in code and needs a
@@ -119,11 +120,29 @@ the second person at Save time and ask them to refresh. The first save
 wins. Resolve the conflict in the editor (re-apply your changes on top
 of the latest version) and save again.
 
+## Drafts
+
+Most collections (news, comedians, members, shows, shop, TikTok) have a
+**Draft** checkbox. Tick it and the entry disappears from the public site
+on the next build. Untick it to publish. Useful for staging a news post
+or holding back a comedian portrait until it's ready.
+
+News posts also have a **Featured** checkbox. Featured posts pin to the
+top of the Latest strip regardless of date.
+
+## Image alt text
+
+Every image field is paired with an **Alt text** field. Fill it with a
+short description of what's in the image. Screen readers and SEO use it.
+Leave it blank only for purely decorative images. Defaults to the entry
+name when empty.
+
 ## Daily-use checklist
 
 - Want to swap the tagline? **Site copy → Site config → Tagline → Save.**
+- Want to reorder the top nav? **Site copy → Site config → Primary nav → drag → Save.**
 - Want to add a comedian? **Roster → Comedians → New → fill out → Save.**
-- Want to publish a news post? **Posts → News → New → fill out → Save.**
+- Want to publish a news post? **Posts → News → New → fill out → uncheck Draft → Save.**
 - Want to update pricing? **Booking → Pricing tiers → edit row → Save.**
 
 Each one is a single commit, a single build, live within a few minutes.

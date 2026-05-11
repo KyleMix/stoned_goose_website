@@ -1,0 +1,20 @@
+{
+  "eyebrow": "Direct Line",
+  "titleLead": "We want to",
+  "titleEmphasis": "work with you",
+  "body": "Booking, partnerships, or just want to start a conversation?",
+  "emailLabel": "Email",
+  "phoneLabel": "Phone",
+  "textCtaLabel": "Text us",
+  "whatsappCtaLabel": "WhatsApp",
+  "findUsLabel": "Find us",
+  "form": {
+    "submitLabel": "Let's Talk",
+    "successText": "Message sent! We'll get back to you soon.",
+    "errorText": "Something went wrong. Please try again shortly.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us what you're putting together."
+  }
+}

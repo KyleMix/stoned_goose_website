@@ -29,7 +29,7 @@ export function ShopProductCard({ product, borderClass }: Props) {
         <div className="relative aspect-square w-full overflow-hidden bg-haze-500">
           <Image
             src={product.image}
-            alt={product.name}
+            alt={product.imageAlt || product.name}
             fill
             sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
             className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter,transform] duration-500 group-hover:scale-[1.02] group-hover:[filter:grayscale(0)_contrast(1)]"

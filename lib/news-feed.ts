@@ -20,6 +20,7 @@ export function buildNewsFeed(): NewsItem[] {
       title: post.title,
       summary: post.summary,
       poster: post.image,
+      posterAlt: post.imageAlt,
       date: post.date,
     });
   }
@@ -43,6 +44,7 @@ export function buildNewsFeed(): NewsItem[] {
       id: `tiktok-${i}`,
       title: v.title,
       poster: v.poster,
+      posterAlt: v.posterAlt,
       href: v.url,
       date: tiktokFallback,
     });

@@ -3,7 +3,8 @@
 //   - content/.generated/shop-products-index.json (manual products)
 //   - content/.generated/products.json (sync:fourthwall output)
 //
-// Generated products win when present.
+// Generated products win when present. Manual entries flagged as draft are
+// filtered out so unfinished listings stay off /shop.
 
 import shopCopyData from "./shop-copy/index.json";
 import generatedProducts from "./.generated/products.json";
@@ -14,6 +15,7 @@ export type Product = {
   price: string;
   url: string;
   image: string;
+  imageAlt?: string;
 };
 
 type ShopCopy = {
@@ -31,6 +33,8 @@ type RawProduct = {
   price?: string;
   url?: string;
   image?: string;
+  imageAlt?: string;
+  draft?: boolean;
 };
 
 function titleCase(slug: string): string {
@@ -45,12 +49,15 @@ function titleCase(slug: string): string {
     .join(" ");
 }
 
-const manualProducts: Product[] = (manualIndex as RawProduct[]).map((p) => ({
-  name: p.name ?? titleCase(p.slug ?? ""),
-  price: p.price ?? "",
-  url: p.url ?? "",
-  image: p.image ?? "",
-}));
+const manualProducts: Product[] = (manualIndex as RawProduct[])
+  .filter((p) => p.draft !== true)
+  .map((p) => ({
+    name: p.name ?? titleCase(p.slug ?? ""),
+    price: p.price ?? "",
+    url: p.url ?? "",
+    image: p.image ?? "",
+    imageAlt: p.imageAlt && p.imageAlt.length > 0 ? p.imageAlt : undefined,
+  }));
 
 const fromGeneratedProducts =
   Array.isArray(generatedProducts) && generatedProducts.length > 0

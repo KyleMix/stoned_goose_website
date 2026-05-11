@@ -9,6 +9,7 @@ export type NewsItem =
       id: string;
       title: string;
       poster: string | null;
+      posterAlt?: string;
       href: string;
       isVideo: boolean;
       date: string;
@@ -18,6 +19,7 @@ export type NewsItem =
       id: string;
       title: string;
       poster: string;
+      posterAlt?: string;
       href: string;
       date: string;
     }
@@ -27,6 +29,7 @@ export type NewsItem =
       title: string;
       summary: string;
       poster?: string;
+      posterAlt?: string;
       href?: string;
       date: string;
     };
@@ -45,7 +48,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           <div className="relative mb-5 aspect-video w-full overflow-hidden bg-haze-500">
             <Image
               src={item.poster}
-              alt={item.title}
+              alt={item.posterAlt || item.title}
               fill
               sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
               className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
@@ -83,7 +86,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
         {item.poster ? (
           <Image
             src={item.poster}
-            alt={item.title}
+            alt={item.posterAlt || item.title}
             fill
             sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
             className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"

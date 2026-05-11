@@ -9,6 +9,16 @@ export type PressItem = {
   url?: string;
 };
 
+export type NavLink = {
+  label: string;
+  href: string;
+};
+
+export type FooterColumn = {
+  heading: string;
+  items: NavLink[];
+};
+
 type SiteShape = {
   name: string;
   shortName: string;
@@ -44,6 +54,56 @@ type SiteShape = {
   serviceAreas: readonly string[];
 };
 
+// Defaults applied when the Keystatic JSON has not been edited yet. They mirror
+// what used to be hardcoded in this file so the site keeps working before the
+// first save from /keystatic.
+const DEFAULT_NAV: NavLink[] = [
+  { label: "Shows", href: "/shows" },
+  { label: "Open Mics", href: "/open-mics" },
+  { label: "Watch", href: "/watch" },
+  { label: "Roster", href: "/roster" },
+  { label: "Book Us", href: "/book" },
+  { label: "Shop", href: "/shop" },
+];
+
+const DEFAULT_FOOTER: {
+  locality: string;
+  creditLine: string;
+  creditHref: string;
+  columns: FooterColumn[];
+} = {
+  locality: "Olympia, WA",
+  creditLine: "Website Design by Kyle Mixon.",
+  creditHref: "",
+  columns: [
+    {
+      heading: "Explore",
+      items: [
+        { label: "Home", href: "/" },
+        { label: "Shows", href: "/shows" },
+        { label: "Open Mics", href: "/open-mics" },
+        { label: "Watch", href: "/watch" },
+        { label: "Roster", href: "/roster" },
+        { label: "Shop", href: "/shop" },
+      ],
+    },
+    {
+      heading: "Work With Us",
+      items: [
+        { label: "Book Us", href: "/book" },
+        { label: "Sponsor a Show", href: "/book#sponsors" },
+      ],
+    },
+    {
+      heading: "Connect",
+      items: [
+        { label: "Tickets.", href: "/shows" },
+        { label: "Contact", href: "/contact" },
+      ],
+    },
+  ],
+};
+
 // Normalize the JSON shape so the types and defaults match what call sites
 // expect. Empty strings on optional fields are coerced to null.
 const raw = siteData as unknown as {
@@ -70,6 +130,17 @@ const raw = siteData as unknown as {
   };
   serviceAreas: string[];
   press?: PressItem[];
+  nav?: NavLink[];
+  footer?: {
+    locality?: string;
+    creditLine?: string;
+    creditHref?: string;
+    columns?: FooterColumn[];
+  };
+  seo?: {
+    keywords?: string[];
+    defaultOgImage?: string;
+  };
 };
 
 export const site: SiteShape = {
@@ -99,11 +170,23 @@ export const site: SiteShape = {
 
 export const press: PressItem[] = raw.press ?? [];
 
-export const nav = [
-  { label: "Shows", href: "/shows" },
-  { label: "Open Mics", href: "/open-mics" },
-  { label: "Watch", href: "/watch" },
-  { label: "Roster", href: "/roster" },
-  { label: "Book Us", href: "/book" },
-  { label: "Shop", href: "/shop" },
-] as const;
+export const nav: NavLink[] =
+  raw.nav && raw.nav.length > 0 ? raw.nav : DEFAULT_NAV;
+
+export const footer = {
+  locality: raw.footer?.locality?.length ? raw.footer.locality : DEFAULT_FOOTER.locality,
+  creditLine: raw.footer?.creditLine?.length ? raw.footer.creditLine : DEFAULT_FOOTER.creditLine,
+  creditHref: raw.footer?.creditHref?.length ? raw.footer.creditHref : DEFAULT_FOOTER.creditHref,
+  columns:
+    raw.footer?.columns && raw.footer.columns.length > 0
+      ? raw.footer.columns
+      : DEFAULT_FOOTER.columns,
+};
+
+export const seo = {
+  keywords: raw.seo?.keywords ?? [],
+  defaultOgImage:
+    raw.seo?.defaultOgImage && raw.seo.defaultOgImage.length > 0
+      ? raw.seo.defaultOgImage
+      : null,
+};

@@ -62,7 +62,7 @@ export default function WatchPage() {
             <div className="relative md:col-span-8">
               <FeaturedSpecialPlayer
                 poster={featuredSpecial.poster}
-                alt={`${featuredSpecial.title} - ${featuredSpecial.subtitle}`}
+                alt={featuredSpecial.posterAlt || `${featuredSpecial.title} - ${featuredSpecial.subtitle}`}
                 videoUrl={featuredSpecial.videoUrl}
               />
             </div>
