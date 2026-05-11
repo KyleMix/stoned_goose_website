@@ -2,5 +2,22 @@
   "heading": "Media & Clips",
   "subhead": "Watch clips, reels, and full sets from Stoned Goose Productions.",
   "emptyClipsLine": "No videos available yet. Check out our channel for the latest uploads.",
-  "youtubeVideos": []
+  "youtubeVideos": [
+    {
+      "url": "https://youtu.be/-dWJDM7htLw?si=-2_QFg0Ge4y0TDzL",
+      "title": " One Mic. One Night a Month. | Ridgefield, WA | Open Mic Explorer Ep. 3"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=WKScU9V3dz4&t",
+      "title": " Exploring The Open Mic Collective | Open Mic Explorer Ep. 2"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=4uuWZbUtSFw&t",
+      "title": " What Actually Happens at a Flight Path Open Mic? | Open Mic Explorer Ep 1"
+    },
+    {
+      "url": "https://youtu.be/3YVO3udLxko?si=EDyiZOWxd_93VFgM",
+      "title": " Luis J Gomez Interview - Stoned Goose Productions"
+    }
+  ]
 }
