@@ -1,6 +1,6 @@
 {
   "hero": {
-    "eyebrow": "Now booking corporate events + media production",
+    "eyebrow": "Now Booking ",
     "italicLine": "lights on. jokes loaded.",
     "headline": "Stoned Goose Productions",
     "subhead": "Crafting cinematic stand-up, curated showcases, and comedy chaos across your city.",
@@ -92,7 +92,6 @@
     ]
   },
   "mission": {
-    "discriminant": false,
-    "value": null
+    "discriminant": false
   }
 }
