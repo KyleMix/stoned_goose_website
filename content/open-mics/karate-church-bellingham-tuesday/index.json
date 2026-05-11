@@ -1,0 +1,14 @@
+{
+  "name": "Karate Church",
+  "venue": "Karate Church",
+  "address": "519 E Maple St",
+  "city": "Bellingham",
+  "region": "WA",
+  "lat": 48.743991371023114,
+  "lng": -122.48396967269399,
+  "day": "Tuesday",
+  "time": "7pm",
+  "host": "karate.church.project@gmail.com",
+  "signupUrl": "",
+  "notes": "Free. 2nd, 4th Tue."
+}

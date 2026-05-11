@@ -1,3 +1,13 @@
+// Services + pricing tiers shim. Reads:
+//   - content/.generated/services-index.json (collection consolidated at prebuild)
+//   - content/.generated/pricing-tiers-index.json
+//
+// Services keep the editorial order via an explicit list. Pricing tiers
+// follow the Starter / Pro / Premium order.
+
+import servicesIndex from "./.generated/services-index.json";
+import tiersIndex from "./.generated/pricing-tiers-index.json";
+
 export type Service = {
   slug: string;
   title: string;
@@ -9,188 +19,83 @@ export type Service = {
   process: string[];
   pricing: string;
   faqs: { q: string; a: string }[];
-  /** Marks the entry as awaiting real copy. Detail page renders a draft notice. */
   draft?: boolean;
 };
 
-export const services: Service[] = [
-  {
-    slug: "live-show-production",
-    title: "Live Show Production",
-    metaTitle:
-      "Live Show Production | Olympia & South Sound | Stoned Goose Productions",
-    metaDescription:
-      "End-to-end live show production in Olympia, Lacey, and Tacoma. Book talent, tech, and tight run-of-show support with Stoned Goose.",
-    summary:
-      "End-to-end production that keeps comedy shows tight, on time, and unforgettable across Olympia, Lacey, Tacoma, and the South Sound.",
-    whatYouGet: [
-      "Show design, tech coordination, and run-of-show leadership.",
-      "Reliable producers who manage talent, venues, and day-of logistics.",
-      "Audience-first pacing that keeps energy high from open to close.",
-    ],
-    idealFor: [
-      "Comedy clubs and theaters booking recurring nights.",
-      "Festivals or venues adding live comedy programming.",
-      "Brands activating with a hosted live experience.",
-    ],
-    process: [
-      "Scope the show goals, audience size, and venue requirements.",
-      "Confirm talent, tech specs, and timelines with your team.",
-      "Execute the show with on-site production leadership.",
-    ],
-    pricing:
-      "Packages are custom based on show scope, talent needs, and tech. Request a quote for tailored pricing.",
-    faqs: [
-      {
-        q: "Do you produce shows in Olympia, Lacey, and Tacoma?",
-        a: "Yes. We support venues across Olympia, Lacey, Tacoma, and the greater South Sound with on-site production leadership.",
-      },
-      {
-        q: "Can you handle talent booking and production together?",
-        a: "Absolutely. We can manage comedian booking, tech coordination, and run-of-show planning as a single, streamlined package.",
-      },
-      {
-        q: "How far in advance should we book live show production?",
-        a: "Most shows book 4-8 weeks out, but we can accommodate faster turnarounds depending on venue and talent availability.",
-      },
-      {
-        q: "What information do you need for a quote?",
-        a: "Share your event date, venue size, and the type of show you want. We'll send a tailored package and pricing options.",
-      },
-    ],
-  },
-  {
-    slug: "film-your-comedy-set",
-    title: "Film Your Comedy Set",
-    metaTitle:
-      "Film Your Comedy Set | Stoned Goose Productions",
-    metaDescription:
-      "Multi-cam capture and edit of your stand-up set in the Pacific Northwest. Talk to us about packages.",
-    summary:
-      "Get your set on tape. Multi-cam capture, clean audio, and edited video you can actually post.",
-    whatYouGet: [
-      "TODO: copy needed.",
-    ],
-    idealFor: [
-      "TODO: copy needed.",
-    ],
-    process: [
-      "TODO: copy needed.",
-    ],
-    pricing:
-      "Pricing varies by set length and deliverables. Request a quote.",
-    faqs: [
-      {
-        q: "What does a typical filming look like?",
-        a: "TODO: copy needed.",
-      },
-    ],
-    draft: true,
-  },
-  {
-    slug: "media-and-podcasts",
-    title: "Media & Podcasts",
-    metaTitle:
-      "Media & Podcast Production | Olympia & South Sound | Stoned Goose Productions",
-    metaDescription:
-      "Podcast and media production in Olympia, Lacey, and Tacoma. Recording, editing, and content support for comedians and brands.",
-    summary:
-      "Audio and video production for comedians and brands who want broadcast-ready podcasts and media in the South Sound.",
-    whatYouGet: [
-      "Recording setup, engineering, and production support.",
-      "Video capture and editing for clips and episodes.",
-      "Distribution guidance for podcast and social channels.",
-    ],
-    idealFor: [
-      "Comedians launching or leveling up a podcast.",
-      "Brands creating comedy-forward video series.",
-      "Studios capturing live comedy recordings.",
-    ],
-    process: [
-      "Define the show format, guests, and release cadence.",
-      "Capture audio/video in-studio or on location.",
-      "Deliver edited episodes and highlight assets.",
-    ],
-    pricing:
-      "Pricing depends on episode length and production needs. Request a quote for a tailored package.",
-    faqs: [
-      {
-        q: "Do you record podcasts in Olympia or Tacoma?",
-        a: "Yes. We support recording across Olympia, Lacey, Tacoma, and the South Sound with mobile or studio setups.",
-      },
-      {
-        q: "Can you handle editing and highlight clips?",
-        a: "We provide full post-production, including audio polish, video edits, and social-ready clips.",
-      },
-      {
-        q: "Do you help with podcast distribution?",
-        a: "We can guide platform setup and recommend best practices for consistent releases.",
-      },
-      {
-        q: "How many episodes can we book at once?",
-        a: "We offer single-episode sessions and multi-episode production blocks depending on your schedule.",
-      },
-    ],
-  },
-  {
-    slug: "collaboration",
-    title: "Collaboration",
-    metaTitle:
-      "Collaboration | Stoned Goose Productions",
-    metaDescription:
-      "Open the door to a collaboration with Stoned Goose Productions.",
-    summary:
-      "Got a project that needs a comedy partner? Pitch us. We'll see what fits.",
-    whatYouGet: [
-      "TODO: copy needed.",
-    ],
-    idealFor: [
-      "TODO: copy needed.",
-    ],
-    process: [
-      "TODO: copy needed.",
-    ],
-    pricing:
-      "Project-based. Send the pitch and we'll respond with terms.",
-    faqs: [
-      {
-        q: "What kind of collaborations are you open to?",
-        a: "TODO: copy needed.",
-      },
-    ],
-    draft: true,
-  },
+const SERVICE_ORDER = [
+  "live-show-production",
+  "film-your-comedy-set",
+  "media-and-podcasts",
+  "collaboration",
 ];
 
-export const pricingTiers = [
-  {
-    name: "Starter",
-    bestFor: "Best for clubs & pop-ups",
-    price: "Starting at $750",
-    items: [
-      "Talent sourcing + booking",
-      "Basic run-of-show planning",
-      "Day-of production coordination",
-    ],
-  },
-  {
-    name: "Pro",
-    bestFor: "Best for theaters & corporate events",
-    price: "Starting at $2,000",
-    items: [
-      "Full booking + contracts management",
-      "Production staffing & tech specs",
-      "Photo + short-form recap assets",
-    ],
-  },
-  {
-    name: "Premium",
-    bestFor: "Best for festivals & branded activations",
-    price: "Starting at $5,000",
-    items: [
-      "Executive producing & creative direction",
-      "On-site video/audio capture",
-      "Post-event marketing kit + highlights",
-    ],
-  },
-];
+const TIER_ORDER = ["starter", "pro", "premium"];
+
+function orderBy<T extends { slug: string }>(items: T[], order: string[]): T[] {
+  const map = new Map(items.map((i) => [i.slug, i]));
+  const out: T[] = [];
+  for (const slug of order) {
+    const item = map.get(slug);
+    if (item) out.push(item);
+  }
+  for (const item of items) {
+    if (!order.includes(item.slug)) out.push(item);
+  }
+  return out;
+}
+
+type RawService = {
+  slug?: string;
+  title?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  summary?: string;
+  whatYouGet?: string[];
+  idealFor?: string[];
+  process?: string[];
+  pricing?: string;
+  faqs?: { q: string; a: string }[];
+  draft?: boolean;
+};
+
+const raw = servicesIndex as RawService[];
+const shaped: Service[] = raw.map((s) => ({
+  slug: s.slug ?? "",
+  title: s.title ?? "",
+  metaTitle: s.metaTitle ?? "",
+  metaDescription: s.metaDescription ?? "",
+  summary: s.summary ?? "",
+  whatYouGet: s.whatYouGet ?? [],
+  idealFor: s.idealFor ?? [],
+  process: s.process ?? [],
+  pricing: s.pricing ?? "",
+  faqs: s.faqs ?? [],
+  draft: Boolean(s.draft),
+}));
+
+export const services: Service[] = orderBy(shaped, SERVICE_ORDER);
+
+type RawTier = {
+  slug?: string;
+  bestFor?: string;
+  price?: string;
+  items?: string[];
+};
+
+type Tier = {
+  slug: string;
+  name: string;
+  bestFor: string;
+  price: string;
+  items: string[];
+};
+
+const tierShaped: Tier[] = (tiersIndex as RawTier[]).map((t) => ({
+  slug: t.slug ?? "",
+  name: (t.slug ?? "").replace(/\b\w/g, (c) => c.toUpperCase()),
+  bestFor: t.bestFor ?? "",
+  price: t.price ?? "",
+  items: t.items ?? [],
+}));
+
+export const pricingTiers = orderBy(tierShaped, TIER_ORDER).map(({ slug: _slug, ...rest }) => rest);

@@ -1,0 +1,14 @@
+{
+  "name": "Donnell’s Bar",
+  "venue": "Donnell’s Bar",
+  "address": "813 Main St",
+  "city": "Vancouver",
+  "region": "WA",
+  "lat": 45.642170450904096,
+  "lng": -122.66105596246281,
+  "day": "Monday",
+  "time": "6pm",
+  "host": "",
+  "signupUrl": "",
+  "notes": ""
+}

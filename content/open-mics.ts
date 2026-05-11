@@ -1,9 +1,14 @@
-import openMicsRaw from "./feeds/open-mics.json";
+// Open Mic Explorer shim. Reads:
+//   - content/open-mics-copy/index.json (singleton)
+//   - content/.generated/open-mics-index.json (collection, consolidated at prebuild)
+//
+// Falls back to content/feeds/open-mics.json when the Keystatic collection is
+// empty. This keeps the legacy Google Sheet sync useful as a one-time bulk
+// import path without overriding live admin edits.
 
-// Open Mic Explorer data. The build-time sync script (scripts/sync-open-mics.ts)
-// fetches a published Google Sheet CSV and writes content/feeds/open-mics.json.
-// When the sync hasn't run, the committed JSON acts as the fallback so the
-// /open-mics page still renders.
+import openMicsCopyData from "./open-mics-copy/index.json";
+import legacyFeed from "./feeds/open-mics.json";
+import micsIndex from "./.generated/open-mics-index.json";
 
 export type OpenMicDay =
   | "Monday"
@@ -32,17 +37,58 @@ export type OpenMic = {
 
 export type OpenMicsManifest = {
   fetchedAt: string;
-  source: "google-sheet" | "stub";
+  source: "google-sheet" | "stub" | "keystatic";
   status: "ok" | "stale" | "error";
   errorMessage: string | null;
   mics: OpenMic[];
 };
 
-export const openMicsFeed = openMicsRaw as OpenMicsManifest;
-
-export const openMicsCopy = {
-  subhead:
-    "Find an open mic in the Pacific Northwest. New rooms, weekly signups, mapped.",
-  kicker:
-    "Maintained by the crew. Tell us if a room moved.",
+export const openMicsCopy = openMicsCopyData as {
+  subhead: string;
+  kicker: string;
 };
+
+type RawMic = {
+  id?: string;
+  name?: string;
+  venue?: string;
+  address?: string;
+  city?: string;
+  region?: string;
+  lat?: number;
+  lng?: number;
+  day?: string;
+  time?: string;
+  host?: string;
+  signupUrl?: string;
+  notes?: string;
+};
+
+const cmsMics: OpenMic[] = (micsIndex as RawMic[]).map((m) => ({
+  id: m.id ?? "",
+  name: m.name ?? "",
+  venue: m.venue ?? "",
+  address: m.address ?? "",
+  city: m.city ?? "",
+  region: m.region ?? "WA",
+  lat: Number(m.lat ?? 0),
+  lng: Number(m.lng ?? 0),
+  day: (m.day as OpenMicDay) ?? "Monday",
+  time: m.time ?? "",
+  host: m.host && m.host.length > 0 ? m.host : undefined,
+  signupUrl: m.signupUrl && m.signupUrl.length > 0 ? m.signupUrl : undefined,
+  notes: m.notes && m.notes.length > 0 ? m.notes : undefined,
+}));
+
+const legacy = legacyFeed as unknown as OpenMicsManifest;
+
+export const openMicsFeed: OpenMicsManifest =
+  cmsMics.length > 0
+    ? {
+        fetchedAt: new Date().toISOString(),
+        source: "keystatic",
+        status: "ok",
+        errorMessage: null,
+        mics: cmsMics,
+      }
+    : legacy;

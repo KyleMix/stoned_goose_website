@@ -1,0 +1,30 @@
+{
+  "comedians": {
+    "subhead": "Booked, produced, or platformed by Stoned Goose. Plus the friends who keep showing up.",
+    "kicker": "Comics we've booked, comics we run with, comics we'll book again."
+  },
+  "about": {
+    "heading": "About the Team",
+    "subhead": "Stoned Goose Productions is a crew of producers, performers, and media pros building cinematic comedy experiences across the Pacific Northwest.",
+    "crewHeading": "Meet the Crew",
+    "crewSubhead": "Faces behind the productions."
+  },
+  "pillars": [
+    {
+      "title": "Production & Ops",
+      "body": "Producers, bookers, and stage managers who keep tours, residencies, and monthly showcases running smoothly."
+    },
+    {
+      "title": "Media Team",
+      "body": "Cinematographers, editors, and photographers crafting specials, podcast visuals, and crisp headshots for every comic."
+    },
+    {
+      "title": "Community & Partners",
+      "body": "Venue partners, sponsors, and collaborators who help us elevate Pacific Northwest comedy together."
+    },
+    {
+      "title": "Creative Lab",
+      "body": "Writers and creative directors shaping new formats, themed shows, and social content that keeps audiences engaged."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Paradise",
+  "venue": "Paradise",
+  "address": "314 Broadway E",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.61485278095674,
+  "lng": -122.32725880064088,
+  "day": "Monday",
+  "time": "8pm",
+  "host": "",
+  "signupUrl": "",
+  "notes": "Free. Parking. on street"
+}

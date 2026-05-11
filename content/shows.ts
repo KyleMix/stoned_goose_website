@@ -1,4 +1,14 @@
+// Shows shim. Combines:
+//   - showsCopy + featuredSpecial + presale (singleton from /admin)
+//   - manual shows (Keystatic collection consolidated at prebuild)
+//   - synced shows (content/.generated/shows.json, from scripts/sync-shows.ts)
+//
+// Generated shows win when present and non-empty; otherwise the manual
+// Keystatic list applies.
+
+import showsCopyData from "./shows-copy/index.json";
 import generatedShows from "./.generated/shows.json";
+import manualIndex from "./.generated/shows-index.json";
 
 export type Show = {
   id: string;
@@ -15,24 +25,93 @@ export type Show = {
     region?: string;
     country?: string;
   };
-  /** Direct ticketing URL. When null, CTA reflects `status`. */
   ticketUrl?: string | null;
-  /** "ticketed" → "Get tickets". "free" → "Free / at the door".
-   *  "tba" → "Details soon". Defaults to "tba" when omitted. */
   status?: "ticketed" | "free" | "tba";
-  /** Display-only ticket price. e.g. "$15", "Pay-what-you-can". */
   ticketPrice?: string;
-  /** Display-only door time. e.g. "Doors 7pm". */
   doorTime?: string;
-  /** Where this row came from. Set by sync scripts. Manual entries default
-   *  to "manual". Lets the owner audit the merge order at a glance. */
   source?: "eventbrite" | "facebook" | "manual";
 };
 
-// Static export, no API. Hand-edited by the owner when the sync scripts
-// aren't wired up. When content/.generated/shows.json exists and is non-empty
-// (written by scripts/sync-shows.ts at prebuild), that file overrides this list.
-const manualShows: Show[] = [];
+export type Presale = {
+  code: string;
+  expiresAt: string;
+  venueName: string;
+};
+
+const POSTER_DIR = "/images/comedians/";
+const SHOW_IMAGE_DIR = "/images/shows/";
+
+type ShowsCopyShape = {
+  heading: string;
+  subhead: string;
+  emptyState: string;
+  featuredSpecial: {
+    title: string;
+    subtitle: string;
+    blurb: string;
+    videoUrl: string;
+    poster: string;
+    comedianHandle: string;
+  };
+  presale?:
+    | { discriminant: true; value: Presale }
+    | { discriminant: false; value: null };
+};
+
+const copy = showsCopyData as unknown as ShowsCopyShape;
+
+export const showsCopy = {
+  heading: copy.heading,
+  subhead: copy.subhead,
+  emptyState: copy.emptyState,
+};
+
+export const featuredSpecial = {
+  title: copy.featuredSpecial.title,
+  subtitle: copy.featuredSpecial.subtitle,
+  blurb: copy.featuredSpecial.blurb,
+  videoUrl: copy.featuredSpecial.videoUrl ? copy.featuredSpecial.videoUrl : null,
+  poster: POSTER_DIR + copy.featuredSpecial.poster,
+  comedianHandle: copy.featuredSpecial.comedianHandle,
+};
+
+export const presale: Presale | null =
+  copy.presale && copy.presale.discriminant === true ? copy.presale.value : null;
+
+type RawManualShow = {
+  id?: string;
+  name?: string;
+  start?: string;
+  end?: string;
+  url?: string;
+  ticketUrl?: string;
+  summary?: string;
+  imageUrl?: string;
+  venue?: Show["venue"];
+  status?: Show["status"];
+  ticketPrice?: string;
+  doorTime?: string;
+};
+
+function shapeManual(raw: RawManualShow): Show {
+  return {
+    id: raw.id ?? "",
+    name: raw.name ?? "",
+    start: raw.start ?? null,
+    end: raw.end ?? null,
+    url: raw.url && raw.url.length > 0 ? raw.url : null,
+    summary: raw.summary ?? "",
+    imageUrl: raw.imageUrl && raw.imageUrl.length > 0 ? SHOW_IMAGE_DIR + raw.imageUrl : null,
+    venue: raw.venue,
+    ticketUrl: raw.ticketUrl && raw.ticketUrl.length > 0 ? raw.ticketUrl : null,
+    status: raw.status ?? "tba",
+    ticketPrice: raw.ticketPrice,
+    doorTime: raw.doorTime,
+    source: "manual",
+  };
+}
+
+const manualShows: Show[] = (manualIndex as RawManualShow[]).map(shapeManual);
 
 const fromGenerated =
   Array.isArray(generatedShows) && generatedShows.length > 0
@@ -40,34 +119,3 @@ const fromGenerated =
     : null;
 
 export const upcomingShows: Show[] = fromGenerated ?? manualShows;
-
-// Optional presale strip on /shows. Renders only when populated.
-// Owner-editable: drop in a code, expiration date (YYYY-MM-DD), and venue name
-// to push a presale without touching components. Set back to null when expired.
-export type Presale = {
-  code: string;
-  expiresAt: string;
-  venueName: string;
-};
-
-export const presale: Presale | null = null;
-
-export const featuredSpecial = {
-  title: "Xavier Rake",
-  subtitle: "Full Comedy Special",
-  blurb:
-    "A Stoned Goose Productions cinematic recording. Captured live, edited tight.",
-  // Placeholder. Flagged. Owner needs to drop in the real video URL or
-  // YouTube embed ID when ready.
-  videoUrl: null as string | null,
-  poster: "/images/comedians/xavier.png",
-  comedianHandle: "https://www.instagram.com/jokedeal3r/",
-};
-
-export const showsCopy = {
-  heading: "Upcoming Shows",
-  subhead:
-    "Live lineups, presales, and ticket drops across Olympia and the South Sound.",
-  emptyState:
-    "We don't have any shows on the calendar right now. Follow Stoned Goose Productions to be the first to hear when the next lineup drops.",
-};

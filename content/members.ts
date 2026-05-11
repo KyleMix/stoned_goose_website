@@ -1,77 +1,57 @@
+// Members (crew) shim. Reads:
+//   - content/roster-copy/index.json (aboutCopy + pillars share this singleton)
+//   - content/.generated/members-index.json (collection, consolidated at prebuild)
+//
+// Sorted by the `index` display-order field (two-digit string padding the
+// "/01" label on /roster).
+
+import rosterCopyData from "./roster-copy/index.json";
+import membersIndex from "./.generated/members-index.json";
+
 export type Member = {
   slug: string;
   name: string;
   role: string;
   photo: string;
   index: string;
-  // Optional 2-3 sentence editorial bio. Owner provides copy. Renders under
-  // role on /roster when present. House rule: no em dashes.
   bio?: string;
 };
 
-// Bios are intentionally absent. Existing site lists only name + role per member.
-// Owner: paste bio strings on each member to render them on /roster.
-export const members: Member[] = [
-  {
-    slug: "kyle-mixon",
-    name: "Kyle Mixon",
-    role: "Founder & Producer",
-    photo: "/images/members/kyle.png",
-    index: "01",
-  },
-  {
-    slug: "joseph-humphrey",
-    name: "Joseph Humphrey",
-    role: "Media & Production",
-    photo: "/images/members/joseph.jpg",
-    index: "02",
-  },
-  {
-    slug: "brendan-meeks",
-    name: "Brendan Meeks",
-    role: "Creative Director",
-    photo: "/images/members/brendan.png",
-    index: "03",
-  },
-  {
-    slug: "samuel-tweed",
-    name: "Samuel Tweed",
-    role: "Stage Manager",
-    photo: "/images/members/sam.png",
-    index: "04",
-  },
-  {
-    slug: "garrett-iverson",
-    name: "Garrett Iverson",
-    role: "Photographer",
-    photo: "/images/members/garrett-iverson.jpg",
-    index: "05",
-  },
-];
-
-export const pillars = [
-  {
-    title: "Production & Ops",
-    body: "Producers, bookers, and stage managers who keep tours, residencies, and monthly showcases running smoothly.",
-  },
-  {
-    title: "Media Team",
-    body: "Cinematographers, editors, and photographers crafting specials, podcast visuals, and crisp headshots for every comic.",
-  },
-  {
-    title: "Community & Partners",
-    body: "Venue partners, sponsors, and collaborators who help us elevate Pacific Northwest comedy together.",
-  },
-  {
-    title: "Creative Lab",
-    body: "Writers and creative directors shaping new formats, themed shows, and social content that keeps audiences engaged.",
-  },
-];
-
-export const aboutCopy = {
-  heading: "About the Team",
-  subhead:
-    "Stoned Goose Productions is a crew of producers, performers, and media pros building cinematic comedy experiences across the Pacific Northwest.",
-  crewHeading: "Meet the Crew",
-  crewSubhead: "Faces behind the productions.",
+type RosterCopyShape = {
+  about: {
+    heading: string;
+    subhead: string;
+    crewHeading: string;
+    crewSubhead: string;
+  };
+  pillars: { title: string; body: string }[];
 };
+
+const copy = rosterCopyData as unknown as RosterCopyShape;
+
+export const aboutCopy = copy.about;
+export const pillars = copy.pillars;
+
+const PUBLIC_DIR = "/images/members/";
+
+type RawMember = {
+  slug?: string;
+  name?: string;
+  role?: string;
+  photo?: string;
+  index?: string;
+  bio?: string;
+};
+
+const raw = membersIndex as RawMember[];
+
+export const members: Member[] = raw
+  .map((m) => ({
+    slug: m.slug ?? "",
+    name: m.name ?? "",
+    role: m.role ?? "",
+    photo: PUBLIC_DIR + (m.photo ?? ""),
+    index: m.index ?? "99",
+    bio: m.bio && m.bio.length > 0 ? m.bio : undefined,
+  }))
+  .sort((a, b) => a.index.localeCompare(b.index));

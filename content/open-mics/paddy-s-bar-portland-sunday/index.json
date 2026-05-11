@@ -1,0 +1,14 @@
+{
+  "name": "Paddy’s Bar",
+  "venue": "Paddy’s Bar",
+  "address": "65 SW Yamhill St",
+  "city": "Portland",
+  "region": "OR",
+  "lat": 45.52354662394141,
+  "lng": -122.68045062943465,
+  "day": "Sunday",
+  "time": "8pm",
+  "host": "",
+  "signupUrl": "https://www.instagram.com/danwiancko",
+  "notes": ""
+}

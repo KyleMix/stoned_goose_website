@@ -1,0 +1,32 @@
+[
+  {
+    "bestFor": "Best for festivals & branded activations",
+    "price": "Starting at $5,000",
+    "items": [
+      "Executive producing & creative direction",
+      "On-site video/audio capture",
+      "Post-event marketing kit + highlights"
+    ],
+    "slug": "premium"
+  },
+  {
+    "bestFor": "Best for theaters & corporate events",
+    "price": "Starting at $2,000",
+    "items": [
+      "Full booking + contracts management",
+      "Production staffing & tech specs",
+      "Photo + short-form recap assets"
+    ],
+    "slug": "pro"
+  },
+  {
+    "bestFor": "Best for clubs & pop-ups",
+    "price": "Starting at $750",
+    "items": [
+      "Talent sourcing + booking",
+      "Basic run-of-show planning",
+      "Day-of production coordination"
+    ],
+    "slug": "starter"
+  }
+]

@@ -1,6 +1,11 @@
-export const watchCopy = {
-  heading: "Media & Clips",
-  subhead: "Watch clips, reels, and full sets from Stoned Goose Productions.",
-  emptyClipsLine:
-    "No videos available yet. Check out our channel for the latest uploads.",
+// Watch copy shim. Reads the Keystatic-managed singleton.
+
+import watchData from "./watch-copy/index.json";
+
+type WatchCopy = {
+  heading: string;
+  subhead: string;
+  emptyClipsLine: string;
 };
+
+export const watchCopy = watchData as WatchCopy;
