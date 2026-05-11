@@ -3,15 +3,13 @@
   "subhead": "Live lineups, presales, and ticket drops across Olympia and the South Sound.",
   "emptyState": "We don't have any shows on the calendar right now. Follow Stoned Goose Productions to be the first to hear when the next lineup drops.",
   "featuredSpecial": {
-    "title": "Xavier Rake",
-    "subtitle": "Full Comedy Special",
-    "blurb": "A Stoned Goose Productions cinematic recording. Captured live, edited tight.",
-    "videoUrl": "",
-    "poster": "xavier.png",
-    "comedianHandle": "https://www.instagram.com/jokedeal3r/"
+    "title": "Logan Cantrell",
+    "subtitle": "Lacey, WA BeatDrop Kitchen & Event Center",
+    "videoUrl": "https://www.youtube.com/watch?v=VYvU1VPDMf0&t",
+    "poster": "/images/comedians/featuredSpecial/poster.png",
+    "comedianHandle": "https://www.instagram.com/logandid911/"
   },
   "presale": {
-    "discriminant": false,
-    "value": null
+    "discriminant": false
   }
 }
