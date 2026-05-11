@@ -4,6 +4,7 @@ import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { track } from "@/lib/analytics";
+import { getPlaceholder } from "@/lib/placeholders";
 
 type Props = {
   poster: string;
@@ -31,6 +32,7 @@ function extractYouTubeId(url: string): string | null {
 export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
   const [open, setOpen] = useState(false);
   const ytId = videoUrl ? extractYouTubeId(videoUrl) : null;
+  const blur = getPlaceholder(poster);
 
   function handleOpenChange(next: boolean) {
     setOpen(next);
@@ -45,6 +47,7 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
           alt={alt}
           fill
           sizes="(min-width: 768px) 66vw, 100vw"
+          {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}
           className="object-cover [filter:grayscale(1)_contrast(1.1)]"
           priority
         />

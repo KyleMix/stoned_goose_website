@@ -2,7 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     { "source": "/about", "destination": "/roster", "permanent": true },
-    { "source": "/media", "destination": "/watch", "permanent": true }
+    { "source": "/members", "destination": "/roster", "permanent": true },
+    { "source": "/comedians", "destination": "/roster", "permanent": true },
+    { "source": "/media", "destination": "/watch", "permanent": true },
+    { "source": "/book-a-show", "destination": "/book", "permanent": true },
+    { "source": "/services", "destination": "/book", "permanent": true },
+    { "source": "/submit", "destination": "/book", "permanent": true },
+    { "source": "/comic-submissions", "destination": "/book", "permanent": true },
+    { "source": "/sponsor", "destination": "/book#sponsors", "permanent": true },
+    { "source": "/sponsorships", "destination": "/book#sponsors", "permanent": true }
   ],
   "headers": [
     {

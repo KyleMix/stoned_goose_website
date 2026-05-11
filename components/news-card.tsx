@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FeedLink } from "@/components/feed-link";
+import { relativeAge } from "@/lib/feeds";
 
 export type NewsItem =
   | {
@@ -113,8 +114,11 @@ export function NewsCard({ item }: { item: NewsItem }) {
         ) : null}
       </div>
       <div className="p-5 md:p-6">
-        <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-          {labels[item.kind]}
+        <p className="flex flex-wrap items-baseline gap-x-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+          <span>{labels[item.kind]}</span>
+          <span className="font-mono text-[10px] text-bone/40">
+            {relativeAge(item.date)}
+          </span>
         </p>
         <p className="mt-3 font-display text-lg text-bone group-hover:text-hazard md:text-xl">
           {item.title}

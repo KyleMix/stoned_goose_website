@@ -17,6 +17,7 @@ import { getPlaiceholder } from "plaiceholder";
 import { writeJson } from "./_sync-helpers";
 import { comedians } from "../content/comedians";
 import { members } from "../content/members";
+import { featuredSpecial } from "../content/shows";
 
 const OUT_PATH = join(
   process.cwd(),
@@ -49,9 +50,7 @@ async function main() {
   const sources: string[] = [
     ...comedians.map((c) => c.photo),
     ...members.map((m) => m.photo),
-    // Featured special poster lives in content/shows.ts but importing it
-    // pulls in generated content. Hard-code the canonical paths here.
-    "/images/shows/xavier-rake-special-poster.jpg",
+    featuredSpecial.poster,
   ];
   const unique = Array.from(new Set(sources.filter(Boolean)));
 

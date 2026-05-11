@@ -8,7 +8,15 @@ import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
 import { StickyQuoteRail } from "@/components/sticky-quote-rail";
+import { ShareButton } from "@/components/share-button";
 import { jsonLdString } from "@/lib/jsonld";
+
+// Renderable list filter. Draft services may have literal "TODO: copy needed."
+// placeholder strings in content/services.ts. Skip them so the page collapses
+// cleanly until real copy lands.
+function realItems(items: string[]): string[] {
+  return items.filter((s) => !/^\s*TODO\b/i.test(s));
+}
 
 type Params = { slug: string };
 
@@ -25,6 +33,9 @@ export function generateMetadata(props: {
     return {
       title: svc.title,
       description: svc.metaDescription,
+      alternates: {
+        canonical: `/book/${svc.slug}`,
+      },
       openGraph: {
         title: svc.metaTitle,
         description: svc.metaDescription,
@@ -77,17 +88,21 @@ export default async function ServiceDetailPage(props: {
     ],
   };
 
-  const faqJsonLd: FAQPage = {
-    "@type": "FAQPage",
-    mainEntity: svc.faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: f.a,
-      },
-    })),
-  };
+  const realFaqs = svc.faqs.filter((f) => !/^\s*TODO\b/i.test(f.a));
+  const faqJsonLd: FAQPage | null =
+    realFaqs.length > 0
+      ? {
+          "@type": "FAQPage",
+          mainEntity: realFaqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.a,
+            },
+          })),
+        }
+      : null;
 
   return (
     <>
@@ -99,10 +114,12 @@ export default async function ServiceDetailPage(props: {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumbJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdString(faqJsonLd) }}
-      />
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdString(faqJsonLd) }}
+        />
+      ) : null}
       <PageHeader
         eyebrow="Service / Brief"
         title={
@@ -133,34 +150,47 @@ export default async function ServiceDetailPage(props: {
         </aside>
       ) : null}
 
-      <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-px overflow-hidden border border-bone/15 md:grid-cols-2">
-            <Block title="What you get" items={svc.whatYouGet} />
-            <Block title="Ideal for" items={svc.idealFor} />
-          </div>
-        </div>
-      </section>
+      {(() => {
+        const what = realItems(svc.whatYouGet);
+        const ideal = realItems(svc.idealFor);
+        if (what.length === 0 && ideal.length === 0) return null;
+        return (
+          <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
+            <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+              <div className="grid gap-px overflow-hidden border border-bone/15 md:grid-cols-2">
+                {what.length > 0 ? <Block title="What you get" items={what} /> : null}
+                {ideal.length > 0 ? <Block title="Ideal for" items={ideal} /> : null}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
-      <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
-            Process
-          </h2>
-          <ol className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-bone/15 md:grid-cols-3">
-            {svc.process.map((step, i) => (
-              <li key={i} className="bg-ink p-8 md:p-10">
-                <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-hazard">
-                  /{String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="mt-4 font-display text-2xl text-bone md:text-3xl">
-                  {step}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      {(() => {
+        const steps = realItems(svc.process);
+        if (steps.length === 0) return null;
+        return (
+          <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+            <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+              <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
+                Process
+              </h2>
+              <ol className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-bone/15 md:grid-cols-3">
+                {steps.map((step, i) => (
+                  <li key={i} className="bg-ink p-8 md:p-10">
+                    <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-hazard">
+                      /{String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="mt-4 font-display text-2xl text-bone md:text-3xl">
+                      {step}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+        );
+      })()}
 
       <section id="quote" className="scroll-mt-24 border-b border-bone/10 bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -175,7 +205,7 @@ export default async function ServiceDetailPage(props: {
             </div>
             <div className="md:col-span-7">
               <p className="mb-6 font-body text-sm text-bone/65">
-                {svc.whatYouGet[0]}
+                Tell us what you&apos;re planning and we&apos;ll scope it.
               </p>
               <ContactForm
                 subject={`Quote. ${svc.title}`}
@@ -233,40 +263,46 @@ export default async function ServiceDetailPage(props: {
         </div>
       </section>
 
-      <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
-            FAQ
-          </h2>
-          <ul className="mt-10 divide-y divide-bone/15 border-y border-bone/15">
-            {svc.faqs.map((f, i) => (
-              <li key={i} className="py-7">
-                <details className="group grid grid-cols-12 gap-x-6">
-                  <summary className="col-span-12 grid cursor-pointer grid-cols-12 items-baseline gap-x-6 list-none [&::-webkit-details-marker]:hidden">
-                    <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
-                      /0{i + 1}
-                    </span>
-                    <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-hazard md:col-span-10 md:text-3xl">
-                      {f.q}
-                    </h3>
-                    <span
-                      aria-hidden
-                      className="col-span-1 text-right font-body text-xl text-bone/55 transition-transform duration-200 group-open:rotate-45"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <div className="col-span-12 mt-4 md:col-start-2 md:col-span-11">
-                    <p className="max-w-prose font-body text-base text-bone/85">
-                      {f.a}
-                    </p>
-                  </div>
-                </details>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {(() => {
+        const faqs = svc.faqs.filter((f) => !/^\s*TODO\b/i.test(f.a));
+        if (faqs.length === 0) return null;
+        return (
+          <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+            <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+              <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
+                FAQ
+              </h2>
+              <ul className="mt-10 divide-y divide-bone/15 border-y border-bone/15">
+                {faqs.map((f, i) => (
+                  <li key={i} className="py-7">
+                    <details className="group grid grid-cols-12 gap-x-6">
+                      <summary className="col-span-12 grid cursor-pointer grid-cols-12 items-baseline gap-x-6 list-none [&::-webkit-details-marker]:hidden">
+                        <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
+                          /0{i + 1}
+                        </span>
+                        <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-hazard md:col-span-10 md:text-3xl">
+                          {f.q}
+                        </h3>
+                        <span
+                          aria-hidden
+                          className="col-span-1 text-right font-body text-xl text-bone/55 transition-transform duration-200 group-open:rotate-45"
+                        >
+                          +
+                        </span>
+                      </summary>
+                      <div className="col-span-12 mt-4 md:col-start-2 md:col-span-11">
+                        <p className="max-w-prose font-body text-base text-bone/85">
+                          {f.a}
+                        </p>
+                      </div>
+                    </details>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        );
+      })()}
 
       <section className="bg-ink py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -279,12 +315,20 @@ export default async function ServiceDetailPage(props: {
                 {next.title}
               </p>
             </div>
-            <Link
-              href={`/book/${next.slug}`}
-              className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
-            >
-              Read {next.title} ↗
-            </Link>
+            <div className="flex flex-wrap items-center gap-3">
+              <ShareButton
+                title={svc.title}
+                text={svc.summary}
+                url={`${site.url}/book/${svc.slug}`}
+                surface="service"
+              />
+              <Link
+                href={`/book/${next.slug}`}
+                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+              >
+                Read {next.title} ↗
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -70,7 +70,7 @@ function writeRss(shows: Show[]) {
     id: `${site.url}/shows`,
     link: `${site.url}/shows`,
     language: "en",
-    favicon: `${site.url}/favicon.png`,
+    favicon: `${site.url}/brand/favicon-256.png`,
     copyright: `All rights reserved ${new Date().getFullYear()}, ${site.name}`,
     feedLinks: { rss2: `${site.url}/shows/feed.xml` },
     author: {
