@@ -1,8 +1,7 @@
-# Refresh social feeds (Instagram, YouTube, Facebook) every 6 hours.
+# Refresh social feeds (Instagram, Facebook) every 6 hours.
 #
 # Required repo secrets (Settings -> Secrets and variables -> Actions):
 #   INSTAGRAM_ACCESS_TOKEN        long-lived IG user token (~60 day expiry)
-#   YOUTUBE_API_KEY               YouTube Data API v3 key
 #   FACEBOOK_PAGE_ACCESS_TOKEN    page-level access token (prefer never-expiring)
 #
 # The fetch scripts skip silently when their env vars are unset, so this
@@ -43,12 +42,6 @@ jobs:
         run: npm run feeds:instagram
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
-
-      - name: Fetch YouTube
-        continue-on-error: true
-        run: npm run feeds:youtube
-        env:
-          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
       - name: Fetch Facebook
         continue-on-error: true

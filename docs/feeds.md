@@ -1,16 +1,14 @@
 # Social feeds — setup and rotation
 
-Build-time pulls of Instagram, YouTube, and Facebook content. Static
-export means the browser cannot hit those APIs directly, so a scheduled
-GitHub Action runs the fetch scripts every 6 hours, normalizes results
-into typed JSON under `content/feeds/`, and commits the change. The
-host's auto-deploy hook ships the new build.
+Build-time pulls of Instagram and Facebook content. Static export means
+the browser cannot hit those APIs directly, so a scheduled GitHub Action
+runs the fetch scripts every 6 hours, normalizes results into typed JSON
+under `content/feeds/`, and commits the change. The host's auto-deploy
+hook ships the new build.
 
-YouTube additionally refreshes during the host build itself: `prebuild`
-runs `npm run feeds:youtube` so every Vercel deploy pulls the latest
-videos when `YOUTUBE_API_KEY` is set in the host's environment. The
-script skips silently when the key is missing, so deploys without it
-remain green.
+Top YouTube videos are owner-curated, not auto-fetched. Add or replace
+entries in `content/watch.ts` `youtubeVideos` to swap what shows under
+the Channel section on `/watch`.
 
 ## Architecture at a glance
 
@@ -22,7 +20,6 @@ GitHub cron (every 6h)
         │
         ▼
 npm run feeds:instagram  ─►  content/feeds/instagram.json
-npm run feeds:youtube    ─►  content/feeds/youtube.json
 npm run feeds:facebook   ─►  content/feeds/facebook.json
         │
         ▼
@@ -45,23 +42,21 @@ Each fetch script:
 | What | Where | Owner-editable? |
 |---|---|---|
 | Instagram access token | GitHub Actions secret `INSTAGRAM_ACCESS_TOKEN` | Owner |
-| YouTube API key | GitHub Actions secret `YOUTUBE_API_KEY` | Owner |
 | Facebook page access token | GitHub Actions secret `FACEBOOK_PAGE_ACCESS_TOKEN` | Owner |
-| YouTube channel ID | `content/site.ts` `site.social.youtubeChannelId` | Owner (commit) |
 | Facebook page ID | `content/site.ts` `site.social.facebookPageId` | Owner (commit) |
-| Cached posts/videos | `content/feeds/*.json` | Cron writes; manual edit not recommended |
+| Top YouTube videos | `content/watch.ts` `youtubeVideos` | Owner (commit) |
+| Cached posts | `content/feeds/*.json` | Cron writes; manual edit not recommended |
 
 Tokens never go in `.env`, never in `NEXT_PUBLIC_*`, never in the repo.
-Channel and page IDs are public values, safe to commit.
+Page IDs are public values, safe to commit.
 
 ## Configure the cron
 
-Add the three secrets in GitHub repo settings:
+Add the secrets in GitHub repo settings:
 
 ```
 Settings → Secrets and variables → Actions → New repository secret
   INSTAGRAM_ACCESS_TOKEN
-  YOUTUBE_API_KEY
   FACEBOOK_PAGE_ACCESS_TOKEN
 ```
 
@@ -75,9 +70,8 @@ Or run any feed locally with the secret in your shell:
 
 ```bash
 INSTAGRAM_ACCESS_TOKEN=xxx npm run feeds:instagram
-YOUTUBE_API_KEY=yyy        npm run feeds:youtube
 FACEBOOK_PAGE_ACCESS_TOKEN=zzz npm run feeds:facebook
-npm run feeds:all   # all three in sequence
+npm run feeds:all   # both in sequence
 ```
 
 ## Token setup, per platform
@@ -114,27 +108,20 @@ gh secret set INSTAGRAM_ACCESS_TOKEN --body '<new token>'
 
 ### YouTube
 
-Uses YouTube Data API v3. API keys are long-lived and quota-restricted
-(10,000 units/day default; one search.list + one videos.list run
-~110 units, well under the cap).
+There is no API integration. Top videos are hand-picked. Edit
+`content/watch.ts` and update the `youtubeVideos` array with up to 5
+entries:
 
-1. Open Google Cloud Console at https://console.cloud.google.com/.
-2. Create or pick a project.
-3. APIs & Services → Library → enable "YouTube Data API v3".
-4. APIs & Services → Credentials → Create credentials → API key.
-5. Click the key → Restrict key → API restrictions → "YouTube Data
-   API v3" only. Save.
-6. Store the value as `YOUTUBE_API_KEY` in GitHub Actions secrets.
-7. Also add `YOUTUBE_API_KEY` to the Vercel project's Environment
-   Variables (Production + Preview) so the prebuild fetch runs there
-   too. Vercel → Project → Settings → Environment Variables.
+```ts
+export const youtubeVideos: YouTubeVideoLink[] = [
+  { url: "https://www.youtube.com/watch?v=XXXXXXXXXXX", title: "Set title" },
+  // ...
+];
+```
 
-Find the channel ID:
-
-1. Visit https://www.youtube.com/@stonedgooseproductions.
-2. View page source, search for `"channelId":"`. Copy the `UC...`
-   string.
-3. Paste into `content/site.ts` at `site.social.youtubeChannelId`.
+`url` accepts a full watch URL, a `youtu.be/...` share link, an embed URL,
+or a bare 11-character ID. Empty array hides the section and falls back
+to the channel CTA.
 
 ### Facebook
 
@@ -177,7 +164,6 @@ never-expiring once for set-and-forget rotation.
 | Empty feed despite data on platform | Secret missing in Actions, or env var typo | `Settings → Secrets`. Re-run workflow_dispatch. |
 | `instagram.error.log` shows 190 / OAuth | Token expired | Refresh per Instagram block above. |
 | `facebook.error.log` shows 190 / OAuth | Page token expired | Re-run the long-lived → page token exchange. |
-| `youtube.error.log` shows 403 / quotaExceeded | Daily quota hit | Wait 24h, or increase quota in Google Cloud. |
 | Workflow runs but no commit | Feed JSON unchanged | Expected. Cron is a no-op when content matches. |
 | Build fails with `[feeds] invalid content/feeds/...` | API shape drift, hand-edit gone wrong | Inspect the field path in the error, fix the JSON, rerun the relevant `feeds:*` script. |
 

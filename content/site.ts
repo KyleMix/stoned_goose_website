@@ -27,9 +27,6 @@ export const site = {
     patreon: "https://www.patreon.com/cw/StonedGooseProductions",
     eventbrite: "https://www.eventbrite.com/o/stoned-goose-productions-107337391771",
     fourthwall: "https://stoned-goose-productions-zgm-shop.fourthwall.com",
-    /** Public YouTube channel ID (UCxxxx). Read by scripts/feeds/fetch-youtube.
-     *  Owner-editable. Empty disables the YouTube feed sync. */
-    youtubeChannelId: "UCgCjo7wBTKSxBxYYJXx_jIw" as string,
     /** Public Facebook page ID. Read by scripts/feeds/fetch-facebook and the
      *  page-plugin iframe on /shows. Owner-editable. Empty disables both. */
     facebookPageId: "" as string,
