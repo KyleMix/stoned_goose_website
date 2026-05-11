@@ -20,10 +20,6 @@
       {
         "label": "Book Us",
         "href": "/book"
-      },
-      {
-        "label": "Sponsor a Show",
-        "href": "/book#sponsors"
       }
     ]
   },
