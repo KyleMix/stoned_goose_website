@@ -31,7 +31,7 @@ export default config({
   ui: {
     brand: { name: "Stoned Goose Admin" },
     navigation: {
-      "Site copy": ["site", "home", "showsCopy", "watchCopy", "rosterCopy", "openMicsCopy", "shopCopy", "sponsorships"],
+      "Site copy": ["site", "home", "showsCopy", "watchCopy", "rosterCopy", "openMicsCopy", "shopCopy", "contactCopy", "sponsorships"],
       Roster: ["members", "comedians"],
       Booking: ["services", "pricingTiers"],
       Shows: ["showsManual"],
@@ -96,6 +96,42 @@ export default config({
           }),
           { label: "Press quotes (real only)", itemLabel: (p) => p.fields.outlet.value },
         ),
+        nav: fields.array(
+          fields.object({
+            label: fields.text({ label: "Label", validation: { length: { min: 1 } } }),
+            href: fields.text({ label: "Href", validation: { length: { min: 1 } } }),
+          }),
+          { label: "Primary nav", itemLabel: (p) => p.fields.label.value },
+        ),
+        footer: fields.object({
+          locality: fields.text({ label: "Location line (e.g. 'Olympia, WA')" }),
+          creditLine: fields.text({ label: "Credit line", validation: noEmDash }),
+          creditHref: fields.text({ label: "Credit link (optional)" }),
+          columns: fields.array(
+            fields.object({
+              heading: fields.text({ label: "Heading" }),
+              items: fields.array(
+                fields.object({
+                  label: fields.text({ label: "Label" }),
+                  href: fields.text({ label: "Href" }),
+                }),
+                { label: "Items", itemLabel: (p) => p.fields.label.value },
+              ),
+            }),
+            { label: "Footer columns", itemLabel: (p) => p.fields.heading.value },
+          ),
+        }, { label: "Footer" }),
+        seo: fields.object({
+          keywords: fields.array(fields.text({ label: "Keyword" }), {
+            label: "Default meta keywords",
+            itemLabel: (p) => p.value,
+          }),
+          defaultOgImage: fields.image({
+            label: "Default Open Graph image",
+            directory: "public/brand",
+            publicPath: "/brand/",
+          }),
+        }, { label: "SEO defaults" }),
       },
     }),
 
@@ -180,6 +216,7 @@ export default config({
             directory: "public/images/comedians",
             publicPath: "/images/comedians/",
           }),
+          posterAlt: fields.text({ label: "Poster alt text (optional)" }),
           comedianHandle: fields.url({ label: "Featured comic Instagram URL" }),
         }, { label: "Featured special" }),
         presale: fields.conditional(
@@ -275,6 +312,34 @@ export default config({
       },
     }),
 
+    // ----- Contact page -----
+    contactCopy: singleton({
+      label: "Contact page",
+      path: "content/contact-copy/",
+      format: { data: "json" },
+      previewUrl: "/contact",
+      schema: {
+        eyebrow: fields.text({ label: "Eyebrow", validation: noEmDash }),
+        titleLead: fields.text({ label: "Title lead (plain)", validation: noEmDash }),
+        titleEmphasis: fields.text({ label: "Title emphasis (italic, hazard)", validation: noEmDash }),
+        body: fields.text({ label: "Body", multiline: true, validation: noEmDash }),
+        emailLabel: fields.text({ label: "Email label" }),
+        phoneLabel: fields.text({ label: "Phone label" }),
+        textCtaLabel: fields.text({ label: "Text CTA label" }),
+        whatsappCtaLabel: fields.text({ label: "WhatsApp CTA label" }),
+        findUsLabel: fields.text({ label: "Find us label" }),
+        form: fields.object({
+          submitLabel: fields.text({ label: "Submit button label" }),
+          successText: fields.text({ label: "Success message", validation: noEmDash }),
+          errorText: fields.text({ label: "Error message", validation: noEmDash }),
+          nameLabel: fields.text({ label: "Name field label" }),
+          emailLabel: fields.text({ label: "Email field label" }),
+          messageLabel: fields.text({ label: "Message field label" }),
+          messagePlaceholder: fields.text({ label: "Message placeholder", validation: noEmDash }),
+        }, { label: "Form" }),
+      },
+    }),
+
     // ----- Sponsorships -----
     sponsorships: singleton({
       label: "Sponsorships",
@@ -333,10 +398,19 @@ export default config({
           directory: "public/images/news",
           publicPath: "/images/news/",
         }),
+        imageAlt: fields.text({
+          label: "Hero image alt text",
+          description: "Describe the image for screen readers. Leave empty for decorative images.",
+        }),
         tags: fields.array(fields.text({ label: "Tag" }), {
           label: "Tags",
           itemLabel: (p) => p.value,
         }),
+        featured: fields.checkbox({
+          label: "Featured (pinned in the Latest strip)",
+          defaultValue: false,
+        }),
+        draft: fields.checkbox({ label: "Draft (hidden from the site)", defaultValue: false }),
         body: fields.markdoc({
           label: "Body",
           options: {
@@ -426,8 +500,10 @@ export default config({
           directory: "public/images/comedians",
           publicPath: "/images/comedians/",
         }),
+        photoAlt: fields.text({ label: "Portrait alt text (optional)" }),
         instagram: fields.url({ label: "Instagram URL (optional)" }),
         facebook: fields.url({ label: "Facebook URL (optional)" }),
+        draft: fields.checkbox({ label: "Draft (hidden from /roster)", defaultValue: false }),
       },
     }),
 
@@ -448,6 +524,7 @@ export default config({
           directory: "public/images/members",
           publicPath: "/images/members/",
         }),
+        photoAlt: fields.text({ label: "Portrait alt text (optional)" }),
         index: fields.text({
           label: "Display order (two digits)",
           description: 'Used to render the "/01" label. Padded string.',
@@ -457,6 +534,7 @@ export default config({
           multiline: true,
           validation: noEmDash,
         }),
+        draft: fields.checkbox({ label: "Draft (hidden from /roster)", defaultValue: false }),
       },
     }),
 
@@ -481,6 +559,8 @@ export default config({
           directory: "public/images/shows",
           publicPath: "/images/shows/",
         }),
+        imageAlt: fields.text({ label: "Poster alt text (optional)" }),
+        draft: fields.checkbox({ label: "Draft (hidden from /shows)", defaultValue: false }),
         venue: fields.object({
           name: fields.text({ label: "Venue name" }),
           address: fields.text({ label: "Address" }),
@@ -518,6 +598,8 @@ export default config({
           label: "Image URL (imgproxy.fourthwall.com)",
           description: "Empty hides the product from the shop until an image is set.",
         }),
+        imageAlt: fields.text({ label: "Image alt text (optional)" }),
+        draft: fields.checkbox({ label: "Draft (hidden from /shop)", defaultValue: false }),
       },
     }),
 
@@ -580,6 +662,8 @@ export default config({
           directory: "public/images/tiktok",
           publicPath: "/images/tiktok/",
         }),
+        posterAlt: fields.text({ label: "Poster alt text (optional)" }),
+        draft: fields.checkbox({ label: "Draft (hidden from /watch)", defaultValue: false }),
       },
     }),
   },

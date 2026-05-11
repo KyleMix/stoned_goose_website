@@ -64,7 +64,10 @@ const newsEntries: Array<{
   summary: string;
   body: string;
   image?: string;
+  imageAlt?: string;
   tags?: string[];
+  featured?: boolean;
+  draft?: boolean;
 }> = [];
 if (existsSync(newsDir)) {
   for (const item of readdirSync(newsDir, { withFileTypes: true })) {
@@ -90,7 +93,10 @@ if (existsSync(newsDir)) {
       summary: String(fm.data.summary ?? ""),
       body: fm.body,
       image: fm.data.image ? String(fm.data.image) : undefined,
+      imageAlt: fm.data.imageAlt ? String(fm.data.imageAlt) : undefined,
       tags: Array.isArray(fm.data.tags) ? (fm.data.tags as string[]) : undefined,
+      featured: fm.data.featured === true || fm.data.featured === "true",
+      draft: fm.data.draft === true || fm.data.draft === "true",
     });
   }
 }

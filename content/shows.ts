@@ -4,7 +4,7 @@
 //   - synced shows (content/.generated/shows.json, from scripts/sync-shows.ts)
 //
 // Generated shows win when present and non-empty; otherwise the manual
-// Keystatic list applies.
+// Keystatic list applies. Manual entries flagged as draft are filtered out.
 
 import showsCopyData from "./shows-copy/index.json";
 import generatedShows from "./.generated/shows.json";
@@ -18,6 +18,7 @@ export type Show = {
   url: string | null;
   summary: string;
   imageUrl?: string | null;
+  imageAlt?: string;
   venue?: {
     name?: string;
     address?: string;
@@ -51,6 +52,7 @@ type ShowsCopyShape = {
     blurb: string;
     videoUrl: string;
     poster: string;
+    posterAlt?: string;
     comedianHandle: string;
   };
   presale?:
@@ -72,6 +74,10 @@ export const featuredSpecial = {
   blurb: copy.featuredSpecial.blurb,
   videoUrl: copy.featuredSpecial.videoUrl ? copy.featuredSpecial.videoUrl : null,
   poster: POSTER_DIR + copy.featuredSpecial.poster,
+  posterAlt:
+    copy.featuredSpecial.posterAlt && copy.featuredSpecial.posterAlt.length > 0
+      ? copy.featuredSpecial.posterAlt
+      : `${copy.featuredSpecial.title} poster`,
   comedianHandle: copy.featuredSpecial.comedianHandle,
 };
 
@@ -87,10 +93,12 @@ type RawManualShow = {
   ticketUrl?: string;
   summary?: string;
   imageUrl?: string;
+  imageAlt?: string;
   venue?: Show["venue"];
   status?: Show["status"];
   ticketPrice?: string;
   doorTime?: string;
+  draft?: boolean;
 };
 
 function shapeManual(raw: RawManualShow): Show {
@@ -102,6 +110,7 @@ function shapeManual(raw: RawManualShow): Show {
     url: raw.url && raw.url.length > 0 ? raw.url : null,
     summary: raw.summary ?? "",
     imageUrl: raw.imageUrl && raw.imageUrl.length > 0 ? SHOW_IMAGE_DIR + raw.imageUrl : null,
+    imageAlt: raw.imageAlt && raw.imageAlt.length > 0 ? raw.imageAlt : undefined,
     venue: raw.venue,
     ticketUrl: raw.ticketUrl && raw.ticketUrl.length > 0 ? raw.ticketUrl : null,
     status: raw.status ?? "tba",
@@ -111,7 +120,9 @@ function shapeManual(raw: RawManualShow): Show {
   };
 }
 
-const manualShows: Show[] = (manualIndex as RawManualShow[]).map(shapeManual);
+const manualShows: Show[] = (manualIndex as RawManualShow[])
+  .filter((s) => s.draft !== true)
+  .map(shapeManual);
 
 const fromGenerated =
   Array.isArray(generatedShows) && generatedShows.length > 0

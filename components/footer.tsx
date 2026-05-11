@@ -2,27 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/content/site";
+import { footer as footerCopy, site } from "@/content/site";
 import { track } from "@/lib/analytics";
-
-const explore = [
-  { label: "Home", href: "/" },
-  { label: "Shows", href: "/shows" },
-  { label: "Open Mics", href: "/open-mics" },
-  { label: "Watch", href: "/watch" },
-  { label: "Roster", href: "/roster" },
-  { label: "Shop", href: "/shop" },
-];
-
-const work = [
-  { label: "Book Us", href: "/book" },
-  { label: "Sponsor a Show", href: "/book#sponsors" },
-];
-
-const connect = [
-  { label: "Tickets.", href: "/shows" },
-  { label: "Contact", href: "/contact" },
-];
 
 const socials: Array<{ label: string; href: string; destination: string }> = [
   { label: "Instagram", href: site.social.instagram, destination: "instagram" },
@@ -49,7 +30,7 @@ export function Footer() {
               className="block h-32 w-auto md:h-40"
             />
             <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
-              Olympia, WA
+              {footerCopy.locality}
             </p>
             <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-[-0.02em] md:text-7xl">
               Stoned Goose<span className="text-hazard">.</span>
@@ -64,9 +45,9 @@ export function Footer() {
             </div>
           </div>
 
-          <FooterColumn label="Explore" items={explore} />
-          <FooterColumn label="Work With Us" items={work} />
-          <FooterColumn label="Connect" items={connect} />
+          {footerCopy.columns.map((col) => (
+            <FooterColumn key={col.heading} label={col.heading} items={col.items} />
+          ))}
         </div>
 
         <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-bone/10 pt-8">
@@ -88,7 +69,20 @@ export function Footer() {
           </div>
           <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
             <p>© {year} Stoned Goose Productions</p>
-            <p>Website Design by Kyle Mixon.</p>
+            {footerCopy.creditLine ? (
+              footerCopy.creditHref ? (
+                <a
+                  href={footerCopy.creditHref}
+                  className="transition-colors hover:text-hazard"
+                  target={/^https?:/.test(footerCopy.creditHref) ? "_blank" : undefined}
+                  rel={/^https?:/.test(footerCopy.creditHref) ? "noopener noreferrer" : undefined}
+                >
+                  {footerCopy.creditLine}
+                </a>
+              ) : (
+                <p>{footerCopy.creditLine}</p>
+              )
+            ) : null}
           </div>
         </div>
       </div>

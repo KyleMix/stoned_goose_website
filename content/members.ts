@@ -3,7 +3,7 @@
 //   - content/.generated/members-index.json (collection, consolidated at prebuild)
 //
 // Sorted by the `index` display-order field (two-digit string padding the
-// "/01" label on /roster).
+// "/01" label on /roster). Draft members are filtered out.
 
 import rosterCopyData from "./roster-copy/index.json";
 import membersIndex from "./.generated/members-index.json";
@@ -13,6 +13,7 @@ export type Member = {
   name: string;
   role: string;
   photo: string;
+  photoAlt: string;
   index: string;
   bio?: string;
 };
@@ -39,18 +40,22 @@ type RawMember = {
   name?: string;
   role?: string;
   photo?: string;
+  photoAlt?: string;
   index?: string;
   bio?: string;
+  draft?: boolean;
 };
 
 const raw = membersIndex as RawMember[];
 
 export const members: Member[] = raw
+  .filter((m) => m.draft !== true)
   .map((m) => ({
     slug: m.slug ?? "",
     name: m.name ?? "",
     role: m.role ?? "",
     photo: PUBLIC_DIR + (m.photo ?? ""),
+    photoAlt: m.photoAlt && m.photoAlt.length > 0 ? m.photoAlt : `${m.name ?? ""} portrait`,
     index: m.index ?? "99",
     bio: m.bio && m.bio.length > 0 ? m.bio : undefined,
   }))

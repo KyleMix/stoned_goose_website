@@ -112,7 +112,7 @@ export default function RosterPage() {
                   <div className="relative aspect-[3/4] w-full max-w-[220px] overflow-hidden">
                     <Image
                       src={m.photo}
-                      alt={m.name}
+                      alt={m.photoAlt || m.name}
                       fill
                       sizes="(min-width: 768px) 220px, 60vw"
                       {...(getPlaceholder(m.photo)
@@ -172,7 +172,7 @@ export default function RosterPage() {
                 <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <Image
                     src={c.photo}
-                    alt={c.name}
+                    alt={c.photoAlt || c.name}
                     fill
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 22vw, 45vw"
                     {...(getPlaceholder(c.photo)
