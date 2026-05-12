@@ -39,11 +39,24 @@ for (const col of COLLECTIONS) {
   const entries: Array<Record<string, unknown>> = [];
   if (existsSync(dir)) {
     for (const item of readdirSync(dir, { withFileTypes: true })) {
-      if (!item.isDirectory()) continue;
-      const indexPath = join(dir, item.name, "index.json");
-      if (!existsSync(indexPath)) continue;
-      const data = JSON.parse(readFileSync(indexPath, "utf8")) as Record<string, unknown>;
-      const slug = item.name;
+      // Keystatic stores entries either as `<slug>/index.json` (directory
+      // mode, used when an asset like an image lands alongside the entry)
+      // or as a flat `<slug>.json` file. Accept both so a manual show
+      // saved without a poster still gets indexed.
+      let entryPath: string | null = null;
+      let slug: string | null = null;
+      if (item.isDirectory()) {
+        const indexPath = join(dir, item.name, "index.json");
+        if (existsSync(indexPath)) {
+          entryPath = indexPath;
+          slug = item.name;
+        }
+      } else if (item.isFile() && item.name.endsWith(".json")) {
+        entryPath = join(dir, item.name);
+        slug = item.name.replace(/\.json$/, "");
+      }
+      if (!entryPath || !slug) continue;
+      const data = JSON.parse(readFileSync(entryPath, "utf8")) as Record<string, unknown>;
       if (col.slugField) data[col.slugField] = slug;
       entries.push(data);
     }
