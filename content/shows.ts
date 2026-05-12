@@ -49,9 +49,9 @@ type ShowsCopyShape = {
   featuredSpecial: {
     title: string;
     subtitle: string;
-    blurb: string;
+    blurb?: string;
     videoUrl: string;
-    poster: string;
+    poster?: string | null;
     posterAlt?: string;
     comedianHandle: string;
   };
@@ -71,9 +71,12 @@ export const showsCopy = {
 export const featuredSpecial = {
   title: copy.featuredSpecial.title,
   subtitle: copy.featuredSpecial.subtitle,
-  blurb: copy.featuredSpecial.blurb,
+  blurb: copy.featuredSpecial.blurb ?? "",
   videoUrl: copy.featuredSpecial.videoUrl ? copy.featuredSpecial.videoUrl : null,
-  poster: POSTER_DIR + copy.featuredSpecial.poster,
+  poster:
+    copy.featuredSpecial.poster && copy.featuredSpecial.poster.length > 0
+      ? POSTER_DIR + copy.featuredSpecial.poster
+      : null,
   posterAlt:
     copy.featuredSpecial.posterAlt && copy.featuredSpecial.posterAlt.length > 0
       ? copy.featuredSpecial.posterAlt

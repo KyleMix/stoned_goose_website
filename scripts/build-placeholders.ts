@@ -47,12 +47,12 @@ async function placeholderFor(publicPath: string): Promise<string | null> {
 }
 
 async function main() {
-  const sources: string[] = [
+  const sources: Array<string | null> = [
     ...comedians.map((c) => c.photo),
     ...members.map((m) => m.photo),
     featuredSpecial.poster,
   ];
-  const unique = Array.from(new Set(sources.filter(Boolean)));
+  const unique = Array.from(new Set(sources.filter((s): s is string => Boolean(s))));
 
   const out: Record<string, string> = {};
   for (const path of unique) {

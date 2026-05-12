@@ -2,17 +2,17 @@
   "stats": [
     {
       "label": "Monthly in-room audience",
-      "value": null,
+      "value": "",
       "detail": "Across recurring Olympia + South Sound comedy events."
     },
     {
       "label": "Average social impressions",
-      "value": null,
+      "value": "",
       "detail": "Organic + collaborative partner reach each month."
     },
     {
       "label": "Video views",
-      "value": null,
+      "value": "",
       "detail": "Short-form clips, highlights, and promo reels."
     }
   ],

@@ -7,7 +7,7 @@ import { track } from "@/lib/analytics";
 import { getPlaceholder } from "@/lib/placeholders";
 
 type Props = {
-  poster: string;
+  poster: string | null;
   alt: string;
   videoUrl: string | null;
 };
@@ -32,7 +32,7 @@ function extractYouTubeId(url: string): string | null {
 export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
   const [open, setOpen] = useState(false);
   const ytId = videoUrl ? extractYouTubeId(videoUrl) : null;
-  const blur = getPlaceholder(poster);
+  const blur = poster ? getPlaceholder(poster) : null;
 
   function handleOpenChange(next: boolean) {
     setOpen(next);
@@ -42,15 +42,17 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
-        <Image
-          src={poster}
-          alt={alt}
-          fill
-          sizes="(min-width: 768px) 66vw, 100vw"
-          {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}
-          className="object-cover [filter:grayscale(1)_contrast(1.1)]"
-          priority
-        />
+        {poster ? (
+          <Image
+            src={poster}
+            alt={alt}
+            fill
+            sizes="(min-width: 768px) 66vw, 100vw"
+            {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}
+            className="object-cover [filter:grayscale(1)_contrast(1.1)]"
+            priority
+          />
+        ) : null}
         <span
           aria-hidden
           className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
