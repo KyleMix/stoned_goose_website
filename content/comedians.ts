@@ -31,6 +31,14 @@ export const comediansCopy = copy.comedians;
 
 const PUBLIC_DIR = "/images/comedians/";
 
+// Keystatic stores just the filename. Older entries may hold a full path
+// pasted manually; don't double-prefix in that case.
+function resolvePhoto(value: string | undefined): string {
+  if (!value) return PUBLIC_DIR;
+  if (/^(https?:)?\//.test(value)) return value;
+  return PUBLIC_DIR + value;
+}
+
 type RawComedian = {
   slug?: string;
   name?: string;
@@ -47,7 +55,7 @@ export const comedians: Comedian[] = raw
   .filter((c) => c.draft !== true)
   .map((c) => ({
     name: c.name ?? c.slug ?? "Unknown",
-    photo: PUBLIC_DIR + (c.photo ?? ""),
+    photo: resolvePhoto(c.photo),
     photoAlt: c.photoAlt && c.photoAlt.length > 0 ? c.photoAlt : `${c.name ?? c.slug ?? ""} portrait`,
     instagram: c.instagram && c.instagram.length > 0 ? c.instagram : undefined,
     facebook: c.facebook && c.facebook.length > 0 ? c.facebook : undefined,

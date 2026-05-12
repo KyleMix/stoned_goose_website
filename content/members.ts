@@ -35,6 +35,14 @@ export const pillars = copy.pillars;
 
 const PUBLIC_DIR = "/images/members/";
 
+// Mirror the path-doubling guard from content/comedians.ts so a manually
+// pasted /images/... path resolves cleanly instead of being prefixed twice.
+function resolvePhoto(value: string | undefined): string {
+  if (!value) return PUBLIC_DIR;
+  if (/^(https?:)?\//.test(value)) return value;
+  return PUBLIC_DIR + value;
+}
+
 type RawMember = {
   slug?: string;
   name?: string;
@@ -54,7 +62,7 @@ export const members: Member[] = raw
     slug: m.slug ?? "",
     name: m.name ?? "",
     role: m.role ?? "",
-    photo: PUBLIC_DIR + (m.photo ?? ""),
+    photo: resolvePhoto(m.photo),
     photoAlt: m.photoAlt && m.photoAlt.length > 0 ? m.photoAlt : `${m.name ?? ""} portrait`,
     index: m.index ?? "99",
     bio: m.bio && m.bio.length > 0 ? m.bio : undefined,

@@ -140,7 +140,7 @@ export default function RosterPage() {
                         aria-hidden
                         className="mt-5 block h-px max-w-[80px] bg-ink/30"
                       />
-                      <p className="mt-5 max-w-prose font-body text-base leading-relaxed text-ink/80 md:text-lg">
+                      <p className="mt-5 max-w-prose whitespace-pre-line font-body text-base leading-relaxed text-ink/80 md:text-lg">
                         {m.bio}
                       </p>
                     </>

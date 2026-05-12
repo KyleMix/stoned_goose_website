@@ -74,7 +74,7 @@ export default function WatchPage() {
               <p className="mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
                 {featuredSpecial.subtitle}
               </p>
-              <p className="mt-6 font-body text-base text-bone/85 md:text-lg">
+              <p className="mt-6 whitespace-pre-line font-body text-base text-bone/85 md:text-lg">
                 {featuredSpecial.blurb}
               </p>
               <TrackedAnchor

@@ -39,6 +39,8 @@ export type Presale = {
   venueName: string;
 };
 
+import { resolvePublicAsset } from "@/lib/utils";
+
 const POSTER_DIR = "/images/comedians/";
 const SHOW_IMAGE_DIR = "/images/shows/";
 
@@ -73,10 +75,7 @@ export const featuredSpecial = {
   subtitle: copy.featuredSpecial.subtitle,
   blurb: copy.featuredSpecial.blurb ?? "",
   videoUrl: copy.featuredSpecial.videoUrl ? copy.featuredSpecial.videoUrl : null,
-  poster:
-    copy.featuredSpecial.poster && copy.featuredSpecial.poster.length > 0
-      ? POSTER_DIR + copy.featuredSpecial.poster
-      : null,
+  poster: resolvePublicAsset(POSTER_DIR, copy.featuredSpecial.poster),
   posterAlt:
     copy.featuredSpecial.posterAlt && copy.featuredSpecial.posterAlt.length > 0
       ? copy.featuredSpecial.posterAlt
@@ -112,7 +111,7 @@ function shapeManual(raw: RawManualShow): Show {
     end: raw.end ?? null,
     url: raw.url && raw.url.length > 0 ? raw.url : null,
     summary: raw.summary ?? "",
-    imageUrl: raw.imageUrl && raw.imageUrl.length > 0 ? SHOW_IMAGE_DIR + raw.imageUrl : null,
+    imageUrl: resolvePublicAsset(SHOW_IMAGE_DIR, raw.imageUrl),
     imageAlt: raw.imageAlt && raw.imageAlt.length > 0 ? raw.imageAlt : undefined,
     venue: raw.venue,
     ticketUrl: raw.ticketUrl && raw.ticketUrl.length > 0 ? raw.ticketUrl : null,

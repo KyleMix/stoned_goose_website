@@ -49,7 +49,7 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
                   </p>
                 ) : null}
                 {m.notes ? (
-                  <p className="mt-2 max-w-prose font-body text-sm text-bone/70">
+                  <p className="mt-2 max-w-prose whitespace-pre-line font-body text-sm text-bone/70">
                     {m.notes}
                   </p>
                 ) : null}
