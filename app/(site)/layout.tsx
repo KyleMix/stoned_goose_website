@@ -2,6 +2,7 @@ import type { LocalBusiness } from "schema-dts";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Grain } from "@/components/grain";
+import { EditOverlay } from "@/components/edit-overlay";
 import { RouteFocusManager } from "@/components/route-focus-manager";
 import { SearchPalette } from "@/components/search-palette";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -76,6 +77,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <RouteFocusManager />
       <SearchPalette />
       <SmoothScroll />
+      <EditOverlay />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdString(localBusiness) }}
