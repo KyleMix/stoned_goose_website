@@ -1,0 +1,59 @@
+# Compose file for stonedgooseproductions.com.
+#
+# Two services:
+#   site   - the built static export, served by nginx on port 8080
+#   caddy  - optional TLS reverse proxy with automatic Let's Encrypt certs
+#
+# Local-only use:
+#   docker compose up -d site
+#   open http://localhost:8080
+#
+# Production use (TLS at the edge):
+#   1. Point your DNS A/AAAA at the server.
+#   2. Edit deploy/caddy/Caddyfile and set your real domain.
+#   3. docker compose --profile prod up -d
+#
+# Pass build-time NEXT_PUBLIC_* values via .env at the repo root or via
+# `--build-arg` on `docker compose build`.
+
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_PLAUSIBLE_DOMAIN: ${NEXT_PUBLIC_PLAUSIBLE_DOMAIN:-}
+        NEXT_PUBLIC_GSC_VERIFICATION: ${NEXT_PUBLIC_GSC_VERIFICATION:-}
+        NEXT_PUBLIC_BING_VERIFICATION: ${NEXT_PUBLIC_BING_VERIFICATION:-}
+        NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT: ${NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT:-}
+    image: stoned-goose-site:latest
+    container_name: stoned-goose-site
+    restart: unless-stopped
+    ports:
+      # Expose nginx on 8080 by default. Behind Caddy/Cloudflare, bind to
+      # 127.0.0.1:8080 instead so the container is not directly reachable.
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: stoned-goose-caddy
+    restart: unless-stopped
+    profiles: ["prod"]
+    depends_on:
+      - site
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

@@ -61,6 +61,19 @@ Push to a connected branch. Vercel reads `next.config.mjs` and ships the static 
 
 If the host honors none of those (rare), the meta-refresh stubs in `public/<old-slug>/index.html` still bounce visitors from old URLs to the new ones.
 
+### Your own server (Docker, nginx, rsync)
+
+See [`SERVER_DEPLOYMENT.md`](./SERVER_DEPLOYMENT.md). Three drop-in paths:
+
+- **Docker Compose + Caddy** (auto-HTTPS, one command on a clean VPS): `docker compose --profile prod up -d --build`
+- **Docker only** behind an existing proxy: `docker compose up -d --build site` (nginx on `127.0.0.1:8080`)
+- **Host nginx + rsync** (no Docker): `DEPLOY_HOST=user@server ./deploy/deploy.sh`
+
+All three serve the same `/out` directory. The nginx/Caddy configs under
+[`deploy/`](./deploy/) mirror the redirects and headers in
+`public/_redirects` and `public/_headers` so legacy slugs and OG image
+MIME behave identically across hosts.
+
 ## Admin (`/admin`)
 
 Owner-side CMS for editing site content from a browser, including phone.
