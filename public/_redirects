@@ -2,6 +2,13 @@
 # Mirror of vercel.json `redirects` so both hosts behave identically.
 # Old slug -> current IA target. 308 keeps method on POSTs.
 
+# Admin shortcut. Keystatic owns its routing under /keystatic; the rewrite
+# below lets deep links survive a hard refresh on Cloudflare/Netlify, the
+# same job vercel.json's `rewrites` does on Vercel.
+/admin               /keystatic            302
+/admin/*             /keystatic/:splat     302
+/keystatic/*         /keystatic            200
+
 # About / team
 /about               /roster              308
 /members             /roster              308

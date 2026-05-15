@@ -143,24 +143,38 @@ CLAUDE.md             # House rules
 
 ## Editing content
 
-All copy lives in `/content/*.ts`. Edit the file, save, push. No CMS, no template hunting.
+Two paths in, one source of truth.
+
+1. **From the live site.** Add `?edit=1` to any URL once. A small "Edit"
+   dock pins itself to the bottom-right and links straight into the
+   Keystatic admin pages that back what you're looking at. Toggle off
+   with `?edit=0`. The preference sticks in `localStorage`.
+2. **From the admin.** Go to `/admin` (redirects to `/keystatic`), sign
+   in with GitHub, edit. Each save commits to `main` and the host
+   redeploys.
+
+The full page-to-admin map lives in
+[`docs/editing-content.md`](docs/editing-content.md). Schema lives in
+`keystatic.config.ts`; the JSON it writes lives under `content/<name>/`;
+thin TypeScript shims in `content/*.ts` re-export it with the typed shape
+components import. Don't edit copy in components, it isn't there.
 
 ### Owner-pending content (flagged in source)
 
 These fields ship empty or with TODO markers. Drop in real content to light them up.
 
-| File | Field | What it does |
+| Admin surface | Field | What it does |
 |---|---|---|
-| `content/shows.ts` | `featuredSpecial.videoUrl` | When set, swaps "Coming soon" on `/shows` and `/watch` for the play CTA. |
-| `content/members.ts` | `members[].bio` | Renders a 2-3 sentence bio under the role on `/members`. |
-| `content/home.ts` | `mission` | When set, shows a mission strip between bumpers on home. |
-| `content/home.ts` | `marqueeWords` | Verify or replace `5,000+ Tickets Sold`. House rule: no invented stats. |
-| `content/home.ts` | `bumpers.*` | Three slot pools, three drafts each. Edit copy in place. |
-| `content/home.ts` | `hero.italicLine` | Hero right-column italic. Owner-editable. |
-| `content/comedians.ts` | `comediansCopy.subhead` | "Our Friends." clarifier. Edit if a different framing fits better. |
-| `content/watch.ts` | `youtubeVideos` | When populated, renders a grid of up to 5 linked YouTube videos in the Channel section on `/watch`. |
-| `content/shop.ts` | `products[].image` | 15 products with `image: ""` are hidden from `/shop`. Paste Fourthwall imgproxy URLs to restore. |
-| `content/sponsorships.ts` | `sponsorshipStats[].value` | Three values flagged with TODO(owner). Confirm or replace. |
+| Shows copy | `featuredSpecial.videoUrl` | When set, swaps "Coming soon" on `/shows` and `/watch` for the play CTA. |
+| Crew members | `bio` | Renders a 2-3 sentence bio under the role on `/roster`. |
+| Home page | `mission` | When the checkbox is on, shows a mission strip between bumpers on home. |
+| Home page | `marqueeWords` | Verify or replace any stat. House rule: no invented stats. |
+| Home page | `bumpers.*` | Three slot pools, three drafts each. One variant chosen per session. |
+| Home page | `hero.italicLine` | Hero right-column italic. |
+| Roster copy | `comedians.subhead` | "Our Friends." clarifier. Edit if a different framing fits better. |
+| Watch copy | `youtubeVideos` | When populated, renders a grid of up to 5 linked YouTube videos in the Channel section on `/watch`. |
+| Shop products | `image` | Products with an empty `image` are hidden from `/shop`. Paste Fourthwall imgproxy URLs to restore. |
+| Sponsorships | `stats[].value` | Values flagged with TODO(owner). Confirm or replace. |
 
 ## Environment variables
 
