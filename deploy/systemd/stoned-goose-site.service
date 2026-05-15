@@ -1,0 +1,35 @@
+# Systemd unit for running the static export under Docker without compose.
+# Drop in /etc/systemd/system/stoned-goose-site.service, then:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now stoned-goose-site
+#
+# Assumes the image is built locally as `stoned-goose-site:latest`. Adjust
+# the ExecStartPre line to pull from a registry instead if you ship via one.
+
+[Unit]
+Description=Stoned Goose Productions static site (nginx in Docker)
+After=docker.service network-online.target
+Requires=docker.service
+Wants=network-online.target
+
+[Service]
+Restart=always
+RestartSec=10
+TimeoutStartSec=0
+
+ExecStartPre=-/usr/bin/docker stop stoned-goose-site
+ExecStartPre=-/usr/bin/docker rm stoned-goose-site
+ExecStart=/usr/bin/docker run \
+  --rm \
+  --name stoned-goose-site \
+  -p 127.0.0.1:8080:80 \
+  --health-cmd="wget -qO- http://127.0.0.1/ || exit 1" \
+  --health-interval=30s \
+  --health-timeout=5s \
+  --health-retries=3 \
+  stoned-goose-site:latest
+
+ExecStop=/usr/bin/docker stop stoned-goose-site
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,39 @@
+# Caddy reverse proxy with automatic Let's Encrypt TLS.
+#
+# Replace stonedgooseproductions.com with your domain. Caddy will issue
+# and renew a TLS cert on its own as long as ports 80/443 are reachable
+# and the DNS A/AAAA record points at this server.
+#
+# In front of the nginx container (docker compose service name: site).
+# If you run Caddy directly on the host instead, swap `site:80` for
+# `127.0.0.1:8080` (the port docker-compose maps).
+
+stonedgooseproductions.com, www.stonedgooseproductions.com {
+	encode zstd gzip
+
+	# www -> apex.
+	@www host www.stonedgooseproductions.com
+	redir @www https://stonedgooseproductions.com{uri} 308
+
+	# Security headers Cloudflare/Vercel set by default.
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		# Caddy already sets X-Frame-Options via nginx; this is harmless.
+		-Server
+	}
+
+	reverse_proxy site:80 {
+		header_up Host {host}
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}
