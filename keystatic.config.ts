@@ -12,6 +12,7 @@
 //   shape components have always imported.
 
 import { config, fields, collection, singleton } from "@keystatic/core";
+import { RESERVED_SLUGS, RESERVED_SLUG_ERROR } from "./lib/reserved-slugs";
 
 // House rule: no em dashes anywhere. Block them in every long-form text
 // field via a Keystatic field validator. The pattern below must match;
@@ -23,6 +24,133 @@ const noEmDash = {
   },
 };
 
+// Reused across the pages collection and the marketing singletons. Each
+// block becomes one section on the rendered page. Order in the array = order
+// on the page. Discriminant names match the switch in
+// components/section-renderer.tsx.
+function sectionsField(label: string) {
+  return fields.array(
+    fields.conditional(
+      fields.select({
+        label: "Block type",
+        options: [
+          { label: "Hero (eyebrow, headline, CTAs)", value: "hero" },
+          { label: "Rich text (paragraphs)", value: "richText" },
+          { label: "Image with caption", value: "imageCaption" },
+          { label: "Video embed (YouTube / TikTok / Instagram)", value: "videoEmbed" },
+          { label: "Call-to-action strip", value: "ctaStrip" },
+          { label: "Mailing list capture", value: "mailingList" },
+          { label: "Upcoming shows list", value: "upcomingShows" },
+          { label: "Latest social strip", value: "latestSocial" },
+          { label: "Press quote strip", value: "pressStrip" },
+          { label: "Roster grid teaser", value: "rosterTeaser" },
+          { label: "Open mic teaser", value: "openMicTeaser" },
+          { label: "Services overview", value: "servicesOverview" },
+          { label: "Shop strip", value: "shopStrip" },
+        ],
+        defaultValue: "richText",
+      }),
+      {
+        hero: fields.object({
+          eyebrow: fields.text({ label: "Eyebrow (small mono line above headline)", validation: noEmDash }),
+          headline: fields.text({ label: "Headline" }),
+          italicLine: fields.text({ label: "Italic tagline (optional)", validation: noEmDash }),
+          subhead: fields.text({ label: "Subhead", multiline: true, validation: noEmDash }),
+          primaryCtaLabel: fields.text({ label: "Primary button label" }),
+          primaryCtaHref: fields.text({ label: "Primary button href" }),
+          secondaryCtaLabel: fields.text({ label: "Secondary link label (optional)" }),
+          secondaryCtaHref: fields.text({ label: "Secondary link href (optional)" }),
+        }),
+        richText: fields.object({
+          eyebrow: fields.text({ label: "Eyebrow (optional)", validation: noEmDash }),
+          heading: fields.text({ label: "Heading (optional)" }),
+          body: fields.text({
+            label: "Body",
+            multiline: true,
+            description: "Paragraphs separated by a blank line. Plain text only.",
+            validation: { length: { min: 1 }, ...noEmDash },
+          }),
+        }),
+        imageCaption: fields.object({
+          image: fields.image({
+            label: "Image",
+            directory: "public/images/pages",
+            publicPath: "/images/pages/",
+          }),
+          alt: fields.text({ label: "Alt text" }),
+          caption: fields.text({ label: "Caption (optional)", validation: noEmDash }),
+          aspect: fields.select({
+            label: "Aspect ratio",
+            options: [
+              { label: "Wide (16:9)", value: "16x9" },
+              { label: "Portrait (4:5)", value: "4x5" },
+              { label: "Square (1:1)", value: "1x1" },
+            ],
+            defaultValue: "16x9",
+          }),
+        }),
+        videoEmbed: fields.object({
+          provider: fields.select({
+            label: "Provider",
+            options: [
+              { label: "YouTube", value: "youtube" },
+              { label: "TikTok", value: "tiktok" },
+              { label: "Instagram", value: "instagram" },
+            ],
+            defaultValue: "youtube",
+          }),
+          url: fields.text({ label: "Video URL or 11-char id (YouTube)" }),
+          caption: fields.text({ label: "Caption (optional)", validation: noEmDash }),
+        }),
+        ctaStrip: fields.object({
+          heading: fields.text({ label: "Heading" }),
+          subhead: fields.text({ label: "Subhead (optional)", multiline: true, validation: noEmDash }),
+          primaryCtaLabel: fields.text({ label: "Button label" }),
+          primaryCtaHref: fields.text({ label: "Button href" }),
+          note: fields.text({ label: "Small note under button (optional)", validation: noEmDash }),
+        }),
+        mailingList: fields.object({
+          tag: fields.text({
+            label: "Analytics tag",
+            description: "Short string used to attribute signups. e.g. 'about', 'faq'.",
+            defaultValue: "page",
+          }),
+        }),
+        upcomingShows: fields.empty(),
+        latestSocial: fields.object({
+          limit: fields.number({ label: "How many items", defaultValue: 6, validation: { min: 1, max: 12 } }),
+        }),
+        pressStrip: fields.empty(),
+        rosterTeaser: fields.object({
+          limit: fields.number({ label: "How many comedians", defaultValue: 8, validation: { min: 1, max: 16 } }),
+        }),
+        openMicTeaser: fields.empty(),
+        servicesOverview: fields.empty(),
+        shopStrip: fields.object({
+          limit: fields.number({ label: "How many products", defaultValue: 3, validation: { min: 1, max: 8 } }),
+        }),
+      },
+    ),
+    {
+      label,
+      itemLabel: (p) => {
+        const d = p.discriminant as string;
+        if (d === "richText") {
+          const obj = p.value as { fields?: { heading?: { value?: string } } };
+          const h = obj?.fields?.heading?.value;
+          return h && h.length > 0 ? `Text: ${h}` : "Rich text";
+        }
+        if (d === "hero") {
+          const obj = p.value as { fields?: { headline?: { value?: string } } };
+          const h = obj?.fields?.headline?.value;
+          return h && h.length > 0 ? `Hero: ${h}` : "Hero";
+        }
+        return d.charAt(0).toUpperCase() + d.slice(1);
+      },
+    },
+  );
+}
+
 export default config({
   storage: { kind: "cloud" },
   cloud: {
@@ -31,6 +159,7 @@ export default config({
   ui: {
     brand: { name: "Stoned Goose Admin" },
     navigation: {
+      Pages: ["pages"],
       "Site copy": ["site", "home", "showsCopy", "watchCopy", "rosterCopy", "openMicsCopy", "shopCopy", "contactCopy", "sponsorships"],
       Roster: ["members", "comedians"],
       Booking: ["services", "pricingTiers"],
@@ -187,6 +316,8 @@ export default config({
             false: fields.empty(),
           },
         ),
+        topSections: sectionsField("Top sections (render below the hero, above shows)"),
+        bottomSections: sectionsField("Bottom sections (render below mailing list, above the outro)"),
       },
     }),
 
@@ -230,6 +361,8 @@ export default config({
             false: fields.empty(),
           },
         ),
+        topSections: sectionsField("Top sections (render below the page header)"),
+        bottomSections: sectionsField("Bottom sections (render above the mailing list)"),
       },
     }),
 
@@ -256,6 +389,8 @@ export default config({
             itemLabel: (p) => p.fields.title.value,
           },
         ),
+        topSections: sectionsField("Top sections (render below the page header)"),
+        bottomSections: sectionsField("Bottom sections (render at the bottom of /watch)"),
       },
     }),
 
@@ -283,6 +418,8 @@ export default config({
           }),
           { label: "Pillars (the four functions)", itemLabel: (p) => p.fields.title.value },
         ),
+        topSections: sectionsField("Top sections (render below the page header)"),
+        bottomSections: sectionsField("Bottom sections (render at the bottom of /roster)"),
       },
     }),
 
@@ -295,6 +432,8 @@ export default config({
       schema: {
         subhead: fields.text({ label: "Subhead", multiline: true, validation: noEmDash }),
         kicker: fields.text({ label: "Kicker", validation: noEmDash }),
+        topSections: sectionsField("Top sections (render below the page header)"),
+        bottomSections: sectionsField("Bottom sections (render at the bottom of /open-mics)"),
       },
     }),
 
@@ -373,6 +512,59 @@ export default config({
   },
 
   collections: {
+    // ----- Pages (composed from blocks; renders at /<slug>) -----
+    pages: collection({
+      label: "Pages",
+      slugField: "slug",
+      path: "content/pages/*",
+      format: { data: "json" },
+      previewUrl: "/{slug}",
+      columns: ["title"],
+      schema: {
+        slug: fields.slug({
+          name: {
+            label: "Slug",
+            description: "URL segment. The page will live at /<slug>. Lowercase, hyphens.",
+            validation: {
+              length: { min: 1, max: 64 },
+              pattern: {
+                regex: /^[a-z0-9][a-z0-9-]*$/,
+                message: "Lowercase letters, numbers, and hyphens only.",
+              },
+            },
+          },
+          slug: {
+            validation: {
+              pattern: {
+                regex: new RegExp(`^(?!(${RESERVED_SLUGS.join("|")})$).*$`, "i"),
+                message: RESERVED_SLUG_ERROR,
+              },
+            },
+          },
+        }),
+        title: fields.text({
+          label: "Title",
+          description: "Used in the browser tab and as the default SEO title.",
+          validation: { length: { min: 1, max: 120 }, ...noEmDash },
+        }),
+        seoDescription: fields.text({
+          label: "SEO description (optional)",
+          multiline: true,
+          validation: { length: { max: 170 }, ...noEmDash },
+        }),
+        ogImage: fields.image({
+          label: "Social share image (optional)",
+          directory: "public/images/pages",
+          publicPath: "/images/pages/",
+        }),
+        sections: sectionsField("Page sections (add, reorder, remove)"),
+        draft: fields.checkbox({
+          label: "Draft (hidden from the live site)",
+          defaultValue: false,
+        }),
+      },
+    }),
+
     // ----- News (Phase 1, kept) -----
     news: collection({
       label: "News posts",

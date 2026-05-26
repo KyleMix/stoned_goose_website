@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import type { Event, Offer } from "schema-dts";
-import { presale, showsCopy, upcomingShows } from "@/content/shows";
+import {
+  presale,
+  showsCopy,
+  upcomingShows,
+  showsTopSections,
+  showsBottomSections,
+} from "@/content/shows";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
+import { SectionRenderer } from "@/components/section-renderer";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { AddToCalendar } from "@/components/add-to-calendar";
 import { ShareButton } from "@/components/share-button";
@@ -104,6 +111,8 @@ export default function ShowsPage() {
         }
         body={showsCopy.subhead}
       />
+
+      <SectionRenderer sections={showsTopSections} pageSlug="shows" />
 
       {presale ? (
         <aside
@@ -302,6 +311,8 @@ export default function ShowsPage() {
       ) : null}
 
       <FacebookPagePlugin />
+
+      <SectionRenderer sections={showsBottomSections} pageSlug="shows" />
 
       <MailingListCapture page="shows" />
     </>

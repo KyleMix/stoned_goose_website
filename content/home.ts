@@ -1,6 +1,7 @@
 // Home page shim. Reads the Keystatic JSON and re-exports the typed shape.
 
 import homeData from "./home/index.json";
+import { normaliseBlocks, type Block } from "@/lib/blocks";
 
 export type BumperVariant = {
   eyebrow: string;
@@ -30,6 +31,8 @@ const raw = homeData as unknown as {
   mission?:
     | { discriminant: true; value: { eyebrow: string; heading: string; body: string } }
     | { discriminant: false; value: null };
+  topSections?: unknown;
+  bottomSections?: unknown;
 };
 
 export const hero = raw.hero;
@@ -37,3 +40,5 @@ export const marqueeWords = raw.marqueeWords;
 export const bumpers = raw.bumpers;
 export const mission: HomeShape["mission"] =
   raw.mission && raw.mission.discriminant === true ? raw.mission.value : null;
+export const homeTopSections: Block[] = normaliseBlocks(raw.topSections);
+export const homeBottomSections: Block[] = normaliseBlocks(raw.bottomSections);

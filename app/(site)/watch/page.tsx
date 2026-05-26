@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { watchCopy, youtubeVideos } from "@/content/watch";
+import {
+  watchCopy,
+  youtubeVideos,
+  watchTopSections,
+  watchBottomSections,
+} from "@/content/watch";
+import { SectionRenderer } from "@/components/section-renderer";
 import { featuredSpecial } from "@/content/shows";
 import { site } from "@/content/site";
 import { patreonPosts } from "@/content/social";
@@ -40,6 +46,8 @@ export default function WatchPage() {
         }
         body={watchCopy.subhead}
       />
+
+      <SectionRenderer sections={watchTopSections} pageSlug="watch" />
 
       <section className="border-b border-bone/10 bg-ink py-16 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -285,6 +293,8 @@ export default function WatchPage() {
           </div>
         </div>
       </section>
+
+      <SectionRenderer sections={watchBottomSections} pageSlug="watch" />
 
       <MailingListCapture page="watch" />
     </>

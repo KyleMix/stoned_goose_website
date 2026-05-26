@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { Person } from "schema-dts";
-import { aboutCopy, members, pillars } from "@/content/members";
+import {
+  aboutCopy,
+  members,
+  pillars,
+  rosterTopSections,
+  rosterBottomSections,
+} from "@/content/members";
 import { comedians, comediansCopy } from "@/content/comedians";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
+import { SectionRenderer } from "@/components/section-renderer";
 import { SectionHeader } from "@/components/section-header";
 import { jsonLdString } from "@/lib/jsonld";
 import { getPlaceholder } from "@/lib/placeholders";
@@ -54,6 +61,8 @@ export default function RosterPage() {
         }
         body={aboutCopy.subhead}
       />
+
+      <SectionRenderer sections={rosterTopSections} pageSlug="roster" />
 
       <section className="relative border-b border-bone/10 bg-ink py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -243,6 +252,8 @@ export default function RosterPage() {
           </ul>
         </div>
       </section>
+
+      <SectionRenderer sections={rosterBottomSections} pageSlug="roster" />
     </>
   );
 }

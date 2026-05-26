@@ -9,6 +9,7 @@
 import showsCopyData from "./shows-copy/index.json";
 import generatedShows from "./.generated/shows.json";
 import manualIndex from "./.generated/shows-index.json";
+import { normaliseBlocks, type Block } from "@/lib/blocks";
 
 export type Show = {
   id: string;
@@ -58,9 +59,14 @@ type ShowsCopyShape = {
   presale?:
     | { discriminant: true; value: Presale }
     | { discriminant: false; value: null };
+  topSections?: unknown;
+  bottomSections?: unknown;
 };
 
 const copy = showsCopyData as unknown as ShowsCopyShape;
+
+export const showsTopSections: Block[] = normaliseBlocks(copy.topSections);
+export const showsBottomSections: Block[] = normaliseBlocks(copy.bottomSections);
 
 export const showsCopy = {
   heading: copy.heading,

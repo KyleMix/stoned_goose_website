@@ -9,6 +9,7 @@
 import openMicsCopyData from "./open-mics-copy/index.json";
 import legacyFeed from "./feeds/open-mics.json";
 import micsIndex from "./.generated/open-mics-index.json";
+import { normaliseBlocks, type Block } from "@/lib/blocks";
 
 export type OpenMicDay =
   | "Monday"
@@ -43,10 +44,20 @@ export type OpenMicsManifest = {
   mics: OpenMic[];
 };
 
-export const openMicsCopy = openMicsCopyData as {
+const openMicsRaw = openMicsCopyData as {
   subhead: string;
   kicker: string;
+  topSections?: unknown;
+  bottomSections?: unknown;
 };
+
+export const openMicsCopy = {
+  subhead: openMicsRaw.subhead,
+  kicker: openMicsRaw.kicker,
+};
+
+export const openMicsTopSections: Block[] = normaliseBlocks(openMicsRaw.topSections);
+export const openMicsBottomSections: Block[] = normaliseBlocks(openMicsRaw.bottomSections);
 
 type RawMic = {
   id?: string;
