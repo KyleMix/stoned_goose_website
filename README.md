@@ -172,6 +172,19 @@ The full page-to-admin map lives in
 thin TypeScript shims in `content/*.ts` re-export it with the typed shape
 components import. Don't edit copy in components, it isn't there.
 
+### Adding new pages and customising sections
+
+Editor-created pages live at `/<slug>` (e.g. `/about`, `/faq`) and are
+composed in the admin from a block library: hero, rich text, image, video,
+CTA, mailing list, plus reusable blocks like Upcoming shows and Latest social.
+Each major marketing page (home, shows, watch, roster, open-mics) also exposes
+`Top sections` and `Bottom sections` arrays so the same blocks can be dropped
+into the core pages without code. See [`docs/editor.md`](docs/editor.md) for
+the step-by-step. New blocks are added in
+[`components/blocks/`](components/blocks/) and wired through
+[`components/section-renderer.tsx`](components/section-renderer.tsx) and the
+`sectionsField()` helper in `keystatic.config.ts`.
+
 ### Owner-pending content (flagged in source)
 
 These fields ship empty or with TODO markers. Drop in real content to light them up.

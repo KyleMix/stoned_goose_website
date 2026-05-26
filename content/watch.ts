@@ -2,12 +2,15 @@
 // hand-picked top-videos list. Owner edits both at /admin.
 
 import watchData from "./watch-copy/index.json";
+import { normaliseBlocks, type Block } from "@/lib/blocks";
 
 type WatchCopy = {
   heading: string;
   subhead: string;
   emptyClipsLine: string;
   youtubeVideos?: { url: string; title: string }[];
+  topSections?: unknown;
+  bottomSections?: unknown;
 };
 
 export type YouTubeVideoLink = {
@@ -27,3 +30,6 @@ export const watchCopy = {
 // Top 5 YouTube videos featured on /watch. CMS-editable through the watch
 // copy singleton. Leave empty to hide the grid section.
 export const youtubeVideos: YouTubeVideoLink[] = raw.youtubeVideos ?? [];
+
+export const watchTopSections: Block[] = normaliseBlocks(raw.topSections);
+export const watchBottomSections: Block[] = normaliseBlocks(raw.bottomSections);

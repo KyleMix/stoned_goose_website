@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { openMicsCopy, openMicsFeed } from "@/content/open-mics";
+import {
+  openMicsCopy,
+  openMicsFeed,
+  openMicsTopSections,
+  openMicsBottomSections,
+} from "@/content/open-mics";
 import { PageHeader } from "@/components/page-header";
 import { OpenMicExplorer } from "@/components/open-mic-explorer";
+import { SectionRenderer } from "@/components/section-renderer";
 
 export const metadata: Metadata = {
   title: "Open Mics",
@@ -27,6 +33,8 @@ export default function OpenMicsPage() {
         }
         body={openMicsCopy.subhead}
       />
+
+      <SectionRenderer sections={openMicsTopSections} pageSlug="open-mics" />
 
       <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -85,6 +93,8 @@ export default function OpenMicsPage() {
           </div>
         </div>
       </section>
+
+      <SectionRenderer sections={openMicsBottomSections} pageSlug="open-mics" />
     </>
   );
 }

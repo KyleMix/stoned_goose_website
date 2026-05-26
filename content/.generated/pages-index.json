@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Welcome to the page builder",
+    "seoDescription": "A sample page created by the Stoned Goose Productions site scaffolding. Edit or delete me in Keystatic.",
+    "ogImage": "",
+    "draft": false,
+    "sections": [
+      {
+        "discriminant": "hero",
+        "value": {
+          "eyebrow": "Sample page",
+          "headline": "Welcome.",
+          "italicLine": "edit me, rename me, or delete me",
+          "subhead": "This page is rendered from a block list in Keystatic. Open /keystatic, find Pages, and try adding, reordering, or removing sections.",
+          "primaryCtaLabel": "Open the editor",
+          "primaryCtaHref": "/keystatic",
+          "secondaryCtaLabel": "",
+          "secondaryCtaHref": ""
+        }
+      },
+      {
+        "discriminant": "richText",
+        "value": {
+          "eyebrow": "How this works",
+          "heading": "Pages, made of blocks.",
+          "body": "Every page in /keystatic is a list of blocks. Each block becomes one section on the page. You can pick from heroes, rich text, images, video embeds, call-to-action strips, mailing-list capture, and reusable blocks like the upcoming shows list or the latest social strip.\n\nReorder by dragging. Add by clicking the plus. Remove by clicking the trash. Save commits to GitHub and the site redeploys in a couple of minutes."
+        }
+      },
+      {
+        "discriminant": "ctaStrip",
+        "value": {
+          "heading": "Ready to build a real page?",
+          "subhead": "Add a new entry under Pages in Keystatic. Set a slug like 'about' or 'faq' and start composing.",
+          "primaryCtaLabel": "Open Keystatic",
+          "primaryCtaHref": "/keystatic",
+          "note": "Tip. Add the page to the nav under Site config."
+        }
+      }
+    ],
+    "slug": "welcome"
+  }
+]

@@ -7,6 +7,7 @@
 
 import rosterCopyData from "./roster-copy/index.json";
 import membersIndex from "./.generated/members-index.json";
+import { normaliseBlocks, type Block } from "@/lib/blocks";
 
 export type Member = {
   slug: string;
@@ -26,12 +27,16 @@ type RosterCopyShape = {
     crewSubhead: string;
   };
   pillars: { title: string; body: string }[];
+  topSections?: unknown;
+  bottomSections?: unknown;
 };
 
 const copy = rosterCopyData as unknown as RosterCopyShape;
 
 export const aboutCopy = copy.about;
 export const pillars = copy.pillars;
+export const rosterTopSections: Block[] = normaliseBlocks(copy.topSections);
+export const rosterBottomSections: Block[] = normaliseBlocks(copy.bottomSections);
 
 const PUBLIC_DIR = "/images/members/";
 

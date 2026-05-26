@@ -9,7 +9,13 @@ import { LatestStrip } from "@/components/latest-strip";
 import { OpenMicTeaser } from "@/components/open-mic-teaser";
 import { RosterTeaser } from "@/components/roster-teaser";
 import { ShopStrip } from "@/components/shop-strip";
-import { marqueeWords, mission } from "@/content/home";
+import { SectionRenderer } from "@/components/section-renderer";
+import {
+  marqueeWords,
+  mission,
+  homeTopSections,
+  homeBottomSections,
+} from "@/content/home";
 
 export default function HomePage() {
   return (
@@ -18,6 +24,8 @@ export default function HomePage() {
       <Marquee items={marqueeWords} />
 
       <RotatingBumper slot="clarification" />
+
+      <SectionRenderer sections={homeTopSections} pageSlug="home" />
 
       <UpcomingShowsBlock />
 
@@ -52,6 +60,8 @@ export default function HomePage() {
       ) : null}
 
       <MailingListCapture page="home" />
+
+      <SectionRenderer sections={homeBottomSections} pageSlug="home" />
 
       <RotatingBumper slot="outro" />
     </>
