@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ secrets.INDEXNOW_KEY != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 2
       - name: Build URL list from changed paths
