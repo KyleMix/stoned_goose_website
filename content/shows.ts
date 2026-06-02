@@ -82,7 +82,12 @@ export const featuredSpecial = {
   subtitle: copy.featuredSpecial.subtitle,
   blurb: copy.featuredSpecial.blurb,
   videoUrl: copy.featuredSpecial.videoUrl ? copy.featuredSpecial.videoUrl : null,
-  poster: POSTER_DIR + copy.featuredSpecial.poster,
+  // Accept either an absolute path (/images/...) as written by the CMS, or a
+  // bare filename, which gets the comedians directory prepended. Prepending
+  // unconditionally would double the path for absolute values.
+  poster: copy.featuredSpecial.poster.startsWith("/")
+    ? copy.featuredSpecial.poster
+    : POSTER_DIR + copy.featuredSpecial.poster,
   posterAlt:
     copy.featuredSpecial.posterAlt && copy.featuredSpecial.posterAlt.length > 0
       ? copy.featuredSpecial.posterAlt
