@@ -1,4 +1,4 @@
-// Watch shim. Reads the Keystatic-managed singleton for copy plus the
+// Watch shim. Reads the CMS-managed singleton for copy plus the
 // hand-picked top-videos list. Owner edits both at /admin.
 
 import watchData from "./watch-copy/index.json";

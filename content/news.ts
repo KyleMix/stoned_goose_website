@@ -1,6 +1,6 @@
 // News shim. Reads the consolidated index produced at prebuild by
-// scripts/build-content-index.ts (which knows how to parse Keystatic's
-// Markdoc files with YAML frontmatter). Drafts are filtered out and featured
+// scripts/build-content-index.ts (which knows how to parse the CMS's
+// markdown files with YAML frontmatter). Drafts are filtered out and featured
 // posts (when present) are pinned to the top of the list.
 
 import newsIndex from "./.generated/news-index.json";

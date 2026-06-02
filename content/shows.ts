@@ -1,10 +1,10 @@
 // Shows shim. Combines:
 //   - showsCopy + featuredSpecial + presale (singleton from /admin)
-//   - manual shows (Keystatic collection consolidated at prebuild)
+//   - manual shows (CMS collection consolidated at prebuild)
 //   - synced shows (content/.generated/shows.json, from scripts/sync-shows.ts)
 //
 // Generated shows win when present and non-empty; otherwise the manual
-// Keystatic list applies. Manual entries flagged as draft are filtered out.
+// list applies. Manual entries flagged as draft are filtered out.
 
 import showsCopyData from "./shows-copy/index.json";
 import generatedShows from "./.generated/shows.json";
