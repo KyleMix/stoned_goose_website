@@ -5,8 +5,8 @@
 //   - public/ filenames that ship to the site root
 //
 // Used in two places:
-//   - keystatic.config.ts validates the pages collection slug field on save
-//     so the editor sees the error immediately.
+//   - public/admin/config.yml restricts the Pages slug via a pattern so the
+//     editor steers away from reserved names.
 //   - app/(site)/[slug]/page.tsx asserts at build time as a defence in depth
 //     for any entry that slipped through (e.g. created on an older schema).
 

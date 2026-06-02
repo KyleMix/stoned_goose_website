@@ -1,9 +1,9 @@
-// Build-time consolidator. Reads each Keystatic-managed collection directory
+// Build-time consolidator. Reads each CMS-managed collection directory
 // and emits one flat JSON file at content/.generated/<collection>.json so the
 // .ts shims can import the data without touching node:fs (which webpack
 // refuses to bundle into client components).
 //
-// Runs in prebuild so Keystatic Cloud commits land in /content, this script
+// Runs in prebuild so CMS commits land in /content, this script
 // rebuilds the indexes, then next build picks up the JSON.
 
 import { readdirSync, readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
@@ -40,10 +40,10 @@ for (const col of COLLECTIONS) {
   const entries: Array<Record<string, unknown>> = [];
   if (existsSync(dir)) {
     for (const item of readdirSync(dir, { withFileTypes: true })) {
-      // Keystatic stores entries either as `<slug>/index.json` (directory
-      // mode, used when an asset like an image lands alongside the entry)
-      // or as a flat `<slug>.json` file. Accept both so a manual show
-      // saved without a poster still gets indexed.
+      // Entries are stored either as `<slug>/index.json` (directory mode,
+      // used when an asset like an image lands alongside the entry) or as a
+      // flat `<slug>.json` file. Accept both so a manual show saved without
+      // a poster still gets indexed.
       let entryPath: string | null = null;
       let slug: string | null = null;
       if (item.isDirectory()) {

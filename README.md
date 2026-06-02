@@ -77,31 +77,34 @@ MIME behave identically across hosts.
 ## Admin (`/admin`)
 
 Owner-side CMS for editing site content from a browser, including phone.
-Backed by Keystatic. Schema lives in `keystatic.config.ts`. Editable content
-files live under `content/` and the admin saves commits to GitHub via
-Keystatic Cloud (free auth tier). Static export rules out a server-side API
-route, so dev and production both speak to GitHub through Keystatic Cloud.
+Backed by [Sveltia CMS](https://github.com/sveltia/sveltia-cms), a git-based
+visual editor. Schema lives in `public/admin/config.yml`. Editable content
+files live under `content/` and the admin commits saves to GitHub. Static
+export rules out a server-side API route, so auth runs through a small free
+GitHub OAuth relay (the `sveltia-cms-auth` Cloudflare Worker); no backend
+server and no per-build env var are required.
 
 ### One-time setup
 
-1. Sign in at `https://keystatic.cloud` with the GitHub account that owns
-   this repo. Create a Keystatic Cloud project linked to `KyleMix/stoned_goose_website`.
-2. Install the Keystatic GitHub App when prompted (scoped to this repo).
-3. Set `NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT` in your local `.env.local` and
-   in your host's environment variables (Vercel / Cloudflare / Netlify).
+See **"Editing with Sveltia CMS"** in
+[`SERVER_DEPLOYMENT.md`](SERVER_DEPLOYMENT.md) for the full walkthrough. In
+short:
+
+1. Register a **GitHub OAuth App** (Authorization callback URL points at the
+   auth Worker).
+2. Deploy the free **`sveltia-cms-auth`** Cloudflare Worker; set the OAuth
+   client id/secret as Worker secrets.
+3. Put the Worker URL in `public/admin/config.yml` under `backend.base_url`.
 
 ### Daily use
 
-`npm run dev`, open `http://localhost:3000/admin`, click "Sign in with
-GitHub", edit content. Each save commits to the repo on `main`. The host
-picks up the push and auto-deploys, so the change is live in about a
-minute or two.
+Open `/admin` on the live site, click "Sign in with GitHub", edit content.
+Each save commits to the repo on `main`. Cloudflare Pages picks up the push
+and auto-deploys, so the change is live in about a minute or two.
 
-`/admin` is `Disallow`ed in `robots.txt` and the page sets `noindex`. Each
-collection and singleton has a `previewUrl`, so the "View" button in the
-admin opens the live page in a new tab. Images uploaded through the admin
-are auto-resized by the `Optimize images` GitHub Action before the host
-builds (see `.github/workflows/optimize-images.yml`).
+`/admin` is `Disallow`ed in `robots.txt` and the page sets `noindex`. Images
+uploaded through the admin are auto-resized by the `Optimize images` GitHub
+Action before the host builds (see `.github/workflows/optimize-images.yml`).
 
 ## Repo layout
 
@@ -159,16 +162,15 @@ CLAUDE.md             # House rules
 Two paths in, one source of truth.
 
 1. **From the live site.** Add `?edit=1` to any URL once. A small "Edit"
-   dock pins itself to the bottom-right and links straight into the
-   Keystatic admin pages that back what you're looking at. Toggle off
-   with `?edit=0`. The preference sticks in `localStorage`.
-2. **From the admin.** Go to `/admin` (redirects to `/keystatic`), sign
-   in with GitHub, edit. Each save commits to `main` and the host
-   redeploys.
+   dock pins itself to the bottom-right and links straight into the CMS
+   pages that back what you're looking at. Toggle off with `?edit=0`. The
+   preference sticks in `localStorage`.
+2. **From the admin.** Go to `/admin`, sign in with GitHub, edit. Each save
+   commits to `main` and the host redeploys.
 
 The full page-to-admin map lives in
 [`docs/editing-content.md`](docs/editing-content.md). Schema lives in
-`keystatic.config.ts`; the JSON it writes lives under `content/<name>/`;
+`public/admin/config.yml`; the JSON it writes lives under `content/<name>/`;
 thin TypeScript shims in `content/*.ts` re-export it with the typed shape
 components import. Don't edit copy in components, it isn't there.
 
@@ -183,7 +185,7 @@ into the core pages without code. See [`docs/editor.md`](docs/editor.md) for
 the step-by-step. New blocks are added in
 [`components/blocks/`](components/blocks/) and wired through
 [`components/section-renderer.tsx`](components/section-renderer.tsx) and the
-`sectionsField()` helper in `keystatic.config.ts`.
+section block `types` in `public/admin/config.yml`.
 
 ### Owner-pending content (flagged in source)
 

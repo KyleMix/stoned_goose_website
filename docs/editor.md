@@ -1,22 +1,25 @@
 # Editing the live site
 
-The site is editable through the Keystatic admin at `/keystatic`. You sign in
-with GitHub. Every save commits to the repo and triggers a deploy. Allow
+The site is editable through Sveltia CMS at `/admin`. You sign in with
+GitHub. Every save commits to the repo and triggers a deploy. Allow
 ~2 minutes for a change to appear on the live site.
 
 ## Get in
 
-1. Visit `https://<your-domain>/keystatic` (or `http://localhost:3000/keystatic` for dev).
+1. Visit `https://<your-domain>/admin`.
 2. Sign in with the GitHub account that has access to this repo.
-3. You'll see the admin sidebar grouped by purpose: Pages, Site copy, Roster, Booking, Shows, Merch, Open mics, Posts.
+3. You'll see the sidebar listing each content area: Site copy, Pages,
+   Comedians, Crew members, Services, Pricing tiers, Shows, Shop products,
+   Open mics, TikTok videos.
 
 ## Add a new page
 
 New pages live at `/<slug>` (e.g. `/about`, `/faq`, `/sponsorship-deck`).
 
-1. In the sidebar, click **Pages → + Add Page**.
-2. Set the **Slug**. Lowercase letters, numbers, hyphens. The page will be reachable at `/<slug>`.
-3. Fill in **Title** and (optionally) **SEO description** and **Social share image**.
+1. In the sidebar, click **Pages → New Page**.
+2. Fill in the **Title**. The URL slug is derived from it, so the page will be
+   reachable at `/<slugified-title>` (e.g. "About" -> `/about`).
+3. Optionally set **SEO description** and **Social share image**.
 4. In **Page sections**, click **+** and pick a block type. Add as many as you want, in any order. Drag the handles to reorder.
 5. Leave **Draft** unchecked when you're ready to publish.
 6. Save. The deploy takes ~2 min, then the page is live.
@@ -24,11 +27,13 @@ New pages live at `/<slug>` (e.g. `/about`, `/faq`, `/sponsorship-deck`).
 
 ### Reserved slugs
 
-You can't use these slugs because they already point at hard-coded routes:
-`shows`, `watch`, `roster`, `open-mics`, `book`, `contact`, `shop`, `keystatic`,
+These names already point at hard-coded routes, so a page can't use them:
+`shows`, `watch`, `roster`, `open-mics`, `book`, `contact`, `shop`, `admin`,
 `api`, `_next`, `feed.xml`, `feed.ics`, `sitemap.xml`, `robots.txt`,
-`favicon.ico`, `home`, `index`, `admin`, `pagefind`, `opengraph-image`,
-`twitter-image`, `manifest.webmanifest`. Keystatic will block you on save.
+`favicon.ico`, `home`, `index`, `pagefind`, `opengraph-image`,
+`twitter-image`, `manifest.webmanifest`. If one slips through, the build
+rejects it on deploy (see `lib/reserved-slugs.ts`), so give the page a
+different title.
 
 ## Block library
 
@@ -75,7 +80,8 @@ the core layout, that's still a developer change.
 
 - Wait 2-3 minutes. The deploy is async.
 - Hard-refresh (Cmd-Shift-R / Ctrl-Shift-R) to bust the browser cache.
-- Check the GitHub commit landed on `main`: every Keystatic save shows up
-  as a commit by the Keystatic Cloud bot.
-- If the deploy is red, check the Vercel dashboard for the build log. Most
-  failures are a missing required field (e.g. an empty image alt).
+- Check the GitHub commit landed on `main`: every CMS save shows up as a
+  commit by the GitHub account you signed in with.
+- If the deploy is red, check your host's build log (e.g. the Cloudflare
+  Pages dashboard). Most failures are a missing required field (e.g. an
+  empty image alt).

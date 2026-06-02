@@ -2,7 +2,7 @@
 //   - content/open-mics-copy/index.json (singleton)
 //   - content/.generated/open-mics-index.json (collection, consolidated at prebuild)
 //
-// Falls back to content/feeds/open-mics.json when the Keystatic collection is
+// Falls back to content/feeds/open-mics.json when the CMS collection is
 // empty. This keeps the legacy Google Sheet sync useful as a one-time bulk
 // import path without overriding live admin edits.
 
@@ -38,7 +38,7 @@ export type OpenMic = {
 
 export type OpenMicsManifest = {
   fetchedAt: string;
-  source: "google-sheet" | "stub" | "keystatic";
+  source: "google-sheet" | "stub" | "cms";
   status: "ok" | "stale" | "error";
   errorMessage: string | null;
   mics: OpenMic[];
@@ -97,7 +97,7 @@ export const openMicsFeed: OpenMicsManifest =
   cmsMics.length > 0
     ? {
         fetchedAt: new Date().toISOString(),
-        source: "keystatic",
+        source: "cms",
         status: "ok",
         errorMessage: null,
         mics: cmsMics,

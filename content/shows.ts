@@ -56,7 +56,10 @@ type ShowsCopyShape = {
     posterAlt?: string;
     comedianHandle: string;
   };
+  // Current shape: { active, code, expiresAt, venueName }. Legacy shape:
+  // { discriminant, value }. Both resolve to a Presale or null.
   presale?:
+    | { active?: boolean; code?: string; expiresAt?: string; venueName?: string }
     | { discriminant: true; value: Presale }
     | { discriminant: false; value: null };
   topSections?: unknown;
@@ -87,8 +90,20 @@ export const featuredSpecial = {
   comedianHandle: copy.featuredSpecial.comedianHandle,
 };
 
-export const presale: Presale | null =
-  copy.presale && copy.presale.discriminant === true ? copy.presale.value : null;
+function resolvePresale(p: ShowsCopyShape["presale"]): Presale | null {
+  if (!p || typeof p !== "object") return null;
+  if ("discriminant" in p) {
+    return p.discriminant === true ? p.value : null;
+  }
+  if (p.active !== true) return null;
+  return {
+    code: p.code ?? "",
+    expiresAt: p.expiresAt ?? "",
+    venueName: p.venueName ?? "",
+  };
+}
+
+export const presale: Presale | null = resolvePresale(copy.presale);
 
 type RawManualShow = {
   id?: string;

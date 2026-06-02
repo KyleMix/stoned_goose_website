@@ -1,6 +1,6 @@
 # Editing the site
 
-This site has a built-in editor at `/keystatic`. You sign in with GitHub,
+This site has a built-in editor at `/admin`. You sign in with GitHub,
 change copy or images, click Save, and the live site rebuilds itself.
 No code, no FTP, no CMS dashboard somewhere else.
 
@@ -14,11 +14,9 @@ That's it. Nothing to install.
 
 ## How to open the editor
 
-- Production: `https://www.stonedgooseproductions.com/keystatic`
-- First visit: GitHub asks you to authorize Keystatic Cloud. Approve. You
+- Production: `https://www.stonedgooseproductions.com/admin`
+- First visit: GitHub asks you to authorize the editor. Approve. You
   only do this once per browser.
-
-If you bookmark `/admin` it will redirect to `/keystatic`. Either works.
 
 ## What you can edit
 
@@ -42,10 +40,10 @@ developer.
 
 ## What happens when you click Save
 
-1. Keystatic commits the change to GitHub as you. You'll see your name in
+1. The editor commits the change to GitHub as you. You'll see your name in
    the commit history.
-2. Vercel detects the push and starts a deploy. Build time is roughly
-   2 to 4 minutes.
+2. The host (Cloudflare Pages) detects the push and starts a deploy. Build
+   time is roughly 2 to 4 minutes.
 3. When the build finishes, the live site swaps over. There is no cache
    to clear and no "publish" button.
 
@@ -56,9 +54,9 @@ Refresh the public URL after a few minutes to see your change.
 It is possible to save something that breaks the build (a malformed URL,
 a required field left blank). In that case:
 
-- Vercel keeps the previous version live. The site does not go down.
-- You'll get an email from Vercel with a "Failed" status.
-- Open `/keystatic`, find the entry you edited, fix the value, save again.
+- The host keeps the previous version live. The site does not go down.
+- Your host shows the deploy as "Failed" (check its dashboard).
+- Open `/admin`, find the entry you edited, fix the value, save again.
   The next build picks it up.
 
 The most common trip-wires:
@@ -107,15 +105,15 @@ Practical tips:
 - Routes, page structure, components
 - Fonts, colors, accent rules
 - Anything in `app/`, `components/`, `lib/`
-- Feed configuration, env variables, Vercel settings
-- The Keystatic schema itself (the fields you see in the editor)
+- Feed configuration, env variables, host settings
+- The editor schema itself (the fields you see in the editor)
 
 If you need a new field on a page, ask a developer to add it to
-`keystatic.config.ts`. After that you can edit it forever in `/keystatic`.
+`public/admin/config.yml`. After that you can edit it forever in `/admin`.
 
 ## Two-person editing
 
-If two people edit the same entry at the same time, Keystatic will warn
+If two people edit the same entry at the same time, the editor will warn
 the second person at Save time and ask them to refresh. The first save
 wins. Resolve the conflict in the editor (re-apply your changes on top
 of the latest version) and save again.

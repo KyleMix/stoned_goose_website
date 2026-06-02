@@ -1,6 +1,6 @@
 // Pages shim. Reads the consolidated index produced at prebuild by
 // scripts/build-content-index.ts. Drafts are filtered out. Reserved-slug
-// collisions are asserted at module load so a misconfigured Keystatic entry
+// collisions are asserted at module load so a misconfigured page entry
 // fails the build instead of silently shadowing a real route.
 
 import pagesIndex from "./.generated/pages-index.json";
@@ -36,7 +36,7 @@ export const pages: Page[] = raw
       // mistake in CI rather than letting the misconfigured page silently
       // shadow a real route at runtime.
       throw new Error(
-        `Page slug "${slug}" collides with a reserved route. Rename the page in Keystatic.`,
+        `Page slug "${slug}" collides with a reserved route. Rename the page in the editor.`,
       );
     }
     return true;

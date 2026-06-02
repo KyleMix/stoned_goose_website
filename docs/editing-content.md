@@ -1,19 +1,18 @@
 # Editing content
 
-Everything copy-shaped on the site is edited through Keystatic at `/admin`
-(which redirects to `/keystatic`). Sign in with the GitHub account that
-has push access to this repo; each save commits to `main` and the host
-auto-deploys in a minute or two.
+Everything copy-shaped on the site is edited through Sveltia CMS at `/admin`.
+Sign in with the GitHub account that has push access to this repo; each save
+commits to `main` and the host auto-deploys in a minute or two.
 
 ## The fast path
 
 Open the live page you want to change. Add `?edit=1` to the URL once. A
 small "Edit" dock pins itself to the bottom-right corner and links to the
-exact Keystatic surfaces backing that page. The preference is sticky in
+exact CMS surfaces backing that page. The preference is sticky in
 `localStorage`, so it stays on until you load any page with `?edit=0`.
 
 The overlay is rendered for everyone (no server auth on a static site),
-but every link inside it lands on Keystatic, which only commits for users
+but every link inside it lands in the CMS, which only commits for users
 with push access to the repo.
 
 ## Page → admin map
@@ -22,7 +21,7 @@ with push access to the repo.
 |---|---|
 | `/` | Home page (singleton), Site config (singleton) |
 | `/shows` | Shows copy (singleton), Shows manual (collection) |
-| `/watch` | Watch copy (singleton), News posts (collection), TikTok videos (collection) |
+| `/watch` | Watch copy (singleton), TikTok videos (collection) |
 | `/roster` | Roster copy (singleton), Comedians (collection), Crew members (collection) |
 | `/open-mics` | Open mics copy (singleton), Open mics (collection) |
 | `/shop` | Shop copy (singleton), Shop products (collection) |
@@ -33,7 +32,7 @@ with push access to the repo.
 
 ## What lives where on disk
 
-Keystatic writes JSON; thin TypeScript shims in `content/*.ts` re-export
+The CMS writes JSON; thin TypeScript shims in `content/*.ts` re-export
 that JSON with the typed shape components import. You almost never edit
 the JSON directly. Files to know about:
 
@@ -46,8 +45,10 @@ the JSON directly. Files to know about:
 - `content/comedians/<slug>/index.json`, `content/members/<slug>/index.json`,
   `content/services/<slug>/index.json`, `content/pricing-tiers/<slug>/index.json`,
   `content/shows/<slug>/index.json`, `content/shop-products/<slug>/index.json`,
-  `content/open-mics/<slug>/index.json`, `content/news/<slug>/*`,
+  `content/open-mics/<slug>/index.json`,
   `content/tiktok/<slug>/index.json` ← collection items
+- `content/news/<slug>/*` ← news posts (not yet wired into the CMS; add via
+  GitHub for now)
 
 The shims in `content/*.ts` (e.g. `home.ts`, `site.ts`) wrap each file
 with the typed shape components have always imported. Don't move data
@@ -69,9 +70,9 @@ out of these locations or the shims break.
   `content/feeds/`. They're rewritten by scripts under `scripts/`. The
   admin doesn't touch them. Run `npm run sync` (or the relevant
   `feeds:*` / `sync:*` script) to refresh.
-- Image uploads go through Keystatic, then a GitHub Action
-  (`.github/workflows/optimize-images.yml`) auto-resizes them. Just paste
+- Image uploads go through the CMS, then a GitHub Action
+  (`.github/workflows/optimize-images.yml`) auto-resizes them. Just pick
   the file; the action handles the rest.
-- Truly new shapes (a brand-new collection, a new field type) are a code
-  change in `keystatic.config.ts`. Add the schema, run a build to confirm
+- Truly new shapes (a brand-new collection, a new field type) are a config
+  change in `public/admin/config.yml`. Add the field, run a build to confirm
   the shim still types, commit.
