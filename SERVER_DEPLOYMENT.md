@@ -392,10 +392,11 @@ The config maps every editable area to the JSON under `content/`. Notes:
 
 - **Singletons** (site config, page copy) live under "Site copy".
 - **Collections** (Comedians, Crew members, Shows, Open mics, Services,
-  Pricing tiers, Shop products, Pages, TikTok videos) each manage one entry
-  per file.
-- **News** posts are not yet wired into the CMS (markdoc format); add them
-  via GitHub for now.
+  Pricing tiers, Shop products, Pages, TikTok videos, News posts) each manage
+  one entry per file.
+- **News** posts are markdown (frontmatter + body). The body is stored for a
+  future detail page but is not displayed yet; the card uses title, summary,
+  and image.
 - The **no em dashes** house rule is enforced with a pattern validator on
   long-form fields.
 

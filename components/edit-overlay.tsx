@@ -41,6 +41,7 @@ function targetsForPath(pathname: string): AdminTarget[] {
   if (path === "/watch") {
     return [
       { label: "Watch copy", href: "/admin/#/collections/site_content/entries/watch_copy", hint: "Heading + top YouTube videos" },
+      { label: "News posts", href: "/admin/#/collections/news" },
       { label: "TikTok videos", href: "/admin/#/collections/tiktok" },
     ];
   }

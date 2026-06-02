@@ -647,3 +647,30 @@ collections:
       - { name: poster, label: Poster, widget: image, required: false, media_folder: /public/images/tiktok, public_folder: '' }
       - { name: posterAlt, label: Poster alt text, widget: string, required: false }
       - { name: draft, label: Draft (hidden from /watch), widget: boolean, default: false }
+
+  # ------------------------------------------------------------------ #
+  # News posts. Render as cards (title + summary + image) on /watch and #
+  # the home Latest strip. The markdown body is stored for a future     #
+  # detail page but is not displayed yet.                               #
+  # ------------------------------------------------------------------ #
+  - name: news
+    label: News posts
+    label_singular: News post
+    folder: content/news
+    path: '{{slug}}/index'
+    extension: mdoc
+    format: frontmatter
+    identifier_field: title
+    slug: '{{fields.title}}'
+    create: true
+    summary: '{{fields.title}}'
+    fields:
+      - { name: title, label: Title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: date, label: Publish date, widget: datetime }
+      - { name: summary, label: Summary (shown on the card), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: image, label: Hero image, widget: image, required: false, media_folder: /public/images/news, public_folder: /images/news }
+      - { name: imageAlt, label: Hero image alt text, widget: string, required: false }
+      - { name: tags, label: Tags, widget: list, required: false, field: { name: tag, label: Tag, widget: string } }
+      - { name: featured, label: Featured (pinned in the Latest strip), widget: boolean, default: false }
+      - { name: draft, label: Draft (hidden from the site), widget: boolean, default: false }
+      - { name: body, label: Body (stored for a future detail page; not shown yet), widget: markdown, required: false }
