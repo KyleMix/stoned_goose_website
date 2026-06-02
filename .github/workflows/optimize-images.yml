@@ -1,4 +1,4 @@
-# Auto-optimize images committed by the Keystatic admin (or any other
+# Auto-optimize images committed by the CMS admin (or any other
 # source). Mobile uploads from phone cameras commit straight to GitHub and
 # can be 6 MB+. This workflow resizes them in place and pushes the
 # optimized version back, so the host's build sees the lighter file.

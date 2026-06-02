@@ -1,11 +1,11 @@
 "use client";
 
 // Floating "Edit this page" dock. Owner-only affordance that connects what
-// you're looking at on the live site to the matching Keystatic admin
-// surfaces. Hidden by default. Opt in once with ?edit=1 (or ?edit=0 to
-// turn it off); the preference sticks in localStorage so deep links survive
-// refreshes. Keystatic itself enforces auth, so no harm if the overlay
-// leaks to a stranger.
+// you're looking at on the live site to the matching admin surfaces in the
+// Sveltia CMS at /admin. Hidden by default. Opt in once with ?edit=1 (or
+// ?edit=0 to turn it off); the preference sticks in localStorage so deep
+// links survive refreshes. The CMS enforces GitHub auth, so no harm if the
+// overlay leaks to a stranger.
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -17,61 +17,63 @@ type AdminTarget = {
   hint?: string;
 };
 
-// Map a site pathname to the Keystatic admin destinations that cover the
-// content rendered there. Pages with multiple sources list each one in
-// reading order so the first link is the most "obvious" thing to edit.
+// Map a site pathname to the CMS destinations that cover the content rendered
+// there. Pages with multiple sources list each one in reading order so the
+// first link is the most "obvious" thing to edit. Hrefs use the Sveltia /
+// Decap hash-router scheme: a file entry is
+// /admin/#/collections/<collection>/entries/<file>, a folder collection is
+// /admin/#/collections/<collection>.
 function targetsForPath(pathname: string): AdminTarget[] {
   const path = pathname.replace(/\/+$/, "") || "/";
 
   if (path === "/") {
     return [
-      { label: "Home page", href: "/keystatic/singleton/home", hint: "Hero, marquee, bumpers, mission" },
-      { label: "Site config", href: "/keystatic/singleton/site", hint: "Brand, contact, social, nav, footer" },
+      { label: "Home page", href: "/admin/#/collections/site_content/entries/home", hint: "Hero, marquee, bumpers, mission" },
+      { label: "Site config", href: "/admin/#/collections/site_content/entries/site", hint: "Brand, contact, social, nav, footer" },
     ];
   }
   if (path === "/shows") {
     return [
-      { label: "Shows copy", href: "/keystatic/singleton/showsCopy", hint: "Heading, featured special, presale" },
-      { label: "Shows", href: "/keystatic/collection/showsManual", hint: "Manual show entries" },
+      { label: "Shows copy", href: "/admin/#/collections/site_content/entries/shows_copy", hint: "Heading, featured special, presale" },
+      { label: "Shows", href: "/admin/#/collections/shows", hint: "Manual show entries" },
     ];
   }
   if (path === "/watch") {
     return [
-      { label: "Watch copy", href: "/keystatic/singleton/watchCopy", hint: "Heading + top YouTube videos" },
-      { label: "News posts", href: "/keystatic/collection/news" },
-      { label: "TikTok videos", href: "/keystatic/collection/tiktokVideos" },
+      { label: "Watch copy", href: "/admin/#/collections/site_content/entries/watch_copy", hint: "Heading + top YouTube videos" },
+      { label: "TikTok videos", href: "/admin/#/collections/tiktok" },
     ];
   }
   if (path === "/roster") {
     return [
-      { label: "Roster copy", href: "/keystatic/singleton/rosterCopy", hint: "Comedians intro + About section + pillars" },
-      { label: "Comedians", href: "/keystatic/collection/comedians" },
-      { label: "Crew members", href: "/keystatic/collection/members" },
+      { label: "Roster copy", href: "/admin/#/collections/site_content/entries/roster_copy", hint: "Comedians intro + About section + pillars" },
+      { label: "Comedians", href: "/admin/#/collections/comedians" },
+      { label: "Crew members", href: "/admin/#/collections/members" },
     ];
   }
   if (path === "/open-mics") {
     return [
-      { label: "Open mics copy", href: "/keystatic/singleton/openMicsCopy" },
-      { label: "Open mics", href: "/keystatic/collection/openMics" },
+      { label: "Open mics copy", href: "/admin/#/collections/site_content/entries/open_mics_copy" },
+      { label: "Open mics", href: "/admin/#/collections/open_mics" },
     ];
   }
   if (path === "/shop") {
     return [
-      { label: "Shop copy", href: "/keystatic/singleton/shopCopy" },
-      { label: "Shop products", href: "/keystatic/collection/shopManual" },
+      { label: "Shop copy", href: "/admin/#/collections/site_content/entries/shop_copy" },
+      { label: "Shop products", href: "/admin/#/collections/shop_products" },
     ];
   }
   if (path === "/contact") {
     return [
-      { label: "Contact page", href: "/keystatic/singleton/contactCopy" },
-      { label: "Site contact info", href: "/keystatic/singleton/site", hint: "Email, phone, address" },
+      { label: "Contact page", href: "/admin/#/collections/site_content/entries/contact_copy" },
+      { label: "Site contact info", href: "/admin/#/collections/site_content/entries/site", hint: "Email, phone, address" },
     ];
   }
   if (path === "/book") {
     return [
-      { label: "Services", href: "/keystatic/collection/services" },
-      { label: "Pricing tiers", href: "/keystatic/collection/pricingTiers" },
-      { label: "Sponsorships", href: "/keystatic/singleton/sponsorships" },
+      { label: "Services", href: "/admin/#/collections/services" },
+      { label: "Pricing tiers", href: "/admin/#/collections/pricing_tiers" },
+      { label: "Sponsorships", href: "/admin/#/collections/site_content/entries/sponsorships" },
     ];
   }
   if (path.startsWith("/book/")) {
@@ -79,15 +81,15 @@ function targetsForPath(pathname: string): AdminTarget[] {
     return [
       {
         label: "This service",
-        href: `/keystatic/collection/services/item/${encodeURIComponent(slug)}`,
+        href: `/admin/#/collections/services/entries/${encodeURIComponent(slug)}`,
         hint: slug,
       },
-      { label: "All services", href: "/keystatic/collection/services" },
+      { label: "All services", href: "/admin/#/collections/services" },
     ];
   }
 
   return [
-    { label: "Open admin", href: "/keystatic", hint: "No direct match for this route" },
+    { label: "Open editor", href: "/admin/", hint: "No direct match for this route" },
   ];
 }
 
@@ -116,7 +118,7 @@ function EditOverlayInner() {
   }, [search]);
 
   if (!enabled) return null;
-  if (pathname.startsWith("/keystatic")) return null;
+  if (pathname.startsWith("/admin")) return null;
 
   const targets = targetsForPath(pathname);
 

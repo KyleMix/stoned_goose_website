@@ -25,7 +25,6 @@ services:
         NEXT_PUBLIC_PLAUSIBLE_DOMAIN: ${NEXT_PUBLIC_PLAUSIBLE_DOMAIN:-}
         NEXT_PUBLIC_GSC_VERIFICATION: ${NEXT_PUBLIC_GSC_VERIFICATION:-}
         NEXT_PUBLIC_BING_VERIFICATION: ${NEXT_PUBLIC_BING_VERIFICATION:-}
-        NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT: ${NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT:-}
     image: stoned-goose-site:latest
     container_name: stoned-goose-site
     restart: unless-stopped

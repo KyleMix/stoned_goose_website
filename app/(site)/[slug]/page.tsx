@@ -5,9 +5,9 @@ import { site } from "@/content/site";
 import { SectionRenderer } from "@/components/section-renderer";
 
 // Editor-created pages live at top-level URLs (/about, /faq, etc.).
-// Slug collisions with hard-coded routes are blocked in two places:
-//   - keystatic.config.ts validates the slug field on save
-//   - content/pages.ts throws at build time if a stale slug slipped through
+// Slug collisions with hard-coded routes are caught at build time:
+//   - content/pages.ts throws if a reserved slug slipped through
+//     (lib/reserved-slugs.ts is the source of truth)
 // Next.js App Router resolves static segments before dynamic ones, so
 // hard-coded routes like /shows continue to win over this catch-all.
 

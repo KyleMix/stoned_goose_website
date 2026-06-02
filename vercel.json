@@ -1,11 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    { "source": "/keystatic/:path+", "destination": "/keystatic" }
-  ],
   "redirects": [
-    { "source": "/admin", "destination": "/keystatic", "permanent": false },
-    { "source": "/admin/:path*", "destination": "/keystatic/:path*", "permanent": false },
     { "source": "/about", "destination": "/roster", "permanent": true },
     { "source": "/members", "destination": "/roster", "permanent": true },
     { "source": "/comedians", "destination": "/roster", "permanent": true },

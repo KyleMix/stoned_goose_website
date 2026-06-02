@@ -10,6 +10,9 @@
     "comedianHandle": "https://www.instagram.com/logandid911/"
   },
   "presale": {
-    "discriminant": false
+    "active": false,
+    "code": "",
+    "expiresAt": "",
+    "venueName": ""
   }
 }

@@ -1,5 +1,12 @@
 # Admin Page Plan
 
+> **Historical note.** This document planned the original Keystatic-based
+> admin. The site has since migrated to **Sveltia CMS** (static, git-based,
+> at `/admin`). For the current editor and its setup, see
+> [`SERVER_DEPLOYMENT.md`](SERVER_DEPLOYMENT.md) ("Editing with Sveltia CMS"),
+> [`docs/EDITING.md`](docs/EDITING.md), and `public/admin/config.yml`. The
+> content below is kept for history and no longer reflects the live setup.
+
 ## Discovery Findings
 
 No existing admin or CMS setup in the repo. Confirmed by:

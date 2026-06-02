@@ -1,6 +1,10 @@
 // Shared types + normalisation for the page-block system.
 //
-// Keystatic writes each block as { discriminant: "<type>", value: {...} }.
+// Two on-disk shapes are accepted so the data survives the CMS migration:
+//   - Sveltia / Decap variable-type lists write each block flat, with the
+//     type under a `type` key: { type: "hero", headline: "...", ... }.
+//   - The previous editor wrote each block as { discriminant: "<type>",
+//     value: {...} }. Older entries still parse.
 // The shim layer reads the JSON, normalises optional fields, and returns a
 // typed Block union for the section renderer to switch over.
 
@@ -75,8 +79,14 @@ export type Block =
   | ServicesOverviewBlock
   | ShopStripBlock;
 
-// Raw shape Keystatic writes. value is the discriminated union per type.
-type RawBlock = { discriminant: string; value: unknown };
+// Raw shapes accepted. Flat: { type, ...fields } (Sveltia/Decap). Legacy:
+// { discriminant, value } where value is the per-type field object.
+type RawBlock = {
+  type?: string;
+  discriminant?: string;
+  value?: unknown;
+  [key: string]: unknown;
+};
 
 function s(v: unknown, fallback = ""): string {
   return typeof v === "string" ? v : fallback;
@@ -91,8 +101,19 @@ export function normaliseBlocks(raw: unknown): Block[] {
   const out: Block[] = [];
   for (const item of raw as RawBlock[]) {
     if (!item || typeof item !== "object") continue;
-    const d = (item as RawBlock).discriminant;
-    const v = ((item as RawBlock).value ?? {}) as Record<string, unknown>;
+    // Flat shape keeps fields as siblings of `type`; legacy shape nests them
+    // under `value` with the type in `discriminant`.
+    let d: string | undefined;
+    let v: Record<string, unknown>;
+    if (typeof item.type === "string") {
+      d = item.type;
+      v = item as Record<string, unknown>;
+    } else if (typeof item.discriminant === "string") {
+      d = item.discriminant;
+      v = (item.value ?? {}) as Record<string, unknown>;
+    } else {
+      continue;
+    }
     switch (d) {
       case "hero":
         out.push({

@@ -88,6 +88,9 @@
     ]
   },
   "mission": {
-    "discriminant": false
+    "show": false,
+    "eyebrow": "",
+    "heading": "",
+    "body": ""
   }
 }

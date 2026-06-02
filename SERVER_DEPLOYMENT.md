@@ -6,17 +6,58 @@ sitemap, OG images, and the meta-refresh stubs for old URLs. There is no
 Node.js runtime in production. Any web server that can serve a directory
 of files will work.
 
-This document walks through the four ways to put it on your own server,
-from "fastest" to "most control."
+**Recommended: [Cloudflare Pages](#0-cloudflare-pages-recommended).** It is
+free for commercial use, rebuilds and publishes automatically on every push
+to `main`, natively honors the `public/_redirects` and `public/_headers`
+files in this repo, and pairs cleanly with the Sveltia CMS so edits go live
+on their own. Choose a self-managed server below only if you specifically
+want to host it yourself.
+
+This document walks through Cloudflare Pages first, then the four ways to put
+it on your own server, from "fastest" to "most control."
 
 | Option | When to pick it | TLS | Effort |
 |---|---|---|---|
-| [Docker Compose + Caddy](#1-docker-compose--caddy-recommended) | Single VPS, you want auto-TLS in one shot | Auto | Lowest |
+| [Cloudflare Pages](#0-cloudflare-pages-recommended) | You want auto-deploy on push and a free, zero-maintenance host | Auto | Lowest |
+| [Docker Compose + Caddy](#1-docker-compose--caddy) | Single VPS, you want auto-TLS in one shot | Auto | Low |
 | [Docker only](#2-docker-only-behind-an-existing-proxy) | Already have nginx/Cloudflare in front | Front it | Low |
 | [Host nginx + rsync](#3-host-nginx--rsync-no-docker) | Bare-metal or shared host with nginx | certbot | Medium |
 | [Any other static host](#4-any-other-static-host) | S3, GCS, Azure Blob, Apache, Caddy without Docker, etc. | Varies | Varies |
 
-All four serve the same `/out` directory. Pick one.
+All serve the same `/out` directory. Pick one.
+
+---
+
+## 0. Cloudflare Pages (recommended)
+
+Connect the GitHub repo once and Cloudflare rebuilds and publishes on every
+push. The Sveltia CMS commits edits to `main`, so saving in the editor
+publishes the site automatically a minute or two later. No zip, no server.
+
+### Create the project
+
+1. In the Cloudflare dashboard: **Workers & Pages -> Create -> Pages ->
+   Connect to Git**. Pick `KyleMix/stoned_goose_website`, branch `main`.
+2. Build settings:
+   - **Framework preset:** None (this is a plain static export).
+   - **Build command:** `npm run build`
+   - **Build output directory:** `out`
+   - **Environment variables:** `NODE_VERSION = 20`. The feed/sync scripts in
+     `prebuild` tolerate missing API tokens and fall back to the committed
+     JSON, so no secrets are required for a first deploy. Add the optional
+     `NEXT_PUBLIC_*` analytics vars from [`.env.example`](./.env.example) if
+     you want them.
+3. Deploy. You get a `*.pages.dev` URL. Add your custom domain under the
+   project's **Custom domains** tab and point DNS as Cloudflare instructs.
+
+Cloudflare Pages applies `public/_redirects` (legacy slug redirects) and
+`public/_headers` (OG image MIME) automatically, so the redirects and social
+cards behave the same as everywhere else.
+
+### Publish workflow
+
+Push to `main` (directly, or via a CMS save) and Cloudflare rebuilds. That is
+the whole loop. To edit content in a browser, set up the CMS below.
 
 ---
 
@@ -33,14 +74,15 @@ All four serve the same `/out` directory. Pick one.
   - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (optional, enables analytics)
   - `NEXT_PUBLIC_GSC_VERIFICATION` (optional)
   - `NEXT_PUBLIC_BING_VERIFICATION` (optional)
-  - `NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT` (required only if `/admin` is used)
 
 `NEXT_PUBLIC_*` values are baked in at build time, so they must be set
-before `npm run build` runs.
+before `npm run build` runs. The `/admin` editor needs no build-time env var;
+its auth is configured at runtime in `public/admin/config.yml` (see
+[Editing with Sveltia CMS](#editing-with-sveltia-cms)).
 
 ---
 
-## 1. Docker Compose + Caddy (recommended)
+## 1. Docker Compose + Caddy
 
 One command on a clean Ubuntu/Debian VPS gets you HTTPS, redirects, and a
 restart-on-crash setup. Caddy issues a Let's Encrypt cert on first start
@@ -132,7 +174,6 @@ Build args are how `NEXT_PUBLIC_*` values get into the bundle:
 ```bash
 docker build \
   --build-arg NEXT_PUBLIC_PLAUSIBLE_DOMAIN=stonedgooseproductions.com \
-  --build-arg NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT=team/project \
   -t stoned-goose-site:latest .
 ```
 
@@ -294,12 +335,79 @@ the legacy slugs, and `image/png` on the OG endpoint.
 
 ---
 
+## Editing with Sveltia CMS
+
+The editor lives at `/admin`. It is [Sveltia CMS](https://github.com/sveltia/sveltia-cms),
+a static, git-based visual editor: `public/admin/index.html` loads it from a
+CDN and `public/admin/config.yml` describes the content. There is no backend
+server. Saves are committed straight to GitHub on `main`, and the host (any
+of the options above) rebuilds and publishes. On Cloudflare Pages the change
+is live in a minute or two with no further action.
+
+Because the site is a static export, GitHub login needs a tiny OAuth relay.
+This is a one-time setup.
+
+### 1. Register a GitHub OAuth App
+
+GitHub -> **Settings -> Developer settings -> OAuth Apps -> New OAuth App**:
+
+- **Application name:** Stoned Goose CMS (anything).
+- **Homepage URL:** `https://www.stonedgooseproductions.com`
+- **Authorization callback URL:** `https://<your-worker-subdomain>.workers.dev/callback`
+  (you set this Worker up in step 2; come back and paste the real URL).
+
+Note the **Client ID** and generate a **Client secret**.
+
+### 2. Deploy the auth Worker
+
+Sveltia provides a ready-made Cloudflare Worker for the OAuth handshake:
+[`sveltia/sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth).
+Deploy it to your Cloudflare account (one click from its README, or
+`wrangler deploy`). Set these Worker secrets/variables:
+
+- `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` from step 1.
+- `ALLOWED_DOMAINS` = `www.stonedgooseproductions.com` (and `*.pages.dev` if
+  you want to use the preview URL).
+
+Copy the deployed Worker URL (e.g. `https://sveltia-cms-auth.<you>.workers.dev`)
+and finish the OAuth App callback URL in step 1 as `<that URL>/callback`.
+
+### 3. Point the CMS at the Worker
+
+In [`public/admin/config.yml`](./public/admin/config.yml), set:
+
+```yaml
+backend:
+  name: github
+  repo: KyleMix/stoned_goose_website
+  branch: main
+  base_url: https://sveltia-cms-auth.<you>.workers.dev
+```
+
+Commit and deploy. Visit `/admin`, click "Sign in with GitHub", and edit.
+Make a trivial change, save, and confirm the commit lands on `main` and the
+site redeploys.
+
+The config maps every editable area to the JSON under `content/`. Notes:
+
+- **Singletons** (site config, page copy) live under "Site copy".
+- **Collections** (Comedians, Crew members, Shows, Open mics, Services,
+  Pricing tiers, Shop products, Pages, TikTok videos) each manage one entry
+  per file.
+- **News** posts are not yet wired into the CMS (markdoc format); add them
+  via GitHub for now.
+- The **no em dashes** house rule is enforced with a pattern validator on
+  long-form fields.
+
+---
+
 ## Troubleshooting
 
 | Symptom | Cause | Fix |
 |---|---|---|
 | `npm run build` fails on `sharp` / `plaiceholder` | Glibc too old on the build machine | Use Node 20 from the official image, not Alpine on older hosts. The Dockerfile uses `node:20-bookworm-slim`. |
-| `/admin` 404s | `NEXT_PUBLIC_KEYSTATIC_CLOUD_PROJECT` not set at build time | Set the build arg / .env before rebuilding. |
+| `/admin` loads but login fails | `backend.base_url` in `public/admin/config.yml` is wrong, or the GitHub OAuth callback URL does not match the Worker | Re-check the Worker URL and the OAuth App callback (`<worker>/callback`); confirm `ALLOWED_DOMAINS` includes your domain. |
+| CMS save fails with a permissions error | The signed-in GitHub user lacks write access to the repo | Sign in with an account that can push to `KyleMix/stoned_goose_website`. |
 | Old URLs hit 404 instead of redirecting | Web server not consulting `_redirects` / `_headers` | Use one of the bundled nginx / Caddy configs, or replicate the rules. The meta-refresh stubs in `public/<slug>/index.html` still bounce users; only the `Location` header is missing. |
 | OG cards render as broken images on Slack/Discord | `Content-Type` is `application/octet-stream` for `/opengraph-image` | Force `image/png` on `/*/opengraph-image` (see the configs). |
 | Caddy can't get a cert | DNS not propagated yet, or ports 80/443 not reachable | `dig +short YOUR_DOMAIN`, then `sudo ss -lntp | grep ':80\|:443'`. |

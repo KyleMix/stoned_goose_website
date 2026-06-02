@@ -6,7 +6,7 @@ import { TextEffect } from "@/components/text-effect";
 import type { HeroBlock as HeroBlockData } from "@/lib/blocks";
 
 // Editor-configurable hero. Visually mirrors the home hero but takes its copy
-// and CTAs from a Keystatic block instead of the site singleton, so the same
+// and CTAs from a page block instead of the site singleton, so the same
 // component can drop into any composed page.
 export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug: string }) {
   const headline = block.headline.trim();

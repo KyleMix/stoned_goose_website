@@ -1,0 +1,649 @@
+# Sveltia CMS configuration (Decap-compatible).
+#
+# This drives the visual editor at /admin. It reads and writes the same JSON
+# files under content/ that the typed shims in content/*.ts import, so an edit
+# here is committed to GitHub and picked up by the next build.
+#
+# Setup steps live in SERVER_DEPLOYMENT.md ("Editing with Sveltia CMS"):
+#   1. Register a GitHub OAuth App.
+#   2. Deploy the free sveltia-cms-auth Cloudflare Worker.
+#   3. Put the Worker URL in `backend.base_url` below.
+#
+# House rule reminder: no em dashes. Long-form fields enforce it with a
+# pattern validator that rejects the em dash codepoint.
+
+backend:
+  name: github
+  repo: KyleMix/stoned_goose_website
+  branch: main
+  # The GitHub OAuth relay. Replace with your deployed sveltia-cms-auth Worker
+  # URL (no trailing slash). Until then, login will fail.
+  base_url: https://REPLACE-WITH-YOUR-AUTH-WORKER.workers.dev
+
+site_url: https://www.stonedgooseproductions.com
+
+# Where uploaded media lands by default. Most image fields override this to
+# match the directory their shim expects.
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  # ------------------------------------------------------------------ #
+  # Site copy: the singletons. Each is one JSON file.                   #
+  # ------------------------------------------------------------------ #
+  - name: site_content
+    label: Site copy
+    delete: false
+    editor:
+      preview: false
+    files:
+      # ---------- Home page ----------
+      - name: home
+        label: Home page
+        file: content/home/index.json
+        fields:
+          - name: hero
+            label: Hero
+            widget: object
+            fields:
+              - { name: eyebrow, label: Status banner (eyebrow), widget: string, required: false }
+              - { name: italicLine, label: Italic line (right column), widget: string, required: false }
+              - { name: headline, label: Headline, widget: string }
+              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
+              - name: primary
+                label: Primary CTA
+                widget: object
+                fields:
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: body, label: Body, widget: text, required: false }
+                  - { name: label, label: Button label, widget: string, required: false }
+                  - { name: href, label: Button href, widget: string, required: false }
+              - name: secondary
+                label: Secondary link
+                widget: object
+                fields:
+                  - { name: title, label: Title, widget: string, required: false }
+                  - { name: body, label: Body, widget: text, required: false }
+                  - { name: label, label: Link label, widget: string, required: false }
+                  - { name: href, label: Link href, widget: string, required: false }
+              - name: tertiary
+                label: Tertiary links
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: Label, widget: string }
+                  - { name: href, label: Href, widget: string }
+          - name: marqueeWords
+            label: Marquee items (no invented stats)
+            widget: list
+            required: false
+            field: { name: word, label: Word or phrase, widget: string }
+          - name: bumpers
+            label: Rotating bumpers
+            widget: object
+            fields:
+              - { name: clarification, label: Clarification slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body (use \n for a line break), widget: text }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: aside, label: Aside slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: outro, label: Outro slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text }, { name: footnote, label: Footnote, widget: string, required: false }] }
+          - name: mission
+            label: Mission strip
+            widget: object
+            required: false
+            fields:
+              - { name: show, label: Show mission strip, widget: boolean, default: false }
+              - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: topSections
+            label: Top sections (below the hero, above shows)
+            widget: list
+            required: false
+            types: &section_types
+              - name: hero
+                label: Hero
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+                  - { name: headline, label: Headline, widget: string, required: false }
+                  - { name: italicLine, label: Italic tagline, widget: string, required: false }
+                  - { name: subhead, label: Subhead, widget: text, required: false }
+                  - { name: primaryCtaLabel, label: Primary button label, widget: string, required: false }
+                  - { name: primaryCtaHref, label: Primary button href, widget: string, required: false }
+                  - { name: secondaryCtaLabel, label: Secondary link label, widget: string, required: false }
+                  - { name: secondaryCtaHref, label: Secondary link href, widget: string, required: false }
+              - name: richText
+                label: Rich text
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+                  - { name: heading, label: Heading, widget: string, required: false }
+                  - { name: body, label: Body (paragraphs separated by a blank line), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - name: imageCaption
+                label: Image with caption
+                widget: object
+                fields:
+                  - { name: image, label: Image, widget: image, media_folder: /public/images/pages, public_folder: /images/pages }
+                  - { name: alt, label: Alt text, widget: string }
+                  - { name: caption, label: Caption, widget: string, required: false }
+                  - { name: aspect, label: Aspect ratio, widget: select, default: 16x9, options: [{ label: 'Wide (16:9)', value: 16x9 }, { label: 'Portrait (4:5)', value: 4x5 }, { label: 'Square (1:1)', value: 1x1 }] }
+              - name: videoEmbed
+                label: Video embed
+                widget: object
+                fields:
+                  - { name: provider, label: Provider, widget: select, default: youtube, options: [youtube, tiktok, instagram] }
+                  - { name: url, label: Video URL or 11-char id, widget: string }
+                  - { name: caption, label: Caption, widget: string, required: false }
+              - name: ctaStrip
+                label: Call-to-action strip
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: subhead, label: Subhead, widget: text, required: false }
+                  - { name: primaryCtaLabel, label: Button label, widget: string, required: false }
+                  - { name: primaryCtaHref, label: Button href, widget: string, required: false }
+                  - { name: note, label: Small note under button, widget: string, required: false }
+              - name: mailingList
+                label: Mailing list capture
+                widget: object
+                fields:
+                  - { name: tag, label: Analytics tag, widget: string, default: page }
+              - name: upcomingShows
+                label: Upcoming shows list (auto)
+                widget: object
+                fields:
+                  - { name: note, label: This block auto-populates from Shows, widget: string, required: false }
+              - name: latestSocial
+                label: Latest social strip
+                widget: object
+                fields:
+                  - { name: limit, label: How many items, widget: number, default: 6, value_type: int, min: 1, max: 12 }
+              - name: pressStrip
+                label: Press quote strip (auto)
+                widget: object
+                fields:
+                  - { name: note, label: This block auto-populates from Site copy press quotes, widget: string, required: false }
+              - name: rosterTeaser
+                label: Roster grid teaser
+                widget: object
+                fields:
+                  - { name: limit, label: How many comedians, widget: number, default: 8, value_type: int, min: 1, max: 16 }
+              - name: openMicTeaser
+                label: Open mic teaser (auto)
+                widget: object
+                fields:
+                  - { name: note, label: This block auto-populates from Open mics, widget: string, required: false }
+              - name: servicesOverview
+                label: Services overview (auto)
+                widget: object
+                fields:
+                  - { name: note, label: This block auto-populates from Services, widget: string, required: false }
+              - name: shopStrip
+                label: Shop strip
+                widget: object
+                fields:
+                  - { name: limit, label: How many products, widget: number, default: 3, value_type: int, min: 1, max: 8 }
+          - name: bottomSections
+            label: Bottom sections (below mailing list, above the outro)
+            widget: list
+            required: false
+            types: *section_types
+
+      # ---------- Site config ----------
+      - name: site
+        label: Site config
+        file: content/site/index.json
+        fields:
+          - { name: name, label: Brand name, widget: string }
+          - { name: shortName, label: Short name, widget: string }
+          - { name: tagline, label: Tagline, widget: string, required: false }
+          - { name: url, label: Site URL, widget: string, required: false }
+          - { name: description, label: Description, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: contact
+            label: Contact
+            widget: object
+            fields:
+              - { name: email, label: Email, widget: string }
+              - { name: phone, label: Phone (display), widget: string, required: false }
+              - { name: phoneTel, label: Phone (E.164 with +), widget: string, required: false }
+              - { name: whatsapp, label: WhatsApp (E.164 no +), widget: string, required: false }
+              - { name: smsEnabled, label: SMS enabled, widget: boolean, default: true }
+              - { name: address, label: Address (single line), widget: string, required: false }
+              - { name: locality, label: Locality (city), widget: string, required: false }
+              - { name: region, label: Region (state code), widget: string, required: false }
+          - name: social
+            label: Social
+            widget: object
+            fields:
+              - { name: instagram, label: Instagram, widget: string, required: false }
+              - { name: facebook, label: Facebook, widget: string, required: false }
+              - { name: tiktok, label: TikTok, widget: string, required: false }
+              - { name: youtube, label: YouTube, widget: string, required: false }
+              - { name: patreon, label: Patreon, widget: string, required: false }
+              - { name: eventbrite, label: Eventbrite, widget: string, required: false }
+              - { name: fourthwall, label: Fourthwall, widget: string, required: false }
+              - { name: youtubeChannelId, label: YouTube channel ID (UC...), widget: string, required: false }
+              - { name: facebookPageId, label: Facebook page ID (numeric), widget: string, required: false }
+          - name: podcasts
+            label: Podcasts (future slot)
+            widget: object
+            required: false
+            fields:
+              - { name: spotifyShowId, label: Spotify show id, widget: string, required: false }
+              - { name: applePodcastsId, label: Apple Podcasts id, widget: string, required: false }
+              - { name: rssUrl, label: RSS URL, widget: string, required: false }
+          - name: serviceAreas
+            label: Service areas
+            widget: list
+            required: false
+            field: { name: area, label: Area, widget: string }
+          - name: press
+            label: Press quotes (real only)
+            widget: list
+            required: false
+            fields:
+              - { name: quote, label: Quote, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: outlet, label: Outlet, widget: string }
+              - { name: url, label: URL, widget: string, required: false }
+          - name: nav
+            label: Primary nav
+            widget: list
+            required: false
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: href, label: Href, widget: string }
+          - name: footer
+            label: Footer
+            widget: object
+            fields:
+              - { name: locality, label: Location line, widget: string, required: false }
+              - { name: creditLine, label: Credit line, widget: string, required: false }
+              - { name: creditHref, label: Credit link, widget: string, required: false }
+              - name: columns
+                label: Footer columns
+                widget: list
+                required: false
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - name: items
+                    label: Items
+                    widget: list
+                    fields:
+                      - { name: label, label: Label, widget: string }
+                      - { name: href, label: Href, widget: string }
+          - name: seo
+            label: SEO defaults
+            widget: object
+            required: false
+            fields:
+              - name: keywords
+                label: Default meta keywords
+                widget: list
+                required: false
+                field: { name: keyword, label: Keyword, widget: string }
+              - { name: defaultOgImage, label: Default Open Graph image, widget: image, required: false, media_folder: /public/brand, public_folder: /brand }
+
+      # ---------- Shows copy ----------
+      - name: shows_copy
+        label: Shows copy
+        file: content/shows-copy/index.json
+        fields:
+          - { name: heading, label: Heading, widget: string }
+          - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: emptyState, label: Empty state copy, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: featuredSpecial
+            label: Featured special
+            widget: object
+            fields:
+              - { name: title, label: Title, widget: string, required: false }
+              - { name: subtitle, label: Subtitle, widget: string, required: false }
+              - { name: blurb, label: Blurb, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: videoUrl, label: YouTube URL or 11-char id, widget: string, required: false }
+              - { name: poster, label: Poster, widget: image, required: false, media_folder: /public/images/comedians, public_folder: /images/comedians }
+              - { name: posterAlt, label: Poster alt text, widget: string, required: false }
+              - { name: comedianHandle, label: Featured comic Instagram URL, widget: string, required: false }
+          - name: presale
+            label: Presale
+            widget: object
+            required: false
+            fields:
+              - { name: active, label: Active presale, widget: boolean, default: false }
+              - { name: code, label: Presale code, widget: string, required: false }
+              - { name: expiresAt, label: Expires at, widget: datetime, required: false }
+              - { name: venueName, label: Venue name, widget: string, required: false }
+          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+
+      # ---------- Watch copy ----------
+      - name: watch_copy
+        label: Watch copy
+        file: content/watch-copy/index.json
+        fields:
+          - { name: heading, label: Heading, widget: string }
+          - { name: subhead, label: Subhead, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: emptyClipsLine, label: Empty clips line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: youtubeVideos
+            label: Top YouTube videos (max 5 render on /watch)
+            widget: list
+            required: false
+            fields:
+              - { name: url, label: URL or 11-char id, widget: string }
+              - { name: title, label: Title, widget: string }
+          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+
+      # ---------- Roster copy ----------
+      - name: roster_copy
+        label: Roster copy
+        file: content/roster-copy/index.json
+        fields:
+          - name: comedians
+            label: Comedians section
+            widget: object
+            fields:
+              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: kicker, label: Kicker (mono line), widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: about
+            label: About section
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: crewHeading, label: Crew heading, widget: string, required: false }
+              - { name: crewSubhead, label: Crew subhead, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: pillars
+            label: Pillars (the four functions)
+            widget: list
+            required: false
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+
+      # ---------- Open mics copy ----------
+      - name: open_mics_copy
+        label: Open mics copy
+        file: content/open-mics-copy/index.json
+        fields:
+          - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: kicker, label: Kicker, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+
+      # ---------- Shop copy ----------
+      - name: shop_copy
+        label: Shop copy
+        file: content/shop-copy/index.json
+        fields:
+          - { name: heading, label: Heading, widget: string }
+          - { name: subhead, label: Subhead, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: collectionUrl, label: Fourthwall collection URL, widget: string, required: false }
+          - { name: storeUrl, label: Fourthwall store URL, widget: string, required: false }
+
+      # ---------- Contact page ----------
+      - name: contact_copy
+        label: Contact page
+        file: content/contact-copy/index.json
+        fields:
+          - { name: eyebrow, label: Eyebrow, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: titleLead, label: Title lead (plain), widget: string, required: false }
+          - { name: titleEmphasis, label: Title emphasis (italic, hazard), widget: string, required: false }
+          - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: emailLabel, label: Email label, widget: string, required: false }
+          - { name: phoneLabel, label: Phone label, widget: string, required: false }
+          - { name: textCtaLabel, label: Text CTA label, widget: string, required: false }
+          - { name: whatsappCtaLabel, label: WhatsApp CTA label, widget: string, required: false }
+          - { name: findUsLabel, label: Find us label, widget: string, required: false }
+          - name: form
+            label: Form
+            widget: object
+            fields:
+              - { name: submitLabel, label: Submit button label, widget: string, required: false }
+              - { name: successText, label: Success message, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: errorText, label: Error message, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: nameLabel, label: Name field label, widget: string, required: false }
+              - { name: emailLabel, label: Email field label, widget: string, required: false }
+              - { name: messageLabel, label: Message field label, widget: string, required: false }
+              - { name: messagePlaceholder, label: Message placeholder, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+
+      # ---------- Sponsorships ----------
+      - name: sponsorships
+        label: Sponsorships
+        file: content/sponsorships/index.json
+        fields:
+          - name: stats
+            label: Stats (no invented numbers)
+            widget: list
+            required: false
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: value, label: Value (leave empty to render placeholder), widget: string, required: false }
+              - { name: detail, label: Detail, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: tiers
+            label: Tiers
+            widget: list
+            required: false
+            fields:
+              - { name: name, label: Tier name, widget: string }
+              - { name: price, label: Price (display string), widget: string }
+              - { name: deliverables, label: Deliverables, widget: list, field: { name: item, label: Deliverable, widget: string } }
+
+  # ------------------------------------------------------------------ #
+  # Pages: composed from blocks, render at /<slug>.                     #
+  # ------------------------------------------------------------------ #
+  - name: pages
+    label: Pages
+    label_singular: Page
+    folder: content/pages
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: title
+    slug: '{{fields.title}}'
+    create: true
+    summary: '{{fields.title}}'
+    fields:
+      - { name: title, label: Title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: seoDescription, label: SEO description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: ogImage, label: Social share image, widget: image, required: false, media_folder: /public/images/pages, public_folder: /images/pages }
+      - { name: draft, label: Draft (hidden from the live site), widget: boolean, default: false }
+      - { name: sections, label: Page sections, widget: list, required: false, types: *section_types }
+
+  # ------------------------------------------------------------------ #
+  # Roster: comedians + crew.                                          #
+  # ------------------------------------------------------------------ #
+  - name: comedians
+    label: Comedians
+    label_singular: Comedian
+    folder: content/comedians
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.name}}'
+    create: true
+    summary: '{{fields.name}}'
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: photo, label: Portrait, widget: image, required: false, media_folder: /public/images/comedians, public_folder: '' }
+      - { name: photoAlt, label: Portrait alt text, widget: string, required: false }
+      - { name: instagram, label: Instagram URL, widget: string, required: false }
+      - { name: facebook, label: Facebook URL, widget: string, required: false }
+      - { name: draft, label: Draft (hidden from /roster), widget: boolean, default: false }
+
+  - name: members
+    label: Crew members
+    label_singular: Crew member
+    folder: content/members
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.name}}'
+    create: true
+    summary: '{{fields.index}} {{fields.name}}'
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: role, label: Role, widget: string }
+      - { name: photo, label: Portrait, widget: image, required: false, media_folder: /public/images/members, public_folder: '' }
+      - { name: photoAlt, label: Portrait alt text, widget: string, required: false }
+      - { name: index, label: Display order (two digits, e.g. 01), widget: string }
+      - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: draft, label: Draft (hidden from /roster), widget: boolean, default: false }
+
+  # ------------------------------------------------------------------ #
+  # Booking: services + pricing tiers.                                 #
+  # ------------------------------------------------------------------ #
+  - name: services
+    label: Services
+    label_singular: Service
+    folder: content/services
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: title
+    slug: '{{fields.title}}'
+    create: true
+    summary: '{{fields.title}}'
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: metaTitle, label: SEO meta title, widget: string, required: false }
+      - { name: metaDescription, label: SEO meta description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: summary, label: Summary, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: whatYouGet, label: What you get, widget: list, required: false, field: { name: item, label: Item, widget: text } }
+      - { name: idealFor, label: Ideal for, widget: list, required: false, field: { name: item, label: Item, widget: text } }
+      - { name: process, label: Process steps, widget: list, required: false, field: { name: step, label: Step, widget: text } }
+      - { name: pricing, label: Pricing line, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - name: faqs
+        label: FAQs
+        widget: list
+        required: false
+        fields:
+          - { name: q, label: Question, widget: string }
+          - { name: a, label: Answer, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: draft, label: Draft (shows banner on detail page), widget: boolean, default: false }
+
+  - name: pricing_tiers
+    label: Pricing tiers
+    label_singular: Pricing tier
+    folder: content/pricing-tiers
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.name}}'
+    create: true
+    summary: '{{fields.name}}'
+    fields:
+      - { name: name, label: Tier name (used as the URL slug), widget: string }
+      - { name: bestFor, label: Best for (eyebrow), widget: string, required: false }
+      - { name: price, label: Price (display string), widget: string, required: false }
+      - { name: items, label: Items, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+
+  # ------------------------------------------------------------------ #
+  # Shows (manual entries). Synced shows override these when present.   #
+  # ------------------------------------------------------------------ #
+  - name: shows
+    label: Shows (manual entries)
+    label_singular: Show
+    folder: content/shows
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.name}}'
+    create: true
+    summary: '{{fields.name}}'
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: start, label: Start, widget: datetime, required: false }
+      - { name: end, label: End, widget: datetime, required: false }
+      - { name: url, label: Event page URL, widget: string, required: false }
+      - { name: ticketUrl, label: Ticket URL, widget: string, required: false }
+      - { name: summary, label: Summary, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: imageUrl, label: Poster, widget: image, required: false, media_folder: /public/images/shows, public_folder: '' }
+      - { name: imageAlt, label: Poster alt text, widget: string, required: false }
+      - { name: draft, label: Draft (hidden from /shows), widget: boolean, default: false }
+      - name: venue
+        label: Venue
+        widget: object
+        required: false
+        fields:
+          - { name: name, label: Venue name, widget: string, required: false }
+          - { name: address, label: Address, widget: string, required: false }
+          - { name: city, label: City, widget: string, required: false }
+          - { name: region, label: Region (state code), widget: string, required: false }
+          - { name: country, label: Country code, widget: string, default: US, required: false }
+      - { name: status, label: Status, widget: select, default: tba, options: [{ label: Ticketed, value: ticketed }, { label: Free / at the door, value: free }, { label: TBA, value: tba }] }
+      - { name: ticketPrice, label: Ticket price (display string), widget: string, required: false }
+      - { name: doorTime, label: Door time, widget: string, required: false }
+
+  # ------------------------------------------------------------------ #
+  # Shop products (manual). Synced products override these.             #
+  # ------------------------------------------------------------------ #
+  - name: shop_products
+    label: Shop products (manual)
+    label_singular: Product
+    folder: content/shop-products
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.name}}'
+    create: true
+    summary: '{{fields.name}}'
+    fields:
+      - { name: name, label: Product name, widget: string }
+      - { name: price, label: Price (display string), widget: string, required: false }
+      - { name: url, label: Fourthwall product URL, widget: string, required: false }
+      - { name: image, label: Image URL (imgproxy.fourthwall.com), widget: string, required: false }
+      - { name: imageAlt, label: Image alt text, widget: string, required: false }
+      - { name: draft, label: Draft (hidden from /shop), widget: boolean, default: false }
+
+  # ------------------------------------------------------------------ #
+  # Open mics.                                                          #
+  # ------------------------------------------------------------------ #
+  - name: open_mics
+    label: Open mics
+    label_singular: Open mic
+    folder: content/open-mics
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.venue}}-{{fields.city}}-{{fields.day}}'
+    create: true
+    summary: '{{fields.name}} ({{fields.city}}, {{fields.day}})'
+    fields:
+      - { name: name, label: Display name, widget: string }
+      - { name: venue, label: Venue, widget: string, required: false }
+      - { name: address, label: Address, widget: string, required: false }
+      - { name: city, label: City, widget: string, required: false }
+      - { name: region, label: Region, widget: select, default: WA, options: [{ label: Washington, value: WA }, { label: Oregon, value: OR }] }
+      - { name: lat, label: Latitude, widget: number, value_type: float, required: false }
+      - { name: lng, label: Longitude, widget: number, value_type: float, required: false }
+      - { name: day, label: Day, widget: select, default: Monday, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
+      - { name: time, label: Time (display string), widget: string, required: false }
+      - { name: host, label: Host, widget: string, required: false }
+      - { name: signupUrl, label: Signup URL, widget: string, required: false }
+      - { name: notes, label: Notes, widget: text, required: false }
+
+  # ------------------------------------------------------------------ #
+  # TikTok videos.                                                      #
+  # ------------------------------------------------------------------ #
+  - name: tiktok
+    label: TikTok videos
+    label_singular: TikTok video
+    folder: content/tiktok
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: title
+    slug: '{{fields.title}}'
+    create: true
+    summary: '{{fields.title}}'
+    fields:
+      - { name: title, label: Title (used as the slug and on-page label), widget: string }
+      - { name: url, label: TikTok URL, widget: string }
+      - { name: poster, label: Poster, widget: image, required: false, media_folder: /public/images/tiktok, public_folder: '' }
+      - { name: posterAlt, label: Poster alt text, widget: string, required: false }
+      - { name: draft, label: Draft (hidden from /watch), widget: boolean, default: false }
