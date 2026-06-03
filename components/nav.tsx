@@ -39,6 +39,7 @@ export function Nav() {
   }, [open]);
 
   return (
+    <>
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
@@ -141,7 +142,13 @@ export function Nav() {
           <span>{open ? "Close" : "Menu"}</span>
         </button>
       </div>
+    </header>
 
+      {/* Mobile menu panel. Kept OUTSIDE <header> on purpose: the header gets
+          backdrop-blur when open, and a backdrop-filter makes that element the
+          containing block for fixed descendants, which would collapse this
+          full-screen panel to the header's height. As a sibling it stays
+          fixed to the viewport. */}
       <div
         className={cn(
           "fixed inset-0 top-16 z-40 origin-top bg-ink transition-[clip-path,opacity] duration-500 md:hidden",
@@ -210,6 +217,6 @@ export function Nav() {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 }
