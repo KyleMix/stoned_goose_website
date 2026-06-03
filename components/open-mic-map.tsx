@@ -157,12 +157,15 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
     marker.openPopup?.();
   }, [selectedId]);
 
+  // `isolate` keeps Leaflet's internal z-indexes (panes ~400-700, markers,
+  // controls ~1000) inside this container's stacking context so they can't
+  // poke through modals/overlays (e.g. the "Report a change" dialog).
   return (
     <div
       ref={containerRef}
       role="region"
       aria-label="Open mics map"
-      className="aspect-[4/3] w-full overflow-hidden border border-bone/15 bg-haze-500 md:aspect-[16/10]"
+      className="aspect-[4/3] w-full isolate overflow-hidden border border-bone/15 bg-haze-500 md:aspect-[16/10]"
     />
   );
 }
