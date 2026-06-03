@@ -18,7 +18,7 @@ backend:
   branch: main
   # The GitHub OAuth relay (sveltia-cms-auth Worker). No trailing slash.
   # If your deployed Worker URL differs, update this value.
-  base_url: https://sveltia-cms-auth.kylewmixon.workers.dev
+  base_url: https://stonedgoosecms.kylewmixon.workers.dev
 
 site_url: https://www.stonedgooseproductions.com
 
