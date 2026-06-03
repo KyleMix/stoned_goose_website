@@ -13,14 +13,16 @@ import { SectionRenderer } from "@/components/section-renderer";
 
 type Params = { slug: string };
 
-// `output: "export"` requires at least one statically-generated slug here,
-// even if the editor's pages collection is empty. The seeded "welcome" page
-// at content/pages/welcome guarantees this. dynamicParams=false ensures any
-// other slug 404s instead of trying to render at request time.
+// `output: "export"` needs at least one statically-generated path for this
+// dynamic route. The editor's pages collection can be empty (all drafted or
+// deleted), so generateStaticParams emits a sentinel slug in that case; the
+// component 404s it. dynamicParams=false ensures any other slug 404s instead
+// of trying to render at request time.
 export const dynamicParams = false;
 
 export function generateStaticParams(): Params[] {
-  return pages.map((p) => ({ slug: p.slug }));
+  const params = pages.map((p) => ({ slug: p.slug }));
+  return params.length > 0 ? params : [{ slug: "__no-pages" }];
 }
 
 export async function generateMetadata(props: {
