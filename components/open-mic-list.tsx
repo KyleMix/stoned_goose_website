@@ -28,7 +28,7 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
             key={m.id}
             className={`transition-colors ${active ? "bg-bone/[0.04]" : "hover:bg-bone/[0.025]"}`}
           >
-            <div className="grid grid-cols-12 items-baseline gap-x-6 gap-y-1 py-5">
+            <div className="flex flex-col gap-1 py-5 md:grid md:grid-cols-12 md:items-baseline md:gap-x-6 md:gap-y-1">
               <p className="col-span-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard md:col-span-2">
                 {m.day.slice(0, 3)} / {m.time}
               </p>

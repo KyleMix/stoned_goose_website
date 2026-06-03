@@ -32,10 +32,34 @@ export function OpenMicExplorer({ mics }: Props) {
   const [city, setCity] = useState<string>("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const cities = useMemo(() => {
-    const set = new Set(mics.map((m) => m.city));
-    return Array.from(set).sort();
+  // Cities grouped by state for the dropdown: Washington first, then Oregon,
+  // each alphabetical.
+  const cityGroups = useMemo(() => {
+    const byRegion = new Map<string, Set<string>>();
+    for (const m of mics) {
+      if (!m.city) continue;
+      const region = m.region || "WA";
+      if (!byRegion.has(region)) byRegion.set(region, new Set());
+      byRegion.get(region)!.add(m.city);
+    }
+    const order = ["WA", "OR"];
+    const label: Record<string, string> = { WA: "Washington", OR: "Oregon" };
+    return Array.from(byRegion.entries())
+      .sort((a, b) => {
+        const ai = order.indexOf(a[0]);
+        const bi = order.indexOf(b[0]);
+        return (
+          (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi) || a[0].localeCompare(b[0])
+        );
+      })
+      .map(([region, set]) => ({
+        region,
+        label: label[region] ?? region,
+        cities: Array.from(set).sort((x, y) => x.localeCompare(y)),
+      }));
   }, [mics]);
+
+  const hasCities = cityGroups.some((g) => g.cities.length > 0);
 
   const filtered = useMemo(() => {
     return mics.filter((m) => {
@@ -70,24 +94,35 @@ export function OpenMicExplorer({ mics }: Props) {
             ))}
           </div>
         </fieldset>
-        {cities.length > 0 ? (
+        {hasCities ? (
           <fieldset className="mt-6">
             <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
               City
             </legend>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Chip active={city === "all"} onClick={() => setCity("all")}>
-                All
-              </Chip>
-              {cities.map((c) => (
-                <Chip
-                  key={c}
-                  active={city === c}
-                  onClick={() => setCity(c)}
-                >
-                  {c}
-                </Chip>
-              ))}
+            <div className="relative mt-3">
+              <select
+                aria-label="Filter by city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="w-full appearance-none border border-bone/30 bg-ink py-2.5 pl-3 pr-9 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-hazard focus:border-hazard focus:outline-none"
+              >
+                <option value="all">All cities</option>
+                {cityGroups.map((g) => (
+                  <optgroup key={g.region} label={g.label}>
+                    {g.cities.map((c) => (
+                      <option key={`${g.region}-${c}`} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 font-mono text-xs text-bone/55"
+              >
+                ▾
+              </span>
             </div>
           </fieldset>
         ) : null}
