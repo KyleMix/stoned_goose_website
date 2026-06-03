@@ -16,9 +16,9 @@ backend:
   name: github
   repo: KyleMix/stoned_goose_website
   branch: main
-  # The GitHub OAuth relay. Replace with your deployed sveltia-cms-auth Worker
-  # URL (no trailing slash). Until then, login will fail.
-  base_url: https://REPLACE-WITH-YOUR-AUTH-WORKER.workers.dev
+  # The GitHub OAuth relay (sveltia-cms-auth Worker). No trailing slash.
+  # If your deployed Worker URL differs, update this value.
+  base_url: https://sveltia-cms-auth.kylewmixon.workers.dev
 
 site_url: https://www.stonedgooseproductions.com
 
