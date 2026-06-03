@@ -21,7 +21,7 @@ with push access to the repo.
 |---|---|
 | `/` | Home page (singleton), Site config (singleton) |
 | `/shows` | Shows copy (singleton), Shows manual (collection) |
-| `/watch` | Watch copy (singleton), TikTok videos (collection) |
+| `/watch` | Watch copy (singleton), News posts (collection), TikTok videos (collection) |
 | `/roster` | Roster copy (singleton), Comedians (collection), Crew members (collection) |
 | `/open-mics` | Open mics copy (singleton), Open mics (collection) |
 | `/shop` | Shop copy (singleton), Shop products (collection) |
@@ -47,8 +47,7 @@ the JSON directly. Files to know about:
   `content/shows/<slug>/index.json`, `content/shop-products/<slug>/index.json`,
   `content/open-mics/<slug>/index.json`,
   `content/tiktok/<slug>/index.json` ← collection items
-- `content/news/<slug>/*` ← news posts (not yet wired into the CMS; add via
-  GitHub for now)
+- `content/news/<slug>/index.mdoc` ← news posts (markdown body + frontmatter)
 
 The shims in `content/*.ts` (e.g. `home.ts`, `site.ts`) wrap each file
 with the typed shape components have always imported. Don't move data

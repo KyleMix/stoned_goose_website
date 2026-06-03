@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "stonedgoosewebsite",
+  "compatibility_date": "2026-01-01",
+  "//": "Static-assets-only Worker. This site is a Next.js static export (output: 'export') that writes to /out. There is no server runtime, so we deploy the directory as Workers Static Assets. Without this file, `wrangler deploy` auto-detects Next.js and tries to wrap it with OpenNext, which fails because there is no server build. `_redirects` and `_headers` inside /out are honored by Workers Static Assets, same as on Pages.",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

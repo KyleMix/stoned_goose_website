@@ -1,4 +1,4 @@
-// Home page shim. Reads the Keystatic JSON and re-exports the typed shape.
+// Home page shim. Reads the CMS JSON and re-exports the typed shape.
 
 import homeData from "./home/index.json";
 import { normaliseBlocks, type Block } from "@/lib/blocks";

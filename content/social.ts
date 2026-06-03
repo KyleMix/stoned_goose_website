@@ -1,4 +1,4 @@
-// Social shim. TikTok videos come from the Keystatic collection, consolidated
+// Social shim. TikTok videos come from the CMS collection, consolidated
 // at prebuild. Patreon posts come from the existing generated JSON. TikTok
 // entries flagged as draft are filtered out so unpublished posters stay off
 // /watch.

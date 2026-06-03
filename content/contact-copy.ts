@@ -1,4 +1,4 @@
-// Contact page shim. Reads the Keystatic-managed JSON for /contact copy and
+// Contact page shim. Reads the CMS-managed JSON for /contact copy and
 // falls back to the strings that used to live in the page component so the
 // site keeps rendering before the first save.
 

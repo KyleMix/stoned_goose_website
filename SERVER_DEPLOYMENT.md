@@ -28,31 +28,54 @@ All serve the same `/out` directory. Pick one.
 
 ---
 
-## 0. Cloudflare Pages (recommended)
+## 0. Cloudflare (recommended)
 
 Connect the GitHub repo once and Cloudflare rebuilds and publishes on every
 push. The Sveltia CMS commits edits to `main`, so saving in the editor
 publishes the site automatically a minute or two later. No zip, no server.
 
-### Create the project
+Cloudflare offers two ways to host this; both serve the same static `/out`.
 
-1. In the Cloudflare dashboard: **Workers & Pages -> Create -> Pages ->
+### Option A: Workers (with the committed `wrangler.jsonc`)
+
+This repo ships a [`wrangler.jsonc`](./wrangler.jsonc) that deploys `/out` as
+**Workers Static Assets**. This is what you need if your Cloudflare project's
+deploy command is `npx wrangler deploy`.
+
+1. Cloudflare dashboard: **Workers & Pages -> Create -> Import a repository**.
+   Pick `KyleMix/stoned_goose_website`, branch `main`.
+2. Build settings:
+   - **Build command:** `npm run build`
+   - **Deploy command:** `npx wrangler deploy` (the default)
+   - **Environment variables:** `NODE_VERSION = 20`.
+3. Deploy. `wrangler.jsonc` tells Wrangler to upload the `./out` directory as
+   static assets (no server runtime).
+
+> Important: without `wrangler.jsonc`, `wrangler deploy` auto-detects "Next.js"
+> and tries to wrap the app with OpenNext (a server runtime). That fails here,
+> because the site is a static export (`output: "export"`) with no server
+> build. The committed `wrangler.jsonc` is what prevents that.
+
+### Option B: Pages
+
+1. Cloudflare dashboard: **Workers & Pages -> Create -> Pages ->
    Connect to Git**. Pick `KyleMix/stoned_goose_website`, branch `main`.
 2. Build settings:
    - **Framework preset:** None (this is a plain static export).
    - **Build command:** `npm run build`
    - **Build output directory:** `out`
-   - **Environment variables:** `NODE_VERSION = 20`. The feed/sync scripts in
-     `prebuild` tolerate missing API tokens and fall back to the committed
-     JSON, so no secrets are required for a first deploy. Add the optional
-     `NEXT_PUBLIC_*` analytics vars from [`.env.example`](./.env.example) if
-     you want them.
-3. Deploy. You get a `*.pages.dev` URL. Add your custom domain under the
-   project's **Custom domains** tab and point DNS as Cloudflare instructs.
+   - **Environment variables:** `NODE_VERSION = 20`.
+3. Deploy. You get a `*.pages.dev` URL.
 
-Cloudflare Pages applies `public/_redirects` (legacy slug redirects) and
-`public/_headers` (OG image MIME) automatically, so the redirects and social
-cards behave the same as everywhere else.
+Either way, the feed/sync scripts in `prebuild` tolerate missing API tokens
+and fall back to committed JSON, so no secrets are required for a first
+deploy. Add the optional `NEXT_PUBLIC_*` analytics vars from
+[`.env.example`](./.env.example) if you want them. Add your custom domain in
+the project settings and point DNS as Cloudflare instructs.
+
+Both honor `public/_redirects` (legacy slug redirects) and `public/_headers`
+(OG image MIME) from inside `/out`, so redirects and social cards behave the
+same as everywhere else.
 
 ### Publish workflow
 
@@ -392,10 +415,11 @@ The config maps every editable area to the JSON under `content/`. Notes:
 
 - **Singletons** (site config, page copy) live under "Site copy".
 - **Collections** (Comedians, Crew members, Shows, Open mics, Services,
-  Pricing tiers, Shop products, Pages, TikTok videos) each manage one entry
-  per file.
-- **News** posts are not yet wired into the CMS (markdoc format); add them
-  via GitHub for now.
+  Pricing tiers, Shop products, Pages, TikTok videos, News posts) each manage
+  one entry per file.
+- **News** posts are markdown (frontmatter + body). The body is stored for a
+  future detail page but is not displayed yet; the card uses title, summary,
+  and image.
 - The **no em dashes** house rule is enforced with a pattern validator on
   long-form fields.
 

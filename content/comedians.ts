@@ -4,7 +4,7 @@
 //     prebuild by scripts/build-content-index.ts)
 //
 // Sorted alphabetically by display name to keep the editorial grid stable.
-// Entries flagged as draft in Keystatic are filtered out so unfinished
+// Entries flagged as draft in the CMS are filtered out so unfinished
 // portraits never appear on /roster.
 
 import rosterCopyData from "./roster-copy/index.json";

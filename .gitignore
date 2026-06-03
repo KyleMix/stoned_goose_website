@@ -8,6 +8,11 @@ node_modules
 .next
 out
 
+# cloudflare wrangler / opennext (local build artifacts; deploy uses /out)
+.wrangler
+.open-next
+.dev.vars
+
 # misc
 .DS_Store
 *.pem

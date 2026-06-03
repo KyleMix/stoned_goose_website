@@ -135,15 +135,42 @@ function parseFrontmatter(raw: string): {
   const block = raw.slice(3, end).trim();
   const body = raw.slice(end + 4).replace(/^\n/, "");
   const data: Record<string, unknown> = {};
-  for (const line of block.split(/\r?\n/)) {
-    const m = line.match(/^(\w+):\s*(.*)$/);
-    if (!m) continue;
+  const unquote = (s: string) => s.trim().replace(/^['"]|['"]$/g, "");
+  const lines = block.split(/\r?\n/);
+  let i = 0;
+  while (i < lines.length) {
+    const m = lines[i].match(/^(\w+):\s*(.*)$/);
+    if (!m) {
+      i++;
+      continue;
+    }
     const [, key, rest] = m;
     const t = rest.trim();
     if (t.startsWith("[") && t.endsWith("]")) {
-      data[key] = t.slice(1, -1).split(",").map((s) => s.trim().replace(/^['"]|['"]$/g, "")).filter(Boolean);
+      // Inline flow list: tags: [a, b]
+      data[key] = t.slice(1, -1).split(",").map(unquote).filter(Boolean);
+      i++;
+    } else if (t === "") {
+      // A bare key may introduce a block-style list:
+      //   tags:
+      //     - a
+      //     - b
+      const items: string[] = [];
+      let j = i + 1;
+      while (j < lines.length && /^\s*-\s+/.test(lines[j])) {
+        items.push(unquote(lines[j].replace(/^\s*-\s+/, "")));
+        j++;
+      }
+      if (items.length > 0) {
+        data[key] = items;
+        i = j;
+      } else {
+        data[key] = "";
+        i++;
+      }
     } else {
-      data[key] = t.replace(/^['"]|['"]$/g, "");
+      data[key] = unquote(t);
+      i++;
     }
   }
   return { data, body };

@@ -1,4 +1,4 @@
-// Sponsorships shim. Reads the Keystatic singleton.
+// Sponsorships shim. Reads the CMS singleton.
 
 import sponsorshipsData from "./sponsorships/index.json";
 

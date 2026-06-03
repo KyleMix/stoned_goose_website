@@ -1,10 +1,10 @@
 // Shows shim. Combines:
 //   - showsCopy + featuredSpecial + presale (singleton from /admin)
-//   - manual shows (Keystatic collection consolidated at prebuild)
+//   - manual shows (CMS collection consolidated at prebuild)
 //   - synced shows (content/.generated/shows.json, from scripts/sync-shows.ts)
 //
 // Generated shows win when present and non-empty; otherwise the manual
-// Keystatic list applies. Manual entries flagged as draft are filtered out.
+// list applies. Manual entries flagged as draft are filtered out.
 
 import showsCopyData from "./shows-copy/index.json";
 import generatedShows from "./.generated/shows.json";
@@ -82,7 +82,12 @@ export const featuredSpecial = {
   subtitle: copy.featuredSpecial.subtitle,
   blurb: copy.featuredSpecial.blurb,
   videoUrl: copy.featuredSpecial.videoUrl ? copy.featuredSpecial.videoUrl : null,
-  poster: POSTER_DIR + copy.featuredSpecial.poster,
+  // Accept either an absolute path (/images/...) as written by the CMS, or a
+  // bare filename, which gets the comedians directory prepended. Prepending
+  // unconditionally would double the path for absolute values.
+  poster: copy.featuredSpecial.poster.startsWith("/")
+    ? copy.featuredSpecial.poster
+    : POSTER_DIR + copy.featuredSpecial.poster,
   posterAlt:
     copy.featuredSpecial.posterAlt && copy.featuredSpecial.posterAlt.length > 0
       ? copy.featuredSpecial.posterAlt

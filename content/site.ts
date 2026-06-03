@@ -1,4 +1,4 @@
-// Site config shim. Reads the Keystatic-managed JSON written by the admin
+// Site config shim. Reads the CMS-managed JSON written by the admin
 // at /admin and re-exports the typed shape components have always imported.
 
 import siteData from "./site/index.json";
@@ -54,9 +54,9 @@ type SiteShape = {
   serviceAreas: readonly string[];
 };
 
-// Defaults applied when the Keystatic JSON has not been edited yet. They mirror
+// Defaults applied when the CMS JSON has not been edited yet. They mirror
 // what used to be hardcoded in this file so the site keeps working before the
-// first save from /keystatic.
+// first save from /admin.
 const DEFAULT_NAV: NavLink[] = [
   { label: "Shows", href: "/shows" },
   { label: "Open Mics", href: "/open-mics" },
