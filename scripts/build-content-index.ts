@@ -89,13 +89,16 @@ if (existsSync(newsDir)) {
     let raw: string | null = null;
     let slug: string;
     if (item.isDirectory()) {
-      const indexPath = join(newsDir, item.name, "index.mdoc");
-      if (!existsSync(indexPath)) continue;
+      // The CMS writes <slug>/index.md; accept legacy .mdoc too.
+      const mdPath = join(newsDir, item.name, "index.md");
+      const mdocPath = join(newsDir, item.name, "index.mdoc");
+      const indexPath = existsSync(mdPath) ? mdPath : existsSync(mdocPath) ? mdocPath : null;
+      if (!indexPath) continue;
       raw = readFileSync(indexPath, "utf8");
       slug = item.name;
-    } else if (item.name.endsWith(".mdoc")) {
+    } else if (item.name.endsWith(".md") || item.name.endsWith(".mdoc")) {
       raw = readFileSync(join(newsDir, item.name), "utf8");
-      slug = item.name.replace(/\.mdoc$/, "");
+      slug = item.name.replace(/\.mdoc?$/, "");
     } else {
       continue;
     }
