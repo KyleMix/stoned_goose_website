@@ -159,25 +159,17 @@ export function Nav() {
       >
         <nav
           aria-label="Mobile primary"
-          className="flex h-full flex-col justify-between px-6 pb-12 pt-8"
+          className="flex h-full flex-col overflow-y-auto px-6 pb-10 pt-6"
         >
-          <Image
-            src="/brand/stoned-goose-logo-full.png"
-            alt="Stoned Goose Productions"
-            width={240}
-            height={240}
-            priority
-            className="mb-8 block h-32 w-auto"
-          />
           <ul className="flex flex-col">
             {nav.map((item, i) => (
               <li key={item.href} className="border-b border-bone/10">
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-baseline justify-between py-5"
+                  className="flex items-baseline justify-between py-3.5"
                 >
-                  <span className="font-display text-4xl uppercase tracking-[-0.02em] text-bone">
+                  <span className="font-display text-2xl uppercase tracking-[-0.02em] text-bone">
                     {item.label}
                   </span>
                   <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
@@ -187,7 +179,7 @@ export function Nav() {
               </li>
             ))}
           </ul>
-          <div className="space-y-3 pt-8">
+          <div className="mt-8 space-y-3">
             {(() => {
               const next = upcomingShows[0];
               if (!next) return null;
