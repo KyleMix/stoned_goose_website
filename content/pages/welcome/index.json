@@ -2,7 +2,7 @@
   "title": "Welcome to the page builder",
   "seoDescription": "A sample page created by the Stoned Goose Productions site scaffolding. Edit or delete me in the editor.",
   "ogImage": "",
-  "draft": false,
+  "draft": true,
   "sections": [
     {
       "type": "hero",
@@ -23,10 +23,10 @@
     },
     {
       "type": "ctaStrip",
-      "heading": "Ready to build a real page?",
       "subhead": "Add a new entry under Pages in the editor. Set a slug like 'about' or 'faq' and start composing.",
       "primaryCtaLabel": "Open the editor",
       "primaryCtaHref": "/admin",
+      "heading": "Ready to build a real page?",
       "note": "Tip. Add the page to the nav under Site config."
     }
   ]
