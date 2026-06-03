@@ -116,20 +116,29 @@ export function Nav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="relative flex h-10 w-10 items-center justify-center md:hidden"
+          className="inline-flex items-center gap-2 border border-bone/25 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-hazard hover:text-hazard md:hidden"
         >
-          <span
-            className={cn(
-              "absolute h-px w-6 bg-bone transition-transform duration-300",
-              open ? "rotate-45" : "-translate-y-1.5",
-            )}
-          />
-          <span
-            className={cn(
-              "absolute h-px w-6 bg-bone transition-transform duration-300",
-              open ? "-rotate-45" : "translate-y-1.5",
-            )}
-          />
+          <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
+            <span
+              className={cn(
+                "h-px w-full bg-current transition-all duration-300",
+                open && "translate-y-[5px] rotate-45",
+              )}
+            />
+            <span
+              className={cn(
+                "h-px w-full bg-current transition-opacity duration-300",
+                open && "opacity-0",
+              )}
+            />
+            <span
+              className={cn(
+                "h-px w-full bg-current transition-all duration-300",
+                open && "-translate-y-[5px] -rotate-45",
+              )}
+            />
+          </span>
+          <span>{open ? "Close" : "Menu"}</span>
         </button>
       </div>
 
