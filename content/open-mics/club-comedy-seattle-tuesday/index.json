@@ -1,0 +1,14 @@
+{
+  "name": "Chuckle Bucket",
+  "venue": "Club Comedy",
+  "address": "328 15th Ave E, Seattle, WA 98112",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.622867584228516,
+  "lng": -122.31263732910156,
+  "day": "Tuesday",
+  "time": "Sign-up/Start: 7pm/7:30pm",
+  "host": "Rotating",
+  "signupUrl": "Host makes the list.",
+  "notes": ""
+}
