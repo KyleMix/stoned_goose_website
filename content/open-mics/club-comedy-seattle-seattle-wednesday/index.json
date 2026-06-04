@@ -1,14 +1,14 @@
 {
-  "name": "Club comedy Seattle",
-  "venue": "Club comedy Seattle",
-  "address": "328 15th Ave E",
+  "name": "Cheap Laughs",
+  "venue": "Club Comedy",
+  "address": "328 15th Ave E, Seattle, WA 98112",
   "city": "Seattle",
   "region": "WA",
   "lat": 47.60908010986496,
   "lng": -122.34345655756465,
   "day": "Wednesday",
   "time": "8pm",
-  "host": "Openmic@clubcomedyseattle.com",
-  "signupUrl": "http://clubcomedyseattle.com/openmic-3/",
+  "host": "Rotating",
+  "signupUrl": "Email on Tuesday to openmic@clubcomedyseattle.com + very limited spots available in-person",
   "notes": "Only Comedy. Free. Set 3/ do not punch down. Age 21+. Parking. on street. (206)-743-8175. Send request email on Tuesday for Wednesday mic. Tuesday is a bucket mic"
 }
