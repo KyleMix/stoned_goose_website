@@ -1,14 +1,14 @@
 {
-  "name": "Otter on the rocks",
-  "venue": "Otter on the rocks",
-  "address": "4210 SW Admiral Way",
+  "name": "Otter Bar Open Mic",
+  "venue": "Otter Bar & Burger",
+  "address": "2379 Eastlake Ave E, Seattle, WA 98102",
   "city": "Seattle",
   "region": "WA",
-  "lat": 47.60167228198672,
-  "lng": -122.32742286564431,
+  "lat": 47.6419326,
+  "lng": -122.3261004,
   "day": "Thursday",
   "time": "7pm",
-  "host": "",
-  "signupUrl": "",
-  "notes": "Anything is allowed. Free. Set /do not punch down. Wheelchair accessible. Parking. on street"
+  "host": "derek Anthony",
+  "signupUrl": "Sign-up/Start: 7pm/8pm",
+  "notes": "In  Person  Sign Ups"
 }
