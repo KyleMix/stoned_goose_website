@@ -1,14 +1,14 @@
 {
-  "name": "Flight path",
+  "name": "Flight Path",
   "venue": "Flight path",
-  "address": "1832 S 120th St",
+  "address": "1832 S 120th St, Seattle, WA 98168",
   "city": "Burien",
   "region": "WA",
   "lat": 47.480050720988785,
   "lng": -122.35757940032045,
   "day": "Wednesday",
-  "time": "8:30pm",
-  "host": "",
-  "signupUrl": "",
+  "time": "Sign-up/Start: 8pm/8:30pm",
+  "host": "Brandon White",
+  "signupUrl": "Sign-up 8pm",
   "notes": "Only Comedy. Free. Set 5/. Wheelchair accessible. Parking. on site"
 }
