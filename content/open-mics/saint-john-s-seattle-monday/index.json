@@ -1,0 +1,14 @@
+{
+  "name": "Twatties",
+  "venue": "Saint John's",
+  "address": "719 E Pike St, Seattle, WA 98122",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.613952,
+  "lng": -122.3225652,
+  "day": "Monday",
+  "time": "8pm",
+  "host": "rotating",
+  "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLScG3Awhr5UipPax9K7EpXMU6tzIHVZZ-RyvQPnl7MfkMqAW0A/viewform?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnL31VPK3pm5OGMleO9VE5t_eFnUgHjmufROjbaTaRd-faX7EDvWlsc0F_M8c_aem_R60wn4ibPdm3_jIM72qCyA",
+  "notes": ""
+}
