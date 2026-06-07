@@ -73,7 +73,18 @@
     ]
   },
   "seo": {
-    "keywords": [],
-    "defaultOgImage": ""
+    "keywords": [
+      "comedy production",
+      "stand-up comedy",
+      "open mic",
+      "live comedy",
+      "comedy shows",
+      "Olympia comedy",
+      "South Sound comedy",
+      "Pacific Northwest comedy",
+      "comedy booking",
+      "podcast production"
+    ],
+    "defaultOgImage": "/opengraph.jpg"
   }
 }
