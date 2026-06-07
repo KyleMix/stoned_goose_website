@@ -15,11 +15,9 @@ import { SectionHeader } from "@/components/section-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
-import { NewsFeed } from "@/components/news-feed";
 import { YouTubeGrid, type GridVideo } from "@/components/youtube-grid";
-import { instagramFeed, youtubeFeed, relativeAge } from "@/lib/feeds";
+import { youtubeFeed, relativeAge } from "@/lib/feeds";
 import { extractYouTubeId } from "@/lib/youtube";
-import { FeedFreshness } from "@/components/feed-freshness";
 
 export const metadata: Metadata = {
   title: "Watch",
@@ -31,8 +29,6 @@ export const metadata: Metadata = {
 };
 
 export default function WatchPage() {
-  const feedFresh = instagramFeed.posts.length > 0;
-
   // Prefer the auto-synced channel feed. Fall back to the hand-curated list in
   // content/watch when the feed is empty (e.g. a build with no network to
   // youtube.com). Both render through the same inline-play grid.
@@ -118,69 +114,6 @@ export default function WatchPage() {
               </TrackedAnchor>
             </div>
           </article>
-        </div>
-      </section>
-
-      <section
-        id="latest"
-        className="border-b border-bone/10 bg-ink py-20 md:py-24"
-      >
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-            <SectionHeader
-              eyebrow="Latest"
-              title={
-                <>
-                  From the <span className="italic text-hazard">feed</span>
-                </>
-              }
-              subtitle={
-                feedFresh
-                  ? `Auto-synced. Instagram updated ${relativeAge(instagramFeed.fetchedAt)}.`
-                  : "Auto-synced from Instagram and TikTok. Posts here when we post there."
-              }
-            />
-            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-              <TrackedAnchor
-                destination="instagram"
-                href={site.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
-              >
-                Instagram ↗
-              </TrackedAnchor>
-              <TrackedAnchor
-                destination="youtube"
-                href={site.social.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
-              >
-                YouTube ↗
-              </TrackedAnchor>
-              <TrackedAnchor
-                destination="tiktok"
-                href={site.social.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
-              >
-                TikTok ↗
-              </TrackedAnchor>
-            </div>
-          </div>
-          <NewsFeed limit={12} />
-          {!feedFresh ? (
-            <div className="mt-10">
-              <FeedFreshness
-                source="instagram"
-                fetchedAt={instagramFeed.fetchedAt}
-                status={instagramFeed.status}
-                placement="watch-latest"
-              />
-            </div>
-          ) : null}
         </div>
       </section>
 
