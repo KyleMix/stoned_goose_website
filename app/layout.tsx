@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { site } from "@/content/site";
+import { site, seo } from "@/content/site";
+
+const ogImage = seo.defaultOgImage ?? "/opengraph.jpg";
 
 const display = Fraunces({
   subsets: ["latin"],
@@ -32,12 +34,13 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  keywords: seo.keywords.length > 0 ? seo.keywords : undefined,
   openGraph: {
     title: site.name,
     description: site.description,
     url: site.url,
     siteName: site.name,
-    images: [{ url: "/opengraph.jpg", width: 1200, height: 630 }],
+    images: [{ url: ogImage, width: 1200, height: 630 }],
     locale: "en_US",
     type: "website",
   },
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: site.name,
     description: site.description,
-    images: ["/opengraph.jpg"],
+    images: [ogImage],
   },
   icons: {
     icon: [
