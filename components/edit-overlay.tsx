@@ -178,7 +178,7 @@ function EditOverlayInner() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="rounded border border-ink/20 bg-hazard px-3 py-2 uppercase tracking-[0.18em] text-ink shadow-md hover:bg-bone"
+          className="rounded border border-ink/20 bg-hazard px-3 py-2 uppercase tracking-[0.18em] text-ink shadow-md hover:bg-slime"
         >
           Edit<span className="text-ink">.</span>
         </button>

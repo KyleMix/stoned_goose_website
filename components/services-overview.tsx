@@ -50,7 +50,7 @@ export function ServicesOverview() {
         <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-bone/15 pt-8 md:mt-14">
           <Link
             href="/book"
-            className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+            className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
           >
             Book us ↗
           </Link>

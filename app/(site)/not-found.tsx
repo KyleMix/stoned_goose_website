@@ -151,7 +151,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap gap-3 pb-20">
           <Link
             href="/"
-            className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+            className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
           >
             Back to home ↗
           </Link>

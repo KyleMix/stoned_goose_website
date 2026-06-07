@@ -263,7 +263,7 @@ export default function WatchPage() {
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                className="mt-8 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
               >
                 Open the channel ↗
               </TrackedAnchor>
@@ -312,7 +312,7 @@ export default function WatchPage() {
                 href={site.social.patreon}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
               >
                 Support on Patreon ↗
               </TrackedAnchor>

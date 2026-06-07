@@ -324,7 +324,7 @@ export default async function ServiceDetailPage(props: {
               />
               <Link
                 href={`/book/${next.slug}`}
-                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
               >
                 Read {next.title} ↗
               </Link>

@@ -122,7 +122,7 @@ export function MailingListCapture({ page }: Props) {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone disabled:opacity-50 md:w-auto md:justify-start"
+                    className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime disabled:opacity-50 md:w-auto md:justify-start"
                   >
                     {status === "loading" ? "Sending..." : "Sign me up"}
                     <span aria-hidden className="transition-transform group-hover:translate-x-1">

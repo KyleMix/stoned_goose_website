@@ -92,7 +92,7 @@ export function StickyQuoteRail({ label, targetId }: Props) {
         <a
           href={`#${targetId}`}
           onClick={handleClick}
-          className="inline-flex h-10 shrink-0 items-center bg-hazard px-5 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+          className="inline-flex h-10 shrink-0 items-center bg-hazard px-5 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
         >
           Get a quote ↗
         </a>

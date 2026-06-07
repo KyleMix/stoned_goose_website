@@ -74,7 +74,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
               <Link
                 href={block.primaryCtaHref}
                 onClick={() => track("CTA Click", { cta: `${pageSlug}-hero-primary` })}
-                className="group inline-flex h-12 items-center gap-3 bg-hazard px-7 font-body text-sm font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-bone"
+                className="group inline-flex h-12 items-center gap-3 bg-hazard px-7 font-body text-sm font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime"
               >
                 {block.primaryCtaLabel}
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">

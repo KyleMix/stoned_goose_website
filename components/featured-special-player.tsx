@@ -89,7 +89,7 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
                 <button
                   type="button"
                   aria-label="Close player"
-                  className="absolute -top-12 right-0 inline-flex h-10 items-center bg-hazard px-4 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                  className="absolute -top-12 right-0 inline-flex h-10 items-center bg-hazard px-4 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
                 >
                   Close ✕
                 </button>

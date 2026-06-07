@@ -213,7 +213,7 @@ export default function ShowsPage() {
                           href={show.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                          className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
                         >
                           Get tickets ↗
                         </TrackedAnchor>
@@ -291,7 +291,7 @@ export default function ShowsPage() {
                 <li>
                   <a
                     href="/shows/feed.ics"
-                    className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                    className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
                   >
                     Add .ics feed ↗
                   </a>

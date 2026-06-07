@@ -93,7 +93,7 @@ export default function OpenMicsPage() {
               <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
                 <Link
                   href="/contact"
-                  className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone sm:justify-start"
+                  className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime sm:justify-start"
                 >
                   Send us a tip ↗
                 </Link>

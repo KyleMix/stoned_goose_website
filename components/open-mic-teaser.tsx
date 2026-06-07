@@ -31,7 +31,7 @@ export function OpenMicTeaser() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/open-mics"
-                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
+                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
               >
                 Open the map ↗
               </Link>
