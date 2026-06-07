@@ -136,10 +136,23 @@
   display: block;
   width: 22px;
   height: 22px;
-  background: #f1c40f;
+  background: #f2ea00;
   border: 2px solid #0a0a0a;
   border-radius: 9999px;
-  box-shadow: 0 0 0 2px rgba(241, 196, 15, 0.35);
+  box-shadow: 0 0 0 2px rgba(242, 234, 0, 0.35);
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+}
+/* Green is the universal hover/interaction color. Pins flip to slime on
+   hover and stay slime while their mic is the selected one. */
+.open-mic-pin span:hover {
+  background: #3ddc6e;
+  box-shadow: 0 0 0 2px rgba(61, 220, 110, 0.35);
+}
+.open-mic-pin--selected span {
+  background: #3ddc6e;
+  box-shadow: 0 0 0 3px rgba(61, 220, 110, 0.45);
 }
 .open-mic-cluster {
   background: transparent;
@@ -151,7 +164,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: #f1c40f;
+  background: #f2ea00;
   color: #0a0a0a;
   border: 2px solid #0a0a0a;
   border-radius: 9999px;
@@ -159,7 +172,7 @@
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.05em;
-  box-shadow: 0 0 0 4px rgba(241, 196, 15, 0.35);
+  box-shadow: 0 0 0 4px rgba(242, 234, 0, 0.35);
 }
 .leaflet-popup-content {
   font-family: ui-sans-serif, system-ui, sans-serif;

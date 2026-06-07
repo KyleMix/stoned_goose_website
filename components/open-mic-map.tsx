@@ -30,6 +30,11 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   const clusterRef = useRef<unknown | null>(null);
   const onSelectRef = useRef(onSelect);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
+  // Default (hazard) and selected (slime) divIcons, plus a handle on the marker
+  // currently shown as selected so we can revert it when selection moves.
+  const defaultIconRef = useRef<unknown | null>(null);
+  const selectedIconRef = useRef<unknown | null>(null);
+  const selectedMarkerRef = useRef<unknown | null>(null);
 
   useEffect(() => {
     onSelectRef.current = onSelect;
@@ -78,6 +83,18 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
         iconSize: [22, 22],
         iconAnchor: [11, 11],
       });
+      // Slime variant marks the selected mic. Same geometry as the default so
+      // swapping icons never shifts the pin. Both kept on refs for the
+      // selectedId effect below.
+      const selectedIcon = L.divIcon({
+        className: "open-mic-pin open-mic-pin--selected",
+        html: '<span aria-hidden="true"></span>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
+      });
+      defaultIconRef.current = icon;
+      selectedIconRef.current = selectedIcon;
+      selectedMarkerRef.current = null;
 
       // Cluster group spiderfies dense pins (Olympia/Tacoma overlap at low
       // zoom). Cluster icons styled in the global CSS block below to match
@@ -133,14 +150,34 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   }, [mics]);
 
   useEffect(() => {
+    type IconMarker = {
+      openPopup?: () => unknown;
+      getLatLng?: () => { lat: number; lng: number };
+      setIcon?: (icon: unknown) => unknown;
+    };
+
+    // Revert the previously selected pin to the default (hazard) icon before
+    // doing anything else, so deselection and moving the selection both clear
+    // the slime state.
+    const prev = selectedMarkerRef.current as IconMarker | null;
+    if (prev?.setIcon && defaultIconRef.current) {
+      prev.setIcon(defaultIconRef.current);
+    }
+    selectedMarkerRef.current = null;
+
     if (!selectedId) return;
-    const marker = markersRef.current.get(selectedId) as
-      | { openPopup?: () => unknown; getLatLng?: () => { lat: number; lng: number } }
-      | undefined;
+    const marker = markersRef.current.get(selectedId) as IconMarker | undefined;
     if (!marker?.getLatLng) return;
+
+    // Mark the active mic with the slime icon and remember it for next time.
+    if (marker.setIcon && selectedIconRef.current) {
+      marker.setIcon(selectedIconRef.current);
+      selectedMarkerRef.current = marker;
+    }
+
     // markercluster handles zoom-and-spiderfy via `zoomToShowLayer` so a
     // clustered marker actually opens. Falls back to setView for unclustered
-    // contexts (defensive — should always be clustered now).
+    // contexts. Defensive. Should always be clustered now.
     const cluster = clusterRef.current as
       | { zoomToShowLayer?: (m: unknown, cb: () => void) => void }
       | null;
