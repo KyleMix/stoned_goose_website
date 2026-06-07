@@ -31,10 +31,24 @@ const FacebookPostSchema = z.object({
   attachmentImageUrl: z.string().nullable(),
 });
 
+const YouTubeVideoSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  url: z.string(),
+  thumbnailUrl: z.string(),
+  publishedAt: z.string(),
+});
+
 export const InstagramFeedSchema = z.object({
   ...ManifestBase,
   source: z.literal("instagram"),
   posts: z.array(InstagramPostSchema),
+});
+
+export const YouTubeFeedSchema = z.object({
+  ...ManifestBase,
+  source: z.literal("youtube"),
+  videos: z.array(YouTubeVideoSchema),
 });
 
 export const FacebookFeedSchema = z.object({

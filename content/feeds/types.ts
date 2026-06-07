@@ -21,7 +21,15 @@ export type FacebookPost = {
   attachmentImageUrl: string | null;
 };
 
-export type FeedSource = "instagram" | "facebook";
+export type YouTubeVideo = {
+  id: string;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+  publishedAt: string;
+};
+
+export type FeedSource = "instagram" | "facebook" | "youtube";
 export type FeedStatus = "ok" | "stale" | "error";
 
 export type FeedManifest = {
@@ -39,4 +47,9 @@ export type InstagramFeed = FeedManifest & {
 export type FacebookFeed = FeedManifest & {
   source: "facebook";
   posts: FacebookPost[];
+};
+
+export type YouTubeFeed = FeedManifest & {
+  source: "youtube";
+  videos: YouTubeVideo[];
 };

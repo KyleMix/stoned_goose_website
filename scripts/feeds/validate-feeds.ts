@@ -9,6 +9,7 @@ import { join } from "node:path";
 import {
   FacebookFeedSchema,
   InstagramFeedSchema,
+  YouTubeFeedSchema,
   parseOrThrow,
 } from "./schema";
 
@@ -35,5 +36,10 @@ parseOrThrow(
   loadJson("facebook.json"),
   "content/feeds/facebook.json",
 );
+parseOrThrow(
+  YouTubeFeedSchema,
+  loadJson("youtube.json"),
+  "content/feeds/youtube.json",
+);
 
-console.log("[feeds] validate: 2 feeds OK");
+console.log("[feeds] validate: 3 feeds OK");

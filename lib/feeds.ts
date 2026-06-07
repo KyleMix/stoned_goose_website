@@ -1,8 +1,10 @@
 import instagramRaw from "@/content/feeds/instagram.json";
 import facebookRaw from "@/content/feeds/facebook.json";
+import youtubeRaw from "@/content/feeds/youtube.json";
 import type {
   FacebookFeed,
   InstagramFeed,
+  YouTubeFeed,
 } from "@/content/feeds/types";
 
 // Build-time validation lives in scripts/feeds/validate-feeds.ts (wired
@@ -11,6 +13,7 @@ import type {
 
 export const instagramFeed = instagramRaw as InstagramFeed;
 export const facebookFeed = facebookRaw as FacebookFeed;
+export const youtubeFeed = youtubeRaw as YouTubeFeed;
 
 export function isFresh(
   feed: { fetchedAt: string },

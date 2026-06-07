@@ -16,8 +16,9 @@ import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { NewsFeed } from "@/components/news-feed";
-import { TopVideosGrid } from "@/components/top-videos-grid";
-import { instagramFeed, relativeAge } from "@/lib/feeds";
+import { YouTubeGrid, type GridVideo } from "@/components/youtube-grid";
+import { instagramFeed, youtubeFeed, relativeAge } from "@/lib/feeds";
+import { extractYouTubeId } from "@/lib/youtube";
 import { FeedFreshness } from "@/components/feed-freshness";
 
 export const metadata: Metadata = {
@@ -31,7 +32,28 @@ export const metadata: Metadata = {
 
 export default function WatchPage() {
   const feedFresh = instagramFeed.posts.length > 0;
-  const hasTopVideos = youtubeVideos.length > 0;
+
+  // Prefer the auto-synced channel feed. Fall back to the hand-curated list in
+  // content/watch when the feed is empty (e.g. a build with no network to
+  // youtube.com). Both render through the same inline-play grid.
+  const feedVideos: GridVideo[] = youtubeFeed.videos.map((v) => ({
+    id: v.id,
+    title: v.title,
+    url: v.url,
+  }));
+  const manualVideos: GridVideo[] = youtubeVideos
+    .map((v) => {
+      const id = extractYouTubeId(v.url);
+      if (!id) return null;
+      const url = v.url.startsWith("http")
+        ? v.url
+        : `https://www.youtube.com/watch?v=${id}`;
+      return { id, title: v.title, url };
+    })
+    .filter((v): v is GridVideo => v !== null);
+  const youtubeFresh = feedVideos.length > 0;
+  const topVideos = youtubeFresh ? feedVideos.slice(0, 10) : manualVideos;
+  const hasTopVideos = topVideos.length > 0;
 
   return (
     <>
@@ -208,8 +230,13 @@ export default function WatchPage() {
                 Channel
               </p>
               <h2 className="heading-display mt-3 text-[clamp(2rem,5vw,3.5rem)] text-bone">
-                Top <span className="italic text-hazard">videos</span>
+                Latest <span className="italic text-hazard">uploads</span>
               </h2>
+              {youtubeFresh ? (
+                <p className="mt-3 font-body text-sm text-bone/65">
+                  Auto-synced. YouTube updated {relativeAge(youtubeFeed.fetchedAt)}.
+                </p>
+              ) : null}
             </div>
             <TrackedAnchor
               destination="youtube"
@@ -224,7 +251,7 @@ export default function WatchPage() {
 
           {hasTopVideos ? (
             <div className="mt-10">
-              <TopVideosGrid videos={youtubeVideos} />
+              <YouTubeGrid videos={topVideos} />
             </div>
           ) : (
             <>
