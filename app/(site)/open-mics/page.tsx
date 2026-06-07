@@ -39,9 +39,15 @@ export default function OpenMicsPage() {
 
       <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
-            {openMicsCopy.kicker}
-          </p>
+          <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
+              {openMicsCopy.kicker}
+            </p>
+            <OpenMicSubmitDialog
+              triggerLabel="Submit a mic ↗"
+              triggerClassName="inline-flex h-12 shrink-0 items-center justify-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime sm:justify-start"
+            />
+          </div>
           {mics.length > 0 ? (
             <OpenMicExplorer mics={mics} />
           ) : (
