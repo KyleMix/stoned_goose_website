@@ -16,6 +16,9 @@ const config: Config = {
           500: "#1F1C18",
         },
         hazard: "#F2EA00",
+        // Restricted secondary accent. Marks the contribute / submit flow only.
+        // Yellow stays the dominant accent everywhere else.
+        slime: "#3DDC6E",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],

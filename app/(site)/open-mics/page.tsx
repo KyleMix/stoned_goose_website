@@ -93,7 +93,7 @@ export default function OpenMicsPage() {
                 </Link>
                 <OpenMicSubmitDialog
                   triggerLabel="Submit a mic ↗"
-                  triggerClassName="inline-flex h-12 items-center justify-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard sm:justify-start"
+                  triggerClassName="inline-flex h-12 items-center justify-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime sm:justify-start"
                 />
               </div>
             </div>

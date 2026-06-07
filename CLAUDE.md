@@ -12,6 +12,7 @@ Next.js 15 App Router, static export to /out, TypeScript strict, Tailwind v3, Fr
 ## House rules
 - Three font families only: Fraunces (display), Inter (body), JetBrains Mono (mono accents). Don't add others.
 - One accent color: hazard yellow. Used on punctuation periods, primary CTA, hover, and rarely a phrase. Don't add accents.
+- One restricted secondary: slime green. Marks the contribute / submit flow only (submit a mic). Used sparingly, never as a general accent. Yellow stays dominant.
 - No em dashes anywhere. Use periods, commas, colons, or split the sentence.
 - Bumper voice stays Adult Swim register. Don't soften brand copy.
 - Progressive disclosure under 3 levels per page.

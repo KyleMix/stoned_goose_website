@@ -48,12 +48,12 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
         <Dialog.Content className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-bone/15 bg-ink p-6 shadow-2xl md:p-8">
           <div className="flex items-start justify-between gap-6">
             <div>
-              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
+              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-slime">
                 Add to the map
               </p>
               <Dialog.Title asChild>
                 <h2 className="mt-3 font-display text-2xl text-bone md:text-3xl">
-                  Submit a mic<span className="text-hazard">.</span>
+                  Submit a mic<span className="text-slime">.</span>
                 </h2>
               </Dialog.Title>
               <Dialog.Description asChild>
