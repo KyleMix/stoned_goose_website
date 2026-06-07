@@ -11,7 +11,7 @@
         "http://localhost/open-mics.html",
         "http://localhost/contact.html"
       ],
-      "numberOfRuns": 1,
+      "numberOfRuns": 3,
       "settings": {
         "preset": "desktop",
         "skipAudits": ["uses-http2", "canonical"]
