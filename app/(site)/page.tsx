@@ -7,7 +7,6 @@ import { MailingListCapture } from "@/components/mailing-list-capture";
 import { PressStrip } from "@/components/press-strip";
 import { LatestStrip } from "@/components/latest-strip";
 import { OpenMicTeaser } from "@/components/open-mic-teaser";
-import { RosterTeaser } from "@/components/roster-teaser";
 import { ShopStrip } from "@/components/shop-strip";
 import { SectionRenderer } from "@/components/section-renderer";
 import {
@@ -34,8 +33,6 @@ export default function HomePage() {
       <LatestStrip limit={6} />
 
       <RotatingBumper slot="aside" />
-
-      <RosterTeaser limit={8} />
 
       <ServicesOverview />
 
