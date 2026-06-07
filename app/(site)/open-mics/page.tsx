@@ -8,6 +8,7 @@ import {
 } from "@/content/open-mics";
 import { PageHeader } from "@/components/page-header";
 import { OpenMicExplorer } from "@/components/open-mic-explorer";
+import { OpenMicSubmitDialog } from "@/components/open-mic-submit-dialog";
 import { SectionRenderer } from "@/components/section-renderer";
 
 export const metadata: Metadata = {
@@ -83,12 +84,18 @@ export default function OpenMicsPage() {
                 If a mic moved, died, or was never on here in the first place,
                 send a note. Local knowledge runs this list.
               </p>
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone"
-              >
-                Send us a tip ↗
-              </Link>
+              <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-bone sm:justify-start"
+                >
+                  Send us a tip ↗
+                </Link>
+                <OpenMicSubmitDialog
+                  triggerLabel="Submit a mic ↗"
+                  triggerClassName="inline-flex h-12 items-center justify-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard sm:justify-start"
+                />
+              </div>
             </div>
           </div>
         </div>
