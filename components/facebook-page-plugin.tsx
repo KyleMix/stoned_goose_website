@@ -74,7 +74,7 @@ export function FacebookPagePlugin() {
             href={site.social.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
           >
             Open page ↗
           </FeedLink>

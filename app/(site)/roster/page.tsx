@@ -200,7 +200,7 @@ export default function RosterPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${c.name} on Instagram`}
-                        className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone hover:text-hazard"
+                        className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone hover:text-slime"
                       >
                         IG ↗
                       </a>
@@ -211,7 +211,7 @@ export default function RosterPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${c.name} on Facebook`}
-                        className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone hover:text-hazard"
+                        className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone hover:text-slime"
                       >
                         FB ↗
                       </a>

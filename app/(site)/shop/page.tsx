@@ -40,7 +40,7 @@ export default function ShopPage() {
             href={shopCopy.collectionUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
           >
             View OG Bigboy collection ↗
           </TrackedAnchor>
@@ -71,7 +71,7 @@ export default function ShopPage() {
               href={shopCopy.storeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
             >
               More merch on Fourthwall ↗
             </TrackedAnchor>

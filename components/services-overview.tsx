@@ -32,13 +32,13 @@ export function ServicesOverview() {
                 </span>
                 <Link
                   href={`/book/${s.slug}`}
-                  className="col-span-9 font-display text-2xl text-bone transition-colors group-hover:text-hazard md:col-span-9 md:text-3xl"
+                  className="col-span-9 font-display text-2xl text-bone transition-colors group-hover:text-slime md:col-span-9 md:text-3xl"
                 >
                   {s.title}
                 </Link>
                 <span
                   aria-hidden
-                  className="col-span-1 text-right font-body text-base text-bone/40 transition-colors group-hover:text-hazard md:col-span-2"
+                  className="col-span-1 text-right font-body text-base text-bone/40 transition-colors group-hover:text-slime md:col-span-2"
                 >
                   ↗
                 </span>
@@ -56,7 +56,7 @@ export function ServicesOverview() {
           </Link>
           <Link
             href="/contact"
-            className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+            className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
           >
             Or just email us ↗
           </Link>

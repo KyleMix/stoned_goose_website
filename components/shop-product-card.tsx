@@ -40,7 +40,7 @@ export function ShopProductCard({ product, borderClass }: Props) {
           />
         </div>
         <div className="mt-6 flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-xl text-bone group-hover:text-hazard md:text-2xl">
+          <h3 className="font-display text-xl text-bone group-hover:text-slime md:text-2xl">
             {product.name}
           </h3>
           <span className="shrink-0 font-body text-sm font-semibold tabular-nums text-bone">

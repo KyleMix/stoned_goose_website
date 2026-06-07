@@ -64,7 +64,7 @@ export function UpcomingShowsBlock() {
                 href={site.social.eventbrite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+                className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
               >
                 Eventbrite ↗
               </TrackedAnchor>

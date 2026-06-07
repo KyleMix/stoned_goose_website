@@ -85,7 +85,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
             {block.secondaryCtaLabel && block.secondaryCtaHref ? (
               <Link
                 href={block.secondaryCtaHref}
-                className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-hazard hover:underline"
+                className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
               >
                 {block.secondaryCtaLabel} ↗
               </Link>

@@ -37,7 +37,7 @@ export function LatestStrip({ limit = 6 }: Props) {
           <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
             <Link
               href="/watch"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
             >
               See all on Watch ↗
             </Link>
@@ -47,7 +47,7 @@ export function LatestStrip({ limit = 6 }: Props) {
               href={site.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
             >
               Open Instagram ↗
             </FeedLink>

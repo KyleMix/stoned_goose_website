@@ -27,7 +27,7 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
           </div>
           <Link
             href="/roster"
-            className="inline-flex h-12 items-center border border-ink/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:border-hazard hover:text-hazard"
+            className="inline-flex h-12 items-center border border-ink/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:border-slime hover:text-slime"
           >
             Meet the roster ↗
           </Link>

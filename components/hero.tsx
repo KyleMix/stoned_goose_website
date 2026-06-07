@@ -78,7 +78,7 @@ export function Hero() {
           </Link>
           <Link
             href={hero.secondary.href}
-            className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-hazard hover:underline"
+            className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
           >
             {hero.secondary.label} ↗
           </Link>
@@ -86,7 +86,7 @@ export function Hero() {
             <Link
               key={t.href}
               href={t.href}
-              className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/65 underline-offset-4 hover:text-hazard hover:underline"
+              className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/65 underline-offset-4 hover:text-slime hover:underline"
             >
               {t.label} ↗
             </Link>

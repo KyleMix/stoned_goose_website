@@ -67,7 +67,7 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
               <button
                 type="button"
                 aria-label="Close"
-                className="font-mono text-xs uppercase tracking-[0.18em] text-bone/55 hover:text-hazard"
+                className="font-mono text-xs uppercase tracking-[0.18em] text-bone/55 hover:text-slime"
               >
                 ESC
               </button>
@@ -171,7 +171,7 @@ function RegionGroup() {
         {REGION_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-3 border border-bone/15 p-3 transition-colors hover:border-hazard/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
+            className="flex cursor-pointer items-center gap-3 border border-bone/15 p-3 transition-colors hover:border-slime/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
           >
             <input
               type="radio"
@@ -202,7 +202,7 @@ function DayGroup() {
         {DAY_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-3 border border-bone/15 p-3 transition-colors hover:border-hazard/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
+            className="flex cursor-pointer items-center gap-3 border border-bone/15 p-3 transition-colors hover:border-slime/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
           >
             <input
               type="radio"

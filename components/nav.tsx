@@ -71,7 +71,7 @@ export function Nav() {
             Stoned Goose
             <span
               aria-hidden
-              className="text-hazard transition-[text-decoration-color] group-hover:underline group-hover:decoration-hazard group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-hazard group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
+              className="text-hazard transition-[text-decoration-color] group-hover:underline group-hover:decoration-slime group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-hazard group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
             >
               .
             </span>
@@ -83,7 +83,7 @@ export function Nav() {
             <Link
               key={item.href}
               href={item.href}
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-hazard"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-slime"
             >
               {item.label}
             </Link>
@@ -97,7 +97,7 @@ export function Nav() {
                 new KeyboardEvent("keydown", { key: "k", metaKey: true }),
               );
             }}
-            className="inline-flex items-center gap-2 border border-bone/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/65 transition-colors hover:border-hazard hover:text-hazard"
+            className="inline-flex items-center gap-2 border border-bone/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/65 transition-colors hover:border-slime hover:text-slime"
           >
             <span aria-hidden>/</span>
             <span>Search</span>
@@ -106,7 +106,7 @@ export function Nav() {
           <Link
             href="/shows"
             onClick={() => track("CTA Click", { cta: "nav-tickets" })}
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 transition-colors hover:text-hazard"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 transition-colors hover:text-slime"
           >
             Tickets<span className="text-hazard">.</span> ↗
           </Link>
@@ -117,7 +117,7 @@ export function Nav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center gap-2 border border-bone/25 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-hazard hover:text-hazard md:hidden"
+          className="inline-flex items-center gap-2 border border-bone/25 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime hover:text-slime md:hidden"
         >
           <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
             <span

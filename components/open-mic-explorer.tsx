@@ -104,7 +104,7 @@ export function OpenMicExplorer({ mics }: Props) {
                 aria-label="Filter by city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full appearance-none border border-bone/30 bg-ink py-2.5 pl-3 pr-9 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-hazard focus:border-hazard focus:outline-none"
+                className="w-full appearance-none border border-bone/30 bg-ink py-2.5 pl-3 pr-9 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime focus:border-hazard focus:outline-none"
               >
                 <option value="all">All cities</option>
                 {cityGroups.map((g) => (
@@ -164,7 +164,7 @@ function Chip({
       className={`inline-flex h-9 items-center border px-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
         active
           ? "border-hazard bg-hazard text-ink"
-          : "border-bone/30 text-bone/85 hover:border-hazard hover:text-hazard"
+          : "border-bone/30 text-bone/85 hover:border-slime hover:text-slime"
       }`}
     >
       {children}

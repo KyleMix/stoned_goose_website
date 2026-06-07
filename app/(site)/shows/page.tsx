@@ -143,14 +143,14 @@ export default function ShowsPage() {
               {hasShows ? (
                 <a
                   href="/shows/feed.ics"
-                  className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+                  className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
                 >
                   Subscribe (.ics) ↗
                 </a>
               ) : null}
               <a
                 href="/shows/feed.xml"
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
               >
                 RSS ↗
               </a>
@@ -159,7 +159,7 @@ export default function ShowsPage() {
                 href={site.social.eventbrite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
               >
                 View all on Eventbrite ↗
               </TrackedAnchor>
@@ -259,7 +259,7 @@ export default function ShowsPage() {
                   href={site.social.eventbrite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+                  className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
                 >
                   See all dates on Eventbrite ↗
                 </TrackedAnchor>
@@ -299,7 +299,7 @@ export default function ShowsPage() {
                 <li>
                   <a
                     href="/shows/feed.xml"
-                    className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+                    className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
                   >
                     RSS ↗
                   </a>

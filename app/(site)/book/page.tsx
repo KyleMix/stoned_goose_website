@@ -38,19 +38,19 @@ export default function BookPage() {
         <div className="mx-auto flex max-w-[1400px] flex-wrap gap-x-8 gap-y-3 px-5 py-5 md:px-10">
           <a
             href="#venues"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
           >
             All services ↓
           </a>
           <a
             href="#corporate"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
           >
             Corporate / Media ↓
           </a>
           <a
             href="#sponsors"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
           >
             Sponsors ↓
           </a>
@@ -83,7 +83,7 @@ export default function BookPage() {
                 <div className="col-span-10 md:col-span-7">
                   <Link
                     href={`/book/${s.slug}`}
-                    className="font-display text-2xl text-bone transition-colors group-hover:text-hazard md:text-4xl"
+                    className="font-display text-2xl text-bone transition-colors group-hover:text-slime md:text-4xl"
                   >
                     {s.title}
                   </Link>
@@ -93,7 +93,7 @@ export default function BookPage() {
                 </div>
                 <Link
                   href={`/book/${s.slug}`}
-                  className="col-span-12 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-hazard md:col-span-4 md:text-right"
+                  className="col-span-12 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-slime md:col-span-4 md:text-right"
                 >
                   Read brief ↗
                 </Link>

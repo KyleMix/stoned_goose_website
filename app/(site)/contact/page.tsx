@@ -40,7 +40,7 @@ export default function ContactPage() {
                 <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
                   {contactCopy.emailLabel}
                 </span>
-                <p className="mt-2 break-all font-display text-2xl tracking-tight text-bone transition-colors group-hover:text-hazard md:text-4xl">
+                <p className="mt-2 break-all font-display text-2xl tracking-tight text-bone transition-colors group-hover:text-slime md:text-4xl">
                   {site.contact.email}
                 </p>
               </a>
@@ -51,7 +51,7 @@ export default function ContactPage() {
                 <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
                   {contactCopy.phoneLabel}
                 </span>
-                <p className="mt-2 font-display text-2xl tracking-tight text-bone transition-colors group-hover:text-hazard md:text-4xl">
+                <p className="mt-2 font-display text-2xl tracking-tight text-bone transition-colors group-hover:text-slime md:text-4xl">
                   {site.contact.phone}
                 </p>
               </a>
@@ -61,7 +61,7 @@ export default function ContactPage() {
                   <li>
                     <a
                       href={`sms:${site.contact.phoneTel}`}
-                      className="inline-flex h-10 items-center border border-bone/30 px-4 text-bone hover:border-hazard hover:text-hazard"
+                      className="inline-flex h-10 items-center border border-bone/30 px-4 text-bone hover:border-slime hover:text-slime"
                     >
                       {contactCopy.textCtaLabel}
                     </a>

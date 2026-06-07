@@ -95,7 +95,7 @@ export function AddToCalendar(props: Props) {
       open={open}
       onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}
     >
-      <summary className="inline-flex h-11 cursor-pointer list-none items-center border border-bone/30 px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard [&::-webkit-details-marker]:hidden">
+      <summary className="inline-flex h-11 cursor-pointer list-none items-center border border-bone/30 px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime [&::-webkit-details-marker]:hidden">
         Add to calendar +
       </summary>
       <div className="absolute right-0 z-20 mt-2 w-56 border border-bone/30 bg-ink shadow-xl">
@@ -106,7 +106,7 @@ export function AddToCalendar(props: Props) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleClick("google")}
-              className="block px-4 py-3 font-body text-xs uppercase tracking-[0.18em] text-bone hover:bg-bone/[0.05] hover:text-hazard"
+              className="block px-4 py-3 font-body text-xs uppercase tracking-[0.18em] text-bone hover:bg-bone/[0.05] hover:text-slime"
             >
               Google Calendar ↗
             </a>
@@ -117,7 +117,7 @@ export function AddToCalendar(props: Props) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleClick("outlook")}
-              className="block px-4 py-3 font-body text-xs uppercase tracking-[0.18em] text-bone hover:bg-bone/[0.05] hover:text-hazard"
+              className="block px-4 py-3 font-body text-xs uppercase tracking-[0.18em] text-bone hover:bg-bone/[0.05] hover:text-slime"
             >
               Outlook ↗
             </a>
@@ -127,7 +127,7 @@ export function AddToCalendar(props: Props) {
               href={icsUrl}
               download
               onClick={handleClick("ics")}
-              className="block px-4 py-3 font-body text-xs uppercase tracking-[0.18em] text-bone hover:bg-bone/[0.05] hover:text-hazard"
+              className="block px-4 py-3 font-body text-xs uppercase tracking-[0.18em] text-bone hover:bg-bone/[0.05] hover:text-slime"
             >
               Apple / iCal (.ics)
             </a>

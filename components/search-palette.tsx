@@ -173,7 +173,7 @@ export function SearchPalette() {
                   <Link
                     href={h.url}
                     onClick={() => setOpen(false)}
-                    className="block cursor-pointer border-l-2 border-transparent px-5 py-3 hover:border-hazard hover:bg-bone/[0.04] data-[selected=true]:border-hazard data-[selected=true]:bg-bone/[0.04]"
+                    className="block cursor-pointer border-l-2 border-transparent px-5 py-3 hover:border-slime hover:bg-bone/[0.04] data-[selected=true]:border-hazard data-[selected=true]:bg-bone/[0.04]"
                   >
                     <p className="font-display text-base text-bone md:text-lg">
                       {h.title}

@@ -44,7 +44,7 @@ export function ShareButton({ title, text, url, surface }: Props) {
       type="button"
       onClick={handleClick}
       aria-label={`Share ${title}`}
-      className="inline-flex h-11 items-center border border-bone/30 px-4 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+      className="inline-flex h-11 items-center border border-bone/30 px-4 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
     >
       {copied ? "Link copied" : "Share"}
     </button>

@@ -110,13 +110,13 @@ export default function NotFound() {
                   <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
                     /0{i + 1}
                   </span>
-                  <span className="font-display text-2xl text-bone group-hover:text-hazard md:text-3xl">
+                  <span className="font-display text-2xl text-bone group-hover:text-slime md:text-3xl">
                     {s.label}
                   </span>
                 </span>
                 <span
                   aria-hidden
-                  className="font-body text-base text-bone/55 group-hover:text-hazard"
+                  className="font-body text-base text-bone/55 group-hover:text-slime"
                 >
                   ↗
                 </span>
@@ -133,13 +133,13 @@ export default function NotFound() {
                   <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
                     /now
                   </span>
-                  <span className="font-display text-2xl text-bone group-hover:text-hazard md:text-3xl">
+                  <span className="font-display text-2xl text-bone group-hover:text-slime md:text-3xl">
                     Next on stage. {nextShow.date}. {nextShow.venue}.
                   </span>
                 </span>
                 <span
                   aria-hidden
-                  className="font-body text-base text-bone/55 group-hover:text-hazard"
+                  className="font-body text-base text-bone/55 group-hover:text-slime"
                 >
                   ↗
                 </span>
@@ -157,7 +157,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+            className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
           >
             Talk to us ↗
           </Link>

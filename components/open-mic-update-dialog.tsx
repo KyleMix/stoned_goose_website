@@ -50,7 +50,7 @@ export function OpenMicUpdateDialog({ mic }: Props) {
         <button
           type="button"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex h-10 items-center font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55 hover:text-hazard"
+          className="inline-flex h-10 items-center font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55 hover:text-slime"
         >
           Report change ↗
         </button>
@@ -81,7 +81,7 @@ export function OpenMicUpdateDialog({ mic }: Props) {
               <button
                 type="button"
                 aria-label="Close"
-                className="font-mono text-xs uppercase tracking-[0.18em] text-bone/55 hover:text-hazard"
+                className="font-mono text-xs uppercase tracking-[0.18em] text-bone/55 hover:text-slime"
               >
                 ESC
               </button>
@@ -151,7 +151,7 @@ function FieldGroup() {
         {FIELD_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-start gap-3 border border-bone/15 p-3 transition-colors hover:border-hazard/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
+            className="flex cursor-pointer items-start gap-3 border border-bone/15 p-3 transition-colors hover:border-slime/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
           >
             <input
               type="radio"

@@ -61,7 +61,7 @@ export function Footer() {
                 onClick={() =>
                   track("Outbound Click", { destination: s.destination })
                 }
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-hazard"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-slime"
               >
                 {s.label} <span aria-hidden>↗</span>
               </a>
@@ -73,7 +73,7 @@ export function Footer() {
               footerCopy.creditHref ? (
                 <a
                   href={footerCopy.creditHref}
-                  className="transition-colors hover:text-hazard"
+                  className="transition-colors hover:text-slime"
                   target={/^https?:/.test(footerCopy.creditHref) ? "_blank" : undefined}
                   rel={/^https?:/.test(footerCopy.creditHref) ? "noopener noreferrer" : undefined}
                 >
@@ -108,7 +108,7 @@ function FooterColumn({
           <li key={it.href}>
             <Link
               href={it.href}
-              className="font-body text-sm text-bone/85 transition-colors hover:text-hazard"
+              className="font-body text-sm text-bone/85 transition-colors hover:text-slime"
             >
               {it.label}
             </Link>

@@ -65,7 +65,7 @@ export default function OpenMicsPage() {
               </p>
               <Link
                 href="/contact"
-                className="mt-6 inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+                className="mt-6 inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
               >
                 Tell us about a mic ↗
               </Link>

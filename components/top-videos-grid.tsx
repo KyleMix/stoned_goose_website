@@ -45,7 +45,7 @@ export function TopVideosGrid({ videos }: Props) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block border border-bone/15 bg-ink transition-colors hover:border-hazard/60"
+              className="group block border border-bone/15 bg-ink transition-colors hover:border-slime/60"
             >
               <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
                 <Image
@@ -68,7 +68,7 @@ export function TopVideosGrid({ videos }: Props) {
                 <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                   YouTube
                 </p>
-                <p className="mt-2 font-display text-base text-bone group-hover:text-hazard md:text-lg">
+                <p className="mt-2 font-display text-base text-bone group-hover:text-slime md:text-lg">
                   {v.title}
                 </p>
               </div>

@@ -280,7 +280,7 @@ export default async function ServiceDetailPage(props: {
                         <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/40 md:col-span-1">
                           /0{i + 1}
                         </span>
-                        <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-hazard md:col-span-10 md:text-3xl">
+                        <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-slime md:col-span-10 md:text-3xl">
                           {f.q}
                         </h3>
                         <span

@@ -44,7 +44,7 @@ export function YouTubeGrid({ videos }: Props) {
               <button
                 type="button"
                 onClick={() => openVideo(v.id)}
-                className="group block w-full border border-bone/15 bg-ink text-left transition-colors hover:border-hazard/60"
+                className="group block w-full border border-bone/15 bg-ink text-left transition-colors hover:border-slime/60"
               >
                 <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
                   <Image
@@ -71,7 +71,7 @@ export function YouTubeGrid({ videos }: Props) {
                   <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                     YouTube
                   </p>
-                  <p className="mt-2 font-display text-base text-bone group-hover:text-hazard md:text-lg">
+                  <p className="mt-2 font-display text-base text-bone group-hover:text-slime md:text-lg">
                     {v.title}
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export function YouTubeGrid({ videos }: Props) {
                   href={active.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center px-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+                  className="inline-flex h-10 items-center px-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
                 >
                   Watch on YouTube ↗
                 </a>

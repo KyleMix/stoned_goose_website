@@ -43,7 +43,7 @@ const labels: Record<NewsItem["kind"], string> = {
 export function NewsCard({ item }: { item: NewsItem }) {
   if (item.kind === "post") {
     return (
-      <article className="group flex flex-col border border-bone/15 bg-ink p-6 transition-colors hover:border-hazard/60 md:p-7">
+      <article className="group flex flex-col border border-bone/15 bg-ink p-6 transition-colors hover:border-slime/60 md:p-7">
         {item.poster ? (
           <div className="relative mb-5 aspect-video w-full overflow-hidden bg-haze-500">
             <Image
@@ -59,7 +59,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
         <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
           {labels.post}
         </p>
-        <h3 className="mt-3 font-display text-2xl text-bone group-hover:text-hazard md:text-3xl">
+        <h3 className="mt-3 font-display text-2xl text-bone group-hover:text-slime md:text-3xl">
           {item.href ? (
             <Link href={item.href}>{item.title}</Link>
           ) : (
@@ -80,7 +80,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block border border-bone/15 bg-ink transition-colors hover:border-hazard/60"
+      className="group block border border-bone/15 bg-ink transition-colors hover:border-slime/60"
     >
       <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
         {item.poster ? (
@@ -114,7 +114,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
             {relativeAge(item.date)}
           </span>
         </p>
-        <p className="mt-3 font-display text-lg text-bone group-hover:text-hazard md:text-xl">
+        <p className="mt-3 font-display text-lg text-bone group-hover:text-slime md:text-xl">
           {item.title}
         </p>
       </div>

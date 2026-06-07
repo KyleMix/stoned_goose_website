@@ -78,7 +78,7 @@ export default function WatchPage() {
               href={featuredSpecial.comedianHandle}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
             >
               {featuredSpecial.title} on Instagram ↗
             </TrackedAnchor>
@@ -108,7 +108,7 @@ export default function WatchPage() {
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:bg-hazard hover:text-ink"
+                className="mt-8 inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:bg-slime hover:text-ink"
               >
                 Channel on YouTube ↗
               </TrackedAnchor>
@@ -176,7 +176,7 @@ export default function WatchPage() {
               href={site.social.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-hazard"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
             >
               YouTube channel ↗
             </TrackedAnchor>
@@ -230,7 +230,7 @@ export default function WatchPage() {
                         href={p.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-body text-sm text-bone hover:text-hazard"
+                        className="font-body text-sm text-bone hover:text-slime"
                       >
                         / {p.title} ↗
                       </a>

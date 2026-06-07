@@ -26,7 +26,7 @@ export function ShopStrip({ limit = 3 }: { limit?: number }) {
           </div>
           <Link
             href="/shop"
-            className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+            className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
           >
             See the shop ↗
           </Link>

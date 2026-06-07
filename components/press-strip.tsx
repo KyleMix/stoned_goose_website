@@ -33,7 +33,7 @@ export function PressStrip() {
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block hover:text-hazard"
+                    className="block hover:text-slime"
                   >
                     {body}
                   </a>

@@ -37,7 +37,7 @@ export function OpenMicTeaser() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-hazard hover:text-hazard"
+                className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
               >
                 Submit a mic ↗
               </Link>

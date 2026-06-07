@@ -156,7 +156,7 @@ function EditOverlayInner() {
                   href={t.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col gap-0.5 px-3 py-2 hover:bg-hazard/40 focus:bg-hazard/40 focus:outline-none"
+                  className="flex flex-col gap-0.5 px-3 py-2 hover:bg-slime/40 focus:bg-hazard/40 focus:outline-none"
                 >
                   <span className="text-[0.7rem] uppercase tracking-[0.16em]">
                     {t.label}
