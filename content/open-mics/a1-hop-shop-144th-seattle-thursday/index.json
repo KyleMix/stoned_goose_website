@@ -6,10 +6,13 @@
   "region": "WA",
   "lat": 47.608872831311515,
   "lng": -122.32971391622797,
-  "day": "Thursday",
-  "frequency": "weekly",
+  "day": "Friday",
+  "frequency": "monthly",
+  "weeks": [
+    "1st"
+  ],
   "time": "9pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Anything is allowed. Free. Age 21+. Parking. on site"
+  "notes": "Sign-up/Start: DM host/9:30pm Age 21+. Parking. on site"
 }
