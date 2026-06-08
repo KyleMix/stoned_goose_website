@@ -1,15 +1,18 @@
 {
-  "name": "Growler’s Taproom",
+  "name": "Growler Guys",
   "venue": "Growler’s Taproom",
-  "address": "803 SE 82nd Ave",
-  "city": "Portland",
-  "region": "OR",
-  "lat": 45.51988116273747,
-  "lng": -122.67602710002288,
-  "day": "Saturday",
-  "frequency": "weekly",
-  "time": "9:45pm",
-  "host": "",
-  "signupUrl": "",
+  "address": "8500 Lake City Way NE, Seattle, WA 98115",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.690593,
+  "lng": -122.307288,
+  "day": "Tuesday",
+  "frequency": "monthly",
+  "weeks": [
+    "1st"
+  ],
+  "time": "7:30pm",
+  "host": "Tyler Searle",
+  "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdtvUUqVy6P3Cc0U-6p-pexpd34j4MB0XSWrsn2-3GSPCt6Jw/closedform",
   "notes": ""
 }
