@@ -47,9 +47,57 @@ type ShopCopy = {
   subhead: string;
   collectionUrl: string;
   storeUrl: string;
+  categoryAssignments?: Array<{ slug?: string; category?: string }>;
 };
 
 export const shopCopy = shopCopyData as ShopCopy;
+
+// Fixed display order for the stacked /shop sections.
+export const SHOP_CATEGORIES = ["Hats", "Tops", "Bottoms", "Accessories"] as const;
+export type ShopCategory = (typeof SHOP_CATEGORIES)[number];
+
+// Manual slug -> category map, edited in the CMS (Shop copy > Category
+// assignments). Manual tags always win; untagged products fall back to a
+// keyword guess so the page is never left unsorted while tagging.
+const assignmentMap = new Map<string, ShopCategory>();
+for (const a of shopCopy.categoryAssignments ?? []) {
+  if (a.slug && (SHOP_CATEGORIES as readonly string[]).includes(a.category ?? "")) {
+    assignmentMap.set(a.slug.toLowerCase(), a.category as ShopCategory);
+  }
+}
+
+function autoCategory(name: string): ShopCategory | null {
+  const n = name.toLowerCase();
+  if (/\b(hat|cap|beanie|snapback|trucker|bucket|visor)\b/.test(n)) return "Hats";
+  if (
+    /(hoodie|sweatshirt|crew\s?neck|t-?shirt|\btee\b|\btank\b|jacket|long\s?sleeve|jersey|pullover|\btop\b)/.test(n)
+  )
+    return "Tops";
+  if (/(jogger|sweatpant|sweatshort|\bshorts?\b|\bpants?\b|leggings|\bbottoms?\b)/.test(n))
+    return "Bottoms";
+  return null;
+}
+
+export function categorize(product: Product): ShopCategory {
+  return (
+    assignmentMap.get(product.slug.toLowerCase()) ??
+    autoCategory(product.name) ??
+    "Accessories"
+  );
+}
+
+// Group products into the fixed category order, dropping empty sections.
+export function productsByCategory(
+  items: Product[],
+): Array<{ category: ShopCategory; products: Product[] }> {
+  const groups = new Map<ShopCategory, Product[]>();
+  for (const c of SHOP_CATEGORIES) groups.set(c, []);
+  for (const p of items) groups.get(categorize(p))!.push(p);
+  return SHOP_CATEGORIES.map((category) => ({
+    category,
+    products: groups.get(category)!,
+  })).filter((g) => g.products.length > 0);
+}
 
 type RawProduct = {
   slug?: string;

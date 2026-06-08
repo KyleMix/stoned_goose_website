@@ -379,6 +379,16 @@ collections:
           - { name: subhead, label: Subhead, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: collectionUrl, label: Fourthwall collection URL, widget: string, required: false }
           - { name: storeUrl, label: Fourthwall store URL, widget: string, required: false }
+          - name: categoryAssignments
+            label: Category assignments
+            label_singular: Assignment
+            widget: list
+            required: false
+            summary: '{{fields.slug}} -> {{fields.category}}'
+            hint: 'Tag products into shop sections. Slug is the part after /shop/ in the product URL. Untagged products fall back to a keyword guess.'
+            fields:
+              - { name: slug, label: Product slug, widget: string }
+              - { name: category, label: Category, widget: select, options: [Hats, Tops, Bottoms, Accessories] }
 
       # ---------- Contact page ----------
       - name: contact_copy
