@@ -1,0 +1,16 @@
+{
+  "name": "Log Cabin Comedy Open Mic",
+  "venue": "Log Cabin Bar & Grill",
+  "address": "7035 Pacific AVE SE, Olympia WA 98503",
+  "city": "Olympia, WA",
+  "region": "WA",
+  "lat": 47.0408643,
+  "lng": -122.7904564,
+  "day": "Monday",
+  "frequency": "biweekly",
+  "weeks": [],
+  "time": "7pm",
+  "host": "Stoned Goose Productions",
+  "signupUrl": "",
+  "notes": "SHOW-UP GO-UP"
+}
