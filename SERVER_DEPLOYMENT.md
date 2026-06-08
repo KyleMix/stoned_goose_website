@@ -103,11 +103,29 @@ before `npm run build` runs. The `/admin` editor needs no build-time env var;
 its auth is configured at runtime in `public/admin/config.yml` (see
 [Editing with Sveltia CMS](#editing-with-sveltia-cms)).
 
-### Fourthwall merch sync (live /shop catalog)
+### Fourthwall merch (live /shop, on-site cart)
 
-`/shop` renders a hand-maintained product list by default. To mirror the live
-Fourthwall storefront instead, set these env vars in the deploy host's project
-settings (set them in BOTH Cloudflare and Vercel if you publish to both):
+`/shop` renders a hand-maintained product list by default. There are two ways
+to connect it to the live Fourthwall store; set the env vars in the deploy
+host's project settings (in BOTH Cloudflare and Vercel if you publish to both).
+
+**Preferred: Storefront API (rich product pages + on-site cart).** A single
+public token enables on-site product detail pages and a cart that only hands
+off to Fourthwall at the payment step.
+
+| Variable | Value |
+| :--- | :--- |
+| `NEXT_PUBLIC_FW_STOREFRONT_TOKEN` | Storefront token from Fourthwall: Settings -> For Developers -> Headless |
+| `NEXT_PUBLIC_FW_API_URL` | `https://storefront-api.fourthwall.com/v1` |
+| `NEXT_PUBLIC_FW_STORE_URL` | `https://stoned-goose-productions-zgm-shop.fourthwall.com` |
+| `NEXT_PUBLIC_FW_CHECKOUT` | Optional. Checkout domain; defaults to the store URL. |
+
+The token is a public read/cart token and is meant to ship in the browser
+bundle. It is consumed at build time (rich product sync) and at runtime (cart),
+so it must be present before `npm run build`.
+
+**Fallback: Open API (basic catalog, no cart).** Used automatically when no
+storefront token is set, so the grid still shows live products.
 
 | Variable | Value |
 | :--- | :--- |
@@ -115,13 +133,9 @@ settings (set them in BOTH Cloudflare and Vercel if you publish to both):
 | `FOURTHWALL_API_PASSWORD` | Basic-auth password from the same screen |
 | `FOURTHWALL_API_BASE_URL` | `https://api.fourthwall.com/open-api/v1.0` |
 | `NEXT_PUBLIC_FW_STORE_URL` | `https://stoned-goose-productions-zgm-shop.fourthwall.com` |
-| `FOURTHWALL_PRODUCT_LIMIT` | Optional. Omit to pull the full catalog. |
 
-`sync:fourthwall` runs in `prebuild`, so a redeploy after setting these
-populates `content/.generated/products.json` with every available product
-(paginated, images and prices included) and `/shop` switches to it
-automatically. Without the vars the build skips the sync and keeps the manual
-fallback, so nothing breaks.
+`sync:fourthwall` runs in `prebuild`. With no Fourthwall vars at all, the build
+skips the sync and keeps the manual fallback, so nothing breaks.
 
 ---
 

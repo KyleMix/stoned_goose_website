@@ -58,7 +58,7 @@ export default function ShopPage() {
               } ${i % 3 === 2 ? "lg:border-r-0" : ""}`;
               return (
                 <ShopProductCard
-                  key={p.url}
+                  key={p.slug}
                   product={p}
                   borderClass={borderClass}
                 />

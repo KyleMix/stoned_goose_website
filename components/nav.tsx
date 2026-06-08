@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { nav, site } from "@/content/site";
 import { upcomingShows } from "@/content/shows";
 import { track } from "@/lib/analytics";
+import { CartButton } from "@/components/cart/cart-button";
 
 function formatNextShowDate(iso: string | null): string | null {
   if (!iso) return null;
@@ -112,6 +113,8 @@ export function Nav() {
           </Link>
         </nav>
 
+        <div className="flex items-center gap-2 md:gap-3">
+        <CartButton />
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -141,6 +144,7 @@ export function Nav() {
           </span>
           <span>{open ? "Close" : "Menu"}</span>
         </button>
+        </div>
       </div>
     </header>
 
