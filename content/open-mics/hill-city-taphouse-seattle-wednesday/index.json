@@ -1,0 +1,19 @@
+{
+  "name": "Tapped In",
+  "venue": "Hill City Taphouse",
+  "address": "5303 Rainier Ave S, Seatle 98118",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.5412,
+  "lng": -122.275,
+  "day": "Wednesday",
+  "frequency": "biweekly",
+  "weeks": [
+    "1st",
+    "3rd"
+  ],
+  "time": "7pm",
+  "host": "Rotating",
+  "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeUHNTMSYbHLL1XyPOKS-wZH-gE-ixeCCu5bRFWYTP15mrDPQ/closedform",
+  "notes": "Email openmiccollectivepnw@gmail.com to sign up."
+}
