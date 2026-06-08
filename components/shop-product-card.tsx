@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { track } from "@/lib/analytics";
 import type { Product } from "@/content/shop";
 
@@ -9,21 +10,14 @@ type Props = {
   borderClass: string;
 };
 
-// Shop card with Plausible "Shop Click" tracking on the outbound Fourthwall
-// click-through. Visual style stays consistent with the static export.
+// Shop card linking to the on-site product page. Browsing stays on the site;
+// only checkout hands off to Fourthwall.
 export function ShopProductCard({ product, borderClass }: Props) {
-  function handleClick() {
-    track("Shop Click", { product: product.name });
-    track("Outbound Click", { destination: "fourthwall" });
-  }
-
   return (
     <li className={borderClass}>
-      <a
-        href={product.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleClick}
+      <Link
+        href={`/shop/${product.slug}`}
+        onClick={() => track("Shop Click", { product: product.name })}
         className="flex h-full flex-col justify-between p-6 md:p-8"
       >
         <div className="relative aspect-square w-full overflow-hidden bg-haze-500">
@@ -47,10 +41,10 @@ export function ShopProductCard({ product, borderClass }: Props) {
             {product.price}
           </span>
         </div>
-        <p className="mt-2 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-          Buy on Fourthwall ↗
+        <p className="mt-2 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55 group-hover:text-slime">
+          View ↗
         </p>
-      </a>
+      </Link>
     </li>
   );
 }

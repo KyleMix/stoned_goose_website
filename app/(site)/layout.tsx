@@ -1,6 +1,8 @@
 import type { LocalBusiness } from "schema-dts";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { CartProvider } from "@/components/cart/cart-context";
+import { CartDrawer } from "@/components/cart/cart-drawer";
 import { Grain } from "@/components/grain";
 import { EditOverlay } from "@/components/edit-overlay";
 import { RouteFocusManager } from "@/components/route-focus-manager";
@@ -68,10 +70,13 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       >
         Skip to content
       </a>
-      <Nav />
-      <main id="main" tabIndex={-1} data-pagefind-body>
-        {children}
-      </main>
+      <CartProvider>
+        <Nav />
+        <main id="main" tabIndex={-1} data-pagefind-body>
+          {children}
+        </main>
+        <CartDrawer />
+      </CartProvider>
       <Footer />
       <Grain />
       <RouteFocusManager />
