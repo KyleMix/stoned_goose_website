@@ -43,6 +43,18 @@
     {
       "slug": "og-bigboychest",
       "category": "Tops"
+    },
+    {
+      "slug": "tuque-or-something",
+      "category": "Hats"
+    },
+    {
+      "slug": "chonchos-sweats",
+      "category": "Bottoms"
+    },
+    {
+      "slug": "sock-o",
+      "category": "Tops"
     }
   ]
 }
