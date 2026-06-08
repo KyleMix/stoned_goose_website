@@ -26,11 +26,11 @@ export function ShopProductCard({ product, borderClass }: Props) {
             alt={product.imageAlt || product.name}
             fill
             sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-            className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter,transform] duration-500 group-hover:scale-[1.02] group-hover:[filter:grayscale(0)_contrast(1)]"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
           <span
             aria-hidden
-            className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
+            className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.35)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-25 transition-opacity duration-500 group-hover:opacity-0"
           />
         </div>
         <div className="mt-6 flex items-baseline justify-between gap-3">

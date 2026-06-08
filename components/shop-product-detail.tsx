@@ -251,7 +251,7 @@ function Layout({
             <img
               src={main}
               alt={imageAlt}
-              className="h-full w-full object-cover [filter:grayscale(1)_contrast(1.05)]"
+              className="h-full w-full object-cover"
             />
           ) : null}
         </div>
@@ -271,7 +271,7 @@ function Layout({
                 <img
                   src={img}
                   alt=""
-                  className="h-full w-full object-cover [filter:grayscale(1)]"
+                  className="h-full w-full object-cover"
                 />
               </button>
             ))}
