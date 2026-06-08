@@ -1,15 +1,19 @@
 {
-  "name": "Halcyon Brewing",
+  "name": "Halcyon",
   "venue": "Halcyon Brewing",
   "address": "8564 Greenwood Ave N",
   "city": "Seattle",
   "region": "WA",
   "lat": 47.59615339894713,
   "lng": -122.33890631723506,
-  "day": "Thursday",
-  "frequency": "weekly",
-  "time": "8:30pm",
-  "host": "",
+  "day": "Saturday",
+  "frequency": "biweekly",
+  "weeks": [
+    "2nd",
+    "4th"
+  ],
+  "time": "8pm",
+  "host": "Rotating",
   "signupUrl": "",
-  "notes": "Only Comedy. Free. Age 21+. Wheelchair accessible"
+  "notes": "Email openmiccollectivepnw@gmail.com to Sign Up. Contest style mic voted by audience."
 }
