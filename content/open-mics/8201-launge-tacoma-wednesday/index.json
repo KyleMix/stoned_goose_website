@@ -7,8 +7,13 @@
   "lat": 47.24177013046464,
   "lng": -122.4534947814145,
   "day": "Wednesday",
+  "frequency": "biweekly",
+  "weeks": [
+    "1st",
+    "3rd"
+  ],
   "time": "7:30pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Free. Set 5(closer20)/. 1st, 3rd Wednesdays"
+  "notes": "Free. Set 5(closer20)/"
 }

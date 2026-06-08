@@ -208,6 +208,7 @@ async function main() {
       lng,
       day,
       time: row.time,
+      frequency: "weekly",
       host: row.host || undefined,
       signupUrl: row.signup_url || row.signupurl || undefined,
       notes: row.notes || undefined,

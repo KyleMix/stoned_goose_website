@@ -20,6 +20,13 @@ export type OpenMicDay =
   | "Saturday"
   | "Sunday";
 
+// How often a mic recurs. `weekly` is the default and the common case;
+// `biweekly` (every other week) and `monthly` are paired with `weeks` to say
+// which weeks of the month it actually happens.
+export type OpenMicFrequency = "weekly" | "biweekly" | "monthly";
+
+export type OpenMicWeek = "1st" | "2nd" | "3rd" | "4th" | "Last";
+
 export type OpenMic = {
   id: string;
   name: string;
@@ -31,10 +38,52 @@ export type OpenMic = {
   lng: number;
   day: OpenMicDay;
   time: string;
+  frequency: OpenMicFrequency;
+  weeks?: OpenMicWeek[];
   host?: string;
   signupUrl?: string;
   notes?: string;
 };
+
+const WEEK_ORDER: OpenMicWeek[] = ["1st", "2nd", "3rd", "4th", "Last"];
+
+const FREQUENCY_LABELS: Record<OpenMicFrequency, string> = {
+  weekly: "Weekly",
+  biweekly: "Every other week",
+  monthly: "Monthly",
+};
+
+// Sidebar filter options, shared by the explorer so the labels stay in sync
+// with the badge.
+export const FREQUENCY_FILTERS: Array<{
+  value: OpenMicFrequency | "all";
+  label: string;
+}> = [
+  { value: "all", label: "All" },
+  { value: "weekly", label: "Weekly" },
+  { value: "biweekly", label: "Every other week" },
+  { value: "monthly", label: "Monthly" },
+];
+
+// Display helper for the cadence badge: a primary cadence label plus an
+// optional which-weeks detail (e.g. "1st & 3rd"). Used by the list row badge.
+export function formatFrequency(mic: OpenMic): {
+  label: string;
+  detail?: string;
+} {
+  const label = FREQUENCY_LABELS[mic.frequency] ?? FREQUENCY_LABELS.weekly;
+  if (mic.frequency === "weekly" || !mic.weeks || mic.weeks.length === 0) {
+    return { label };
+  }
+  const ordered = [...mic.weeks].sort(
+    (a, b) => WEEK_ORDER.indexOf(a) - WEEK_ORDER.indexOf(b),
+  );
+  const detail =
+    ordered.length === 1
+      ? ordered[0]
+      : `${ordered.slice(0, -1).join(", ")} & ${ordered[ordered.length - 1]}`;
+  return { label, detail };
+}
 
 export type OpenMicsManifest = {
   fetchedAt: string;
@@ -70,10 +119,28 @@ type RawMic = {
   lng?: number;
   day?: string;
   time?: string;
+  frequency?: string;
+  weeks?: string[];
   host?: string;
   signupUrl?: string;
   notes?: string;
 };
+
+const VALID_FREQUENCIES: OpenMicFrequency[] = ["weekly", "biweekly", "monthly"];
+
+function normaliseFrequency(value: string | undefined): OpenMicFrequency {
+  return VALID_FREQUENCIES.includes(value as OpenMicFrequency)
+    ? (value as OpenMicFrequency)
+    : "weekly";
+}
+
+function normaliseWeeks(value: string[] | undefined): OpenMicWeek[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const weeks = value.filter((w): w is OpenMicWeek =>
+    WEEK_ORDER.includes(w as OpenMicWeek),
+  );
+  return weeks.length > 0 ? weeks : undefined;
+}
 
 const cmsMics: OpenMic[] = (micsIndex as RawMic[]).map((m) => ({
   id: m.id ?? "",
@@ -86,6 +153,8 @@ const cmsMics: OpenMic[] = (micsIndex as RawMic[]).map((m) => ({
   lng: Number(m.lng ?? 0),
   day: (m.day as OpenMicDay) ?? "Monday",
   time: m.time ?? "",
+  frequency: normaliseFrequency(m.frequency),
+  weeks: normaliseWeeks(m.weeks),
   host: m.host && m.host.length > 0 ? m.host : undefined,
   signupUrl: m.signupUrl && m.signupUrl.length > 0 ? m.signupUrl : undefined,
   notes: m.notes && m.notes.length > 0 ? m.notes : undefined,

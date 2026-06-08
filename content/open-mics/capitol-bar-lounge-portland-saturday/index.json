@@ -7,8 +7,11 @@
   "lat": 45.52026825360495,
   "lng": -122.68649503318836,
   "day": "Saturday",
+  "frequency": "monthly",
+  "weeks": [
+    "2nd"
+  ],
   "time": "1",
   "host": "",
-  "signupUrl": "",
-  "notes": "2nd sat"
+  "signupUrl": ""
 }

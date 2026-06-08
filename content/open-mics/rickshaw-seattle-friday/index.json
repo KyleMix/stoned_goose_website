@@ -7,6 +7,7 @@
   "lat": 47.601876630807965,
   "lng": -122.33309555962462,
   "day": "Friday",
+  "frequency": "weekly",
   "time": "7pm",
   "host": "",
   "signupUrl": "https://slotted.co/rickshaw",

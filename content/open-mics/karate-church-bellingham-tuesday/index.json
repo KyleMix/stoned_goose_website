@@ -7,8 +7,13 @@
   "lat": 48.743991371023114,
   "lng": -122.48396967269399,
   "day": "Tuesday",
+  "frequency": "biweekly",
+  "weeks": [
+    "2nd",
+    "4th"
+  ],
   "time": "7pm",
   "host": "karate.church.project@gmail.com",
   "signupUrl": "",
-  "notes": "Free. 2nd, 4th Tue."
+  "notes": "Free"
 }

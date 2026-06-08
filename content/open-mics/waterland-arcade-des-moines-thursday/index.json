@@ -7,8 +7,13 @@
   "lat": 47.48943959716182,
   "lng": -120.69356392767224,
   "day": "Thursday",
+  "frequency": "biweekly",
+  "weeks": [
+    "2nd",
+    "4th"
+  ],
   "time": "7pm",
   "host": "jason@waterlandarcade.com",
   "signupUrl": "https://linktr.ee/openmiccollectivepnw?fbclid=PAAabdH21h8IxZty7UZMxOZ5D7SF1-mSEH3IpI-sVchRouTX4oJy-IUPhgV88",
-  "notes": "Only Comedy. Free. Age all ages. Wheelchair accessible. Parking. on street. 2nd, 4th Thu. ($10 cover fee for bucket list)"
+  "notes": "Only Comedy. Free. Age all ages. Wheelchair accessible. Parking. on street. ($10 cover fee for bucket list)"
 }

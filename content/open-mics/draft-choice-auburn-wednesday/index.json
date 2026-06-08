@@ -7,8 +7,12 @@
   "lat": 47.30829775692378,
   "lng": -122.22387486839094,
   "day": "Wednesday",
+  "frequency": "monthly",
+  "weeks": [
+    "Last"
+  ],
   "time": "7pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Age 21+. Wheelchair accessible. Last Wed."
+  "notes": "Age 21+. Wheelchair accessible"
 }

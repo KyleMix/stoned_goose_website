@@ -5,7 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useFormContext } from "react-hook-form";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField, FieldLabel } from "@/components/form-field";
-import type { OpenMic } from "@/content/open-mics";
+import { formatFrequency, type OpenMic } from "@/content/open-mics";
 
 const FIELD_OPTIONS: Array<{
   value: "location" | "time" | "day" | "signup" | "host" | "closed" | "other";
@@ -33,8 +33,10 @@ type Props = {
 export function OpenMicUpdateDialog({ mic }: Props) {
   const [open, setOpen] = useState(false);
 
+  const freq = formatFrequency(mic);
+  const cadence = freq.detail ? `${freq.label} (${freq.detail})` : freq.label;
   const currentSummary =
-    `${mic.name} / ${mic.day} ${mic.time} / ${mic.address}, ${mic.city}, ${mic.region}`;
+    `${mic.name} / ${mic.day} ${mic.time} / ${cadence} / ${mic.address}, ${mic.city}, ${mic.region}`;
 
   const staticPayload: Record<string, string> = {
     micId: mic.id,

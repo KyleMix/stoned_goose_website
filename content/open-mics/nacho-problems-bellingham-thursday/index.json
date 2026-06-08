@@ -7,8 +7,12 @@
   "lat": 48.74885362783245,
   "lng": -122.48371039139391,
   "day": "Thursday",
+  "frequency": "biweekly",
+  "weeks": [
+    "2nd",
+    "4th"
+  ],
   "time": "8:30pm",
   "host": "",
-  "signupUrl": "",
-  "notes": "2nd, 4th Thurs."
+  "signupUrl": ""
 }

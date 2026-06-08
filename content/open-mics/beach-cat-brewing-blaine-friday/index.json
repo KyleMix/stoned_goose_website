@@ -7,8 +7,11 @@
   "lat": 49.0011937972076,
   "lng": -122.74869073014419,
   "day": "Friday",
+  "frequency": "monthly",
+  "weeks": [
+    "1st"
+  ],
   "time": "8pm",
   "host": "",
-  "signupUrl": "",
-  "notes": "1st Fri."
+  "signupUrl": ""
 }
