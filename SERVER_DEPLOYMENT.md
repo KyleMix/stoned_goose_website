@@ -103,6 +103,26 @@ before `npm run build` runs. The `/admin` editor needs no build-time env var;
 its auth is configured at runtime in `public/admin/config.yml` (see
 [Editing with Sveltia CMS](#editing-with-sveltia-cms)).
 
+### Fourthwall merch sync (live /shop catalog)
+
+`/shop` renders a hand-maintained product list by default. To mirror the live
+Fourthwall storefront instead, set these env vars in the deploy host's project
+settings (set them in BOTH Cloudflare and Vercel if you publish to both):
+
+| Variable | Value |
+| :--- | :--- |
+| `FOURTHWALL_API_USERNAME` | Basic-auth user from Fourthwall: Settings -> For Developers -> API |
+| `FOURTHWALL_API_PASSWORD` | Basic-auth password from the same screen |
+| `FOURTHWALL_API_BASE_URL` | `https://api.fourthwall.com/open-api/v1` |
+| `NEXT_PUBLIC_FW_STORE_URL` | `https://stoned-goose-productions-zgm-shop.fourthwall.com` |
+| `FOURTHWALL_PRODUCT_LIMIT` | Optional. Omit to pull the full catalog. |
+
+`sync:fourthwall` runs in `prebuild`, so a redeploy after setting these
+populates `content/.generated/products.json` with every available product
+(paginated, images and prices included) and `/shop` switches to it
+automatically. Without the vars the build skips the sync and keeps the manual
+fallback, so nothing breaks.
+
 ---
 
 ## 1. Docker Compose + Caddy
