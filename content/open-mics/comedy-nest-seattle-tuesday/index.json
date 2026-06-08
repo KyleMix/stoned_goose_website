@@ -1,13 +1,17 @@
 {
   "name": "Comedy Nest",
-  "venue": "Comedy Nest",
-  "address": "2322 2nd Ave",
+  "venue": "Common Objects",
+  "address": "2601 1st Ave, Seattle, WA 98121",
   "city": "Seattle",
   "region": "WA",
-  "lat": 47.61115765621424,
-  "lng": -122.32269977111467,
+  "lat": 47.6152339,
+  "lng": -122.3499757,
   "day": "Tuesday",
-  "frequency": "weekly",
+  "frequency": "biweekly",
+  "weeks": [
+    "1st",
+    "Last"
+  ],
   "time": "7pm",
   "host": "comedynestseattle@gmail.com",
   "signupUrl": "https://www.therendezvous.rocks/calendar/category/comedy/",
