@@ -7,9 +7,8 @@
   "lat": 47.6690441,
   "lng": -122.3659858,
   "day": "Thursday",
-  "frequency": "weekly",
   "time": "Sign-up/Start: 8:30pm/9pm",
   "host": "Big Time Mel, Noah O Nguyen",
-  "signupUrl": "Sign-up: 8:30pm",
-  "notes": ""
+  "signupUrl": "",
+  "notes": "Sign-up: 8:30pm"
 }
