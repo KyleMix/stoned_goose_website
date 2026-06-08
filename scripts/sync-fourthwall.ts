@@ -2,36 +2,59 @@
 // Pulls the full live catalog at build time so /shop mirrors the storefront
 // instead of a hand-maintained list. Falls back silently when env vars or
 // network are missing, keeping the previously generated JSON in place.
+//
+// Endpoint: GET /open-api/v1.0/products (Basic auth with the Open API User
+// username/password). Paginated via the `paging.hasNextPage` flag. See
+// https://docs.fourthwall.com/open-api/
 import { join } from "node:path";
 import type { Product } from "../content/shop";
 import { requireEnv, safeFetch, writeJson } from "./_sync-helpers";
 
 const OUT_PATH = join(process.cwd(), "content", ".generated", "products.json");
 
-// Open API returns up to 100 results per page. We walk pages until one comes
-// back short or stops adding new ids, so the whole catalog lands regardless of
-// size. The hard cap is a safety net against an API that ignores pagination.
-const PAGE_SIZE = 100;
-const MAX_PAGES = 20;
+const PAGE_SIZE = 20;
+const MAX_PAGES = 50;
+
+type FourthwallImage = { url: string };
 
 type FourthwallProduct = {
   id: string;
   name: string;
   slug: string;
   state?: { type?: string };
+  status?: string;
   variants?: Array<{
     unitPrice?: { value: number; currency: string };
+    images?: FourthwallImage[];
   }>;
-  images?: Array<{ url: string }>;
+  images?: FourthwallImage[];
 };
 
 type FourthwallListResponse = {
-  results: FourthwallProduct[];
+  results?: FourthwallProduct[];
+  paging?: { hasNextPage?: boolean };
 };
 
 function formatPrice(value: number, currency: string): string {
   if (currency === "USD") return `$${value.toFixed(2)}`;
   return `${value.toFixed(2)} ${currency}`;
+}
+
+// Image can sit on the product or on a variant depending on the listing.
+function firstImage(p: FourthwallProduct): string {
+  if (p.images?.[0]?.url) return p.images[0].url;
+  for (const v of p.variants ?? []) {
+    if (v.images?.[0]?.url) return v.images[0].url;
+  }
+  return "";
+}
+
+// The product is shown unless it is explicitly marked unavailable. We avoid a
+// strict allow-list so an unexpected status value never blanks the whole shop.
+function isAvailable(p: FourthwallProduct): boolean {
+  if (p.state?.type) return p.state.type === "AVAILABLE";
+  if (p.status) return p.status.toUpperCase() === "AVAILABLE";
+  return true;
 }
 
 async function main() {
@@ -52,13 +75,18 @@ async function main() {
   const auth = Buffer.from(
     `${env.FOURTHWALL_API_USERNAME}:${env.FOURTHWALL_API_PASSWORD}`,
   ).toString("base64");
-  const apiBase = env.FOURTHWALL_API_BASE_URL.replace(/\/$/, "");
+  // The Open API lives under /open-api/v1.0. Tolerate a base URL that was
+  // configured as .../v1 so a stale env var still resolves correctly.
+  const apiBase = env.FOURTHWALL_API_BASE_URL.replace(/\/$/, "").replace(
+    /\/open-api\/v1$/,
+    "/open-api/v1.0",
+  );
 
   // Collect by id so a duplicated page (API ignoring `page`) ends the loop
   // instead of looping forever.
   const byId = new Map<string, FourthwallProduct>();
   for (let page = 0; page < MAX_PAGES; page += 1) {
-    const url = `${apiBase}/products?limit=${PAGE_SIZE}&page=${page}`;
+    const url = `${apiBase}/products?page=${page}&size=${PAGE_SIZE}`;
     const data = (await safeFetch(url, {
       headers: { Authorization: `Basic ${auth}` },
     })) as FourthwallListResponse | null;
@@ -76,9 +104,13 @@ async function main() {
     const before = byId.size;
     for (const p of results) byId.set(p.id, p);
 
-    // Stop on a short page, an empty page, or a page that added nothing new.
-    if (results.length < PAGE_SIZE || byId.size === before) break;
     if (byId.size >= cap) break;
+    // Prefer the API's own flag; fall back to a short/empty/duplicate page.
+    const hasNext = data.paging?.hasNextPage;
+    if (hasNext === false) break;
+    if (hasNext === undefined && (results.length < PAGE_SIZE || byId.size === before)) {
+      break;
+    }
   }
 
   const storeBase =
@@ -86,9 +118,9 @@ async function main() {
     "https://stoned-goose-productions-zgm-shop.fourthwall.com";
 
   const products: Product[] = Array.from(byId.values())
-    .filter((p) => p.state?.type === "AVAILABLE")
+    .filter(isAvailable)
     // Skip imageless products so the on-page count matches what renders.
-    .filter((p) => Boolean(p.images?.[0]?.url))
+    .filter((p) => Boolean(firstImage(p)))
     .slice(0, cap === Infinity ? undefined : cap)
     .map((p) => {
       const price = p.variants?.[0]?.unitPrice;
@@ -96,7 +128,7 @@ async function main() {
         name: p.name,
         price: price ? formatPrice(price.value, price.currency) : "",
         url: `${storeBase}/products/${p.slug}`,
-        image: p.images![0]!.url,
+        image: firstImage(p),
         imageAlt: p.name,
       };
     });
