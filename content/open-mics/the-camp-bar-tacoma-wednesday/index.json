@@ -1,0 +1,18 @@
+{
+  "name": "Comedy Campout",
+  "venue": "The Camp Bar",
+  "address": "1310 Tacoma Ave S, Tacoma, WA 98402",
+  "city": "Tacoma",
+  "region": "WA",
+  "lat": 47.250228,
+  "lng": -122.444172,
+  "day": "Wednesday",
+  "frequency": "monthly",
+  "weeks": [
+    "Last"
+  ],
+  "time": "8pm",
+  "host": "Kylee Ann",
+  "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSf89uyapTlZxoUkAWnJ2TpW-3eI-sMZCcC3HlCMM87zyG19bg/viewform",
+  "notes": ""
+}
