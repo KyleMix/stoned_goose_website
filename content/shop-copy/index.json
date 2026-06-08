@@ -5,7 +5,43 @@
   "storeUrl": "https://stoned-goose-productions-zgm-shop.fourthwall.com",
   "categoryAssignments": [
     {
-      "slug": "https://www.stonedgooseproductions.com/shop/short-fancy-button-goose",
+      "slug": "short-fancy-button-goose",
+      "category": "Tops"
+    },
+    {
+      "slug": "f-kin-hippies",
+      "category": "Tops"
+    },
+    {
+      "slug": "f-kin-hippies",
+      "category": "Tops"
+    },
+    {
+      "slug": "80s-goose",
+      "category": "Tops"
+    },
+    {
+      "slug": "the-goose-is-loose",
+      "category": "Tops"
+    },
+    {
+      "slug": "sandlot-metal-goose",
+      "category": "Tops"
+    },
+    {
+      "slug": "one-with-the-goose",
+      "category": "Tops"
+    },
+    {
+      "slug": "dead-stoned",
+      "category": "Tops"
+    },
+    {
+      "slug": "metal-goose",
+      "category": "Tops"
+    },
+    {
+      "slug": "og-bigboychest",
       "category": "Tops"
     }
   ]
