@@ -1,6 +1,6 @@
 "use client";
 
-import type { OpenMic } from "@/content/open-mics";
+import { formatFrequency, type OpenMic } from "@/content/open-mics";
 import { OpenMicUpdateDialog } from "@/components/open-mic-update-dialog";
 
 type Props = {
@@ -23,15 +23,24 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
     <ul className="divide-y divide-bone/15 border-y border-bone/15">
       {mics.map((m) => {
         const active = selectedId === m.id;
+        const freq = formatFrequency(m);
         return (
           <li
             key={m.id}
             className={`transition-colors ${active ? "bg-bone/[0.04]" : "hover:bg-bone/[0.025]"}`}
           >
             <div className="flex flex-col gap-1 py-5 md:grid md:grid-cols-12 md:items-baseline md:gap-x-6 md:gap-y-1">
-              <p className="col-span-3 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard md:col-span-2">
-                {m.day.slice(0, 3)} / {m.time}
-              </p>
+              <div className="col-span-3 md:col-span-2">
+                <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+                  {m.day.slice(0, 3)} / {m.time}
+                </p>
+                <p className="mt-1 inline-flex items-center border border-bone/20 px-1.5 py-0.5 font-body text-[10px] uppercase tracking-[0.18em] text-bone/60">
+                  {freq.label}
+                  {freq.detail ? (
+                    <span className="ml-1 text-bone/45">{freq.detail}</span>
+                  ) : null}
+                </p>
+              </div>
               <div className="col-span-9 md:col-span-7">
                 <p
                   className={`font-display text-xl md:text-2xl ${

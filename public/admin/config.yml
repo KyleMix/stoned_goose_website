@@ -622,6 +622,8 @@ collections:
       - { name: lat, label: Latitude, widget: number, value_type: float, required: false }
       - { name: lng, label: Longitude, widget: number, value_type: float, required: false }
       - { name: day, label: Day, widget: select, default: Monday, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
+      - { name: frequency, label: Frequency, widget: select, default: weekly, options: [{ label: Weekly, value: weekly }, { label: Every other week, value: biweekly }, { label: Monthly, value: monthly }] }
+      - { name: weeks, label: Weeks of month, widget: select, multiple: true, required: false, options: ['1st', '2nd', '3rd', '4th', Last], hint: 'Which weeks of the month it runs (for every-other-week / monthly). Leave empty for weekly.' }
       - { name: time, label: Time (display string), widget: string, required: false }
       - { name: host, label: Host, widget: string, required: false }
       - { name: signupUrl, label: Signup URL, widget: string, required: false }

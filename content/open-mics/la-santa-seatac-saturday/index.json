@@ -7,8 +7,12 @@
   "lat": 47.43769290455482,
   "lng": -122.28758894483863,
   "day": "Saturday",
+  "frequency": "monthly",
+  "weeks": [
+    "3rd"
+  ],
   "time": "6pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Only Comedy. Free. Set 5/. Age all ages. Wheelchair accessible. Parking. on street. 3rd Sat."
+  "notes": "Only Comedy. Free. Set 5/. Age all ages. Wheelchair accessible. Parking. on street"
 }

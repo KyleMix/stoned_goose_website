@@ -7,8 +7,12 @@
   "lat": 47.59715573357748,
   "lng": -122.33205660334173,
   "day": "Friday",
+  "frequency": "monthly",
+  "weeks": [
+    "1st"
+  ],
   "time": "7pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Anything is allowed. Set 10/ do not punch down. Age all ages. Wheelchair accessible. Parking. on street. 1st Fri."
+  "notes": "Anything is allowed. Set 10/ do not punch down. Age all ages. Wheelchair accessible. Parking. on street"
 }

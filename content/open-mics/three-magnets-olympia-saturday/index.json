@@ -7,8 +7,13 @@
   "lat": 47.02663682764935,
   "lng": -122.8975452277409,
   "day": "Saturday",
+  "frequency": "biweekly",
+  "weeks": [
+    "1st",
+    "3rd"
+  ],
   "time": "8pm",
   "host": "Openmiccollective@gmail.com",
   "signupUrl": "https://linktr.ee/openmiccollectivepnw?fbclid=PAAabdH21h8IxZty7UZMxOZ5D7SF1-mSEH3IpI-sVchRouTX4oJy-IUPhgV88",
-  "notes": "Only Comedy. Free. Set 5/. Age 21+. 1st, 3rd Sat."
+  "notes": "Only Comedy. Free. Set 5/. Age 21+"
 }

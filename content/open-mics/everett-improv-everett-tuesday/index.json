@@ -7,8 +7,12 @@
   "lat": 47.97231892881666,
   "lng": -122.20878729686427,
   "day": "Tuesday",
+  "frequency": "monthly",
+  "weeks": [
+    "Last"
+  ],
   "time": "5:30pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Anything is allowed. Free. Set / do not punch down. Parking. on street. Last Sat."
+  "notes": "Anything is allowed. Free. Set / do not punch down. Parking. on street"
 }

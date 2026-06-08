@@ -7,8 +7,12 @@
   "lat": 45.520406317235064,
   "lng": -122.67300068665598,
   "day": "Tuesday",
+  "frequency": "monthly",
+  "weeks": [
+    "4th"
+  ],
   "time": "7:30",
   "host": "",
   "signupUrl": "",
-  "notes": "4th Tues., Priority for LGBTQIA+"
+  "notes": "Priority for LGBTQIA+"
 }

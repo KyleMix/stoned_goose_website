@@ -7,6 +7,7 @@
   "lat": 47.24689865112305,
   "lng": -122.43720245361328,
   "day": "Monday",
+  "frequency": "weekly",
   "time": "Sign-up/Start: 7pm/8pm",
   "host": "Rotating",
   "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeNa7G1uzXw99bULBmTwYv7j2e9wEJJEgPA7vKLgMZalv7_5A/viewform",

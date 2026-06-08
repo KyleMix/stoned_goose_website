@@ -7,8 +7,11 @@
   "lat": 48.753845891508355,
   "lng": -122.47868443579767,
   "day": "Tuesday",
+  "frequency": "monthly",
+  "weeks": [
+    "2nd"
+  ],
   "time": "7:30pm",
   "host": "Jdcomedy23@gmail.com",
-  "signupUrl": "",
-  "notes": "2nd Tuesday"
+  "signupUrl": ""
 }

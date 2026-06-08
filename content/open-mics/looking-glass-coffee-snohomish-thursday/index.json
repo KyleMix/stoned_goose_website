@@ -7,8 +7,13 @@
   "lat": 47.91406095216297,
   "lng": -122.10920425726711,
   "day": "Thursday",
+  "frequency": "biweekly",
+  "weeks": [
+    "2nd",
+    "4th"
+  ],
   "time": "7pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Set No set time limit / PG13 material. Age 13+. 2nd, 4th Thu."
+  "notes": "Set No set time limit / PG13 material. Age 13+"
 }

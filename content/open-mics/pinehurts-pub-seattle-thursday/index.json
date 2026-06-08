@@ -7,6 +7,7 @@
   "lat": 47.60990263218128,
   "lng": -122.32175969329366,
   "day": "Thursday",
+  "frequency": "weekly",
   "time": "9pm",
   "host": "",
   "signupUrl": "http://pinehurst.openmic.lol",

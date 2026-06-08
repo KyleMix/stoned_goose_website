@@ -2,7 +2,12 @@
 
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
-import type { OpenMic, OpenMicDay } from "@/content/open-mics";
+import {
+  FREQUENCY_FILTERS,
+  type OpenMic,
+  type OpenMicDay,
+  type OpenMicFrequency,
+} from "@/content/open-mics";
 import { OpenMicList } from "@/components/open-mic-list";
 
 // Map is dynamically imported with SSR disabled because Leaflet touches
@@ -30,6 +35,7 @@ type Props = {
 export function OpenMicExplorer({ mics }: Props) {
   const [day, setDay] = useState<OpenMicDay | "all">("all");
   const [city, setCity] = useState<string>("all");
+  const [freq, setFreq] = useState<OpenMicFrequency | "all">("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   // Cities grouped by state for the dropdown: Washington first, then Oregon,
@@ -65,9 +71,10 @@ export function OpenMicExplorer({ mics }: Props) {
     return mics.filter((m) => {
       if (day !== "all" && m.day !== day) return false;
       if (city !== "all" && m.city !== city) return false;
+      if (freq !== "all" && m.frequency !== freq) return false;
       return true;
     });
-  }, [mics, day, city]);
+  }, [mics, day, city, freq]);
 
   return (
     <div className="grid gap-10 md:grid-cols-12">
@@ -90,6 +97,22 @@ export function OpenMicExplorer({ mics }: Props) {
                 onClick={() => setDay(d)}
               >
                 {d.slice(0, 3)}
+              </Chip>
+            ))}
+          </div>
+        </fieldset>
+        <fieldset className="mt-6">
+          <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            Frequency
+          </legend>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {FREQUENCY_FILTERS.map((f) => (
+              <Chip
+                key={f.value}
+                active={freq === f.value}
+                onClick={() => setFreq(f.value)}
+              >
+                {f.label}
               </Chip>
             ))}
           </div>

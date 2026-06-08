@@ -7,8 +7,13 @@
   "lat": 47.617783245593955,
   "lng": -122.33416674296177,
   "day": "Thursday",
+  "frequency": "biweekly",
+  "weeks": [
+    "2nd",
+    "4th"
+  ],
   "time": "8pm",
   "host": "helenbseattle@gmail.com",
   "signupUrl": "",
-  "notes": "Anything is allowed. Free. Wheelchair accessible. Parking. on street. 2nd, 4th Thurs."
+  "notes": "Anything is allowed. Free. Wheelchair accessible. Parking. on street"
 }

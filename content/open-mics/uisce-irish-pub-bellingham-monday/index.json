@@ -7,6 +7,7 @@
   "lat": 48.75768127718013,
   "lng": -122.47156445410849,
   "day": "Monday",
+  "frequency": "weekly",
   "time": "9pm",
   "host": "",
   "signupUrl": "",

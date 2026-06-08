@@ -7,6 +7,7 @@
   "lat": 47.622867584228516,
   "lng": -122.31263732910156,
   "day": "Tuesday",
+  "frequency": "weekly",
   "time": "Sign-up/Start: 7pm/7:30pm",
   "host": "Rotating",
   "signupUrl": "Host makes the list.",

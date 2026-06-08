@@ -7,8 +7,13 @@
   "lat": 47.04936459143969,
   "lng": -122.89103133440146,
   "day": "Wednesday",
+  "frequency": "biweekly",
+  "weeks": [
+    "2nd",
+    "Last"
+  ],
   "time": "8PM",
   "host": "Rotating",
   "signupUrl": "https://www.instagram.com/hey_vomity/",
-  "notes": "2nd and Last Wednesday of Month -  Set 3/ do not punch down. Wheelchair accessible. Parking. on street."
+  "notes": "- Set 3/ do not punch down. Wheelchair accessible. Parking. on street"
 }

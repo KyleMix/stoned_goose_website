@@ -7,8 +7,12 @@
   "lat": 47.60581382467384,
   "lng": -122.32984941634241,
   "day": "Saturday",
+  "frequency": "monthly",
+  "weeks": [
+    "1st"
+  ],
   "time": "5pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Only Comedy. Free. Set 5/ do not punch. Age all ages. Wheelchair accessible. Parking. on street. 1st Sat., \"geeky\" material focus"
+  "notes": "Only Comedy. Free. Set 5/ do not punch. Age all ages. Wheelchair accessible. Parking. on street. , \"geeky\" material focus"
 }
