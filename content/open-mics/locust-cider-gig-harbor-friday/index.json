@@ -1,0 +1,18 @@
+{
+  "name": "Hot Mic at Locust Cider",
+  "venue": "Locust Cider",
+  "address": "3207 57th St Ct, Gig Harbor, WA 98335",
+  "city": "Gig Harbor",
+  "region": "WA",
+  "lat": 47.310614,
+  "lng": -122.58238,
+  "day": "Friday",
+  "frequency": "monthly",
+  "weeks": [
+    "2nd"
+  ],
+  "time": "8pm",
+  "host": "Kylee Ann",
+  "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdpQjfPE-QZE097RIvB6K8vn4hwbPFxkMEgQkN2-Ruz5MI4ag/viewform",
+  "notes": ""
+}
