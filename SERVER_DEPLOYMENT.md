@@ -113,7 +113,7 @@ settings (set them in BOTH Cloudflare and Vercel if you publish to both):
 | :--- | :--- |
 | `FOURTHWALL_API_USERNAME` | Basic-auth user from Fourthwall: Settings -> For Developers -> API |
 | `FOURTHWALL_API_PASSWORD` | Basic-auth password from the same screen |
-| `FOURTHWALL_API_BASE_URL` | `https://api.fourthwall.com/open-api/v1` |
+| `FOURTHWALL_API_BASE_URL` | `https://api.fourthwall.com/open-api/v1.0` |
 | `NEXT_PUBLIC_FW_STORE_URL` | `https://stoned-goose-productions-zgm-shop.fourthwall.com` |
 | `FOURTHWALL_PRODUCT_LIMIT` | Optional. Omit to pull the full catalog. |
 
