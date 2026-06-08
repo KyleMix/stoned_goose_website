@@ -36,7 +36,10 @@ type SfVariant = {
   unitPrice?: SfMoney;
   images?: SfImage[];
   stock?: { type?: string; inStock?: number };
-  attributes?: { color?: { name?: string }; size?: { name?: string } };
+  attributes?: {
+    color?: { name?: string; swatch?: string };
+    size?: { name?: string };
+  };
 };
 type SfProduct = {
   id: string;
@@ -61,7 +64,9 @@ function toProduct(p: SfProduct): Product {
     price: v.unitPrice ? formatPrice(v.unitPrice.value, v.unitPrice.currency) : "",
     size: v.attributes?.size?.name,
     color: v.attributes?.color?.name,
+    colorSwatch: v.attributes?.color?.swatch,
     available: variantAvailable(v),
+    images: (v.images ?? []).map((i) => i.url),
   }));
   const prices = (p.variants ?? [])
     .map((v) => v.unitPrice)

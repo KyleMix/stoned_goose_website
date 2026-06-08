@@ -25,7 +25,9 @@ export type ProductVariant = {
   price: string;
   size?: string;
   color?: string;
+  colorSwatch?: string;
   available: boolean;
+  images?: string[];
 };
 
 export type Product = {
