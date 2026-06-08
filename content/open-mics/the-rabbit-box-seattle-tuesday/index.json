@@ -1,0 +1,18 @@
+{
+  "name": "Open Michael",
+  "venue": "The Rabbit Box",
+  "address": "94 Pike Street, suite 11, Seattle, WA 98101",
+  "city": "Seattle",
+  "region": "WA",
+  "lat": 47.60871124267578,
+  "lng": -122.34050750732422,
+  "day": "Tuesday",
+  "frequency": "monthly",
+  "weeks": [
+    "4th"
+  ],
+  "time": "6pm",
+  "host": "Emmett Montgomery, Emma Shmuckler",
+  "signupUrl": "https://www.instagram.com/emmettmontgomery/",
+  "notes": "DM for Sign Up - standup, storytelling, and strangeness"
+}
