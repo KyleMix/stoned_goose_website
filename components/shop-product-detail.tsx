@@ -293,7 +293,7 @@ function Layout({
 
         {description ? (
           <div className="mt-10 border-t border-bone/15 pt-6">
-            <p className="max-w-prose whitespace-pre-line font-body text-sm leading-relaxed text-bone/80">
+            <p className="max-w-prose whitespace-pre-line font-display text-lg leading-snug text-bone/80 md:text-xl">
               {description}
             </p>
           </div>
