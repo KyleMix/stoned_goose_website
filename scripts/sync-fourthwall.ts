@@ -19,6 +19,28 @@ function formatPrice(value: number, currency: string): string {
   return `${value.toFixed(2)} ${currency}`;
 }
 
+// Fourthwall product descriptions come back as HTML. Flatten to plain text so
+// the product page and SEO metadata never show raw tags. Block tags become
+// line breaks; list items get a bullet.
+function stripHtml(html: string | undefined): string | undefined {
+  if (!html) return undefined;
+  const text = html
+    .replace(/<\s*br\s*\/?>/gi, "\n")
+    .replace(/<li[^>]*>/gi, "• ")
+    .replace(/<\/(p|div|li|h[1-6]|ul|ol)>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&quot;/gi, '"')
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  return text.length > 0 ? text : undefined;
+}
+
 function storeBase(): string {
   return (
     process.env.NEXT_PUBLIC_FW_STORE_URL ??
@@ -88,7 +110,7 @@ function toProduct(p: SfProduct): Product {
     image: images[0]?.url ?? "",
     imageAlt: p.name,
     images: images.length > 0 ? images : undefined,
-    description: p.description,
+    description: stripHtml(p.description),
     variants: variants.length > 0 ? variants : undefined,
   };
 }
