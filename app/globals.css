@@ -179,6 +179,111 @@
   font-size: 12px;
 }
 
+/* FullCalendar theming for /calendar. Plain CSS outside @layer for the same
+   reason as the Leaflet styles above: the markup is injected client-side. */
+.comedy-calendar {
+  --fc-page-bg-color: transparent;
+  --fc-border-color: rgba(239, 233, 221, 0.15);
+  --fc-neutral-bg-color: rgba(239, 233, 221, 0.04);
+  --fc-today-bg-color: rgba(242, 234, 0, 0.08);
+  --fc-event-bg-color: transparent;
+  --fc-event-border-color: rgba(239, 233, 221, 0.4);
+  --fc-event-text-color: #efe9dd;
+  --fc-list-event-hover-bg-color: rgba(239, 233, 221, 0.05);
+  --fc-button-bg-color: transparent;
+  --fc-button-border-color: rgba(239, 233, 221, 0.25);
+  --fc-button-text-color: #efe9dd;
+  --fc-button-hover-bg-color: transparent;
+  --fc-button-hover-border-color: #3ddc6e;
+  --fc-button-active-bg-color: #f2ea00;
+  --fc-button-active-border-color: #f2ea00;
+}
+.comedy-calendar .fc-toolbar-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: #efe9dd;
+}
+.comedy-calendar .fc-button {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border-radius: 0;
+  padding: 0.55em 1em;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+.comedy-calendar .fc-button:hover {
+  color: #3ddc6e;
+}
+.comedy-calendar .fc-button-primary:not(:disabled).fc-button-active,
+.comedy-calendar .fc-button-primary:not(:disabled):active {
+  color: #0a0a0a;
+}
+.comedy-calendar .fc-col-header-cell-cushion,
+.comedy-calendar .fc-daygrid-day-number,
+.comedy-calendar .fc-list-day-text,
+.comedy-calendar .fc-list-day-side-text {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(239, 233, 221, 0.65);
+}
+.comedy-calendar a {
+  color: inherit;
+}
+.comedy-calendar .fc-event {
+  border-radius: 0;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+.comedy-calendar .fc-event:hover {
+  border-color: #3ddc6e;
+  color: #3ddc6e;
+}
+.comedy-calendar .sgp-event-show {
+  background: #f2ea00;
+  border-color: #f2ea00;
+  color: #0a0a0a;
+  font-weight: 600;
+}
+.comedy-calendar .sgp-event-show:hover {
+  background: #3ddc6e;
+  border-color: #3ddc6e;
+  color: #0a0a0a;
+}
+.comedy-calendar .sgp-event-show .fc-event-main,
+.comedy-calendar .sgp-event-show .fc-list-event-title a {
+  color: #0a0a0a;
+}
+.comedy-calendar .fc-list-event-title a {
+  color: #efe9dd;
+}
+.comedy-calendar .fc-list-event:hover .fc-list-event-title a {
+  color: #3ddc6e;
+}
+.comedy-calendar .fc-daygrid-more-link {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  color: #f2ea00;
+}
+.comedy-calendar .fc-daygrid-more-link:hover {
+  color: #3ddc6e;
+}
+.comedy-calendar .fc-popover {
+  background: #0a0a0a;
+  border: 1px solid rgba(239, 233, 221, 0.25);
+}
+.comedy-calendar .fc-popover-title {
+  color: #efe9dd;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
