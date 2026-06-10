@@ -5,6 +5,13 @@
 // client-side from their day + frequency + weeks-of-month data; shows are
 // dated one-offs. Everything renders from JSON already committed to the
 // repo, so the page stays static-export friendly.
+//
+// CURRENTLY UNMOUNTED. The /calendar route was unpublished by owner
+// request but this component, its FullCalendar deps, and the
+// .comedy-calendar theming in globals.css are kept for future use.
+// To republish: recreate app/(site)/calendar/ (page + opengraph-image,
+// see git history at c4c3d13) and re-add the nav, footer, and sitemap
+// entries.
 
 import { useMemo, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
