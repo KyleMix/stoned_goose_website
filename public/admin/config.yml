@@ -449,6 +449,26 @@ collections:
               - { name: price, label: Price (display string), widget: string }
               - { name: deliverables, label: Deliverables, widget: list, field: { name: item, label: Deliverable, widget: string } }
 
+      - name: pro_clubs
+        label: Pro comedy clubs
+        file: content/pro-clubs/index.json
+        fields:
+          - name: clubs
+            label: Clubs on the Pro Comedy Calendar
+            widget: list
+            hint: 'Each club is synced automatically every few hours. The logo becomes the filter button on /calendar; until one is uploaded the club name shows instead.'
+            fields:
+              - { name: name, label: Club name, widget: string }
+              - { name: slug, label: Slug (lowercase-with-dashes, do not change once set), widget: string }
+              - { name: city, label: City, widget: string, required: false }
+              - { name: website, label: Website URL, widget: string }
+              - { name: eventsUrl, label: Events page URL, widget: string }
+              - { name: platform, label: Ticketing platform, widget: select, default: seatengine, options: [{ label: 'SeatEngine (tacomacomedyclub.com style)', value: seatengine }, { label: 'WordPress Events Calendar (laughscomedyclub.com style)', value: tribe }] }
+              - { name: includeText, label: Only keep events whose page contains this text, widget: string, required: false, hint: 'Tacoma marks pro shows as "Special Event". Leave blank to keep everything.' }
+              - { name: excludeText, label: Drop events whose title contains any of these, widget: list, required: false, field: { name: text, label: Text, widget: string } }
+              - { name: logo, label: Logo (filter button image), widget: image, required: false, media_folder: /public/images/clubs, public_folder: /images/clubs }
+              - { name: active, label: Active, widget: boolean, default: true }
+
   # ------------------------------------------------------------------ #
   # Pages: composed from blocks, render at /<slug>.                     #
   # ------------------------------------------------------------------ #
@@ -605,6 +625,27 @@ collections:
       - { name: status, label: Status, widget: select, default: tba, options: [{ label: Ticketed, value: ticketed }, { label: Free / at the door, value: free }, { label: TBA, value: tba }] }
       - { name: ticketPrice, label: Ticket price (display string), widget: string, required: false }
       - { name: doorTime, label: Door time, widget: string, required: false }
+
+  # ------------------------------------------------------------------ #
+  # Pro shows (manual entries on the /calendar pro comedy grid).        #
+  # ------------------------------------------------------------------ #
+  - name: pro_shows
+    label: Pro shows (manual entries)
+    label_singular: Pro show
+    folder: content/pro-shows
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: title
+    slug: '{{fields.title}}'
+    create: true
+    summary: '{{fields.title}} · {{fields.club}}'
+    fields:
+      - { name: title, label: Comedian / show title, widget: string }
+      - { name: club, label: Club slug, widget: string, hint: 'Must match a slug from Site copy -> Pro comedy clubs, e.g. tacoma-comedy-club. Manual entries override a synced show at the same club and start time.' }
+      - { name: start, label: Show date and time, widget: datetime }
+      - { name: ticketUrl, label: Ticket URL, widget: string, required: false }
+      - { name: draft, label: Draft (hidden from the calendar), widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
   # Shop products (manual). Synced products override these.             #

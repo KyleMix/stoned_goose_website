@@ -13,7 +13,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "analyze": "ANALYZE=true next build",
-    "sync": "npm run sync:shows && npm run sync:facebook-events && npm run sync:fourthwall && npm run sync:patreon && npm run sync:open-mics",
+    "sync": "npm run sync:shows && npm run sync:facebook-events && npm run sync:fourthwall && npm run sync:patreon && npm run sync:open-mics && npm run sync:pro-shows",
     "sync:shows": "tsx scripts/sync-shows.ts",
     "sync:fourthwall": "tsx scripts/sync-fourthwall.ts",
     "sync:facebook-events": "tsx scripts/sync-facebook-events.ts",
@@ -27,7 +27,8 @@
     "refresh:instagram-token": "tsx scripts/refresh-instagram-token.ts",
     "brand:generate": "tsx scripts/brand/generate-brand-assets.ts",
     "optimize:images": "tsx scripts/optimize-images.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "sync:pro-shows": "tsx scripts/sync-pro-shows.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs}": [

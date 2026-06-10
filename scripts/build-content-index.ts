@@ -31,6 +31,7 @@ const COLLECTIONS: Collection[] = [
   { dir: "content/open-mics", outFile: "open-mics-index.json", slugField: "id" },
   { dir: "content/tiktok", outFile: "tiktok-index.json", slugField: "slug" },
   { dir: "content/pages", outFile: "pages-index.json", slugField: "slug" },
+  { dir: "content/pro-shows", outFile: "pro-shows-index.json", slugField: "slug" },
 ];
 
 let total = 0;

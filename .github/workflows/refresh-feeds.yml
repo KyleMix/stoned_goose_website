@@ -49,8 +49,12 @@ jobs:
         env:
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
 
+      - name: Fetch pro comedy shows
+        continue-on-error: true
+        run: npm run sync:pro-shows
+
       - name: Commit refreshed feeds
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(feeds): refresh social content [skip ci]"
-          file_pattern: "content/feeds/*.json"
+          file_pattern: "content/feeds/*.json content/.generated/pro-shows.json"

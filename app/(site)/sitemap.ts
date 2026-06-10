@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/shows",
     "/open-mics",
+    "/calendar",
     "/watch",
     "/roster",
     "/book",

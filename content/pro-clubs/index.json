@@ -1,0 +1,40 @@
+{
+  "clubs": [
+    {
+      "name": "Tacoma Comedy Club",
+      "slug": "tacoma-comedy-club",
+      "city": "Tacoma",
+      "website": "https://www.tacomacomedyclub.com",
+      "eventsUrl": "https://www.tacomacomedyclub.com/events",
+      "platform": "seatengine",
+      "includeText": "Special Event",
+      "excludeText": ["Open Mic"],
+      "logo": "",
+      "active": true
+    },
+    {
+      "name": "Emerald City Comedy Club",
+      "slug": "emerald-city-comedy-club",
+      "city": "Seattle",
+      "website": "https://www.emeraldcitycomedy.com",
+      "eventsUrl": "https://www.emeraldcitycomedy.com/events",
+      "platform": "seatengine",
+      "includeText": "",
+      "excludeText": ["Open Mic", "Open Mic Night"],
+      "logo": "",
+      "active": true
+    },
+    {
+      "name": "Laughs Comedy Club",
+      "slug": "laughs-comedy-club",
+      "city": "Seattle",
+      "website": "https://laughscomedyclub.com",
+      "eventsUrl": "https://laughscomedyclub.com/tickets/",
+      "platform": "tribe",
+      "includeText": "",
+      "excludeText": ["Open Mic", "Comedy Mix"],
+      "logo": "",
+      "active": true
+    }
+  ]
+}
