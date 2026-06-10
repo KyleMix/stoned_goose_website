@@ -45,9 +45,17 @@ type RawClubs = {
   spotlight?: string[];
   /** Comedians never to promote: matching shows are dropped entirely. */
   hidden?: string[];
+  /** Not-affiliated notice rendered at the top of /calendar. */
+  disclaimer?: { eyebrow?: string; body?: string; footnote?: string };
 };
 
 const rawCuration = proClubsData as RawClubs;
+
+export const proCalendarDisclaimer = {
+  eyebrow: rawCuration.disclaimer?.eyebrow ?? "",
+  body: rawCuration.disclaimer?.body ?? "",
+  footnote: rawCuration.disclaimer?.footnote ?? "",
+};
 
 export const curation = {
   spotlight: Array.isArray(rawCuration.spotlight)

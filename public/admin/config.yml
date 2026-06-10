@@ -453,6 +453,14 @@ collections:
         label: Pro comedy clubs
         file: content/pro-clubs/index.json
         fields:
+          - name: disclaimer
+            label: Disclaimer (top of /calendar)
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+              - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'The not-affiliated notice. Clearing this hides the box entirely.' }
+              - { name: footnote, label: Footnote (mono line), widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: spotlight
             label: Spotlight comedians
             widget: list

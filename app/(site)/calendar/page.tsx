@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { ProShowsCalendar } from "@/components/pro-shows-calendar";
-import { proClubs, proShowsFetchedAt } from "@/content/pro-shows";
+import {
+  proCalendarDisclaimer,
+  proClubs,
+  proShowsFetchedAt,
+} from "@/content/pro-shows";
 
 export const metadata: Metadata = {
   title: "Pro Comedy Calendar",
@@ -27,6 +31,28 @@ export default function ProCalendarPage() {
         body={`Big-name touring comics across the Pacific Northwest, one grid. ${clubNames}. Click a show and go straight to tickets.`}
       />
 
+      {proCalendarDisclaimer.body ? (
+        <section className="border-b border-bone/10 bg-ink py-10 md:py-12">
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <div className="border border-bone/15 p-6 md:p-8">
+              {proCalendarDisclaimer.eyebrow ? (
+                <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-hazard">
+                  {proCalendarDisclaimer.eyebrow}
+                </p>
+              ) : null}
+              <p className="mt-3 max-w-3xl font-body text-sm leading-relaxed text-bone/85">
+                {proCalendarDisclaimer.body}
+              </p>
+              {proCalendarDisclaimer.footnote ? (
+                <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
+                  {proCalendarDisclaimer.footnote}
+                </p>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="border-b border-bone/10 bg-ink py-12 md:py-16">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <ProShowsCalendar />
@@ -35,8 +61,8 @@ export default function ProCalendarPage() {
             {proShowsFetchedAt
               ? `, last updated ${new Date(proShowsFetchedAt).toLocaleDateString("en-US", { month: "long", day: "numeric" })}`
               : ""}
-            . Tickets are sold by the clubs, not by us. Spot a missing show?
-            Tell us at the contact page and we&apos;ll add it.
+            . Spot a missing show? Tell us at the contact page and we&apos;ll
+            add it.
           </p>
         </div>
       </section>
