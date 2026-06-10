@@ -27,7 +27,7 @@
       "eventsUrl": "https://www.emeraldcitycomedy.com/events",
       "platform": "seatengine",
       "includeText": "",
-      "excludeText": ["Open Mic", "Open Mic Night"],
+      "excludeText": ["Open Mic", "Open Mic Night", "My Straight Friends", "Seattle's Funniest", "Seattles Funniest"],
       "logo": "",
       "active": true
     },

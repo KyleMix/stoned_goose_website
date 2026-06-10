@@ -151,7 +151,13 @@ export const proShows: ProShow[] = [...merged.values()]
   })
   // Owner curation from /admin: hidden comedians never appear, spotlit
   // ones get the featured treatment (a manual entry's flag also counts).
+  // Club excludeText is also re-applied here so a new exclusion takes
+  // effect on the next build instead of waiting for the next scrape.
   .filter((s) => !titleMatches(s.title, curation.hidden))
+  .filter((s) => {
+    const club = getClub(s.clubSlug);
+    return !club || !titleMatches(s.title, club.excludeText);
+  })
   .map((s) => ({
     ...s,
     featured: s.featured || titleMatches(s.title, curation.spotlight),

@@ -283,6 +283,47 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
+.comedy-calendar .fc-daygrid-event {
+  padding: 3px 6px;
+  margin-bottom: 2px;
+  border-width: 1px;
+}
+.comedy-calendar .sgp-event-inner {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+.comedy-calendar .sgp-event-time {
+  flex: none;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+.comedy-calendar .sgp-event-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.comedy-calendar .sgp-event-count {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  opacity: 0.75;
+}
+.comedy-calendar .sgp-event-club {
+  flex: none;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+.comedy-calendar .fc-list-event .sgp-event-inner {
+  justify-content: space-between;
+  width: 100%;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
