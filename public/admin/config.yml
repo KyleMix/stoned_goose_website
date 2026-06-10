@@ -55,7 +55,7 @@ collections:
                 widget: object
                 fields:
                   - { name: title, label: Title, widget: string, required: false }
-                  - { name: body, label: Body, widget: text, required: false }
+                  - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
                   - { name: label, label: Button label, widget: string, required: false }
                   - { name: href, label: Button href, widget: string, required: false }
               - name: secondary
@@ -63,7 +63,7 @@ collections:
                 widget: object
                 fields:
                   - { name: title, label: Title, widget: string, required: false }
-                  - { name: body, label: Body, widget: text, required: false }
+                  - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
                   - { name: label, label: Link label, widget: string, required: false }
                   - { name: href, label: Link href, widget: string, required: false }
               - name: tertiary
@@ -82,9 +82,9 @@ collections:
             label: Rotating bumpers
             widget: object
             fields:
-              - { name: clarification, label: Clarification slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body (use \n for a line break), widget: text }, { name: footnote, label: Footnote, widget: string, required: false }] }
-              - { name: aside, label: Aside slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text }, { name: footnote, label: Footnote, widget: string, required: false }] }
-              - { name: outro, label: Outro slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: clarification, label: Clarification slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body (use \n for a line break), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: aside, label: Aside slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: outro, label: Outro slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
           - name: mission
             label: Mission strip
             widget: object
@@ -106,7 +106,7 @@ collections:
                   - { name: eyebrow, label: Eyebrow, widget: string, required: false }
                   - { name: headline, label: Headline, widget: string, required: false }
                   - { name: italicLine, label: Italic tagline, widget: string, required: false }
-                  - { name: subhead, label: Subhead, widget: text, required: false }
+                  - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
                   - { name: primaryCtaLabel, label: Primary button label, widget: string, required: false }
                   - { name: primaryCtaHref, label: Primary button href, widget: string, required: false }
                   - { name: secondaryCtaLabel, label: Secondary link label, widget: string, required: false }
@@ -138,7 +138,7 @@ collections:
                 widget: object
                 fields:
                   - { name: heading, label: Heading, widget: string }
-                  - { name: subhead, label: Subhead, widget: text, required: false }
+                  - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
                   - { name: primaryCtaLabel, label: Button label, widget: string, required: false }
                   - { name: primaryCtaHref, label: Button href, widget: string, required: false }
                   - { name: note, label: Small note under button, widget: string, required: false }
@@ -435,6 +435,7 @@ collections:
             label: Stats (no invented numbers)
             widget: list
             required: false
+            hint: 'Not currently shown anywhere on the site. Kept for when real numbers exist.'
             fields:
               - { name: label, label: Label, widget: string }
               - { name: value, label: Value (leave empty to render placeholder), widget: string, required: false }
@@ -464,7 +465,7 @@ collections:
     summary: '{{fields.title}}'
     fields:
       - { name: title, label: Title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: seoDescription, label: SEO description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: seoDescription, label: SEO description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'What search results show under the title. Aim for under 160 characters and be specific about the page.' }
       - { name: ogImage, label: Social share image, widget: image, required: false, media_folder: /public/images/pages, public_folder: /images/pages }
       - { name: draft, label: Draft (hidden from the live site), widget: boolean, default: false }
       - { name: sections, label: Page sections, widget: list, required: false, types: *section_types }
@@ -495,6 +496,7 @@ collections:
         label: Credits (festivals, rooms, shows)
         widget: list
         required: false
+        hint: 'One per line, e.g. "Bumbershoot 2024" or "Tacoma Comedy Club". Real credits only.'
         field: { name: credit, label: Credit, widget: string }
       - { name: draft, label: Draft (hidden from /roster), widget: boolean, default: false }
 
@@ -537,9 +539,9 @@ collections:
       - { name: metaTitle, label: SEO meta title, widget: string, required: false }
       - { name: metaDescription, label: SEO meta description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
       - { name: summary, label: Summary, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: whatYouGet, label: What you get, widget: list, required: false, field: { name: item, label: Item, widget: text } }
-      - { name: idealFor, label: Ideal for, widget: list, required: false, field: { name: item, label: Item, widget: text } }
-      - { name: process, label: Process steps, widget: list, required: false, field: { name: step, label: Step, widget: text } }
+      - { name: whatYouGet, label: What you get, widget: list, required: false, field: { name: item, label: Item, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, hint: 'Items reading "TODO: copy needed." are hidden on the live page until replaced.' }
+      - { name: idealFor, label: Ideal for, widget: list, required: false, field: { name: item, label: Item, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, hint: 'Items reading "TODO: copy needed." are hidden on the live page until replaced.' }
+      - { name: process, label: Process steps, widget: list, required: false, field: { name: step, label: Step, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, hint: 'Steps reading "TODO: copy needed." are hidden on the live page until replaced.' }
       - { name: pricing, label: Pricing line, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
       - name: faqs
         label: FAQs
@@ -562,10 +564,10 @@ collections:
     create: true
     summary: '{{fields.name}}'
     fields:
-      - { name: name, label: Tier name (used as the URL slug), widget: string }
+      - { name: name, label: Tier name (used as the URL slug), widget: string, required: false, hint: 'Leave blank on existing tiers. The display name comes from the folder slug.' }
       - { name: bestFor, label: Best for (eyebrow), widget: string, required: false }
-      - { name: price, label: Price (display string), widget: string, required: false }
-      - { name: items, label: Items, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+      - { name: price, label: Price (display string), widget: string, required: false, hint: 'Shown verbatim by the Build Your Show estimator on /book, e.g. "Starting at $750".' }
+      - { name: items, label: Items, widget: list, required: false, field: { name: item, label: Item, widget: string }, hint: 'Bulleted in the estimator result card. Be specific about what is included.' }
 
   # ------------------------------------------------------------------ #
   # Shows (manual entries). Synced shows override these when present.   #
@@ -579,7 +581,7 @@ collections:
     identifier_field: name
     slug: '{{fields.name}}'
     create: true
-    summary: '{{fields.name}}'
+    summary: '{{fields.name}} · {{fields.status}}'
     fields:
       - { name: name, label: Name, widget: string }
       - { name: start, label: Start, widget: datetime, required: false }
@@ -617,9 +619,9 @@ collections:
     identifier_field: name
     slug: '{{fields.name}}'
     create: true
-    summary: '{{fields.name}}'
+    summary: '{{fields.name}} · {{fields.price}}'
     fields:
-      - { name: name, label: Product name, widget: string }
+      - { name: name, label: Product name, widget: string, required: false, hint: 'Leave blank on existing products. The display name comes from the folder slug, and the live shop usually overrides these with the synced Fourthwall catalog.' }
       - { name: price, label: Price (display string), widget: string, required: false }
       - { name: url, label: Fourthwall product URL, widget: string, required: false }
       - { name: image, label: Image URL (imgproxy.fourthwall.com), widget: string, required: false }
@@ -653,8 +655,8 @@ collections:
       - { name: weeks, label: Weeks of month, widget: select, multiple: true, required: false, options: ['1st', '2nd', '3rd', '4th', Last], hint: 'Which weeks of the month it runs (for every-other-week / monthly). Leave empty for weekly.' }
       - { name: time, label: Time (display string), widget: string, required: false }
       - { name: host, label: Host, widget: string, required: false }
-      - { name: signupUrl, label: Signup URL, widget: string, required: false }
-      - { name: notes, label: Notes, widget: text, required: false }
+      - { name: signupUrl, label: Signup URL, widget: string, required: false, hint: 'Link to the signup form, Facebook event, or venue page. Map pins and lists link here when set.' }
+      - { name: notes, label: Notes, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
 
   # ------------------------------------------------------------------ #
   # TikTok videos.                                                      #
