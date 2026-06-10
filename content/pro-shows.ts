@@ -35,9 +35,33 @@ export type ProShow = {
   /** Ticket purchase URL on the club's site. */
   url: string;
   image?: string;
+  /** Spotlit shows render in the hazard style on the calendar. */
+  featured?: boolean;
 };
 
-type RawClubs = { clubs?: Partial<ProClub>[] };
+type RawClubs = {
+  clubs?: Partial<ProClub>[];
+  /** Comedians to visually emphasize, matched against show titles. */
+  spotlight?: string[];
+  /** Comedians never to promote: matching shows are dropped entirely. */
+  hidden?: string[];
+};
+
+const rawCuration = proClubsData as RawClubs;
+
+export const curation = {
+  spotlight: Array.isArray(rawCuration.spotlight)
+    ? rawCuration.spotlight.filter((s) => s && s.length > 0)
+    : [],
+  hidden: Array.isArray(rawCuration.hidden)
+    ? rawCuration.hidden.filter((s) => s && s.length > 0)
+    : [],
+};
+
+function titleMatches(title: string, needles: string[]): boolean {
+  const lower = title.toLowerCase();
+  return needles.some((n) => lower.includes(n.toLowerCase()));
+}
 
 export const proClubs: ProClub[] = ((proClubsData as RawClubs).clubs ?? [])
   .filter((c) => c.active !== false && c.name && c.slug)
@@ -69,6 +93,7 @@ type RawManualShow = {
   club?: string;
   start?: string;
   ticketUrl?: string;
+  featured?: boolean;
   draft?: boolean;
 };
 
@@ -82,6 +107,7 @@ const manual: ProShow[] = (manualIndex as RawManualShow[])
     title: s.title ?? "",
     start: s.start ?? "",
     url: s.ticketUrl ?? "",
+    featured: s.featured === true,
   }));
 
 function shape(s: Partial<ProShow>): ProShow | null {
@@ -115,6 +141,13 @@ export const proShows: ProShow[] = [...merged.values()]
     const d = new Date(s.start);
     return !Number.isNaN(d.getTime()) && d >= cutoff;
   })
+  // Owner curation from /admin: hidden comedians never appear, spotlit
+  // ones get the featured treatment (a manual entry's flag also counts).
+  .filter((s) => !titleMatches(s.title, curation.hidden))
+  .map((s) => ({
+    ...s,
+    featured: s.featured || titleMatches(s.title, curation.spotlight),
+  }))
   .sort((a, b) => a.start.localeCompare(b.start));
 
 export const proShowsFetchedAt: string | null =

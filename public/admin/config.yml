@@ -453,6 +453,18 @@ collections:
         label: Pro comedy clubs
         file: content/pro-clubs/index.json
         fields:
+          - name: spotlight
+            label: Spotlight comedians
+            widget: list
+            required: false
+            hint: 'Shows whose title contains any of these names render highlighted in hazard yellow on /calendar, e.g. "Marlon Wayans".'
+            field: { name: name, label: Name, widget: string }
+          - name: hidden
+            label: Never promote
+            widget: list
+            required: false
+            hint: 'Shows whose title contains any of these names are removed from /calendar entirely, even when a club lists them.'
+            field: { name: name, label: Name, widget: string }
           - name: clubs
             label: Clubs on the Pro Comedy Calendar
             widget: list
@@ -645,6 +657,7 @@ collections:
       - { name: club, label: Club slug, widget: string, hint: 'Must match a slug from Site copy -> Pro comedy clubs, e.g. tacoma-comedy-club. Manual entries override a synced show at the same club and start time.' }
       - { name: start, label: Show date and time, widget: datetime }
       - { name: ticketUrl, label: Ticket URL, widget: string, required: false }
+      - { name: featured, label: Spotlight (highlight in hazard yellow), widget: boolean, default: false }
       - { name: draft, label: Draft (hidden from the calendar), widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #

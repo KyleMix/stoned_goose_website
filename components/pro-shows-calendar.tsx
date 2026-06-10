@@ -29,7 +29,10 @@ export function ProShowsCalendar() {
             title: club ? `${s.title} · ${club.name}` : s.title,
             start: s.start,
             url: s.url || club?.eventsUrl || "",
-            classNames: ["sgp-event-show"],
+            // Spotlit comedians (curated in /admin) get the hazard fill;
+            // everything else stays neutral. Class names come from the
+            // shared calendar theming in globals.css.
+            classNames: [s.featured ? "sgp-event-show" : "sgp-event-mic"],
           };
         }),
     [clubFilter],
@@ -121,6 +124,13 @@ export function ProShowsCalendar() {
           firstDay={1}
         />
       </div>
+
+      {proShows.some((s) => s.featured) ? (
+        <p className="mt-6 flex items-center gap-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65">
+          <span aria-hidden className="h-3 w-3 bg-hazard" />
+          Spotlight shows
+        </p>
+      ) : null}
 
       {proShows.length === 0 ? (
         <p className="mt-6 font-body text-sm text-bone/65">
