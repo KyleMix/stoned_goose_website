@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import type { Person } from "schema-dts";
 import {
   aboutCopy,
@@ -194,6 +195,14 @@ export default function RosterPage() {
                     className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-0"
                   />
                   <div className="absolute inset-x-0 bottom-0 z-10 hidden translate-y-full items-center justify-center gap-4 bg-gradient-to-t from-ink/95 to-transparent px-4 py-4 transition-transform duration-300 group-hover:translate-y-0 group-focus-within:translate-y-0 md:flex">
+                    {c.hasEpk && (
+                      <Link
+                        href={`/roster/${c.slug}`}
+                        className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone hover:text-slime"
+                      >
+                        EPK ↗
+                      </Link>
+                    )}
                     {c.instagram && (
                       <a
                         href={c.instagram}
@@ -219,10 +228,27 @@ export default function RosterPage() {
                   </div>
                 </div>
                 <h3 className="mt-4 font-display text-xl text-bone md:text-2xl">
-                  {c.name}
+                  {c.hasEpk ? (
+                    <Link
+                      href={`/roster/${c.slug}`}
+                      className="transition-colors hover:text-slime"
+                    >
+                      {c.name}
+                    </Link>
+                  ) : (
+                    c.name
+                  )}
                 </h3>
-                {(c.instagram || c.facebook) && (
+                {(c.hasEpk || c.instagram || c.facebook) && (
                   <div className="mt-2 flex gap-4 md:hidden">
+                    {c.hasEpk && (
+                      <Link
+                        href={`/roster/${c.slug}`}
+                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-bone/70 active:text-hazard"
+                      >
+                        EPK ↗
+                      </Link>
+                    )}
                     {c.instagram && (
                       <a
                         href={c.instagram}

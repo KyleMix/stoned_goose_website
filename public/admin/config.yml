@@ -489,6 +489,13 @@ collections:
       - { name: photoAlt, label: Portrait alt text, widget: string, required: false }
       - { name: instagram, label: Instagram URL, widget: string, required: false }
       - { name: facebook, label: Facebook URL, widget: string, required: false }
+      - { name: bio, label: Bio (fills the comedian's EPK page), widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: reelUrl, label: Reel (YouTube URL, fills the EPK page), widget: string, required: false }
+      - name: credits
+        label: Credits (festivals, rooms, shows)
+        widget: list
+        required: false
+        field: { name: credit, label: Credit, widget: string }
       - { name: draft, label: Draft (hidden from /roster), widget: boolean, default: false }
 
   - name: members
