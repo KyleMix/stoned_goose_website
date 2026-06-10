@@ -9,7 +9,7 @@ import { ContactForm } from "@/components/contact-form";
 import { TextField } from "@/components/form-field";
 import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 import { PressStrip } from "@/components/press-strip";
-import { BookCallEmbed } from "@/components/book-call-embed";
+import { BookPlanner } from "@/components/book-planner";
 
 export const metadata: Metadata = {
   title: "Book Us",
@@ -49,6 +49,12 @@ export default function BookPage() {
             </a>
           ) : null}
           <a
+            href="#plan"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+          >
+            Build your show ↓
+          </a>
+          <a
             href="#venues"
             className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
           >
@@ -69,28 +75,7 @@ export default function BookPage() {
         </div>
       </nav>
 
-      {calLink ? (
-        <section
-          id="call"
-          className="scroll-mt-24 border-b border-bone/10 bg-ink py-16 md:py-20"
-        >
-          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-            <SectionHeader
-              eyebrow="Start here"
-              title={
-                <>
-                  Book a free <span className="italic text-hazard">intro</span>{" "}
-                  call.
-                </>
-              }
-              subtitle="Fifteen minutes, no prep needed. Tell us what you're planning and we'll show up with ideas."
-            />
-            <div className="mt-12">
-              <BookCallEmbed calLink={calLink} />
-            </div>
-          </div>
-        </section>
-      ) : null}
+      <BookPlanner calLink={calLink} />
 
       <section
         id="venues"

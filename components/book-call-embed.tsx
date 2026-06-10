@@ -10,7 +10,13 @@ import { track } from "@/lib/analytics";
 
 const NAMESPACE = "intro-call";
 
-export function BookCallEmbed({ calLink }: { calLink: string }) {
+type Props = {
+  calLink: string;
+  /** Prefills the booking's notes field, e.g. from the show estimator. */
+  notes?: string;
+};
+
+export function BookCallEmbed({ calLink, notes }: Props) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -37,10 +43,16 @@ export function BookCallEmbed({ calLink }: { calLink: string }) {
 
   return (
     <Cal
+      // Cal reads config at mount, so remount when the prefill changes.
+      key={notes ?? ""}
       namespace={NAMESPACE}
       calLink={calLink}
       style={{ width: "100%" }}
-      config={{ layout: "month_view", theme: "dark" }}
+      config={{
+        layout: "month_view",
+        theme: "dark",
+        ...(notes ? { notes } : {}),
+      }}
     />
   );
 }
