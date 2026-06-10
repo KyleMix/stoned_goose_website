@@ -8,13 +8,22 @@ type Props = {
   label: string;
   /** Element id of the quote form section to scroll to and dismiss against. */
   targetId: string;
+  /** Muted prefix before the label. Defaults to the quote framing. */
+  kicker?: string;
+  /** CTA button text. Defaults to the quote framing. */
+  ctaLabel?: string;
 };
 
 // Slim sticky rail that nudges visitors to the quote form on /book and
 // /book/[slug]. Hidden until the user scrolls past the page header (300px),
 // hidden again once the target form is in view. Honors prefers-reduced-motion
 // by skipping the slide-in transition.
-export function StickyQuoteRail({ label, targetId }: Props) {
+export function StickyQuoteRail({
+  label,
+  targetId,
+  kicker = "Quote",
+  ctaLabel = "Get a quote ↗",
+}: Props) {
   const [shown, setShown] = useState(false);
   const reducedMotionRef = useRef(false);
 
@@ -86,7 +95,7 @@ export function StickyQuoteRail({ label, targetId }: Props) {
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 py-3 md:px-10">
         <p className="truncate font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/85">
-          <span className="text-bone/55">Quote / </span>
+          <span className="text-bone/55">{kicker} / </span>
           {label}
         </p>
         <a
@@ -94,7 +103,7 @@ export function StickyQuoteRail({ label, targetId }: Props) {
           onClick={handleClick}
           className="inline-flex h-10 shrink-0 items-center bg-hazard px-5 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
         >
-          Get a quote ↗
+          {ctaLabel}
         </a>
       </div>
     </div>
