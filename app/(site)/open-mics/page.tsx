@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   openMicsCopy,
+  openMicsDisclaimer,
   openMicsFeed,
   openMicsTopSections,
   openMicsBottomSections,
 } from "@/content/open-mics";
 import { PageHeader } from "@/components/page-header";
+import { FinePrint } from "@/components/fine-print";
 import { OpenMicExplorer } from "@/components/open-mic-explorer";
 import { OpenMicSubmitDialog } from "@/components/open-mic-submit-dialog";
 import { SectionRenderer } from "@/components/section-renderer";
@@ -33,6 +35,12 @@ export default function OpenMicsPage() {
           </>
         }
         body={openMicsCopy.subhead}
+      />
+
+      <FinePrint
+        eyebrow={openMicsDisclaimer.eyebrow}
+        body={openMicsDisclaimer.body}
+        footnote={openMicsDisclaimer.footnote}
       />
 
       <SectionRenderer sections={openMicsTopSections} pageSlug="open-mics" />

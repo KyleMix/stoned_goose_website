@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
+import { FinePrint } from "@/components/fine-print";
 import { ProShowsCalendar } from "@/components/pro-shows-calendar";
 import {
   proCalendarDisclaimer,
@@ -31,27 +32,11 @@ export default function ProCalendarPage() {
         body={`Big-name touring comics across the Pacific Northwest, one grid. ${clubNames}. Click a show and go straight to tickets.`}
       />
 
-      {proCalendarDisclaimer.body ? (
-        <section className="border-b border-bone/10 bg-ink py-10 md:py-12">
-          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-            <div className="border border-bone/15 p-6 md:p-8">
-              {proCalendarDisclaimer.eyebrow ? (
-                <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-hazard">
-                  {proCalendarDisclaimer.eyebrow}
-                </p>
-              ) : null}
-              <p className="mt-3 max-w-3xl font-body text-sm leading-relaxed text-bone/85">
-                {proCalendarDisclaimer.body}
-              </p>
-              {proCalendarDisclaimer.footnote ? (
-                <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
-                  {proCalendarDisclaimer.footnote}
-                </p>
-              ) : null}
-            </div>
-          </div>
-        </section>
-      ) : null}
+      <FinePrint
+        eyebrow={proCalendarDisclaimer.eyebrow}
+        body={proCalendarDisclaimer.body}
+        footnote={proCalendarDisclaimer.footnote}
+      />
 
       <section className="border-b border-bone/10 bg-ink py-12 md:py-16">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">

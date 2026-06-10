@@ -96,6 +96,7 @@ export type OpenMicsManifest = {
 const openMicsRaw = openMicsCopyData as {
   subhead: string;
   kicker: string;
+  disclaimer?: { eyebrow?: string; body?: string; footnote?: string };
   topSections?: unknown;
   bottomSections?: unknown;
 };
@@ -103,6 +104,12 @@ const openMicsRaw = openMicsCopyData as {
 export const openMicsCopy = {
   subhead: openMicsRaw.subhead,
   kicker: openMicsRaw.kicker,
+};
+
+export const openMicsDisclaimer = {
+  eyebrow: openMicsRaw.disclaimer?.eyebrow ?? "",
+  body: openMicsRaw.disclaimer?.body ?? "",
+  footnote: openMicsRaw.disclaimer?.footnote ?? "",
 };
 
 export const openMicsTopSections: Block[] = normaliseBlocks(openMicsRaw.topSections);

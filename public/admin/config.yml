@@ -377,6 +377,14 @@ collections:
         fields:
           - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: kicker, label: Kicker, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - name: disclaimer
+            label: Disclaimer (top of /open-mics)
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+              - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'The not-affiliated / check-before-you-drive notice. Clearing this hides the box entirely.' }
+              - { name: footnote, label: Footnote (mono line), widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
 

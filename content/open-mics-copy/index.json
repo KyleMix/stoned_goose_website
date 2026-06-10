@@ -1,6 +1,11 @@
 {
   "subhead": "Find an open mic in the Pacific Northwest. New rooms, weekly signups, mapped.",
   "kicker": "Maintained by the crew. Tell us if a room moved.",
+  "disclaimer": {
+    "eyebrow": "The Fine Print",
+    "body": "We are not affiliated with these venues or the mics they host, and we cannot promise any mic on this map is still running tonight. Listings are community fueled: comics, hosts, and our own road trips keep it alive, and mics die, move, and change signup rules without warning. Do your own due diligence before you drive: check the venue's socials or call ahead. Age limits, drink minimums, and house rules belong to each venue, and your set is between you and the room. See something wrong? Hit Report change on the listing and we'll fix it.",
+    "footnote": "Now go get your reps in."
+  },
   "topSections": [],
   "bottomSections": []
 }
