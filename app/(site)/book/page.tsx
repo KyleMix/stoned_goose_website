@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { services, pricingTiers } from "@/content/services";
 import { sponsorshipStats, sponsorshipTiers } from "@/content/sponsorships";
+import { site } from "@/content/site";
+import { BookCallEmbed } from "@/components/book-call-embed";
 import { PageHeader } from "@/components/page-header";
 import { SectionHeader } from "@/components/section-header";
 import { ContactForm } from "@/components/contact-form";
@@ -54,6 +56,14 @@ export default function BookPage() {
           >
             Sponsors ↓
           </a>
+          {site.booking.calLink ? (
+            <a
+              href="#call"
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            >
+              Book a call ↓
+            </a>
+          ) : null}
         </div>
       </nav>
 
@@ -214,6 +224,28 @@ export default function BookPage() {
           </div>
         </div>
       </section>
+
+      {site.booking.calLink ? (
+        <section
+          id="call"
+          className="scroll-mt-24 border-b border-bone/10 bg-ink py-20 md:py-24"
+        >
+          <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+            <SectionHeader
+              eyebrow="Intro call"
+              title={
+                <>
+                  Or just <span className="italic text-hazard">talk</span> to us.
+                </>
+              }
+              subtitle="Fifteen minutes, free, no prep needed. Pick a slot and we'll show up with ideas."
+            />
+            <div className="mt-12">
+              <BookCallEmbed calLink={site.booking.calLink} />
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section
         id="sponsors"

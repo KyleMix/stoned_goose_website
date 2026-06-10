@@ -231,6 +231,16 @@ collections:
               - { name: spotifyShowId, label: Spotify show id, widget: string, required: false }
               - { name: applePodcastsId, label: Apple Podcasts id, widget: string, required: false }
               - { name: rssUrl, label: RSS URL, widget: string, required: false }
+          - name: booking
+            label: Booking calls
+            widget: object
+            required: false
+            fields:
+              - name: calLink
+                label: Cal.com link
+                widget: string
+                required: false
+                hint: 'Your Cal.com booking link without the domain, like "stonedgoose/intro-call". Leave blank to hide the Book a Call section on /book.'
           - name: serviceAreas
             label: Service areas
             widget: list

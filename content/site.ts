@@ -51,6 +51,10 @@ type SiteShape = {
     applePodcastsId: string | null;
     rssUrl: string | null;
   };
+  booking: {
+    /** Cal.com link like "username/intro-call". Null hides the call embed. */
+    calLink: string | null;
+  };
   serviceAreas: readonly string[];
 };
 
@@ -128,6 +132,9 @@ const raw = siteData as unknown as {
     applePodcastsId?: string;
     rssUrl?: string;
   };
+  booking?: {
+    calLink?: string;
+  };
   serviceAreas: string[];
   press?: PressItem[];
   nav?: NavLink[];
@@ -164,6 +171,9 @@ export const site: SiteShape = {
     spotifyShowId: raw.podcasts.spotifyShowId ? raw.podcasts.spotifyShowId : null,
     applePodcastsId: raw.podcasts.applePodcastsId ? raw.podcasts.applePodcastsId : null,
     rssUrl: raw.podcasts.rssUrl ? raw.podcasts.rssUrl : null,
+  },
+  booking: {
+    calLink: raw.booking?.calLink ? raw.booking.calLink : null,
   },
   serviceAreas: raw.serviceAreas,
 };
