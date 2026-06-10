@@ -1,40 +1,45 @@
 [
   {
     "name": "Brendan Meeks",
-    "role": "Creative Director",
+    "role": "Founder & Producer",
     "photo": "brendan.png",
+    "photoAlt": "",
     "index": "03",
     "bio": "",
     "slug": "brendan-meeks"
   },
   {
     "name": "Garrett Iverson",
-    "role": "Photographer",
+    "role": "Producer",
     "photo": "garrett-iverson.jpg",
+    "photoAlt": "",
     "index": "05",
     "bio": "",
     "slug": "garrett-iverson"
   },
   {
     "name": "Joseph Humphrey",
-    "role": "Media & Production",
+    "role": "Founder & Producer",
     "photo": "joseph.jpg",
+    "photoAlt": "",
     "index": "02",
     "bio": "",
     "slug": "joseph-humphrey"
   },
   {
     "name": "Kyle Mixon",
-    "role": "Founder & Producer",
+    "role": "Founder & Producer & Media",
     "photo": "kyle.png",
+    "photoAlt": "",
     "index": "01",
     "bio": "",
     "slug": "kyle-mixon"
   },
   {
     "name": "Samuel Tweed",
-    "role": "Stage Manager",
+    "role": "Producer",
     "photo": "sam.png",
+    "photoAlt": "",
     "index": "04",
     "bio": "",
     "slug": "samuel-tweed"

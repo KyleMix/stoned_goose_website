@@ -1,10 +1,28 @@
 [
   {
+    "name": "Alexa Hansen",
+    "photo": "Untitled - December 04, 2025 at 15.14.35-9.png",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/alexahansenlol/",
+    "facebook": "",
+    "draft": false,
+    "slug": "alexa-hansen"
+  },
+  {
     "name": "Brandon White",
     "photo": "brandon-white.jpg",
     "instagram": "https://www.instagram.com/brandonwhitecomedy/",
     "facebook": "https://www.facebook.com/brandon.white.98871",
     "slug": "brandon-white"
+  },
+  {
+    "name": "Bruce Detore",
+    "photo": "473192722_122189792666234413_9023426680686168134_n.jpg",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/brucedetorecomedy/",
+    "facebook": "https://www.facebook.com/brucedetorecomedy",
+    "draft": false,
+    "slug": "bruce-detore"
   },
   {
     "name": "Casey McLain",
@@ -42,6 +60,15 @@
     "slug": "derek-gladson"
   },
   {
+    "name": "Donald Robert",
+    "photo": "547436156_25020447194225846_4276432391344314163_n.jpg",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/donaldrobertcomedy?fbclid=IwY2xjawSTub9leHRuA2FlbQIxMABicmlkETJVWGdGTExINVpIYU9wZmVDc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHqnyGQE1vmY0NCqdHPEEjIKYW25_vSqTGOgSj5aY5zyZisXCAT_GKansYCTQ_aem_IS0oPkSHkUx1tqeYXNf-Og",
+    "facebook": "https://www.facebook.com/donaldrobertcomedy",
+    "draft": false,
+    "slug": "donald-robert"
+  },
+  {
     "name": "Ezra Bonillas",
     "photo": "ezra.png",
     "instagram": "https://www.instagram.com/ezrabonillas/",
@@ -63,11 +90,29 @@
     "slug": "jacob-barber"
   },
   {
+    "name": "Jeremiah Hughes",
+    "photo": "547186674_792512679807142_6345590259797081600_n.jpg",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/jeremiahhughescomedy?fbclid=IwY2xjawSTuiRleHRuA2FlbQIxMABicmlkETJVWGdGTExINVpIYU9wZmVDc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtnHtl4oQ3dr7MLb0ECaPhcb8oWUuGn-u2eA0cgGfA24Qvla4ZT5GxkUniUu_aem_ZBuLNl7BPkeKJS-VBek09w",
+    "facebook": "https://www.facebook.com/jeremiahhughescomedy",
+    "draft": false,
+    "slug": "jeremiah-hughes"
+  },
+  {
     "name": "Jess Everett",
     "photo": "jess-everett.jpg",
     "instagram": "https://www.instagram.com/imjesseverett/",
     "facebook": "https://www.facebook.com/jess.everett.758",
     "slug": "jess-everett"
+  },
+  {
+    "name": "Joe Crudo",
+    "photo": "660312814_122198844098362000_2635153810757160149_n.jpg",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/crudojoe/",
+    "facebook": "https://www.facebook.com/profile.php?id=61560860019095",
+    "draft": false,
+    "slug": "joe-crudo"
   },
   {
     "name": "Karan Sharma",
@@ -82,6 +127,15 @@
     "instagram": "https://www.instagram.com/dunnwithcomedy/",
     "facebook": "",
     "slug": "kayleen-dunn"
+  },
+  {
+    "name": "Logan Cantrell",
+    "photo": "Untitled - December 04, 2025 at 15.14.35-9 (2).png",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/logandid911/",
+    "facebook": "https://www.facebook.com/logan.cantrell.7568",
+    "draft": false,
+    "slug": "logan-cantrell"
   },
   {
     "name": "Lonnie Williams",
@@ -105,11 +159,38 @@
     "slug": "lynette-manning"
   },
   {
+    "name": "Mike Heath",
+    "photo": "rqwrqwr.png",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/miketonyheath/",
+    "facebook": "https://www.facebook.com/mikeheathcomedy/?ref=PROFILE_EDIT_xav_ig_profile_page_web#",
+    "draft": false,
+    "slug": "mike-heath"
+  },
+  {
     "name": "Min Lin",
     "photo": "min-lin.jpg",
     "instagram": "https://www.instagram.com/min_lin_comedy/",
     "facebook": "https://www.facebook.com/minlinsunny",
     "slug": "min-lin"
+  },
+  {
+    "name": "Paul Goodwin",
+    "photo": "342025832_818704572953588_5762122645898873724_n.jpg",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/paul.goodwin_comedy/",
+    "facebook": "https://www.facebook.com/paul.goodwin.338",
+    "draft": false,
+    "slug": "paul-goodwin"
+  },
+  {
+    "name": "Phil Klingler",
+    "photo": "Untitled - December 04, 2025 at 15.14.35-9 (1).png",
+    "photoAlt": "",
+    "instagram": "https://www.instagram.com/philkcomedy/",
+    "facebook": "https://www.facebook.com/philip.klingler.7",
+    "draft": false,
+    "slug": "phil-klingler"
   },
   {
     "name": "Seth Fairchild",

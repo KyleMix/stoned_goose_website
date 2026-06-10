@@ -29,7 +29,8 @@ export function generateMetadata(props: {
 }): Promise<Metadata> {
   return props.params.then(({ slug }) => {
     const svc = services.find((s) => s.slug === slug);
-    if (!svc) return { title: "Service" };
+    if (!svc)
+      return { title: "Not found", robots: { index: false, follow: false } };
     return {
       title: svc.title,
       description: svc.metaDescription,

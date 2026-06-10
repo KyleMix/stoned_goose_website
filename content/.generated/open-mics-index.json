@@ -43,12 +43,15 @@
     "region": "WA",
     "lat": 47.608872831311515,
     "lng": -122.32971391622797,
-    "day": "Thursday",
-    "frequency": "weekly",
+    "day": "Friday",
+    "frequency": "monthly",
+    "weeks": [
+      "1st"
+    ],
     "time": "9pm",
     "host": "",
     "signupUrl": "",
-    "notes": "Anything is allowed. Free. Age 21+. Parking. on site",
+    "notes": "Sign-up/Start: DM host/9:30pm Age 21+. Parking. on site",
     "id": "a1-hop-shop-144th-seattle-thursday"
   },
   {
@@ -92,11 +95,10 @@
     "lat": 47.6690441,
     "lng": -122.3659858,
     "day": "Thursday",
-    "frequency": "weekly",
     "time": "Sign-up/Start: 8:30pm/9pm",
     "host": "Big Time Mel, Noah O Nguyen",
-    "signupUrl": "Sign-up: 8:30pm",
-    "notes": "",
+    "signupUrl": "",
+    "notes": "Sign-up: 8:30pm",
     "id": "ballard-mandarin-2a4c6b08107d-thursday"
   },
   {
@@ -150,22 +152,6 @@
     "id": "beach-cat-brewing-blaine-friday"
   },
   {
-    "name": "Best Western",
-    "venue": "Best Western",
-    "address": "3073 NW Bucklin Hill Rd",
-    "city": "Silverdale",
-    "region": "WA",
-    "lat": 47.65413975738155,
-    "lng": -122.70032590981918,
-    "day": "Friday",
-    "frequency": "weekly",
-    "time": "8pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Only Comedy. Age 18+",
-    "id": "best-western-silverdale-friday"
-  },
-  {
     "name": "Bickersons Brewhouse",
     "venue": "Bickersons Brewhouse",
     "address": "1514 NW Leary Wy",
@@ -196,22 +182,6 @@
     "signupUrl": "",
     "notes": "Only Comedy. Free. Set 5/. Age all ages. Wheelchair accessible. Parking. on street",
     "id": "big-time-brewery-seattle-monday"
-  },
-  {
-    "name": "Blind Ox Taphouse",
-    "venue": "Blind Ox Taphouse",
-    "address": "4320 N Interstate",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.50747997253376,
-    "lng": -122.66764623483634,
-    "day": "Tuesday",
-    "frequency": "weekly",
-    "time": "6pm",
-    "host": "contactus@codyweathers.com",
-    "signupUrl": "https://www.blindoxpdx.com/",
-    "notes": "Set 15/. Age 21+. (971) 302-6352",
-    "id": "blind-ox-taphouse-portland-tuesday"
   },
   {
     "name": "Blue Moon Tavern",
@@ -312,22 +282,6 @@
     "id": "catfish-lou-s-beaverton-friday"
   },
   {
-    "name": "Cheat Day",
-    "venue": "Cheat Day",
-    "address": "2322 2nd Ave",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.61115765621424,
-    "lng": -122.32269977111467,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "7pm",
-    "host": "",
-    "signupUrl": "https://www.facebook.com/events/1404587630068721/1404587643402053/",
-    "notes": "Improv Comedy. Free. Set 5/. Wheelchair accessible. Parking. on street",
-    "id": "cheat-day-seattle-thursday"
-  },
-  {
     "name": "Chi town pizza",
     "venue": "Chi town pizza",
     "address": "15619 Pacific Ave S",
@@ -376,31 +330,19 @@
     "id": "club-comedy-seattle-tuesday"
   },
   {
-    "name": "Comedy Battle Royale",
-    "venue": "Comedy Battle Royale",
-    "address": "1550 NW 49th St",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.617006134126804,
-    "lng": -122.33356871137559,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "7:30pm",
-    "host": "https://www.instagram.com/battleroyaleballard/",
-    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfpqeS9vUx1W2RSS5JxAGvBCPKhN4HyRdBD2tGv6mag3bAcHg/viewform?pli=1&pli=1",
-    "notes": "Only Comedy. Free. Set 5/ do not punch down. Wheelchair accessible. Parking. on site. Competition cash price for first place $50, remaining tips get split into $25 amounts and given to runners up",
-    "id": "comedy-battle-royale-seattle-thursday"
-  },
-  {
     "name": "Comedy Nest",
-    "venue": "Comedy Nest",
-    "address": "2322 2nd Ave",
+    "venue": "Common Objects",
+    "address": "2601 1st Ave, Seattle, WA 98121",
     "city": "Seattle",
     "region": "WA",
-    "lat": 47.61115765621424,
-    "lng": -122.32269977111467,
+    "lat": 47.6152339,
+    "lng": -122.3499757,
     "day": "Tuesday",
-    "frequency": "weekly",
+    "frequency": "biweekly",
+    "weeks": [
+      "1st",
+      "Last"
+    ],
     "time": "7pm",
     "host": "comedynestseattle@gmail.com",
     "signupUrl": "https://www.therendezvous.rocks/calendar/category/comedy/",
@@ -422,22 +364,6 @@
     "signupUrl": "Show Up Go Up",
     "notes": "",
     "id": "conercopia-comedy-club-chehalis-thursday"
-  },
-  {
-    "name": "Copper Coins",
-    "venue": "Copper Coins",
-    "address": "16202 64th St E",
-    "city": "Sumner",
-    "region": "WA",
-    "lat": 47.1996032043946,
-    "lng": -122.24371803616388,
-    "day": "Wednesday",
-    "frequency": "weekly",
-    "time": "8pm",
-    "host": "Openmiccollective@gmail.com",
-    "signupUrl": "https://linktr.ee/openmiccollectivepnw?fbclid=PAAabdH21h8IxZty7UZMxOZ5D7SF1-mSEH3IpI-sVchRouTX4oJy-IUPhgV88",
-    "notes": "Only Comedy. Free. Set 5/. Age all ages",
-    "id": "copper-coins-sumner-wednesday"
   },
   {
     "name": "Couth Buzzard",
@@ -504,25 +430,6 @@
     "id": "crawfish-hotspot-seattle-tuesday"
   },
   {
-    "name": "Crush Bar",
-    "venue": "Crush Bar",
-    "address": "1400 SE Morrison St",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.52425891508354,
-    "lng": -122.66695811398489,
-    "day": "Wednesday",
-    "frequency": "monthly",
-    "weeks": [
-      "2nd"
-    ],
-    "time": "6:30pm",
-    "host": "",
-    "signupUrl": "https://www.facebook.com/joyce.nance",
-    "notes": "DM host to Feat. (3 feats.)",
-    "id": "crush-bar-portland-wednesday"
-  },
-  {
     "name": "Dante's",
     "venue": "Dante's",
     "address": "350 W Burnside St",
@@ -563,10 +470,9 @@
     "lat": 47.75768280029297,
     "lng": -122.15287017822266,
     "day": "Thursday",
-    "frequency": "weekly",
     "time": "Sign-up/Start: 8:30pm/9pm",
     "host": "Donald Robert",
-    "signupUrl": "Sign-up/Start: 8:30pm/9pm",
+    "signupUrl": "",
     "notes": "5 minute sets, sign-up in person",
     "id": "deffcf2552f6-woodinville-thursday"
   },
@@ -708,23 +614,7 @@
     "id": "everett-improv-everett-tuesday"
   },
   {
-    "name": "Firkin Tavern",
-    "venue": "Firkin Tavern",
-    "address": "1937 SE 11th Ave",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.5195328908217,
-    "lng": -122.68285081254291,
-    "day": "Tuesday",
-    "frequency": "weekly",
-    "time": "8:30pm",
-    "host": "https://www.facebook.com/kellie.irwin.9",
-    "signupUrl": "https://www.instagram.com/kellieirwin1/",
-    "notes": "email host to get spot",
-    "id": "firkin-tavern-portland-tuesday"
-  },
-  {
-    "name": "Flight Path",
+    "name": "Flight Path Funnies",
     "venue": "Flight path",
     "address": "1832 S 120th St, Seattle, WA 98168",
     "city": "Burien",
@@ -732,11 +622,10 @@
     "lat": 47.480050720988785,
     "lng": -122.35757940032045,
     "day": "Wednesday",
-    "frequency": "weekly",
     "time": "Sign-up/Start: 8pm/8:30pm",
     "host": "Brandon White",
-    "signupUrl": "Sign-up 8pm",
-    "notes": "Only Comedy. Free. Set 5/. Wheelchair accessible. Parking. on site",
+    "signupUrl": "",
+    "notes": "Sign-up 8pm Only Comedy. Free. Set 5/. Wheelchair accessible. Parking. on site",
     "id": "flight-path-burien-wednesday"
   },
   {
@@ -791,18 +680,21 @@
     "id": "geeky-comedy-seattle-seattle-saturday"
   },
   {
-    "name": "Growler’s Taproom",
+    "name": "Growler Guys",
     "venue": "Growler’s Taproom",
-    "address": "803 SE 82nd Ave",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.51988116273747,
-    "lng": -122.67602710002288,
-    "day": "Saturday",
-    "frequency": "weekly",
-    "time": "9:45pm",
-    "host": "",
-    "signupUrl": "",
+    "address": "8500 Lake City Way NE, Seattle, WA 98115",
+    "city": "Seattle",
+    "region": "WA",
+    "lat": 47.690593,
+    "lng": -122.307288,
+    "day": "Tuesday",
+    "frequency": "monthly",
+    "weeks": [
+      "1st"
+    ],
+    "time": "7:30pm",
+    "host": "Tyler Searle",
+    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdtvUUqVy6P3Cc0U-6p-pexpd34j4MB0XSWrsn2-3GSPCt6Jw/closedform",
     "notes": "",
     "id": "growler-s-taproom-portland-saturday"
   },
@@ -823,19 +715,23 @@
     "id": "growler-s-taproom-portland-wednesday"
   },
   {
-    "name": "Halcyon Brewing",
+    "name": "Halcyon",
     "venue": "Halcyon Brewing",
     "address": "8564 Greenwood Ave N",
     "city": "Seattle",
     "region": "WA",
     "lat": 47.59615339894713,
     "lng": -122.33890631723506,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "8:30pm",
-    "host": "",
+    "day": "Saturday",
+    "frequency": "biweekly",
+    "weeks": [
+      "2nd",
+      "4th"
+    ],
+    "time": "8pm",
+    "host": "Rotating",
     "signupUrl": "",
-    "notes": "Only Comedy. Free. Age 21+. Wheelchair accessible",
+    "notes": "Email openmiccollectivepnw@gmail.com to Sign Up. Contest style mic voted by audience.",
     "id": "halcyon-brewing-seattle-thursday"
   },
   {
@@ -901,6 +797,26 @@
     "signupUrl": "https://portland.heliumcomedy.com/",
     "notes": "Set 3-7/. (Check Website for dates)",
     "id": "helium-comedy-club-portland-tuesday"
+  },
+  {
+    "name": "Tapped In",
+    "venue": "Hill City Taphouse",
+    "address": "5303 Rainier Ave S, Seatle 98118",
+    "city": "Seattle",
+    "region": "WA",
+    "lat": 47.5412,
+    "lng": -122.275,
+    "day": "Wednesday",
+    "frequency": "biweekly",
+    "weeks": [
+      "1st",
+      "3rd"
+    ],
+    "time": "7pm",
+    "host": "Rotating",
+    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeUHNTMSYbHLL1XyPOKS-wZH-gE-ixeCCu5bRFWYTP15mrDPQ/closedform",
+    "notes": "Email openmiccollectivepnw@gmail.com to sign up.",
+    "id": "hill-city-taphouse-seattle-wednesday"
   },
   {
     "name": "Hopvine pub",
@@ -1123,6 +1039,42 @@
     "signupUrl": "https://www.instagram.com/hey_vomity/",
     "notes": "- Set 3/ do not punch down. Wheelchair accessible. Parking. on street",
     "id": "le-vouyer-olympia-wednesday"
+  },
+  {
+    "name": "Hot Mic at Locust Cider",
+    "venue": "Locust Cider",
+    "address": "3207 57th St Ct, Gig Harbor, WA 98335",
+    "city": "Gig Harbor",
+    "region": "WA",
+    "lat": 47.310614,
+    "lng": -122.58238,
+    "day": "Friday",
+    "frequency": "monthly",
+    "weeks": [
+      "2nd"
+    ],
+    "time": "8pm",
+    "host": "Kylee Ann",
+    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdpQjfPE-QZE097RIvB6K8vn4hwbPFxkMEgQkN2-Ruz5MI4ag/viewform",
+    "notes": "",
+    "id": "locust-cider-gig-harbor-friday"
+  },
+  {
+    "name": "Log Cabin Comedy Open Mic",
+    "venue": "Log Cabin Bar & Grill",
+    "address": "7035 Pacific AVE SE, Olympia WA 98503",
+    "city": "Olympia, WA",
+    "region": "WA",
+    "lat": 47.0408643,
+    "lng": -122.7904564,
+    "day": "Monday",
+    "frequency": "biweekly",
+    "weeks": [],
+    "time": "7pm",
+    "host": "Stoned Goose Productions",
+    "signupUrl": "",
+    "notes": "SHOW-UP GO-UP",
+    "id": "log-cabin-bar-grill-olympia-wa-monday"
   },
   {
     "name": "Lolo Pass",
@@ -1384,11 +1336,10 @@
     "lat": 47.6419326,
     "lng": -122.3261004,
     "day": "Thursday",
-    "frequency": "weekly",
     "time": "7pm",
-    "host": "derek Anthony",
-    "signupUrl": "Sign-up/Start: 7pm/8pm",
-    "notes": "In  Person  Sign Ups",
+    "host": "Derek Anthony",
+    "signupUrl": "",
+    "notes": "In  Person  Sign Ups  Sign-up/Start: 7pm/8pm",
     "id": "otter-on-the-rocks-seattle-thursday"
   },
   {
@@ -1424,22 +1375,6 @@
     "id": "peace-of-mind-lynnwood-wednesday"
   },
   {
-    "name": "Pinehurts pub",
-    "venue": "Pinehurts pub",
-    "address": "11753 15th Ave NE",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.60990263218128,
-    "lng": -122.32175969329366,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "9pm",
-    "host": "",
-    "signupUrl": "http://pinehurst.openmic.lol",
-    "notes": "Only Comedy. Free. Set 5/ Do not punch down",
-    "id": "pinehurts-pub-seattle-thursday"
-  },
-  {
     "name": "Post Pike bar",
     "venue": "Post Pike bar",
     "address": "212 Broadway E Unit A",
@@ -1473,22 +1408,6 @@
     "signupUrl": "",
     "notes": "Anything is allowed. Free. Set 5/. Age 21+. Parking. on street",
     "id": "prohibition-bar-cannabis-city-seattle-saturday"
-  },
-  {
-    "name": "Pub 70",
-    "venue": "Pub 70",
-    "address": "2801 Alaskan Way",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.61695779354544,
-    "lng": -122.34403041886014,
-    "day": "Tuesday",
-    "frequency": "weekly",
-    "time": "9pm",
-    "host": "",
-    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLScspLATetBzOnNxVJcomV7L2MSNzpJAel8af688XbZM5H045g/viewform",
-    "notes": "Only Comedy. Free. Set 5/. Wheelchair accessible. pre-signup ends Sunday 11:59pm",
-    "id": "pub-70-seattle-tuesday"
   },
   {
     "name": "Rainy Days Tavern",
@@ -1587,22 +1506,6 @@
     "id": "saint-john-s-seattle-monday"
   },
   {
-    "name": "Schilling Cider House",
-    "venue": "Schilling Cider House",
-    "address": "930 SE 10th Ave",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.51487534905013,
-    "lng": -122.67701002517738,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "7pm",
-    "host": "",
-    "signupUrl": "https://l.facebook.com/l.php?h=AT1Ds-YN_lfeDnFw2ni_KxQL2uUbUrVyCj3sEiIwZMLpIWBuvFIh3hJPOyECX-e2TiUksCEdxth7b6m9q1ZKTiwsNP-iEC6trBRFEICH45fFWVr7RIU1dL_zNm6fg-mJUpxsm6UJCpaQhNO7OVjf-30v&u=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSf6jz55vH0PF6Xa0elmMm6XACdxIY5aReP3Cqv24FyMC4xcHw%2Fclosedform%3Ffbclid%3DIwAR1NAbuVfZpoAV4Yt7m7H2_gzqi12jtw0OgVghs6kkI5_9uStxg9-3yTyic",
-    "notes": "Priority for LGBTQIA+",
-    "id": "schilling-cider-house-portland-thursday"
-  },
-  {
     "name": "Shanahan’s Pub",
     "venue": "Shanahan’s Pub",
     "address": "209 W McLoughlin Blvd",
@@ -1685,22 +1588,6 @@
     "signupUrl": "",
     "notes": "Anything is allowed. Free. Wheelchair accessible. Parking. on site",
     "id": "souvannys-tavern-seattle-thursday"
-  },
-  {
-    "name": "Spud's Pizza Parlor",
-    "venue": "Spud's Pizza Parlor",
-    "address": "7025 Pacific Ave",
-    "city": "Tacoma",
-    "region": "WA",
-    "lat": 47.24275488670176,
-    "lng": -122.44338317692836,
-    "day": "Tuesday",
-    "frequency": "weekly",
-    "time": "7pm",
-    "host": "Openmiccollective@gmail.com",
-    "signupUrl": "https://linktr.ee/openmiccollectivepnw?fbclid=PAAabdH21h8IxZty7UZMxOZ5D7SF1-mSEH3IpI-sVchRouTX4oJy-IUPhgV88",
-    "notes": "Only Comedy. Free. Age 21+. Parking. on site",
-    "id": "spud-s-pizza-parlor-tacoma-tuesday"
   },
   {
     "name": "SSC Alki Cofe",
@@ -1918,6 +1805,25 @@
     "id": "the-bake-shop-seattle-saturday"
   },
   {
+    "name": "Comedy Campout",
+    "venue": "The Camp Bar",
+    "address": "1310 Tacoma Ave S, Tacoma, WA 98402",
+    "city": "Tacoma",
+    "region": "WA",
+    "lat": 47.250228,
+    "lng": -122.444172,
+    "day": "Wednesday",
+    "frequency": "monthly",
+    "weeks": [
+      "Last"
+    ],
+    "time": "8pm",
+    "host": "Kylee Ann",
+    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSf89uyapTlZxoUkAWnJ2TpW-3eI-sMZCcC3HlCMM87zyG19bg/viewform",
+    "notes": "",
+    "id": "the-camp-bar-tacoma-wednesday"
+  },
+  {
     "name": "The Cellar",
     "venue": "The Cellar",
     "address": "206 NW Oregon Ave Suite 2",
@@ -1952,22 +1858,6 @@
     "signupUrl": "",
     "notes": "Set 5/",
     "id": "the-college-inn-pub-seattle-thursday"
-  },
-  {
-    "name": "The Craft Factory",
-    "venue": "The Craft Factory",
-    "address": "4555 N Williams Ave",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.51712025635157,
-    "lng": -122.67876859693293,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "7pm",
-    "host": "craftfactorypdx@gmail.com",
-    "signupUrl": "http://www.craftfactorypdx.com/",
-    "notes": "Anything is allowed. Age All ages. (503) 577-4310",
-    "id": "the-craft-factory-portland-monday"
   },
   {
     "name": "The Fan Club",
@@ -2027,10 +1917,10 @@
     "lng": -122.3462961,
     "day": "Monday",
     "frequency": "weekly",
-    "time": "7pm/7:30pm",
+    "time": "7pm",
     "host": "Ahmed Guyo",
-    "signupUrl": "Show Up - Go Up",
-    "notes": "",
+    "signupUrl": "",
+    "notes": "Show Up - Go Up\nSign Ups 7pm Show 7:30pm",
     "id": "the-jewel-theatre-at-the-rendezvous-seattle-monday"
   },
   {
@@ -2066,20 +1956,42 @@
     "id": "the-new-frontier-lounge-tacoma-monday"
   },
   {
-    "name": "The Sports Page",
-    "venue": "The Sports Page",
-    "address": "8590 SW Hall Blvd #6407",
-    "city": "Beaverton",
-    "region": "OR",
-    "lat": 45.48283778896773,
-    "lng": -122.79459457541772,
-    "day": "Sunday",
-    "frequency": "weekly",
-    "time": "9pm",
-    "host": "",
-    "signupUrl": "https://www.instagram.com/jarrelnewsome/",
-    "notes": "Set 7-10/",
-    "id": "the-sports-page-beaverton-sunday"
+    "name": "Open Michael",
+    "venue": "The Rabbit Box",
+    "address": "94 Pike Street, suite 11, Seattle, WA 98101",
+    "city": "Seattle",
+    "region": "WA",
+    "lat": 47.60871124267578,
+    "lng": -122.34050750732422,
+    "day": "Tuesday",
+    "frequency": "monthly",
+    "weeks": [
+      "4th"
+    ],
+    "time": "6pm",
+    "host": "Emmett Montgomery, Emma Shmuckler",
+    "signupUrl": "https://www.instagram.com/emmettmontgomery/",
+    "notes": "DM for Sign Up - standup, storytelling, and strangeness",
+    "id": "the-rabbit-box-seattle-tuesday"
+  },
+  {
+    "name": "Comedy Open Mic",
+    "venue": "The Rebel",
+    "address": "309 NE 45th St, Seattle, WA 98105",
+    "city": "Seattle",
+    "region": "WA",
+    "lat": 47.66111,
+    "lng": -122.324623,
+    "day": "Saturday",
+    "frequency": "monthly",
+    "weeks": [
+      "1st"
+    ],
+    "time": "5pm",
+    "host": "Tyler Searle",
+    "signupUrl": "https://www.facebook.com/groups/761308144506843/user/10730797",
+    "notes": "show up go up or DM host/5pm",
+    "id": "the-rebel-seattle-saturday"
   },
   {
     "name": "The Underbelly",
@@ -2150,42 +2062,6 @@
     "id": "the-whit-s-end-seattle-thursday"
   },
   {
-    "name": "Three Magnets",
-    "venue": "Three Magnets",
-    "address": "600 Franklin St SE STE 105",
-    "city": "Olympia",
-    "region": "WA",
-    "lat": 47.02663682764935,
-    "lng": -122.8975452277409,
-    "day": "Saturday",
-    "frequency": "biweekly",
-    "weeks": [
-      "1st",
-      "3rd"
-    ],
-    "time": "8pm",
-    "host": "Openmiccollective@gmail.com",
-    "signupUrl": "https://linktr.ee/openmiccollectivepnw?fbclid=PAAabdH21h8IxZty7UZMxOZ5D7SF1-mSEH3IpI-sVchRouTX4oJy-IUPhgV88",
-    "notes": "Only Comedy. Free. Set 5/. Age 21+",
-    "id": "three-magnets-olympia-saturday"
-  },
-  {
-    "name": "Townpub comedy",
-    "venue": "Townpub comedy",
-    "address": "2322 1st AVE",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.61312790112154,
-    "lng": -122.32301178759441,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "8:30pm",
-    "host": "",
-    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSelCKHI4qui9bkGlw-xsj18ZIsKUbFz2pkepVK9WWOpYDsTjQ/viewform?fbclid=IwAR2IBuYetiRbyZ5QScXHr1rnIq5ge3SEpmwIkhJdVJ4kwfK93CkfkZ9ewkw",
-    "notes": "Only Comedy. Free. (206)-441-5386",
-    "id": "townpub-comedy-seattle-thursday"
-  },
-  {
     "name": "Trails End Golf Center",
     "venue": "Trails End Golf Center",
     "address": "1107 Abernethy Rd",
@@ -2250,22 +2126,6 @@
     "id": "uisce-irish-pub-bellingham-monday"
   },
   {
-    "name": "Underbar",
-    "venue": "Underbar",
-    "address": "1701 1/2 Broadway St",
-    "city": "Vancouver",
-    "region": "WA",
-    "lat": 45.650326825360494,
-    "lng": -122.66441673151752,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "8pm",
-    "host": "",
-    "signupUrl": "https://forms.gle/9s7r1DK3e1UVTJTs6",
-    "notes": "",
-    "id": "underbar-vancouver-monday"
-  },
-  {
     "name": "Unlimited IPA",
     "venue": "Unlimited IPA",
     "address": "6350 SE Foster Rd",
@@ -2314,6 +2174,23 @@
     "id": "vermillion-seattle-monday"
   },
   {
+    "name": "Sussy",
+    "venue": "Vermillion",
+    "address": "1508 11th Ave, Seattle, WA 98122",
+    "city": "Seattle",
+    "region": "WA",
+    "lat": 47.614429,
+    "lng": -122.317749,
+    "day": "Sunday",
+    "frequency": "monthly",
+    "weeks": [],
+    "time": "8pm",
+    "host": "Andy Iwancio",
+    "signupUrl": "https://www.instagram.com/seeusundaysyall/",
+    "notes": "queer mic. Kindly DM for spot",
+    "id": "vermillion-seattle-sunday"
+  },
+  {
     "name": "Vessel Taphouse",
     "venue": "Vessel Taphouse",
     "address": "15615 Pacific Hwy",
@@ -2332,26 +2209,6 @@
     "signupUrl": "",
     "notes": "Free. Age 21+",
     "id": "vessel-taphouse-lynnwood-tuesday"
-  },
-  {
-    "name": "Waterland arcade",
-    "venue": "Waterland arcade",
-    "address": "22306 Marine View Dr",
-    "city": "Des Moines",
-    "region": "WA",
-    "lat": 47.48943959716182,
-    "lng": -120.69356392767224,
-    "day": "Thursday",
-    "frequency": "biweekly",
-    "weeks": [
-      "2nd",
-      "4th"
-    ],
-    "time": "7pm",
-    "host": "jason@waterlandarcade.com",
-    "signupUrl": "https://linktr.ee/openmiccollectivepnw?fbclid=PAAabdH21h8IxZty7UZMxOZ5D7SF1-mSEH3IpI-sVchRouTX4oJy-IUPhgV88",
-    "notes": "Only Comedy. Free. Age all ages. Wheelchair accessible. Parking. on street. ($10 cover fee for bucket list)",
-    "id": "waterland-arcade-des-moines-thursday"
   },
   {
     "name": "Wig Wam",

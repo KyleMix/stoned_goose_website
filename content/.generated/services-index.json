@@ -17,10 +17,10 @@
     "faqs": [
       {
         "q": "What kind of collaborations are you open to?",
-        "a": "TODO: copy needed."
+        "a": "Let us know"
       }
     ],
-    "draft": true,
+    "draft": false,
     "slug": "collaboration"
   },
   {

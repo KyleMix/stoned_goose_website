@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/hero";
 import { Marquee } from "@/components/marquee";
 import { RotatingBumper } from "@/components/rotating-bumper";
@@ -15,6 +16,13 @@ import {
   homeTopSections,
   homeBottomSections,
 } from "@/content/home";
+import { site } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: { absolute: `${site.name} · Olympia & South Sound Comedy Production` },
+  description: site.description,
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

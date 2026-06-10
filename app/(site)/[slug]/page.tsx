@@ -30,7 +30,8 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { slug } = await props.params;
   const page = pages.find((p) => p.slug === slug);
-  if (!page) return { title: "Page" };
+  if (!page)
+    return { title: "Not found", robots: { index: false, follow: false } };
 
   const description = page.seoDescription || site.description;
   const ogImage = page.ogImage || undefined;

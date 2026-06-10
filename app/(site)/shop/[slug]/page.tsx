@@ -22,7 +22,8 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { slug } = await props.params;
   const product = getProduct(slug);
-  if (!product) return { title: "Product" };
+  if (!product)
+    return { title: "Not found", robots: { index: false, follow: false } };
   const description =
     (product.description && product.description.slice(0, 160)) ||
     `${product.name} from Stoned Goose Productions. ${site.description}`;
