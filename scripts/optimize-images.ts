@@ -3,10 +3,11 @@
 // place. Static export disables next/image runtime processing, so browsers
 // download whatever we ship; this script gets the source weight in line.
 //
-// Targets:
+// Targets (walked recursively, so admin uploads in subdirectories count):
 //   public/images/comedians    -> max 1000w, JPEG q82 or PNG palette
 //   public/images/members      -> max 1000w
 //   public/images/media        -> max 1600w (16:9 posters)
+//   public/images/shows        -> max 1600w (event posters)
 //   public/brand/stoned-goose-logo-full.png  -> max 720w
 //   public/brand/stoned-goose-mark*.png      -> max 480w
 //   public/brand/og-mark.png                 -> leave (used by OG template)
@@ -36,6 +37,7 @@ const TARGETS: Target[] = [
   { dir: "public/images/comedians", maxWidth: 1000 },
   { dir: "public/images/members", maxWidth: 1000 },
   { dir: "public/images/media", maxWidth: 1600 },
+  { dir: "public/images/shows", maxWidth: 1600 },
   {
     dir: "public/brand",
     maxWidth: 720,
@@ -75,8 +77,34 @@ async function optimizeFile(path: string, maxWidth: number) {
   } else {
     out = await next.jpeg({ quality: 82, mozjpeg: true }).toBuffer();
   }
+  // Re-encoding can come out at or above the original size (already-crushed
+  // palette PNGs). Skip the write so the repo diff only carries real wins.
+  if (out.length >= original) {
+    return { changed: false, before: original, after: original };
+  }
   writeFileSync(path, out);
   return { changed: true, before: original, after: out.length };
+}
+
+function collectFiles(dir: string, skip?: RegExp): string[] {
+  let entries: string[];
+  try {
+    entries = readdirSync(dir);
+  } catch {
+    return [];
+  }
+  const files: string[] = [];
+  for (const name of entries) {
+    if (skip && skip.test(name)) continue;
+    const path = join(dir, name);
+    const stat = statSync(path);
+    if (stat.isDirectory()) {
+      files.push(...collectFiles(path, skip));
+    } else if (stat.isFile() && EXTENSIONS.has(extname(name).toLowerCase())) {
+      files.push(path);
+    }
+  }
+  return files;
 }
 
 async function main() {
@@ -86,27 +114,19 @@ async function main() {
 
   for (const target of TARGETS) {
     const dir = join(ROOT, target.dir);
-    let entries: string[];
-    try {
-      entries = readdirSync(dir);
-    } catch {
-      console.warn(`[optimize] dir missing, skipping: ${target.dir}`);
+    const files = collectFiles(dir, target.skip);
+    if (files.length === 0) {
+      console.warn(`[optimize] no images found in: ${target.dir}`);
       continue;
     }
-    for (const name of entries) {
-      if (target.skip && target.skip.test(name)) continue;
-      const ext = extname(name).toLowerCase();
-      if (!EXTENSIONS.has(ext)) continue;
-      const path = join(dir, name);
-      const stat = statSync(path);
-      if (!stat.isFile()) continue;
+    for (const path of files) {
       const res = await optimizeFile(path, target.maxWidth);
       totalBefore += res.before;
       totalAfter += res.after;
       if (res.changed) {
         changed += 1;
         console.log(
-          `[optimize] ${target.dir}/${basename(name)}: ${(res.before / 1024).toFixed(0)} KB -> ${(res.after / 1024).toFixed(0)} KB`,
+          `[optimize] ${target.dir}/${basename(path)}: ${(res.before / 1024).toFixed(0)} KB -> ${(res.after / 1024).toFixed(0)} KB`,
         );
       }
     }
