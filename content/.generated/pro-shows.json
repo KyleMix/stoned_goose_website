@@ -1,4 +1,621 @@
 {
-  "fetchedAt": "2026-06-10T22:02:22.790Z",
-  "shows": []
+  "fetchedAt": "2026-06-11T02:54:11.705Z",
+  "shows": [
+    {
+      "id": "laughs-comedy-club-2026-06-11 19:00:00-the-bad-advice-comedy-show-therapy-for-people-who-can-8217-t",
+      "clubSlug": "laughs-comedy-club",
+      "title": "The Bad Advice Comedy Show: Therapy for People Who Can't Afford Real Therap",
+      "start": "2026-06-11T19:00:00",
+      "url": "https://www.eventbrite.com/e/the-bad-advice-comedy-show-therapy-for-people-who-cant-afford-real-therap-tickets-1989399888620",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24071_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-12T02:30:00Z-olivia-carter",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Olivia Carter",
+      "start": "2026-06-12T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/373223",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91689/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-06-12 19:15:00-comedy-show-it-8217-s-laughs-comedy-club-19th-anniversary-we",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: It's Laughs Comedy Club 19th Anniversary Weekend June 12 &#038; 13",
+      "start": "2026-06-12T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-its-laughs-comedy-club-19th-anniversary-weekend-june-12-13-tickets-1989360730497",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner-1080x540-SC-jun26-f7.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-13T02:00:00Z-olivia-carter",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Olivia Carter",
+      "start": "2026-06-13T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375700",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91689/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-13T02:00:00Z-blair-socci",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Blair Socci",
+      "start": "2026-06-13T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/373478",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91748/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-13T04:30:00Z-blair-socci",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Blair Socci",
+      "start": "2026-06-13T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/373479",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91748/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-13T04:45:00Z-olivia-carter",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Olivia Carter",
+      "start": "2026-06-13T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375701",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91689/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-14T01:00:00Z-raanan-hershberg",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Raanan Hershberg",
+      "start": "2026-06-14T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375702",
+      "image": "https://files.seatengine.com/talent/headshots/photos/76147/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-14T02:00:00Z-amir-k",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Amir K",
+      "start": "2026-06-14T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/373646",
+      "image": "https://files.seatengine.com/talent/headshots/photos/75808/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-14T03:45:00Z-raanan-hershberg",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Raanan Hershberg",
+      "start": "2026-06-14T03:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375703",
+      "image": "https://files.seatengine.com/talent/headshots/photos/76147/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-14T04:30:00Z-amir-k",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Amir K",
+      "start": "2026-06-14T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/373647",
+      "image": "https://files.seatengine.com/talent/headshots/photos/75808/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-14T19:00:00Z-dungeons-and-drag-queens-brunch",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Dungeons and Drag Queens Brunch",
+      "start": "2026-06-14T19:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/368789",
+      "image": "https://files.seatengine.com/talent/headshots/photos/80408/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-06-14 20:00:00-comedy-show-fady-rizk-sunday-june-14th-at-8pm",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Fady Rizk Sunday June 14th at 8pm",
+      "start": "2026-06-14T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-fady-rizk-sunday-june-14th-at-8pm-tickets-1989426537327",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner-1080x540-fady-rizk-jun26-f1.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-14T22:00:00Z-jimmy-dore",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Jimmy Dore",
+      "start": "2026-06-14T22:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/359668",
+      "image": "https://files.seatengine.com/talent/headshots/photos/75331/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-15T01:00:00Z-jimmy-dore",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Jimmy Dore",
+      "start": "2026-06-15T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/359669",
+      "image": "https://files.seatengine.com/talent/headshots/photos/75331/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-19T02:00:00Z-brad-upton",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Brad Upton",
+      "start": "2026-06-19T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/363699",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-06-19 19:15:00-comedy-show-shannon-fiedler-8211-june-19th-and-20th-laughs-c",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Shannon Fiedler &#8211; June 19th and 20th- Laughs Comedy Seattle",
+      "start": "2026-06-19T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-shannon-fiedler-june-19th-and-20th-laughs-comedy-seattle-tickets-1979019984046",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/01/23394_image.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-20T02:00:00Z-brad-upton",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Brad Upton",
+      "start": "2026-06-20T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/363700",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-20T02:30:00Z-tim-butterly",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tim Butterly",
+      "start": "2026-06-20T02:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/344616",
+      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-20T04:45:00Z-tim-butterly",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tim Butterly",
+      "start": "2026-06-20T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/344618",
+      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-21T02:00:00Z-brad-upton",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Brad Upton",
+      "start": "2026-06-21T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/363701",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-21T02:30:00Z-tim-butterly",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tim Butterly",
+      "start": "2026-06-21T02:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/344617",
+      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-21T04:45:00Z-brad-upton",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Brad Upton",
+      "start": "2026-06-21T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/363702",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-21T04:45:00Z-tim-butterly",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tim Butterly",
+      "start": "2026-06-21T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/344619",
+      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-22T02:00:00Z-very-delta-live-delta-work-podcast",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Very Delta Live: Delta Work Podcast",
+      "start": "2026-06-22T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/374202",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91953/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-25T02:30:00Z-will-pepper-danny-plom",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Will Pepper & Danny Plom",
+      "start": "2026-06-25T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/374203",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91944/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-26T02:30:00Z-jessie-jetski-johnson",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jessie Jetski Johnson",
+      "start": "2026-06-26T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/371274",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91458/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-28T02:00:00Z-the-lauren-mary-show",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "The Lauren & Mary Show!",
+      "start": "2026-06-28T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365352",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89522/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-28T04:30:00Z-the-lauren-mary-show",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "The Lauren & Mary Show!",
+      "start": "2026-06-28T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365353",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89522/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-29T01:00:00Z-challenge-mania-live",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Challenge Mania Live",
+      "start": "2026-06-29T01:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/358000",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91654/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-07-01 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Bumbershoot x Laughs Comedy Coop Showdown: Qualifiers",
+      "start": "2026-07-01T20:00:00",
+      "url": "https://www.eventbrite.com/e/bumbershoot-x-laughs-comedy-coop-showdown-qualifiers-tickets-1989839671021",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-07-03 20:00:00-comedy-show-comedian-xavier-smith-and-friends-at-laughs-come",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Xavier Smith and Friends at Laughs Comedy",
+      "start": "2026-07-03T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-xavier-smith-and-friends-at-laughs-comedy-tickets-1989349356477",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24128_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-04T02:00:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-07-04T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/364812",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-04T04:30:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-07-04T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/364814",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-05T02:00:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-07-05T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/364815",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-05T04:30:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-07-05T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/364816",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-05T22:00:00Z-dolly-parton-fourth-of-july-drag-brunch",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Dolly Parton Fourth of July Drag Brunch",
+      "start": "2026-07-05T22:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/374293",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91975/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-06T02:00:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-07-06T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/364813",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-08T02:30:00Z-stormy-daniels",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Stormy Daniels",
+      "start": "2026-07-08T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/371427",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85423/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-09T02:30:00Z-james-austin-johnson",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "James Austin Johnson",
+      "start": "2026-07-09T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/366447",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89820/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-10T02:30:00Z-lara-beitz",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Lara Beitz",
+      "start": "2026-07-10T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/367557",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90206/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-11T02:00:00Z-leslie-jones",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Jones",
+      "start": "2026-07-11T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360894",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-11T04:30:00Z-leslie-jones",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Jones",
+      "start": "2026-07-11T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360896",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-12T02:00:00Z-leslie-jones",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Jones",
+      "start": "2026-07-12T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360897",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-12T04:30:00Z-leslie-jones",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Jones",
+      "start": "2026-07-12T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360898",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-13T02:00:00Z-leslie-jones",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Jones",
+      "start": "2026-07-13T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360895",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-07-14 17:30:00-standup-comedy-class-with-andrew-frank",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Standup Comedy Class with Andrew Frank",
+      "start": "2026-07-14T17:30:00",
+      "url": "https://www.eventbrite.com/e/standup-comedy-class-with-andrew-frank-tickets-1988969899511",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24039_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-16T02:30:00Z-ali-sultan",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ali Sultan",
+      "start": "2026-07-16T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/371818",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91319/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-17T02:00:00Z-iliza-shlesinger",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Iliza Shlesinger",
+      "start": "2026-07-17T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/372437",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91807/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-17T04:30:00Z-iliza-shlesinger",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Iliza Shlesinger",
+      "start": "2026-07-17T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/372438",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91807/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-07-17 19:15:00-comedy-show-michael-turner-july-17th-and-18th",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Michael Turner July 17th and 18th",
+      "start": "2026-07-17T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-michael-turner-july-17th-and-18th-tickets-1986935198666",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23899_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-18T02:00:00Z-mark-normand",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Mark Normand",
+      "start": "2026-07-18T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360345",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-18T04:30:00Z-mark-normand",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Mark Normand",
+      "start": "2026-07-18T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360347",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-19T02:00:00Z-mark-normand",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Mark Normand",
+      "start": "2026-07-19T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360346",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-19T04:30:00Z-mark-normand",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Mark Normand",
+      "start": "2026-07-19T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360348",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-07-23 20:00:00-comedy-show-cliff-cash-july-23rd-24th-and-25th-at-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Cliff Cash July 23rd, 24th and 25th at Laughs Comedy &#8211; Seattle",
+      "start": "2026-07-23T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-cliff-cash-july-23rd-24th-and-25th-at-laughs-comedy-seattle-tickets-1918827407429",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2025/11/22634_image.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-24T02:00:00Z-joe-list",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Joe List",
+      "start": "2026-07-24T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/346622",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-25T02:00:00Z-joe-list",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Joe List",
+      "start": "2026-07-25T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/346623",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-25T04:45:00Z-joe-list",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Joe List",
+      "start": "2026-07-25T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/346625",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-26T02:00:00Z-joe-list",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Joe List",
+      "start": "2026-07-26T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/346624",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-26T04:45:00Z-joe-list",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Joe List",
+      "start": "2026-07-26T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/346626",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Johnny Pemberton Aug.14th and 15th at Laughs Comedy- Seattle",
+      "start": "2026-08-14T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-johnny-pemberton-aug14th-and-15th-at-laughs-comedy-seattle-tickets-1986946509497",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23864_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-20 20:00:00-comedy-show-comedian-faith-ladzinski-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Faith Ladzinski at Laughs Comedy",
+      "start": "2026-08-20T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-faith-ladzinski-at-laughs-comedy-tickets-1990912139804",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-faith-ladzinsk-aug26-f1.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-21 19:15:00-comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Chris Martin Aug. 21st and 22nd at Laughs Comedy- Seattle",
+      "start": "2026-08-21T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-seattle-tickets-1985491635931",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/23783_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Graham Kay at Laughs Comedy",
+      "start": "2026-09-03T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-graham-kay-at-laughs-comedy-tickets-1990919026402",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24235_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-11 19:15:00-comedy-show-leah-rudick-sept-11th-and-12th-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Leah Rudick Sept. 11th and 12th at Laughs Comedy- Seattle",
+      "start": "2026-09-11T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-leah-rudick-sept-11th-and-12th-at-laughs-comedy-seattle-tickets-1984588680166",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/23692_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Luke Severeid Sept. 18th and 19th at Laughs Comedy- Seattle",
+      "start": "2026-09-18T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comedy-seattle-tickets-1985467938050",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24025_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-sam-jay-on-oct-8th-8211-10th-at-laughs-comedy-se",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Sam Jay on Oct 8th &#8211; 10th at Laughs Comedy- Seattle",
+      "start": "2026-10-08T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-sam-jay-on-oct-8th-10th-at-laughs-comedy-seattle-tickets-1985487632958",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23803_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-16 19:00:00-comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Erica Rhodes Oct. 16th and 17th at Laughs Comedy- Seattle",
+      "start": "2026-10-16T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-seattle-tickets-1985175475286",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/banner-1080x540-erica-rhodes-jan25-f4b.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-18 19:00:00-comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Pedro Gonzalez Sunday Oct. 18th at 7pm Laughs Comedy",
+      "start": "2026-10-18T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-comedy-tickets-1989420547411",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24133_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-22 19:00:00-comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Alex Falcone Oct. 22nd- 24th at Laughs Comedy Club- Seattle",
+      "start": "2026-10-22T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club-seattle-tickets-1989409509396",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24090_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-05 20:00:00-comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Brian Simpson November 5th -7th at Laughs Comedy- Seattle",
+      "start": "2026-11-05T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-seattle-tickets-1984930653016",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/banner-1080x540-brian-simpson-nov26.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-13 19:15:00-comedy-show-heather-shaw-november-13th-and-14th-at-laughs-co",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Heather Shaw November 13th and 14th at Laughs Comedy- Seattle",
+      "start": "2026-11-13T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-heather-shaw-november-13th-and-14th-at-laughs-comedy-seattle-tickets-1985727225586",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23799_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Michael Longfellow Nov. 19th &#8211; 21st- Laughs Comedy Seattle",
+      "start": "2026-11-19T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-michael-longfellow-nov-19th-21st-laughs-comedy-seattle-tickets-1979024327036",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/01/23398_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-04 19:15:00-comedy-show-dulc-sloan-on-dec-4th-and-5th-at-laughs-comedy-c",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Dulcé Sloan on Dec. 4th and 5th at Laughs Comedy Club- Seattle",
+      "start": "2026-12-04T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-dulce-sloan-on-dec-4th-and-5th-at-laughs-comedy-club-seattle-tickets-1989412721002",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24094_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-10 20:00:00-comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Fahim Anwar Dec. 10th-12th at Laughs Comedy Club- Seattle",
+      "start": "2026-12-10T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-seattle-tickets-1989421356832",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24098_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-08 18:00:00-comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Caitlin Peluffo Jan 8th and 9th at Laughs Comedy Club- Seattle",
+      "start": "2027-01-08T18:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy-club-seattle-tickets-1989364247015",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner-1080x540-caitlin-pelufo-jan27-f1.png"
+    }
+  ]
 }
