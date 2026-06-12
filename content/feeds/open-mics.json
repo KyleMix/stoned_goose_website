@@ -603,7 +603,11 @@
       "lng": -122.63243838406959,
       "day": "Friday",
       "time": "7pm",
-      "notes": "Only Comedy. Free. Set 4/. Age 21+. (360)-627-9925"
+      "notes": "Only Comedy. Free. Set 4/. Age 21+. (360)-627-9925",
+      "frequency": "monthly",
+      "weeks": [
+        "1st"
+      ]
     },
     {
       "id": "st-andrews-pub-seattle-sunday",
@@ -1219,7 +1223,7 @@
       "time": "8pm"
     },
     {
-      "id": "the-underground-coffee-house-bellingham-thursday",
+      "id": "the-underground-coffee-house-bellingham-tuesday",
       "name": "The underground coffee house",
       "venue": "The underground coffee house",
       "address": "Viking Union",
@@ -1227,7 +1231,7 @@
       "region": "WA",
       "lat": 48.74964978255894,
       "lng": -122.47973511100939,
-      "day": "Thursday",
+      "day": "Tuesday",
       "time": "7pm",
       "notes": "(360)-650-2970"
     },
@@ -1960,18 +1964,6 @@
       "lng": -120.4962482948043,
       "day": "Saturday",
       "time": "5pm"
-    },
-    {
-      "id": "growler-s-taproom-portland-saturday",
-      "name": "Growler’s Taproom",
-      "venue": "Growler’s Taproom",
-      "address": "803 SE 82nd Ave",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.51988116273747,
-      "lng": -122.67602710002288,
-      "day": "Saturday",
-      "time": "9:45pm"
     },
     {
       "id": "ranchito-grill-springfield-saturday",

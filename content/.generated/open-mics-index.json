@@ -323,11 +323,14 @@
     "lat": 47.56372810711834,
     "lng": -122.63243838406959,
     "day": "Friday",
-    "frequency": "weekly",
+    "frequency": "monthly",
     "time": "7pm",
     "host": "",
     "signupUrl": "",
     "notes": "Only Comedy. Free. Set 4/. Age 21+. (360)-627-9925",
+    "weeks": [
+      "1st"
+    ],
     "id": "dog-days-brewing-bremerton-friday"
   },
   {
@@ -449,25 +452,6 @@
     "signupUrl": "",
     "notes": "Only Comedy. Free. Set 5/ do not punch. Age all ages. Wheelchair accessible. Parking. on street. , \"geeky\" material focus",
     "id": "geeky-comedy-seattle-seattle-saturday"
-  },
-  {
-    "name": "Growler Guys",
-    "venue": "Growler’s Taproom",
-    "address": "8500 Lake City Way NE, Seattle, WA 98115",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.690593,
-    "lng": -122.307288,
-    "day": "Tuesday",
-    "frequency": "monthly",
-    "weeks": [
-      "1st"
-    ],
-    "time": "7:30pm",
-    "host": "Tyler Searle",
-    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdtvUUqVy6P3Cc0U-6p-pexpd34j4MB0XSWrsn2-3GSPCt6Jw/closedform",
-    "notes": "",
-    "id": "growler-s-taproom-portland-saturday"
   },
   {
     "name": "Halcyon",
@@ -934,13 +918,13 @@
     "region": "WA",
     "lat": 47.24689865112305,
     "lng": -122.43720245361328,
-    "day": "Monday",
+    "day": "Tuesday",
     "frequency": "weekly",
     "time": "Sign-up/Start: 7pm/8pm",
     "host": "Rotating",
     "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeNa7G1uzXw99bULBmTwYv7j2e9wEJJEgPA7vKLgMZalv7_5A/viewform",
     "notes": "",
-    "id": "nate-jackson-s-super-funny-comedy-club-tacoma-monday"
+    "id": "nate-jackson-s-super-funny-comedy-club-tacoma-tuesday"
   },
   {
     "name": "Neighbors",
@@ -1428,13 +1412,13 @@
     "region": "WA",
     "lat": 48.74964978255894,
     "lng": -122.47973511100939,
-    "day": "Thursday",
+    "day": "Tuesday",
     "frequency": "weekly",
-    "time": "7pm",
+    "time": "Sign-up/Start: 6:30pm/7pm",
     "host": "",
     "signupUrl": "",
-    "notes": "(360)-650-2970",
-    "id": "the-underground-coffee-house-bellingham-thursday"
+    "notes": "All-talent open mic, comedy welcome. (360)-650-2970",
+    "id": "the-underground-coffee-house-bellingham-tuesday"
   },
   {
     "name": "The Whit's End",

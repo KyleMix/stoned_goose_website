@@ -7,9 +7,12 @@
   "lat": 47.56372810711834,
   "lng": -122.63243838406959,
   "day": "Friday",
-  "frequency": "weekly",
+  "frequency": "monthly",
   "time": "7pm",
   "host": "",
   "signupUrl": "",
-  "notes": "Only Comedy. Free. Set 4/. Age 21+. (360)-627-9925"
+  "notes": "Only Comedy. Free. Set 4/. Age 21+. (360)-627-9925",
+  "weeks": [
+    "1st"
+  ]
 }
