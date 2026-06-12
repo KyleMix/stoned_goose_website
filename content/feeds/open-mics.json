@@ -606,19 +606,6 @@
       "notes": "Set 10 / do not punch down. feedback mic (if feedback is wanted)"
     },
     {
-      "id": "bickersons-brewhouse-seattle-friday",
-      "name": "Bickersons Brewhouse",
-      "venue": "Bickersons Brewhouse",
-      "address": "1514 NW Leary Wy",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.61261263447013,
-      "lng": -122.32491098649577,
-      "day": "Friday",
-      "time": "6pm",
-      "notes": "Anything is allowed. Parking. on street"
-    },
-    {
       "id": "dog-days-brewing-bremerton-friday",
       "name": "Dog days brewing",
       "venue": "Dog days brewing",
@@ -737,18 +724,6 @@
       "notes": "Only Comedy. Free. Age 21+. Wheelchair accessible. Parking. on site"
     },
     {
-      "id": "road-runners-seattle-saturday",
-      "name": "Road Runners",
-      "venue": "Road Runners",
-      "address": "2322 2nd Ave",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.61115765621424,
-      "lng": -122.32269977111467,
-      "day": "Saturday",
-      "time": "7:30pm"
-    },
-    {
       "id": "comedy-nest-seattle-tuesday",
       "name": "Comedy Nest",
       "venue": "Comedy Nest",
@@ -859,19 +834,6 @@
       "day": "Wednesday",
       "time": "7pm",
       "notes": "Age 21+. Wheelchair accessible. Last Wed."
-    },
-    {
-      "id": "nacho-problems-bellingham-thursday",
-      "name": "Nacho Problems",
-      "venue": "Nacho Problems",
-      "address": "1425 Railroad Ave",
-      "city": "Bellingham",
-      "region": "WA",
-      "lat": 48.74885362783245,
-      "lng": -122.48371039139391,
-      "day": "Thursday",
-      "time": "8:30pm",
-      "notes": "2nd, 4th Thurs."
     },
     {
       "id": "four-horsemen-brewery-kent-sunday",
@@ -1039,19 +1001,6 @@
       "notes": "Only Comedy. Free. Set 5/. Age all ages. Wheelchair accessible. Parking. on street. 3rd Sat."
     },
     {
-      "id": "superme-pizza-seattle-wednesday",
-      "name": "Superme Pizza",
-      "venue": "Superme Pizza",
-      "address": "4529 University Way NE",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.614656488899065,
-      "lng": -122.32075259784847,
-      "day": "Wednesday",
-      "time": "8pm",
-      "notes": "Only Comedy. Free. Wheelchair accessible. Parking. on street"
-    },
-    {
       "id": "green-lady-olympia-monday",
       "name": "Green Lady",
       "venue": "Green Lady",
@@ -1161,19 +1110,6 @@
       "notes": "2nd Tuesday"
     },
     {
-      "id": "vessel-taphouse-lynnwood-tuesday",
-      "name": "Vessel Taphouse",
-      "venue": "Vessel Taphouse",
-      "address": "15615 Pacific Hwy",
-      "city": "Lynnwood",
-      "region": "WA",
-      "lat": 47.812856969558254,
-      "lng": -122.32275374227513,
-      "day": "Tuesday",
-      "time": "7:30pm",
-      "notes": "Free. Age 21+. 2nd, 4th Tuesday"
-    },
-    {
       "id": "jucivana-seattle-tuesday",
       "name": "Jucivana",
       "venue": "Jucivana",
@@ -1280,19 +1216,6 @@
       "notes": "Only Comedy. Free. Set 4/ do not punch down. Age 21+. Wheelchair accessible. Parking. on street. Sign-up in person at 8:30pm or via email/dm beforehand"
     },
     {
-      "id": "the-waterwheel-launge-seattle-wednesday",
-      "name": "The Waterwheel launge",
-      "venue": "The Waterwheel launge",
-      "address": "7034 15th Ave",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.604555870908676,
-      "lng": -122.3337884412909,
-      "day": "Wednesday",
-      "time": "8:30pm",
-      "notes": "Only Comedy. Free. Set 5/. Age 21+. Wheelchair accessible. Parking. on street. (206)-784-5701"
-    },
-    {
       "id": "balleard-comedy-seattle-wednesday",
       "name": "Balleard comedy",
       "venue": "Balleard comedy",
@@ -1305,32 +1228,6 @@
       "time": "TBD",
       "signupUrl": "https://www.eventbrite.com/o/ballard-comedy-club-34066996295",
       "notes": "(206)-706-1572"
-    },
-    {
-      "id": "urban-hooka-lounge-seattle-wednesday",
-      "name": "Urban hooka lounge",
-      "venue": "Urban hooka lounge",
-      "address": "1731 4th Ave S Suite B",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.60612217898833,
-      "lng": -122.32353913939116,
-      "day": "Wednesday",
-      "time": "7pm",
-      "notes": "Only Comedy. Free. Parking. on site"
-    },
-    {
-      "id": "looking-glass-coffee-snohomish-thursday",
-      "name": "Looking glass coffee",
-      "venue": "Looking glass coffee",
-      "address": "801 1st St #201",
-      "city": "Snohomish",
-      "region": "WA",
-      "lat": 47.91406095216297,
-      "lng": -122.10920425726711,
-      "day": "Thursday",
-      "time": "7pm",
-      "notes": "Set No set time limit / PG13 material. Age 13+. 2nd, 4th Thu."
     },
     {
       "id": "waterland-arcade-des-moines-thursday",
@@ -1493,19 +1390,6 @@
       "notes": "Free"
     },
     {
-      "id": "chi-town-pizza-tacoma-thursday",
-      "name": "Chi town pizza",
-      "venue": "Chi town pizza",
-      "address": "15619 Pacific Ave S",
-      "city": "Tacoma",
-      "region": "WA",
-      "lat": 47.25189272144655,
-      "lng": -122.44953085374227,
-      "day": "Thursday",
-      "time": "7pm",
-      "notes": "Anything is allowed. Free. Set 7/"
-    },
-    {
       "id": "triangle-pub-seattle-thursday",
       "name": "Triangle pub",
       "venue": "Triangle pub",
@@ -1530,19 +1414,6 @@
       "day": "Friday",
       "time": "8pm",
       "notes": "Only Comedy. Age 18+"
-    },
-    {
-      "id": "prohibition-bar-cannabis-city-seattle-saturday",
-      "name": "Prohibition bar cannabis city",
-      "venue": "Prohibition bar cannabis city",
-      "address": "421 S Lander St",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.596099565117875,
-      "lng": -122.33483984893569,
-      "day": "Saturday",
-      "time": "9pm",
-      "notes": "Anything is allowed. Free. Set 5/. Age 21+. Parking. on street. 1st Saturday"
     },
     {
       "id": "a-street-pub-auburn-saturday",
@@ -1694,19 +1565,6 @@
       "notes": "Only Comedy. Free. Age 21+. Parking. on site"
     },
     {
-      "id": "adulis-seattle-tuesday",
-      "name": "Adulis",
-      "venue": "Adulis",
-      "address": "10515 Greenwood Ave N",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.610172167544064,
-      "lng": -122.32162565804532,
-      "day": "Tuesday",
-      "time": "9pm",
-      "notes": "Only Comedy. Free. Parking. on site"
-    },
-    {
       "id": "geeky-comedy-seattle-seattle-saturday",
       "name": "Geeky comedy seattle",
       "venue": "Geeky comedy seattle",
@@ -1720,20 +1578,6 @@
       "notes": "Only Comedy. Free. Set 5/ do not punch. Age all ages. Wheelchair accessible. Parking. on street. 1st Sat., \"geeky\" material focus"
     },
     {
-      "id": "super-funny-comedy-tacoma-tuesday",
-      "name": "Super funny comedy",
-      "venue": "Super funny comedy",
-      "address": "8402 S Hosmer St Annex Building",
-      "city": "Tacoma",
-      "region": "WA",
-      "lat": 47.242508789196606,
-      "lng": -122.4521932478828,
-      "day": "Tuesday",
-      "time": "8pm",
-      "host": "Info@SuperFunnyComedyClub.com",
-      "notes": "Only Comedy. Free. Set 3 on-site signup, 5-10 pre-signup/ do not punch down. Age 21+. Wheelchair accessible. Parking. on site. (253)-878-4898. 2 drink minimum, on-site signup available at opening (limited spots)"
-    },
-    {
       "id": "off-the-top-seattle-sunday",
       "name": "Off the top",
       "venue": "Off the top",
@@ -1745,33 +1589,6 @@
       "day": "Sunday",
       "time": "8pm",
       "notes": "Improv Comedy. Free. Parking. on street. dead mic"
-    },
-    {
-      "id": "woodsky-s-seattle-tuesday",
-      "name": "Woodsky's",
-      "venue": "Woodsky's",
-      "address": "303 N 36th St",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.595513618677046,
-      "lng": -122.33246639963377,
-      "day": "Tuesday",
-      "time": "7pm",
-      "host": "comedyatwoodskys@gmail.com",
-      "notes": "Anything is allowed. Free. Set 5/. Age 21+. Wheelchair accessible. Parking. on street. (206)-547-9662"
-    },
-    {
-      "id": "everett-improv-everett-tuesday",
-      "name": "Everett Improv",
-      "venue": "Everett Improv",
-      "address": "2610 Colby Ave Units A-B",
-      "city": "Everett",
-      "region": "WA",
-      "lat": 47.97231892881666,
-      "lng": -122.20878729686427,
-      "day": "Tuesday",
-      "time": "5:30pm",
-      "notes": "Anything is allowed. Free. Set / do not punch down. Parking. on street. Last Sat."
     },
     {
       "id": "bobs-comedy-jive-tacoma-wednesday",
@@ -1799,19 +1616,6 @@
       "day": "Wednesday",
       "time": "8pm",
       "notes": "Anything is allowed. Message blue curtain comedy on instagram or FB"
-    },
-    {
-      "id": "souvannys-tavern-seattle-thursday",
-      "name": "Souvannys Tavern",
-      "venue": "Souvannys Tavern",
-      "address": "9501 Rainier Ave S",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.60183048752575,
-      "lng": -122.32606932936598,
-      "day": "Thursday",
-      "time": "8pm",
-      "notes": "Anything is allowed. Free. Wheelchair accessible. Parking. on site. 1st and 3rd Thurs."
     },
     {
       "id": "neighbors-seattle-thursday",
@@ -1888,19 +1692,6 @@
       "lng": -122.68204586861982,
       "day": "Monday",
       "time": "4"
-    },
-    {
-      "id": "neighbors-taproom-portland-monday",
-      "name": "Neighbors Taproom",
-      "venue": "Neighbors Taproom",
-      "address": "1306 E Burnside St",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.51399606317235,
-      "lng": -122.67858951705195,
-      "day": "Monday",
-      "time": "6pm",
-      "notes": "Age 21+"
     },
     {
       "id": "haymaker-bar-portland-monday",
@@ -1981,19 +1772,6 @@
       "notes": "4th Tues., Priority for LGBTQIA+"
     },
     {
-      "id": "eastside-bar-portland-tuesday",
-      "name": "Eastside Bar",
-      "venue": "Eastside Bar",
-      "address": "2530 NE 82nd Ave",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.52538027008469,
-      "lng": -122.68315294117647,
-      "day": "Tuesday",
-      "time": "10:15pm",
-      "notes": "Set 5/do not punch down"
-    },
-    {
       "id": "firkin-tavern-portland-tuesday",
       "name": "Firkin Tavern",
       "venue": "Firkin Tavern",
@@ -2007,18 +1785,6 @@
       "host": "https://www.facebook.com/kellie.irwin.9",
       "signupUrl": "https://www.instagram.com/kellieirwin1/",
       "notes": "email host to get spot"
-    },
-    {
-      "id": "suki-s-bar-portland-tuesday",
-      "name": "Suki’s Bar",
-      "venue": "Suki’s Bar",
-      "address": "2401 SW 4th Ave",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.510681803616386,
-      "lng": -122.66758800640879,
-      "day": "Tuesday",
-      "time": "9pm"
     },
     {
       "id": "the-cellar-bend-tuesday",
@@ -2074,18 +1840,6 @@
       "notes": "Set 4/. 1st & 3rd Wed."
     },
     {
-      "id": "rainy-days-tavern-portland-wednesday",
-      "name": "Rainy Days Tavern",
-      "venue": "Rainy Days Tavern",
-      "address": "4774 SE Milwaukie Ave",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.51422384985123,
-      "lng": -122.68021625085832,
-      "day": "Wednesday",
-      "time": "8:30pm"
-    },
-    {
       "id": "infinity-room-salem-wednesday",
       "name": "Infinity Room",
       "venue": "Infinity Room",
@@ -2137,19 +1891,6 @@
       "time": "7pm",
       "signupUrl": "https://l.facebook.com/l.php?h=AT1Ds-YN_lfeDnFw2ni_KxQL2uUbUrVyCj3sEiIwZMLpIWBuvFIh3hJPOyECX-e2TiUksCEdxth7b6m9q1ZKTiwsNP-iEC6trBRFEICH45fFWVr7RIU1dL_zNm6fg-mJUpxsm6UJCpaQhNO7OVjf-30v&u=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSf6jz55vH0PF6Xa0elmMm6XACdxIY5aReP3Cqv24FyMC4xcHw%2Fclosedform%3Ffbclid%3DIwAR1NAbuVfZpoAV4Yt7m7H2_gzqi12jtw0OgVghs6kkI5_9uStxg9-3yTyic",
       "notes": "Priority for LGBTQIA+"
-    },
-    {
-      "id": "capitol-bar-lounge-portland-thursday",
-      "name": "Capitol Bar & Lounge",
-      "venue": "Capitol Bar & Lounge",
-      "address": "1440 NE Broadway",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.52026825360495,
-      "lng": -122.68649503318836,
-      "day": "Thursday",
-      "time": "8pm",
-      "notes": "Anything is allowed"
     },
     {
       "id": "funhouse-lounge-portland-thursday",
@@ -2230,19 +1971,6 @@
       "lng": -122.67826175326161,
       "day": "Friday",
       "time": "12am"
-    },
-    {
-      "id": "capitol-bar-lounge-portland-saturday",
-      "name": "Capitol Bar & Lounge",
-      "venue": "Capitol Bar & Lounge",
-      "address": "1440 NE Broadway",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.52026825360495,
-      "lng": -122.68649503318836,
-      "day": "Saturday",
-      "time": "1",
-      "notes": "2nd sat"
     },
     {
       "id": "covert-caf-portland-saturday",
@@ -2354,55 +2082,6 @@
       "notes": "Set 15/. Age 21+. (971) 302-6352"
     },
     {
-      "id": "captain-ankeny-s-or-wednesday",
-      "name": "Captain Ankeny’s",
-      "venue": "Captain Ankeny’s",
-      "address": "116 SW Pine Street. Portland",
-      "city": "Or.",
-      "region": "OR",
-      "lat": 43.989987457084,
-      "lng": -120.488222293431,
-      "day": "Wednesday",
-      "time": "6pm"
-    },
-    {
-      "id": "eastburn-public-house-portland-wednesday",
-      "name": "Eastburn Public House",
-      "venue": "Eastburn Public House",
-      "address": "1800 E Burnside.",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.50474250400549,
-      "lng": -122.6875142137789,
-      "day": "Wednesday",
-      "time": "6pm (7:30pm/8pm)"
-    },
-    {
-      "id": "growler-s-taproom-portland-wednesday",
-      "name": "Growler’s Taproom",
-      "venue": "Growler’s Taproom",
-      "address": "803 SE 82nd Ave",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.51988116273747,
-      "lng": -122.67602710002288,
-      "day": "Wednesday",
-      "time": "7pm",
-      "notes": "Set /no sexist, no racist (do not punch down). Priority for women and LGBTQIA+"
-    },
-    {
-      "id": "arrowood-portland-wednesday",
-      "name": "Arrowood",
-      "venue": "Arrowood",
-      "address": "5846 NE Sandy Blvd",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.51238141451133,
-      "lng": -122.66978457312887,
-      "day": "Wednesday",
-      "time": "8:30pm"
-    },
-    {
       "id": "dante-s-portland-thursday",
       "name": "Dante’s",
       "venue": "Dante’s",
@@ -2425,18 +2104,6 @@
       "lng": -122.67246894026093,
       "day": "Thursday",
       "time": "8pm"
-    },
-    {
-      "id": "catfish-lou-s-beaverton-friday",
-      "name": "Catfish Lou’s",
-      "venue": "Catfish Lou’s",
-      "address": "6540 SW Fallbrook Pl",
-      "city": "Beaverton",
-      "region": "OR",
-      "lat": 45.494407301441974,
-      "lng": -122.79988640421149,
-      "day": "Friday",
-      "time": "7:30pm"
     },
     {
       "id": "trails-end-golf-center-oregon-city-saturday",
