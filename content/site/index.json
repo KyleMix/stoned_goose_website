@@ -38,7 +38,6 @@
   "nav": [
     { "label": "Shows", "href": "/shows" },
     { "label": "Open Mics", "href": "/open-mics" },
-    { "label": "Pro Comedy", "href": "/calendar" },
     { "label": "Watch", "href": "/watch" },
     { "label": "Roster", "href": "/roster" },
     { "label": "Book Us", "href": "/book" },
@@ -55,7 +54,6 @@
           { "label": "Home", "href": "/" },
           { "label": "Shows", "href": "/shows" },
           { "label": "Open Mics", "href": "/open-mics" },
-          { "label": "Pro Comedy", "href": "/calendar" },
           { "label": "Watch", "href": "/watch" },
           { "label": "Roster", "href": "/roster" },
           { "label": "Shop", "href": "/shop" }

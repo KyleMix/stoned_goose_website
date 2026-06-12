@@ -1,3 +1,9 @@
+// CURRENTLY UNPUBLISHED. The underscore prefix on this folder makes
+// Next.js skip the route, so /calendar does not ship in the static
+// export. The page still needs work before it goes live. To republish:
+// rename app/(site)/_calendar back to app/(site)/calendar and re-add
+// the nav, footer (content/site/index.json), and sitemap entries.
+
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { FinePrint } from "@/components/fine-print";
