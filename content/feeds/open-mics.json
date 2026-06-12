@@ -206,19 +206,6 @@
       "notes": "Only Comedy. Age 21+. 1st, 3rd Tue."
     },
     {
-      "id": "the-growler-guys-seattle-tuesday",
-      "name": "The Growler Guys",
-      "venue": "The Growler Guys",
-      "address": "8500 Lake City Way NE",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.597010345616845,
-      "lng": -122.32086722362097,
-      "day": "Tuesday",
-      "time": "9:30pm",
-      "notes": "Set 5/. Age 21+. Guest tips rewarded to 1st and 2nd best voted comics"
-    },
-    {
       "id": "club-comedy-seattle-seattle-tuesday",
       "name": "Club comedy Seattle",
       "venue": "Club comedy Seattle",
@@ -921,18 +908,6 @@
       "notes": "Only Comedy. Free. Set Wed., Fri. and Sun. 4/ do not punch down. Age 21+. Wheelchair accessible. Parking. on street. see insta. on Wed."
     },
     {
-      "id": "nector-lounge-seattle-monday",
-      "name": "nector lounge",
-      "venue": "nector lounge",
-      "address": "412 N 36th St",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.598987548638135,
-      "lng": -122.32956779583428,
-      "day": "Monday",
-      "time": "TBD"
-    },
-    {
       "id": "southgate-roller-rink-seattle-monday",
       "name": "Southgate roller rink",
       "venue": "Southgate roller rink",
@@ -988,19 +963,6 @@
       "notes": "Only Comedy. Free. Set 5/. Age all ages. Wheelchair accessible. Parking. on street"
     },
     {
-      "id": "la-santa-seatac-saturday",
-      "name": "La Santa",
-      "venue": "La Santa",
-      "address": "18205 Des Moines Memorial Dr",
-      "city": "Seatac",
-      "region": "WA",
-      "lat": 47.43769290455482,
-      "lng": -122.28758894483863,
-      "day": "Saturday",
-      "time": "6pm",
-      "notes": "Only Comedy. Free. Set 5/. Age all ages. Wheelchair accessible. Parking. on street. 3rd Sat."
-    },
-    {
       "id": "green-lady-olympia-monday",
       "name": "Green Lady",
       "venue": "Green Lady",
@@ -1014,19 +976,6 @@
       "notes": "2nd Monday"
     },
     {
-      "id": "vermillion-seattle-monday",
-      "name": "Vermillion",
-      "venue": "Vermillion",
-      "address": "1508 11th AVE",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.60584422064546,
-      "lng": -122.33019146257725,
-      "day": "Monday",
-      "time": "9pm",
-      "notes": "Anything is allowed. Set /Do not punch down. Age 21+. mask strongly encouraged"
-    },
-    {
       "id": "substation-seattle-seattle-monday",
       "name": "Substation Seattle",
       "venue": "Substation Seattle",
@@ -1038,34 +987,6 @@
       "day": "Monday",
       "time": "8pm",
       "notes": "Only Comedy. Free. Set 5/. Age 21+. Parking. on street. 22nd May"
-    },
-    {
-      "id": "baranof-seattle-monday",
-      "name": "Baranof",
-      "venue": "Baranof",
-      "address": "8549 Greenwood Ave N",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.59537299153124,
-      "lng": -122.32617113756008,
-      "day": "Monday",
-      "time": "7pm",
-      "host": "https://instagram.com/mitchschaab?igshid=YmMyMTA2M2Y=",
-      "notes": "Comedy Only. Free. Set 3/. Age 21+. Parking. on street. 5 spots in bucket (drop inns)"
-    },
-    {
-      "id": "the-new-frontier-lounge-tacoma-monday",
-      "name": "The new frontier lounge",
-      "venue": "The new frontier lounge",
-      "address": "301 E 25th St",
-      "city": "Tacoma",
-      "region": "WA",
-      "lat": 47.2515949874113,
-      "lng": -122.43566040283818,
-      "day": "Monday",
-      "time": "8pm",
-      "host": "chandlerhatch26@gmail.com",
-      "notes": "(253)-298-5337"
     },
     {
       "id": "underbar-vancouver-monday",
@@ -1123,19 +1044,6 @@
       "notes": "Anything is allowed. Set /no rules"
     },
     {
-      "id": "the-underbelly-seattle-tuesday",
-      "name": "The Underbelly",
-      "venue": "The Underbelly",
-      "address": "119 1st Ave S",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.59588642710003,
-      "lng": -122.32267523460746,
-      "day": "Tuesday",
-      "time": "8:30pm",
-      "notes": "Only Comedy. Free. Set 5/. Age 21+"
-    },
-    {
       "id": "pub-70-seattle-tuesday",
       "name": "Pub 70",
       "venue": "Pub 70",
@@ -1187,19 +1095,6 @@
       "day": "Wednesday",
       "time": "7:30pm",
       "notes": "Free. Set 5(closer20)/. 1st, 3rd Wednesdays"
-    },
-    {
-      "id": "ssc-alki-cofe-seattle-wednesday",
-      "name": "SSC Alki Cofe",
-      "venue": "SSC Alki Cofe",
-      "address": "6000 16th Ave SW",
-      "city": "Seattle",
-      "region": "WA",
-      "lat": 47.59636507209888,
-      "lng": -122.32382112611582,
-      "day": "Wednesday",
-      "time": "3pm",
-      "notes": "Only comedy. Free. Set 10/ G rated material. Age all ages. Wheelchair accessible. Parking. on site. 04/12/23, 05/17/23"
     },
     {
       "id": "lush-bar-seattle-wednesday",
@@ -1746,19 +1641,6 @@
       "notes": "Only Comedy. free. Set 3/. Wheelchair accessible"
     },
     {
-      "id": "oaks-bottom-public-house-portland-tuesday",
-      "name": "Oaks Bottom Public House",
-      "venue": "Oaks Bottom Public House",
-      "address": "1621 SE Bybee Blvd",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.5172297550927,
-      "lng": -122.68454309910734,
-      "day": "Tuesday",
-      "time": "7pm",
-      "notes": "Set 5/"
-    },
-    {
       "id": "escape-bar-grill-portland-tuesday",
       "name": "Escape Bar & Grill",
       "venue": "Escape Bar & Grill",
@@ -1785,19 +1667,6 @@
       "host": "https://www.facebook.com/kellie.irwin.9",
       "signupUrl": "https://www.instagram.com/kellieirwin1/",
       "notes": "email host to get spot"
-    },
-    {
-      "id": "the-cellar-bend-tuesday",
-      "name": "The Cellar",
-      "venue": "The Cellar",
-      "address": "206 NW Oregon Ave Suite 2",
-      "city": "Bend",
-      "region": "OR",
-      "lat": 44.05869494163424,
-      "lng": -121.31967903410391,
-      "day": "Tuesday",
-      "time": "7:30pm",
-      "notes": "Set 4/. 1st & 3rd Tues"
     },
     {
       "id": "crush-bar-portland-wednesday",
@@ -1891,19 +1760,6 @@
       "time": "7pm",
       "signupUrl": "https://l.facebook.com/l.php?h=AT1Ds-YN_lfeDnFw2ni_KxQL2uUbUrVyCj3sEiIwZMLpIWBuvFIh3hJPOyECX-e2TiUksCEdxth7b6m9q1ZKTiwsNP-iEC6trBRFEICH45fFWVr7RIU1dL_zNm6fg-mJUpxsm6UJCpaQhNO7OVjf-30v&u=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSf6jz55vH0PF6Xa0elmMm6XACdxIY5aReP3Cqv24FyMC4xcHw%2Fclosedform%3Ffbclid%3DIwAR1NAbuVfZpoAV4Yt7m7H2_gzqi12jtw0OgVghs6kkI5_9uStxg9-3yTyic",
       "notes": "Priority for LGBTQIA+"
-    },
-    {
-      "id": "funhouse-lounge-portland-thursday",
-      "name": "Funhouse Lounge",
-      "venue": "Funhouse Lounge",
-      "address": "2432 SE 11th Ave",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.505449301899745,
-      "lng": -122.67826175326161,
-      "day": "Thursday",
-      "time": "9:45pm/",
-      "notes": "Set 4/"
     },
     {
       "id": "kelly-s-olympian-portland-thursday",
@@ -2080,18 +1936,6 @@
       "host": "contactus@codyweathers.com",
       "signupUrl": "https://www.blindoxpdx.com/",
       "notes": "Set 15/. Age 21+. (971) 302-6352"
-    },
-    {
-      "id": "dante-s-portland-thursday",
-      "name": "Dante’s",
-      "venue": "Dante’s",
-      "address": "350 W Burnside St",
-      "city": "Portland",
-      "region": "OR",
-      "lat": 45.52311082627604,
-      "lng": -122.68204586861982,
-      "day": "Thursday",
-      "time": "4pm"
     },
     {
       "id": "haymaker-bar-portland-thursday",

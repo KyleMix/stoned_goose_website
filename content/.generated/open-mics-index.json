@@ -70,22 +70,6 @@
     "id": "ballard-mandarin-2a4c6b08107d-thursday"
   },
   {
-    "name": "Baranof",
-    "venue": "Baranof",
-    "address": "8549 Greenwood Ave N",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.59537299153124,
-    "lng": -122.32617113756008,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "7pm",
-    "host": "https://instagram.com/mitchschaab?igshid=YmMyMTA2M2Y=",
-    "signupUrl": "",
-    "notes": "Comedy Only. Free. Set 3/. Age 21+. Parking. on street. 5 spots in bucket (drop inns)",
-    "id": "baranof-seattle-monday"
-  },
-  {
     "name": "Beach Cat Brewing",
     "venue": "Beach Cat Brewing",
     "address": "1010 C St Suite 107",
@@ -316,22 +300,6 @@
     "id": "dante-s-portland-monday"
   },
   {
-    "name": "Dante’s",
-    "venue": "Dante’s",
-    "address": "350 W Burnside St",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.52311082627604,
-    "lng": -122.68204586861982,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "4pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "",
-    "id": "dante-s-portland-thursday"
-  },
-  {
     "name": "Rooney's",
     "venue": "",
     "address": "17626 140th Ave NE, Woodinville, WA 98072",
@@ -462,22 +430,6 @@
     "signupUrl": "",
     "notes": "",
     "id": "funhouse-lounge-portland-friday"
-  },
-  {
-    "name": "Funhouse Lounge",
-    "venue": "Funhouse Lounge",
-    "address": "2432 SE 11th Ave",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.505449301899745,
-    "lng": -122.67826175326161,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "9:45pm/",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Set 4/",
-    "id": "funhouse-lounge-portland-thursday"
   },
   {
     "name": "Geeky comedy seattle",
@@ -805,25 +757,6 @@
     "id": "kelly-s-olympian-portland-thursday"
   },
   {
-    "name": "La Santa",
-    "venue": "La Santa",
-    "address": "18205 Des Moines Memorial Dr",
-    "city": "Seatac",
-    "region": "WA",
-    "lat": 47.43769290455482,
-    "lng": -122.28758894483863,
-    "day": "Saturday",
-    "frequency": "monthly",
-    "weeks": [
-      "3rd"
-    ],
-    "time": "6pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Only Comedy. Free. Set 5/. Age all ages. Wheelchair accessible. Parking. on street",
-    "id": "la-santa-seatac-saturday"
-  },
-  {
     "name": "Vomity in Progress",
     "venue": "Le Vouyer",
     "address": "404 4th Ave E",
@@ -1010,22 +943,6 @@
     "id": "nate-jackson-s-super-funny-comedy-club-tacoma-monday"
   },
   {
-    "name": "nector lounge",
-    "venue": "nector lounge",
-    "address": "412 N 36th St",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.598987548638135,
-    "lng": -122.32956779583428,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "TBD",
-    "host": "",
-    "signupUrl": "",
-    "notes": "",
-    "id": "nector-lounge-seattle-monday"
-  },
-  {
     "name": "Neighbors",
     "venue": "Neighbors",
     "address": "1509 Broadway",
@@ -1058,22 +975,6 @@
     "host": "",
     "signupUrl": "",
     "id": "north-end-ruston-thursday"
-  },
-  {
-    "name": "Oaks Bottom Public House",
-    "venue": "Oaks Bottom Public House",
-    "address": "1621 SE Bybee Blvd",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.5172297550927,
-    "lng": -122.68454309910734,
-    "day": "Tuesday",
-    "frequency": "weekly",
-    "time": "7pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Set 5/",
-    "id": "oaks-bottom-public-house-portland-tuesday"
   },
   {
     "name": "Otter Bar Open Mic",
@@ -1187,22 +1088,6 @@
     "id": "rickshaw-seattle-friday"
   },
   {
-    "name": "Twatties",
-    "venue": "Saint John's",
-    "address": "719 E Pike St, Seattle, WA 98122",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.613952,
-    "lng": -122.3225652,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "8pm",
-    "host": "rotating",
-    "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLScG3Awhr5UipPax9K7EpXMU6tzIHVZZ-RyvQPnl7MfkMqAW0A/viewform?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnL31VPK3pm5OGMleO9VE5t_eFnUgHjmufROjbaTaRd-faX7EDvWlsc0F_M8c_aem_R60wn4ibPdm3_jIM72qCyA",
-    "notes": "",
-    "id": "saint-john-s-seattle-monday"
-  },
-  {
     "name": "Shanahan’s Pub",
     "venue": "Shanahan’s Pub",
     "address": "209 W McLoughlin Blvd",
@@ -1265,22 +1150,6 @@
     "signupUrl": "",
     "notes": "Only Comedy. Free. Set 5/. Age 21+. Wheelchair accessible. Parking. on site",
     "id": "southgate-roller-rink-seattle-monday"
-  },
-  {
-    "name": "SSC Alki Cofe",
-    "venue": "SSC Alki Cofe",
-    "address": "6000 16th Ave SW",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.59636507209888,
-    "lng": -122.32382112611582,
-    "day": "Wednesday",
-    "frequency": "weekly",
-    "time": "3pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Only comedy. Free. Set 10/ G rated material. Age all ages. Wheelchair accessible. Parking. on site. 04/12/23, 05/17/23",
-    "id": "ssc-alki-cofe-seattle-wednesday"
   },
   {
     "name": "Substation Seattle",
@@ -1453,26 +1322,6 @@
     "id": "the-camp-bar-tacoma-wednesday"
   },
   {
-    "name": "The Cellar",
-    "venue": "The Cellar",
-    "address": "206 NW Oregon Ave Suite 2",
-    "city": "Bend",
-    "region": "OR",
-    "lat": 44.05869494163424,
-    "lng": -121.31967903410391,
-    "day": "Tuesday",
-    "frequency": "biweekly",
-    "weeks": [
-      "1st",
-      "3rd"
-    ],
-    "time": "7:30pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Set 4/",
-    "id": "the-cellar-bend-tuesday"
-  },
-  {
     "name": "The college inn pub",
     "venue": "The college inn pub",
     "address": "4006 University Way NE",
@@ -1503,22 +1352,6 @@
     "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfuYAWfEY1-5_-NZKJEj29tGBlVCd199VODeKqcZrEepdGMMw/viewform?fbclid=PAT01DUAMxkvVleHRuA2FlbQIxMAABp0yUa43hVpwFREA2xJiJcN44lynSA_u5eb8vo9EJHO1dfx5oZlyOTwEPDqDG_aem_5EF2EhVnEyjsh-wXGLM0Ow",
     "notes": "Set 5/",
     "id": "the-fan-club-lakewood-tuesday"
-  },
-  {
-    "name": "The Growler Guys",
-    "venue": "The Growler Guys",
-    "address": "8500 Lake City Way NE",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.597010345616845,
-    "lng": -122.32086722362097,
-    "day": "Tuesday",
-    "frequency": "weekly",
-    "time": "9:30pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Set 5/. Age 21+. Guest tips rewarded to 1st and 2nd best voted comics",
-    "id": "the-growler-guys-seattle-tuesday"
   },
   {
     "name": "The High Dive",
@@ -1569,22 +1402,6 @@
     "id": "the-local-907-renton-monday"
   },
   {
-    "name": "The new frontier lounge",
-    "venue": "The new frontier lounge",
-    "address": "301 E 25th St",
-    "city": "Tacoma",
-    "region": "WA",
-    "lat": 47.2515949874113,
-    "lng": -122.43566040283818,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "8pm",
-    "host": "chandlerhatch26@gmail.com",
-    "signupUrl": "",
-    "notes": "(253)-298-5337",
-    "id": "the-new-frontier-lounge-tacoma-monday"
-  },
-  {
     "name": "Open Michael",
     "venue": "The Rabbit Box",
     "address": "94 Pike Street, suite 11, Seattle, WA 98101",
@@ -1602,41 +1419,6 @@
     "signupUrl": "https://www.instagram.com/emmettmontgomery/",
     "notes": "DM for Sign Up - standup, storytelling, and strangeness",
     "id": "the-rabbit-box-seattle-tuesday"
-  },
-  {
-    "name": "Comedy Open Mic",
-    "venue": "The Rebel",
-    "address": "309 NE 45th St, Seattle, WA 98105",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.66111,
-    "lng": -122.324623,
-    "day": "Saturday",
-    "frequency": "monthly",
-    "weeks": [
-      "1st"
-    ],
-    "time": "5pm",
-    "host": "Tyler Searle",
-    "signupUrl": "https://www.facebook.com/groups/761308144506843/user/10730797",
-    "notes": "show up go up or DM host/5pm",
-    "id": "the-rebel-seattle-saturday"
-  },
-  {
-    "name": "The Underbelly",
-    "venue": "The Underbelly",
-    "address": "119 1st Ave S",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.59588642710003,
-    "lng": -122.32267523460746,
-    "day": "Tuesday",
-    "frequency": "weekly",
-    "time": "8:30pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Only Comedy. Free. Set 5/. Age 21+",
-    "id": "the-underbelly-seattle-tuesday"
   },
   {
     "name": "The underground coffee house",
@@ -1753,39 +1535,6 @@
     "signupUrl": "",
     "notes": "Set 5/",
     "id": "unlimited-ipa-portland-sunday"
-  },
-  {
-    "name": "Vermillion",
-    "venue": "Vermillion",
-    "address": "1508 11th AVE",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.60584422064546,
-    "lng": -122.33019146257725,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "9pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Anything is allowed. Set /Do not punch down. Age 21+. mask strongly encouraged",
-    "id": "vermillion-seattle-monday"
-  },
-  {
-    "name": "Sussy",
-    "venue": "Vermillion",
-    "address": "1508 11th Ave, Seattle, WA 98122",
-    "city": "Seattle",
-    "region": "WA",
-    "lat": 47.614429,
-    "lng": -122.317749,
-    "day": "Sunday",
-    "frequency": "monthly",
-    "weeks": [],
-    "time": "8pm",
-    "host": "Andy Iwancio",
-    "signupUrl": "https://www.instagram.com/seeusundaysyall/",
-    "notes": "queer mic. Kindly DM for spot",
-    "id": "vermillion-seattle-sunday"
   },
   {
     "name": "Wig Wam",
