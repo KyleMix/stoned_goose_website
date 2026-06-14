@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-06-13T19:15:16.087Z",
+  "fetchedAt": "2026-06-14T02:55:20.760Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-06-14T01:00:00Z-raanan-hershberg",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Raanan Hershberg",
-      "start": "2026-06-14T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/375702",
-      "image": "https://files.seatengine.com/talent/headshots/photos/76147/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-06-14T02:00:00Z-amir-k",
       "clubSlug": "emerald-city-comedy-club",
@@ -72,22 +64,6 @@
       "start": "2026-06-19T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/363699",
       "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-19T02:00:00Z-michael-che-live",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Michael Che Live",
-      "start": "2026-06-19T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376613",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92610/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-19T04:30:00Z-michael-che-live",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Michael Che Live",
-      "start": "2026-06-19T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376616",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92610/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-06-19 19:15:00-comedy-show-shannon-fiedler-8211-june-19th-and-20th-laughs-c",
