@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-06-14T19:15:35.610Z",
+  "fetchedAt": "2026-06-15T03:00:29.151Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-06-14T19:00:00Z-dungeons-and-drag-queens-brunch",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Dungeons and Drag Queens Brunch",
-      "start": "2026-06-14T19:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/368789",
-      "image": "https://files.seatengine.com/talent/headshots/photos/80408/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-06-14 20:00:00-comedy-show-fady-rizk-sunday-june-14th-at-8pm",
       "clubSlug": "laughs-comedy-club",
@@ -16,22 +8,6 @@
       "start": "2026-06-14T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-fady-rizk-sunday-june-14th-at-8pm-tickets-1989426537327",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner-1080x540-fady-rizk-jun26-f1.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-14T22:00:00Z-jimmy-dore",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Jimmy Dore",
-      "start": "2026-06-14T22:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/359668",
-      "image": "https://files.seatengine.com/talent/headshots/photos/75331/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-15T01:00:00Z-jimmy-dore",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Jimmy Dore",
-      "start": "2026-06-15T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/359669",
-      "image": "https://files.seatengine.com/talent/headshots/photos/75331/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-06-19T02:00:00Z-brad-upton",
@@ -176,6 +152,14 @@
       "start": "2026-06-26T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/371274",
       "image": "https://files.seatengine.com/talent/headshots/photos/91458/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-06-27T02:00:00Z-steve-trevino",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Steve Trevino",
+      "start": "2026-06-27T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366097",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89822/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-06-28T02:00:00Z-the-lauren-mary-show",
