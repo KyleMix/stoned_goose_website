@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-16T03:01:28.132Z",
+  "fetchedAt": "2026-06-16T10:59:33.547Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-06-18 19:30:00-comedy-show-local-brews-038-local-laughs-seattle-8217-s-fine",
@@ -7,7 +7,7 @@
       "title": "Comedy Show: Local Brews &#038; Local Laughs Seattle's finest, a pint &#038; a mic.",
       "start": "2026-06-18T19:30:00",
       "url": "https://www.eventbrite.com/e/comedy-show-local-brews-local-laughs-seattles-finest-a-pint-a-mic-tickets-1991793988437",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24269_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-beer-locals-june26-f1.png"
     },
     {
       "id": "tacoma-comedy-club-2026-06-19T02:00:00Z-brad-upton",
@@ -210,6 +210,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89522/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-06-28T03:45:00Z-steve-trevino",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Steve Trevino",
+      "start": "2026-06-28T03:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366100",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89822/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-06-28T04:30:00Z-the-lauren-mary-show",
       "clubSlug": "emerald-city-comedy-club",
       "title": "The Lauren & Mary Show!",
@@ -312,6 +320,14 @@
       "start": "2026-07-10T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/367557",
       "image": "https://files.seatengine.com/talent/headshots/photos/90206/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-07-10 19:15:00-comedy-show-elle-orlando-july-10th-and-11th",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Elle Orlando July 10th and 11th",
+      "start": "2026-07-10T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-elle-orlando-july-10th-and-11th-tickets-1991798021500",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24281_image.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-11T02:00:00Z-leslie-jones",
@@ -474,6 +490,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-07-31 19:15:00-comedy-show-nathan-macintosh-at-laughs-comedy-8211-seattle",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Nathan Macintosh at Laughs Comedy &#8211; Seattle",
+      "start": "2026-07-31T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-nathan-macintosh-at-laughs-comedy-seattle-tickets-1991805326349",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24285_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Johnny Pemberton Aug.14th and 15th at Laughs Comedy- Seattle",
@@ -552,6 +576,14 @@
       "start": "2026-10-22T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club-seattle-tickets-1989409509396",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24090_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-25 19:00:00-comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Ahamed Weinberg Oct. 25th Sunday at 7pm",
+      "start": "2026-10-25T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm-tickets-1991800481859",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24289_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-11-05 20:00:00-comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-",
