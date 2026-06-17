@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-17T14:58:47.702Z",
+  "fetchedAt": "2026-06-17T20:06:26.456Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-06-18 19:30:00-comedy-show-local-brews-038-local-laughs-seattle-8217-s-fine",
@@ -210,14 +210,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/82251/full/data"
     },
     {
-      "id": "emerald-city-comedy-club-2026-06-28T02:00:00Z-the-lauren-mary-show",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "The Lauren & Mary Show!",
-      "start": "2026-06-28T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/365352",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89522/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-06-28T03:45:00Z-steve-trevino",
       "clubSlug": "tacoma-comedy-club",
       "title": "Steve Trevino",
@@ -232,14 +224,6 @@
       "start": "2026-06-28T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/377181",
       "image": "https://files.seatengine.com/talent/headshots/photos/82251/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-28T04:30:00Z-the-lauren-mary-show",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "The Lauren & Mary Show!",
-      "start": "2026-06-28T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/365353",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89522/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-06-29T01:00:00Z-challenge-mania-live",
