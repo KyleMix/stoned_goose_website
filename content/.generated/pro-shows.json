@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-06-19T14:49:32.051Z",
+  "fetchedAt": "2026-06-19T19:31:07.868Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-06-18 19:30:00-comedy-show-local-brews-038-local-laughs-seattle-8217-s-fine",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Local Brews &#038; Local Laughs Seattle's finest, a pint &#038; a mic.",
-      "start": "2026-06-18T19:30:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-local-brews-local-laughs-seattles-finest-a-pint-a-mic-tickets-1991793988437",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-beer-locals-june26-f1.png"
-    },
     {
       "id": "laughs-comedy-club-2026-06-19 19:15:00-comedy-show-shannon-fiedler-8211-june-19th-and-20th-laughs-c",
       "clubSlug": "laughs-comedy-club",
