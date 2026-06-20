@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-20T02:42:27.390Z",
+  "fetchedAt": "2026-06-20T08:46:08.129Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-06-19 19:15:00-comedy-show-shannon-fiedler-8211-june-19th-and-20th-laughs-c",
@@ -8,46 +8,6 @@
       "start": "2026-06-19T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-shannon-fiedler-june-19th-and-20th-laughs-comedy-seattle-tickets-1979019984046",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/01/23394_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-20T02:00:00Z-brad-upton",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Brad Upton",
-      "start": "2026-06-20T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/363700",
-      "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-20T02:00:00Z-michael-che-live",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Michael Che Live",
-      "start": "2026-06-20T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376614",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92610/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-20T02:30:00Z-tim-butterly",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Butterly",
-      "start": "2026-06-20T02:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/344616",
-      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-20T04:30:00Z-michael-che-live",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Michael Che Live",
-      "start": "2026-06-20T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376617",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92610/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-20T04:45:00Z-tim-butterly",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Butterly",
-      "start": "2026-06-20T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/344618",
-      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-06-20T21:30:00Z-it-s-bingo-b-a-drag-bingo-event",
@@ -424,6 +384,22 @@
       "start": "2026-07-19T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/360348",
       "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-21T02:30:00Z-casey-frey",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Casey Frey",
+      "start": "2026-07-21T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/368260",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/37817/full/data?1640119493"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-22T02:30:00Z-casey-frey",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Casey Frey",
+      "start": "2026-07-22T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/368261",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/37817/full/data?1640119493"
     },
     {
       "id": "laughs-comedy-club-2026-07-23 20:00:00-comedy-show-cliff-cash-july-23rd-24th-and-25th-at-laughs-com",
