@@ -1,54 +1,6 @@
 {
-  "fetchedAt": "2026-06-21T02:59:22.614Z",
+  "fetchedAt": "2026-06-21T09:41:30.980Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-06-21T02:00:00Z-brad-upton",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Brad Upton",
-      "start": "2026-06-21T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/363701",
-      "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-21T02:00:00Z-michael-che-live",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Michael Che Live",
-      "start": "2026-06-21T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376615",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92610/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-21T02:30:00Z-tim-butterly",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Butterly",
-      "start": "2026-06-21T02:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/344617",
-      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-21T04:30:00Z-michael-che-live",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Michael Che Live",
-      "start": "2026-06-21T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376618",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92610/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-21T04:45:00Z-brad-upton",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Brad Upton",
-      "start": "2026-06-21T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/363702",
-      "image": "https://files.seatengine.com/talent/headshots/photos/83035/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-21T04:45:00Z-tim-butterly",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Butterly",
-      "start": "2026-06-21T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/344619",
-      "image": "https://files.seatengine.com/talent/headshots/photos/62462/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-06-22T02:00:00Z-very-delta-live-delta-work-podcast",
       "clubSlug": "emerald-city-comedy-club",
@@ -376,6 +328,14 @@
       "start": "2026-07-22T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/368261",
       "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/37817/full/data?1640119493"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-23T02:30:00Z-chona-e-hot-flash-and-furious-comedy-tour",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Chona E: Hot Flash and Furious Comedy Tour",
+      "start": "2026-07-23T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365916",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89523/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-07-23 20:00:00-comedy-show-cliff-cash-july-23rd-24th-and-25th-at-laughs-com",
