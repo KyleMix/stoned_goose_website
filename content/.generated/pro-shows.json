@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-24T02:37:48.288Z",
+  "fetchedAt": "2026-06-24T08:57:38.890Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-06-25T02:30:00Z-will-pepper-danny-plom",
@@ -394,6 +394,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/50460/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-07-28T02:30:00Z-suzie-with-a-z-suzie-toot-one-woman-show",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Suzie with a Z: Suzie Toot One Woman Show",
+      "start": "2026-07-28T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/367258",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90101/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-07-31 19:15:00-comedy-show-nathan-macintosh-at-laughs-comedy-8211-seattle",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Nathan Macintosh at Laughs Comedy &#8211; Seattle",
@@ -527,7 +535,7 @@
       "title": "Comedy Show: Kevin Sullivan on Nov. 27th &#038; 28th -Laughs Comedy Club-Seattle",
       "start": "2026-11-27T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-kevin-sullivan-on-nov-27th-28th-laughs-comedy-club-seattle-tickets-1992374769569",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24309_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-kevin-sullivan-nov26-f2.png"
     },
     {
       "id": "laughs-comedy-club-2026-12-04 19:15:00-comedy-show-dulc-sloan-on-dec-4th-and-5th-at-laughs-comedy-c",
