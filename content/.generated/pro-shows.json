@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-23T19:53:48.707Z",
+  "fetchedAt": "2026-06-24T02:37:48.288Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-06-25T02:30:00Z-will-pepper-danny-plom",
@@ -106,6 +106,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
     },
     {
+      "id": "laughs-comedy-club-2026-07-02 20:00:00-comedy-show-coming-to-america",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Coming to America",
+      "start": "2026-07-02T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-coming-to-america-tickets-1992369556978",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24317_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-07-03 20:00:00-comedy-show-comedian-xavier-smith-and-friends-at-laughs-come",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy show: Comedian Xavier Smith and Friends at Laughs Comedy",
@@ -199,7 +207,7 @@
       "title": "Standup Comedy Class with Andrew Frank",
       "start": "2026-07-14T17:30:00",
       "url": "https://www.eventbrite.com/e/standup-comedy-class-with-andrew-frank-tickets-1988969899511",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24039_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1380-540-comedy-class-jul26.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-16T02:30:00Z-ali-sultan",
@@ -394,6 +402,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24285_image.png"
     },
     {
+      "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Class Graduation Show with Andrew Frank (5:30pm class)",
+      "start": "2026-08-12T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-530pm-class-tickets-1991833425394",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24313_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Johnny Pemberton Aug.14th and 15th at Laughs Comedy- Seattle",
@@ -504,6 +520,14 @@
       "start": "2026-11-19T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-michael-longfellow-nov-19th-21st-laughs-comedy-seattle-tickets-1979024327036",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/01/23398_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-27 19:15:00-comedy-show-kevin-sullivan-on-nov-27th-038-28th-laughs-comed",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Kevin Sullivan on Nov. 27th &#038; 28th -Laughs Comedy Club-Seattle",
+      "start": "2026-11-27T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-kevin-sullivan-on-nov-27th-28th-laughs-comedy-club-seattle-tickets-1992374769569",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24309_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-12-04 19:15:00-comedy-show-dulc-sloan-on-dec-4th-and-5th-at-laughs-comedy-c",
