@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-24T19:30:15.833Z",
+  "fetchedAt": "2026-06-25T02:38:29.238Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-06-25T02:30:00Z-will-pepper-danny-plom",
@@ -48,6 +48,14 @@
       "start": "2026-06-27T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/366099",
       "image": "https://files.seatengine.com/talent/headshots/photos/89822/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-06-27T06:30:00Z-the-kevin-langue-show",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "The Kevin Langue Show",
+      "start": "2026-06-27T06:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/378246",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93054/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-06-27 19:15:00-comedy-show-tyrik-woods-june-27th-at-7-15pm-and-9-30pm-at-la",
@@ -394,14 +402,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/50460/full/data"
     },
     {
-      "id": "emerald-city-comedy-club-2026-07-28T02:30:00Z-suzie-with-a-z-suzie-toot-one-woman-show",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Suzie with a Z: Suzie Toot One Woman Show",
-      "start": "2026-07-28T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/367258",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90101/full/data"
-    },
-    {
       "id": "laughs-comedy-club-2026-07-31 19:15:00-comedy-show-nathan-macintosh-at-laughs-comedy-8211-seattle",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Nathan Macintosh at Laughs Comedy &#8211; Seattle",
@@ -410,12 +410,28 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24285_image.png"
     },
     {
+      "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Reg Thomas Aug. 7th and 8th at Laughs Comedy Club- Seattle",
+      "start": "2026-08-07T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club-seattle-tickets-1992508987017",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24336_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Class Graduation Show with Andrew Frank (5:30pm class)",
       "start": "2026-08-12T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-530pm-class-tickets-1991833425394",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24313_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-13 20:00:00-comedy-class-graduation-show-with-andrew-frank-2-night-7-30-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Class Graduation Show with Andrew Frank (2 Night, 7:30 PM class)",
+      "start": "2026-08-13T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-2-night-730-pm-class-tickets-1991802320358",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24332_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
@@ -431,7 +447,7 @@
       "title": "Comedy show: Comedian Faith Ladzinski at Laughs Comedy",
       "start": "2026-08-20T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-faith-ladzinski-at-laughs-comedy-tickets-1990912139804",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-faith-ladzinsk-aug26-f1.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-faith-ladzinski-aug26-f2.png"
     },
     {
       "id": "laughs-comedy-club-2026-08-21 19:15:00-comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-",
