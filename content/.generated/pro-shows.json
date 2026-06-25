@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-06-25T02:38:29.238Z",
+  "fetchedAt": "2026-06-25T08:52:37.442Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-06-25T02:30:00Z-will-pepper-danny-plom",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Will Pepper & Danny Plom",
-      "start": "2026-06-25T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/374203",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91944/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-06-25 20:00:00-comedy-show-mother-ellen-acuario-slay-with-her-gaybae-alex-s",
       "clubSlug": "laughs-comedy-club",
@@ -400,6 +392,14 @@
       "start": "2026-07-27T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/364821",
       "image": "https://files.seatengine.com/talent/headshots/photos/50460/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-28T02:30:00Z-suzie-with-a-z-suzie-toot-one-woman-show",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Suzie with a Z: Suzie Toot One Woman Show",
+      "start": "2026-07-28T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/367258",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90101/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-07-31 19:15:00-comedy-show-nathan-macintosh-at-laughs-comedy-8211-seattle",
