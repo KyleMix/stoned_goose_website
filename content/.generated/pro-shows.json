@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-26T02:41:43.878Z",
+  "fetchedAt": "2026-06-26T08:54:12.323Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-06-25 20:00:00-comedy-show-mother-ellen-acuario-slay-with-her-gaybae-alex-s",
@@ -8,22 +8,6 @@
       "start": "2026-06-25T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-mother-ellen-acuario-slay-with-her-gaybae-alex-sanchez-tickets-1991791424769",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24265_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-26T02:30:00Z-jessie-jetski-johnson",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jessie Jetski Johnson",
-      "start": "2026-06-26T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/371274",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91458/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-26T06:30:00Z-the-kevin-langue-show",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "The Kevin Langue Show",
-      "start": "2026-06-26T06:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/378264",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93054/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-06-26 19:15:00-neighborhood-night-free-comedy",
@@ -402,12 +386,52 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/90101/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-07-31T02:00:00Z-tommy-brennan",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Tommy Brennan",
+      "start": "2026-07-31T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365803",
+      "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-07-31 19:15:00-comedy-show-nathan-macintosh-at-laughs-comedy-8211-seattle",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Nathan Macintosh at Laughs Comedy &#8211; Seattle",
       "start": "2026-07-31T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-nathan-macintosh-at-laughs-comedy-seattle-tickets-1991805326349",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24285_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-01T02:00:00Z-tommy-brennan",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Tommy Brennan",
+      "start": "2026-08-01T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365804",
+      "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-01T04:30:00Z-tommy-brennan",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Tommy Brennan",
+      "start": "2026-08-01T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365805",
+      "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-02T02:00:00Z-tommy-brennan",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Tommy Brennan",
+      "start": "2026-08-02T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365806",
+      "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-02T04:30:00Z-tommy-brennan",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Tommy Brennan",
+      "start": "2026-08-02T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/365807",
+      "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
