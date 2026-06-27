@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-27T02:34:16.803Z",
+  "fetchedAt": "2026-06-27T08:29:38.192Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-06-26 19:15:00-neighborhood-night-free-comedy",
@@ -8,22 +8,6 @@
       "start": "2026-06-26T19:15:00",
       "url": "https://www.eventbrite.com/e/neighborhood-night-free-comedy-tickets-1991795781801",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24261_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-27T02:00:00Z-steve-trevino",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Steve Trevino",
-      "start": "2026-06-27T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366097",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89822/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-27T04:45:00Z-steve-trevino",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Steve Trevino",
-      "start": "2026-06-27T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366099",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89822/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-06-27 19:15:00-comedy-show-tyrik-woods-june-27th-at-7-15pm-and-9-30pm-at-la",
@@ -122,6 +106,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89820/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-07-10T02:00:00Z-that-one-mailman-sean-fogelson",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "\"That One Mailman\" Sean Fogelson",
+      "start": "2026-07-10T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/360614",
+      "image": "https://files.seatengine.com/talent/headshots/photos/80160/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-07-10T02:30:00Z-lara-beitz",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Lara Beitz",
@@ -138,6 +130,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24281_image.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-07-11T02:00:00Z-tim-meadows",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tim Meadows",
+      "start": "2026-07-11T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/350190",
+      "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-07-11T02:00:00Z-leslie-jones",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Leslie Jones",
@@ -152,6 +152,22 @@
       "start": "2026-07-11T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/360896",
       "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-11T04:45:00Z-tim-meadows",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tim Meadows",
+      "start": "2026-07-11T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/350192",
+      "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-12T02:00:00Z-tim-meadows",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tim Meadows",
+      "start": "2026-07-12T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/350191",
+      "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-12T02:00:00Z-leslie-jones",
