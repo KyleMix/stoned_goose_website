@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-28T02:47:15.941Z",
+  "fetchedAt": "2026-06-28T08:44:58.625Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-06-27 19:15:00-comedy-show-tyrik-woods-june-27th-at-7-15pm-and-9-30pm-at-la",
@@ -8,30 +8,6 @@
       "start": "2026-06-27T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-tyrik-woods-june-27th-at-715pm-and-930pm-at-laughs-tickets-1991796928230",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24257_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-28T02:00:00Z-stand-up-confidential",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Stand-Up Confidential",
-      "start": "2026-06-28T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377180",
-      "image": "https://files.seatengine.com/talent/headshots/photos/82251/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-06-28T03:45:00Z-steve-trevino",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Steve Trevino",
-      "start": "2026-06-28T03:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366100",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89822/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-28T04:30:00Z-stand-up-confidential",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Stand-Up Confidential",
-      "start": "2026-06-28T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377181",
-      "image": "https://files.seatengine.com/talent/headshots/photos/82251/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-06-29T01:00:00Z-challenge-mania-live",
@@ -432,6 +408,14 @@
       "start": "2026-08-02T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/365807",
       "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-03T02:00:00Z-kristin-chirico",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Kristin Chirico",
+      "start": "2026-08-03T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/367783",
+      "image": "https://files.seatengine.com/talent/headshots/photos/78969/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
