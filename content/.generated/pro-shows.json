@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-06-28T19:08:20.933Z",
+  "fetchedAt": "2026-06-29T02:48:18.191Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-06-27 19:15:00-comedy-show-tyrik-woods-june-27th-at-7-15pm-and-9-30pm-at-la",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Tyrik Woods June 27th at 7:15pm and 9:30pm at Laughs",
-      "start": "2026-06-27T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-tyrik-woods-june-27th-at-715pm-and-930pm-at-laughs-tickets-1991796928230",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24257_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-06-29T01:00:00Z-challenge-mania-live",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Challenge Mania Live",
-      "start": "2026-06-29T01:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/358000",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91654/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-07-01 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
       "clubSlug": "laughs-comedy-club",
@@ -418,6 +402,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/78969/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-08-05T02:30:00Z-sarper-g-ven",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Sarper Güven",
+      "start": "2026-08-05T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376441",
+      "image": "https://files.seatengine.com/talent/headshots/photos/82429/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Reg Thomas Aug. 7th and 8th at Laughs Comedy Club- Seattle",
@@ -496,6 +488,14 @@
       "start": "2026-09-18T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comedy-seattle-tickets-1985467938050",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24025_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Ricky Velez on Oct.2nd and 3rd -Laughs Comedy Club-Seattle",
+      "start": "2026-10-02T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-ricky-velez-on-oct2nd-and-3rd-laughs-comedy-club-seattle-tickets-1992391807530",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24355_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-sam-jay-on-oct-8th-8211-10th-at-laughs-comedy-se",
