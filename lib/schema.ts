@@ -250,3 +250,42 @@ export function buildBreadcrumbs(
     })),
   };
 }
+
+// 5. OPEN MICS (stub, intentionally NOT wired into any page)
+// -----------------------------------------------------------------------------
+// Do NOT mark the 134 crowd-sourced recurring third-party mics as Event /
+// ComedyEvent. Google penalizes structured data that does not faithfully
+// describe verifiable content, and these listings are unverified: hosts move,
+// venues close, and cadences drift without us confirming them. Asserting a
+// dated Event (let alone a ticket/RSVP offer) for each one would claim a
+// freshness we cannot stand behind.
+//
+// buildMicSchema graduates to real Event + eventSchedule markup only after the
+// "last confirmed" freshness system exists (see OPEN_MICS_DATA_QUALITY.md).
+// It throws today so it can never be wired in by accident before then.
+export function buildMicSchema(_mic: { name: string; venue: string }): never {
+  throw new Error(
+    "buildMicSchema is a stub. Do not mark unverified recurring mics as " +
+      "Event/ComedyEvent until the 'last confirmed' freshness system exists. " +
+      "See lib/schema.ts and OPEN_MICS_DATA_QUALITY.md.",
+  );
+}
+
+// The ONLY structured data the open-mics page is allowed to emit today: a plain
+// ItemList of venue names, with no event, date, host, or offer claims. This is
+// safe because it asserts nothing beyond "these venues exist," which the page
+// already shows in its list.
+export function buildMicListSchema(
+  mics: ReadonlyArray<{ nameDisplay: string }>,
+): WithContext<ItemList> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Open mics tracked by the Open Mic Explorer",
+    itemListElement: mics.map((mic, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: mic.nameDisplay,
+    })),
+  };
+}

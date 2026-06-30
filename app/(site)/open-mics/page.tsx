@@ -13,7 +13,7 @@ import { OpenMicExplorer } from "@/components/open-mic-explorer";
 import { OpenMicSubmitDialog } from "@/components/open-mic-submit-dialog";
 import { SectionRenderer } from "@/components/section-renderer";
 import { JsonLd } from "@/components/json-ld";
-import { buildBreadcrumbs } from "@/lib/schema";
+import { buildBreadcrumbs, buildMicListSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Open Mics",
@@ -30,6 +30,11 @@ export default function OpenMicsPage() {
   return (
     <>
       <JsonLd schema={buildBreadcrumbs("/open-mics")} />
+      {/* Venue-name ItemList only. No event, date, host, or offer claims are
+          made for these crowd-sourced mics until the freshness system lands. */}
+      {mics.length > 0 ? (
+        <JsonLd schema={buildMicListSchema(mics)} />
+      ) : null}
       <PageHeader
         eyebrow="Open Mic Explorer"
         title={
