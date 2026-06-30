@@ -1,4 +1,17 @@
-# Cloudflare Pages and Netlify both honor this format.
+# Cloudflare Pages and Netlify both honor this format. Workers Static Assets
+# honor the copy that lands in /out (see wrangler.jsonc).
+
+# Baseline security headers on every response. HSTS only takes effect over
+# HTTPS, so also enable "Always Use HTTPS" in the Cloudflare dashboard so the
+# first plain-HTTP hit is redirected. No includeSubDomains/preload on purpose:
+# mail/service subdomains (email, autodiscover, _domainconnect) are not served
+# here and should not be forced.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+
 # OG image routes from app/<route>/opengraph-image.tsx ship without a .png
 # extension; force the correct MIME so social scrapers render the card.
 
