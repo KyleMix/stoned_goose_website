@@ -10,6 +10,12 @@ import openMicsCopyData from "./open-mics-copy/index.json";
 import legacyFeed from "./feeds/open-mics.json";
 import micsIndex from "./.generated/open-mics-index.json";
 import { normaliseBlocks, type Block } from "@/lib/blocks";
+import {
+  normalizeMic,
+  type NormalizedOpenMic,
+} from "@/lib/open-mics/normalize";
+
+export type { NormalizedOpenMic } from "@/lib/open-mics/normalize";
 
 export type OpenMicDay =
   | "Monday"
@@ -85,12 +91,19 @@ export function formatFrequency(mic: OpenMic): {
   return { label, detail };
 }
 
-export type OpenMicsManifest = {
+// Raw manifest as it arrives from the CMS index or the legacy feed file.
+// Exported for the sync script, which writes raw (un-normalized) source data.
+export type RawOpenMicsManifest = {
   fetchedAt: string;
   source: "google-sheet" | "stub" | "cms";
   status: "ok" | "stale" | "error";
   errorMessage: string | null;
   mics: OpenMic[];
+};
+
+// Public manifest: mics carry the normalized display fields the UI renders.
+export type OpenMicsManifest = Omit<RawOpenMicsManifest, "mics"> & {
+  mics: NormalizedOpenMic[];
 };
 
 const openMicsRaw = openMicsCopyData as {
@@ -167,9 +180,9 @@ const cmsMics: OpenMic[] = (micsIndex as RawMic[]).map((m) => ({
   notes: m.notes && m.notes.length > 0 ? m.notes : undefined,
 }));
 
-const legacy = legacyFeed as unknown as OpenMicsManifest;
+const legacy = legacyFeed as unknown as RawOpenMicsManifest;
 
-export const openMicsFeed: OpenMicsManifest =
+const rawFeed: RawOpenMicsManifest =
   cmsMics.length > 0
     ? {
         fetchedAt: new Date().toISOString(),
@@ -179,3 +192,17 @@ export const openMicsFeed: OpenMicsManifest =
         mics: cmsMics,
       }
     : legacy;
+
+// Normalize at render. The source JSON is never mutated; we derive a clean
+// display copy here. Oddities are surfaced to the dev console only, so the
+// production build stays quiet. The data-quality script does the real
+// reporting against the raw records.
+const warn =
+  process.env.NODE_ENV === "production"
+    ? undefined
+    : (message: string) => console.warn(`[open-mics] ${message}`);
+
+export const openMicsFeed: OpenMicsManifest = {
+  ...rawFeed,
+  mics: rawFeed.mics.map((mic) => normalizeMic(mic, warn)),
+};

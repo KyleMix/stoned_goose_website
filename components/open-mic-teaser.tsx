@@ -56,10 +56,10 @@ export function OpenMicTeaser() {
                     </p>
                     <div className="col-span-9">
                       <p className="font-display text-lg text-bone">
-                        {m.name}
+                        {m.nameDisplay}
                       </p>
                       <p className="font-body text-xs text-bone/65">
-                        {m.venue}. {m.city}.
+                        {[m.venueDisplay, m.city].filter(Boolean).join(". ")}.
                       </p>
                     </div>
                   </li>

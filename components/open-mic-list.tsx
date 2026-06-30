@@ -1,10 +1,11 @@
 "use client";
 
-import { formatFrequency, type OpenMic } from "@/content/open-mics";
+import { formatFrequency, type NormalizedOpenMic } from "@/content/open-mics";
+import { SIGNUP_FALLBACK_LABEL } from "@/lib/open-mics/normalize";
 import { OpenMicUpdateDialog } from "@/components/open-mic-update-dialog";
 
 type Props = {
-  mics: OpenMic[];
+  mics: NormalizedOpenMic[];
   selectedId: string | null;
   onSelect: (id: string) => void;
 };
@@ -32,8 +33,13 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
             <div className="flex flex-col gap-1 py-5 md:grid md:grid-cols-12 md:items-baseline md:gap-x-6 md:gap-y-1">
               <div className="col-span-3 md:col-span-2">
                 <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
-                  {m.day.slice(0, 3)} / {m.time}
+                  {m.dayTimeDisplay}
                 </p>
+                {m.timeSignup ? (
+                  <p className="mt-1 font-body text-[10px] uppercase tracking-[0.18em] text-bone/45">
+                    Sign-up {m.timeSignup}
+                  </p>
+                ) : null}
                 <p className="mt-1 inline-flex items-center border border-bone/20 px-1.5 py-0.5 font-body text-[10px] uppercase tracking-[0.18em] text-bone/60">
                   {freq.label}
                   {freq.detail ? (
@@ -47,19 +53,36 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
                     active ? "text-hazard" : "text-bone"
                   }`}
                 >
-                  {m.name}
+                  {m.nameDisplay}
                 </p>
                 <p className="mt-1 font-body text-sm text-bone/85">
-                  {m.venue}. {m.address}, {m.city}, {m.region}.
+                  {[m.venueDisplay, m.addressDisplay].filter(Boolean).join(". ")}.
                 </p>
-                {m.host ? (
+                {m.hostDisplay.kind === "name" ? (
                   <p className="mt-1 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                    Host. {m.host}
+                    Host. {m.hostDisplay.text}
+                  </p>
+                ) : m.hostDisplay.kind === "link" ? (
+                  <p className="mt-1 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                    Host.{" "}
+                    <a
+                      href={m.hostDisplay.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 decoration-bone/30 hover:text-slime hover:decoration-slime"
+                    >
+                      {m.hostDisplay.label}
+                    </a>
                   </p>
                 ) : null}
-                {m.notes ? (
+                {m.signupDisplay.kind === "note" ? (
+                  <p className="mt-1 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+                    Sign-up. {m.signupDisplay.text}
+                  </p>
+                ) : null}
+                {m.notesDisplay ? (
                   <p className="mt-2 max-w-prose font-body text-sm text-bone/70">
-                    {m.notes}
+                    {m.notesDisplay}
                   </p>
                 ) : null}
               </div>
@@ -76,15 +99,19 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
                 >
                   Show on map ↗
                 </button>
-                {m.signupUrl ? (
+                {m.signupDisplay.kind === "url" ? (
                   <a
-                    href={m.signupUrl}
+                    href={m.signupDisplay.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex h-10 items-center border border-bone/30 px-4 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
                   >
                     Signup ↗
                   </a>
+                ) : m.signupDisplay.kind === "fallback" ? (
+                  <span className="inline-flex h-10 items-center font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+                    {SIGNUP_FALLBACK_LABEL}
+                  </span>
                 ) : null}
                 <OpenMicUpdateDialog mic={m} />
               </div>

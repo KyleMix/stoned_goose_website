@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import {
   FREQUENCY_FILTERS,
-  type OpenMic,
+  type NormalizedOpenMic,
   type OpenMicDay,
   type OpenMicFrequency,
 } from "@/content/open-mics";
@@ -29,7 +29,7 @@ const ALL_DAYS: OpenMicDay[] = [
 ];
 
 type Props = {
-  mics: OpenMic[];
+  mics: NormalizedOpenMic[];
 };
 
 export function OpenMicExplorer({ mics }: Props) {
