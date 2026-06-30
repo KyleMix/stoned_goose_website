@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { Event, Offer } from "schema-dts";
 import {
   presale,
   showsCopy,
@@ -15,7 +14,8 @@ import { TrackedAnchor } from "@/components/tracked-anchor";
 import { AddToCalendar } from "@/components/add-to-calendar";
 import { ShareButton } from "@/components/share-button";
 import { FacebookPagePlugin } from "@/components/facebook-page-plugin";
-import { jsonLdString } from "@/lib/jsonld";
+import { JsonLd } from "@/components/json-ld";
+import { buildShowsItemList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Shows",
@@ -50,58 +50,13 @@ function formatTime(value: string | null) {
 export default function ShowsPage() {
   const hasShows = upcomingShows.length > 0;
 
-  const eventsJsonLd: Event[] = upcomingShows.map((show) => {
-    const ticketLink = show.ticketUrl ?? show.url ?? site.social.eventbrite;
-    const offer: Offer | undefined = show.ticketUrl
-      ? {
-          "@type": "Offer",
-          url: show.ticketUrl,
-          availability: "https://schema.org/InStock",
-          priceCurrency: "USD",
-          ...(show.ticketPrice ? { price: show.ticketPrice } : {}),
-        }
-      : undefined;
-
-    return {
-      "@type": "Event",
-      name: show.name,
-      description: show.summary,
-      startDate: show.start ?? undefined,
-      endDate: show.end ?? undefined,
-      url: ticketLink,
-      eventStatus: "https://schema.org/EventScheduled",
-      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-      isAccessibleForFree: show.status === "free",
-      ...(show.imageUrl ? { image: show.imageUrl } : {}),
-      location: {
-        "@type": "Place",
-        name: show.venue?.name ?? "TBD",
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: show.venue?.address,
-          addressLocality: show.venue?.city,
-          addressRegion: show.venue?.region,
-          addressCountry: show.venue?.country ?? "US",
-        },
-      },
-      organizer: {
-        "@type": "Organization",
-        name: site.name,
-        url: site.url,
-      },
-      ...(offer ? { offers: offer } : {}),
-    };
-  });
+  // Emit one ItemList of ComedyEvents only when shows exist. No empty ItemList:
+  // when the calendar is bare, the page renders only the root Organization.
+  const showsItemList = hasShows ? buildShowsItemList(upcomingShows) : null;
 
   return (
     <>
-      {eventsJsonLd.map((evt, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdString(evt) }}
-        />
-      ))}
+      {showsItemList ? <JsonLd schema={showsItemList} /> : null}
       <PageHeader
         eyebrow="Tour Diary"
         title={

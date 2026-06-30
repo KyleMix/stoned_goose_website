@@ -9,7 +9,16 @@
 // the page does not show. When the CMS lacks a field, omit it rather than fake
 // a value.
 
-import type { Organization, WithContext } from "schema-dts";
+import type {
+  ComedyEvent,
+  EventStatusType,
+  ItemList,
+  Offer,
+  Organization,
+  Place,
+  WithContext,
+} from "schema-dts";
+import type { Show } from "@/content/shows";
 
 // Canonical production origin. Hard-coded so the @id graph node and absolute
 // URLs stay stable regardless of the build environment.
@@ -67,3 +76,95 @@ export const organization: WithContext<Organization> = {
     "https://www.patreon.com/cw/StonedGooseProductions",
   ],
 };
+
+// 2. COMEDYEVENT
+// -----------------------------------------------------------------------------
+
+// Absolutize a CMS image path so the markup carries a fully-qualified URL.
+function absoluteUrl(path: string): string {
+  return path.startsWith("http") ? path : `${SITE_URL}${path}`;
+}
+
+// Pull a clean numeric amount out of a display price like "$10" or "$12.50".
+// Returns null for ranges, "Free", or anything we cannot assert as one price.
+function parsePrice(raw: string | undefined): string | null {
+  if (!raw) return null;
+  const match = raw.trim().match(/^\$?(\d+(?:\.\d{1,2})?)$/);
+  return match ? match[1] : null;
+}
+
+// The CMS Show model has no cancelled/postponed flag yet, so every synced show
+// is EventScheduled. When that field lands, map it here (EventCancelled /
+// EventPostponed / EventRescheduled) rather than defaulting blindly.
+function eventStatusFor(_show: Show): EventStatusType {
+  return "https://schema.org/EventScheduled";
+}
+
+// Build a ComedyEvent from a Keystatic show. Returns the object WITHOUT an
+// @context so it can nest inside the shows-index ItemList; wrap it yourself for
+// a standalone per-show emit. Fields the CMS does not carry are omitted, never
+// faked, so the markup matches what the page renders.
+export function buildComedyEvent(show: Show): ComedyEvent {
+  const event: ComedyEvent = {
+    "@type": "ComedyEvent",
+    name: show.name,
+    eventStatus: eventStatusFor(show),
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    organizer: { "@id": ORGANIZATION_ID },
+  };
+
+  if (show.start) event.startDate = show.start;
+  if (show.end) event.endDate = show.end;
+  if (show.summary) event.description = show.summary;
+  if (show.imageUrl) event.image = [absoluteUrl(show.imageUrl)];
+
+  // Only emit a Place when there is a real venue name. A bare "TBD" asserts a
+  // location the page does not actually show.
+  if (show.venue?.name) {
+    const place: Place = {
+      "@type": "Place",
+      name: show.venue.name,
+      address: {
+        "@type": "PostalAddress",
+        ...(show.venue.address ? { streetAddress: show.venue.address } : {}),
+        ...(show.venue.city ? { addressLocality: show.venue.city } : {}),
+        ...(show.venue.region ? { addressRegion: show.venue.region } : {}),
+        addressCountry: show.venue.country ?? "US",
+      },
+    };
+    event.location = place;
+  }
+
+  // Offer only when there is a place to buy or RSVP. Price is included only when
+  // it parses to a single clean amount; otherwise we keep the offer but drop the
+  // price rather than ship a malformed value.
+  const offerUrl = show.ticketUrl ?? show.url;
+  if (offerUrl) {
+    const price = parsePrice(show.ticketPrice);
+    const offer: Offer = {
+      "@type": "Offer",
+      url: offerUrl,
+      availability: "https://schema.org/InStock",
+      priceCurrency: "USD",
+      ...(price ? { price } : {}),
+    };
+    event.offers = offer;
+  }
+
+  return event;
+}
+
+// Wrap a set of shows as a single ItemList of ComedyEvents for the shows index.
+// Callers must guard on a non-empty list: per spec, emit nothing when there are
+// no shows rather than an empty ItemList.
+export function buildShowsItemList(shows: Show[]): WithContext<ItemList> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: shows.map((show, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: buildComedyEvent(show),
+    })),
+  };
+}
