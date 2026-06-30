@@ -114,6 +114,62 @@
     line-height: 0.92;
   }
 
+  /* Documented display type scale. One named step per role so headings stay
+     consistent across pages instead of each hand-rolling a clamp(). See
+     docs/design-tokens.md. All steps share the display family + tight rhythm.
+       display-1: top section heading (home hero sections)
+       display-2: standard section heading (book, shows, open-mics)
+       display-3: sub-section / strip heading */
+  .display-1,
+  .display-2,
+  .display-3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+  }
+  .display-1 {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+  }
+  .display-2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+  .display-3 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1;
+  }
+
+  /* Section vertical rhythm. Three documented steps replace the ad-hoc
+     py-16/20/24/28/32 spread so vertical spacing reads as one system.
+       section-y-tight: compact strips
+       section-y:       standard section
+       section-y-lg:    emphasis / closing sections */
+  .section-y-tight {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .section-y {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .section-y-lg {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  @media (min-width: 768px) {
+    .section-y-tight {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    .section-y {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+    .section-y-lg {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+
   .rule {
     height: 1px;
     background: linear-gradient(

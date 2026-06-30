@@ -79,7 +79,7 @@ export default function BookPage() {
 
       <section
         id="venues"
-        className="scroll-mt-24 border-b border-bone/10 bg-ink py-16 md:py-20"
+        className="section-y-tight scroll-mt-24 border-b border-bone/10 bg-ink"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
@@ -125,7 +125,7 @@ export default function BookPage() {
 
       <section
         id="sponsors"
-        className="scroll-mt-24 border-b border-bone/10 bg-ink py-20 md:py-24"
+        className="section-y scroll-mt-24 border-b border-bone/10 bg-ink"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
@@ -182,14 +182,14 @@ export default function BookPage() {
 
       <PressStrip />
 
-      <section id="quote" className="scroll-mt-24 bg-ink py-20 md:py-24">
+      <section id="quote" className="section-y scroll-mt-24 bg-ink">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
                 Quote
               </p>
-              <h2 className="heading-display mt-4 text-[clamp(2rem,5vw,3.5rem)] text-bone">
+              <h2 className="display-2 mt-4 text-bone">
                 Can&apos;t do a call? Get a{" "}
                 <span className="italic text-hazard">quote</span>.
               </h2>

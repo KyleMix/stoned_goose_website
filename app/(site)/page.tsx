@@ -49,12 +49,12 @@ export default function HomePage() {
       <PressStrip />
 
       {mission ? (
-        <section className="border-y border-bone/10 bg-ink py-24 md:py-32">
+        <section className="section-y-lg border-y border-bone/10 bg-ink">
           <div className="mx-auto max-w-[1100px] px-5 md:px-10">
             <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
               {mission.eyebrow}
             </p>
-            <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
+            <h2 className="display-1 mt-4 text-bone">
               {mission.heading}
             </h2>
             <p className="mt-8 max-w-3xl font-body text-lg leading-relaxed text-bone/85 md:text-xl">

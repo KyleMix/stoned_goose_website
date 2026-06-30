@@ -12,7 +12,7 @@ export function UpcomingShowsBlock() {
     <section
       id="shows"
       aria-label="Upcoming shows"
-      className="relative bg-ink py-20 md:py-28"
+      className="section-y relative bg-ink"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
@@ -20,7 +20,7 @@ export function UpcomingShowsBlock() {
             <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
               Next on stage
             </p>
-            <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
+            <h2 className="display-1 mt-4 text-bone">
               Shows
             </h2>
           </div>
