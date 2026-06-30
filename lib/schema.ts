@@ -16,9 +16,11 @@ import type {
   Offer,
   Organization,
   Place,
+  VideoObject,
   WithContext,
 } from "schema-dts";
 import type { Show } from "@/content/shows";
+import type { YouTubeVideo } from "@/content/feeds/types";
 
 // Canonical production origin. Hard-coded so the @id graph node and absolute
 // URLs stay stable regardless of the build environment.
@@ -152,6 +154,28 @@ export function buildComedyEvent(show: Show): ComedyEvent {
   }
 
   return event;
+}
+
+// 3. VIDEOOBJECT
+// -----------------------------------------------------------------------------
+
+// Build a VideoObject for a featured YouTube clip. Sourced from the synced
+// channel feed, which carries the only fields we can assert truthfully: the
+// feed has no separate description, so the title doubles as both name and
+// description. Manual fallback clips (title + URL only, no thumbnail or upload
+// date) are intentionally not passed here; we skip them rather than fake the
+// required uploadDate / thumbnailUrl.
+export function buildVideoObject(video: YouTubeVideo): WithContext<VideoObject> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: video.title,
+    description: video.title,
+    thumbnailUrl: [video.thumbnailUrl],
+    uploadDate: video.publishedAt,
+    contentUrl: video.url,
+    embedUrl: `https://www.youtube.com/embed/${video.id}`,
+  };
 }
 
 // Wrap a set of shows as a single ItemList of ComedyEvents for the shows index.
