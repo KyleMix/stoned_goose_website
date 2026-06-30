@@ -10,6 +10,7 @@
 // a value.
 
 import type {
+  BreadcrumbList,
   ComedyEvent,
   EventStatusType,
   ItemList,
@@ -189,6 +190,63 @@ export function buildShowsItemList(shows: Show[]): WithContext<ItemList> {
       "@type": "ListItem",
       position: i + 1,
       item: buildComedyEvent(show),
+    })),
+  };
+}
+
+// 4. BREADCRUMBLIST
+// -----------------------------------------------------------------------------
+
+// Friendly labels for the fixed top-level routes. Anything not listed (a
+// dynamic detail slug) falls back to a title-cased slug unless the caller
+// passes an explicit lastLabel.
+const BREADCRUMB_LABELS: Record<string, string> = {
+  shows: "Shows",
+  "open-mics": "Open Mics",
+  watch: "Watch",
+  roster: "Roster",
+  book: "Book Us",
+  shop: "Shop",
+  contact: "Contact",
+};
+
+function titleCaseSlug(slug: string): string {
+  return slug
+    .split("-")
+    .map((word) => (word ? word[0].toUpperCase() + word.slice(1) : word))
+    .join(" ");
+}
+
+// Build a BreadcrumbList from a route path (e.g. "/shop/metal-goose"), always
+// rooted at Home. Detail pages should pass `lastLabel` with the real visible
+// title (a comedian name, product name, page title) so the final crumb matches
+// what the page shows instead of a title-cased slug guess.
+export function buildBreadcrumbs(
+  path: string,
+  lastLabel?: string,
+): WithContext<BreadcrumbList> {
+  const segments = path.split("/").filter(Boolean);
+  const crumbs: Array<{ name: string; url: string }> = [
+    { name: "Home", url: `${SITE_URL}/` },
+  ];
+
+  let acc = "";
+  segments.forEach((seg, i) => {
+    acc += `/${seg}`;
+    const isLast = i === segments.length - 1;
+    const name =
+      isLast && lastLabel ? lastLabel : BREADCRUMB_LABELS[seg] ?? titleCaseSlug(seg);
+    crumbs.push({ name, url: `${SITE_URL}${acc}` });
+  });
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: crumb.name,
+      item: crumb.url,
     })),
   };
 }

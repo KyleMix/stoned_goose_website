@@ -12,6 +12,8 @@ import { FinePrint } from "@/components/fine-print";
 import { OpenMicExplorer } from "@/components/open-mic-explorer";
 import { OpenMicSubmitDialog } from "@/components/open-mic-submit-dialog";
 import { SectionRenderer } from "@/components/section-renderer";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Open Mics",
@@ -27,6 +29,7 @@ export default function OpenMicsPage() {
 
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/open-mics")} />
       <PageHeader
         eyebrow="Open Mic Explorer"
         title={

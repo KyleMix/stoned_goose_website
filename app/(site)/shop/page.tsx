@@ -3,6 +3,8 @@ import { products, productsByCategory, shopCopy } from "@/content/shop";
 import { PageHeader } from "@/components/page-header";
 import { ShopProductCard } from "@/components/shop-product-card";
 import { TrackedAnchor } from "@/components/tracked-anchor";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -20,6 +22,7 @@ export default function ShopPage() {
 
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/shop")} />
       <PageHeader
         eyebrow="Fourthwall Storefront"
         title={

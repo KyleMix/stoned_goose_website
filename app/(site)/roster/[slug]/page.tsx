@@ -6,6 +6,8 @@ import type { Person } from "schema-dts";
 import { epkComedians, getComedian } from "@/content/comedians";
 import { site } from "@/content/site";
 import { jsonLdString } from "@/lib/jsonld";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 import { getPlaceholder } from "@/lib/placeholders";
 import { extractYouTubeId } from "@/lib/youtube";
 
@@ -66,6 +68,9 @@ export default async function ComedianPage(props: {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdString(personJsonLd) }}
+      />
+      <JsonLd
+        schema={buildBreadcrumbs(`/roster/${comedian.slug}`, comedian.name)}
       />
 
       <section className="border-b border-bone/10 bg-ink pb-16 pt-32 md:pb-20 md:pt-40">

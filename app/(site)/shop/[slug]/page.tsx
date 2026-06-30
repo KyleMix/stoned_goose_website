@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { products, getProduct } from "@/content/shop";
 import { site } from "@/content/site";
 import { ShopProductDetail } from "@/components/shop-product-detail";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 
 type Params = { slug: string };
 
@@ -48,16 +50,19 @@ export default async function ProductPage(props: {
   if (!product) notFound();
 
   return (
-    <section className="bg-ink py-28 md:py-32">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <Link
-          href="/shop"
-          className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-slime"
-        >
-          ← Back to shop
-        </Link>
-        <ShopProductDetail product={product} />
-      </div>
-    </section>
+    <>
+      <JsonLd schema={buildBreadcrumbs(`/shop/${product.slug}`, product.name)} />
+      <section className="bg-ink py-28 md:py-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <Link
+            href="/shop"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-slime"
+          >
+            ← Back to shop
+          </Link>
+          <ShopProductDetail product={product} />
+        </div>
+      </section>
+    </>
   );
 }

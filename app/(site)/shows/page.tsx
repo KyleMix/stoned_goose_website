@@ -15,7 +15,7 @@ import { AddToCalendar } from "@/components/add-to-calendar";
 import { ShareButton } from "@/components/share-button";
 import { FacebookPagePlugin } from "@/components/facebook-page-plugin";
 import { JsonLd } from "@/components/json-ld";
-import { buildShowsItemList } from "@/lib/schema";
+import { buildBreadcrumbs, buildShowsItemList } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Shows",
@@ -56,6 +56,7 @@ export default function ShowsPage() {
 
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/shows")} />
       {showsItemList ? <JsonLd schema={showsItemList} /> : null}
       <PageHeader
         eyebrow="Tour Diary"

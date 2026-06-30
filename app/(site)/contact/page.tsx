@@ -5,6 +5,8 @@ import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
 import { TrackedAnchor } from "@/components/tracked-anchor";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/contact")} />
       <PageHeader
         eyebrow={contactCopy.eyebrow}
         title={

@@ -10,6 +10,8 @@ import { TextField } from "@/components/form-field";
 import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 import { PressStrip } from "@/components/press-strip";
 import { BookPlanner } from "@/components/book-planner";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Book Us",
@@ -25,6 +27,7 @@ export default function BookPage() {
 
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/book")} />
       <PageHeader
         eyebrow="Work With Us"
         title={

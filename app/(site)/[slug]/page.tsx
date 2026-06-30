@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { pages } from "@/content/pages";
 import { site } from "@/content/site";
 import { SectionRenderer } from "@/components/section-renderer";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 
 // Editor-created pages live at top-level URLs (/about, /faq, etc.).
 // Slug collisions with hard-coded routes are caught at build time:
@@ -54,5 +56,10 @@ export default async function DynamicPage(props: { params: Promise<Params> }) {
   const page = pages.find((p) => p.slug === slug);
   if (!page) notFound();
 
-  return <SectionRenderer sections={page.sections} pageSlug={page.slug} />;
+  return (
+    <>
+      <JsonLd schema={buildBreadcrumbs(`/${page.slug}`, page.title)} />
+      <SectionRenderer sections={page.sections} pageSlug={page.slug} />
+    </>
+  );
 }

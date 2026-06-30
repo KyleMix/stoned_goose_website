@@ -15,6 +15,8 @@ import { PageHeader } from "@/components/page-header";
 import { SectionRenderer } from "@/components/section-renderer";
 import { SectionHeader } from "@/components/section-header";
 import { jsonLdString } from "@/lib/jsonld";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 import { getPlaceholder } from "@/lib/placeholders";
 
 export const metadata: Metadata = {
@@ -45,6 +47,7 @@ export default function RosterPage() {
 
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/roster")} />
       {personJsonLd.map((p, i) => (
         <script
           key={i}

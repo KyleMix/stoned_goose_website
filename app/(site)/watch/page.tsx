@@ -17,7 +17,7 @@ import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { YouTubeGrid, type GridVideo } from "@/components/youtube-grid";
 import { JsonLd } from "@/components/json-ld";
-import { buildVideoObject } from "@/lib/schema";
+import { buildBreadcrumbs, buildVideoObject } from "@/lib/schema";
 import { youtubeFeed, relativeAge } from "@/lib/feeds";
 import { extractYouTubeId } from "@/lib/youtube";
 
@@ -62,6 +62,7 @@ export default function WatchPage() {
 
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/watch")} />
       {videoObjects.map((video, i) => (
         <JsonLd key={i} schema={video} />
       ))}
