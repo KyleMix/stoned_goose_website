@@ -133,10 +133,10 @@ export default function ShowsPage() {
       ) : null}
 
       {/* Upcoming list */}
-      <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+      <section className="section-y border-b border-bone/10 bg-ink">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-            <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
+            <h2 className="display-2 text-bone">
               Upcoming dates
             </h2>
             <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
@@ -272,7 +272,7 @@ export default function ShowsPage() {
       {hasShows ? (
         <section
           aria-label="Subscribe to shows calendar"
-          className="border-b border-bone/10 bg-ink py-16 md:py-20"
+          className="section-y-tight border-b border-bone/10 bg-ink"
         >
           <div className="mx-auto max-w-[1400px] px-5 md:px-10">
             <div className="grid gap-8 md:grid-cols-12 md:items-end">
@@ -280,7 +280,7 @@ export default function ShowsPage() {
                 <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
                   Subscribe
                 </p>
-                <h2 className="heading-display mt-3 text-[clamp(2rem,5vw,3.5rem)] text-bone">
+                <h2 className="display-2 mt-3 text-bone">
                   Drop the dates straight into your <span className="italic text-hazard">calendar</span>.
                 </h2>
                 <p className="mt-4 max-w-xl font-body text-base text-bone/85 md:text-lg">

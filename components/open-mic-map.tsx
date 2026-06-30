@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { OpenMic } from "@/content/open-mics";
+import type { NormalizedOpenMic } from "@/content/open-mics";
 
 // Leaflet map for the Open Mic Explorer. Loaded only on /open-mics, where
 // the Suspense fallback is the inline list. Touches `window` and uses
@@ -18,7 +18,7 @@ const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 type Props = {
-  mics: OpenMic[];
+  mics: NormalizedOpenMic[];
   selectedId?: string | null;
   onSelect?: (id: string) => void;
 };
@@ -119,7 +119,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       mics.forEach((m) => {
         const marker = L.marker([m.lat, m.lng], { icon });
         marker.bindPopup(
-          `<strong>${escapeHtml(m.name)}</strong><br/>${escapeHtml(m.venue)}<br/>${escapeHtml(m.day)} / ${escapeHtml(m.time)}`,
+          `<strong>${escapeHtml(m.nameDisplay)}</strong><br/>${escapeHtml(m.venueDisplay)}<br/>${escapeHtml(m.dayTimeDisplay)}`,
         );
         marker.on("click", () => onSelectRef.current?.(m.id));
         cluster.addLayer(marker);
@@ -207,11 +207,11 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   );
 }
 
-function averageLat(mics: OpenMic[]) {
+function averageLat(mics: NormalizedOpenMic[]) {
   return mics.reduce((s, m) => s + m.lat, 0) / mics.length;
 }
 
-function averageLng(mics: OpenMic[]) {
+function averageLng(mics: NormalizedOpenMic[]) {
   return mics.reduce((s, m) => s + m.lng, 0) / mics.length;
 }
 

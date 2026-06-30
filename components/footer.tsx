@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footer as footerCopy, site } from "@/content/site";
+import { footerColumns } from "@/lib/navigation";
 import { track } from "@/lib/analytics";
 
 const socials: Array<{ label: string; href: string; destination: string }> = [
@@ -45,7 +46,7 @@ export function Footer() {
             </div>
           </div>
 
-          {footerCopy.columns.map((col) => (
+          {footerColumns.map((col) => (
             <FooterColumn key={col.heading} label={col.heading} items={col.items} />
           ))}
         </div>

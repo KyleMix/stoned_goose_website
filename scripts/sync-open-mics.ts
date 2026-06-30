@@ -14,7 +14,7 @@
 
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { OpenMic, OpenMicDay, OpenMicsManifest } from "../content/open-mics";
+import type { OpenMic, OpenMicDay, RawOpenMicsManifest } from "../content/open-mics";
 import { safeFetch, writeJson } from "./_sync-helpers";
 
 const OUT_PATH = join(process.cwd(), "content", "feeds", "open-mics.json");
@@ -108,10 +108,10 @@ async function geocode(query: string): Promise<{ lat: number; lng: number } | nu
   return { lat, lng };
 }
 
-function readPrevious(): OpenMicsManifest | null {
+function readPrevious(): RawOpenMicsManifest | null {
   if (!existsSync(OUT_PATH)) return null;
   try {
-    return JSON.parse(readFileSync(OUT_PATH, "utf8")) as OpenMicsManifest;
+    return JSON.parse(readFileSync(OUT_PATH, "utf8")) as RawOpenMicsManifest;
   } catch {
     return null;
   }
@@ -215,7 +215,7 @@ async function main() {
     });
   }
 
-  const manifest: OpenMicsManifest = {
+  const manifest: RawOpenMicsManifest = {
     fetchedAt: new Date().toISOString(),
     source: "google-sheet",
     status: errors.length === 0 ? "ok" : mics.length === 0 ? "error" : "stale",

@@ -45,7 +45,7 @@ export default function OpenMicsPage() {
 
       <SectionRenderer sections={openMicsTopSections} pageSlug="open-mics" />
 
-      <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
+      <section className="section-y-tight border-b border-bone/10 bg-ink">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
@@ -82,14 +82,14 @@ export default function OpenMicsPage() {
         </div>
       </section>
 
-      <section className="bg-ink py-20 md:py-24">
+      <section className="section-y bg-ink">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
               <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
                 Spotted a missing mic?
               </p>
-              <h2 className="heading-display mt-4 text-[clamp(2rem,5vw,3.5rem)] text-bone">
+              <h2 className="display-2 mt-4 text-bone">
                 Help us keep the map honest.
               </h2>
             </div>

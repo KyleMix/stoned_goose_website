@@ -9,7 +9,7 @@ export function OpenMicTeaser() {
   return (
     <section
       aria-labelledby="home-open-mics"
-      className="border-y border-bone/10 bg-ink py-20 md:py-24"
+      className="section-y border-y border-bone/10 bg-ink"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
@@ -19,7 +19,7 @@ export function OpenMicTeaser() {
             </p>
             <h2
               id="home-open-mics"
-              className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone"
+              className="display-1 mt-4 text-bone"
             >
               Find an <span className="italic text-hazard">open mic</span>.
             </h2>
@@ -56,10 +56,10 @@ export function OpenMicTeaser() {
                     </p>
                     <div className="col-span-9">
                       <p className="font-display text-lg text-bone">
-                        {m.name}
+                        {m.nameDisplay}
                       </p>
                       <p className="font-body text-xs text-bone/65">
-                        {m.venue}. {m.city}.
+                        {[m.venueDisplay, m.city].filter(Boolean).join(". ")}.
                       </p>
                     </div>
                   </li>
