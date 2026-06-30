@@ -76,9 +76,24 @@ export function OpenMicExplorer({ mics }: Props) {
     });
   }, [mics, day, city, freq]);
 
+  const freqLabel = FREQUENCY_FILTERS.find((f) => f.value === freq)?.label;
+  const activeFilters = [
+    day !== "all" ? { key: "day", label: day, clear: () => setDay("all") } : null,
+    city !== "all" ? { key: "city", label: city, clear: () => setCity("all") } : null,
+    freq !== "all" && freqLabel
+      ? { key: "freq", label: freqLabel, clear: () => setFreq("all") }
+      : null,
+  ].filter(Boolean) as Array<{ key: string; label: string; clear: () => void }>;
+
+  const clearAll = () => {
+    setDay("all");
+    setCity("all");
+    setFreq("all");
+  };
+
   return (
     <div className="grid gap-10 md:grid-cols-12">
-      <aside className="md:col-span-4">
+      <aside className="md:col-span-4 md:sticky md:top-24 md:self-start">
         <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
           Filter
         </p>
@@ -149,11 +164,43 @@ export function OpenMicExplorer({ mics }: Props) {
             </div>
           </fieldset>
         ) : null}
-        <p className="mt-6 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
-          {filtered.length} {filtered.length === 1 ? "mic" : "mics"}
-        </p>
+        <div className="mt-6 flex items-center justify-between border-t border-bone/10 pt-4">
+          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+            {filtered.length} of {mics.length}{" "}
+            {mics.length === 1 ? "mic" : "mics"}
+          </p>
+          {activeFilters.length > 0 ? (
+            <button
+              type="button"
+              onClick={clearAll}
+              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 underline underline-offset-4 transition-colors hover:text-slime"
+            >
+              Clear all
+            </button>
+          ) : null}
+        </div>
       </aside>
       <div className="md:col-span-8">
+        <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            Showing{" "}
+            <span className="text-bone">{filtered.length}</span>{" "}
+            {filtered.length === 1 ? "mic" : "mics"}
+            {activeFilters.length === 0 ? " across the region" : null}
+          </p>
+          {activeFilters.map((f) => (
+            <button
+              key={f.key}
+              type="button"
+              onClick={f.clear}
+              className="inline-flex items-center gap-1.5 border border-hazard/60 px-2 py-1 font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-hazard transition-colors hover:border-slime hover:text-slime"
+              aria-label={`Remove ${f.label} filter`}
+            >
+              {f.label}
+              <span aria-hidden>×</span>
+            </button>
+          ))}
+        </div>
         <OpenMicMap
           mics={filtered}
           selectedId={selectedId}
