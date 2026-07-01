@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-01T02:47:43.290Z",
+  "fetchedAt": "2026-07-01T09:34:31.148Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-01 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
@@ -144,6 +144,14 @@
       "start": "2026-07-12T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/350193",
       "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-13T02:00:00Z-my-straight-friends",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "My Straight Friends",
+      "start": "2026-07-13T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/367410",
+      "image": "https://files.seatengine.com/talent/headshots/photos/74490/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-13T02:00:00Z-leslie-jones",
