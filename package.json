@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx scripts/test/open-mics-normalize.test.ts",
+    "test": "tsx scripts/test/open-mics-normalize.test.ts && tsx scripts/test/schema.test.ts",
     "mics:quality": "tsx scripts/open-mics-quality.ts",
     "analyze": "ANALYZE=true next build",
     "sync": "npm run sync:shows && npm run sync:facebook-events && npm run sync:fourthwall && npm run sync:patreon && npm run sync:open-mics && npm run sync:pro-shows",
@@ -57,7 +57,6 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.74.0",
-    "schema-dts": "^2.0.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -75,6 +74,7 @@
     "pagefind": "^1.5.2",
     "plaiceholder": "^3.0.0",
     "postcss": "^8.4.49",
+    "schema-dts": "^2.0.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.14",
     "tsx": "^4.21.0",

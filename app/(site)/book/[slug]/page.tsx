@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { BreadcrumbList, FAQPage, Service } from "schema-dts";
+import type { FAQPage, Service } from "schema-dts";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
@@ -10,6 +10,8 @@ import { TextField, TextAreaField } from "@/components/form-field";
 import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 import { ShareButton } from "@/components/share-button";
 import { jsonLdString } from "@/lib/jsonld";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs } from "@/lib/schema";
 
 // Renderable list filter. Draft services may have literal "TODO: copy needed."
 // placeholder strings in content/services.ts. Skip them so the page collapses
@@ -71,24 +73,6 @@ export default async function ServiceDetailPage(props: {
     },
   };
 
-  const breadcrumbJsonLd: BreadcrumbList = {
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Book Us",
-        item: `${site.url}/book`,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: svc.title,
-        item: `${site.url}/book/${svc.slug}`,
-      },
-    ],
-  };
-
   const realFaqs = svc.faqs.filter((f) => !/^\s*TODO\b/i.test(f.a));
   const faqJsonLd: FAQPage | null =
     realFaqs.length > 0
@@ -111,10 +95,7 @@ export default async function ServiceDetailPage(props: {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdString(serviceJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumbJsonLd) }}
-      />
+      <JsonLd schema={buildBreadcrumbs(`/book/${svc.slug}`, svc.title)} />
       {faqJsonLd ? (
         <script
           type="application/ld+json"

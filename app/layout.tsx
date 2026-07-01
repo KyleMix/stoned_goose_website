@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site, seo } from "@/content/site";
+import { JsonLd } from "@/components/json-ld";
+import { organization } from "@/lib/schema";
 
 const ogImage = seo.defaultOgImage ?? "/opengraph.jpg";
 
@@ -85,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body className="bg-ink text-bone" suppressHydrationWarning>
+        <JsonLd schema={organization} />
         {children}
       </body>
     </html>

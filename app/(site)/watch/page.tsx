@@ -16,6 +16,8 @@ import { MailingListCapture } from "@/components/mailing-list-capture";
 import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { YouTubeGrid, type GridVideo } from "@/components/youtube-grid";
+import { JsonLd } from "@/components/json-ld";
+import { buildBreadcrumbs, buildVideoObject } from "@/lib/schema";
 import { youtubeFeed, relativeAge } from "@/lib/feeds";
 import { extractYouTubeId } from "@/lib/youtube";
 
@@ -51,8 +53,19 @@ export default function WatchPage() {
   const topVideos = youtubeFresh ? feedVideos.slice(0, 10) : manualVideos;
   const hasTopVideos = topVideos.length > 0;
 
+  // VideoObject markup only for the synced-feed clips actually shown in the
+  // grid. The manual fallback list lacks an upload date and thumbnail, so it is
+  // left unmarked rather than padded with faked required fields.
+  const videoObjects = youtubeFresh
+    ? youtubeFeed.videos.slice(0, 10).map(buildVideoObject)
+    : [];
+
   return (
     <>
+      <JsonLd schema={buildBreadcrumbs("/watch")} />
+      {videoObjects.map((video, i) => (
+        <JsonLd key={i} schema={video} />
+      ))}
       <PageHeader
         eyebrow="Now Streaming"
         title={
