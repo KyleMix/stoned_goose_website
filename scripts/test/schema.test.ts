@@ -10,7 +10,8 @@
 //
 // Run: npm test
 
-import { organization, buildComedyEvent } from "../../lib/schema";
+import { organization, buildComedyEvent, buildVideoObject } from "../../lib/schema";
+import { normalizeCuratedVideos } from "../../lib/videos";
 import type { Show } from "../../content/shows";
 
 // Round-trip through JSON so we inspect the rendered shape, not the schema-dts
@@ -124,6 +125,38 @@ const bareShow: Show = {
 const bareEvent = plain(buildComedyEvent(bareShow));
 assertTrue(bareEvent.location === undefined, "bare event: no location asserted");
 assertTrue(bareEvent.offers === undefined, "bare event: no offers asserted");
+
+// VideoObject: curated clips are normalized with a real derived thumbnail and
+// embed URL. uploadDate is emitted only when the CMS supplies publishedAt.
+const [datedVideo, undatedVideo] = normalizeCuratedVideos([
+  {
+    url: "https://youtu.be/dQw4w9WgXcQ",
+    title: "Sample Set",
+    description: "A tight five from the showcase.",
+    publishedAt: "2026-05-01",
+  },
+  { url: "https://www.youtube.com/watch?v=WKScU9V3dz4&t", title: "Untimed Clip" },
+]);
+
+const datedObj = plain(buildVideoObject(datedVideo));
+assertEqual(datedObj["@type"], "VideoObject", "video: @type");
+assertEqual(datedObj.name, "Sample Set", "video: name");
+assertEqual(datedObj.description, "A tight five from the showcase.", "video: description");
+assertEqual(
+  datedObj.thumbnailUrl,
+  ["https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"],
+  "video: derived thumbnailUrl",
+);
+assertEqual(
+  datedObj.embedUrl,
+  "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  "video: embedUrl",
+);
+assertEqual(datedObj.uploadDate, "2026-05-01", "video: uploadDate when supplied");
+
+const undatedObj = plain(buildVideoObject(undatedVideo));
+assertTrue(undatedObj.uploadDate === undefined, "video: no uploadDate when absent");
+assertEqual(undatedObj.description, "Untimed Clip", "video: description falls back to title");
 
 if (failures.length > 0) {
   console.error(`\nschema smoke test: ${failures.length} FAILED, ${passed} passed\n`);

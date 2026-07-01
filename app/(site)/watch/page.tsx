@@ -18,6 +18,7 @@ import { TrackedAnchor } from "@/components/tracked-anchor";
 import { YouTubeGrid, type GridVideo } from "@/components/youtube-grid";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbs, buildVideoObject } from "@/lib/schema";
+import { normalizeCuratedVideos, normalizeFeedVideo } from "@/lib/videos";
 import { youtubeFeed, relativeAge } from "@/lib/feeds";
 import { extractYouTubeId } from "@/lib/youtube";
 
@@ -53,12 +54,15 @@ export default function WatchPage() {
   const topVideos = youtubeFresh ? feedVideos.slice(0, 10) : manualVideos;
   const hasTopVideos = topVideos.length > 0;
 
-  // VideoObject markup only for the synced-feed clips actually shown in the
-  // grid. The manual fallback list lacks an upload date and thumbnail, so it is
-  // left unmarked rather than padded with faked required fields.
-  const videoObjects = youtubeFresh
-    ? youtubeFeed.videos.slice(0, 10).map(buildVideoObject)
-    : [];
+  // VideoObject markup for the exact clips shown in the grid: the synced feed
+  // when fresh, the curated list otherwise. Thumbnails and embed URLs are
+  // derived from the video id (real, not faked); upload dates ride along only
+  // when the source knows them.
+  const videoObjects = (
+    youtubeFresh
+      ? youtubeFeed.videos.slice(0, 10).map(normalizeFeedVideo)
+      : normalizeCuratedVideos(youtubeVideos)
+  ).map(buildVideoObject);
 
   return (
     <>
