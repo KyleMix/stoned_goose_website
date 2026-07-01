@@ -8,6 +8,7 @@ import { MailingListCapture } from "@/components/mailing-list-capture";
 import { PressStrip } from "@/components/press-strip";
 import { LatestStrip } from "@/components/latest-strip";
 import { OpenMicTeaser } from "@/components/open-mic-teaser";
+import { VideoStrip } from "@/components/video-strip";
 import { ShopStrip } from "@/components/shop-strip";
 import { SectionRenderer } from "@/components/section-renderer";
 import {
@@ -37,6 +38,8 @@ export default function HomePage() {
       <UpcomingShowsBlock />
 
       <OpenMicTeaser />
+
+      <VideoStrip limit={5} />
 
       <LatestStrip limit={6} />
 
