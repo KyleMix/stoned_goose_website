@@ -139,7 +139,12 @@ function parseFrontmatter(raw: string): {
   const block = raw.slice(3, end).trim();
   const body = raw.slice(end + 4).replace(/^\n/, "");
   const data: Record<string, unknown> = {};
-  const unquote = (s: string) => s.trim().replace(/^['"]|['"]$/g, "");
+  // The CMS writes cleared optional fields as `key: null`; treat YAML null
+  // spellings as absent rather than the literal string "null".
+  const unquote = (s: string) => {
+    const v = s.trim().replace(/^['"]|['"]$/g, "");
+    return v === "null" || v === "~" ? "" : v;
+  };
   const lines = block.split(/\r?\n/);
   let i = 0;
   while (i < lines.length) {

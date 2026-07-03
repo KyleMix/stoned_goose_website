@@ -107,7 +107,7 @@ type RawManualShow = {
 
 const synced = (syncedData as SyncedShape).shows ?? [];
 
-const manual: ProShow[] = (manualIndex as RawManualShow[])
+const manual: ProShow[] = (manualIndex as unknown as RawManualShow[])
   .filter((s) => s.draft !== true && s.title && s.start)
   .map((s) => ({
     id: `manual-${s.slug ?? s.title}`,

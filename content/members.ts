@@ -58,7 +58,7 @@ type RawMember = {
   draft?: boolean;
 };
 
-const raw = membersIndex as RawMember[];
+const raw = membersIndex as unknown as RawMember[];
 
 export const members: Member[] = raw
   .filter((m) => m.draft !== true)

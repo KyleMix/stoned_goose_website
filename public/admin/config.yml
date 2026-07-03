@@ -801,7 +801,7 @@ collections:
   - name: tiktok
     label: TikTok videos
     label_singular: TikTok video
-    description: Hand-picked TikTok clips for the /watch page.
+    description: Hand-picked TikTok clips. They show in the Latest strip on the home page and anywhere the Latest social posts block is used.
     folder: content/tiktok
     path: '{{slug}}/index'
     extension: json
@@ -819,7 +819,7 @@ collections:
       - { name: url, label: TikTok link, widget: string, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'The full video URL, e.g. https://www.tiktok.com/@handle/video/123456.' }
       - { name: poster, label: Preview image, widget: image, required: false, media_folder: /public/images/tiktok, public_folder: '', hint: 'A screenshot of the video works. Vertical, phone-screen shaped.' }
       - { name: posterAlt, label: Preview alt text, widget: string, required: false }
-      - { name: draft, label: Hide from /watch, widget: boolean, default: false }
+      - { name: draft, label: Hide from the site, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
   # News posts. Render as cards (title + summary + image) on /watch and #

@@ -1,5 +1,9 @@
 # Editing the site
 
+> **Start here instead:** [`CMS_GUIDE.md`](../CMS_GUIDE.md) at the repo root is the
+> current, maintained editor guide. This page is kept for extra detail but may
+> lag behind the config.
+
 This site has a built-in editor at `/admin`. You sign in with GitHub,
 change copy or images, click Save, and the live site rebuilds itself.
 No code, no FTP, no CMS dashboard somewhere else.

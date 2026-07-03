@@ -58,7 +58,7 @@ type RawService = {
   draft?: boolean;
 };
 
-const raw = servicesIndex as RawService[];
+const raw = servicesIndex as unknown as RawService[];
 const shaped: Service[] = raw.map((s) => ({
   slug: s.slug ?? "",
   title: s.title ?? "",
@@ -90,7 +90,7 @@ type Tier = {
   items: string[];
 };
 
-const tierShaped: Tier[] = (tiersIndex as RawTier[]).map((t) => ({
+const tierShaped: Tier[] = (tiersIndex as unknown as RawTier[]).map((t) => ({
   slug: t.slug ?? "",
   name: (t.slug ?? "").replace(/\b\w/g, (c) => c.toUpperCase()),
   bestFor: t.bestFor ?? "",

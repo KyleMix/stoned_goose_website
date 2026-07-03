@@ -146,13 +146,13 @@ function normalise(p: RawProduct): Product {
   };
 }
 
-const manualProducts: Product[] = (manualIndex as RawProduct[])
+const manualProducts: Product[] = (manualIndex as unknown as RawProduct[])
   .filter((p) => p.draft !== true)
   .map(normalise);
 
 const fromGeneratedProducts =
   Array.isArray(generatedProducts) && generatedProducts.length > 0
-    ? (generatedProducts as RawProduct[]).map(normalise)
+    ? (generatedProducts as unknown as RawProduct[]).map(normalise)
     : null;
 
 export const products: Product[] = fromGeneratedProducts ?? manualProducts;

@@ -19,7 +19,7 @@ export type NewsPost = {
 
 type Raw = NewsPost & { draft?: boolean };
 
-const raw = newsIndex as Raw[];
+const raw = newsIndex as unknown as Raw[];
 
 export const news: NewsPost[] = raw
   .filter((n) => n.draft !== true)

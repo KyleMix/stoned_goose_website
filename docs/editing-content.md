@@ -1,5 +1,9 @@
 # Editing content
 
+> **Start here instead:** [`CMS_GUIDE.md`](../CMS_GUIDE.md) at the repo root is the
+> current, maintained editor guide. This page is kept for extra detail but may
+> lag behind the config.
+
 Everything copy-shaped on the site is edited through Sveltia CMS at `/admin`.
 Sign in with the GitHub account that has push access to this repo; each save
 commits to `main` and the host auto-deploys in a minute or two.

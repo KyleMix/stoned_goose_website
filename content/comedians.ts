@@ -55,7 +55,7 @@ type RawComedian = {
   draft?: boolean;
 };
 
-const raw = comediansIndex as RawComedian[];
+const raw = comediansIndex as unknown as RawComedian[];
 
 export const comedians: Comedian[] = raw
   .filter((c) => c.draft !== true)

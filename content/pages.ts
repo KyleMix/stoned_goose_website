@@ -24,7 +24,7 @@ type Raw = {
   draft?: boolean;
 };
 
-const raw = pagesIndex as Raw[];
+const raw = pagesIndex as unknown as Raw[];
 
 export const pages: Page[] = raw
   .filter((p) => p.draft !== true)

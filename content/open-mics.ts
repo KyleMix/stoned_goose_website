@@ -162,7 +162,7 @@ function normaliseWeeks(value: string[] | undefined): OpenMicWeek[] | undefined 
   return weeks.length > 0 ? weeks : undefined;
 }
 
-const cmsMics: OpenMic[] = (micsIndex as RawMic[]).map((m) => ({
+const cmsMics: OpenMic[] = (micsIndex as unknown as RawMic[]).map((m) => ({
   id: m.id ?? "",
   name: m.name ?? "",
   venue: m.venue ?? "",

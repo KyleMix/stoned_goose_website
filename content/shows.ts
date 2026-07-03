@@ -114,21 +114,22 @@ function resolvePresale(p: ShowsCopyShape["presale"]): Presale | null {
 
 export const presale: Presale | null = resolvePresale(copy.presale);
 
+// Optional CMS fields are null when the editor leaves them empty.
 type RawManualShow = {
-  id?: string;
-  name?: string;
-  start?: string;
-  end?: string;
-  url?: string;
-  ticketUrl?: string;
-  summary?: string;
-  imageUrl?: string;
-  imageAlt?: string;
-  venue?: Show["venue"];
-  status?: Show["status"];
-  ticketPrice?: string;
-  doorTime?: string;
-  draft?: boolean;
+  id?: string | null;
+  name?: string | null;
+  start?: string | null;
+  end?: string | null;
+  url?: string | null;
+  ticketUrl?: string | null;
+  summary?: string | null;
+  imageUrl?: string | null;
+  imageAlt?: string | null;
+  venue?: Show["venue"] | null;
+  status?: Show["status"] | null;
+  ticketPrice?: string | null;
+  doorTime?: string | null;
+  draft?: boolean | null;
 };
 
 function shapeManual(raw: RawManualShow): Show {
@@ -141,16 +142,16 @@ function shapeManual(raw: RawManualShow): Show {
     summary: raw.summary ?? "",
     imageUrl: raw.imageUrl && raw.imageUrl.length > 0 ? SHOW_IMAGE_DIR + raw.imageUrl : null,
     imageAlt: raw.imageAlt && raw.imageAlt.length > 0 ? raw.imageAlt : undefined,
-    venue: raw.venue,
+    venue: raw.venue ?? undefined,
     ticketUrl: raw.ticketUrl && raw.ticketUrl.length > 0 ? raw.ticketUrl : null,
     status: raw.status ?? "tba",
-    ticketPrice: raw.ticketPrice,
-    doorTime: raw.doorTime,
+    ticketPrice: raw.ticketPrice ?? undefined,
+    doorTime: raw.doorTime ?? undefined,
     source: "manual",
   };
 }
 
-const manualShows: Show[] = (manualIndex as RawManualShow[])
+const manualShows: Show[] = (manualIndex as unknown as RawManualShow[])
   .filter((s) => s.draft !== true)
   .map(shapeManual);
 

@@ -1,5 +1,9 @@
 # Editing the live site
 
+> **Start here instead:** [`CMS_GUIDE.md`](../CMS_GUIDE.md) at the repo root is the
+> current, maintained editor guide. This page is kept for extra detail but may
+> lag behind the config.
+
 The site is editable through Sveltia CMS at `/admin`. You sign in with
 GitHub. Every save commits to the repo and triggers a deploy. Allow
 ~2 minutes for a change to appear on the live site.

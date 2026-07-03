@@ -21,18 +21,22 @@ export type TikTokVideo = {
 
 const TIKTOK_PUBLIC_DIR = "/images/tiktok/";
 
+// Optional CMS fields are null when the editor leaves them empty.
 type RawTikTok = {
-  slug?: string;
-  url?: string;
-  poster?: string;
-  posterAlt?: string;
-  draft?: boolean;
+  slug?: string | null;
+  title?: string | null;
+  url?: string | null;
+  poster?: string | null;
+  posterAlt?: string | null;
+  draft?: boolean | null;
 };
 
-export const tiktokVideos: TikTokVideo[] = (tiktokIndex as RawTikTok[])
+export const tiktokVideos: TikTokVideo[] = (tiktokIndex as unknown as RawTikTok[])
   .filter((t) => t.draft !== true)
   .map((t) => {
-    const title = (t.slug ?? "").replace(/-/g, " ");
+    // Prefer the title the editor typed; fall back to de-slugging the folder
+    // name for entries created before the title field existed.
+    const title = t.title && t.title.length > 0 ? t.title : (t.slug ?? "").replace(/-/g, " ");
     return {
       url: t.url ?? "",
       title,
