@@ -61,7 +61,6 @@ export function Nav() {
             alt=""
             width={28}
             height={24}
-            priority
             className={cn(
               "h-6 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
               "group-hover:translate-x-0 group-hover:opacity-90",

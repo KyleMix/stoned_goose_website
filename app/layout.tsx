@@ -7,10 +7,13 @@ import { organization } from "@/lib/schema";
 
 const ogImage = seo.defaultOgImage ?? "/opengraph.jpg";
 
+// Weights are trimmed to what the utility classes actually use: display type
+// renders at 400 (normal + italic accents), body text uses 400/500/600.
+// Adding font-bold or font-light back requires re-adding the weight here.
 const display = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["300", "400", "500", "700", "900"],
+  weight: ["400"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -18,7 +21,7 @@ const display = Fraunces({
 const body = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 

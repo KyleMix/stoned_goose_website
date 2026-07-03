@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import type { NormalizedOpenMic } from "@/content/open-mics";
+// Vendor CSS imported here (not globals.css) so it ships with this
+// dynamically-loaded chunk on /open-mics instead of every page.
+import "leaflet/dist/leaflet.css";
+import "leaflet.markercluster/dist/MarkerCluster.css";
 
 // Leaflet map for the Open Mic Explorer. Loaded only on /open-mics, where
 // the Suspense fallback is the inline list. Touches `window` and uses

@@ -251,6 +251,8 @@ function Layout({
             <img
               src={main}
               alt={imageAlt}
+              width={800}
+              height={800}
               className="h-full w-full object-cover"
             />
           ) : null}
@@ -271,6 +273,9 @@ function Layout({
                 <img
                   src={img}
                   alt=""
+                  width={200}
+                  height={200}
+                  loading="lazy"
                   className="h-full w-full object-cover"
                 />
               </button>

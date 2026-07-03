@@ -4,6 +4,13 @@ Autonomous judgment calls made during the 2026-07-03 full-site pass, with one-li
 
 ## Decisions
 
+- Phase 1: Converted 20 photographic PNG/JPEG portraits and posters (>=60 KB, >=25% savings) to WebP q82 and updated every reference (content JSON, shows-copy, generated indexes). Originals deleted from the working tree but preserved in git history. Public images: 4.10 MB -> 1.18 MB.
+- Phase 1: Deleted `public/images/media/halloween.png` and `matt-loes.png` (and their WebP conversions): zero references anywhere in the repo; legacy from the pre-redesign /watch page.
+- Phase 1: Removed the `xlsx` dependency: zero imports across app/, components/, lib/, scripts/.
+- Phase 1: Trimmed font loading to used weights only (Fraunces 400 normal+italic, Inter 400/500/600, JetBrains Mono unchanged). No `font-light/bold/black` utilities exist in the codebase and headings render at 400 via Tailwind preflight's `font-weight: inherit`.
+- Phase 1: Kept Lenis smooth scroll and the `@fullcalendar/*` deps: Lenis is a deliberate design choice that already respects reduced motion, and FullCalendar feeds the intentionally dark `_calendar` route (see Deferred).
+- Phase 1: Left `EditOverlay` eagerly bundled: it is ~2 kB of plain React with no heavy deps, so a lazy split would cost more in indirection than it saves.
+
 - Replaced the stale AUDIT.md (written against the old /members + /services IA at main@fb950f6) with a fresh audit of the current site; the old version remains in git history.
 - The task brief said "Keystatic CMS"; the repo actually uses Sveltia CMS (Decap-compatible) at /admin reading content/*/index.json. All CMS-compatibility rules were applied to the Sveltia config and content JSON instead.
 

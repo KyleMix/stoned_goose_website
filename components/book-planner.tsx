@@ -4,9 +4,26 @@
 // build-your-show estimator. They live in one client component so the
 // estimator can prefill the booking's notes field and remount the embed.
 
+import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { SectionHeader } from "@/components/section-header";
-import { BookCallEmbed } from "@/components/book-call-embed";
+
+// The Cal.com embed pulls in @calcom/embed-react plus Cal's remote loader.
+// Load it on demand so /book's route bundle stays lean; the placeholder
+// height keeps the section from jumping when the scheduler mounts.
+const BookCallEmbed = dynamic(
+  () =>
+    import("@/components/book-call-embed").then((mod) => mod.BookCallEmbed),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        aria-hidden
+        className="min-h-[420px] animate-pulse border border-bone/10 bg-bone/[0.03]"
+      />
+    ),
+  },
+);
 import {
   plannerAddOns,
   plannerCopy,

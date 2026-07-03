@@ -1,7 +1,7 @@
 [
   {
     "name": "Alexa Hansen",
-    "photo": "alexa-hansen.png",
+    "photo": "alexa-hansen.webp",
     "photoAlt": "",
     "instagram": "https://www.instagram.com/alexahansenlol/",
     "facebook": "",
@@ -17,7 +17,7 @@
   },
   {
     "name": "Bruce Detore",
-    "photo": "bruce-detore.jpg",
+    "photo": "bruce-detore.webp",
     "photoAlt": "",
     "instagram": "https://www.instagram.com/brucedetorecomedy/",
     "facebook": "https://www.facebook.com/brucedetorecomedy",
@@ -33,7 +33,7 @@
   },
   {
     "name": "Christian Mateo",
-    "photo": "christian-mateo.jpg",
+    "photo": "christian-mateo.webp",
     "instagram": "https://www.instagram.com/christianmateo.comedy/",
     "facebook": "",
     "slug": "christian-mateo"
@@ -47,7 +47,7 @@
   },
   {
     "name": "David Weed",
-    "photo": "david-weed.png",
+    "photo": "david-weed.webp",
     "instagram": "https://www.instagram.com/davidweedcomedy/",
     "facebook": "",
     "slug": "david-weed"
@@ -70,14 +70,14 @@
   },
   {
     "name": "Ezra Bonillas",
-    "photo": "ezra.png",
+    "photo": "ezra.webp",
     "instagram": "https://www.instagram.com/ezrabonillas/",
     "facebook": "",
     "slug": "ezra-bonillas"
   },
   {
     "name": "Gavin Howells",
-    "photo": "gavin-howells.jpg",
+    "photo": "gavin-howells.webp",
     "instagram": "https://www.instagram.com/gavvy.goo/",
     "facebook": "https://www.facebook.com/gavin.howells.566602",
     "slug": "gavin-howells"
@@ -107,7 +107,7 @@
   },
   {
     "name": "Joe Crudo",
-    "photo": "joe-crudo.jpg",
+    "photo": "joe-crudo.webp",
     "photoAlt": "",
     "instagram": "https://www.instagram.com/crudojoe/",
     "facebook": "https://www.facebook.com/profile.php?id=61560860019095",
@@ -130,7 +130,7 @@
   },
   {
     "name": "Logan Cantrell",
-    "photo": "logan-cantrell.png",
+    "photo": "logan-cantrell.webp",
     "photoAlt": "",
     "instagram": "https://www.instagram.com/logandid911/",
     "facebook": "https://www.facebook.com/logan.cantrell.7568",
@@ -139,7 +139,7 @@
   },
   {
     "name": "Lonnie Williams",
-    "photo": "lonnie-williams.png",
+    "photo": "lonnie-williams.webp",
     "instagram": "https://www.instagram.com/swagdaddysensei/",
     "facebook": "",
     "slug": "lonnie-williams"
@@ -160,7 +160,7 @@
   },
   {
     "name": "Mike Heath",
-    "photo": "mike-heath.png",
+    "photo": "mike-heath.webp",
     "photoAlt": "",
     "instagram": "https://www.instagram.com/miketonyheath/",
     "facebook": "https://www.facebook.com/mikeheathcomedy/?ref=PROFILE_EDIT_xav_ig_profile_page_web#",
@@ -185,7 +185,7 @@
   },
   {
     "name": "Phil Klingler",
-    "photo": "phil-klingler.png",
+    "photo": "phil-klingler.webp",
     "photoAlt": "",
     "instagram": "https://www.instagram.com/philkcomedy/",
     "facebook": "https://www.facebook.com/philip.klingler.7",
@@ -194,7 +194,7 @@
   },
   {
     "name": "Seth Fairchild",
-    "photo": "seth-fairchild.png",
+    "photo": "seth-fairchild.webp",
     "instagram": "https://www.instagram.com/sethfcomedy/",
     "facebook": "https://www.facebook.com/seth.fairchild.77",
     "slug": "seth-fairchild"
@@ -208,7 +208,7 @@
   },
   {
     "name": "Tony Cardoza",
-    "photo": "tony-cardoza.jpg",
+    "photo": "tony-cardoza.webp",
     "instagram": "https://www.instagram.com/cardozacomedy/",
     "facebook": "https://www.facebook.com/anthony.vincent.90226",
     "slug": "tony-cardoza"
@@ -222,21 +222,21 @@
   },
   {
     "name": "Tyler Smith",
-    "photo": "tyler-smith.jpg",
+    "photo": "tyler-smith.webp",
     "instagram": "https://www.instagram.com/dr_tyler_smith/",
     "facebook": "https://www.facebook.com/DrTylerSmith",
     "slug": "tyler-smith"
   },
   {
     "name": "Xavier Rake",
-    "photo": "xavier.png",
+    "photo": "xavier.webp",
     "instagram": "https://www.instagram.com/jokedeal3r/",
     "facebook": "",
     "slug": "xavier-rake"
   },
   {
     "name": "Yoshi Obayashi",
-    "photo": "yoshi.png",
+    "photo": "yoshi.webp",
     "instagram": "https://www.instagram.com/yoshiobayashi/",
     "facebook": "https://www.facebook.com/yoshiobayashi",
     "slug": "yoshi-obayashi"

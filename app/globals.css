@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Leaflet base styles. Pulled in globally so the dynamically-imported
-   open-mic-map can mount with correct tile + control sizing. */
-@import "leaflet/dist/leaflet.css";
-@import "leaflet.markercluster/dist/MarkerCluster.css";
+/* Leaflet vendor CSS lives in components/open-mic-map.tsx so it only ships
+   with the /open-mics route chunk instead of the sitewide stylesheet. */
 
 @layer base {
   :root {

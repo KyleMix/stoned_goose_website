@@ -1,11 +1,14 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 // One-shot per-letter rise on mount. Used on the hero lockup. Reduced
 // motion renders the static string. The animation runs once per page
 // load (not on scroll) because the hero is above the fold.
+// LazyMotion + m keeps the initial bundle to the ~5 kB shell; the
+// domAnimation feature set loads with this chunk instead of the full
+// framer-motion runtime.
 
 type Props = {
   text: string;
@@ -40,10 +43,11 @@ export function TextEffect({
     );
   }
 
-  const Wrapper = motion[as];
+  const Wrapper = m[as];
   const letters = Array.from(text);
 
   return (
+    <LazyMotion features={domAnimation} strict>
     <Wrapper
       className={className}
       initial="hidden"
@@ -57,7 +61,7 @@ export function TextEffect({
       aria-label={text}
     >
       {letters.map((char, i) => (
-        <motion.span
+        <m.span
           key={i}
           aria-hidden
           className="inline-block"
@@ -71,9 +75,10 @@ export function TextEffect({
           }}
         >
           {char === " " ? " " : char}
-        </motion.span>
+        </m.span>
       ))}
       {trailing}
     </Wrapper>
+    </LazyMotion>
   );
 }
