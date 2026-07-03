@@ -5,7 +5,7 @@ Baseline build: passes in ~65s (next compile 19.4s). 48 static pages, 34 HTML fi
 Shared First Load JS: 102 kB. Heaviest routes: /open-mics 232 kB, /watch 173 kB, / 156 kB, /book 156 kB, /shows 154 kB.
 Lint: clean. Typecheck: clean. Tests exist but do not run in CI.
 
-Status legend (updated in Phase 7): [FIXED], [DEFERRED], [WONT-FIX], [OPEN].
+Status legend (updated in Phase 7): [FIXED], [PARTLY FIXED], [DEFERRED], [WONT-FIX], [BLOCKED]. Rationale for every non-fixed item lives in DECISIONS.md.
 
 ## Top 10 highest-impact items
 
@@ -22,82 +22,82 @@ Status legend (updated in Phase 7): [FIXED], [DEFERRED], [WONT-FIX], [OPEN].
 
 ## Performance
 
-- **PERF-1 (P1)** `components/text-effect.tsx:3` imports full `framer-motion` (`motion.*`) for a single hero stagger; no LazyMotion/domAnimation, no `m.*`. Ships in the homepage bundle. Fix: LazyMotion + `m` (or CSS stagger).
-- **PERF-2 (P1)** `app/globals.css:7-8` imports Leaflet + MarkerCluster CSS globally; map only renders on /open-mics. Fix: scope CSS to the map component/route.
-- **PERF-3 (P1)** `components/search-palette.tsx` (cmdk + @radix-ui/react-dialog) is statically mounted in `app/(site)/layout.tsx`, in the shared bundle for every page. Fix: `next/dynamic` and mount on first open.
-- **PERF-4 (P1)** `@calcom/embed-react` statically imported via `book-planner.tsx` → ships in /book bundle even when no calLink renders. Fix: dynamic import.
-- **PERF-5 (P1)** Photographic PNGs: halloween.png 446 KB, xavier.png 382 KB, yoshi.png 343 KB, etc. `scripts/optimize-images.ts` is manual-only and never emits WebP. Fix: convert to WebP/JPEG, wire into build.
-- **PERF-6 (P1)** `app/layout.tsx:10-30`: Fraunces loads 300/400/500/700/900 in normal+italic; only 400/500 (and 400 italic) are used. Inter loads 300-700; 300 and 700 unused. Fix: trim weights.
-- **PERF-7 (P2)** `xlsx` dependency has zero importers. Remove.
-- **PERF-8 (P2)** `@fullcalendar/*` only feeds the unpublished `_calendar` route and the dead `comedy-calendar.tsx`. Node_modules/build weight only; resolve with the dead-code decision.
-- **PERF-9 (P2)** Raw `<img>` in `shop-product-detail.tsx:251,271` and `cart-drawer.tsx:49` lack width/height and `loading="lazy"`.
-- **PERF-10 (P2)** `EditOverlay` ships owner-only tooling JS to all visitors.
-- **PERF-11 (P2)** Lenis smooth-scroll runs a persistent rAF on every page. Acceptable; consider dropping.
-- **PERF-12 (P2)** `nav.tsx:64` sets `priority` on a 28 px logo, competing marginally with LCP.
+- **PERF-1 (P1)** [FIXED] `components/text-effect.tsx:3` imports full `framer-motion` (`motion.*`) for a single hero stagger; no LazyMotion/domAnimation, no `m.*`. Ships in the homepage bundle. Fix: LazyMotion + `m` (or CSS stagger).
+- **PERF-2 (P1)** [FIXED] `app/globals.css:7-8` imports Leaflet + MarkerCluster CSS globally; map only renders on /open-mics. Fix: scope CSS to the map component/route.
+- **PERF-3 (P1)** [FIXED] `components/search-palette.tsx` (cmdk + @radix-ui/react-dialog) is statically mounted in `app/(site)/layout.tsx`, in the shared bundle for every page. Fix: `next/dynamic` and mount on first open.
+- **PERF-4 (P1)** [FIXED] `@calcom/embed-react` statically imported via `book-planner.tsx` → ships in /book bundle even when no calLink renders. Fix: dynamic import.
+- **PERF-5 (P1)** [FIXED] Photographic PNGs: halloween.png 446 KB, xavier.png 382 KB, yoshi.png 343 KB, etc. `scripts/optimize-images.ts` is manual-only and never emits WebP. Fix: convert to WebP/JPEG, wire into build.
+- **PERF-6 (P1)** [FIXED] `app/layout.tsx:10-30`: Fraunces loads 300/400/500/700/900 in normal+italic; only 400/500 (and 400 italic) are used. Inter loads 300-700; 300 and 700 unused. Fix: trim weights.
+- **PERF-7 (P2)** [FIXED] `xlsx` dependency has zero importers. Remove.
+- **PERF-8 (P2)** [WONT-FIX: deps feed the dark _calendar route, which stays per owner decision; they never ship to the client] `@fullcalendar/*` only feeds the unpublished `_calendar` route and the dead `comedy-calendar.tsx`. Node_modules/build weight only; resolve with the dead-code decision.
+- **PERF-9 (P2)** [FIXED] Raw `<img>` in `shop-product-detail.tsx:251,271` and `cart-drawer.tsx:49` lack width/height and `loading="lazy"`.
+- **PERF-10 (P2)** [WONT-FIX: ~2 kB of plain React, a lazy split costs more than it saves] `EditOverlay` ships owner-only tooling JS to all visitors.
+- **PERF-11 (P2)** [WONT-FIX: deliberate design choice, respects reduced motion] Lenis smooth-scroll runs a persistent rAF on every page. Acceptable; consider dropping.
+- **PERF-12 (P2)** [FIXED] `nav.tsx:64` sets `priority` on a 28 px logo, competing marginally with LCP.
 - Verified good: Pagefind loads lazily on first search; third-party scripts (Plausible, FB, IG, Cal) are deferred/lazy; Tailwind content globs correct; static generation covers every route.
 
 ## Accessibility
 
-- **A11Y-1 (P1)** `nav.tsx:157-216` mobile menu hidden only with opacity/clip-path/pointer-events; links remain in tab order when closed. Fix: `inert`/conditional render.
-- **A11Y-2 (P1)** `mailing-list-capture.tsx:143-147` error state has no `role="alert"`/live region.
-- **A11Y-3 (P1)** Mobile menu: no Escape-to-close, focus not moved on open or restored on close.
-- **A11Y-4 (P2)** 33 occurrences of `text-bone/40`, `/45` (~3.3-3.9:1) on ink and `text-ink/45`, `/55` on bone fail 4.5:1 for body-size text (nav, footer, cart, open-mic list, search palette, shows, book, roster, not-found).
-- **A11Y-5 (P2)** `section-header.tsx:28` eyebrow defaults to `text-bone/55`, invisible on light sections unless overridden per-caller.
-- **A11Y-6 (P2)** Search palette loading/empty/error states and result counts have no `aria-live`.
-- **A11Y-7 (P2)** Open-mic explorer "Showing N mics" count not announced on filter change.
-- **A11Y-8 (P2)** `open-mic-submit-dialog.tsx:167,198`, `open-mic-update-dialog.tsx:149`: `FieldLabel htmlFor` points at nonexistent ids for radio groups; should be `<legend>`.
-- **A11Y-9 (P2)** Inputs suppress the global focus outline (`focus:outline-none`) relying on a 1 px border-color change (`form-field.tsx:9`, `mailing-list-capture.tsx:119`, `open-mic-explorer.tsx:145`, `search-palette.tsx:139`).
-- **A11Y-10 (P2)** `placeholder:text-bone/35` (~2.9:1) unreadable.
-- **A11Y-11 (P2)** Share button "Link copied" and cart quantity/busy updates not announced.
-- **A11Y-12 (P2)** Map pins are click-only (acceptable: list is the keyboard alternative), but nothing tells AT users the list is the equivalent. Add a visually-hidden note.
+- **A11Y-1 (P1)** [FIXED] `nav.tsx:157-216` mobile menu hidden only with opacity/clip-path/pointer-events; links remain in tab order when closed. Fix: `inert`/conditional render.
+- **A11Y-2 (P1)** [FIXED] `mailing-list-capture.tsx:143-147` error state has no `role="alert"`/live region.
+- **A11Y-3 (P1)** [FIXED] Mobile menu: no Escape-to-close, focus not moved on open or restored on close.
+- **A11Y-4 (P2)** [FIXED] 33 occurrences of `text-bone/40`, `/45` (~3.3-3.9:1) on ink and `text-ink/45`, `/55` on bone fail 4.5:1 for body-size text (nav, footer, cart, open-mic list, search palette, shows, book, roster, not-found).
+- **A11Y-5 (P2)** [FIXED] `section-header.tsx:28` eyebrow defaults to `text-bone/55`, invisible on light sections unless overridden per-caller.
+- **A11Y-6 (P2)** [FIXED] Search palette loading/empty/error states and result counts have no `aria-live`.
+- **A11Y-7 (P2)** [FIXED] Open-mic explorer "Showing N mics" count not announced on filter change.
+- **A11Y-8 (P2)** [FIXED] `open-mic-submit-dialog.tsx:167,198`, `open-mic-update-dialog.tsx:149`: `FieldLabel htmlFor` points at nonexistent ids for radio groups; should be `<legend>`.
+- **A11Y-9 (P2)** [FIXED] Inputs suppress the global focus outline (`focus:outline-none`) relying on a 1 px border-color change (`form-field.tsx:9`, `mailing-list-capture.tsx:119`, `open-mic-explorer.tsx:145`, `search-palette.tsx:139`).
+- **A11Y-10 (P2)** [FIXED] `placeholder:text-bone/35` (~2.9:1) unreadable.
+- **A11Y-11 (P2)** [FIXED] Share button "Link copied" and cart quantity/busy updates not announced.
+- **A11Y-12 (P2)** [FIXED] Map pins are click-only (acceptable: list is the keyboard alternative), but nothing tells AT users the list is the equivalent. Add a visually-hidden note.
 - Verified good: skip link + RouteFocusManager, one h1 per page, Radix dialogs (trap/Escape/restore), labeled icon buttons, real `<label>`s with aria-invalid/describedby, reduced-motion respected globally and per-component.
 
 ## SEO
 
-- **SEO-1 (P1)** Duplicate, unlinked Organization (`app/layout.tsx:90`) + LocalBusiness (`app/(site)/layout.tsx:86-89`) entities on every page, with conflicting `sameAs` (5 vs 7 links) and `areaServed` lists. Fix: single node (or `@id`-linked), one canonical service-area source.
-- **SEO-2 (P1)** `shop/[slug]/page.tsx` emits only BreadcrumbList; content has name/image/description/price/variants for `Product` + `Offer`.
-- **SEO-3 (P1, latent)** `lib/schema.ts:119` passes `show.start` verbatim to `startDate` while the ICS builder treats it as UTC; verify Pacific offsets when shows are entered.
-- **SEO-4 (P2)** Home/root title ~66 chars, description ~174 chars; truncate in SERPs. `roster/[slug]` bio slices at 160 mid-word.
-- **SEO-5 (P2)** Sitemap adds `/shows#id` fragment entries (noise) and uses uniform build-time lastmod.
-- **SEO-6 (P2)** `public/_headers:11-12` targets removed `/services/*` route; dead rule. vercel.json is inert on Cloudflare (kept as mirror only).
-- **SEO-7 (P2)** No home `opengraph-image.tsx` (generic /opengraph.jpg card only).
-- **SEO-8 (P2)** `book/[slug]` `<title>` uses `svc.title` while OG title uses `svc.metaTitle`.
-- **SEO-9 (P2)** ComedyEvent omits `performer` (no lineup field in the show model).
-- **SEO-10 (P2)** Thin contextual cross-links: /shows never links to /roster or /watch; /roster never links to /shows.
+- **SEO-1 (P1)** [FIXED] Duplicate, unlinked Organization (`app/layout.tsx:90`) + LocalBusiness (`app/(site)/layout.tsx:86-89`) entities on every page, with conflicting `sameAs` (5 vs 7 links) and `areaServed` lists. Fix: single node (or `@id`-linked), one canonical service-area source.
+- **SEO-2 (P1)** [FIXED] `shop/[slug]/page.tsx` emits only BreadcrumbList; content has name/image/description/price/variants for `Product` + `Offer`.
+- **SEO-3 (P1, latent)** [DEFERRED: needs verified Pacific-offset data once real shows exist; mapping documented in lib/schema.ts] `lib/schema.ts:119` passes `show.start` verbatim to `startDate` while the ICS builder treats it as UTC; verify Pacific offsets when shows are entered.
+- **SEO-4 (P2)** [FIXED] Home/root title ~66 chars, description ~174 chars; truncate in SERPs. `roster/[slug]` bio slices at 160 mid-word.
+- **SEO-5 (P2)** [FIXED: fragments removed; lastmod stays build-time, see IMPROVEMENTS.md future work] Sitemap adds `/shows#id` fragment entries (noise) and uses uniform build-time lastmod.
+- **SEO-6 (P2)** [FIXED: also corrected the pattern for hashed OG filenames, which the old rule never matched] `public/_headers:11-12` targets removed `/services/*` route; dead rule. vercel.json is inert on Cloudflare (kept as mirror only).
+- **SEO-7 (P2)** [WONT-FIX: home intentionally uses the brand photo /opengraph.jpg] No home `opengraph-image.tsx` (generic /opengraph.jpg card only).
+- **SEO-8 (P2)** [FIXED] `book/[slug]` `<title>` uses `svc.title` while OG title uses `svc.metaTitle`.
+- **SEO-9 (P2)** [DEFERRED: needs a lineup field in the show CMS model] ComedyEvent omits `performer` (no lineup field in the show model).
+- **SEO-10 (P2)** [FIXED] Thin contextual cross-links: /shows never links to /roster or /watch; /roster never links to /shows.
 - Verified good: per-page canonicals, unique metadata everywhere, robots.txt, redirects mirrored in `_redirects`, trailing-slash consistency, 404 wiring, video sitemap + VideoObject, BreadcrumbList on all detail routes, open-mic schema restraint.
 
 ## UX / Conversion
 
-- **UX-1 (P0)** Ticket path dead-ends: `content/.generated/shows.json` is `[]`; hero CTA, nav "Tickets.", /shows all land empty while `content/.generated/pro-shows.json` holds 60+ upcoming ticketed shows rendered only by the unpublished `_calendar` route.
-- **UX-2 (P2)** Next show never above the fold on the homepage even when shows exist; hero is wordmark + subhead only.
-- **UX-3 (P2)** Spam protection is honeypot-only; `_captcha:"false"` on all forms. Add Turnstile or formsubmit captcha.
-- **UX-4 (P2)** `/book/collaboration` live but near-empty (TODO fields filtered); `film-your-comedy-set` draft appears in the /book list with a stub page.
-- **UX-5 (P2)** General quote form collects no name field.
-- **UX-6 (P2)** No per-mic "last verified" date in the Open Mic Explorer; data-quality punch list (17/92 records) in OPEN_MICS_DATA_QUALITY.md.
-- **UX-7 (P2)** Hamburger button under 44 px tap target (`nav.tsx:119-147`).
-- **UX-8 (P2)** Map has no error UI if the Leaflet dynamic import fails.
-- **UX-9 (P2)** Cart runtime fetch failure UX unverified; `request()` throws on !ok.
-- **UX-10 (P2)** Shop silently filters to 3 of 18 products (missing image URLs); 83% of merch invisible.
-- **UX-11 (P2)** Contact form success/error copy is generic and off-brand ("Message sent! ...").
-- **UX-12 (P2)** Pro-show titles contain raw HTML entities (`&#8211;`, `&#038;`) that would render literally if surfaced.
+- **UX-1 (P0)** [PARTLY FIXED / DEFERRED: hero now carries a Next-on-stage ticket strip the moment a show exists, /shows empty state got a primary Eventbrite CTA plus mailing-list and cross-links so nothing dead-ends; publishing the dark /calendar and entering real shows are owner decisions, see DECISIONS.md] Ticket path dead-ends: `content/.generated/shows.json` is `[]`; hero CTA, nav "Tickets.", /shows all land empty while `content/.generated/pro-shows.json` holds 60+ upcoming ticketed shows rendered only by the unpublished `_calendar` route.
+- **UX-2 (P2)** [FIXED] Next show never above the fold on the homepage even when shows exist; hero is wordmark + subhead only.
+- **UX-3 (P2)** [DEFERRED: formsubmit.co cannot verify Turnstile tokens; endpoint change is an infrastructure decision] Spam protection is honeypot-only; `_captcha:"false"` on all forms. Add Turnstile or formsubmit captcha.
+- **UX-4 (P2)** [PARTLY FIXED: drafts hidden from list/sitemap/next-nav; collaboration copy needs the owner] `/book/collaboration` live but near-empty (TODO fields filtered); `film-your-comedy-set` draft appears in the /book list with a stub page.
+- **UX-5 (P2)** [FIXED] General quote form collects no name field.
+- **UX-6 (P2)** [DEFERRED: needs a freshness field and verification workflow] No per-mic "last verified" date in the Open Mic Explorer; data-quality punch list (17/92 records) in OPEN_MICS_DATA_QUALITY.md.
+- **UX-7 (P2)** [FIXED] Hamburger button under 44 px tap target (`nav.tsx:119-147`).
+- **UX-8 (P2)** [FIXED] Map has no error UI if the Leaflet dynamic import fails.
+- **UX-9 (P2)** [FIXED: cart errors now render a role=alert message in the drawer] Cart runtime fetch failure UX unverified; `request()` throws on !ok.
+- **UX-10 (P2)** [PARTLY FIXED: all 18 products render with typographic placeholders; real images still need the owner] Shop silently filters to 3 of 18 products (missing image URLs); 83% of merch invisible.
+- **UX-11 (P2)** [FIXED] Contact form success/error copy is generic and off-brand ("Message sent! ...").
+- **UX-12 (P2)** [DEFERRED: surfaces only if /calendar is published; decode entities in sync-pro-shows.ts first] Pro-show titles contain raw HTML entities (`&#8211;`, `&#038;`) that would render literally if surfaced.
 - Verified good: /shows rows (when populated) have hazard "Get tickets" CTAs, price, add-to-calendar, share; /book funnel is strong (anchored subnav, estimator prefills call notes, Cal embed); forms have RHF+zod inline validation, loading/success/error states, 48 px inputs; explorer filters/empty states solid.
 
 ## Content / Copy
 
 - **CONTENT-1 (clean)** Em dash sweep: zero em dashes in user-facing source (content/, app/, components/, lib/, public/). Internal docs only.
-- **CONTENT-2 (P2)** "South Sound's fastest-growing comedy platform" (`app/(site)/book/page.tsx:138-142`) is an unverifiable superlative; against the no-invented-stats rule.
-- **CONTENT-3 (P3)** lucky-dime open mic note reads "anything is allowed. Free. Set tbd/". Clean up.
-- **CONTENT-4 (P3)** rickshaw-seattle-friday note uses an en dash range "3–4 Minutes".
+- **CONTENT-2 (P2)** [FIXED] "South Sound's fastest-growing comedy platform" (`app/(site)/book/page.tsx:138-142`) is an unverifiable superlative; against the no-invented-stats rule.
+- **CONTENT-3 (P3)** [FIXED] lucky-dime open mic note reads "anything is allowed. Free. Set tbd/". Clean up.
+- **CONTENT-4 (P3)** [FIXED] rickshaw-seattle-friday note uses an en dash range "3–4 Minutes".
 - **CONTENT-5** No lorem/coming-soon text; no invented stats rendered (sponsorship stat values are null and unrendered; press array empty); no past dates shown as upcoming.
-- **CONTENT-6** External links enumerated (socials, Eventbrite, Fourthwall x18, Cal.com, pro clubs, ~90 open-mic signup URLs, OSM tiles, formsubmit); crawl scheduled for Phase 5.
+- **CONTENT-6** [BLOCKED: sandbox egress policy denies outbound requests (274/280 hosts unreachable incl. google.com); the lychee CI workflow covers external link checking] External links enumerated (socials, Eventbrite, Fourthwall x18, Cal.com, pro clubs, ~90 open-mic signup URLs, OSM tiles, formsubmit); crawl scheduled for Phase 5.
 
 ## Code Quality
 
 - **CODE-1 (clean)** Zero `: any`, `as any`, `@ts-ignore`, `@ts-expect-error`. All `eslint-disable`s scoped and justified. No console noise in components. Consistent kebab-case + named exports + "use client" placement.
-- **CODE-2 (P1)** Dead components: `comedy-calendar.tsx` (self-labeled unmounted), `news-feed.tsx`, `feed-freshness.tsx` have no importers.
-- **CODE-3 (P1)** `xlsx` dependency unused; removable.
-- **CODE-4 (P1)** `npm run test` (open-mics-normalize, schema smoke tests) never runs in CI (`.github/workflows/ci.yml` runs lint/typecheck/build only).
-- **CODE-5 (P2)** `_calendar` + `pro-shows-calendar.tsx` + sync pipeline are staged but unreachable (deliberate dark launch). Decision needed: publish or keep dark.
-- **CODE-6 (P2)** `RESERVED_SLUG_ERROR` and calendar "verification" exports unused; reserved-slug list has no test asserting sync with actual route folders.
-- **CODE-7 (P2)** prebuild `|| true` swallows all sync-script failures, not just missing-env; acceptable but note.
+- **CODE-2 (P1)** [FIXED] Dead components: `comedy-calendar.tsx` (self-labeled unmounted), `news-feed.tsx`, `feed-freshness.tsx` have no importers.
+- **CODE-3 (P1)** [FIXED] `xlsx` dependency unused; removable.
+- **CODE-4 (P1)** [FIXED] `npm run test` (open-mics-normalize, schema smoke tests) never runs in CI (`.github/workflows/ci.yml` runs lint/typecheck/build only).
+- **CODE-5 (P2)** [DEFERRED: publish-or-keep-dark is an owner product decision] `_calendar` + `pro-shows-calendar.tsx` + sync pipeline are staged but unreachable (deliberate dark launch). Decision needed: publish or keep dark.
+- **CODE-6 (P2)** [FIXED: export removed, sync test added] `RESERVED_SLUG_ERROR` and calendar "verification" exports unused; reserved-slug list has no test asserting sync with actual route folders.
+- **CODE-7 (P2)** [WONT-FIX: deliberate static-export trade-off; sync scripts already degrade gracefully and log] prebuild `|| true` swallows all sync-script failures, not just missing-env; acceptable but note.
 - Verified good: env-var hygiene (no server secrets in client), sync scripts degrade gracefully to committed JSON, healthy CI automation (lighthouse, lychee, indexnow, image-optimize, feed-refresh workflows).
