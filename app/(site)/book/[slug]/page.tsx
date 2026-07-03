@@ -34,7 +34,7 @@ export function generateMetadata(props: {
     if (!svc)
       return { title: "Not found", robots: { index: false, follow: false } };
     return {
-      title: svc.title,
+      title: svc.metaTitle,
       description: svc.metaDescription,
       alternates: {
         canonical: `/book/${svc.slug}`,

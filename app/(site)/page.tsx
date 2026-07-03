@@ -18,10 +18,11 @@ import {
   homeBottomSections,
 } from "@/content/home";
 import { site } from "@/content/site";
+import { truncateAtWord } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: { absolute: `${site.name} · Olympia & South Sound Comedy Production` },
-  description: site.description,
+  title: { absolute: `${site.name} · Olympia Comedy Production` },
+  description: truncateAtWord(site.description, 155),
   alternates: { canonical: "/" },
 };
 

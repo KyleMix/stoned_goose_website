@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Person } from "schema-dts";
 import { epkComedians, getComedian } from "@/content/comedians";
+import { truncateAtWord } from "@/lib/utils";
 import { site } from "@/content/site";
 import { jsonLdString } from "@/lib/jsonld";
 import { JsonLd } from "@/components/json-ld";
@@ -33,7 +34,7 @@ export async function generateMetadata(props: {
   return {
     title: comedian.name,
     description:
-      comedian.bio?.slice(0, 160) ||
+      (comedian.bio ? truncateAtWord(comedian.bio, 155) : "") ||
       `${comedian.name}, stand-up comedian in the Stoned Goose Productions rotation.`,
     alternates: { canonical: `/roster/${comedian.slug}` },
   };

@@ -14,14 +14,17 @@ import type {
   ComedyEvent,
   EventStatusType,
   ItemList,
+  LocalBusiness,
   Offer,
-  Organization,
   Place,
+  Product as SchemaProduct,
   VideoObject,
   WithContext,
 } from "schema-dts";
 import type { Show } from "@/content/shows";
+import type { Product } from "@/content/shop";
 import type { NormalizedVideo } from "@/lib/videos";
+import { site } from "@/content/site";
 
 // Canonical production origin. Hard-coded so the @id graph node and absolute
 // URLs stay stable regardless of the build environment.
@@ -32,34 +35,31 @@ const SITE_URL = "https://www.stonedgooseproductions.com";
 // the root layout on every page.
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
-// 1. ORGANIZATION
-// Loaded in the root layout, so it renders on every page. Shipped verbatim as
-// the brand's canonical entity record.
-export const organization: WithContext<Organization> = {
+// 1. ORGANIZATION / LOCALBUSINESS
+// Loaded in the root layout, so it renders on every page. One merged entity:
+// LocalBusiness subclasses Organization, so this single node carries both
+// roles. Brand facts (name, description, contact, social, service areas) come
+// from the CMS-managed site config so the schema can never drift from the
+// on-page NAP data; only legal/founding facts the CMS does not model are
+// hardcoded here.
+export const organization: WithContext<LocalBusiness> = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "LocalBusiness",
   "@id": ORGANIZATION_ID,
-  name: "Stoned Goose Productions",
+  name: site.name,
   legalName: "Stoned Goose Productions LLC",
-  url: "https://www.stonedgooseproductions.com",
-  logo: "https://www.stonedgooseproductions.com/brand/stoned-goose-logo-full.png",
-  image: "https://www.stonedgooseproductions.com/opengraph.jpg",
-  description:
-    "Live shows, comedy production, podcast and media work, and the Open Mic Explorer for the Pacific Northwest. Based in Olympia, working across Lacey, Tacoma, and the South Sound.",
+  url: site.url,
+  logo: `${SITE_URL}/brand/stoned-goose-logo-full.png`,
+  image: `${SITE_URL}/opengraph.jpg`,
+  description: site.description,
   foundingLocation: "Olympia, WA",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Olympia",
-    addressRegion: "WA",
+    addressLocality: site.contact.locality,
+    addressRegion: site.contact.region,
     addressCountry: "US",
   },
-  areaServed: [
-    "Olympia, WA",
-    "Lacey, WA",
-    "Tacoma, WA",
-    "South Sound",
-    "Pacific Northwest",
-  ],
+  areaServed: [...site.serviceAreas],
   founder: [
     { "@type": "Person", name: "Kyle Mixon" },
     { "@type": "Person", name: "Joseph Humphrey" },
@@ -68,15 +68,17 @@ export const organization: WithContext<Organization> = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "bookings",
-    email: "kyle@stonedgooseproductions.com",
-    telephone: "+1-360-323-0667",
+    email: site.contact.email,
+    telephone: site.contact.phoneTel,
   },
   sameAs: [
-    "https://www.instagram.com/stonedgooseproductions/",
-    "https://www.facebook.com/profile.php?id=61573095812128",
-    "https://www.tiktok.com/@stonedgooseproductions",
-    "https://www.youtube.com/@stonedgooseproductions",
-    "https://www.patreon.com/cw/StonedGooseProductions",
+    site.social.instagram,
+    site.social.facebook,
+    site.social.tiktok,
+    site.social.youtube,
+    site.social.patreon,
+    site.social.eventbrite,
+    site.social.fourthwall,
   ],
 };
 
@@ -267,6 +269,56 @@ export function buildMicSchema(_mic: { name: string; venue: string }): never {
       "Event/ComedyEvent until the 'last confirmed' freshness system exists. " +
       "See lib/schema.ts and OPEN_MICS_DATA_QUALITY.md.",
   );
+}
+
+// 6. PRODUCT
+// -----------------------------------------------------------------------------
+
+// Product markup for shop detail pages. The offer points at the Fourthwall
+// product URL where checkout actually happens. Price is asserted only when it
+// parses to one clean amount; availability only when the sync knows at least
+// one variant is purchasable (manual products without variants stay silent on
+// availability rather than guessing).
+export function buildProductSchema(product: Product): WithContext<SchemaProduct> {
+  const images =
+    product.images && product.images.length > 0
+      ? product.images.map((i) => absoluteUrl(i.url))
+      : product.image
+        ? [absoluteUrl(product.image)]
+        : [];
+
+  const schema: WithContext<SchemaProduct> = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    url: `${SITE_URL}/shop/${product.slug}`,
+    brand: { "@id": ORGANIZATION_ID },
+    ...(images.length > 0 ? { image: images } : {}),
+    ...(product.description ? { description: product.description } : {}),
+  };
+
+  const price = parsePrice(product.price);
+  if (product.url && price) {
+    const anyAvailable =
+      product.variants && product.variants.length > 0
+        ? product.variants.some((v) => v.available)
+        : null;
+    schema.offers = {
+      "@type": "Offer",
+      url: product.url,
+      price,
+      priceCurrency: "USD",
+      ...(anyAvailable === null
+        ? {}
+        : {
+            availability: anyAvailable
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+          }),
+    };
+  }
+
+  return schema;
 }
 
 // The ONLY structured data the open-mics page is allowed to emit today: a plain

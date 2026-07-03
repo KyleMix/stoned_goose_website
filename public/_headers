@@ -1,9 +1,8 @@
-# Cloudflare Pages and Netlify both honor this format.
-# OG image routes from app/<route>/opengraph-image.tsx ship without a .png
-# extension; force the correct MIME so social scrapers render the card.
+# Cloudflare Workers Static Assets and Netlify both honor this format.
+# OG image routes from app/<route>/opengraph-image.tsx export as extensionless
+# PNGs with a build hash suffix (e.g. /book/opengraph-image-14vkoy); force the
+# correct MIME so social scrapers render the card. The wildcard spans slashes,
+# so one rule covers nested routes like /book/<slug>/opengraph-image-<hash>.
 
-/*/opengraph-image
-  Content-Type: image/png
-
-/services/*/opengraph-image
+/*/opengraph-image-*
   Content-Type: image/png

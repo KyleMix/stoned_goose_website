@@ -14,7 +14,7 @@
   ],
   "headers": [
     {
-      "source": "/:path*/opengraph-image",
+      "source": "/:path*/opengraph-image-:hash",
       "headers": [{ "key": "Content-Type", "value": "image/png" }]
     }
   ]

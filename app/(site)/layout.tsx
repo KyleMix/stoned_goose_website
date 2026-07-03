@@ -1,4 +1,3 @@
-import type { LocalBusiness } from "schema-dts";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { CartProvider } from "@/components/cart/cart-context";
@@ -8,46 +7,14 @@ import { EditOverlay } from "@/components/edit-overlay";
 import { RouteFocusManager } from "@/components/route-focus-manager";
 import { SearchPalette } from "@/components/search-palette";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { site } from "@/content/site";
-import { jsonLdString } from "@/lib/jsonld";
 
+// The Organization/LocalBusiness entity is emitted once by the root layout
+// (lib/schema.ts `organization`); a second unlinked LocalBusiness here would
+// split the brand into two ambiguous schema.org nodes.
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
   const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
   const bingVerification = process.env.NEXT_PUBLIC_BING_VERIFICATION;
-
-  const sameAs = [
-    site.social.instagram,
-    site.social.facebook,
-    site.social.tiktok,
-    site.social.youtube,
-    site.social.patreon,
-    site.social.eventbrite,
-    site.social.fourthwall,
-  ];
-
-  const localBusiness: LocalBusiness = {
-    "@type": "LocalBusiness",
-    name: site.name,
-    url: site.url,
-    description: site.description,
-    areaServed: [...site.serviceAreas],
-    sameAs,
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        contactType: "Sales",
-        email: site.contact.email,
-        telephone: site.contact.phoneTel,
-      },
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: site.contact.locality,
-      addressRegion: site.contact.region,
-      addressCountry: "US",
-    },
-  };
 
   return (
     <>
@@ -83,10 +50,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <SearchPalette />
       <SmoothScroll />
       <EditOverlay />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdString(localBusiness) }}
-      />
     </>
   );
 }

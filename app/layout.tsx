@@ -4,6 +4,7 @@ import "./globals.css";
 import { site, seo } from "@/content/site";
 import { JsonLd } from "@/components/json-ld";
 import { organization } from "@/lib/schema";
+import { truncateAtWord } from "@/lib/utils";
 
 const ogImage = seo.defaultOgImage ?? "/opengraph.jpg";
 
@@ -32,17 +33,21 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+// Title stays under 60 chars and the description under 155 so SERPs render
+// them without truncation. The full description still feeds schema.org.
+const metaDescription = truncateAtWord(site.description, 155);
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} · Olympia & South Sound Comedy Production`,
+    default: `${site.name} · Olympia Comedy Production`,
     template: `%s · ${site.name}`,
   },
-  description: site.description,
+  description: metaDescription,
   keywords: seo.keywords.length > 0 ? seo.keywords : undefined,
   openGraph: {
     title: site.name,
-    description: site.description,
+    description: metaDescription,
     url: site.url,
     siteName: site.name,
     images: [{ url: ogImage, width: 1200, height: 630 }],
@@ -52,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: site.name,
-    description: site.description,
+    description: metaDescription,
     images: [ogImage],
   },
   icons: {

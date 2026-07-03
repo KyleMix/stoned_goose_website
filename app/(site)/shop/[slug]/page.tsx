@@ -5,7 +5,8 @@ import { products, getProduct } from "@/content/shop";
 import { site } from "@/content/site";
 import { ShopProductDetail } from "@/components/shop-product-detail";
 import { JsonLd } from "@/components/json-ld";
-import { buildBreadcrumbs } from "@/lib/schema";
+import { buildBreadcrumbs, buildProductSchema } from "@/lib/schema";
+import { truncateAtWord } from "@/lib/utils";
 
 type Params = { slug: string };
 
@@ -27,8 +28,8 @@ export async function generateMetadata(props: {
   if (!product)
     return { title: "Not found", robots: { index: false, follow: false } };
   const description =
-    (product.description && product.description.slice(0, 160)) ||
-    `${product.name} from Stoned Goose Productions. ${site.description}`;
+    (product.description && truncateAtWord(product.description, 155)) ||
+    truncateAtWord(`${product.name} from Stoned Goose Productions. ${site.description}`, 155);
   return {
     title: product.name,
     description,
@@ -52,6 +53,7 @@ export default async function ProductPage(props: {
   return (
     <>
       <JsonLd schema={buildBreadcrumbs(`/shop/${product.slug}`, product.name)} />
+      <JsonLd schema={buildProductSchema(product)} />
       <section className="bg-ink py-28 md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <Link
