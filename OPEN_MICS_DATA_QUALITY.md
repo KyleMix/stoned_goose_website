@@ -7,14 +7,10 @@ removes the need for that correction.
 
 ## Summary
 
-- Records scanned: 92
-- Records with at least one issue: 17
-- Errors: 1
-- Warnings: 17
-
-## Missing city (1)
-
-- `ballard-mandarin-2a4c6b08107d-thursday` (Comedy Takeout): Missing city.
+- Records scanned: 90
+- Records with at least one issue: 15
+- Errors: 0
+- Warnings: 15
 
 ## Non-URL signup links (3)
 
@@ -36,8 +32,3 @@ removes the need for that correction.
 - `the-high-dive-portland-monday` (The High Dive): Host slot holds a URL: "https://www.facebook.com/ian.albanese".
 - `the-whit-s-end-seattle-thursday` (The Whit's End): Host slot holds an email: "helenbseattle@gmail.com".
 - `turn-turn-turn-portland-friday` (Turn Turn Turn): Host slot holds an email: "turnopenmic@gmail.com".
-
-## Venue spelling corrected on render (2)
-
-- `8201-launge-tacoma-wednesday` (8201 launge): Venue spelling corrected on render: "8201 launge".
-- `conercopia-comedy-club-chehalis-thursday` (Cornercopia Open Mic): Venue spelling corrected on render: "Conercopia Comedy Club".

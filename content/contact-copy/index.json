@@ -10,8 +10,8 @@
   "findUsLabel": "Find us",
   "form": {
     "submitLabel": "Let's Talk",
-    "successText": "Message sent! We'll get back to you soon.",
-    "errorText": "Something went wrong. Please try again shortly.",
+    "successText": "Message sent. A human reads these. You'll hear back.",
+    "errorText": "That didn't send. Try again, or just email us directly.",
     "nameLabel": "Name",
     "emailLabel": "Email",
     "messageLabel": "Message",

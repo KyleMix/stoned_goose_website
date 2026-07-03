@@ -44,7 +44,8 @@ function assertTrue(cond: boolean, label: string) {
 // Organization: the entity emitted in the root layout, so it is present on the
 // home page (and every page). Assert the identity fields search engines key on.
 const org = plain(organization);
-assertEqual(org["@type"], "Organization", "org: @type");
+// LocalBusiness subclasses Organization: one merged node carries both roles.
+assertEqual(org["@type"], "LocalBusiness", "org: @type");
 assertEqual(
   org["@id"],
   "https://www.stonedgooseproductions.com/#organization",

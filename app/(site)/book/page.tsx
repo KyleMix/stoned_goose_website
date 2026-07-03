@@ -135,11 +135,12 @@ export default function BookPage() {
             eyebrow="For Sponsors"
             title={
               <>
-                Partner with the South Sound&apos;s fastest-growing{" "}
-                <span className="italic text-hazard">comedy</span> platform.
+                Put your name on live{" "}
+                <span className="italic text-hazard">comedy</span> in the South
+                Sound.
               </>
             }
-            subtitle="Sponsor recurring live comedy experiences and get in front of engaged audiences in Olympia, Lacey, Tacoma, and beyond."
+            subtitle="Sponsor recurring live comedy and get in front of real rooms in Olympia, Lacey, Tacoma, and beyond."
           />
 
           <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden border border-bone/15 md:grid-cols-3">

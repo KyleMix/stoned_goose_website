@@ -17,7 +17,7 @@
   },
   {
     "name": "8201 launge",
-    "venue": "8201 launge",
+    "venue": "8201 Lounge",
     "address": "8201 Pacific Ave",
     "city": "Tacoma",
     "region": "WA",
@@ -58,7 +58,7 @@
     "name": "Comedy Takeout",
     "venue": "Ballard Mandarin",
     "address": "5500 8th Ave NW, Seattle, WA 98107",
-    "city": "",
+    "city": "Seattle",
     "region": "WA",
     "lat": 47.6690441,
     "lng": -122.3659858,
@@ -205,7 +205,7 @@
   },
   {
     "name": "Cornercopia Open Mic",
-    "venue": "Conercopia Comedy Club",
+    "venue": "Cornercopia Comedy Club",
     "address": "289 NW Chehalis Ave Chehalis WA",
     "city": "Chehalis",
     "region": "WA",
@@ -793,7 +793,7 @@
     "time": "8pm",
     "host": "",
     "signupUrl": "",
-    "notes": "anything is allowed. Free. Set tbd/",
+    "notes": "Anything is allowed. Free. Set length varies.",
     "id": "lucky-dime-everett-wednesday"
   },
   {
@@ -1036,7 +1036,7 @@
     "time": "7pm",
     "host": "",
     "signupUrl": "https://slotted.co/rickshaw",
-    "notes": "Set Length: 3–4 Minutes\nContact: @rickshawhaha",
+    "notes": "Set Length: 3-4 Minutes\nContact: @rickshawhaha",
     "id": "rickshaw-seattle-friday"
   },
   {

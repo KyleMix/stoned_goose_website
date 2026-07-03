@@ -28,6 +28,10 @@ Autonomous judgment calls made during the 2026-07-03 full-site pass, with one-li
 - Phase 4: Cart operations now surface a visible role=alert error in the drawer instead of only console.error; the Leaflet map renders a text fallback if the runtime fails to load.
 - Phase 4: Added an optional name field to the general quote form.
 
+- Phase 5: Rewrote the contact form success/error strings in the CMS to match the site register ("Message sent. A human reads these. You'll hear back."), reworded the unverifiable "fastest-growing comedy platform" sponsor claim, cleaned the lucky-dime mic note, fixed the "3-4" en dash range, trimmed leading spaces and tracking params from watch video entries, deduplicated shop category assignments.
+- Phase 5: Fixed three open-mic source records the normalization layer was papering over: Ballard Mandarin city set to Seattle (from its own address), "8201 launge" -> "8201 Lounge", "Conercopia" -> "Cornercopia". Quality report now 0 errors, 15 warnings (was 1 error, 17 records).
+- Phase 5: External link crawl could not run from this sandbox: the environment's network policy denies general egress (CONNECT 403 from the gateway for non-allowlisted hosts; 274 of 280 URLs unreachable including google.com). The repo's lychee GitHub workflow already link-checks in CI with full egress; rely on that run.
+
 ## Deferred - needs human review
 
 - **Publishing the /calendar route (pro shows).** A synced, ticketed calendar of 60+ regional pro shows exists behind the underscore-private `app/(site)/_calendar` folder, deliberately unpublished via `lib/navigation.ts`. Publishing it would change site IA and surface scraped third-party content (with known HTML-entity bugs in titles). That is an owner-level product decision, so it stays dark; the entity-decoding bug is noted so titles are clean whenever it ships.
