@@ -423,11 +423,23 @@ Deploy it to your Cloudflare account (one click from its README, or
 `wrangler deploy`). Set these Worker secrets/variables:
 
 - `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` from step 1.
-- `ALLOWED_DOMAINS` = `www.stonedgooseproductions.com` (and `*.pages.dev` if
-  you want to use the preview URL).
+- `ALLOWED_DOMAINS` = `www.stonedgooseproductions.com`
+
+Keep `ALLOWED_DOMAINS` as tight as possible: list exactly the domains that
+serve `/admin`, nothing else. Leaving it unset lets any site on the internet
+bounce logins through your relay. If you also edit from a preview URL, add
+that one hostname explicitly rather than a wildcard; `*.pages.dev` matches
+every Cloudflare Pages site that exists, not just yours.
 
 Copy the deployed Worker URL (e.g. `https://sveltia-cms-auth.<you>.workers.dev`)
 and finish the OAuth App callback URL in step 1 as `<that URL>/callback`.
+The callback must match exactly, scheme included.
+
+The current deployment uses `https://stonedgoosecms.kylewmixon.workers.dev`
+as the relay (committed in `backend.base_url`). After any change to the
+Worker or the OAuth App, verify the loop end to end: open `/admin` in a
+private window, sign in, save a trivial edit, and confirm a `content:`
+prefixed commit lands on `main` and the site redeploys.
 
 ### 3. Point the CMS at the Worker
 
@@ -444,6 +456,36 @@ backend:
 Commit and deploy. Visit `/admin`, click "Sign in with GitHub", and edit.
 Make a trivial change, save, and confirm the commit lands on `main` and the
 site redeploys.
+
+### How a save becomes a deploy
+
+1. The editor commits the changed JSON (or image) to `main`. Commit messages
+   are prefixed `content:` (configured under `backend.commit_messages`), so
+   CMS activity is easy to spot in history.
+2. The push triggers the Cloudflare build (`npm run build`). Prebuild
+   re-validates all content (`npm run content:validate`) and reindexes it
+   (`npm run content:index`), so the new entry is statically generated.
+   If the content is somehow invalid, the build fails and the previous
+   deploy stays live; nothing broken ships.
+3. Separately, the `optimize-images` GitHub workflow recompresses any heavy
+   uploaded image and pushes the lighter file, which triggers one more
+   (final) deploy. Large phone photos therefore appear twice in history:
+   the upload, then the optimized re-encode.
+
+There is no manual step: new shows, pages, and images appear on the live
+site a minute or two after saving.
+
+### Editing locally without auth (developers)
+
+Sveltia has a built-in local mode that skips GitHub login entirely:
+
+1. `npm run dev`
+2. Open `http://localhost:3000/admin/index.html` in a Chromium browser
+   (Chrome, Edge, Brave; the File System Access API it uses is not in
+   Firefox/Safari).
+3. Click **Work with Local Repository** and pick this repo's folder.
+4. Edits write straight to your working tree; commit and push with git as
+   usual. No Worker, no OAuth App, no tokens.
 
 The config maps every editable area to the JSON under `content/`. Notes:
 

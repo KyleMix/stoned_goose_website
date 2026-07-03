@@ -28,6 +28,14 @@ backend:
   # The GitHub OAuth relay (sveltia-cms-auth Worker). No trailing slash.
   # If your deployed Worker URL differs, update this value.
   base_url: https://stonedgoosecms.kylewmixon.workers.dev
+  # Every editor save commits with a "content:" prefix so CMS commits are
+  # easy to tell apart from code commits in the history.
+  commit_messages:
+    create: 'content: create {{collection}} "{{slug}}"'
+    update: 'content: update {{collection}} "{{slug}}"'
+    delete: 'content: delete {{collection}} "{{slug}}"'
+    uploadMedia: 'content: upload {{path}}'
+    deleteMedia: 'content: delete media {{path}}'
 
 site_url: https://www.stonedgooseproductions.com
 
