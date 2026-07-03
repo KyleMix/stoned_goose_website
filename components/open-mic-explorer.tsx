@@ -142,7 +142,7 @@ export function OpenMicExplorer({ mics }: Props) {
                 aria-label="Filter by city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full appearance-none border border-bone/30 bg-ink py-2.5 pl-3 pr-9 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime focus:border-hazard focus:outline-none"
+                className="w-full appearance-none border border-bone/30 bg-ink py-2.5 pl-3 pr-9 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime focus:border-hazard focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hazard"
               >
                 <option value="all">All cities</option>
                 {cityGroups.map((g) => (
@@ -165,7 +165,7 @@ export function OpenMicExplorer({ mics }: Props) {
           </fieldset>
         ) : null}
         <div className="mt-6 flex items-center justify-between border-t border-bone/10 pt-4">
-          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
             {filtered.length} of {mics.length}{" "}
             {mics.length === 1 ? "mic" : "mics"}
           </p>
@@ -182,7 +182,11 @@ export function OpenMicExplorer({ mics }: Props) {
       </aside>
       <div className="md:col-span-8">
         <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+          <p
+            role="status"
+            aria-live="polite"
+            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55"
+          >
             Showing{" "}
             <span className="text-bone">{filtered.length}</span>{" "}
             {filtered.length === 1 ? "mic" : "mics"}
@@ -201,12 +205,20 @@ export function OpenMicExplorer({ mics }: Props) {
             </button>
           ))}
         </div>
+        {/* The map is pointer-driven; the list below is the keyboard and
+            screen reader equivalent. Say so for AT users. */}
+        <p className="sr-only">
+          The map is a visual aid. Every mic shown on the map is also in the
+          list below, which works with a keyboard and screen reader.
+        </p>
         <OpenMicMap
           mics={filtered}
           selectedId={selectedId}
           onSelect={setSelectedId}
         />
         <div className="mt-8">
+          {/* Keeps the h1 -> h3 hierarchy intact: mic rows render as h3. */}
+          <h2 className="sr-only">Open mic listings</h2>
           <OpenMicList
             mics={filtered}
             selectedId={selectedId}

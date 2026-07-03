@@ -58,7 +58,7 @@ export default function ShopPage() {
                 {category}
                 <span className="text-hazard">.</span>
               </h2>
-              <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+              <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
                 {items.length} {items.length === 1 ? "item" : "items"}
               </span>
             </div>

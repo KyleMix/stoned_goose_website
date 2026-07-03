@@ -30,7 +30,7 @@ export function Footer() {
               priority={false}
               className="block h-32 w-auto md:h-40"
             />
-            <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+            <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
               {footerCopy.locality}
             </p>
             <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-[-0.02em] md:text-7xl">
@@ -68,7 +68,7 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+          <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
             <p>© {year} Stoned Goose Productions</p>
             {footerCopy.creditLine ? (
               footerCopy.creditHref ? (
@@ -101,7 +101,7 @@ function FooterColumn({
 }) {
   return (
     <div className="md:col-span-2">
-      <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
+      <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
         {label}
       </p>
       <ul className="mt-4 space-y-2">

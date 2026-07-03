@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 import { primaryNav as nav } from "@/lib/navigation";
@@ -25,6 +25,8 @@ function formatNextShowDate(iso: string | null): string | null {
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handle = () => setScrolled(window.scrollY > 12);
@@ -38,6 +40,29 @@ export function Nav() {
     return () => {
       document.documentElement.style.overflow = "";
     };
+  }, [open]);
+
+  // inert removes the hidden panel's links from the tab order and the
+  // accessibility tree while keeping the clip-path close animation. Set as
+  // a DOM property because React 18 has no boolean inert attribute.
+  useEffect(() => {
+    if (panelRef.current) panelRef.current.inert = !open;
+  }, [open]);
+
+  // Keyboard support for the full-screen mobile panel: Escape closes and
+  // returns focus to the toggle; opening moves focus to the first link.
+  useEffect(() => {
+    if (!open) return;
+    const firstLink = panelRef.current?.querySelector<HTMLElement>("a");
+    firstLink?.focus();
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   return (
@@ -116,11 +141,12 @@ export function Nav() {
         <div className="flex items-center gap-2 md:gap-3">
         <CartButton />
         <button
+          ref={toggleRef}
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center gap-2 border border-bone/25 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime hover:text-slime md:hidden"
+          className="inline-flex min-h-[44px] items-center gap-2 border border-bone/25 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime hover:text-slime md:hidden"
         >
           <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
             <span
@@ -154,6 +180,7 @@ export function Nav() {
           full-screen panel to the header's height. As a sibling it stays
           fixed to the viewport. */}
       <div
+        ref={panelRef}
         className={cn(
           "fixed inset-0 top-16 z-40 origin-top bg-ink transition-[clip-path,opacity] duration-500 md:hidden",
           open
@@ -176,7 +203,7 @@ export function Nav() {
                   <span className="font-display text-2xl uppercase tracking-[-0.02em] text-bone">
                     {item.label}
                   </span>
-                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
+                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </Link>
@@ -207,7 +234,7 @@ export function Nav() {
             >
               Tickets.
             </Link>
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
               {site.contact.email}
             </p>
           </div>

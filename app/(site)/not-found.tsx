@@ -107,7 +107,7 @@ export default function NotFound() {
                 className="group flex items-baseline justify-between gap-4 py-5"
               >
                 <span className="flex items-baseline gap-4">
-                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
+                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                     /0{i + 1}
                   </span>
                   <span className="font-display text-2xl text-bone group-hover:text-slime md:text-3xl">

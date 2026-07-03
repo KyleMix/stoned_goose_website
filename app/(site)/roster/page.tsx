@@ -85,7 +85,7 @@ export default function RosterPage() {
                 key={p.title}
                 className="relative bg-ink p-8 transition-colors hover:bg-bone/[0.025] md:p-10"
               >
-                <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/40">
+                <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
                   /0{i + 1}
                 </span>
                 <h3 className="heading-display mt-3 text-3xl text-bone md:text-4xl">
@@ -109,7 +109,7 @@ export default function RosterPage() {
                 The <span className="italic">Crew</span>
               </>
             }
-            className="[&_h2]:text-ink [&_p]:text-ink/70 [&_span]:text-ink/55"
+            tone="light"
           />
 
           <ul className="mt-16 divide-y divide-ink/15">
@@ -118,7 +118,7 @@ export default function RosterPage() {
                 key={m.slug}
                 className="group grid grid-cols-12 items-center gap-6 py-8 md:gap-10 md:py-12"
               >
-                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-ink/45 md:col-span-1">
+                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-ink/60 md:col-span-1">
                   {m.index}
                 </span>
                 <div className="col-span-10 md:col-span-3">
@@ -144,7 +144,7 @@ export default function RosterPage() {
                   <h3 className="heading-display text-[clamp(2.4rem,8vw,5.5rem)] text-ink">
                     {m.name}
                   </h3>
-                  <p className="mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/55">
+                  <p className="mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/70">
                     {m.role}
                   </p>
                   {m.bio ? (

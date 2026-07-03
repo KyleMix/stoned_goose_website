@@ -93,7 +93,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
             unoptimized
           />
         ) : (
-          <span className="absolute inset-0 flex items-center justify-center font-body text-xs uppercase tracking-[0.18em] text-bone/45">
+          <span className="absolute inset-0 flex items-center justify-center font-body text-xs uppercase tracking-[0.18em] text-bone/55">
             {labels[item.kind]}
           </span>
         )}
@@ -110,7 +110,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
       <div className="p-5 md:p-6">
         <p className="flex flex-wrap items-baseline gap-x-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
           <span>{labels[item.kind]}</span>
-          <span className="font-mono text-[10px] text-bone/40">
+          <span className="font-mono text-[10px] text-bone/55">
             {relativeAge(item.date)}
           </span>
         </p>

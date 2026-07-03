@@ -15,6 +15,11 @@ export function CartDrawer() {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-[60] bg-ink/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
         <Dialog.Content className="fixed right-0 top-0 z-[60] flex h-full w-[min(420px,92vw)] flex-col border-l border-bone/15 bg-ink shadow-2xl">
+          {/* Announce in-flight cart updates to screen readers; the buttons
+              only communicate busy state visually via disabled styling. */}
+          <span role="status" aria-live="polite" className="sr-only">
+            {busy ? "Updating cart." : ""}
+          </span>
           <div className="flex items-center justify-between border-b border-bone/15 px-5 py-4">
             <Dialog.Title className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
               Your cart
@@ -97,7 +102,7 @@ export function CartDrawer() {
                           type="button"
                           disabled={busy}
                           onClick={() => removeItem(v.id)}
-                          className="font-body text-[10px] uppercase tracking-[0.18em] text-bone/45 hover:text-slime disabled:opacity-40"
+                          className="font-body text-[10px] uppercase tracking-[0.18em] text-bone/55 hover:text-slime disabled:opacity-40"
                         >
                           Remove
                         </button>
@@ -127,7 +132,7 @@ export function CartDrawer() {
               >
                 Checkout on Fourthwall ↗
               </button>
-              <p className="mt-2 text-center font-body text-[10px] uppercase tracking-[0.18em] text-bone/40">
+              <p className="mt-2 text-center font-body text-[10px] uppercase tracking-[0.18em] text-bone/55">
                 Secure payment + shipping via Fourthwall
               </p>
             </div>

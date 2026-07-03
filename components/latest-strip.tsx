@@ -121,7 +121,7 @@ function PosterContent({
           unoptimized
         />
       ) : (
-        <span className="absolute inset-0 flex items-center justify-center font-body text-[10px] uppercase tracking-[0.18em] text-bone/45">
+        <span className="absolute inset-0 flex items-center justify-center font-body text-[10px] uppercase tracking-[0.18em] text-bone/55">
           {kind}
         </span>
       )}

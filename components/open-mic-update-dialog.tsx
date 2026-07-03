@@ -4,7 +4,7 @@ import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useFormContext } from "react-hook-form";
 import { ContactForm } from "@/components/contact-form";
-import { TextField, TextAreaField, FieldLabel } from "@/components/form-field";
+import { TextField, TextAreaField } from "@/components/form-field";
 import { formatFrequency, type OpenMic } from "@/content/open-mics";
 
 const FIELD_OPTIONS: Array<{
@@ -146,9 +146,10 @@ function FieldGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <FieldLabel htmlFor="field" required>
+      <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
         What needs updating?
-      </FieldLabel>
+        <span aria-hidden className="ml-1 text-hazard">*</span>
+      </legend>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {FIELD_OPTIONS.map((opt) => (
           <label

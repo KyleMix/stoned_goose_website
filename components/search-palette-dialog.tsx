@@ -125,12 +125,25 @@ export function SearchPaletteDialog({ open, onOpenChange }: Props) {
                 value={query}
                 onValueChange={setQuery}
                 placeholder="Search shows, comics, services..."
-                className="flex-1 bg-transparent font-body text-base text-bone placeholder:text-bone/40 focus:outline-none"
+                className="flex-1 bg-transparent font-body text-base text-bone placeholder:text-bone/55 focus:outline-none"
                 autoFocus
               />
-              <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-bone/45 md:inline">
+              <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-bone/55 md:inline">
                 ESC
               </span>
+            </div>
+            {/* Live region announces search progress and result counts to
+                screen readers as the query changes. */}
+            <div role="status" aria-live="polite" className="sr-only">
+              {status === "loading"
+                ? "Searching."
+                : status === "empty"
+                  ? "No results."
+                  : status === "error"
+                    ? "Search unavailable."
+                    : hits.length > 0
+                      ? `${hits.length} results.`
+                      : ""}
             </div>
             <Command.List className="max-h-[60svh] overflow-y-auto py-2">
               {status === "loading" && (
@@ -170,14 +183,14 @@ export function SearchPaletteDialog({ open, onOpenChange }: Props) {
                     <p className="mt-1 line-clamp-2 font-body text-xs text-bone/65">
                       {h.excerpt}
                     </p>
-                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/40">
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/55">
                       {prettyUrl(h.url)}
                     </p>
                   </Link>
                 </Command.Item>
               ))}
             </Command.List>
-            <p className="border-t border-bone/15 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/45">
+            <p className="border-t border-bone/15 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/55">
               ⌘K to toggle. Index rebuilds on deploy.
             </p>
           </Command>

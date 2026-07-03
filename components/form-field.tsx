@@ -5,8 +5,10 @@ import { useFormContext } from "react-hook-form";
 
 // min-h-[48px] guarantees a 48px tap target on mobile per WCAG / Apple HIG.
 // text-base prevents iOS Safari's auto-zoom on focus (16px+ disables it).
+// Keyboard focus keeps a visible hazard outline (the border-color shift
+// alone is too subtle to satisfy WCAG focus visibility).
 const baseInputClass =
-  "block w-full min-h-[48px] bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0";
+  "block w-full min-h-[48px] bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/50 focus:border-hazard focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-hazard";
 
 const errorInputClass = "border-hazard";
 

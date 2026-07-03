@@ -65,7 +65,7 @@ export function OpenMicList({ mics, selectedId, onSelect }: Props) {
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 transition-colors hover:bg-bone/[0.025]">
             <span className="flex items-baseline gap-3">
               <span className="font-display text-lg text-bone">{city}</span>
-              <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+              <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
                 {cityMics.length} {cityMics.length === 1 ? "mic" : "mics"}
               </span>
             </span>
@@ -125,11 +125,11 @@ function MicRow({
             <span className="inline-flex items-center border border-bone/20 px-1.5 py-0.5 font-body text-[10px] uppercase tracking-[0.18em] text-bone/60">
               {freq.label}
               {freq.detail ? (
-                <span className="ml-1 text-bone/45">{freq.detail}</span>
+                <span className="ml-1 text-bone/55">{freq.detail}</span>
               ) : null}
             </span>
             {m.timeSignup ? (
-              <span className="font-body text-[10px] uppercase tracking-[0.18em] text-bone/45">
+              <span className="font-body text-[10px] uppercase tracking-[0.18em] text-bone/55">
                 Sign-up {m.timeSignup}
               </span>
             ) : null}
@@ -156,7 +156,7 @@ function MicRow({
             </p>
           ) : null}
           {m.signupDisplay.kind === "note" ? (
-            <p className="mt-1 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+            <p className="mt-1 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
               Sign-up. {m.signupDisplay.text}
             </p>
           ) : null}
@@ -189,7 +189,7 @@ function MicRow({
               Signup ↗
             </a>
           ) : m.signupDisplay.kind === "fallback" ? (
-            <span className="inline-flex h-10 items-center font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/45">
+            <span className="inline-flex h-10 items-center font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
               {SIGNUP_FALLBACK_LABEL}
             </span>
           ) : null}

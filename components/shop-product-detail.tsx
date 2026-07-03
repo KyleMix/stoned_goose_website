@@ -304,7 +304,7 @@ function Layout({
           </div>
         ) : null}
 
-        <p className="mt-10 font-body text-[10px] uppercase tracking-[0.18em] text-bone/40">
+        <p className="mt-10 font-body text-[10px] uppercase tracking-[0.18em] text-bone/55">
           Checkout, sizing, and shipping handled by Fourthwall.
         </p>
       </div>

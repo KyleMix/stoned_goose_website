@@ -15,7 +15,7 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/55">
+            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/70">
               The Roster
             </p>
             <h2

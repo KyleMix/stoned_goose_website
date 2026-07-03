@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useRef, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { site } from "@/content/site";
 import { track } from "@/lib/analytics";
 
@@ -16,7 +16,6 @@ type Status = "idle" | "loading" | "success" | "error";
 // gets every signup in their inbox. Honeypot, optional Plausible event.
 export function MailingListCapture({ page }: Props) {
   const [status, setStatus] = useState<Status>("idle");
-  const referrerRef = useRef<HTMLInputElement>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -116,7 +115,7 @@ export function MailingListCapture({ page }: Props) {
                       autoComplete="email"
                       inputMode="email"
                       placeholder="you@email.com"
-                      className="mt-2 block min-h-[48px] w-full bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/35 focus:border-hazard focus:outline-none focus:ring-0"
+                      className="mt-2 block min-h-[48px] w-full bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/50 focus:border-hazard focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-hazard"
                     />
                   </label>
                   <button
@@ -138,13 +137,19 @@ export function MailingListCapture({ page }: Props) {
                   aria-hidden="true"
                   className="absolute left-[-9999px] h-0 w-0 opacity-0"
                 />
-                <input ref={referrerRef} type="hidden" name="referrer" defaultValue="" />
                 <input type="hidden" name="page" value={page} />
-                <p className="mt-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/45">
-                  {status === "error"
-                    ? `Something went wrong. Email ${site.contact.email} directly.`
-                    : "No spam. Unsubscribe whenever."}
-                </p>
+                {status === "error" ? (
+                  <p
+                    role="alert"
+                    className="mt-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/70"
+                  >
+                    Something went wrong. Email {site.contact.email} directly.
+                  </p>
+                ) : (
+                  <p className="mt-3 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                    No spam. Unsubscribe whenever.
+                  </p>
+                )}
               </>
             )}
           </form>

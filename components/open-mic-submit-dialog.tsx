@@ -4,7 +4,7 @@ import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useFormContext } from "react-hook-form";
 import { ContactForm } from "@/components/contact-form";
-import { TextField, TextAreaField, FieldLabel } from "@/components/form-field";
+import { TextField, TextAreaField } from "@/components/form-field";
 
 const DAY_OPTIONS: Array<{ value: string; label: string }> = [
   { value: "Monday", label: "Monday" },
@@ -164,9 +164,10 @@ function RegionGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <FieldLabel htmlFor="region" required>
+      <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
         Region
-      </FieldLabel>
+        <span aria-hidden className="ml-1 text-hazard">*</span>
+      </legend>
       <div className="grid grid-cols-2 gap-2">
         {REGION_OPTIONS.map((opt) => (
           <label
@@ -195,9 +196,10 @@ function DayGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <FieldLabel htmlFor="day" required>
+      <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
         Day of week
-      </FieldLabel>
+        <span aria-hidden className="ml-1 text-hazard">*</span>
+      </legend>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {DAY_OPTIONS.map((opt) => (
           <label
