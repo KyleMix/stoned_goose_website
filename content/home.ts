@@ -25,28 +25,33 @@ type HomeShape = {
 };
 
 const raw = homeData as unknown as {
-  hero: HomeShape["hero"];
-  marqueeWords: string[];
-  bumpers: Record<"clarification" | "aside" | "outro", BumperVariant[]>;
-  // Current shape: { show, eyebrow, heading, body }. Legacy shape:
-  // { discriminant, value }. Both resolve to the mission object or null.
-  mission?:
-    | { show?: boolean; eyebrow?: string; heading?: string; body?: string }
-    | { discriminant: true; value: { eyebrow: string; heading: string; body: string } }
-    | { discriminant: false; value: null };
+  hero: Omit<HomeShape["hero"], "tertiary"> & {
+    tertiary?: { label: string; href: string }[] | null;
+  };
+  marqueeWords?: string[] | null;
+  bumpers?: Partial<
+    Record<"clarification" | "aside" | "outro", BumperVariant[] | null>
+  > | null;
+  mission?: { show?: boolean; eyebrow?: string; heading?: string; body?: string } | null;
   topSections?: unknown;
   bottomSections?: unknown;
 };
 
-export const hero = raw.hero;
-export const marqueeWords = raw.marqueeWords;
-export const bumpers = raw.bumpers;
+// Optional CMS lists arrive as null when an editor clears them; guard every
+// array so a legal save in /admin can never crash the home page.
+export const hero: HomeShape["hero"] = {
+  ...raw.hero,
+  tertiary: raw.hero.tertiary ?? [],
+};
+export const marqueeWords: string[] = raw.marqueeWords ?? [];
+export const bumpers: HomeShape["bumpers"] = {
+  clarification: raw.bumpers?.clarification ?? [],
+  aside: raw.bumpers?.aside ?? [],
+  outro: raw.bumpers?.outro ?? [],
+};
 
 function resolveMission(m: typeof raw.mission): HomeShape["mission"] {
   if (!m || typeof m !== "object") return null;
-  if ("discriminant" in m) {
-    return m.discriminant === true ? m.value : null;
-  }
   if (m.show !== true) return null;
   return {
     eyebrow: m.eyebrow ?? "",

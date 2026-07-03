@@ -67,6 +67,7 @@
     "host": "Big Time Mel, Noah O Nguyen",
     "signupUrl": "",
     "notes": "Sign-up: 8:30pm",
+    "frequency": "weekly",
     "id": "ballard-mandarin-2a4c6b08107d-thursday"
   },
   {
@@ -312,6 +313,7 @@
     "host": "Donald Robert",
     "signupUrl": "",
     "notes": "5 minute sets, sign-up in person",
+    "frequency": "weekly",
     "id": "deffcf2552f6-woodinville-thursday"
   },
   {
@@ -416,6 +418,7 @@
     "host": "Brandon White",
     "signupUrl": "",
     "notes": "Sign-up 8pm Only Comedy. Free. Set 5/. Wheelchair accessible. Parking. on site",
+    "frequency": "weekly",
     "id": "flight-path-burien-wednesday"
   },
   {
@@ -941,6 +944,7 @@
     "host": "Derek Anthony",
     "signupUrl": "",
     "notes": "In  Person  Sign Ups  Sign-up/Start: 7pm/8pm",
+    "frequency": "weekly",
     "id": "otter-on-the-rocks-seattle-thursday"
   },
   {

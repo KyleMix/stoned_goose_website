@@ -10,9 +10,13 @@
     <!--
       Sveltia CMS. A git-based visual editor that reads public/admin/config.yml,
       authenticates with GitHub, and commits content edits straight to the repo.
-      Cloudflare Pages then rebuilds and publishes automatically.
+      Cloudflare then rebuilds and publishes automatically.
       Docs: https://github.com/sveltia/sveltia-cms
+
+      The version is pinned so the editor only changes when this file changes.
+      To upgrade: check the Sveltia release notes, bump the version below, and
+      test a save at /admin before trusting it.
     -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script src="https://unpkg.com/@sveltia/cms@0.170.0/dist/sveltia-cms.js"></script>
   </body>
 </html>

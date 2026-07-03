@@ -45,3 +45,21 @@ Autonomous judgment calls made during the 2026-07-03 full-site pass, with one-li
 - **Per-mic "last verified" dates in the Open Mic Explorer.** Requires a freshness field and a verification workflow (tracked in OPEN_MICS_DATA_QUALITY.md); displaying a made-up date would violate the no-invented-content rule.
 - **/book/collaboration copy.** The live page has TODO placeholders filtered at render and a one-line FAQ. Needs real copy from the owner; marking it draft would pull a live URL.
 - **ComedyEvent `performer` and show time zones.** Adding performers needs a lineup field in the show CMS model (schema change), and asserting correct startDate offsets needs verified Pacific-offset timestamps once real shows exist. Both are data-model decisions for the owner; `lib/schema.ts` documents the mapping to add.
+
+---
+
+# CMS editor pass (Sveltia), 2026-07-03
+
+Judgment calls made during the /admin editor hardening pass. Findings and
+statuses live in CMS_AUDIT.md; this is the why.
+
+## Decisions
+
+- Phase 1: Guarded the shims (site.ts, home.ts, shows.ts, members.ts, comedians.ts, sponsorships.ts) instead of marking every rendered field required in config. Rationale: a field an editor is allowed to clear must never crash the build; required flags stay reserved for fields that are editorially mandatory (show name and start, open mic venue and city).
+- Phase 1: Pinned Sveltia CMS to 0.170.0 in public/admin/index.html (was floating unpkg latest). A CMS that changes under the editor with no commit in this repo is a support hazard. Bump procedure documented inline.
+- Phase 1: Shows now slug from name plus start date ({{fields.name}}-{{fields.start | date('YYYY-MM-DD')}}) and store as <slug>/index.json like every other collection. Safe because content/shows had zero entries. start became required: the slug needs it, and a dateless show cannot sort into the upcoming list. Sveltia supports these Static-CMS-style slug transformations.
+- Phase 1: Made open_mics venue and city required. All 90 real entries already have both, and the slug template builds filenames from them.
+- Phase 1: Normalized the 4 open-mic entries missing "frequency" to "weekly" via migration script, matching the fallback the shim was already applying. Files and config now agree without silent correction.
+- Phase 1: Removed the dead Keystatic-era data-shape branches (discriminant/value handling in lib/blocks.ts, content/shows.ts presale, content/home.ts mission) after verifying zero content files contain a "discriminant" key.
+- Phase 1: Kept sponsorships.stats and site.podcasts in the config even though nothing renders them. Sveltia rewrites the whole file on save, so deleting the config fields would silently drop that stored data on the next save. Both are owner-marked future slots.
+- Phase 1: Kept ADMIN_PLAN.md; it is self-marked as historical and documents why Sveltia replaced the Keystatic plan.

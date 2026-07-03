@@ -127,15 +127,15 @@ const raw = siteData as unknown as {
     region: string;
   };
   social: SiteShape["social"];
-  podcasts: {
+  podcasts?: {
     spotifyShowId?: string;
     applePodcastsId?: string;
     rssUrl?: string;
-  };
+  } | null;
   booking?: {
     calLink?: string;
-  };
-  serviceAreas: string[];
+  } | null;
+  serviceAreas?: string[] | null;
   press?: PressItem[];
   nav?: NavLink[];
   footer?: {
@@ -150,32 +150,35 @@ const raw = siteData as unknown as {
   };
 };
 
+// Optional CMS fields arrive as null (or are absent) when an editor clears
+// them. Every optional object/list gets a guard here so a legal save in
+// /admin can never crash the build at import time.
 export const site: SiteShape = {
   name: raw.name,
   shortName: raw.shortName,
-  tagline: raw.tagline,
-  url: raw.url,
+  tagline: raw.tagline ?? "",
+  url: raw.url ?? "",
   description: raw.description,
   contact: {
     email: raw.contact.email,
-    phone: raw.contact.phone,
-    phoneTel: raw.contact.phoneTel,
+    phone: raw.contact.phone ?? "",
+    phoneTel: raw.contact.phoneTel ?? "",
     whatsapp: raw.contact.whatsapp ? raw.contact.whatsapp : null,
     smsEnabled: raw.contact.smsEnabled ?? true,
-    address: raw.contact.address,
-    locality: raw.contact.locality,
-    region: raw.contact.region,
+    address: raw.contact.address ?? "",
+    locality: raw.contact.locality ?? "",
+    region: raw.contact.region ?? "",
   },
   social: raw.social,
   podcasts: {
-    spotifyShowId: raw.podcasts.spotifyShowId ? raw.podcasts.spotifyShowId : null,
-    applePodcastsId: raw.podcasts.applePodcastsId ? raw.podcasts.applePodcastsId : null,
-    rssUrl: raw.podcasts.rssUrl ? raw.podcasts.rssUrl : null,
+    spotifyShowId: raw.podcasts?.spotifyShowId ? raw.podcasts.spotifyShowId : null,
+    applePodcastsId: raw.podcasts?.applePodcastsId ? raw.podcasts.applePodcastsId : null,
+    rssUrl: raw.podcasts?.rssUrl ? raw.podcasts.rssUrl : null,
   },
   booking: {
     calLink: raw.booking?.calLink ? raw.booking.calLink : null,
   },
-  serviceAreas: raw.serviceAreas,
+  serviceAreas: raw.serviceAreas ?? [],
 };
 
 export const press: PressItem[] = raw.press ?? [];

@@ -45,23 +45,23 @@ const SHOW_IMAGE_DIR = "/images/shows/";
 
 type ShowsCopyShape = {
   heading: string;
-  subhead: string;
-  emptyState: string;
-  featuredSpecial: {
-    title: string;
-    subtitle: string;
-    blurb: string;
-    videoUrl: string;
-    poster: string;
-    posterAlt?: string;
-    comedianHandle: string;
-  };
-  // Current shape: { active, code, expiresAt, venueName }. Legacy shape:
-  // { discriminant, value }. Both resolve to a Presale or null.
-  presale?:
-    | { active?: boolean; code?: string; expiresAt?: string; venueName?: string }
-    | { discriminant: true; value: Presale }
-    | { discriminant: false; value: null };
+  subhead?: string | null;
+  emptyState?: string | null;
+  featuredSpecial?: {
+    title?: string | null;
+    subtitle?: string | null;
+    blurb?: string | null;
+    videoUrl?: string | null;
+    poster?: string | null;
+    posterAlt?: string | null;
+    comedianHandle?: string | null;
+  } | null;
+  presale?: {
+    active?: boolean;
+    code?: string;
+    expiresAt?: string;
+    venueName?: string;
+  } | null;
   topSections?: unknown;
   bottomSections?: unknown;
 };
@@ -73,33 +73,37 @@ export const showsBottomSections: Block[] = normaliseBlocks(copy.bottomSections)
 
 export const showsCopy = {
   heading: copy.heading,
-  subhead: copy.subhead,
-  emptyState: copy.emptyState,
+  subhead: copy.subhead ?? "",
+  emptyState: copy.emptyState ?? "",
 };
 
+// Every field is optional in the CMS; a cleared field arrives as null and
+// must not crash /shows at import time.
+const special = copy.featuredSpecial ?? {};
+const specialTitle = special.title ?? "";
+const specialPoster = special.poster ?? "";
+
 export const featuredSpecial = {
-  title: copy.featuredSpecial.title,
-  subtitle: copy.featuredSpecial.subtitle,
-  blurb: copy.featuredSpecial.blurb,
-  videoUrl: copy.featuredSpecial.videoUrl ? copy.featuredSpecial.videoUrl : null,
+  title: specialTitle,
+  subtitle: special.subtitle ?? "",
+  blurb: special.blurb ?? "",
+  videoUrl: special.videoUrl ? special.videoUrl : null,
   // Accept either an absolute path (/images/...) as written by the CMS, or a
   // bare filename, which gets the comedians directory prepended. Prepending
   // unconditionally would double the path for absolute values.
-  poster: copy.featuredSpecial.poster.startsWith("/")
-    ? copy.featuredSpecial.poster
-    : POSTER_DIR + copy.featuredSpecial.poster,
+  poster:
+    specialPoster.length === 0 || specialPoster.startsWith("/")
+      ? specialPoster
+      : POSTER_DIR + specialPoster,
   posterAlt:
-    copy.featuredSpecial.posterAlt && copy.featuredSpecial.posterAlt.length > 0
-      ? copy.featuredSpecial.posterAlt
-      : `${copy.featuredSpecial.title} poster`,
-  comedianHandle: copy.featuredSpecial.comedianHandle,
+    special.posterAlt && special.posterAlt.length > 0
+      ? special.posterAlt
+      : `${specialTitle} poster`,
+  comedianHandle: special.comedianHandle ?? "",
 };
 
 function resolvePresale(p: ShowsCopyShape["presale"]): Presale | null {
   if (!p || typeof p !== "object") return null;
-  if ("discriminant" in p) {
-    return p.discriminant === true ? p.value : null;
-  }
   if (p.active !== true) return null;
   return {
     code: p.code ?? "",

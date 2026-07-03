@@ -1,10 +1,7 @@
 // Shared types + normalisation for the page-block system.
 //
-// Two on-disk shapes are accepted so the data survives the CMS migration:
-//   - Sveltia / Decap variable-type lists write each block flat, with the
-//     type under a `type` key: { type: "hero", headline: "...", ... }.
-//   - The previous editor wrote each block as { discriminant: "<type>",
-//     value: {...} }. Older entries still parse.
+// On-disk shape: Sveltia / Decap variable-type lists write each block flat,
+// with the type under a `type` key: { type: "hero", headline: "...", ... }.
 // The shim layer reads the JSON, normalises optional fields, and returns a
 // typed Block union for the section renderer to switch over.
 
@@ -79,12 +76,10 @@ export type Block =
   | ServicesOverviewBlock
   | ShopStripBlock;
 
-// Raw shapes accepted. Flat: { type, ...fields } (Sveltia/Decap). Legacy:
-// { discriminant, value } where value is the per-type field object.
+// Raw shape accepted: { type, ...fields } as written by Sveltia's
+// variable-type lists.
 type RawBlock = {
   type?: string;
-  discriminant?: string;
-  value?: unknown;
   [key: string]: unknown;
 };
 
@@ -101,19 +96,9 @@ export function normaliseBlocks(raw: unknown): Block[] {
   const out: Block[] = [];
   for (const item of raw as RawBlock[]) {
     if (!item || typeof item !== "object") continue;
-    // Flat shape keeps fields as siblings of `type`; legacy shape nests them
-    // under `value` with the type in `discriminant`.
-    let d: string | undefined;
-    let v: Record<string, unknown>;
-    if (typeof item.type === "string") {
-      d = item.type;
-      v = item as Record<string, unknown>;
-    } else if (typeof item.discriminant === "string") {
-      d = item.discriminant;
-      v = (item.value ?? {}) as Record<string, unknown>;
-    } else {
-      continue;
-    }
+    if (typeof item.type !== "string") continue;
+    const d = item.type;
+    const v = item as Record<string, unknown>;
     switch (d) {
       case "hero":
         out.push({
@@ -188,7 +173,7 @@ export function normaliseBlocks(raw: unknown): Block[] {
         out.push({ type: "shopStrip", limit: n(v.limit, 3) });
         break;
       default:
-        // Unknown discriminant. Likely a schema change ahead of a deploy.
+        // Unknown block type. Likely a schema change ahead of a deploy.
         // Skip silently so the page still renders.
         break;
     }

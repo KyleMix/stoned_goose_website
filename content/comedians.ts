@@ -25,15 +25,20 @@ export type Comedian = {
 };
 
 type RosterCopyShape = {
-  comedians: {
-    subhead: string;
-    kicker: string;
-  };
+  comedians?: {
+    subhead?: string;
+    kicker?: string;
+  } | null;
 };
 
 const copy = rosterCopyData as unknown as RosterCopyShape;
 
-export const comediansCopy = copy.comedians;
+// Optional CMS fields arrive as null when cleared in /admin; guard them so
+// a legal save can never crash /roster at import time.
+export const comediansCopy = {
+  subhead: copy.comedians?.subhead ?? "",
+  kicker: copy.comedians?.kicker ?? "",
+};
 
 const PUBLIC_DIR = "/images/comedians/";
 

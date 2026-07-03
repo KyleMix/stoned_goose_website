@@ -624,15 +624,16 @@ collections:
     label: Shows (manual entries)
     label_singular: Show
     folder: content/shows
+    path: '{{slug}}/index'
     extension: json
     format: json
     identifier_field: name
-    slug: '{{fields.name}}'
+    slug: "{{fields.name}}-{{fields.start | date('YYYY-MM-DD')}}"
     create: true
     summary: '{{fields.name}} · {{fields.status}}'
     fields:
       - { name: name, label: Name, widget: string }
-      - { name: start, label: Start, widget: datetime, required: false }
+      - { name: start, label: Start, widget: datetime }
       - { name: end, label: End, widget: datetime, required: false }
       - { name: url, label: Event page URL, widget: string, required: false }
       - { name: ticketUrl, label: Ticket URL, widget: string, required: false }
@@ -714,9 +715,9 @@ collections:
     summary: '{{fields.name}} ({{fields.city}}, {{fields.day}})'
     fields:
       - { name: name, label: Display name, widget: string }
-      - { name: venue, label: Venue, widget: string, required: false }
+      - { name: venue, label: Venue, widget: string }
       - { name: address, label: Address, widget: string, required: false }
-      - { name: city, label: City, widget: string, required: false }
+      - { name: city, label: City, widget: string }
       - { name: region, label: Region, widget: select, default: WA, options: [{ label: Washington, value: WA }, { label: Oregon, value: OR }] }
       - { name: lat, label: Latitude, widget: number, value_type: float, required: false }
       - { name: lng, label: Longitude, widget: number, value_type: float, required: false }

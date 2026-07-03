@@ -20,21 +20,28 @@ export type Member = {
 };
 
 type RosterCopyShape = {
-  about: {
-    heading: string;
-    subhead: string;
-    crewHeading: string;
-    crewSubhead: string;
-  };
-  pillars: { title: string; body: string }[];
+  about?: {
+    heading?: string;
+    subhead?: string;
+    crewHeading?: string;
+    crewSubhead?: string;
+  } | null;
+  pillars?: { title: string; body: string }[] | null;
   topSections?: unknown;
   bottomSections?: unknown;
 };
 
 const copy = rosterCopyData as unknown as RosterCopyShape;
 
-export const aboutCopy = copy.about;
-export const pillars = copy.pillars;
+// Optional CMS fields arrive as null when cleared in /admin; guard them so
+// a legal save can never crash /roster at import time.
+export const aboutCopy = {
+  heading: copy.about?.heading ?? "",
+  subhead: copy.about?.subhead ?? "",
+  crewHeading: copy.about?.crewHeading ?? "",
+  crewSubhead: copy.about?.crewSubhead ?? "",
+};
+export const pillars = copy.pillars ?? [];
 export const rosterTopSections: Block[] = normaliseBlocks(copy.topSections);
 export const rosterBottomSections: Block[] = normaliseBlocks(copy.bottomSections);
 
