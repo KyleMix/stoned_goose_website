@@ -16,9 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default function ShopPage() {
-  // Hide imageless products until owner pastes the Fourthwall image URLs.
-  // Single-letter placeholder cards alongside photographed cards read inconsistent.
-  const visibleProducts = products.filter((p) => p.image);
+  // Photographed products lead each category; imageless ones render a
+  // typographic card so every SKU stays shoppable while the owner pastes
+  // Fourthwall image URLs in over time.
+  const visibleProducts = [...products].sort(
+    (a, b) => (b.image ? 1 : 0) - (a.image ? 1 : 0),
+  );
 
   return (
     <>

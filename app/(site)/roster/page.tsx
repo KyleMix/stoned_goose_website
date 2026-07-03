@@ -279,6 +279,23 @@ export default function RosterPage() {
               </li>
             ))}
           </ul>
+          <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-bone/15 pt-8">
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+              Catch them live
+            </p>
+            <Link
+              href="/shows"
+              className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+            >
+              See upcoming shows ↗
+            </Link>
+            <Link
+              href="/watch"
+              className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+            >
+              Or watch the tape ↗
+            </Link>
+          </div>
         </div>
       </section>
 

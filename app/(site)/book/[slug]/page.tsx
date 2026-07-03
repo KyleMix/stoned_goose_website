@@ -54,8 +54,10 @@ export default async function ServiceDetailPage(props: {
   const svc = services.find((s) => s.slug === slug);
   if (!svc) notFound();
 
-  const idx = services.findIndex((s) => s.slug === slug);
-  const next = services[(idx + 1) % services.length];
+  // Next-service footer nav skips drafts so it never routes to a stub.
+  const live = services.filter((s) => !s.draft || s.slug === svc.slug);
+  const liveIdx = live.findIndex((s) => s.slug === svc.slug);
+  const next = live[(liveIdx + 1) % live.length];
 
   const serviceJsonLd: Service = {
     "@type": "Service",

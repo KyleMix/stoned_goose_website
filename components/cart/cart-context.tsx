@@ -30,6 +30,8 @@ type CartContextValue = {
   open: boolean;
   busy: boolean;
   enabled: boolean;
+  /** Human-readable message when the last cart operation failed. */
+  error: string | null;
   openCart: () => void;
   closeCart: () => void;
   addItem: (variantId: string, quantity?: number) => Promise<void>;
@@ -44,6 +46,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<Cart | null>(null);
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const enabled = cartEnabled();
   const cartIdRef = useRef<string | null>(null);
 
@@ -80,6 +83,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     async (variantId: string, quantity = 1) => {
       if (!enabled) return;
       setBusy(true);
+      setError(null);
       try {
         const id = await ensureCartId();
         const next = await addToCart(id, variantId, quantity);
@@ -88,6 +92,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         track("Cart Add", { variant: variantId });
       } catch (err) {
         console.error("[cart] add failed", err);
+        setError("Could not add that. Try again, or buy it on Fourthwall.");
+        setOpen(true);
       } finally {
         setBusy(false);
       }
@@ -99,10 +105,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const id = cartIdRef.current;
     if (!id) return;
     setBusy(true);
+    setError(null);
     try {
       setCart(await removeFromCart(id, variantId));
     } catch (err) {
       console.error("[cart] remove failed", err);
+      setError("Could not update the cart. Try again in a second.");
     } finally {
       setBusy(false);
     }
@@ -113,6 +121,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const id = cartIdRef.current;
       if (!id) return;
       setBusy(true);
+      setError(null);
       try {
         const next =
           quantity <= 0
@@ -121,6 +130,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setCart(next);
       } catch (err) {
         console.error("[cart] update failed", err);
+        setError("Could not update the cart. Try again in a second.");
       } finally {
         setBusy(false);
       }
@@ -142,6 +152,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       open,
       busy,
       enabled,
+      error,
       openCart: () => setOpen(true),
       closeCart: () => setOpen(false),
       addItem,
@@ -149,7 +160,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       setQuantity,
       checkout,
     }),
-    [cart, open, busy, enabled, addItem, removeItem, setQuantity, checkout],
+    [cart, open, busy, enabled, error, addItem, removeItem, setQuantity, checkout],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

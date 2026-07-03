@@ -3,10 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { hero } from "@/content/home";
+import { upcomingShows } from "@/content/shows";
 import { track } from "@/lib/analytics";
 import { TextEffect } from "@/components/text-effect";
 
+function formatShowDate(iso: string | null): string | null {
+  if (!iso) return null;
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    }).format(new Date(iso));
+  } catch {
+    return null;
+  }
+}
+
 export function Hero() {
+  // The next real show gets a ticket strip above the fold. Renders nothing
+  // while the calendar is empty, lights up the moment a show is entered.
+  const next = upcomingShows[0];
+  const nextDate = next ? formatShowDate(next.start) : null;
+  const nextVenue = next ? next.venue?.name ?? next.venue?.city ?? null : null;
   return (
     <section
       aria-label="Hero"
@@ -92,6 +111,27 @@ export function Hero() {
             </Link>
           ))}
         </div>
+
+        {next ? (
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t-2 border-hazard/60 pt-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-hazard">
+              Next on stage
+            </p>
+            <p className="font-body text-sm text-bone md:text-base">
+              {[nextDate, next.name, nextVenue].filter(Boolean).join(". ")}
+            </p>
+            <a
+              href={next.ticketUrl ?? "/shows"}
+              {...(next.ticketUrl
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              onClick={() => track("CTA Click", { cta: "hero-next-show" })}
+              className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime"
+            >
+              Get tickets ↗
+            </a>
+          </div>
+        ) : null}
       </div>
     </section>
   );

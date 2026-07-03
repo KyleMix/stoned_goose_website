@@ -5,7 +5,7 @@ import { useCart } from "@/components/cart/cart-context";
 import { cartSubtotal, formatMoney } from "@/lib/fourthwall-storefront";
 
 export function CartDrawer() {
-  const { cart, open, busy, closeCart, setQuantity, removeItem, checkout } =
+  const { cart, open, busy, error, closeCart, setQuantity, removeItem, checkout } =
     useCart();
 
   const items = cart?.items ?? [];
@@ -20,6 +20,14 @@ export function CartDrawer() {
           <span role="status" aria-live="polite" className="sr-only">
             {busy ? "Updating cart." : ""}
           </span>
+          {error ? (
+            <p
+              role="alert"
+              className="border-b border-hazard/60 bg-hazard/10 px-5 py-3 font-body text-xs text-bone"
+            >
+              {error}
+            </p>
+          ) : null}
           <div className="flex items-center justify-between border-b border-bone/15 px-5 py-4">
             <Dialog.Title className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
               Your cart

@@ -95,7 +95,7 @@ export default function BookPage() {
             subtitle="Live shows, on-camera production, podcasts, collaboration. Each one ships a brief and a quote form."
           />
           <ol className="mt-10">
-            {services.map((s, i) => (
+            {services.filter((s) => !s.draft).map((s, i) => (
               <li
                 key={s.slug}
                 className="group grid grid-cols-12 items-baseline gap-x-6 gap-y-3 border-t border-bone/15 py-7 last:border-b transition-colors hover:bg-bone/[0.025]"
@@ -245,15 +245,24 @@ export default function BookPage() {
                     placeholder="Estimated audience or seat count"
                   />
                 </div>
-                <TextField
-                  id="quote-email"
-                  name="email"
-                  label="Contact email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="you@email.com"
-                />
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <TextField
+                    id="quote-name"
+                    name="name"
+                    label="Your name"
+                    autoComplete="name"
+                    placeholder="Who are we talking to?"
+                  />
+                  <TextField
+                    id="quote-email"
+                    name="email"
+                    label="Contact email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder="you@email.com"
+                  />
+                </div>
               </ContactForm>
             </div>
           </div>

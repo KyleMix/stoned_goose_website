@@ -21,6 +21,7 @@ export const quoteSchema = z.object({
 });
 
 export const generalQuoteSchema = z.object({
+  name: z.string().trim().optional(),
   email: z.string().trim().email("Use a real email"),
   serviceType: z.string().trim().min(2, "Service type is required"),
   eventDate: z.string().optional(),

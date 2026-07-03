@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   watchCopy,
   youtubeVideos,
@@ -87,9 +88,17 @@ export default function WatchPage() {
       <section className="border-b border-bone/10 bg-ink py-16 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
-            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
-              Featured / Full Special
-            </p>
+            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                Featured / Full Special
+              </p>
+              <Link
+                href="/shows"
+                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+              >
+                Catch the next one live ↗
+              </Link>
+            </div>
             <TrackedAnchor
               destination="instagram"
               href={featuredSpecial.comedianHandle}

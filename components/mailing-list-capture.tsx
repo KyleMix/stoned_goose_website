@@ -7,6 +7,8 @@ import { track } from "@/lib/analytics";
 type Props = {
   /** Page slug for the formsubmit subject line and Plausible event prop. */
   page: string;
+  /** Optional anchor id so pages can deep-link to the signup. */
+  id?: string;
 };
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -14,7 +16,7 @@ type Status = "idle" | "loading" | "success" | "error";
 // Slim email capture used at the bottom of /, /shows, /watch.
 // Posts to the same formsubmit endpoint as the rest of the site so the owner
 // gets every signup in their inbox. Honeypot, optional Plausible event.
-export function MailingListCapture({ page }: Props) {
+export function MailingListCapture({ page, id }: Props) {
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -68,6 +70,7 @@ export function MailingListCapture({ page }: Props) {
 
   return (
     <section
+      id={id}
       aria-label="Mailing list signup"
       className="border-y border-bone/10 bg-ink py-12 md:py-16"
     >

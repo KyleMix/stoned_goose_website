@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   presale,
   showsCopy,
@@ -215,10 +216,39 @@ export default function ShowsPage() {
                   href={site.social.eventbrite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
+                  className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
                 >
                   See all dates on Eventbrite ↗
                 </TrackedAnchor>
+                <a
+                  href="#mailing-list"
+                  className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/65 underline underline-offset-4 hover:text-slime"
+                >
+                  Get the announcement first
+                </a>
+              </div>
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-bone/15 pt-6">
+                <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  While you wait
+                </p>
+                <Link
+                  href="/watch"
+                  className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+                >
+                  Watch the last one ↗
+                </Link>
+                <Link
+                  href="/roster"
+                  className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+                >
+                  Meet the roster ↗
+                </Link>
+                <Link
+                  href="/open-mics"
+                  className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+                >
+                  Hit an open mic ↗
+                </Link>
               </div>
             </div>
           )}
@@ -270,7 +300,7 @@ export default function ShowsPage() {
 
       <SectionRenderer sections={showsBottomSections} pageSlug="shows" />
 
-      <MailingListCapture page="shows" />
+      <MailingListCapture page="shows" id="mailing-list" />
     </>
   );
 }

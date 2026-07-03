@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { NormalizedOpenMic } from "@/content/open-mics";
 // Vendor CSS imported here (not globals.css) so it ships with this
 // dynamically-loaded chunk on /open-mics instead of every page.
@@ -29,6 +29,9 @@ type Props = {
 
 export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  // True when the Leaflet runtime failed to load (offline, blocked CDN,
+  // chunk error). The list below the map stays fully usable either way.
+  const [failed, setFailed] = useState(false);
   const mapRef = useRef<unknown | null>(null);
   const markersRef = useRef<Map<string, unknown>>(new Map());
   const clusterRef = useRef<unknown | null>(null);
@@ -145,7 +148,10 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       };
     }
 
-    init();
+    init().catch((err) => {
+      console.error("[open-mic-map] failed to load Leaflet", err);
+      if (!disposed) setFailed(true);
+    });
 
     return () => {
       disposed = true;
@@ -201,6 +207,20 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   // `isolate` keeps Leaflet's internal z-indexes (panes ~400-700, markers,
   // controls ~1000) inside this container's stacking context so they can't
   // poke through modals/overlays (e.g. the "Report a change" dialog).
+  if (failed) {
+    return (
+      <div
+        role="region"
+        aria-label="Open mics map"
+        className="flex aspect-[4/3] w-full items-center justify-center border border-bone/15 bg-haze-500 px-6 text-center md:aspect-[16/10]"
+      >
+        <p className="max-w-sm font-body text-sm text-bone/85">
+          The map did not load. Every mic is still in the list below.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div
       ref={containerRef}

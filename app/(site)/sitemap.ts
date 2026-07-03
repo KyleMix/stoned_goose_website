@@ -34,7 +34,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
   ];
 
-  const serviceRoutes = services.map((s) => `/book/${s.slug}`);
+  // Draft services stay reachable by URL but out of the sitemap.
+  const serviceRoutes = services
+    .filter((s) => !s.draft)
+    .map((s) => `/book/${s.slug}`);
   const productRoutes = products.map((p) => `/shop/${p.slug}`);
   const pageRoutes = pages.map((p) => `/${p.slug}`);
   const epkRoutes = epkComedians.map((c) => `/roster/${c.slug}`);
