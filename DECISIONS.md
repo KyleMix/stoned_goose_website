@@ -32,6 +32,10 @@ Autonomous judgment calls made during the 2026-07-03 full-site pass, with one-li
 - Phase 5: Fixed three open-mic source records the normalization layer was papering over: Ballard Mandarin city set to Seattle (from its own address), "8201 launge" -> "8201 Lounge", "Conercopia" -> "Cornercopia". Quality report now 0 errors, 15 warnings (was 1 error, 17 records).
 - Phase 5: External link crawl could not run from this sandbox: the environment's network policy denies general egress (CONNECT 403 from the gateway for non-allowlisted hosts; 274 of 280 URLs unreachable including google.com). The repo's lychee GitHub workflow already link-checks in CI with full egress; rely on that run.
 
+- Phase 6: Deleted three components with zero importers (comedy-calendar, the orphaned news-feed renderer, feed-freshness); all recoverable from git history. Kept pro-shows-calendar and the @fullcalendar deps because the dark-launched `_calendar` route uses them.
+- Phase 6: Removed the unused `RESERVED_SLUG_ERROR` export, added a reserved-slugs sync test (every app/(site) route folder must be in RESERVED_SLUGS), and wired `npm run test` into CI, which previously never ran the smoke tests.
+- Phase 6: Left the husky pre-commit hook as lint-staged only; adding a pre-push typecheck is a workflow-preference call for the owner (CI already enforces typecheck).
+
 ## Deferred - needs human review
 
 - **Publishing the /calendar route (pro shows).** A synced, ticketed calendar of 60+ regional pro shows exists behind the underscore-private `app/(site)/_calendar` folder, deliberately unpublished via `lib/navigation.ts`. Publishing it would change site IA and surface scraped third-party content (with known HTML-entity bugs in titles). That is an owner-level product decision, so it stays dark; the entity-decoding bug is noted so titles are clean whenever it ships.

@@ -23,6 +23,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
+      - run: npm run test
       # Build runs prebuild syncs which tolerate missing env vars.
       # Output goes to /out for static export consumers (Vercel, Cloudflare,
       # Netlify) to grab as-is.

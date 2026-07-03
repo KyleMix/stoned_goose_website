@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx scripts/test/open-mics-normalize.test.ts && tsx scripts/test/schema.test.ts",
+    "test": "tsx scripts/test/open-mics-normalize.test.ts && tsx scripts/test/schema.test.ts && tsx scripts/test/reserved-slugs.test.ts",
     "mics:quality": "tsx scripts/open-mics-quality.ts",
     "analyze": "ANALYZE=true next build",
     "sync": "npm run sync:shows && npm run sync:facebook-events && npm run sync:fourthwall && npm run sync:patreon && npm run sync:open-mics && npm run sync:pro-shows",

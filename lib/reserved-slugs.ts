@@ -42,5 +42,3 @@ export const RESERVED_SLUGS: readonly string[] = [
 export function isReservedSlug(slug: string): boolean {
   return RESERVED_SLUGS.includes(slug.toLowerCase());
 }
-
-export const RESERVED_SLUG_ERROR = `That slug is reserved by an existing route. Try a different one.`;
