@@ -9,8 +9,17 @@
 #   2. Deploy the free sveltia-cms-auth Cloudflare Worker.
 #   3. Put the Worker URL in `backend.base_url` below.
 #
+# Editor guide for non-developers: CMS_GUIDE.md at the repo root.
+#
 # House rule reminder: no em dashes. Long-form fields enforce it with a
 # pattern validator that rejects the em dash codepoint.
+#
+# Maintenance notes:
+#   - Field `name:` keys map 1:1 to JSON keys in content/. Renaming one
+#     orphans existing data. Labels and hints are free to change.
+#   - The Sveltia version is pinned in public/admin/index.html.
+#   - `npm run content:validate` checks all content files against
+#     scripts/validate-content.ts; the build fails on a mismatch.
 
 backend:
   name: github
@@ -33,6 +42,7 @@ collections:
   # ------------------------------------------------------------------ #
   - name: site_content
     label: Site copy
+    description: The words and settings on the main pages. Each item here is one screen of the site.
     delete: false
     editor:
       preview: false
@@ -43,95 +53,98 @@ collections:
         file: content/home/index.json
         fields:
           - name: hero
-            label: Hero
+            label: Hero (the big top-of-page section)
             widget: object
             fields:
-              - { name: eyebrow, label: Status banner (eyebrow), widget: string, required: false }
+              - { name: headline, label: Headline, widget: string, hint: 'The huge display line. Keep it short, it renders very large.' }
+              - { name: eyebrow, label: Status banner, widget: string, required: false, hint: 'Tiny line above the headline, e.g. "Now booking fall shows".' }
               - { name: italicLine, label: Italic line (right column), widget: string, required: false }
-              - { name: headline, label: Headline, widget: string }
-              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
+              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'], hint: 'One or two sentences under the headline.' }
               - name: primary
-                label: Primary CTA
+                label: Primary button (yellow)
                 widget: object
                 fields:
-                  - { name: title, label: Title, widget: string, required: false }
-                  - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
-                  - { name: label, label: Button label, widget: string, required: false }
-                  - { name: href, label: Button href, widget: string, required: false }
+                  - { name: title, label: Card title, widget: string, required: false }
+                  - { name: body, label: Card body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
+                  - { name: label, label: Button text, widget: string, required: false, hint: 'e.g. "Get tickets".' }
+                  - { name: href, label: Button link, widget: string, required: false, hint: 'Where the button goes. Site pages start with a slash, e.g. /shows. Outside links start with https://.' }
               - name: secondary
                 label: Secondary link
                 widget: object
                 fields:
-                  - { name: title, label: Title, widget: string, required: false }
-                  - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
-                  - { name: label, label: Link label, widget: string, required: false }
-                  - { name: href, label: Link href, widget: string, required: false }
+                  - { name: title, label: Card title, widget: string, required: false }
+                  - { name: body, label: Card body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
+                  - { name: label, label: Link text, widget: string, required: false }
+                  - { name: href, label: Link target, widget: string, required: false, hint: 'Site pages start with a slash, e.g. /book. Outside links start with https://.' }
               - name: tertiary
-                label: Tertiary links
+                label: Small extra links
                 widget: list
                 required: false
                 fields:
-                  - { name: label, label: Label, widget: string }
-                  - { name: href, label: Href, widget: string }
+                  - { name: label, label: Link text, widget: string }
+                  - { name: href, label: Link target, widget: string, hint: 'Site pages start with a slash, e.g. /open-mics.' }
           - name: marqueeWords
-            label: Marquee items (no invented stats)
+            label: Scrolling marquee words
             widget: list
             required: false
+            hint: 'Short words or phrases that scroll across the page. Real claims only, no invented stats.'
             field: { name: word, label: Word or phrase, widget: string }
           - name: bumpers
-            label: Rotating bumpers
+            label: Rotating bumpers (the Adult Swim style cards)
             widget: object
+            hint: 'Each slot rotates through its cards. Keep the register: dry, deadpan, no softening.'
             fields:
-              - { name: clarification, label: Clarification slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body (use \n for a line break), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
-              - { name: aside, label: Aside slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
-              - { name: outro, label: Outro slot, widget: list, required: false, fields: [{ name: eyebrow, label: Eyebrow, widget: string }, { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: clarification, label: Clarification slot, widget: list, required: false, fields: [{ name: eyebrow, label: Tiny top line, widget: string }, { name: body, label: Body (use \n for a line break), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: aside, label: Aside slot, widget: list, required: false, fields: [{ name: eyebrow, label: Tiny top line, widget: string }, { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
+              - { name: outro, label: Outro slot, widget: list, required: false, fields: [{ name: eyebrow, label: Tiny top line, widget: string }, { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
           - name: mission
             label: Mission strip
             widget: object
             required: false
             fields:
-              - { name: show, label: Show mission strip, widget: boolean, default: false }
-              - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+              - { name: show, label: Show the mission strip, widget: boolean, default: false }
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
               - { name: heading, label: Heading, widget: string, required: false }
               - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: topSections
-            label: Top sections (below the hero, above shows)
+            label: Extra sections, top (below the hero, above shows)
             widget: list
             required: false
+            hint: 'Optional building blocks. Add one with the plus button, drag to reorder.'
             types: &section_types
               - name: hero
                 label: Hero
                 widget: object
                 fields:
-                  - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+                  - { name: eyebrow, label: Tiny top line, widget: string, required: false }
                   - { name: headline, label: Headline, widget: string, required: false }
                   - { name: italicLine, label: Italic tagline, widget: string, required: false }
                   - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-                  - { name: primaryCtaLabel, label: Primary button label, widget: string, required: false }
-                  - { name: primaryCtaHref, label: Primary button href, widget: string, required: false }
-                  - { name: secondaryCtaLabel, label: Secondary link label, widget: string, required: false }
-                  - { name: secondaryCtaHref, label: Secondary link href, widget: string, required: false }
+                  - { name: primaryCtaLabel, label: Primary button text, widget: string, required: false }
+                  - { name: primaryCtaHref, label: Primary button link, widget: string, required: false, hint: 'Site pages start with a slash, e.g. /shows.' }
+                  - { name: secondaryCtaLabel, label: Secondary link text, widget: string, required: false }
+                  - { name: secondaryCtaHref, label: Secondary link target, widget: string, required: false }
               - name: richText
                 label: Rich text
                 widget: object
                 fields:
-                  - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+                  - { name: eyebrow, label: Tiny top line, widget: string, required: false }
                   - { name: heading, label: Heading, widget: string, required: false }
-                  - { name: body, label: Body (paragraphs separated by a blank line), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+                  - { name: body, label: Body (blank line = new paragraph), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
               - name: imageCaption
                 label: Image with caption
                 widget: object
                 fields:
-                  - { name: image, label: Image, widget: image, media_folder: /public/images/pages, public_folder: /images/pages }
-                  - { name: alt, label: Alt text, widget: string }
+                  - { name: image, label: Image, widget: image, media_folder: /public/images/pages, public_folder: /images/pages, hint: 'At least 1200px wide. Big phone photos are fine, they get compressed automatically after saving.' }
+                  - { name: alt, label: Alt text (describe the image for screen readers), widget: string }
                   - { name: caption, label: Caption, widget: string, required: false }
-                  - { name: aspect, label: Aspect ratio, widget: select, default: 16x9, options: [{ label: 'Wide (16:9)', value: 16x9 }, { label: 'Portrait (4:5)', value: 4x5 }, { label: 'Square (1:1)', value: 1x1 }] }
+                  - { name: aspect, label: Crop shape, widget: select, default: 16x9, options: [{ label: 'Wide (16:9)', value: 16x9 }, { label: 'Portrait (4:5)', value: 4x5 }, { label: 'Square (1:1)', value: 1x1 }] }
               - name: videoEmbed
                 label: Video embed
                 widget: object
                 fields:
-                  - { name: provider, label: Provider, widget: select, default: youtube, options: [youtube, tiktok, instagram] }
-                  - { name: url, label: Video URL or 11-char id, widget: string }
+                  - { name: provider, label: Where the video lives, widget: select, default: youtube, options: [youtube, tiktok, instagram] }
+                  - { name: url, label: Video URL, widget: string, hint: 'Paste the full link, e.g. https://www.youtube.com/watch?v=abc12345678. A bare 11-character YouTube id also works.' }
                   - { name: caption, label: Caption, widget: string, required: false }
               - name: ctaStrip
                 label: Call-to-action strip
@@ -139,51 +152,51 @@ collections:
                 fields:
                   - { name: heading, label: Heading, widget: string }
                   - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-                  - { name: primaryCtaLabel, label: Button label, widget: string, required: false }
-                  - { name: primaryCtaHref, label: Button href, widget: string, required: false }
-                  - { name: note, label: Small note under button, widget: string, required: false }
+                  - { name: primaryCtaLabel, label: Button text, widget: string, required: false }
+                  - { name: primaryCtaHref, label: Button link, widget: string, required: false, hint: 'Site pages start with a slash, e.g. /book.' }
+                  - { name: note, label: Small note under the button, widget: string, required: false }
               - name: mailingList
-                label: Mailing list capture
+                label: Mailing list signup form
                 widget: object
                 fields:
-                  - { name: tag, label: Analytics tag, widget: string, default: page }
+                  - { name: tag, label: Signup source tag, widget: string, default: page, hint: 'One short word so signups can be traced to this page, e.g. "sponsors".' }
               - name: upcomingShows
-                label: Upcoming shows list (auto)
+                label: Upcoming shows list (fills itself)
                 widget: object
                 fields:
-                  - { name: note, label: This block auto-populates from Shows, widget: string, required: false }
+                  - { name: note, label: Note to self (not shown on the site), widget: string, required: false, hint: 'This block lists upcoming shows automatically. Nothing to fill in.' }
               - name: latestSocial
-                label: Latest social strip
+                label: Latest social posts strip
                 widget: object
                 fields:
-                  - { name: limit, label: How many items, widget: number, default: 6, value_type: int, min: 1, max: 12 }
+                  - { name: limit, label: How many posts, widget: number, default: 6, value_type: int, min: 1, max: 12 }
               - name: pressStrip
-                label: Press quote strip (auto)
+                label: Press quotes strip (fills itself)
                 widget: object
                 fields:
-                  - { name: note, label: This block auto-populates from Site copy press quotes, widget: string, required: false }
+                  - { name: note, label: Note to self (not shown on the site), widget: string, required: false, hint: 'Quotes come from Site copy, Site config, Press quotes. Nothing to fill in.' }
               - name: rosterTeaser
-                label: Roster grid teaser
+                label: Comedian portrait grid
                 widget: object
                 fields:
                   - { name: limit, label: How many comedians, widget: number, default: 8, value_type: int, min: 1, max: 16 }
               - name: openMicTeaser
-                label: Open mic teaser (auto)
+                label: Open mic highlight (fills itself)
                 widget: object
                 fields:
-                  - { name: note, label: This block auto-populates from Open mics, widget: string, required: false }
+                  - { name: note, label: Note to self (not shown on the site), widget: string, required: false, hint: 'Shows the next open mic automatically. Nothing to fill in.' }
               - name: servicesOverview
-                label: Services overview (auto)
+                label: What we do overview (fills itself)
                 widget: object
                 fields:
-                  - { name: note, label: This block auto-populates from Services, widget: string, required: false }
+                  - { name: note, label: Note to self (not shown on the site), widget: string, required: false, hint: 'Lists the services automatically. Nothing to fill in.' }
               - name: shopStrip
-                label: Shop strip
+                label: Shop products strip
                 widget: object
                 fields:
                   - { name: limit, label: How many products, widget: number, default: 3, value_type: int, min: 1, max: 8 }
           - name: bottomSections
-            label: Bottom sections (below mailing list, above the outro)
+            label: Extra sections, bottom (below the mailing list, above the outro)
             widget: list
             required: false
             types: *section_types
@@ -193,44 +206,37 @@ collections:
         label: Site config
         file: content/site/index.json
         fields:
-          - { name: name, label: Brand name, widget: string }
-          - { name: shortName, label: Short name, widget: string }
+          - { name: name, label: Brand name, widget: string, hint: 'Used in the header, footer, and search results. Changing this changes it everywhere.' }
+          - { name: shortName, label: Short name, widget: string, hint: 'Compact version for tight spots, e.g. "Stoned Goose".' }
           - { name: tagline, label: Tagline, widget: string, required: false }
-          - { name: url, label: Site URL, widget: string, required: false }
-          - { name: description, label: Description, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: description, label: Site description, widget: text, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'One paragraph about the company. Feeds search results and social previews.' }
+          - { name: url, label: Site URL, widget: string, required: false, hint: 'The full production address, https://www.stonedgooseproductions.com. Only change this if the domain changes.' }
           - name: contact
-            label: Contact
+            label: Contact details
             widget: object
             fields:
-              - { name: email, label: Email, widget: string }
-              - { name: phone, label: Phone (display), widget: string, required: false }
-              - { name: phoneTel, label: Phone (E.164 with +), widget: string, required: false }
-              - { name: whatsapp, label: WhatsApp (E.164 no +), widget: string, required: false }
-              - { name: smsEnabled, label: SMS enabled, widget: boolean, default: true }
-              - { name: address, label: Address (single line), widget: string, required: false }
-              - { name: locality, label: Locality (city), widget: string, required: false }
-              - { name: region, label: Region (state code), widget: string, required: false }
+              - { name: email, label: Email address, widget: string }
+              - { name: phone, label: Phone, as people read it, widget: string, required: false, hint: 'e.g. (360) 555-0123' }
+              - { name: phoneTel, label: Phone, for dialing, widget: string, required: false, hint: 'Digits with country code and a plus, e.g. +13605550123. Phones use this when someone taps the number.' }
+              - { name: whatsapp, label: WhatsApp number, widget: string, required: false, hint: 'Digits with country code, no plus, e.g. 13605550123. Leave blank to hide the WhatsApp button.' }
+              - { name: smsEnabled, label: Show the "text us" button, widget: boolean, default: true }
+              - { name: address, label: Street address, widget: string, required: false, hint: 'One line, e.g. 123 4th Ave W, Olympia, WA 98501.' }
+              - { name: locality, label: City, widget: string, required: false }
+              - { name: region, label: State code, widget: string, required: false, hint: 'Two letters, e.g. WA.' }
           - name: social
-            label: Social
+            label: Social media links
             widget: object
+            hint: 'Full profile URLs starting with https://. Leave a network blank to hide its icon.'
             fields:
-              - { name: instagram, label: Instagram, widget: string, required: false }
-              - { name: facebook, label: Facebook, widget: string, required: false }
-              - { name: tiktok, label: TikTok, widget: string, required: false }
-              - { name: youtube, label: YouTube, widget: string, required: false }
-              - { name: patreon, label: Patreon, widget: string, required: false }
-              - { name: eventbrite, label: Eventbrite, widget: string, required: false }
-              - { name: fourthwall, label: Fourthwall, widget: string, required: false }
-              - { name: youtubeChannelId, label: YouTube channel ID (UC...), widget: string, required: false }
-              - { name: facebookPageId, label: Facebook page ID (numeric), widget: string, required: false }
-          - name: podcasts
-            label: Podcasts (future slot)
-            widget: object
-            required: false
-            fields:
-              - { name: spotifyShowId, label: Spotify show id, widget: string, required: false }
-              - { name: applePodcastsId, label: Apple Podcasts id, widget: string, required: false }
-              - { name: rssUrl, label: RSS URL, widget: string, required: false }
+              - { name: instagram, label: Instagram URL, widget: string, required: false }
+              - { name: facebook, label: Facebook URL, widget: string, required: false }
+              - { name: tiktok, label: TikTok URL, widget: string, required: false }
+              - { name: youtube, label: YouTube URL, widget: string, required: false }
+              - { name: patreon, label: Patreon URL, widget: string, required: false }
+              - { name: eventbrite, label: Eventbrite URL, widget: string, required: false }
+              - { name: fourthwall, label: Fourthwall shop URL, widget: string, required: false }
+              - { name: youtubeChannelId, label: YouTube channel ID, widget: string, required: false, hint: 'Technical value starting with UC. Used by the feed sync, not shown on the site. Leave it alone unless the channel changes.' }
+              - { name: facebookPageId, label: Facebook page ID, widget: string, required: false, hint: 'Numeric ID used by the feed sync. Leave it alone unless the page changes.' }
           - name: booking
             label: Booking calls
             widget: object
@@ -245,105 +251,117 @@ collections:
             label: Service areas
             widget: list
             required: false
+            hint: 'Cities and regions you actually serve, e.g. "Olympia", "Tacoma". Shown to search engines.'
             field: { name: area, label: Area, widget: string }
           - name: press
             label: Press quotes (real only)
             widget: list
             required: false
+            hint: 'Only quotes that were actually published. Each needs the outlet name.'
             fields:
               - { name: quote, label: Quote, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
-              - { name: outlet, label: Outlet, widget: string }
-              - { name: url, label: URL, widget: string, required: false }
+              - { name: outlet, label: Outlet, widget: string, hint: 'Who published it, e.g. "The Olympian".' }
+              - { name: url, label: Link to the article, widget: string, required: false }
           - name: nav
-            label: Primary nav
+            label: Primary nav (careful, this is the site menu)
             widget: list
             required: false
+            hint: 'The links in the site header. Removing one hides that page from the menu but the page stays live. Emptying the whole list restores the built-in default menu.'
             fields:
-              - { name: label, label: Label, widget: string }
-              - { name: href, label: Href, widget: string }
+              - { name: label, label: Menu text, widget: string }
+              - { name: href, label: Page link, widget: string, hint: 'Site pages start with a slash, e.g. /shows.' }
           - name: footer
             label: Footer
             widget: object
             fields:
-              - { name: locality, label: Location line, widget: string, required: false }
+              - { name: locality, label: Location line, widget: string, required: false, hint: 'e.g. "Olympia, WA".' }
               - { name: creditLine, label: Credit line, widget: string, required: false }
               - { name: creditHref, label: Credit link, widget: string, required: false }
               - name: columns
-                label: Footer columns
+                label: Footer link columns
                 widget: list
                 required: false
+                hint: 'Emptying the whole list restores the built-in default footer.'
                 fields:
-                  - { name: heading, label: Heading, widget: string }
+                  - { name: heading, label: Column heading, widget: string }
                   - name: items
-                    label: Items
+                    label: Links
                     widget: list
                     fields:
-                      - { name: label, label: Label, widget: string }
-                      - { name: href, label: Href, widget: string }
+                      - { name: label, label: Link text, widget: string }
+                      - { name: href, label: Link target, widget: string, hint: 'Site pages start with a slash, e.g. /contact.' }
           - name: seo
-            label: SEO defaults
+            label: Search and social preview defaults
             widget: object
             required: false
             fields:
               - name: keywords
-                label: Default meta keywords
+                label: Default search keywords
                 widget: list
                 required: false
                 field: { name: keyword, label: Keyword, widget: string }
-              - { name: defaultOgImage, label: Default Open Graph image, widget: image, required: false, media_folder: /public/brand, public_folder: /brand }
+              - { name: defaultOgImage, label: Default social share image, widget: image, required: false, media_folder: /public/brand, public_folder: /brand, hint: 'Shown when a page is shared on social media and has no image of its own. Use a wide image, 1200x630 pixels.' }
+          - name: podcasts
+            label: Podcasts (future slot, nothing renders this yet)
+            widget: object
+            required: false
+            fields:
+              - { name: spotifyShowId, label: Spotify show id, widget: string, required: false }
+              - { name: applePodcastsId, label: Apple Podcasts id, widget: string, required: false }
+              - { name: rssUrl, label: RSS URL, widget: string, required: false }
 
       # ---------- Shows copy ----------
       - name: shows_copy
-        label: Shows copy
+        label: Shows page copy
         file: content/shows-copy/index.json
         fields:
-          - { name: heading, label: Heading, widget: string }
+          - { name: heading, label: Page heading, widget: string }
           - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: emptyState, label: Empty state copy, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: emptyState, label: Copy when no shows are listed, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: featuredSpecial
-            label: Featured special
+            label: Featured special (the big video at the top)
             widget: object
             fields:
               - { name: title, label: Title, widget: string, required: false }
               - { name: subtitle, label: Subtitle, widget: string, required: false }
               - { name: blurb, label: Blurb, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-              - { name: videoUrl, label: YouTube URL or 11-char id, widget: string, required: false }
-              - { name: poster, label: Poster, widget: image, required: false, media_folder: /public/images/comedians, public_folder: /images/comedians }
-              - { name: posterAlt, label: Poster alt text, widget: string, required: false }
+              - { name: videoUrl, label: YouTube link, widget: string, required: false, hint: 'Full URL like https://www.youtube.com/watch?v=abc12345678, or just the 11-character id.' }
+              - { name: poster, label: Poster image, widget: image, required: false, media_folder: /public/images/comedians, public_folder: /images/comedians, hint: 'Wide 16:9 image, at least 1200x675 pixels. Shows before the video plays.' }
+              - { name: posterAlt, label: Poster alt text, widget: string, required: false, hint: 'Describe the image for screen readers, e.g. "Derek Gladson on stage at the Capitol Theater".' }
               - { name: comedianHandle, label: Featured comic Instagram URL, widget: string, required: false }
           - name: presale
-            label: Presale
+            label: Presale banner
             widget: object
             required: false
             fields:
-              - { name: active, label: Active presale, widget: boolean, default: false }
+              - { name: active, label: Presale is on, widget: boolean, default: false, hint: 'Turn off to hide the banner. The fields below stay saved.' }
               - { name: code, label: Presale code, widget: string, required: false }
-              - { name: expiresAt, label: Expires at, widget: datetime, required: false }
+              - { name: expiresAt, label: Code expires, widget: datetime, required: false }
               - { name: venueName, label: Venue name, widget: string, required: false }
-          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
-          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+          - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
       # ---------- Watch copy ----------
       - name: watch_copy
-        label: Watch copy
+        label: Watch page copy
         file: content/watch-copy/index.json
         fields:
-          - { name: heading, label: Heading, widget: string }
+          - { name: heading, label: Page heading, widget: string }
           - { name: subhead, label: Subhead, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: emptyClipsLine, label: Empty clips line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: emptyClipsLine, label: Copy when no clips are listed, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: youtubeVideos
-            label: Top YouTube videos (max 5 render on /watch)
+            label: Hand-picked YouTube videos (the top 5 render on /watch)
             widget: list
             required: false
             fields:
-              - { name: url, label: URL or 11-char id, widget: string }
-              - { name: title, label: Title, widget: string }
-          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
-          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+              - { name: url, label: YouTube link, widget: string, hint: 'Full URL like https://www.youtube.com/watch?v=abc12345678, or just the 11-character id.' }
+              - { name: title, label: Title shown under the video, widget: string }
+          - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
       # ---------- Roster copy ----------
       - name: roster_copy
-        label: Roster copy
+        label: Roster page copy
         file: content/roster-copy/index.json
         fields:
           - name: comedians
@@ -351,7 +369,7 @@ collections:
             widget: object
             fields:
               - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-              - { name: kicker, label: Kicker (mono line), widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: kicker, label: Small print under the grid, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: about
             label: About section
             widget: object
@@ -367,68 +385,68 @@ collections:
             fields:
               - { name: title, label: Title, widget: string }
               - { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
-          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+          - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
       # ---------- Open mics copy ----------
       - name: open_mics_copy
-        label: Open mics copy
+        label: Open mics page copy
         file: content/open-mics-copy/index.json
         fields:
           - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: kicker, label: Kicker, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: kicker, label: Small print line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: disclaimer
-            label: Disclaimer (top of /open-mics)
+            label: Disclaimer box (top of /open-mics)
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
               - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'The not-affiliated / check-before-you-drive notice. Clearing this hides the box entirely.' }
-              - { name: footnote, label: Footnote (mono line), widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: topSections, label: Top sections, widget: list, required: false, types: *section_types }
-          - { name: bottomSections, label: Bottom sections, widget: list, required: false, types: *section_types }
+              - { name: footnote, label: Footnote, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
+          - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
       # ---------- Shop copy ----------
       - name: shop_copy
-        label: Shop copy
+        label: Shop page copy
         file: content/shop-copy/index.json
         fields:
-          - { name: heading, label: Heading, widget: string }
+          - { name: heading, label: Page heading, widget: string }
           - { name: subhead, label: Subhead, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: collectionUrl, label: Fourthwall collection URL, widget: string, required: false }
           - { name: storeUrl, label: Fourthwall store URL, widget: string, required: false }
           - name: categoryAssignments
-            label: Category assignments
+            label: Product categories
             label_singular: Assignment
             widget: list
             required: false
             summary: '{{fields.slug}} -> {{fields.category}}'
             hint: 'Tag products into shop sections. Slug is the part after /shop/ in the product URL. Untagged products fall back to a keyword guess.'
             fields:
-              - { name: slug, label: Product slug, widget: string }
+              - { name: slug, label: Product slug, widget: string, hint: 'e.g. joke-book' }
               - { name: category, label: Category, widget: select, options: [Hats, Tops, Bottoms, Accessories] }
 
       # ---------- Contact page ----------
       - name: contact_copy
-        label: Contact page
+        label: Contact page copy
         file: content/contact-copy/index.json
         fields:
-          - { name: eyebrow, label: Eyebrow, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: titleLead, label: Title lead (plain), widget: string, required: false }
-          - { name: titleEmphasis, label: Title emphasis (italic, hazard), widget: string, required: false }
-          - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: eyebrow, label: Tiny top line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: titleLead, label: Title, plain part, widget: string, required: false }
+          - { name: titleEmphasis, label: Title, italic yellow part, widget: string, required: false }
+          - { name: body, label: Intro copy, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: emailLabel, label: Email label, widget: string, required: false }
           - { name: phoneLabel, label: Phone label, widget: string, required: false }
-          - { name: textCtaLabel, label: Text CTA label, widget: string, required: false }
-          - { name: whatsappCtaLabel, label: WhatsApp CTA label, widget: string, required: false }
+          - { name: textCtaLabel, label: Text button label, widget: string, required: false }
+          - { name: whatsappCtaLabel, label: WhatsApp button label, widget: string, required: false }
           - { name: findUsLabel, label: Find us label, widget: string, required: false }
           - name: form
-            label: Form
+            label: Contact form labels
             widget: object
             fields:
-              - { name: submitLabel, label: Submit button label, widget: string, required: false }
-              - { name: successText, label: Success message, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-              - { name: errorText, label: Error message, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: submitLabel, label: Submit button text, widget: string, required: false }
+              - { name: successText, label: Message after a successful send, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: errorText, label: Message when sending fails, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
               - { name: nameLabel, label: Name field label, widget: string, required: false }
               - { name: emailLabel, label: Email field label, widget: string, required: false }
               - { name: messageLabel, label: Message field label, widget: string, required: false }
@@ -436,39 +454,47 @@ collections:
 
       # ---------- Sponsorships ----------
       - name: sponsorships
-        label: Sponsorships
+        label: Sponsorship packages
         file: content/sponsorships/index.json
         fields:
-          - name: stats
-            label: Stats (no invented numbers)
+          - name: tiers
+            label: Packages (shown on /book)
             widget: list
             required: false
-            hint: 'Not currently shown anywhere on the site. Kept for when real numbers exist.'
+            fields:
+              - { name: name, label: Package name, widget: string }
+              - { name: price, label: Price, as shown, widget: string, hint: 'Written out, e.g. "$500 per show".' }
+              - { name: deliverables, label: What the sponsor gets, widget: list, field: { name: item, label: Item, widget: string } }
+          - name: stats
+            label: Stats (not shown anywhere yet)
+            widget: list
+            required: false
+            hint: 'Not currently shown on the site. Kept for when real numbers exist. No invented stats.'
             fields:
               - { name: label, label: Label, widget: string }
-              - { name: value, label: Value (leave empty to render placeholder), widget: string, required: false }
+              - { name: value, label: Value (leave empty to render a placeholder), widget: string, required: false }
               - { name: detail, label: Detail, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - name: tiers
-            label: Tiers
-            widget: list
-            required: false
-            fields:
-              - { name: name, label: Tier name, widget: string }
-              - { name: price, label: Price (display string), widget: string }
-              - { name: deliverables, label: Deliverables, widget: list, field: { name: item, label: Deliverable, widget: string } }
 
+      # ---------- Pro comedy clubs ----------
       - name: pro_clubs
         label: Pro comedy clubs
         file: content/pro-clubs/index.json
         fields:
-          - name: disclaimer
-            label: Disclaimer (top of /calendar)
-            widget: object
-            required: false
+          - name: clubs
+            label: Clubs on the Pro Comedy Calendar
+            widget: list
+            hint: 'Each club is synced automatically every few hours. The logo becomes the filter button on /calendar; until one is uploaded the club name shows instead.'
             fields:
-              - { name: eyebrow, label: Eyebrow, widget: string, required: false }
-              - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'The not-affiliated notice. Clearing this hides the box entirely.' }
-              - { name: footnote, label: Footnote (mono line), widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: name, label: Club name, widget: string }
+              - { name: slug, label: Short id (lowercase-with-dashes, do not change once set), widget: string, hint: 'e.g. tacoma-comedy-club. Manual pro shows point at this id.' }
+              - { name: city, label: City, widget: string, required: false }
+              - { name: website, label: Website URL, widget: string }
+              - { name: eventsUrl, label: Events page URL, widget: string }
+              - { name: platform, label: Ticketing platform, widget: select, default: seatengine, options: [{ label: 'SeatEngine (tacomacomedyclub.com style)', value: seatengine }, { label: 'WordPress Events Calendar (laughscomedyclub.com style)', value: tribe }] }
+              - { name: includeText, label: Only keep events whose page contains this text, widget: string, required: false, hint: 'Tacoma marks pro shows as "Special Event". Leave blank to keep everything.' }
+              - { name: excludeText, label: Drop events whose title contains any of these, widget: list, required: false, field: { name: text, label: Text, widget: string } }
+              - { name: logo, label: Logo (filter button image), widget: image, required: false, media_folder: /public/images/clubs, public_folder: /images/clubs }
+              - { name: active, label: Active, widget: boolean, default: true, hint: 'Turn off to stop syncing and showing this club without deleting it.' }
           - name: spotlight
             label: Spotlight comedians
             widget: list
@@ -481,42 +507,99 @@ collections:
             required: false
             hint: 'Shows whose title contains any of these names are removed from /calendar entirely, even when a club lists them.'
             field: { name: name, label: Name, widget: string }
-          - name: clubs
-            label: Clubs on the Pro Comedy Calendar
-            widget: list
-            hint: 'Each club is synced automatically every few hours. The logo becomes the filter button on /calendar; until one is uploaded the club name shows instead.'
+          - name: disclaimer
+            label: Disclaimer box (top of /calendar)
+            widget: object
+            required: false
             fields:
-              - { name: name, label: Club name, widget: string }
-              - { name: slug, label: Slug (lowercase-with-dashes, do not change once set), widget: string }
-              - { name: city, label: City, widget: string, required: false }
-              - { name: website, label: Website URL, widget: string }
-              - { name: eventsUrl, label: Events page URL, widget: string }
-              - { name: platform, label: Ticketing platform, widget: select, default: seatengine, options: [{ label: 'SeatEngine (tacomacomedyclub.com style)', value: seatengine }, { label: 'WordPress Events Calendar (laughscomedyclub.com style)', value: tribe }] }
-              - { name: includeText, label: Only keep events whose page contains this text, widget: string, required: false, hint: 'Tacoma marks pro shows as "Special Event". Leave blank to keep everything.' }
-              - { name: excludeText, label: Drop events whose title contains any of these, widget: list, required: false, field: { name: text, label: Text, widget: string } }
-              - { name: logo, label: Logo (filter button image), widget: image, required: false, media_folder: /public/images/clubs, public_folder: /images/clubs }
-              - { name: active, label: Active, widget: boolean, default: true }
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
+              - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'The not-affiliated notice. Clearing this hides the box entirely.' }
+              - { name: footnote, label: Footnote, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
 
   # ------------------------------------------------------------------ #
-  # Pages: composed from blocks, render at /<slug>.                     #
+  # Shows (manual entries). Synced shows override these when present.   #
   # ------------------------------------------------------------------ #
-  - name: pages
-    label: Pages
-    label_singular: Page
-    folder: content/pages
+  - name: shows
+    label: Shows and events
+    label_singular: Show
+    description: Shows on /shows and the home page ticket strip. Heads up, when the Eventbrite sync is on, synced shows replace this whole list.
+    folder: content/shows
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: name
+    slug: "{{fields.name}}-{{fields.start | date('YYYY-MM-DD')}}"
+    create: true
+    summary: "{{fields.name}} · {{fields.start | date('MMM D, YYYY')}} · {{fields.status}}"
+    sortable_fields:
+      fields: [start, name, status]
+      default:
+        field: start
+        direction: descending
+    view_filters:
+      - label: Ticketed
+        field: status
+        pattern: ticketed
+      - label: Free or at the door
+        field: status
+        pattern: free
+      - label: Date still TBA
+        field: status
+        pattern: tba
+      - label: Hidden drafts
+        field: draft
+        pattern: true
+    fields:
+      - { name: name, label: Show name, widget: string, hint: 'What goes on the marquee, e.g. "Goose Egg Comedy Night".' }
+      - { name: start, label: Date and start time, widget: datetime, hint: 'Show time, not door time. There is a separate door time field below.' }
+      - name: venue
+        label: Venue
+        widget: object
+        required: false
+        fields:
+          - { name: name, label: Venue name, widget: string, required: false }
+          - { name: address, label: Street address, widget: string, required: false }
+          - { name: city, label: City, widget: string, required: false }
+          - { name: region, label: State code, widget: string, required: false, hint: 'Two letters, e.g. WA.' }
+          - { name: country, label: Country code, widget: string, default: US, required: false }
+      - { name: status, label: Ticket status, widget: select, default: tba, options: [{ label: Ticketed, value: ticketed }, { label: Free / at the door, value: free }, { label: TBA, value: tba }], hint: 'Pick Ticketed once a ticket link exists. TBA shows render without a buy button.' }
+      - { name: ticketUrl, label: Ticket link, widget: string, required: false, hint: 'Where people buy tickets. Full address starting with https://, e.g. https://www.eventbrite.com/e/1234.' }
+      - { name: ticketPrice, label: Ticket price, as shown, widget: string, required: false, hint: 'Written out, e.g. "$15 advance / $20 door". Leave blank to show nothing.' }
+      - { name: doorTime, label: Door time, as shown, widget: string, required: false, hint: 'e.g. "Doors 7:00 PM". Leave blank to show the start time instead.' }
+      - { name: summary, label: One-paragraph description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
+      - { name: imageUrl, label: Poster image, widget: image, required: false, media_folder: /public/images/shows, public_folder: '', hint: 'Shows in a wide 16:9 crop, at least 1200x675 pixels. Big phone photos are fine, they get compressed automatically after saving.' }
+      - { name: imageAlt, label: Poster alt text, widget: string, required: false, hint: 'Describe the poster for screen readers.' }
+      - { name: url, label: Event page link, widget: string, required: false, hint: 'Optional link to a Facebook event or other event page.' }
+      - { name: end, label: End time, widget: datetime, required: false, hint: 'Optional. Only used for calendar exports.' }
+      - { name: draft, label: Hide from the site, widget: boolean, default: false }
+
+  # ------------------------------------------------------------------ #
+  # Pro shows (manual entries on the /calendar pro comedy grid).        #
+  # ------------------------------------------------------------------ #
+  - name: pro_shows
+    label: Pro calendar extras
+    label_singular: Pro show
+    description: Hand-added shows for the regional pro comedy calendar. Most of that calendar syncs automatically; add one here only when a club listing is missing or wrong.
+    folder: content/pro-shows
     path: '{{slug}}/index'
     extension: json
     format: json
     identifier_field: title
-    slug: '{{fields.title}}'
+    slug: "{{fields.title}}-{{fields.start | date('YYYY-MM-DD')}}"
     create: true
-    summary: '{{fields.title}}'
+    summary: "{{fields.title}} · {{fields.start | date('MMM D')}} · {{fields.club}}"
+    sortable_fields:
+      fields: [start, title, club]
+      default:
+        field: start
+        direction: descending
     fields:
-      - { name: title, label: Title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: seoDescription, label: SEO description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'What search results show under the title. Aim for under 160 characters and be specific about the page.' }
-      - { name: ogImage, label: Social share image, widget: image, required: false, media_folder: /public/images/pages, public_folder: /images/pages }
-      - { name: draft, label: Draft (hidden from the live site), widget: boolean, default: false }
-      - { name: sections, label: Page sections, widget: list, required: false, types: *section_types }
+      - { name: title, label: Comedian or show title, widget: string }
+      - { name: club, label: Club, widget: relation, collection: site_content, file: pro_clubs, value_field: 'clubs.*.slug', search_fields: ['clubs.*.name'], display_fields: ['clubs.*.name'], hint: 'Pick the club this show belongs to. A manual entry replaces a synced show at the same club and start time.' }
+      - { name: start, label: Date and start time, widget: datetime }
+      - { name: ticketUrl, label: Ticket link, widget: string, required: false, hint: 'Full address starting with https://.' }
+      - { name: featured, label: Spotlight (highlight in hazard yellow), widget: boolean, default: false }
+      - { name: draft, label: Hide from the calendar, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
   # Roster: comedians + crew.                                          #
@@ -524,6 +607,7 @@ collections:
   - name: comedians
     label: Comedians
     label_singular: Comedian
+    description: The comedian grid on /roster. A comedian with a bio or reel also gets their own page at /roster/name.
     folder: content/comedians
     path: '{{slug}}/index'
     extension: json
@@ -532,25 +616,35 @@ collections:
     slug: '{{fields.name}}'
     create: true
     summary: '{{fields.name}}'
+    sortable_fields:
+      fields: [name]
+      default:
+        field: name
+        direction: ascending
+    view_filters:
+      - label: Hidden drafts
+        field: draft
+        pattern: true
     fields:
       - { name: name, label: Name, widget: string }
-      - { name: photo, label: Portrait, widget: image, required: false, media_folder: /public/images/comedians, public_folder: '' }
-      - { name: photoAlt, label: Portrait alt text, widget: string, required: false }
-      - { name: instagram, label: Instagram URL, widget: string, required: false }
+      - { name: photo, label: Portrait photo, widget: image, required: false, media_folder: /public/images/comedians, public_folder: '', hint: 'Vertical photo, taller than wide (3:4), at least 800px wide. The halftone effect is applied by the site, upload the normal photo. Big phone photos get compressed automatically after saving.' }
+      - { name: photoAlt, label: Portrait alt text, widget: string, required: false, hint: 'Describe the photo for screen readers, e.g. "Alexa Hansen headshot". Left blank, the site uses the name.' }
+      - { name: instagram, label: Instagram URL, widget: string, required: false, hint: 'Full profile link, e.g. https://www.instagram.com/handle.' }
       - { name: facebook, label: Facebook URL, widget: string, required: false }
-      - { name: bio, label: Bio (fills the comedian's EPK page), widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: reelUrl, label: Reel (YouTube URL, fills the EPK page), widget: string, required: false }
+      - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Filling this in gives the comedian their own EPK page at /roster/name.' }
+      - { name: reelUrl, label: Reel link (YouTube), widget: string, required: false, hint: 'A reel also unlocks the EPK page. Full URL like https://www.youtube.com/watch?v=abc12345678.' }
       - name: credits
         label: Credits (festivals, rooms, shows)
         widget: list
         required: false
         hint: 'One per line, e.g. "Bumbershoot 2024" or "Tacoma Comedy Club". Real credits only.'
         field: { name: credit, label: Credit, widget: string }
-      - { name: draft, label: Draft (hidden from /roster), widget: boolean, default: false }
+      - { name: draft, label: Hide from /roster, widget: boolean, default: false }
 
   - name: members
     label: Crew members
     label_singular: Crew member
+    description: The production crew listed on /roster, in display-order.
     folder: content/members
     path: '{{slug}}/index'
     extension: json
@@ -559,21 +653,27 @@ collections:
     slug: '{{fields.name}}'
     create: true
     summary: '{{fields.index}} {{fields.name}}'
+    sortable_fields:
+      fields: [index, name]
+      default:
+        field: index
+        direction: ascending
     fields:
       - { name: name, label: Name, widget: string }
-      - { name: role, label: Role, widget: string }
-      - { name: photo, label: Portrait, widget: image, required: false, media_folder: /public/images/members, public_folder: '' }
-      - { name: photoAlt, label: Portrait alt text, widget: string, required: false }
-      - { name: index, label: Display order (two digits, e.g. 01), widget: string }
+      - { name: role, label: Role, widget: string, hint: 'e.g. "Producer" or "Audio".' }
+      - { name: index, label: Display order, widget: string, hint: 'Two digits, e.g. 01. Lowest number shows first.', pattern: ['^\d{2}$', 'Two digits, e.g. 01 or 12.'] }
+      - { name: photo, label: Portrait photo, widget: image, required: false, media_folder: /public/images/members, public_folder: '', hint: 'Vertical photo, taller than wide (3:4), at least 800px wide. Big phone photos get compressed automatically after saving.' }
+      - { name: photoAlt, label: Portrait alt text, widget: string, required: false, hint: 'Describe the photo for screen readers. Left blank, the site uses the name.' }
       - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: draft, label: Draft (hidden from /roster), widget: boolean, default: false }
+      - { name: draft, label: Hide from /roster, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
   # Booking: services + pricing tiers.                                 #
   # ------------------------------------------------------------------ #
   - name: services
-    label: Services
+    label: Services (what we do)
     label_singular: Service
+    description: The bookable services on /book. Each gets its own page at /book/name.
     folder: content/services
     path: '{{slug}}/index'
     extension: json
@@ -583,14 +683,12 @@ collections:
     create: true
     summary: '{{fields.title}}'
     fields:
-      - { name: title, label: Title, widget: string }
-      - { name: metaTitle, label: SEO meta title, widget: string, required: false }
-      - { name: metaDescription, label: SEO meta description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: summary, label: Summary, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: title, label: Service name, widget: string }
+      - { name: summary, label: Short summary, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'One or two sentences for the /book overview card.' }
       - { name: whatYouGet, label: What you get, widget: list, required: false, field: { name: item, label: Item, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, hint: 'Items reading "TODO: copy needed." are hidden on the live page until replaced.' }
       - { name: idealFor, label: Ideal for, widget: list, required: false, field: { name: item, label: Item, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, hint: 'Items reading "TODO: copy needed." are hidden on the live page until replaced.' }
       - { name: process, label: Process steps, widget: list, required: false, field: { name: step, label: Step, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, hint: 'Steps reading "TODO: copy needed." are hidden on the live page until replaced.' }
-      - { name: pricing, label: Pricing line, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: pricing, label: Pricing line, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Written out, e.g. "Starting at $750. Full quote after the intro call."' }
       - name: faqs
         label: FAQs
         widget: list
@@ -598,11 +696,14 @@ collections:
         fields:
           - { name: q, label: Question, widget: string }
           - { name: a, label: Answer, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: draft, label: Draft (shows banner on detail page), widget: boolean, default: false }
+      - { name: metaTitle, label: Search result title, widget: string, required: false, hint: 'Optional override for search engines. Leave blank to use the service name.' }
+      - { name: metaDescription, label: Search result description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'What search results show under the title. Aim for under 160 characters.' }
+      - { name: draft, label: Draft (shows a banner on the page), widget: boolean, default: false }
 
   - name: pricing_tiers
-    label: Pricing tiers
-    label_singular: Pricing tier
+    label: Show packages (Build Your Show)
+    label_singular: Package
+    description: The three packages the Build Your Show estimator on /book recommends.
     folder: content/pricing-tiers
     path: '{{slug}}/index'
     extension: json
@@ -610,79 +711,20 @@ collections:
     identifier_field: name
     slug: '{{fields.name}}'
     create: true
-    summary: '{{fields.name}}'
+    summary: '{{slug}}'
     fields:
-      - { name: name, label: Tier name (used as the URL slug), widget: string, required: false, hint: 'Leave blank on existing tiers. The display name comes from the folder slug.' }
-      - { name: bestFor, label: Best for (eyebrow), widget: string, required: false }
-      - { name: price, label: Price (display string), widget: string, required: false, hint: 'Shown verbatim by the Build Your Show estimator on /book, e.g. "Starting at $750".' }
-      - { name: items, label: Items, widget: list, required: false, field: { name: item, label: Item, widget: string }, hint: 'Bulleted in the estimator result card. Be specific about what is included.' }
-
-  # ------------------------------------------------------------------ #
-  # Shows (manual entries). Synced shows override these when present.   #
-  # ------------------------------------------------------------------ #
-  - name: shows
-    label: Shows (manual entries)
-    label_singular: Show
-    folder: content/shows
-    path: '{{slug}}/index'
-    extension: json
-    format: json
-    identifier_field: name
-    slug: "{{fields.name}}-{{fields.start | date('YYYY-MM-DD')}}"
-    create: true
-    summary: '{{fields.name}} · {{fields.status}}'
-    fields:
-      - { name: name, label: Name, widget: string }
-      - { name: start, label: Start, widget: datetime }
-      - { name: end, label: End, widget: datetime, required: false }
-      - { name: url, label: Event page URL, widget: string, required: false }
-      - { name: ticketUrl, label: Ticket URL, widget: string, required: false }
-      - { name: summary, label: Summary, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: imageUrl, label: Poster, widget: image, required: false, media_folder: /public/images/shows, public_folder: '' }
-      - { name: imageAlt, label: Poster alt text, widget: string, required: false }
-      - { name: draft, label: Draft (hidden from /shows), widget: boolean, default: false }
-      - name: venue
-        label: Venue
-        widget: object
-        required: false
-        fields:
-          - { name: name, label: Venue name, widget: string, required: false }
-          - { name: address, label: Address, widget: string, required: false }
-          - { name: city, label: City, widget: string, required: false }
-          - { name: region, label: Region (state code), widget: string, required: false }
-          - { name: country, label: Country code, widget: string, default: US, required: false }
-      - { name: status, label: Status, widget: select, default: tba, options: [{ label: Ticketed, value: ticketed }, { label: Free / at the door, value: free }, { label: TBA, value: tba }] }
-      - { name: ticketPrice, label: Ticket price (display string), widget: string, required: false }
-      - { name: doorTime, label: Door time, widget: string, required: false }
-
-  # ------------------------------------------------------------------ #
-  # Pro shows (manual entries on the /calendar pro comedy grid).        #
-  # ------------------------------------------------------------------ #
-  - name: pro_shows
-    label: Pro shows (manual entries)
-    label_singular: Pro show
-    folder: content/pro-shows
-    path: '{{slug}}/index'
-    extension: json
-    format: json
-    identifier_field: title
-    slug: '{{fields.title}}'
-    create: true
-    summary: '{{fields.title}} · {{fields.club}}'
-    fields:
-      - { name: title, label: Comedian / show title, widget: string }
-      - { name: club, label: Club slug, widget: string, hint: 'Must match a slug from Site copy -> Pro comedy clubs, e.g. tacoma-comedy-club. Manual entries override a synced show at the same club and start time.' }
-      - { name: start, label: Show date and time, widget: datetime }
-      - { name: ticketUrl, label: Ticket URL, widget: string, required: false }
-      - { name: featured, label: Spotlight (highlight in hazard yellow), widget: boolean, default: false }
-      - { name: draft, label: Draft (hidden from the calendar), widget: boolean, default: false }
+      - { name: bestFor, label: Best for (tiny line above the name), widget: string, required: false }
+      - { name: price, label: Price, as shown, widget: string, required: false, hint: 'Shown verbatim by the Build Your Show estimator on /book, e.g. "Starting at $750".' }
+      - { name: items, label: What is included, widget: list, required: false, field: { name: item, label: Item, widget: string }, hint: 'Bulleted in the estimator result card. Be specific about what is included.' }
+      - { name: name, label: Package name (only for new packages), widget: string, required: false, hint: 'Leave blank on existing packages. The display name comes from the folder name.' }
 
   # ------------------------------------------------------------------ #
   # Shop products (manual). Synced products override these.             #
   # ------------------------------------------------------------------ #
   - name: shop_products
-    label: Shop products (manual)
+    label: Shop products (manual backup)
     label_singular: Product
+    description: A hand-kept product list for /shop. When the Fourthwall sync is connected, the live catalog replaces this whole list.
     folder: content/shop-products
     path: '{{slug}}/index'
     extension: json
@@ -690,14 +732,18 @@ collections:
     identifier_field: name
     slug: '{{fields.name}}'
     create: true
-    summary: '{{fields.name}} · {{fields.price}}'
+    summary: '{{slug}} · {{fields.price}}'
+    view_filters:
+      - label: Hidden drafts
+        field: draft
+        pattern: true
     fields:
-      - { name: name, label: Product name, widget: string, required: false, hint: 'Leave blank on existing products. The display name comes from the folder slug, and the live shop usually overrides these with the synced Fourthwall catalog.' }
-      - { name: price, label: Price (display string), widget: string, required: false }
-      - { name: url, label: Fourthwall product URL, widget: string, required: false }
-      - { name: image, label: Image URL (imgproxy.fourthwall.com), widget: string, required: false }
+      - { name: price, label: Price, as shown, widget: string, required: false, hint: 'e.g. "$12.50".' }
+      - { name: url, label: Fourthwall product URL, widget: string, required: false, hint: 'The product page in the Fourthwall store, starting with https://.' }
+      - { name: image, label: Image URL, widget: string, required: false, hint: 'Paste the image address from the Fourthwall product page (it starts with https://imgproxy.fourthwall.com).' }
       - { name: imageAlt, label: Image alt text, widget: string, required: false }
-      - { name: draft, label: Draft (hidden from /shop), widget: boolean, default: false }
+      - { name: name, label: Product name (only for new products), widget: string, required: false, hint: 'Leave blank on existing products. The display name comes from the folder name.' }
+      - { name: draft, label: Hide from /shop, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
   # Open mics.                                                          #
@@ -705,6 +751,7 @@ collections:
   - name: open_mics
     label: Open mics
     label_singular: Open mic
+    description: Every mic on the /open-mics map and list. Keep details current; comics drive to these.
     folder: content/open-mics
     path: '{{slug}}/index'
     extension: json
@@ -713,21 +760,31 @@ collections:
     slug: '{{fields.venue}}-{{fields.city}}-{{fields.day}}'
     create: true
     summary: '{{fields.name}} ({{fields.city}}, {{fields.day}})'
+    sortable_fields:
+      fields: [name, city, day]
+      default:
+        field: name
+        direction: ascending
+    view_groups:
+      - label: By day
+        field: day
+      - label: By city
+        field: city
     fields:
-      - { name: name, label: Display name, widget: string }
+      - { name: name, label: Mic name, widget: string, hint: 'What it is called, e.g. "Big Time Comedy Open Mic".' }
       - { name: venue, label: Venue, widget: string }
-      - { name: address, label: Address, widget: string, required: false }
+      - { name: address, label: Street address, widget: string, required: false, hint: 'e.g. 4133 University Way NE, Seattle, WA 98105. Helps the map pin land right.' }
       - { name: city, label: City, widget: string }
-      - { name: region, label: Region, widget: select, default: WA, options: [{ label: Washington, value: WA }, { label: Oregon, value: OR }] }
-      - { name: lat, label: Latitude, widget: number, value_type: float, required: false }
-      - { name: lng, label: Longitude, widget: number, value_type: float, required: false }
-      - { name: day, label: Day, widget: select, default: Monday, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
-      - { name: frequency, label: Frequency, widget: select, default: weekly, options: [{ label: Weekly, value: weekly }, { label: Every other week, value: biweekly }, { label: Monthly, value: monthly }] }
-      - { name: weeks, label: Weeks of month, widget: select, multiple: true, required: false, options: ['1st', '2nd', '3rd', '4th', Last], hint: 'Which weeks of the month it runs (for every-other-week / monthly). Leave empty for weekly.' }
-      - { name: time, label: Time (display string), widget: string, required: false }
+      - { name: region, label: State, widget: select, default: WA, options: [{ label: Washington, value: WA }, { label: Oregon, value: OR }] }
+      - { name: day, label: Day of the week, widget: select, default: Monday, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
+      - { name: time, label: Time, as shown, widget: string, required: false, hint: 'Written out, e.g. "Signup 7:30 PM, mic at 8".' }
+      - { name: frequency, label: How often, widget: select, default: weekly, options: [{ label: Weekly, value: weekly }, { label: Every other week, value: biweekly }, { label: Monthly, value: monthly }] }
+      - { name: weeks, label: Which weeks of the month, widget: select, multiple: true, required: false, options: ['1st', '2nd', '3rd', '4th', Last], hint: 'Only for every-other-week or monthly mics, e.g. "1st" and "3rd". Leave empty for weekly.' }
       - { name: host, label: Host, widget: string, required: false }
-      - { name: signupUrl, label: Signup URL, widget: string, required: false, hint: 'Link to the signup form, Facebook event, or venue page. Map pins and lists link here when set.' }
-      - { name: notes, label: Notes, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - { name: signupUrl, label: Signup link, widget: string, required: false, hint: 'Link to the signup form, Facebook event, or venue page. Map pins and lists link here when set.' }
+      - { name: notes, label: Notes, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Anything a comic should know before driving out, e.g. "Music mic, comedy tolerated".' }
+      - { name: lat, label: Latitude (map position), widget: number, value_type: float, required: false, hint: 'Decimal, e.g. 47.6062. Get both numbers by right-clicking the venue in Google Maps.' }
+      - { name: lng, label: Longitude (map position), widget: number, value_type: float, required: false, hint: 'Decimal, e.g. -122.3321.' }
 
   # ------------------------------------------------------------------ #
   # TikTok videos.                                                      #
@@ -735,6 +792,7 @@ collections:
   - name: tiktok
     label: TikTok videos
     label_singular: TikTok video
+    description: Hand-picked TikTok clips for the /watch page.
     folder: content/tiktok
     path: '{{slug}}/index'
     extension: json
@@ -743,12 +801,16 @@ collections:
     slug: '{{fields.title}}'
     create: true
     summary: '{{fields.title}}'
+    view_filters:
+      - label: Hidden drafts
+        field: draft
+        pattern: true
     fields:
-      - { name: title, label: Title (used as the slug and on-page label), widget: string }
-      - { name: url, label: TikTok URL, widget: string }
-      - { name: poster, label: Poster, widget: image, required: false, media_folder: /public/images/tiktok, public_folder: '' }
-      - { name: posterAlt, label: Poster alt text, widget: string, required: false }
-      - { name: draft, label: Draft (hidden from /watch), widget: boolean, default: false }
+      - { name: title, label: Title, widget: string, hint: 'Also used as the on-page label.' }
+      - { name: url, label: TikTok link, widget: string, hint: 'The full video URL, e.g. https://www.tiktok.com/@handle/video/123456.' }
+      - { name: poster, label: Preview image, widget: image, required: false, media_folder: /public/images/tiktok, public_folder: '', hint: 'A screenshot of the video works. Vertical, phone-screen shaped.' }
+      - { name: posterAlt, label: Preview alt text, widget: string, required: false }
+      - { name: draft, label: Hide from /watch, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
   # News posts. Render as cards (title + summary + image) on /watch and #
@@ -758,6 +820,7 @@ collections:
   - name: news
     label: News posts
     label_singular: News post
+    description: Announcement cards on /watch and the home Latest strip. The card is the whole story for now; the long body is saved for a future detail page.
     folder: content/news
     path: '{{slug}}/index'
     extension: md
@@ -765,14 +828,52 @@ collections:
     identifier_field: title
     slug: '{{fields.title}}'
     create: true
-    summary: '{{fields.title}}'
+    summary: "{{fields.title}} · {{fields.date | date('MMM D, YYYY')}}"
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    view_filters:
+      - label: Featured
+        field: featured
+        pattern: true
+      - label: Hidden drafts
+        field: draft
+        pattern: true
     fields:
       - { name: title, label: Title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: date, label: Publish date, widget: datetime }
-      - { name: summary, label: Summary (shown on the card), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: image, label: Hero image, widget: image, required: false, media_folder: /public/images/news, public_folder: /images/news }
-      - { name: imageAlt, label: Hero image alt text, widget: string, required: false }
+      - { name: date, label: Publish date, widget: datetime, format: 'YYYY-MM-DD', time_format: false, hint: 'Newest first on the site.' }
+      - { name: summary, label: Card text, widget: text, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'The two or three sentences shown on the card. This is the whole story for now.' }
+      - { name: image, label: Card image, widget: image, required: false, media_folder: /public/images/news, public_folder: /images/news, hint: 'Wide 16:9 image, at least 1200x675 pixels.' }
+      - { name: imageAlt, label: Card image alt text, widget: string, required: false, hint: 'Describe the image for screen readers.' }
+      - { name: featured, label: Pin to the top of the Latest strip, widget: boolean, default: false }
       - { name: tags, label: Tags, widget: list, required: false, field: { name: tag, label: Tag, widget: string } }
-      - { name: featured, label: Featured (pinned in the Latest strip), widget: boolean, default: false }
-      - { name: draft, label: Draft (hidden from the site), widget: boolean, default: false }
-      - { name: body, label: Body (stored for a future detail page; not shown yet), widget: markdown, required: false }
+      - { name: draft, label: Hide from the site, widget: boolean, default: false }
+      - { name: body, label: Long version (saved for a future detail page, not shown yet), widget: markdown, required: false }
+
+  # ------------------------------------------------------------------ #
+  # Pages: composed from blocks, render at /<slug>.                     #
+  # ------------------------------------------------------------------ #
+  - name: pages
+    label: Extra pages
+    label_singular: Page
+    description: Standalone pages built from blocks. A page titled "About" goes live at /about. To put it in the menu, add it under Site copy, Site config, Primary nav.
+    folder: content/pages
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: title
+    slug: '{{fields.title}}'
+    create: true
+    summary: '{{fields.title}}'
+    view_filters:
+      - label: Hidden drafts
+        field: draft
+        pattern: true
+    fields:
+      - { name: title, label: Page title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Also sets the address: "About" becomes /about. Some names are reserved by the site (shows, watch, roster, book, shop, contact, open-mics) and will fail the deploy.' }
+      - { name: sections, label: Page sections, widget: list, required: false, types: *section_types, hint: 'The page body. Add blocks with the plus button, drag to reorder.' }
+      - { name: seoDescription, label: Search result description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'What search results show under the title. Aim for under 160 characters and be specific about the page.' }
+      - { name: ogImage, label: Social share image, widget: image, required: false, media_folder: /public/images/pages, public_folder: /images/pages, hint: 'Shown when the page is shared on social media. Wide image, 1200x630 pixels.' }
+      - { name: draft, label: Hide from the live site, widget: boolean, default: false }
