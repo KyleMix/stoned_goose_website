@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-07-03T19:08:19.429Z",
+  "fetchedAt": "2026-07-04T02:11:18.825Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-07-02 20:00:00-comedy-show-coming-to-america",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Coming to America",
-      "start": "2026-07-02T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-coming-to-america-tickets-1992369556978",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24317_image.png"
-    },
     {
       "id": "laughs-comedy-club-2026-07-03 20:00:00-comedy-show-comedian-xavier-smith-and-friends-at-laughs-come",
       "clubSlug": "laughs-comedy-club",
