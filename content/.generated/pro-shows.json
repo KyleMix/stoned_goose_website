@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-07-04T19:01:28.119Z",
+  "fetchedAt": "2026-07-05T02:26:57.065Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-07-03 20:00:00-comedy-show-comedian-xavier-smith-and-friends-at-laughs-come",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Comedian Xavier Smith and Friends at Laughs Comedy",
-      "start": "2026-07-03T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-comedian-xavier-smith-and-friends-at-laughs-comedy-tickets-1989349356477",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24128_image.png"
-    },
     {
       "id": "emerald-city-comedy-club-2026-07-05T22:00:00Z-dolly-parton-fourth-of-july-drag-brunch",
       "clubSlug": "emerald-city-comedy-club",
