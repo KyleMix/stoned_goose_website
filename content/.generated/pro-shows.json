@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-06T15:17:41.278Z",
+  "fetchedAt": "2026-07-06T19:47:00.188Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-07-08T02:30:00Z-stormy-daniels",
@@ -24,14 +24,6 @@
       "start": "2026-07-09T20:00:00",
       "url": "https://www.eventbrite.com/e/tacoma-aroma-vs-seattle-freeze-roast-battle-tickets-1992846968930",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24364_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-10T02:00:00Z-that-one-mailman-sean-fogelson",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "\"That One Mailman\" Sean Fogelson",
-      "start": "2026-07-10T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/360614",
-      "image": "https://files.seatengine.com/talent/headshots/photos/80160/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-10T02:30:00Z-lara-beitz",
