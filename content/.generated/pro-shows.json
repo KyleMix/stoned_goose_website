@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-07-05T19:06:23.165Z",
+  "fetchedAt": "2026-07-06T02:31:15.288Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-07-05T22:00:00Z-dolly-parton-fourth-of-july-drag-brunch",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Dolly Parton Fourth of July Drag Brunch",
-      "start": "2026-07-05T22:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/374293",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91975/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-07-08T02:30:00Z-stormy-daniels",
       "clubSlug": "emerald-city-comedy-club",
@@ -448,6 +440,14 @@
       "start": "2026-08-05T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376441",
       "image": "https://files.seatengine.com/talent/headshots/photos/82429/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-07T02:30:00Z-doknow-and-dahawmies-comedy-tour",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "DoKnow and DaHawmies Comedy Tour",
+      "start": "2026-08-07T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/351792",
+      "image": "https://files.seatengine.com/talent/headshots/photos/86155/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
