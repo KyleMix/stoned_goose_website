@@ -4,12 +4,12 @@
   "address": "532 SE Grand Ave",
   "city": "Portland",
   "region": "OR",
-  "lat": 45.52520045777066,
-  "lng": -122.6758509498741,
-  "day": "Friday",
-  "frequency": "weekly",
+  "day": "Thursday",
   "time": "9pm",
+  "frequency": "weekly",
   "host": "",
-  "signupUrl": "",
-  "notes": ""
+  "signupUrl": "In person",
+  "notes": "",
+  "lat": 45.52520045777066,
+  "lng": -122.6758509498741
 }
