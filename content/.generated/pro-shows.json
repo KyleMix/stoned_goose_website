@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-07T02:26:45.541Z",
+  "fetchedAt": "2026-07-07T09:30:19.581Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-07-08T02:30:00Z-stormy-daniels",
@@ -218,12 +218,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-07-18T02:30:00Z-pablo-francisco",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Pablo Francisco",
+      "start": "2026-07-18T02:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364801",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79091/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-07-18T04:30:00Z-mark-normand",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Mark Normand",
       "start": "2026-07-18T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/360347",
       "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-18T04:45:00Z-pablo-francisco",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Pablo Francisco",
+      "start": "2026-07-18T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364804",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79091/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-07-19T02:00:00Z-damon-wayans-sr",
