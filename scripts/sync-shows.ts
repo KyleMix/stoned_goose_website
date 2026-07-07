@@ -12,6 +12,11 @@ import { requireEnv, safeFetch, writeJson } from "./_sync-helpers";
 
 const OUT_PATH = join(process.cwd(), "content", ".generated", "shows.json");
 
+// Stoned Goose Productions on Eventbrite. The organizer id is public, it is
+// right in the eventbrite.com/o/ URL, so a baked-in default keeps setup to a
+// single secret (the token). EVENTBRITE_ORGANIZER_ID still overrides it.
+const DEFAULT_ORGANIZER_ID = "107337391771";
+
 type EventbriteEvent = {
   id: string;
   name: { text: string };
@@ -90,10 +95,11 @@ async function fetchAllEvents(token: string, organizerId: string): Promise<Event
 }
 
 async function main() {
-  const env = requireEnv("EVENTBRITE_TOKEN", "EVENTBRITE_ORGANIZER_ID");
+  const env = requireEnv("EVENTBRITE_TOKEN");
   if (!env) return;
 
-  const events = await fetchAllEvents(env.EVENTBRITE_TOKEN, env.EVENTBRITE_ORGANIZER_ID);
+  const organizerId = process.env.EVENTBRITE_ORGANIZER_ID || DEFAULT_ORGANIZER_ID;
+  const events = await fetchAllEvents(env.EVENTBRITE_TOKEN, organizerId);
   if (!events) {
     console.log("[sync:shows] eventbrite request failed. keeping existing JSON.");
     return;
