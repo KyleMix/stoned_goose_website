@@ -14,9 +14,12 @@
 # workflow stays green even before the secrets are configured. Failures on
 # any one platform do not block the others (continue-on-error: true).
 #
-# Each successful run that produces a diff in content/feeds/*.json is
-# committed back to the branch with [skip ci] so this workflow does not
-# loop itself. The host's auto-deploy hook picks up the change.
+# Each successful run that produces a diff is committed back to the branch.
+# The commit message must NOT contain [skip ci]: the host (Cloudflare)
+# honors that marker and would skip the rebuild, leaving the live site
+# stale. Loops are impossible anyway: pushes made with the workflow's
+# GITHUB_TOKEN never trigger other workflows, and this one only runs on
+# schedule or manual dispatch.
 
 name: Refresh social feeds
 
@@ -78,5 +81,5 @@ jobs:
       - name: Commit refreshed feeds
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(feeds): refresh social content [skip ci]"
+          commit_message: "chore(feeds): refresh social content"
           file_pattern: "content/feeds/*.json content/.generated/pro-shows.json content/.generated/shows.json"
