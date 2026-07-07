@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-07-07T14:14:49.913Z",
+  "fetchedAt": "2026-07-07T18:52:20.330Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-07-08T02:30:00Z-stormy-daniels",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Stormy Daniels",
-      "start": "2026-07-08T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/371427",
-      "image": "https://files.seatengine.com/talent/headshots/photos/85423/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-07-09T02:30:00Z-james-austin-johnson",
       "clubSlug": "emerald-city-comedy-club",
@@ -480,6 +472,14 @@
       "start": "2026-08-07T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club-seattle-tickets-1992508987017",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24336_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-09T23:00:00Z-the-unteachables-comedy-tour",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "The Unteachables Comedy Tour",
+      "start": "2026-08-09T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/362688",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89006/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
