@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-09T14:39:41.061Z",
+  "fetchedAt": "2026-07-09T19:27:42.731Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-09 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle",
@@ -522,12 +522,52 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24332_image.png"
     },
     {
+      "id": "emerald-city-comedy-club-2026-08-14T02:30:00Z-shayne-smith",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Shayne Smith",
+      "start": "2026-08-14T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/340230",
+      "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Johnny Pemberton Aug.14th and 15th at Laughs Comedy- Seattle",
       "start": "2026-08-14T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-johnny-pemberton-aug14th-and-15th-at-laughs-comedy-seattle-tickets-1986946509497",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23864_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-15T02:00:00Z-shayne-smith",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Shayne Smith",
+      "start": "2026-08-15T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/340231",
+      "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-15T04:30:00Z-shayne-smith",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Shayne Smith",
+      "start": "2026-08-15T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/340232",
+      "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-16T02:00:00Z-shayne-smith",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Shayne Smith",
+      "start": "2026-08-16T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/340233",
+      "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-16T04:30:00Z-shayne-smith",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Shayne Smith",
+      "start": "2026-08-16T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/340234",
+      "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-20 20:00:00-comedy-show-comedian-faith-ladzinski-at-laughs-comedy",
