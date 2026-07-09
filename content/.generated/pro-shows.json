@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-07-09T02:13:21.426Z",
+  "fetchedAt": "2026-07-09T09:26:32.217Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-07-09T02:30:00Z-james-austin-johnson",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "James Austin Johnson",
-      "start": "2026-07-09T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/366447",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89820/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-07-09 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle",
       "clubSlug": "laughs-comedy-club",
@@ -122,20 +114,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1380-540-comedy-class-jul26.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-07-16T02:00:00Z-damon-wayans-sr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans, Sr.",
-      "start": "2026-07-16T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/376992",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92745/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-07-16T02:00:00Z-danny-polishchuk",
       "clubSlug": "tacoma-comedy-club",
       "title": "Danny Polishchuk",
       "start": "2026-07-16T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/365161",
       "image": "https://files.seatengine.com/talent/headshots/photos/89440/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-16T02:00:00Z-damon-wayans-sr",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Damon Wayans, Sr.",
+      "start": "2026-07-16T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/376992",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92745/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-16T02:30:00Z-ali-sultan",
@@ -512,6 +504,14 @@
       "start": "2026-08-12T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-530pm-class-tickets-1991833425394",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24313_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-13T02:30:00Z-ron-taylor",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ron Taylor",
+      "start": "2026-08-13T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/373649",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91709/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-13 20:00:00-comedy-class-graduation-show-with-andrew-frank-2-night-7-30-",
