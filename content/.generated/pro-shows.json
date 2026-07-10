@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-09T19:27:42.731Z",
+  "fetchedAt": "2026-07-10T02:12:48.407Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-09 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle",
@@ -634,6 +634,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23803_image.png"
     },
     {
+      "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Gwen Rose at Laughs Comedy",
+      "start": "2026-10-15T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-gwen-rose-at-laughs-comedy-tickets-1993495355271",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/24424_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-16 19:00:00-comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Erica Rhodes Oct. 16th and 17th at Laughs Comedy- Seattle",
@@ -728,6 +736,14 @@
       "start": "2027-01-15T18:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-learnmore-jonasi-jan-15th-16th-at-laughs-comedy-seattle-tickets-1985178919588",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24348_image.jpg"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-31 19:00:00-comedian-pandji-8211-english-tour-on-jan-31st-at-laughs-come",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedian Pandji &#8211; English Tour on Jan. 31st at Laughs Comedy Club- Seattle",
+      "start": "2027-01-31T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedian-pandji-english-tour-on-jan-31st-at-laughs-comedy-club-seattle-tickets-1993481255097",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-pandji-jan27-f1.png"
     }
   ]
 }
