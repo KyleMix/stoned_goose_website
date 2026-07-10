@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-10T02:12:48.407Z",
+  "fetchedAt": "2026-07-10T09:23:31.353Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-09 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle",
@@ -8,14 +8,6 @@
       "start": "2026-07-09T20:00:00",
       "url": "https://www.eventbrite.com/e/tacoma-aroma-vs-seattle-freeze-roast-battle-tickets-1992846968930",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24364_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-10T02:30:00Z-lara-beitz",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Lara Beitz",
-      "start": "2026-07-10T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/367557",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90206/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-07-10 19:15:00-comedy-show-elle-orlando-july-10th-and-11th",
