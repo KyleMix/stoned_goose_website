@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-11T01:58:43.412Z",
+  "fetchedAt": "2026-07-11T07:44:44.246Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-10 19:15:00-comedy-show-elle-orlando-july-10th-and-11th",
@@ -8,38 +8,6 @@
       "start": "2026-07-10T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-elle-orlando-july-10th-and-11th-tickets-1991798021500",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24281_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-11T02:00:00Z-tim-meadows",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Meadows",
-      "start": "2026-07-11T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/350190",
-      "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-11T02:00:00Z-leslie-jones",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Leslie Jones",
-      "start": "2026-07-11T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360894",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-11T04:30:00Z-leslie-jones",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Leslie Jones",
-      "start": "2026-07-11T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360896",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-11T04:45:00Z-tim-meadows",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Meadows",
-      "start": "2026-07-11T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/350192",
-      "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-07-12T02:00:00Z-tim-meadows",
@@ -208,6 +176,30 @@
       "start": "2026-07-18T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/364804",
       "image": "https://files.seatengine.com/talent/headshots/photos/79091/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-18T05:00:00Z-jon-kondelik-s-adult-bingo",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Jon Kondelik's Adult Bingo",
+      "start": "2026-07-18T05:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/379250",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93345/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-18T21:30:00Z-it-s-bingo-b-a-drag-bingo-event",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "It's Bingo B**** - A Drag Bingo Event!",
+      "start": "2026-07-18T21:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364545",
+      "image": "https://files.seatengine.com/talent/headshots/photos/78557/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-18T22:00:00Z-tales-of-vicious-mockery-an-rpg-comedy-show",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Tales of Vicious Mockery: An RPG Comedy Show",
+      "start": "2026-07-18T22:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/368772",
+      "image": "https://files.seatengine.com/talent/headshots/photos/75805/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-07-19T01:30:00Z-pablo-francisco",
