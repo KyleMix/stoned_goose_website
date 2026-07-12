@@ -1,38 +1,6 @@
 {
-  "fetchedAt": "2026-07-12T02:02:16.825Z",
+  "fetchedAt": "2026-07-12T08:06:06.395Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-07-12T02:00:00Z-tim-meadows",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Meadows",
-      "start": "2026-07-12T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/350191",
-      "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-12T02:00:00Z-leslie-jones",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Leslie Jones",
-      "start": "2026-07-12T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360897",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-12T04:30:00Z-leslie-jones",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Leslie Jones",
-      "start": "2026-07-12T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360898",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88394/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-12T04:45:00Z-tim-meadows",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Tim Meadows",
-      "start": "2026-07-12T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/350193",
-      "image": "https://files.seatengine.com/talent/headshots/photos/80162/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-07-13T02:00:00Z-my-straight-friends",
       "clubSlug": "tacoma-comedy-club",
@@ -240,6 +208,14 @@
       "start": "2026-07-20T01:30:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/364803",
       "image": "https://files.seatengine.com/talent/headshots/photos/79091/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-07-21T02:00:00Z-cliff-cash",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Cliff Cash",
+      "start": "2026-07-21T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/339705",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83166/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-21T02:30:00Z-casey-frey",
