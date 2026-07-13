@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-12T18:56:22.584Z",
+  "fetchedAt": "2026-07-13T02:03:53.513Z",
   "shows": [
     {
       "id": "tacoma-comedy-club-2026-07-13T02:00:00Z-my-straight-friends",
@@ -418,6 +418,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/82429/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-08-06 20:00:00-comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laug",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Daegen Asfaha and Friends Aug 6th at 8pm at Laughs Comedy",
+      "start": "2026-08-06T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laughs-comedy-tickets-1993715892905",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/24445_image.png"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-07T02:30:00Z-doknow-and-dahawmies-comedy-tour",
       "clubSlug": "emerald-city-comedy-club",
       "title": "DoKnow and DaHawmies Comedy Tour",
@@ -664,6 +672,14 @@
       "start": "2026-12-10T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-seattle-tickets-1989421356832",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24098_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-20 19:00:00-comedy-show-daniel-bridge-gadd-at-laughs-comedy-club-on-dec-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Daniel Bridge-Gadd at Laughs Comedy club on Dec. 20th",
+      "start": "2026-12-20T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-daniel-bridge-gadd-at-laughs-comedy-club-on-dec-20th-tickets-1993496130590",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/24437_image.png"
     },
     {
       "id": "laughs-comedy-club-2027-01-08 18:00:00-comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy",
