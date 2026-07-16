@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-07-16T01:57:10.917Z",
+  "fetchedAt": "2026-07-16T08:01:25.094Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-07-16T02:00:00Z-damon-wayans-sr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans, Sr.",
-      "start": "2026-07-16T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/376992",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92745/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-16T02:30:00Z-ali-sultan",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Ali Sultan",
-      "start": "2026-07-16T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/371818",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91319/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-07-16 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle",
       "clubSlug": "laughs-comedy-club",
@@ -544,6 +528,14 @@
       "start": "2026-08-20T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-faith-ladzinski-at-laughs-comedy-tickets-1990912139804",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-faith-ladzinski-aug26-f3.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-21T02:30:00Z-hollywood-crime-scene",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Hollywood Crime Scene",
+      "start": "2026-08-21T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/367789",
+      "image": "https://files.seatengine.com/talent/headshots/photos/65037/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-21 19:15:00-comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-",
