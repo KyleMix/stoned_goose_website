@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-16T19:01:15.269Z",
+  "fetchedAt": "2026-07-17T02:01:01.889Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-16 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle",
@@ -112,6 +112,14 @@
       "start": "2026-07-18T22:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/368772",
       "image": "https://files.seatengine.com/talent/headshots/photos/75805/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-18T23:00:00Z-mark-normand",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Mark Normand",
+      "start": "2026-07-18T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/380739",
+      "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-07-19T01:30:00Z-pablo-francisco",
