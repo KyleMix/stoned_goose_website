@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-17T13:12:42.455Z",
+  "fetchedAt": "2026-07-17T18:58:25.960Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-16 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle",
@@ -151,7 +151,7 @@
       "title": "Casey Frey",
       "start": "2026-07-21T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/368260",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/37817/full/data?1640119493"
+      "image": "https://files.seatengine.com/talent/headshots/photos/93754/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-22T02:30:00Z-casey-frey",
@@ -159,7 +159,7 @@
       "title": "Casey Frey",
       "start": "2026-07-22T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/368261",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/37817/full/data?1640119493"
+      "image": "https://files.seatengine.com/talent/headshots/photos/93754/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-23T02:30:00Z-chona-e-hot-flash-and-furious-comedy-tour",
