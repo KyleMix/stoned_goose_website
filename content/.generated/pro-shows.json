@@ -1,46 +1,6 @@
 {
-  "fetchedAt": "2026-07-19T01:59:53.824Z",
+  "fetchedAt": "2026-07-19T08:05:20.416Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-07-19T01:30:00Z-pablo-francisco",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Pablo Francisco",
-      "start": "2026-07-19T01:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364802",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79091/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-19T02:00:00Z-damon-wayans-sr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans, Sr.",
-      "start": "2026-07-19T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/376995",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92745/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-19T02:00:00Z-mark-normand",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Mark Normand",
-      "start": "2026-07-19T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360346",
-      "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-19T03:45:00Z-pablo-francisco",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Pablo Francisco",
-      "start": "2026-07-19T03:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364805",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79091/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-19T04:30:00Z-mark-normand",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Mark Normand",
-      "start": "2026-07-19T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360348",
-      "image": "https://files.seatengine.com/talent/headshots/photos/83679/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-07-20T01:30:00Z-pablo-francisco",
       "clubSlug": "tacoma-comedy-club",
@@ -282,6 +242,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/72721/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-08-02T01:00:00Z-eric-eaton",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Eric Eaton",
+      "start": "2026-08-02T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/350344",
+      "image": "https://files.seatengine.com/talent/headshots/photos/62711/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-02T02:00:00Z-tommy-brennan",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Tommy Brennan",
@@ -504,6 +472,22 @@
       "start": "2026-08-30T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/360374",
       "image": "https://files.seatengine.com/talent/headshots/photos/88344/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-30T02:00:00Z-carsen-white-aka-nurse-stankk",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carsen White aka Nurse Stankk",
+      "start": "2026-08-30T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/374087",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91916/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-30T04:30:00Z-carsen-white-aka-nurse-stankk",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carsen White aka Nurse Stankk",
+      "start": "2026-08-30T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/374088",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91916/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
