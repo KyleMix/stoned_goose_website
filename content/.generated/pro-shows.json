@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-07-19T18:56:23.050Z",
+  "fetchedAt": "2026-07-20T02:15:45.662Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-07-20T01:30:00Z-pablo-francisco",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Pablo Francisco",
-      "start": "2026-07-20T01:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364803",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79091/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-07-21T02:00:00Z-cliff-cash",
       "clubSlug": "tacoma-comedy-club",
@@ -74,14 +66,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/50460/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-07-25T02:30:00Z-alec-flynn",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Alec Flynn",
-      "start": "2026-07-25T02:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364210",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89433/full/data"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-07-25T04:30:00Z-godfrey",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Godfrey",
@@ -96,14 +80,6 @@
       "start": "2026-07-25T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/346625",
       "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-25T04:45:00Z-alec-flynn",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Alec Flynn",
-      "start": "2026-07-25T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364212",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89433/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-25T23:00:00Z-foo-s-got-love-eric-ochoa",
@@ -130,14 +106,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/50460/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-07-26T02:30:00Z-alec-flynn",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Alec Flynn",
-      "start": "2026-07-26T02:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364211",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89433/full/data"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-07-26T04:30:00Z-godfrey",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Godfrey",
@@ -152,14 +120,6 @@
       "start": "2026-07-26T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/346626",
       "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-26T04:45:00Z-alec-flynn",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Alec Flynn",
-      "start": "2026-07-26T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364213",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89433/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-07-27T02:00:00Z-godfrey",
@@ -256,6 +216,14 @@
       "start": "2026-08-02T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/365806",
       "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-02T03:45:00Z-eric-eaton",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Eric Eaton",
+      "start": "2026-08-02T03:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/350345",
+      "image": "https://files.seatengine.com/talent/headshots/photos/62711/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-02T04:30:00Z-tommy-brennan",
