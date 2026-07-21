@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-21T13:23:38.050Z",
+  "fetchedAt": "2026-07-21T19:08:46.185Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-07-22T02:30:00Z-casey-frey",
@@ -256,6 +256,14 @@
       "start": "2026-08-09T23:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/362688",
       "image": "https://files.seatengine.com/talent/headshots/photos/89006/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-12T02:30:00Z-ron-taylor",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ron Taylor",
+      "start": "2026-08-12T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381149",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91709/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
