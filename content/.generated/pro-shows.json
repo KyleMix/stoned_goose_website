@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-21T19:08:46.185Z",
+  "fetchedAt": "2026-07-22T01:58:10.246Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-07-22T02:30:00Z-casey-frey",
@@ -48,6 +48,14 @@
       "start": "2026-07-25T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/346625",
       "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-07-25T23:00:00Z-foo-s-got-love-eric-ochoa",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Foo's Got Love (Eric Ochoa!)",
+      "start": "2026-07-25T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376440",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89928/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-07-26T02:00:00Z-joe-list",
@@ -224,6 +232,14 @@
       "start": "2026-08-05T20:00:00",
       "url": "https://www.eventbrite.com/e/bumbershoot-x-laughs-comedy-coop-showdown-qualifiers-tickets-1989839671021",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-06T02:00:00Z-sarper-g-ven",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Sarper Güven",
+      "start": "2026-08-06T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/377768",
+      "image": "https://files.seatengine.com/talent/headshots/photos/82429/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-06 20:00:00-comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laug",
@@ -448,22 +464,6 @@
       "start": "2026-08-30T22:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/379792",
       "image": "https://files.seatengine.com/talent/headshots/photos/93484/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-01T02:30:00Z-jane-don-t-does-america",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jane Don't Does America",
-      "start": "2026-09-01T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/371429",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90623/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-02T02:30:00Z-jane-don-t-does-america",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jane Don't Does America",
-      "start": "2026-09-02T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/368994",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90623/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
