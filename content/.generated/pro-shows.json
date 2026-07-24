@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-23T19:04:20.303Z",
+  "fetchedAt": "2026-07-24T02:00:47.525Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-23 20:00:00-comedy-show-cliff-cash-july-23rd-24th-and-25th-at-laughs-com",
@@ -40,14 +40,6 @@
       "start": "2026-07-25T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/346625",
       "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-25T23:00:00Z-foo-s-got-love-eric-ochoa",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Foo's Got Love (Eric Ochoa!)",
-      "start": "2026-07-25T23:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376440",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89928/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-07-26T02:00:00Z-joe-list",
@@ -258,12 +250,52 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24336_image.png"
     },
     {
+      "id": "emerald-city-comedy-club-2026-08-08T02:00:00Z-adam-carolla",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Adam Carolla",
+      "start": "2026-08-08T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381463",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-08T04:30:00Z-adam-carolla",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Adam Carolla",
+      "start": "2026-08-08T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381466",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-09T02:00:00Z-adam-carolla",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Adam Carolla",
+      "start": "2026-08-09T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381464",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-09T04:30:00Z-adam-carolla",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Adam Carolla",
+      "start": "2026-08-09T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381467",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-09T23:00:00Z-the-unteachables-comedy-tour",
       "clubSlug": "emerald-city-comedy-club",
       "title": "The Unteachables Comedy Tour",
       "start": "2026-08-09T23:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/362688",
       "image": "https://files.seatengine.com/talent/headshots/photos/89006/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-10T02:00:00Z-adam-carolla",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Adam Carolla",
+      "start": "2026-08-10T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381465",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-12T02:30:00Z-ron-taylor",
@@ -448,30 +480,6 @@
       "start": "2026-08-30T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/374088",
       "image": "https://files.seatengine.com/talent/headshots/photos/91916/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-30T22:00:00Z-golden-girls-drag-brunch",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Golden Girls Drag Brunch",
-      "start": "2026-08-30T22:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/379792",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93484/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-01T02:30:00Z-jane-don-t-does-america",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jane Don't Does America",
-      "start": "2026-09-01T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/371429",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90623/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-02T02:30:00Z-jane-don-t-does-america",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jane Don't Does America",
-      "start": "2026-09-02T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/368994",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90623/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
