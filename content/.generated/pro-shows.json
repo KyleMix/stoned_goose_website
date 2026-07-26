@@ -1,38 +1,6 @@
 {
-  "fetchedAt": "2026-07-26T02:04:42.934Z",
+  "fetchedAt": "2026-07-26T08:13:44.693Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-07-26T02:00:00Z-joe-list",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Joe List",
-      "start": "2026-07-26T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/346624",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-26T02:00:00Z-godfrey",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Godfrey",
-      "start": "2026-07-26T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/364819",
-      "image": "https://files.seatengine.com/talent/headshots/photos/50460/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-26T04:30:00Z-godfrey",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Godfrey",
-      "start": "2026-07-26T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/364820",
-      "image": "https://files.seatengine.com/talent/headshots/photos/50460/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-26T04:45:00Z-joe-list",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Joe List",
-      "start": "2026-07-26T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/346626",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84889/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-07-26T23:00:00Z-godfrey",
       "clubSlug": "emerald-city-comedy-club",
@@ -216,6 +184,14 @@
       "start": "2026-08-08T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/381463",
       "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-08T23:00:00Z-kellen-erskine",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Kellen Erskine",
+      "start": "2026-08-08T23:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/369012",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90135/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-09T01:00:00Z-adam-carolla",
