@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-07-28T01:53:08.357Z",
+  "fetchedAt": "2026-07-28T08:22:03.185Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-07-28T02:30:00Z-suzie-with-a-z-suzie-toot-one-woman-show",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Suzie with a Z: Suzie Toot One Woman Show",
-      "start": "2026-07-28T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/367258",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90101/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-07-30 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle-finals",
       "clubSlug": "laughs-comedy-club",
@@ -448,6 +440,46 @@
       "start": "2026-09-04T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-francesca-fiorentini-and-matt-lieb-laughs-comedy-club-tickets-1989424855296",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24343_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-05T02:00:00Z-duncan-trussell",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Duncan Trussell",
+      "start": "2026-09-05T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376442",
+      "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-05T04:30:00Z-duncan-trussell",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Duncan Trussell",
+      "start": "2026-09-05T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376444",
+      "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-06T02:00:00Z-duncan-trussell",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Duncan Trussell",
+      "start": "2026-09-06T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376445",
+      "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-06T04:30:00Z-duncan-trussell",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Duncan Trussell",
+      "start": "2026-09-06T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376446",
+      "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-07T02:00:00Z-duncan-trussell",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Duncan Trussell",
+      "start": "2026-09-07T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376443",
+      "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-11 19:15:00-comedy-show-leah-rudick-sept-11th-and-12th-at-laughs-comedy-",
