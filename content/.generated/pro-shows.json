@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-31T02:06:27.762Z",
+  "fetchedAt": "2026-07-31T08:39:40.073Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-07-30 20:00:00-tacoma-aroma-vs-seattle-freeze-roast-battle-finals",
@@ -8,22 +8,6 @@
       "start": "2026-07-30T20:00:00",
       "url": "https://www.eventbrite.com/e/tacoma-aroma-vs-seattle-freeze-roast-battle-finals-tickets-1992850633892",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24372_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-07-31T02:00:00Z-dr-brady-smith",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Dr. Brady Smith",
-      "start": "2026-07-31T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/354041",
-      "image": "https://files.seatengine.com/talent/headshots/photos/72721/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-07-31T02:00:00Z-tommy-brennan",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Tommy Brennan",
-      "start": "2026-07-31T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/365803",
-      "image": "https://files.seatengine.com/talent/headshots/photos/72001/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-07-31 19:15:00-comedy-show-nathan-macintosh-at-laughs-comedy-8211-seattle",
