@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-01T19:00:32.945Z",
+  "fetchedAt": "2026-08-02T02:04:24.796Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-07-31 19:15:00-comedy-show-nathan-macintosh-at-laughs-comedy-8211-seattle",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Nathan Macintosh at Laughs Comedy &#8211; Seattle",
-      "start": "2026-07-31T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-nathan-macintosh-at-laughs-comedy-seattle-tickets-1991805326349",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24285_image.png"
-    },
     {
       "id": "tacoma-comedy-club-2026-08-02T01:00:00Z-eric-eaton",
       "clubSlug": "tacoma-comedy-club",
@@ -178,6 +170,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24332_image.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-08-14T02:00:00Z-marc-maron",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Marc Maron",
+      "start": "2026-08-14T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/348493",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85428/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-14T02:30:00Z-shayne-smith",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Shayne Smith",
@@ -192,6 +192,14 @@
       "start": "2026-08-14T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-johnny-pemberton-aug14th-and-15th-at-laughs-comedy-seattle-tickets-1986946509497",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23864_image.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-15T02:00:00Z-marc-maron",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Marc Maron",
+      "start": "2026-08-15T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/348494",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85428/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-15T02:00:00Z-shayne-smith",
