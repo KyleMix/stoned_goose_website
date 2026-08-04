@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-04T01:52:11.358Z",
+  "fetchedAt": "2026-08-04T08:26:54.137Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-08-05T02:30:00Z-sarper-g-ven",
@@ -450,6 +450,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24025_image.png"
     },
     {
+      "id": "laughs-comedy-club-2026-09-25 19:15:00-comedy-show-lachlan-patterson-at-laughs-comedy-8211-seattle",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Lachlan Patterson at Laughs Comedy &#8211; Seattle",
+      "start": "2026-09-25T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-lachlan-patterson-at-laughs-comedy-seattle-tickets-1996304957868",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24556_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Ricky Velez on Oct.2nd and 3rd -Laughs Comedy Club-Seattle",
@@ -479,7 +487,7 @@
       "title": "Comedy Show: Erica Rhodes Oct. 16th and 17th at Laughs Comedy- Seattle",
       "start": "2026-10-16T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-seattle-tickets-1985175475286",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/banner-1080x540-erica-rhodes-jan25-f4b.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/Erica-Rhodes-oct26.png"
     },
     {
       "id": "laughs-comedy-club-2026-10-18 19:00:00-comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-com",
@@ -504,6 +512,22 @@
       "start": "2026-10-25T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm-tickets-1991800481859",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24289_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy: Tokyo Kanpai Boys Live -Show is performed in English",
+      "start": "2026-10-29T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-tokyo-kanpai-boys-live-show-is-performed-in-english-tickets-1996311920694",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24560_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-31 19:15:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy: Tokyo Kanpai Boys Live -Show is performed in Japanese",
+      "start": "2026-10-31T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese-tickets-1996312495413",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24564_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-11-05 20:00:00-comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-",
