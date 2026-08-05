@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-05T01:52:57.331Z",
+  "fetchedAt": "2026-08-05T08:24:55.945Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-08-05T02:30:00Z-sarper-g-ven",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Sarper Güven",
-      "start": "2026-08-05T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376441",
-      "image": "https://files.seatengine.com/talent/headshots/photos/82429/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-08-05 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
       "clubSlug": "laughs-comedy-club",
@@ -440,6 +432,14 @@
       "start": "2026-09-07T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376443",
       "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-11T02:30:00Z-shawn-gardini",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Shawn Gardini",
+      "start": "2026-09-11T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376447",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89002/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-11 19:15:00-comedy-show-leah-rudick-sept-11th-and-12th-at-laughs-comedy-",
