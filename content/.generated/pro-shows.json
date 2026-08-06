@@ -1,6 +1,14 @@
 {
-  "fetchedAt": "2026-08-05T19:20:37.599Z",
+  "fetchedAt": "2026-08-06T01:54:12.177Z",
   "shows": [
+    {
+      "id": "laughs-comedy-club-2026-08-05 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Bumbershoot x Laughs Comedy Coop Showdown: Qualifiers",
+      "start": "2026-08-05T20:00:00",
+      "url": "https://www.eventbrite.com/e/bumbershoot-x-laughs-comedy-coop-showdown-qualifiers-tickets-1989839671021",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
+    },
     {
       "id": "tacoma-comedy-club-2026-08-06T02:00:00Z-sarper-g-ven",
       "clubSlug": "tacoma-comedy-club",
@@ -10,12 +18,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/82429/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-08-06 20:00:00-comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laug",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Daegen Asfaha and Friends Aug 6th at 8pm at Laughs Comedy",
+      "start": "2026-08-06T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laughs-comedy-tickets-1993715892905",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-1080x540-daegen-asfaha-aug26.png"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-07T02:30:00Z-doknow-and-dahawmies-comedy-tour",
       "clubSlug": "emerald-city-comedy-club",
       "title": "DoKnow and DaHawmies Comedy Tour",
       "start": "2026-08-07T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/351792",
       "image": "https://files.seatengine.com/talent/headshots/photos/86155/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Reg Thomas Aug. 7th and 8th at Laughs Comedy Club- Seattle",
+      "start": "2026-08-07T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club-seattle-tickets-1992508987017",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24336_image.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-08T02:30:00Z-adam-carolla",
@@ -74,12 +98,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/91709/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Class Graduation Show with Andrew Frank (5:30pm class)",
+      "start": "2026-08-12T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-530pm-class-tickets-1991833425394",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24313_image.png"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-13T02:30:00Z-ron-taylor",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Ron Taylor",
       "start": "2026-08-13T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/373649",
       "image": "https://files.seatengine.com/talent/headshots/photos/91709/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-13 20:00:00-comedy-class-graduation-show-with-andrew-frank-2-night-7-30-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Class Graduation Show with Andrew Frank (2 Night, 7:30 PM class)",
+      "start": "2026-08-13T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-2-night-730-pm-class-tickets-1991802320358",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24332_image.png"
     },
     {
       "id": "tacoma-comedy-club-2026-08-14T02:00:00Z-marc-maron",
@@ -96,6 +136,14 @@
       "start": "2026-08-14T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/340230",
       "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Johnny Pemberton Aug.14th and 15th at Laughs Comedy- Seattle",
+      "start": "2026-08-14T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-johnny-pemberton-aug14th-and-15th-at-laughs-comedy-seattle-tickets-1986946509497",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23864_image.png"
     },
     {
       "id": "tacoma-comedy-club-2026-08-15T02:00:00Z-marc-maron",
@@ -178,12 +226,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/91739/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-08-20 20:00:00-comedy-show-comedian-faith-ladzinski-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Faith Ladzinski at Laughs Comedy",
+      "start": "2026-08-20T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-faith-ladzinski-at-laughs-comedy-tickets-1990912139804",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-faith-ladzinski-aug26-f3.png"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-21T02:30:00Z-hollywood-crime-scene",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Hollywood Crime Scene",
       "start": "2026-08-21T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/367789",
       "image": "https://files.seatengine.com/talent/headshots/photos/65037/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-21 19:15:00-comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Chris Martin Aug. 21st and 22nd at Laughs Comedy- Seattle",
+      "start": "2026-08-21T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-seattle-tickets-1985491635931",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/23783_image.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-26T02:30:00Z-molly-kearney",
@@ -208,6 +272,14 @@
       "start": "2026-08-28T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/378299",
       "image": "https://files.seatengine.com/talent/headshots/photos/93044/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-28 19:15:00-comedy-show-michael-palascak-at-laughs-comedy-8211-seattle",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Michael Palascak at Laughs Comedy &#8211; Seattle",
+      "start": "2026-08-28T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-michael-palascak-at-laughs-comedy-seattle-tickets-1996301469434",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24540_image.png"
     },
     {
       "id": "tacoma-comedy-club-2026-08-29T02:00:00Z-kennedy-enemies-of-freedom",
@@ -298,12 +370,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/79598/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Graham Kay at Laughs Comedy",
+      "start": "2026-09-03T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-graham-kay-at-laughs-comedy-tickets-1990919026402",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24235_image.png"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-09-04T02:30:00Z-ify-nwadiwe",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Ify Nwadiwe",
       "start": "2026-09-04T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/366791",
       "image": "https://files.seatengine.com/talent/headshots/photos/91743/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-04 19:15:00-comedy-show-francesca-fiorentini-and-matt-lieb-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Francesca Fiorentini and Matt Lieb Laughs Comedy Club",
+      "start": "2026-09-04T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-francesca-fiorentini-and-matt-lieb-laughs-comedy-club-tickets-1989424855296",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24343_image.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-05T02:00:00Z-duncan-trussell",
@@ -346,12 +434,188 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
     },
     {
-      "id": "emerald-city-comedy-club-2026-09-11T02:30:00Z-shawn-gardini",
+      "id": "emerald-city-comedy-club-2026-09-08T02:30:00Z-sergei-putinski",
       "clubSlug": "emerald-city-comedy-club",
-      "title": "Shawn Gardini",
-      "start": "2026-09-11T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376447",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89002/full/data"
+      "title": "Sergei Putinski",
+      "start": "2026-09-08T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/382886",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94374/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-11 19:15:00-comedy-show-leah-rudick-sept-11th-and-12th-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Leah Rudick Sept. 11th and 12th at Laughs Comedy- Seattle",
+      "start": "2026-09-11T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-leah-rudick-sept-11th-and-12th-at-laughs-comedy-seattle-tickets-1984588680166",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/23692_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Luke Severeid Sept. 18th and 19th at Laughs Comedy- Seattle",
+      "start": "2026-09-18T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comedy-seattle-tickets-1985467938050",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24025_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-25 19:15:00-comedy-show-lachlan-patterson-at-laughs-comedy-8211-seattle",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Lachlan Patterson at Laughs Comedy &#8211; Seattle",
+      "start": "2026-09-25T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-lachlan-patterson-at-laughs-comedy-seattle-tickets-1996304957868",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24556_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Ricky Velez on Oct.2nd and 3rd -Laughs Comedy Club-Seattle",
+      "start": "2026-10-02T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-ricky-velez-on-oct2nd-and-3rd-laughs-comedy-club-seattle-tickets-1992391807530",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24355_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-sam-jay-on-oct-8th-8211-10th-at-laughs-comedy-se",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Sam Jay on Oct 8th &#8211; 10th at Laughs Comedy- Seattle",
+      "start": "2026-10-08T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-sam-jay-on-oct-8th-10th-at-laughs-comedy-seattle-tickets-1985487632958",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/banner-1080x540-sam-jay-oct26-f2.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Gwen Rose at Laughs Comedy",
+      "start": "2026-10-15T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-gwen-rose-at-laughs-comedy-tickets-1993495355271",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-gwen-rose-oct26.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-16 19:00:00-comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Erica Rhodes Oct. 16th and 17th at Laughs Comedy- Seattle",
+      "start": "2026-10-16T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-seattle-tickets-1985175475286",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/Erica-Rhodes-oct26.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-18 19:00:00-comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Pedro Gonzalez Sunday Oct. 18th at 7pm Laughs Comedy",
+      "start": "2026-10-18T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-comedy-tickets-1989420547411",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24133_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-22 19:00:00-comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Alex Falcone Oct. 22nd- 24th at Laughs Comedy Club- Seattle",
+      "start": "2026-10-22T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club-seattle-tickets-1989409509396",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24090_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-25 19:00:00-comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Ahamed Weinberg Oct. 25th Sunday at 7pm",
+      "start": "2026-10-25T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm-tickets-1991800481859",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24289_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy: Tokyo Kanpai Boys Live -Show is performed in English",
+      "start": "2026-10-29T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-tokyo-kanpai-boys-live-show-is-performed-in-english-tickets-1996311920694",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24560_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-31 19:15:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy: Tokyo Kanpai Boys Live -Show is performed in Japanese",
+      "start": "2026-10-31T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese-tickets-1996312495413",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24564_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-05 20:00:00-comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Brian Simpson November 5th -7th at Laughs Comedy- Seattle",
+      "start": "2026-11-05T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-seattle-tickets-1984930653016",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/banner-1080x540-brian-simpson-nov26.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-13 19:15:00-comedy-show-heather-shaw-november-13th-and-14th-at-laughs-co",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Heather Shaw November 13th and 14th at Laughs Comedy- Seattle",
+      "start": "2026-11-13T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-heather-shaw-november-13th-and-14th-at-laughs-comedy-seattle-tickets-1985727225586",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23799_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Michael Longfellow Nov. 19th &#8211; 21st- Laughs Comedy Seattle",
+      "start": "2026-11-19T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-michael-longfellow-nov-19th-21st-laughs-comedy-seattle-tickets-1979024327036",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/01/23398_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-27 19:15:00-comedy-show-kevin-sullivan-on-nov-27th-038-28th-laughs-comed",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Kevin Sullivan on Nov. 27th &#038; 28th -Laughs Comedy Club-Seattle",
+      "start": "2026-11-27T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-kevin-sullivan-on-nov-27th-28th-laughs-comedy-club-seattle-tickets-1992374769569",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-kevin-sullivan-nov26-f3.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-04 19:15:00-comedy-show-dulc-sloan-on-dec-4th-and-5th-at-laughs-comedy-c",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Dulcé Sloan on Dec. 4th and 5th at Laughs Comedy Club- Seattle",
+      "start": "2026-12-04T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-dulce-sloan-on-dec-4th-and-5th-at-laughs-comedy-club-seattle-tickets-1989412721002",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24094_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-10 20:00:00-comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Fahim Anwar Dec. 10th-12th at Laughs Comedy Club- Seattle",
+      "start": "2026-12-10T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-seattle-tickets-1989421356832",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24098_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-20 19:00:00-comedy-show-daniel-bridge-gadd-at-laughs-comedy-club-on-dec-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Daniel Bridge-Gadd at Laughs Comedy club on Dec. 20th",
+      "start": "2026-12-20T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-daniel-bridge-gadd-at-laughs-comedy-club-on-dec-20th-tickets-1993496130590",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-daniel-bridge-gadd-dec26.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-08 18:00:00-comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Caitlin Peluffo Jan 8th and 9th at Laughs Comedy Club- Seattle",
+      "start": "2027-01-08T18:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy-club-seattle-tickets-1989364247015",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner-1080x540-caitlin-pelufo-jan27-f1.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-15 18:00:00-comedy-show-learnmore-jonasi-8211-jan-15th-038-16th-at-laugh",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Learnmore Jonasi &#8211; Jan. 15th &#038; 16th at Laughs Comedy- Seattle",
+      "start": "2027-01-15T18:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-learnmore-jonasi-jan-15th-16th-at-laughs-comedy-seattle-tickets-1985178919588",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24348_image.jpg"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-31 19:00:00-comedian-pandji-8211-english-tour-on-jan-31st-at-laughs-come",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedian Pandji &#8211; English Tour on Jan. 31st at Laughs Comedy Club- Seattle",
+      "start": "2027-01-31T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedian-pandji-english-tour-on-jan-31st-at-laughs-comedy-club-seattle-tickets-1993481255097",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-pandji-jan27-f1.png"
     }
   ]
 }
