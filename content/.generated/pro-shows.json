@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-06T01:54:12.177Z",
+  "fetchedAt": "2026-08-06T08:21:50.283Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-05 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
@@ -8,14 +8,6 @@
       "start": "2026-08-05T20:00:00",
       "url": "https://www.eventbrite.com/e/bumbershoot-x-laughs-comedy-coop-showdown-qualifiers-tickets-1989839671021",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-08-06T02:00:00Z-sarper-g-ven",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Sarper Güven",
-      "start": "2026-08-06T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/377768",
-      "image": "https://files.seatengine.com/talent/headshots/photos/82429/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-06 20:00:00-comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laug",
