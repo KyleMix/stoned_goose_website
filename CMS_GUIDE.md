@@ -55,7 +55,7 @@ explanation, like a ticket link needing to start with https://.
   /book recommends.
 - **Shop products (manual backup)**: a hand-kept product list for /shop.
   When the Fourthwall sync is connected, the live store replaces it.
-- **Open mics**: every mic on the /open-mics map and list. Comics drive to
+- **Open mics**: every mic on the /open-mics/map map and list. Comics drive to
   these, so keep days and times honest.
 - **TikTok videos**: hand-picked clips for the Latest strip on the home page.
 - **News posts**: announcement cards on /watch and the home Latest strip.

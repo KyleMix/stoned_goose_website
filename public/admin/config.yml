@@ -405,7 +405,7 @@ collections:
           - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: kicker, label: Small print line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: disclaimer
-            label: Disclaimer box (top of /open-mics)
+            label: Disclaimer box (top of /open-mics/map)
             widget: object
             required: false
             fields:
@@ -760,7 +760,7 @@ collections:
   - name: open_mics
     label: Open mics
     label_singular: Open mic
-    description: Every mic on the /open-mics map and list. Keep details current; comics drive to these.
+    description: Every mic on the /open-mics/map map and list. Keep details current; comics drive to these.
     folder: content/open-mics
     path: '{{slug}}/index'
     extension: json

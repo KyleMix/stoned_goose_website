@@ -9,7 +9,7 @@ type Suggestion = { href: string; label: string };
 
 const ALL: Record<string, Suggestion> = {
   shows: { href: "/shows", label: "Upcoming shows" },
-  openMics: { href: "/open-mics", label: "Open Mic Explorer" },
+  openMics: { href: "/open-mics/map", label: "Open mic map" },
   book: { href: "/book", label: "Book us" },
   shop: { href: "/shop", label: "Shop" },
   sponsor: { href: "/book#sponsors", label: "Sponsor a show" },

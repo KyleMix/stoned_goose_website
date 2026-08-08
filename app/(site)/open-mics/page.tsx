@@ -1,129 +1,248 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  openMicsCopy,
-  openMicsDisclaimer,
-  openMicsFeed,
-  openMicsTopSections,
-  openMicsBottomSections,
-} from "@/content/open-mics";
 import { PageHeader } from "@/components/page-header";
-import { FinePrint } from "@/components/fine-print";
-import { OpenMicExplorer } from "@/components/open-mic-explorer";
-import { OpenMicSubmitDialog } from "@/components/open-mic-submit-dialog";
-import { SectionRenderer } from "@/components/section-renderer";
 import { JsonLd } from "@/components/json-ld";
-import { buildBreadcrumbs, buildMicListSchema } from "@/lib/schema";
+import { MailingListCapture } from "@/components/mailing-list-capture";
+import { OneSheetGallery } from "@/components/one-sheet-gallery";
+import { buildBreadcrumbs } from "@/lib/schema";
+import { site } from "@/content/site";
+import {
+  openMicAppContact,
+  openMicAppFeatures,
+  openMicAppFree,
+  openMicAppHero,
+  openMicAppMapLink,
+  openMicAppOneSheet,
+  openMicAppStatus,
+} from "@/content/open-mic-app";
+
+// The Open Mic Explorer app announcement.
+//
+// This URL used to be the Pacific Northwest map. It is not redirected, because
+// the app page is what belongs here now, but a large share of arrivals are
+// still people looking for a mic tonight. The route to /open-mics/map sits
+// directly under the masthead for exactly that reason.
+//
+// No store badges. Apple's and Google's badge guidelines cover released apps,
+// and a badge on an unreleased one implies a link that does not exist. The
+// coming-soon line is plain text and stays that way until there are real store
+// pages to point at.
+//
+// The one-sheet is summarized in HTML first and shown as page renders second.
+// The sheet is two columns of small body text on US Letter; at 390px those
+// renders need pinch zoom, and most people reading this page are on a phone.
 
 export const metadata: Metadata = {
-  title: "Open Mics",
+  title: "Open Mic Explorer, the app",
   description:
-    "Open Mic Explorer. An interactive map of stand-up open mics across the Pacific Northwest, maintained by Stoned Goose Productions.",
+    "Open Mic Explorer is a phone app for open mics: music, comedy, and poetry on one map, with the signup list built in. Coming soon to the App Store and Google Play.",
   alternates: {
     canonical: "/open-mics",
   },
 };
 
 export default function OpenMicsPage() {
-  const mics = openMicsFeed.mics;
-
   return (
     <>
-      <JsonLd schema={buildBreadcrumbs("/open-mics")} />
-      {/* Venue-name ItemList only. No event, date, host, or offer claims are
-          made for these crowd-sourced mics until the freshness system lands. */}
-      {mics.length > 0 ? (
-        <JsonLd schema={buildMicListSchema(mics)} />
-      ) : null}
+      <JsonLd schema={buildBreadcrumbs("/open-mics", "Open Mic Explorer")} />
+
       <PageHeader
-        eyebrow="Open Mic Explorer"
+        eyebrow={openMicAppHero.eyebrow}
         title={
           <>
-            Open <span className="italic text-hazard">Mics</span>
+            The <span className="italic text-hazard">app</span>
           </>
         }
-        body={openMicsCopy.subhead}
+        body={openMicAppHero.subhead}
       />
 
-      <FinePrint
-        eyebrow={openMicsDisclaimer.eyebrow}
-        body={openMicsDisclaimer.body}
-        footnote={openMicsDisclaimer.footnote}
-      />
-
-      <SectionRenderer sections={openMicsTopSections} pageSlug="open-mics" />
-
-      <section className="section-y-tight border-b border-bone/10 bg-ink">
+      {/* High and unmissable: people arriving here for the map must not hit a
+          dead end, and the two products need telling apart honestly. */}
+      <section
+        aria-labelledby="open-mics-map-route"
+        className="border-b border-bone/10 bg-ink py-10 md:py-12"
+      >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
-              {openMicsCopy.kicker}
+          <div className="border border-hazard/40 p-6 md:p-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-hazard">
+              {openMicAppMapLink.eyebrow}
             </p>
-            <OpenMicSubmitDialog
-              triggerLabel="Submit a mic ↗"
-              triggerClassName="inline-flex h-12 shrink-0 items-center justify-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime sm:justify-start"
-            />
+            <h2
+              id="open-mics-map-route"
+              className="mt-3 font-display text-2xl text-bone md:text-3xl"
+            >
+              {openMicAppMapLink.heading}
+            </h2>
+            <p className="mt-4 max-w-3xl font-body text-base leading-relaxed text-bone/85">
+              {openMicAppMapLink.body}
+            </p>
+            <Link
+              href={openMicAppMapLink.ctaHref}
+              className="mt-6 inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+            >
+              {openMicAppMapLink.ctaLabel} ↗
+            </Link>
           </div>
-          {mics.length > 0 ? (
-            <OpenMicExplorer mics={mics} />
-          ) : (
-            <div className="border border-bone/15 p-8 md:p-10">
-              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
-                Loading the map
-              </p>
-              <h2 className="mt-3 font-display text-3xl text-bone md:text-4xl">
-                The map is being built right now.
-              </h2>
-              <p className="mt-4 max-w-xl font-body text-base text-bone/85">
-                We&apos;re collecting open mics across Olympia, Tacoma,
-                Seattle, and the rest of the Pacific Northwest. New mics are
-                added as we confirm them.
-              </p>
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
-              >
-                Tell us about a mic ↗
-              </Link>
-            </div>
-          )}
         </div>
       </section>
 
-      <section className="section-y bg-ink">
+      <section
+        aria-labelledby="open-mics-status"
+        className="section-y-tight border-b border-bone/10 bg-ink"
+      >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-10 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7">
+          <div className="grid gap-8 md:grid-cols-12">
+            <div className="md:col-span-5">
               <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
-                Spotted a missing mic?
+                {openMicAppStatus.eyebrow}
               </p>
-              <h2 className="display-2 mt-4 text-bone">
-                Help us keep the map honest.
+              <h2 id="open-mics-status" className="display-2 mt-4 text-bone">
+                {openMicAppStatus.heading}
               </h2>
             </div>
-            <div className="md:col-span-5">
-              <p className="font-body text-base text-bone/85 md:text-lg">
-                If a mic moved, died, or was never on here in the first place,
-                send a note. Local knowledge runs this list.
-              </p>
-              <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime sm:justify-start"
+            <div className="space-y-5 md:col-span-7">
+              {openMicAppStatus.body.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 24)}
+                  className="font-body text-base leading-relaxed text-bone/85 md:text-lg"
                 >
-                  Send us a tip ↗
-                </Link>
-                <OpenMicSubmitDialog
-                  triggerLabel="Submit a mic ↗"
-                  triggerClassName="inline-flex h-12 items-center justify-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime sm:justify-start"
-                />
-              </div>
+                  {paragraph}
+                </p>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <SectionRenderer sections={openMicsBottomSections} pageSlug="open-mics" />
+      <section
+        aria-labelledby="open-mics-what-it-does"
+        className="section-y border-b border-bone/10 bg-ink"
+      >
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <h2 id="open-mics-what-it-does" className="display-2 text-bone">
+            What it does.
+          </h2>
+
+          <div className="mt-12 space-y-16 md:mt-16 md:space-y-24">
+            {openMicAppFeatures.map((feature, i) => (
+              <div
+                key={feature.id}
+                className="grid gap-8 md:grid-cols-12 md:items-center md:gap-12"
+              >
+                <div
+                  className={
+                    i % 2 === 0
+                      ? "md:col-span-4"
+                      : "md:col-span-4 md:order-last"
+                  }
+                >
+                  <Image
+                    src={feature.image.src}
+                    alt={feature.image.alt}
+                    width={feature.image.width}
+                    height={feature.image.height}
+                    loading="lazy"
+                    sizes="(min-width: 768px) 320px, 60vw"
+                    className="h-auto w-[60%] max-w-[260px] border border-bone/15 md:w-full"
+                  />
+                </div>
+                <div className="md:col-span-8">
+                  <h3 className="font-display text-2xl text-bone md:text-4xl">
+                    {feature.heading}
+                  </h3>
+                  <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-bone/85 md:text-lg">
+                    {feature.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 border-t border-bone/15 pt-10 md:mt-24">
+            <h3 className="font-display text-2xl text-bone md:text-3xl">
+              {openMicAppFree.heading}
+            </h3>
+            <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-bone/85 md:text-lg">
+              {openMicAppFree.body}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="open-mics-one-sheet"
+        className="section-y border-b border-bone/10 bg-ink"
+      >
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+            {openMicAppOneSheet.eyebrow}
+          </p>
+          <h2 id="open-mics-one-sheet" className="display-2 mt-4 text-bone">
+            {openMicAppOneSheet.heading}
+          </h2>
+          <p className="mt-6 max-w-2xl font-body text-base leading-relaxed text-bone/85 md:text-lg">
+            {openMicAppOneSheet.body}
+          </p>
+
+          <div className="mt-10">
+            <OneSheetGallery pages={openMicAppOneSheet.pages} />
+          </div>
+
+          <a
+            href={openMicAppOneSheet.pdf.href}
+            className="mt-10 inline-flex min-h-12 items-center border border-bone/30 px-6 py-3 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
+          >
+            {openMicAppOneSheet.pdf.label} ↓
+          </a>
+        </div>
+      </section>
+
+      <MailingListCapture
+        page="open-mics-app"
+        id="notify"
+        eyebrow="Tell me when it is out"
+        headline="One email when Open Mic Explorer hits the App Store and Google Play."
+        submitLabel="Notify me"
+        successBody="Got it. You get one email when it lands, and nothing else."
+      />
+
+      <section
+        aria-labelledby="open-mics-app-contact"
+        className="section-y-tight bg-ink"
+      >
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <h2
+            id="open-mics-app-contact"
+            className="font-display text-2xl text-bone md:text-3xl"
+          >
+            {openMicAppContact.heading}
+          </h2>
+          <p className="mt-4 max-w-2xl font-body text-base text-bone/85">
+            {openMicAppContact.body}
+          </p>
+          <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+            {openMicAppContact.links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+                >
+                  {link.label} ↗
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a
+                href={`mailto:${site.contact.email}`}
+                className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+              >
+                {site.contact.email} ↗
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
     </>
   );
 }

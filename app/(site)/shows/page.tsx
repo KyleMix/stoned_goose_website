@@ -244,7 +244,7 @@ export default function ShowsPage() {
                   Meet the roster ↗
                 </Link>
                 <Link
-                  href="/open-mics"
+                  href="/open-mics/map"
                   className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
                 >
                   Hit an open mic ↗

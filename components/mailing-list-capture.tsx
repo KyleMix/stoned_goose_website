@@ -9,6 +9,14 @@ type Props = {
   page: string;
   /** Optional anchor id so pages can deep-link to the signup. */
   id?: string;
+  /** Overrides the standing copy when a page is asking for something else. */
+  eyebrow?: string;
+  /** Overrides the standing copy when a page is asking for something else. */
+  headline?: string;
+  /** Overrides the button label. */
+  submitLabel?: string;
+  /** Overrides the line shown after a successful signup. */
+  successBody?: string;
 };
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -16,7 +24,14 @@ type Status = "idle" | "loading" | "success" | "error";
 // Slim email capture used at the bottom of /, /shows, /watch.
 // Posts to the same formsubmit endpoint as the rest of the site so the owner
 // gets every signup in their inbox. Honeypot, optional Plausible event.
-export function MailingListCapture({ page, id }: Props) {
+export function MailingListCapture({
+  page,
+  id,
+  eyebrow = "Stay in the loop",
+  headline = "Show announcements, presale codes, and the occasional weird thing.",
+  submitLabel = "Sign me up",
+  successBody = "You're on the list. See you at the next show.",
+}: Props) {
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -78,10 +93,10 @@ export function MailingListCapture({ page, id }: Props) {
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-5">
             <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
-              Stay in the loop
+              {eyebrow}
             </p>
             <p className="mt-3 font-display text-2xl leading-tight text-bone md:text-3xl">
-              Show announcements, presale codes, and the occasional weird thing.
+              {headline}
             </p>
           </div>
 
@@ -101,7 +116,7 @@ export function MailingListCapture({ page, id }: Props) {
                   Locked <span className="italic text-hazard">in</span>.
                 </p>
                 <p className="mt-2 font-body text-sm text-bone/85">
-                  You&apos;re on the list. See you at the next show.
+                  {successBody}
                 </p>
               </div>
             ) : (
@@ -126,7 +141,7 @@ export function MailingListCapture({ page, id }: Props) {
                     disabled={status === "loading"}
                     className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime disabled:opacity-50 md:w-auto md:justify-start"
                   >
-                    {status === "loading" ? "Sending..." : "Sign me up"}
+                    {status === "loading" ? "Sending..." : submitLabel}
                     <span aria-hidden className="transition-transform group-hover:translate-x-1">
                       →
                     </span>

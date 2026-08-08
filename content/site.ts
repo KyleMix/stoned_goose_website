@@ -63,7 +63,7 @@ type SiteShape = {
 // first save from /admin.
 const DEFAULT_NAV: NavLink[] = [
   { label: "Shows", href: "/shows" },
-  { label: "Open Mics", href: "/open-mics" },
+  { label: "Open Mics", href: "/open-mics/map" },
   { label: "Watch", href: "/watch" },
   { label: "Roster", href: "/roster" },
   { label: "Book Us", href: "/book" },
@@ -85,7 +85,8 @@ const DEFAULT_FOOTER: {
       items: [
         { label: "Home", href: "/" },
         { label: "Shows", href: "/shows" },
-        { label: "Open Mics", href: "/open-mics" },
+        { label: "Open Mic Map", href: "/open-mics/map" },
+        { label: "The App", href: "/open-mics" },
         { label: "Watch", href: "/watch" },
         { label: "Roster", href: "/roster" },
         { label: "Shop", href: "/shop" },

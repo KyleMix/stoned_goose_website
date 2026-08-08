@@ -21,7 +21,15 @@ import { nav as cmsNav, footer as cmsFooter, type NavLink } from "@/content/site
 export const KNOWN_ROUTES = new Set<string>([
   "/",
   "/shows",
+  // /open-mics is the Open Mic Explorer app announcement. The Pacific
+  // Northwest map it used to hold lives at /open-mics/map.
   "/open-mics",
+  "/open-mics/map",
+  // Store-required pages for the app. Apple checks the privacy link, Google
+  // Play tests the deletion page.
+  "/open-mics/privacy",
+  "/open-mics/terms",
+  "/open-mics/delete-account",
   "/watch",
   "/roster",
   "/book",

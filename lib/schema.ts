@@ -321,7 +321,7 @@ export function buildProductSchema(product: Product): WithContext<SchemaProduct>
   return schema;
 }
 
-// The ONLY structured data the open-mics page is allowed to emit today: a plain
+// The ONLY structured data the /open-mics/map page is allowed to emit today: a plain
 // ItemList of venue names, with no event, date, host, or offer claims. This is
 // safe because it asserts nothing beyond "these venues exist," which the page
 // already shows in its list.
