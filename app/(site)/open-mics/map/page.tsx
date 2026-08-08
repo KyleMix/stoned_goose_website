@@ -42,7 +42,7 @@ export default function OpenMicsMapPage() {
         <JsonLd schema={buildMicListSchema(mics)} />
       ) : null}
       <PageHeader
-        eyebrow="Open Mic Explorer"
+        eyebrow="The open mic map"
         title={
           <>
             Open <span className="italic text-hazard">Mics</span>
@@ -93,6 +93,39 @@ export default function OpenMicsMapPage() {
               </Link>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* The app shares a name with this map and is a different thing. Say so
+          plainly rather than letting the two blur together. */}
+      <section
+        aria-labelledby="open-mics-map-app"
+        className="section-y-tight border-b border-bone/10 bg-ink"
+      >
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="border border-bone/15 p-6 md:p-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-hazard">
+              Different thing, same name
+            </p>
+            <h2
+              id="open-mics-map-app"
+              className="mt-3 font-display text-2xl text-bone md:text-3xl"
+            >
+              There is also an app called Open Mic Explorer.
+            </h2>
+            <p className="mt-4 max-w-3xl font-body text-base leading-relaxed text-bone/85">
+              This map is our own Pacific Northwest list. The app is a separate
+              product, coming soon to the App Store and Google Play, and Seattle
+              is its first city. It arrives with no listings: hosts add their
+              own rooms, anywhere, and that is how it fills in.
+            </p>
+            <Link
+              href="/open-mics"
+              className="mt-6 inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
+            >
+              Read about the app ↗
+            </Link>
+          </div>
         </div>
       </section>
 
