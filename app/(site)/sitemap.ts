@@ -29,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // The app announcement and the map are two separate pages, both indexable.
     "/open-mics",
     "/open-mics/map",
+    // Required by the app stores and linked from the app page.
+    "/open-mics/privacy",
+    "/open-mics/terms",
+    "/open-mics/delete-account",
     "/watch",
     "/roster",
     "/book",

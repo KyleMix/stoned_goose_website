@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "TODO_TEAM_ID.com.openmicexplorer.app"
+        ],
+        "components": [
+          {
+            "/": "/open-mics/mic/*",
+            "comment": "Open mic detail pages open in the app when installed"
+          }
+        ]
+      }
+    ]
+  }
+}
