@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-07T18:44:55.281Z",
+  "fetchedAt": "2026-08-08T01:04:35.455Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-08-06 20:00:00-comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laug",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Daegen Asfaha and Friends Aug 6th at 8pm at Laughs Comedy",
-      "start": "2026-08-06T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-daegen-asfaha-and-friends-aug-6th-at-8pm-at-laughs-comedy-tickets-1993715892905",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-1080x540-daegen-asfaha-aug26.png"
-    },
     {
       "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
       "clubSlug": "laughs-comedy-club",
