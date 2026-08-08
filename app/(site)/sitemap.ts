@@ -26,7 +26,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/shows",
+    // The app announcement and the map are two separate pages, both indexable.
     "/open-mics",
+    "/open-mics/map",
     "/watch",
     "/roster",
     "/book",

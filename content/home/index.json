@@ -11,10 +11,10 @@
       "href": "/shows"
     },
     "secondary": {
-      "title": "Open Mic Explorer",
+      "title": "Open Mic Map",
       "body": "Find an open mic in the Pacific Northwest. New rooms, weekly signups, mapped.",
       "label": "Find a mic",
-      "href": "/open-mics"
+      "href": "/open-mics/map"
     },
     "tertiary": [
       {

@@ -35,7 +35,7 @@ Left-nav groups in the editor map to the site like this:
 | Booking            | Services + pricing tiers                                                           | `/book` and `/book/[slug]`            |
 | Shows              | Manual show overrides (date, venue, ticket URL, poster alt, draft flag)            | `/shows`                              |
 | Merch              | Manual product overrides (price, link, image alt, draft flag)                      | `/shop`                               |
-| Open mics          | Recurring mic listings                                                             | `/open-mics`                          |
+| Open mics          | Recurring mic listings                                                             | `/open-mics/map`                      |
 | Posts              | News articles (featured + draft), TikTok video picks (draft + alt)                 | News and watch pages                  |
 
 Anything not in that list is either auto-pulled from a feed (Instagram,

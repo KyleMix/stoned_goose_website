@@ -2,7 +2,7 @@ import Link from "next/link";
 import { openMicsFeed } from "@/content/open-mics";
 
 // Lightweight home-page teaser. Skips the Leaflet bundle by rendering a
-// short text list of the next mics. The full map lives at /open-mics.
+// short text list of the next mics. The full map lives at /open-mics/map.
 export function OpenMicTeaser() {
   const sample = openMicsFeed.mics.slice(0, 4);
 
@@ -30,7 +30,7 @@ export function OpenMicTeaser() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/open-mics"
+                href="/open-mics/map"
                 className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
               >
                 Open the map ↗

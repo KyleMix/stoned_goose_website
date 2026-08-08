@@ -27,7 +27,7 @@ with push access to the repo.
 | `/shows` | Shows copy (singleton), Shows manual (collection) |
 | `/watch` | Watch copy (singleton), News posts (collection), TikTok videos (collection) |
 | `/roster` | Roster copy (singleton), Comedians (collection), Crew members (collection) |
-| `/open-mics` | Open mics copy (singleton), Open mics (collection) |
+| `/open-mics/map` | Open mics copy (singleton), Open mics (collection) |
 | `/shop` | Shop copy (singleton), Shop products (collection) |
 | `/contact` | Contact page (singleton), Site config (for email / phone) |
 | `/book` | Services (collection), Pricing tiers (collection), Sponsorships (singleton) |
