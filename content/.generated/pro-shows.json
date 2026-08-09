@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-08-09T01:08:28.952Z",
+  "fetchedAt": "2026-08-09T06:43:22.982Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-08-09T01:00:00Z-adam-carolla",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Adam Carolla",
-      "start": "2026-08-09T01:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/381464",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-09T03:30:00Z-adam-carolla",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Adam Carolla",
-      "start": "2026-08-09T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/381467",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89207/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-08-09T23:00:00Z-the-unteachables-comedy-tour",
       "clubSlug": "emerald-city-comedy-club",
@@ -424,6 +408,22 @@
       "start": "2026-09-14T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/371273",
       "image": "https://files.seatengine.com/talent/headshots/photos/83847/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-15T02:00:00Z-the-lauren-mary-show",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "The Lauren & Mary Show!",
+      "start": "2026-09-15T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/377228",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93635/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-15T04:30:00Z-the-lauren-mary-show",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "The Lauren & Mary Show!",
+      "start": "2026-09-15T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/377229",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93635/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
