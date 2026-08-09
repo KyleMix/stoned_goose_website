@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-08-08T18:27:11.227Z",
+  "fetchedAt": "2026-08-09T01:08:28.952Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-08-07 19:15:00-comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Reg Thomas Aug. 7th and 8th at Laughs Comedy Club- Seattle",
-      "start": "2026-08-07T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-reg-thomas-aug-7th-and-8th-at-laughs-comedy-club-seattle-tickets-1992508987017",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24336_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-08-08T23:00:00Z-kellen-erskine",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Kellen Erskine",
-      "start": "2026-08-08T23:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/369012",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90135/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-08-09T01:00:00Z-adam-carolla",
       "clubSlug": "emerald-city-comedy-club",
