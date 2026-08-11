@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-11T01:09:16.261Z",
+  "fetchedAt": "2026-08-11T06:55:31.456Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-08-12T02:30:00Z-ron-taylor",
@@ -122,20 +122,20 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-08-17T01:00:00Z-dan-docimo",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Dan Docimo",
-      "start": "2026-08-17T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/377765",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88392/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-08-17T01:00:00Z-calimar-white",
       "clubSlug": "tacoma-comedy-club",
       "title": "Calimar White",
       "start": "2026-08-17T01:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/369600",
       "image": "https://files.seatengine.com/talent/headshots/photos/90619/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-17T01:00:00Z-dan-docimo",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Dan Docimo",
+      "start": "2026-08-17T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/377765",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88392/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-17T02:00:00Z-malik-elassal",
@@ -176,6 +176,14 @@
       "start": "2026-08-21T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-seattle-tickets-1985491635931",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/23783_image.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-22T02:15:00Z-deray-davis",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Deray Davis",
+      "start": "2026-08-22T02:15:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/356008",
+      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-26T02:30:00Z-molly-kearney",
