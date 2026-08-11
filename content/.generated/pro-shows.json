@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-11T06:55:31.456Z",
+  "fetchedAt": "2026-08-11T12:47:42.276Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-08-12T02:30:00Z-ron-taylor",
@@ -186,6 +186,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-08-24 19:00:00-comedy-class-graduation-show-with-taylor-clark",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Class Graduation Show with Taylor Clark",
+      "start": "2026-08-24T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-taylor-clark-tickets-1997506650162",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24589_image.png"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-26T02:30:00Z-molly-kearney",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Molly Kearney",
@@ -200,6 +208,14 @@
       "start": "2026-08-27T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/371980",
       "image": "https://files.seatengine.com/talent/headshots/photos/91318/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-08-27 20:00:00-seattle-international-comedy-competition-qualifiers-with-tay",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Seattle International Comedy Competition Qualifiers with Taylor Clark",
+      "start": "2026-08-27T20:00:00",
+      "url": "https://www.eventbrite.com/e/seattle-international-comedy-competition-qualifiers-with-taylor-clark-tickets-1997507056377",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24585_image.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-28T02:30:00Z-willie-macc",
@@ -272,6 +288,14 @@
       "start": "2026-09-02T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/368994",
       "image": "https://files.seatengine.com/talent/headshots/photos/90623/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-02 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Bumbershoot x Laughs Comedy Coop Showdown: Qualifiers",
+      "start": "2026-09-02T20:00:00",
+      "url": "https://www.eventbrite.com/e/bumbershoot-x-laughs-comedy-coop-showdown-qualifiers-tickets-1989839671021",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-03T02:30:00Z-sabrina-wu",
