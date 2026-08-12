@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-12T01:16:58.748Z",
+  "fetchedAt": "2026-08-12T07:14:16.155Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-08-12T02:30:00Z-ron-taylor",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Ron Taylor",
-      "start": "2026-08-12T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/381149",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91709/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
       "clubSlug": "laughs-comedy-club",
@@ -194,12 +186,52 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/94575/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-08-22T02:15:00Z-deray-davis",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Deray Davis",
+      "start": "2026-08-22T02:15:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/356008",
+      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-08-22T04:30:00Z-steve-furey",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Steve Furey",
       "start": "2026-08-22T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/383444",
       "image": "https://files.seatengine.com/talent/headshots/photos/94575/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-22T05:00:00Z-deray-davis",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Deray Davis",
+      "start": "2026-08-22T05:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/356011",
+      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-23T02:00:00Z-deray-davis",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Deray Davis",
+      "start": "2026-08-23T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/356009",
+      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-23T04:45:00Z-deray-davis",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Deray Davis",
+      "start": "2026-08-23T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/356012",
+      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-24T01:00:00Z-deray-davis",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Deray Davis",
+      "start": "2026-08-24T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/356010",
+      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-24 19:00:00-comedy-class-graduation-show-with-taylor-clark",
