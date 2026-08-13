@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-13T01:18:44.252Z",
+  "fetchedAt": "2026-08-13T07:17:12.720Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
@@ -8,14 +8,6 @@
       "start": "2026-08-12T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-530pm-class-tickets-1991833425394",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24313_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-13T02:30:00Z-ron-taylor",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Ron Taylor",
-      "start": "2026-08-13T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/373649",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91709/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-13 20:00:00-comedy-class-graduation-show-with-andrew-frank-2-night-7-30-",
@@ -464,6 +456,14 @@
       "start": "2026-09-15T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/377229",
       "image": "https://files.seatengine.com/talent/headshots/photos/93635/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-17T02:30:00Z-kev-herrera",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Kev Herrera",
+      "start": "2026-09-17T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376455",
+      "image": "https://files.seatengine.com/talent/headshots/photos/78327/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
