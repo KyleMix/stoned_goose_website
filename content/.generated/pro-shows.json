@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-12T18:53:43.177Z",
+  "fetchedAt": "2026-08-13T01:18:44.252Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
@@ -712,6 +712,14 @@
       "start": "2027-01-31T19:00:00",
       "url": "https://www.eventbrite.com/e/comedian-pandji-english-tour-on-jan-31st-at-laughs-comedy-club-seattle-tickets-1993481255097",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-pandji-jan27-f1.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-02-18 20:00:00-comedy-show-comedian-ryan-conner-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Ryan Conner at Laughs Comedy",
+      "start": "2027-02-18T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-ryan-conner-at-laughs-comedy-tickets-1996883976729",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24593_image.png"
     }
   ]
 }
