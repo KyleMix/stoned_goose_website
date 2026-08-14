@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-14T12:48:21.140Z",
+  "fetchedAt": "2026-08-14T18:44:25.916Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-13 20:00:00-comedy-class-graduation-show-with-andrew-frank-2-night-7-30-",
@@ -418,28 +418,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/23692_image.png"
     },
     {
+      "id": "emerald-city-comedy-club-2026-09-12T23:00:00Z-joe-wong",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Joe Wong",
+      "start": "2026-09-12T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/383979",
+      "image": "https://files.seatengine.com/talent/headshots/photos/62225/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-09-14T02:00:00Z-randy-feltface-gimmick",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Randy Feltface: “Gimmick”",
       "start": "2026-09-14T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/371273",
       "image": "https://files.seatengine.com/talent/headshots/photos/83847/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-15T02:00:00Z-the-lauren-mary-show",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "The Lauren & Mary Show!",
-      "start": "2026-09-15T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377228",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93635/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-15T04:30:00Z-the-lauren-mary-show",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "The Lauren & Mary Show!",
-      "start": "2026-09-15T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377229",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93635/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
