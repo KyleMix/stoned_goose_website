@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-13T18:54:15.296Z",
+  "fetchedAt": "2026-08-14T01:17:59.342Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-08-12 20:00:00-comedy-class-graduation-show-with-andrew-frank-5-30pm-class",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Class Graduation Show with Andrew Frank (5:30pm class)",
-      "start": "2026-08-12T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-530pm-class-tickets-1991833425394",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24313_image.png"
-    },
     {
       "id": "laughs-comedy-club-2026-08-13 20:00:00-comedy-class-graduation-show-with-andrew-frank-2-night-7-30-",
       "clubSlug": "laughs-comedy-club",
@@ -106,14 +98,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-08-17T01:00:00Z-calimar-white",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Calimar White",
-      "start": "2026-08-17T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/369600",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90619/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-08-17T01:00:00Z-dan-docimo",
       "clubSlug": "tacoma-comedy-club",
       "title": "Dan Docimo",
@@ -202,12 +186,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-08-23T01:00:00Z-corey-forrester",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Corey Forrester",
+      "start": "2026-08-23T01:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/383909",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94667/full/data"
+    },
+    {
       "id": "tacoma-comedy-club-2026-08-23T02:00:00Z-deray-davis",
       "clubSlug": "tacoma-comedy-club",
       "title": "Deray Davis",
       "start": "2026-08-23T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/356009",
       "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-08-23T03:30:00Z-corey-forrester",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Corey Forrester",
+      "start": "2026-08-23T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/383910",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94667/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-08-23T04:45:00Z-deray-davis",
@@ -456,14 +456,6 @@
       "start": "2026-09-15T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/377229",
       "image": "https://files.seatengine.com/talent/headshots/photos/93635/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-17T02:30:00Z-kev-herrera",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Kev Herrera",
-      "start": "2026-09-17T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376455",
-      "image": "https://files.seatengine.com/talent/headshots/photos/78327/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
