@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-14T01:17:59.342Z",
+  "fetchedAt": "2026-08-14T07:14:42.405Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-13 20:00:00-comedy-class-graduation-show-with-andrew-frank-2-night-7-30-",
@@ -8,22 +8,6 @@
       "start": "2026-08-13T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-2-night-730-pm-class-tickets-1991802320358",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24332_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-08-14T02:00:00Z-marc-maron",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Marc Maron",
-      "start": "2026-08-14T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/348493",
-      "image": "https://files.seatengine.com/talent/headshots/photos/85428/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-14T02:30:00Z-shayne-smith",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Shayne Smith",
-      "start": "2026-08-14T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/340230",
-      "image": "https://files.seatengine.com/talent/headshots/photos/69290/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
