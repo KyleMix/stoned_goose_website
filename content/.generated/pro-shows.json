@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-15T18:18:44.959Z",
+  "fetchedAt": "2026-08-16T00:53:21.021Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-08-14 19:15:00-comedy-show-johnny-pemberton-aug-14th-and-15th-at-laughs-com",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Johnny Pemberton Aug.14th and 15th at Laughs Comedy- Seattle",
-      "start": "2026-08-14T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-johnny-pemberton-aug14th-and-15th-at-laughs-comedy-seattle-tickets-1986946509497",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23864_image.png"
-    },
     {
       "id": "tacoma-comedy-club-2026-08-16T01:00:00Z-marc-maron",
       "clubSlug": "tacoma-comedy-club",
