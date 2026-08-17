@@ -1,30 +1,6 @@
 {
-  "fetchedAt": "2026-08-17T00:50:04.274Z",
+  "fetchedAt": "2026-08-17T06:39:18.880Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-08-17T01:00:00Z-dan-docimo",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Dan Docimo",
-      "start": "2026-08-17T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/377765",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88392/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-17T02:00:00Z-malik-elassal",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Malik Elassal",
-      "start": "2026-08-17T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/364021",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89223/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-08-17T03:30:00Z-dan-docimo",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Dan Docimo",
-      "start": "2026-08-17T03:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/383587",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88392/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-08-20T02:30:00Z-orion-levine",
       "clubSlug": "emerald-city-comedy-club",
@@ -208,6 +184,22 @@
       "start": "2026-08-29T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/382721",
       "image": "https://files.seatengine.com/talent/headshots/photos/93945/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-29T23:00:00Z-kennedy-enemies-of-freedom",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Kennedy: Enemies of Freedom",
+      "start": "2026-08-29T23:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/360373",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88344/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-08-30T02:00:00Z-kennedy-enemies-of-freedom",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Kennedy: Enemies of Freedom",
+      "start": "2026-08-30T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/360374",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88344/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-08-30T02:00:00Z-carsen-white-aka-nurse-stankk",
@@ -394,12 +386,52 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/78327/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-09-18T02:30:00Z-leslie-liao",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Liao",
+      "start": "2026-09-18T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/370035",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Luke Severeid Sept. 18th and 19th at Laughs Comedy- Seattle",
       "start": "2026-09-18T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comedy-seattle-tickets-1985467938050",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24025_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-19T02:00:00Z-leslie-liao",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Liao",
+      "start": "2026-09-19T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/370036",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-19T04:30:00Z-leslie-liao",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Liao",
+      "start": "2026-09-19T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/370037",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-20T02:00:00Z-leslie-liao",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Liao",
+      "start": "2026-09-20T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/370038",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-20T04:30:00Z-leslie-liao",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Leslie Liao",
+      "start": "2026-09-20T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/370039",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-25 19:15:00-comedy-show-lachlan-patterson-at-laughs-comedy-8211-seattle",
