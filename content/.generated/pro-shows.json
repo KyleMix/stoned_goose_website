@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-18T18:28:04.632Z",
+  "fetchedAt": "2026-08-19T00:49:42.554Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-08-20T02:30:00Z-orion-levine",
@@ -562,6 +562,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24133_image.png"
     },
     {
+      "id": "laughs-comedy-club-2026-10-19 18:00:00-let-8217-s-get-social-8211-comedy-class-with-ellen-acuario",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Let's Get Social &#8211; Comedy Class with Ellen Acuario",
+      "start": "2026-10-19T18:00:00",
+      "url": "https://www.eventbrite.com/e/lets-get-social-comedy-class-with-ellen-acuario-tickets-1998321246642",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24615_image.jpg"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-22 19:00:00-comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Alex Falcone Oct. 22nd- 24th at Laughs Comedy Club- Seattle",
@@ -600,6 +608,14 @@
       "start": "2026-11-05T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-seattle-tickets-1984930653016",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/banner-1080x540-brian-simpson-nov26.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-12 19:00:00-comedy-class-graduation-show-with-ellen-acuario",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Class Graduation Show with Ellen Acuario",
+      "start": "2026-11-12T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-ellen-acuario-tickets-1998321585656",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24619_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-11-13 19:15:00-comedy-show-heather-shaw-november-13th-and-14th-at-laughs-co",
