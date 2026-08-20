@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-20T00:49:30.071Z",
+  "fetchedAt": "2026-08-20T06:34:16.523Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-08-20T02:30:00Z-orion-levine",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Orion Levine",
-      "start": "2026-08-20T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/373644",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91739/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-08-20 20:00:00-comedy-show-comedian-faith-ladzinski-at-laughs-comedy",
       "clubSlug": "laughs-comedy-club",
