@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-21T00:53:25.973Z",
+  "fetchedAt": "2026-08-21T06:34:45.709Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-20 20:00:00-comedy-show-comedian-faith-ladzinski-at-laughs-comedy",
@@ -8,14 +8,6 @@
       "start": "2026-08-20T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-faith-ladzinski-at-laughs-comedy-tickets-1990912139804",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-faith-ladzinski-aug26-f3.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-21T02:30:00Z-hollywood-crime-scene",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Hollywood Crime Scene",
-      "start": "2026-08-21T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/367789",
-      "image": "https://files.seatengine.com/talent/headshots/photos/65037/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-21 19:15:00-comedy-show-chris-martin-aug-21st-and-22nd-at-laughs-comedy-",
