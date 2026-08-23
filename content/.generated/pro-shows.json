@@ -1,38 +1,6 @@
 {
-  "fetchedAt": "2026-08-23T00:54:06.341Z",
+  "fetchedAt": "2026-08-23T06:28:57.230Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-08-23T01:00:00Z-corey-forrester",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Corey Forrester",
-      "start": "2026-08-23T01:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/383909",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94667/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-08-23T02:00:00Z-deray-davis",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Deray Davis",
-      "start": "2026-08-23T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/356009",
-      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-23T03:30:00Z-corey-forrester",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Corey Forrester",
-      "start": "2026-08-23T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/383910",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94667/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-08-23T04:45:00Z-deray-davis",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Deray Davis",
-      "start": "2026-08-23T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/356012",
-      "image": "https://files.seatengine.com/talent/headshots/photos/56720/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-08-24T01:00:00Z-deray-davis",
       "clubSlug": "tacoma-comedy-club",
@@ -226,6 +194,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-1080x540-fiorentini-lieb-sep26-f2.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-05T02:00:00Z-ian-bagg",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ian Bagg",
+      "start": "2026-09-05T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/348624",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93831/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-09-05T02:00:00Z-duncan-trussell",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Duncan Trussell",
@@ -242,12 +218,36 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-05T04:45:00Z-ian-bagg",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ian Bagg",
+      "start": "2026-09-05T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/348626",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93831/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-06T01:00:00Z-ian-bagg",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ian Bagg",
+      "start": "2026-09-06T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/348625",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93831/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-09-06T02:00:00Z-duncan-trussell",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Duncan Trussell",
       "start": "2026-09-06T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376445",
       "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-06T03:45:00Z-ian-bagg",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ian Bagg",
+      "start": "2026-09-06T03:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/348627",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93831/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-06T04:30:00Z-duncan-trussell",
@@ -400,6 +400,14 @@
       "start": "2026-09-20T23:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376523",
       "image": "https://files.seatengine.com/talent/headshots/photos/92561/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-21T02:00:00Z-wes-barker",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Wes Barker",
+      "start": "2026-09-21T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/367791",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85953/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-25 19:15:00-comedy-show-lachlan-patterson-at-laughs-comedy-8211-seattle",
