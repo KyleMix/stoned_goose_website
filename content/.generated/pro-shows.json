@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-26T00:53:26.047Z",
+  "fetchedAt": "2026-08-26T06:35:59.831Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-08-26T02:30:00Z-molly-kearney",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Molly Kearney",
-      "start": "2026-08-26T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/372779",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91563/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-08-27T02:30:00Z-rachel-williams",
       "clubSlug": "emerald-city-comedy-club",
@@ -400,6 +392,14 @@
       "start": "2026-09-23T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/374204",
       "image": "https://files.seatengine.com/talent/headshots/photos/91935/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-24T02:30:00Z-chris-vs-the-people",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Chris vs. The People",
+      "start": "2026-09-24T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/369625",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91562/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-25 19:15:00-comedy-show-lachlan-patterson-at-laughs-comedy-8211-seattle",
