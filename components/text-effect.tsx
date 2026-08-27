@@ -48,37 +48,40 @@ export function TextEffect({
 
   return (
     <LazyMotion features={domAnimation} strict>
-    <Wrapper
-      className={className}
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: stagger, delayChildren: delay },
-        },
-      }}
-      aria-label={text}
-    >
-      {letters.map((char, i) => (
-        <m.span
-          key={i}
-          aria-hidden
-          className="inline-block"
-          variants={{
-            hidden: { y: "0.4em", opacity: 0 },
-            visible: {
-              y: 0,
-              opacity: 1,
-              transition: { duration: 0.5, ease: [0.2, 0.8, 0.2, 1] },
-            },
-          }}
-        >
-          {char === " " ? " " : char}
-        </m.span>
-      ))}
-      {trailing}
-    </Wrapper>
+      <Wrapper
+        className={className}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: { staggerChildren: stagger, delayChildren: delay },
+          },
+        }}
+      >
+        {/* aria-label is prohibited on a bare span (role=generic), so the
+          accessible copy is a real, visually hidden text node instead. The
+          per-letter spans below stay aria-hidden. */}
+        <span className="sr-only">{text}</span>
+        {letters.map((char, i) => (
+          <m.span
+            key={i}
+            aria-hidden
+            className="inline-block"
+            variants={{
+              hidden: { y: "0.4em", opacity: 0 },
+              visible: {
+                y: 0,
+                opacity: 1,
+                transition: { duration: 0.5, ease: [0.2, 0.8, 0.2, 1] },
+              },
+            }}
+          >
+            {char === " " ? " " : char}
+          </m.span>
+        ))}
+        {trailing}
+      </Wrapper>
     </LazyMotion>
   );
 }

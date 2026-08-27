@@ -16,8 +16,7 @@ import "leaflet.markercluster/dist/MarkerCluster.css";
 // than at the top of the file so SSR (and the static export build step)
 // never executes the Leaflet bundle.
 
-const TILE_URL =
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const TILE_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
@@ -85,7 +84,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       }).addTo(map);
 
       const icon = L.divIcon({
-        className:"open-mic-pin",
+        className: "open-mic-pin",
         html: '<span aria-hidden="true"></span>',
         iconSize: [22, 22],
         iconAnchor: [11, 11],
@@ -94,7 +93,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       // swapping icons never shifts the pin. Both kept on refs for the
       // selectedId effect below.
       const selectedIcon = L.divIcon({
-        className:"open-mic-pin open-mic-pin--selected",
+        className: "open-mic-pin open-mic-pin--selected",
         html: '<span aria-hidden="true"></span>',
         iconSize: [22, 22],
         iconAnchor: [11, 11],
@@ -115,8 +114,11 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
           const count = c.getChildCount();
           const size = count >= 25 ? 56 : count >= 10 ? 46 : 36;
           return L.divIcon({
-            html: `<span aria-hidden="true">${count}</span>`,
-            className:"open-mic-cluster",
+            // Leaflet gives every marker role="button" and tabindex 0, so
+            // the count alone is not an accessible name. The visible glyph
+            // stays hidden and a real one rides along beside it.
+            html: `<span aria-hidden="true">${count}</span><span class="sr-only">Zoom to ${count} open mics in this area</span>`,
+            className: "open-mic-cluster",
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
           });
@@ -124,7 +126,10 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       });
 
       mics.forEach((m) => {
-        const marker = L.marker([m.lat, m.lng], { icon });
+        // Same reason as the cluster icons: the pin is a role="button" whose
+        // only content is aria-hidden. Leaflet writes options.title onto the
+        // icon element, which names it.
+        const marker = L.marker([m.lat, m.lng], { icon, title: m.nameDisplay });
         marker.bindPopup(
           `<strong>${escapeHtml(m.nameDisplay)}</strong><br/>${escapeHtml(m.venueDisplay)}<br/>${escapeHtml(m.dayTimeDisplay)}`,
         );
@@ -188,16 +193,16 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
     // markercluster handles zoom-and-spiderfy via `zoomToShowLayer` so a
     // clustered marker actually opens. Falls back to setView for unclustered
     // contexts. Defensive. Should always be clustered now.
-    const cluster = clusterRef.current as
-      | { zoomToShowLayer?: (m: unknown, cb: () => void) => void }
-      | null;
+    const cluster = clusterRef.current as {
+      zoomToShowLayer?: (m: unknown, cb: () => void) => void;
+    } | null;
     if (cluster?.zoomToShowLayer) {
       cluster.zoomToShowLayer(marker, () => marker.openPopup?.());
       return;
     }
-    const map = mapRef.current as
-      | { setView?: (latlng: [number, number], zoom: number) => unknown }
-      | null;
+    const map = mapRef.current as {
+      setView?: (latlng: [number, number], zoom: number) => unknown;
+    } | null;
     if (!map?.setView) return;
     const { lat, lng } = marker.getLatLng();
     map.setView([lat, lng], 13);
