@@ -10,7 +10,12 @@ import { readdirSync, readFileSync, existsSync, mkdirSync, writeFileSync } from 
 import { join } from "node:path";
 
 const ROOT = process.cwd();
-const OUT_DIR = join(ROOT, "content", ".generated");
+
+// Normally writes into the committed cache. scripts/test/content-index-drift
+// .test.ts points it at a temp directory instead, so it can regenerate and
+// compare without dirtying the working tree.
+const OUT_DIR =
+  process.env.CONTENT_INDEX_OUT_DIR ?? join(ROOT, "content", ".generated");
 
 mkdirSync(OUT_DIR, { recursive: true });
 
