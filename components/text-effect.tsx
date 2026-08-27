@@ -13,7 +13,7 @@ import type { ReactNode } from "react";
 type Props = {
   text: string;
   /** Optional ReactNode to render after the animated text. Useful for
-   *  the hazard-yellow period accent. */
+   *  the gold period accent. */
   trailing?: ReactNode;
   /** Stagger between letters in seconds. */
   stagger?: number;
