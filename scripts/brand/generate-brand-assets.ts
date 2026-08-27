@@ -21,30 +21,59 @@
 // marks, and is what the 40 foot banner case would need. Do not trace the
 // goose to get there.
 import { mkdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 
 const ROOT = process.cwd();
 const OUT = join(ROOT, "public/brand");
-const SRC = join(OUT, "SGP_Badge_Gold.png");
+const BADGE = join(OUT, "SGP_Badge_Gold.png");
+
+// Optional simplified icon master. The full badge is line art: its thinnest
+// stroke is 18px of 1466px artwork, which renders at 0.16px in a 16px favicon
+// and 0.33px at 32px. Both are invisible, so the small sizes come out a blob.
+// When SGP_Icon_Gold.png is present it supplies every size below ICON_CUTOFF;
+// the badge still supplies the rest. Until then the badge is used throughout
+// and this script says so, rather than silently shipping the blob.
+const ICON = join(OUT, "SGP_Icon_Gold.png");
+const ICON_CUTOFF = 96;
 
 /** Tuxedo. The one background this script paints, for the opaque iOS slot. */
 const TUXEDO = { r: 0x0f, g: 0x0f, b: 0x0f, alpha: 1 };
 
-const FAVICON_SIZES = [16, 32, 64, 128, 256, 512] as const;
+// 48 is the Windows tile and Android launcher size; it was missing before.
+const FAVICON_SIZES = [16, 32, 48, 64, 128, 256, 512] as const;
 
-async function badgeAt(size: number): Promise<Buffer> {
-  return sharp(SRC).resize(size, size, { fit: "contain",
-    background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
+const hasIcon = existsSync(ICON);
+
+/** Which master a given size should come from. */
+function sourceFor(size: number): string {
+  return hasIcon && size < ICON_CUTOFF ? ICON : BADGE;
+}
+
+async function renderAt(source: string, size: number): Promise<Buffer> {
+  return sharp(source)
+    .resize(size, size, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png()
+    .toBuffer();
 }
 
 async function main() {
   await mkdir(OUT, { recursive: true });
-  console.log("[brand] source:", SRC);
+  console.log("[brand] badge master:", BADGE);
+  if (hasIcon) {
+    console.log(`[brand] icon master:  ${ICON} (sizes under ${ICON_CUTOFF}px)`);
+  } else {
+    console.warn(
+      `[brand] NOTE: ${ICON} not found. Small favicons fall back to the badge, ` +
+        `whose line art is illegible below ~96px. See docs/design-tokens.md.`,
+    );
+  }
 
   for (const size of FAVICON_SIZES) {
-    await sharp(await badgeAt(size)).toFile(join(OUT, `favicon-${size}.png`));
-    console.log(`  -> favicon-${size}.png`);
+    const source = sourceFor(size);
+    await sharp(await renderAt(source, size)).toFile(join(OUT, `favicon-${size}.png`));
+    console.log(`  -> favicon-${size}.png  (${source.endsWith("SGP_Icon_Gold.png") ? "icon" : "badge"})`);
   }
 
   // iOS renders this on an opaque tile and rounds the corners itself, so the
@@ -54,12 +83,12 @@ async function main() {
   await sharp({
     create: { width: APPLE, height: APPLE, channels: 4, background: TUXEDO },
   })
-    .composite([{ input: await badgeAt(inset), gravity: "centre" }])
+    .composite([{ input: await renderAt(sourceFor(APPLE), inset), gravity: "centre" }])
     .png()
     .toFile(join(OUT, "apple-touch-icon.png"));
   console.log("  -> apple-touch-icon.png (180x180 on Tuxedo)");
 
-  await sharp(await badgeAt(256)).toFile(join(OUT, "og-mark.png"));
+  await sharp(await renderAt(BADGE, 256)).toFile(join(OUT, "og-mark.png"));
   console.log("  -> og-mark.png (256x256)");
 }
 

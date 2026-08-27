@@ -234,6 +234,49 @@ hand-rolling: they carry the rules that would otherwise live in a comment.
 | `<ShowInfoBlock>` | The fixed show-info order |
 | `<SponsorStrip>` | The one sanctioned Smoke surface |
 
+### The icon master (outstanding)
+
+The badge is line art and does not survive a favicon. Measured on the real
+file: the artwork is 1466px inside the 1750px canvas, and its thinnest stroke
+is 18px, which is 1.23% of the artwork. That renders at:
+
+| Icon size | Thinnest stroke | Result |
+| --------- | --------------- | ------ |
+| 16px | 0.16px | invisible |
+| 32px | 0.33px | invisible |
+| 48px | 0.49px | invisible |
+| 64px | 0.66px | invisible |
+| 128px | 1.32px | sub-pixel |
+| 256px | 2.63px | clean |
+
+So a separate simplified master is needed for the small sizes. It must be a
+silhouette, not line art: at 16px a feature has to be about 12.5% of the icon
+to resolve at all.
+
+It also has to carry its own background. No single palette ink clears the 3:1
+non-text threshold against both light and dark browser chrome (gold measures
+2.2:1 on a white tab and 7.4:1 on a dark one), so a transparent icon is
+illegible in one of them whatever colour it is. Grounding the mark on a solid
+Tuxedo disc makes the contrast internal at 8.81:1 and the chrome irrelevant.
+
+**Required file: `public/brand/SGP_Icon_Gold.png`**
+
+| Property | Value |
+| -------- | ----- |
+| Canvas | 1024 x 1024, square |
+| Format | PNG, RGBA, straight alpha |
+| Ground | Solid `#0F0F0F` disc, filling the canvas edge to edge |
+| Mark | `#D4AA4A`, knocked out of the disc |
+| Minimum stroke | 128px, which is 12.5% of the canvas |
+| Clear space | None. The disc runs to the canvas edge; OS chrome adds its own |
+| Content | Derived from the badge's existing inner art, with the ring wordmark dropped. Not redrawn |
+
+`scripts/brand/generate-brand-assets.ts` already looks for it: when present it
+supplies favicon 16/32/48/64 and the apple-touch-icon, while the badge keeps
+128/256/512 and the OG mark. Until it lands the script warns and falls back to
+the badge. `scripts/test/brand-assets.test.ts` validates it once it exists:
+square, RGBA, at least 512px, palette colours only.
+
 ### The monocle ring
 
 One ring per page section, maximum. It is the signature device; at full size on

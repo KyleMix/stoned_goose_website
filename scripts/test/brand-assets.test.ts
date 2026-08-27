@@ -11,7 +11,7 @@
 //   2. colour type 6 (RGBA), never a palette
 //   3. exactly one opaque ink value, and it is the expected palette colour
 //   4. alpha masks identical across a family, proving one shared knockout
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { inflateSync } from "node:zlib";
@@ -124,6 +124,41 @@ for (const spec of EXPECTED) {
 
 for (const [family, digests] of masks) {
   check(`${family} alpha masks identical`, digests.size === 1, `${digests.size} distinct masks, expected 1 shared knockout`);
+}
+
+// The simplified icon master is optional until it is supplied, but once it is
+// there it must be square, RGBA, and made only of palette colours. Unlike the
+// marks it is allowed two inks, since it carries its own Tuxedo ground.
+const ICON = join(DIR, "SGP_Icon_Gold.png");
+if (existsSync(ICON)) {
+  const png = decode(ICON);
+  check("SGP_Icon_Gold.png is RGBA", png.colorType === 6, `colour type ${png.colorType}`);
+  check(
+    "SGP_Icon_Gold.png is square",
+    png.width === png.height,
+    `${png.width}x${png.height}`,
+  );
+  check(
+    "SGP_Icon_Gold.png is at least 512px",
+    png.width >= 512,
+    `${png.width}px, too small to downscale cleanly`,
+  );
+  if (png.colorType === 6) {
+    const PALETTE = new Set(["15,15,15", "244,238,226", "212,170,74", "135,104,31", "140,135,129"]);
+    const offPalette = new Set<string>();
+    for (let i = 0; i < png.pixels.length; i += 4) {
+      if (png.pixels[i + 3] !== 0xff) continue;
+      const key = `${png.pixels[i]},${png.pixels[i + 1]},${png.pixels[i + 2]}`;
+      if (!PALETTE.has(key)) offPalette.add(key);
+    }
+    check(
+      "SGP_Icon_Gold.png uses only palette colours",
+      offPalette.size === 0,
+      `${offPalette.size} off-palette opaque values, e.g. rgb(${[...offPalette][0]})`,
+    );
+  }
+} else {
+  console.log("  note: SGP_Icon_Gold.png not supplied; small favicons fall back to the badge.");
 }
 
 if (failures > 0) {
