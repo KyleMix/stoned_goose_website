@@ -45,7 +45,7 @@ export default function OpenMicsMapPage() {
         eyebrow="The open mic map"
         title={
           <>
-            Open <span className="italic text-accent-gold">Mics</span>
+            Open <span className="text-accent-gold">Mics</span>
           </>
         }
         body={openMicsCopy.subhead}
@@ -59,35 +59,35 @@ export default function OpenMicsMapPage() {
 
       <SectionRenderer sections={openMicsTopSections} pageSlug="open-mics" />
 
-      <section className="section-y-tight border-b border-surface-ivory/10 bg-surface-tuxedo">
+      <section className="section-y-tight border-b border-smoke bg-surface-tuxedo">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-surface-ivory/55">
+            <p className="t-eyebrow text-smoke">
               {openMicsCopy.kicker}
             </p>
             <OpenMicSubmitDialog
               triggerLabel="Submit a mic ↗"
-              triggerClassName="inline-flex h-12 shrink-0 items-center justify-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
+              triggerClassName="inline-flex h-12 shrink-0 items-center justify-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
             />
           </div>
           {mics.length > 0 ? (
             <OpenMicExplorer mics={mics} />
           ) : (
-            <div className="border border-surface-ivory/15 p-8 md:p-10">
-              <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+            <div className="border border-smoke p-8 md:p-10">
+              <p className="t-eyebrow">
                 Loading the map
               </p>
-              <h2 className="mt-3 font-display text-3xl text-surface-ivory md:text-4xl">
+              <h2 className="mt-3 t-subhead text-3xl md:text-4xl">
                 The map is being built right now.
               </h2>
-              <p className="mt-4 max-w-xl font-body text-base text-surface-ivory/85">
+              <p className="t-body mt-4 max-w-xl text-base">
                 We&apos;re collecting open mics across Olympia, Tacoma,
                 Seattle, and the rest of the Pacific Northwest. New mics are
                 added as we confirm them.
               </p>
               <Link
                 href="/contact"
-                className="mt-6 inline-flex h-12 items-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                className="mt-6 inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
               >
                 Tell us about a mic ↗
               </Link>
@@ -100,20 +100,20 @@ export default function OpenMicsMapPage() {
           plainly rather than letting the two blur together. */}
       <section
         aria-labelledby="open-mics-map-app"
-        className="section-y-tight border-b border-surface-ivory/10 bg-surface-tuxedo"
+        className="section-y-tight border-b border-smoke bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="border border-surface-ivory/15 p-6 md:p-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent-gold">
+          <div className="border border-smoke p-6 md:p-8">
+            <p className="t-eyebrow">
               Different thing, same name
             </p>
             <h2
               id="open-mics-map-app"
-              className="mt-3 font-display text-2xl text-surface-ivory md:text-3xl"
+              className="mt-3 t-subhead text-2xl md:text-3xl"
             >
               There is also an app called Open Mic Explorer.
             </h2>
-            <p className="mt-4 max-w-3xl font-body text-base leading-relaxed text-surface-ivory/85">
+            <p className="t-body mt-4 max-w-3xl text-base leading-relaxed">
               This map is our own Pacific Northwest list. The app is a separate
               product, coming soon to the App Store and Google Play, and Seattle
               is its first city. It arrives with no listings: hosts add their
@@ -121,7 +121,7 @@ export default function OpenMicsMapPage() {
             </p>
             <Link
               href="/open-mics"
-              className="mt-6 inline-flex h-12 items-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+              className="mt-6 inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
             >
               Read about the app ↗
             </Link>
@@ -133,7 +133,7 @@ export default function OpenMicsMapPage() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
-              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+              <p className="t-eyebrow">
                 Spotted a missing mic?
               </p>
               <h2 className="display-2 mt-4 text-surface-ivory">
@@ -141,20 +141,20 @@ export default function OpenMicsMapPage() {
               </h2>
             </div>
             <div className="md:col-span-5">
-              <p className="font-body text-base text-surface-ivory/85 md:text-lg">
+              <p className="t-body text-base md:text-lg">
                 If a mic moved, died, or was never on here in the first place,
                 send a note. Local knowledge runs this list.
               </p>
               <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
                 <Link
                   href="/contact"
-                  className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory sm:justify-start"
+                  className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory sm:justify-start"
                 >
                   Send us a tip ↗
                 </Link>
                 <OpenMicSubmitDialog
                   triggerLabel="Submit a mic ↗"
-                  triggerClassName="inline-flex h-12 items-center justify-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
+                  triggerClassName="inline-flex h-12 items-center justify-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
                 />
               </div>
             </div>

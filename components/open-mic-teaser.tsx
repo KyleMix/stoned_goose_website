@@ -9,21 +9,21 @@ export function OpenMicTeaser() {
   return (
     <section
       aria-labelledby="home-open-mics"
-      className="section-y border-y border-surface-ivory/10 bg-surface-tuxedo"
+      className="section-y border-y border-smoke bg-surface-tuxedo"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+            <p className="t-eyebrow">
               New / Open Mic Explorer
             </p>
             <h2
               id="home-open-mics"
               className="display-1 mt-4 text-surface-ivory"
             >
-              Find an <span className="italic text-accent-gold">open mic</span>.
+              Find an <span className="text-accent-gold">open mic</span>.
             </h2>
-            <p className="mt-6 max-w-xl font-body text-base text-surface-ivory/85 md:text-lg">
+            <p className="t-body mt-6 max-w-xl text-base md:text-lg">
               We map open mics across the Pacific Northwest so comics can
               actually find a stage. New rooms, weekly signups, real
               addresses.
@@ -31,13 +31,13 @@ export function OpenMicTeaser() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/open-mics/map"
-                className="inline-flex h-12 items-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
               >
                 Open the map ↗
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex h-12 items-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
               >
                 Submit a mic ↗
               </Link>
@@ -45,20 +45,20 @@ export function OpenMicTeaser() {
           </div>
           <div className="md:col-span-5">
             {sample.length > 0 ? (
-              <ul className="divide-y divide-surface-ivory/15 border-y border-surface-ivory/15">
+              <ul className="divide-y divide-smoke border-y border-smoke">
                 {sample.map((m) => (
                   <li
                     key={m.id}
                     className="grid grid-cols-12 items-baseline gap-x-4 py-4"
                   >
-                    <p className="col-span-3 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+                    <p className="col-span-3 t-eyebrow">
                       {m.day.slice(0, 3)}
                     </p>
                     <div className="col-span-9">
-                      <p className="font-display text-lg text-surface-ivory">
+                      <p className="t-subhead text-lg">
                         {m.nameDisplay}
                       </p>
-                      <p className="font-body text-xs text-surface-ivory/65">
+                      <p className="t-body text-xs text-smoke">
                         {[m.venueDisplay, m.city].filter(Boolean).join(". ")}.
                       </p>
                     </div>
@@ -66,7 +66,7 @@ export function OpenMicTeaser() {
                 ))}
               </ul>
             ) : (
-              <p className="border border-surface-ivory/15 p-6 font-body text-sm text-surface-ivory/70">
+              <p className="t-body border border-smoke p-6 text-sm text-smoke">
                 The map is loading mics now. Check back soon, or open the
                 explorer and tell us what we missed.
               </p>

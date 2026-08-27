@@ -17,17 +17,17 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
   return (
     <section
       aria-label="Hero"
-      className="relative isolate overflow-hidden border-b border-surface-ivory/10 bg-surface-tuxedo"
+      className="relative isolate overflow-hidden border-b border-smoke bg-surface-tuxedo"
     >
 
       <div className="relative mx-auto max-w-[1400px] px-5 pb-16 pt-32 md:px-10 md:pb-20 md:pt-36">
         {block.eyebrow ? (
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-surface-ivory/55">
+          <p className="t-eyebrow text-smoke">
             {block.eyebrow}
           </p>
         ) : null}
 
-        <h1 className="heading-display mt-8 text-[clamp(3.5rem,12vw,11rem)] text-surface-ivory">
+        <h1 className="t-headline mt-8 display-hero">
           {secondHalf.length > 0 ? (
             <>
               <TextEffect as="span" text={firstHalf} className="block" />
@@ -50,14 +50,14 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
         </h1>
 
         {(block.subhead || block.italicLine) && (
-          <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-surface-ivory/15 pt-8 md:mt-12">
+          <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-smoke pt-8 md:mt-12">
             {block.subhead ? (
-              <p className="col-span-12 max-w-md font-body text-base leading-snug text-surface-ivory/85 md:col-span-7 md:text-lg">
+              <p className="t-body col-span-12 max-w-md text-base leading-snug md:col-span-7 md:text-lg">
                 {block.subhead}
               </p>
             ) : null}
             {block.italicLine ? (
-              <p className="col-span-12 font-display text-3xl italic leading-snug text-surface-ivory md:col-span-5 md:text-right md:text-4xl">
+              <p className="col-span-12 t-subhead text-3xl leading-snug md:col-span-5 md:text-right md:text-4xl">
                 {block.italicLine}
               </p>
             ) : null}
@@ -70,7 +70,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
               <Link
                 href={block.primaryCtaHref}
                 onClick={() => track("CTA Click", { cta: `${pageSlug}-hero-primary` })}
-                className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 font-body text-sm font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory"
+                className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
               >
                 {block.primaryCtaLabel}
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -81,7 +81,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
             {block.secondaryCtaLabel && block.secondaryCtaHref ? (
               <Link
                 href={block.secondaryCtaHref}
-                className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+                className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
               >
                 {block.secondaryCtaLabel} ↗
               </Link>

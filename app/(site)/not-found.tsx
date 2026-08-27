@@ -88,18 +88,18 @@ export default function NotFound() {
             priority
           />
         </div>
-        <p className="mt-10 font-body text-[10px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+        <p className="mt-10 t-eyebrow">
           [ Static / 404 / Misfire ]
         </p>
-        <h1 className="heading-display mt-6 text-[clamp(4rem,18vw,16rem)] text-surface-ivory">
+        <h1 className="t-headline mt-6 display-mega">
           Lost.
         </h1>
-        <p className="mt-6 max-w-xl font-body text-base text-surface-ivory/85 md:text-lg">
+        <p className="t-body mt-6 max-w-xl text-base md:text-lg">
           That page either never existed or got cut from the special. Try one of
           these instead.
         </p>
 
-        <ul className="mt-10 divide-y divide-surface-ivory/15 border-y border-surface-ivory/15">
+        <ul className="mt-10 divide-y divide-smoke border-y border-smoke">
           {picks.map((s, i) => (
             <li key={s.href}>
               <Link
@@ -107,16 +107,16 @@ export default function NotFound() {
                 className="group flex items-baseline justify-between gap-4 py-5"
               >
                 <span className="flex items-baseline gap-4">
-                  <span className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                  <span className="t-eyebrow text-smoke">
                     /0{i + 1}
                   </span>
-                  <span className="font-display text-2xl text-surface-ivory group-hover:text-accent-gold md:text-3xl">
+                  <span className="t-subhead text-2xl group-hover:text-accent-gold md:text-3xl">
                     {s.label}
                   </span>
                 </span>
                 <span
                   aria-hidden
-                  className="font-body text-base text-surface-ivory/55 group-hover:text-accent-gold"
+                  className="text-base text-smoke group-hover:text-accent-gold"
                 >
                   ↗
                 </span>
@@ -130,16 +130,16 @@ export default function NotFound() {
                 className="group flex items-baseline justify-between gap-4 py-5"
               >
                 <span className="flex items-baseline gap-4">
-                  <span className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+                  <span className="t-eyebrow">
                     /now
                   </span>
-                  <span className="font-display text-2xl text-surface-ivory group-hover:text-accent-gold md:text-3xl">
+                  <span className="t-subhead text-2xl group-hover:text-accent-gold md:text-3xl">
                     Next on stage. {nextShow.date}. {nextShow.venue}.
                   </span>
                 </span>
                 <span
                   aria-hidden
-                  className="font-body text-base text-surface-ivory/55 group-hover:text-accent-gold"
+                  className="text-base text-smoke group-hover:text-accent-gold"
                 >
                   ↗
                 </span>
@@ -151,13 +151,13 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap gap-3 pb-20">
           <Link
             href="/"
-            className="inline-flex h-12 items-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+            className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
           >
             Back to home ↗
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-12 items-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+            className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
           >
             Talk to us ↗
           </Link>

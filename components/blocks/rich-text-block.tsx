@@ -10,23 +10,23 @@ export function RichTextBlock({ block }: { block: RichTextBlockData }) {
     .filter((p) => p.length > 0);
 
   return (
-    <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-20 md:py-28">
+    <section className="border-b border-smoke bg-surface-tuxedo py-20 md:py-28">
       <div className="mx-auto max-w-[820px] px-5 md:px-10">
         {block.eyebrow ? (
-          <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+          <p className="t-eyebrow">
             {block.eyebrow}
           </p>
         ) : null}
         {block.heading ? (
-          <h2 className="heading-display mt-4 text-[clamp(2.2rem,6vw,4.5rem)] text-surface-ivory">
+          <h2 className="t-headline mt-4 display-1">
             {block.heading}
           </h2>
         ) : null}
-        <div className={block.heading || block.eyebrow ? "mt-8 space-y-6" : "space-y-6"}>
+        <div className={block.heading || block.eyebrow ?"mt-8 space-y-6" :"space-y-6"}>
           {paragraphs.map((p, i) => (
             <p
               key={i}
-              className="font-body text-base leading-relaxed text-surface-ivory/85 md:text-lg"
+              className="text-base leading-relaxed text-surface-ivory md:text-lg"
             >
               {p.split(/\n/).map((line, j, arr) => (
                 <span key={j}>

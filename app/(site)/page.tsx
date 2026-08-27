@@ -53,15 +53,15 @@ export default function HomePage() {
       <PressStrip />
 
       {mission ? (
-        <section className="section-y-lg border-y border-surface-ivory/10 bg-surface-tuxedo">
+        <section className="section-y-lg border-y border-smoke bg-surface-tuxedo">
           <div className="mx-auto max-w-[1100px] px-5 md:px-10">
-            <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+            <p className="t-eyebrow">
               {mission.eyebrow}
             </p>
             <h2 className="display-1 mt-4 text-surface-ivory">
               {mission.heading}
             </h2>
-            <p className="mt-8 max-w-3xl font-body text-lg leading-relaxed text-surface-ivory/85 md:text-xl">
+            <p className="t-body mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
               {mission.body}
             </p>
           </div>

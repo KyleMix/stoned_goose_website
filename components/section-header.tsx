@@ -6,8 +6,9 @@ type Props = {
   title: ReactNode;
   subtitle?: ReactNode;
   align?: "left" | "center";
-  /** Set to "light" on bone/cream section backgrounds so the header text
-   *  flips to ink instead of relying on per-caller class overrides. */
+  /** Set to "light" on ivory section backgrounds. This declares the surface
+   *  rather than overriding colors per element: every type role inside flips
+   *  at once, and so do focus outlines. */
   tone?: "dark" | "light";
   className?: string;
 };
@@ -20,9 +21,9 @@ export function SectionHeader({
   tone = "dark",
   className,
 }: Props) {
-  const light = tone === "light";
   return (
     <header
+      data-surface={tone === "light" ? "ivory" : "tuxedo"}
       className={cn(
         "flex flex-col gap-4",
         align === "center" && "items-center text-center",
@@ -30,32 +31,15 @@ export function SectionHeader({
       )}
     >
       {eyebrow && (
-        <div
-          className={cn(
-            "font-body text-[11px] font-normal uppercase tracking-[0.18em]",
-            light ? "text-surface-tuxedo/70" : "text-surface-ivory/55",
-          )}
-        >
+        <div className="t-eyebrow">
           <span>{eyebrow}</span>
         </div>
       )}
-      <h2
-        className={cn(
-          "heading-display text-[clamp(2.4rem,7vw,5.5rem)] text-balance",
-          light ? "text-surface-tuxedo" : "text-surface-ivory",
-        )}
-      >
+      <h2 className="t-headline display-1 text-balance">
         {title}
       </h2>
       {subtitle && (
-        <p
-          className={cn(
-            "max-w-2xl font-body text-base leading-relaxed md:text-lg",
-            light ? "text-surface-tuxedo/70" : "text-surface-ivory/85",
-          )}
-        >
-          {subtitle}
-        </p>
+        <p className="t-body max-w-2xl text-base md:text-lg">{subtitle}</p>
       )}
     </header>
   );

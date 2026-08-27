@@ -69,7 +69,7 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
               </button>
             </Dialog.Trigger>
           ) : (
-            <span className="border border-accent-gold bg-surface-tuxedo/85 px-5 py-3 font-body text-[11px] font-bold uppercase tracking-[0.22em] text-surface-ivory backdrop-blur-sm md:text-xs">
+            <span className="border border-accent-gold bg-surface-tuxedo/85 px-5 py-3 t-eyebrow text-surface-ivory backdrop-blur-sm md:text-xs">
               Coming soon
             </span>
           )}
@@ -89,7 +89,7 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
                 <button
                   type="button"
                   aria-label="Close player"
-                  className="absolute -top-12 right-0 inline-flex h-10 items-center bg-accent-gold px-4 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                  className="absolute -top-12 right-0 inline-flex h-10 items-center bg-accent-gold px-4 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
                 >
                   Close ✕
                 </button>

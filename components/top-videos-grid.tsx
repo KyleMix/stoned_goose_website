@@ -45,7 +45,7 @@ export function TopVideosGrid({ videos }: Props) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block border border-surface-ivory/15 bg-surface-tuxedo transition-colors hover:border-accent-gold/60"
+              className="group block border border-smoke bg-surface-tuxedo transition-colors hover:border-accent-gold"
             >
               <div className="relative aspect-video w-full overflow-hidden bg-surface-tuxedo">
                 <Image
@@ -60,15 +60,15 @@ export function TopVideosGrid({ videos }: Props) {
                   aria-hidden
                   className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
                 />
-                <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 font-body text-[10px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo">
+                <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-eyebrow text-surface-tuxedo">
                   ▸
                 </span>
               </div>
               <div className="p-4">
-                <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                <p className="t-eyebrow text-smoke">
                   YouTube
                 </p>
-                <p className="mt-2 font-display text-base text-surface-ivory group-hover:text-accent-gold md:text-lg">
+                <p className="mt-2 t-subhead text-base group-hover:text-accent-gold md:text-lg">
                   {v.title}
                 </p>
               </div>

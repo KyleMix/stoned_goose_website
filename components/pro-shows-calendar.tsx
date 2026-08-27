@@ -101,7 +101,7 @@ export function ProShowsCalendar() {
         title: g.title,
         start: g.start,
         url: g.url,
-        classNames: [g.featured ? "sgp-event-show" : "sgp-event-mic"],
+        classNames: [g.featured ?"sgp-event-show" :"sgp-event-mic"],
         extendedProps: { clubName: g.clubName, showCount: g.showCount },
       })),
     [clubFilter],
@@ -125,10 +125,10 @@ export function ProShowsCalendar() {
           type="button"
           aria-pressed={clubFilter === "all"}
           onClick={() => setClubFilter("all")}
-          className={`flex h-16 items-center border px-5 font-body text-[11px] font-bold uppercase tracking-[0.18em] transition-colors ${
+          className={`flex h-16 items-center border px-5 t-eyebrow transition-colors ${
             clubFilter === "all"
               ? "border-accent-gold bg-accent-gold text-surface-tuxedo"
-              : "border-surface-ivory/25 text-surface-ivory/70 hover:border-accent-gold hover:text-accent-gold"
+              : "border-smoke text-smoke hover:border-accent-gold hover:text-accent-gold"
           }`}
         >
           All clubs
@@ -145,7 +145,7 @@ export function ProShowsCalendar() {
               className={`flex h-16 items-center border px-5 transition-colors ${
                 selected
                   ? "border-accent-gold bg-surface-ivory/[0.06]"
-                  : "border-surface-ivory/25 hover:border-accent-gold"
+                  : "border-smoke hover:border-accent-gold"
               }`}
             >
               {club.logo ? (
@@ -158,8 +158,8 @@ export function ProShowsCalendar() {
                 />
               ) : (
                 <span
-                  className={`font-body text-[11px] font-bold uppercase tracking-[0.18em] ${
-                    selected ? "text-accent-gold" : "text-surface-ivory/70"
+                  className={` t-eyebrow ${
+                    selected ? "text-accent-gold" : "text-smoke"
                   }`}
                 >
                   {club.name}
@@ -199,14 +199,14 @@ export function ProShowsCalendar() {
       </div>
 
       {proShows.some((s) => s.featured) ? (
-        <p className="mt-6 flex items-center gap-2 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65">
+        <p className="mt-6 flex items-center gap-2 t-eyebrow text-smoke">
           <span aria-hidden className="h-3 w-3 bg-accent-gold" />
           Spotlight shows
         </p>
       ) : null}
 
       {proShows.length === 0 ? (
-        <p className="mt-6 font-body text-sm text-surface-ivory/65">
+        <p className="t-body mt-6 text-sm text-smoke">
           No synced shows yet. The calendar fills in automatically once the
           club feeds run.
         </p>

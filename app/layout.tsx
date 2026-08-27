@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import { site, seo } from "@/content/site";
 import { JsonLd } from "@/components/json-ld";
@@ -8,29 +8,21 @@ import { truncateAtWord } from "@/lib/utils";
 
 const ogImage = seo.defaultOgImage ?? "/opengraph.jpg";
 
-// Weights are trimmed to what the utility classes actually use: display type
-// renders at 400 (normal + italic accents), body text uses 400/500/600.
-// Adding font-bold or font-light back requires re-adding the weight here.
-const display = Fraunces({
+// One typeface for the whole site. Josefin Sans ships Light 300, Regular 400,
+// and Bold 700; the brand system uses exactly those and no italics, so nothing
+// else is loaded. `fallback` declares the real CSS chain rather than leaving it
+// to a comment: next/font emits it into the generated font-family, after the
+// size-adjusted metric fallback it derives automatically.
+//
+// next/font self-hosts the woff2 into the static export at build time, so the
+// Workers Static Assets deploy serves the font from its own origin with no
+// runtime font fetch and no external request to fonts.gstatic.com.
+const sans = Josefin_Sans({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400"],
-  style: ["normal", "italic"],
+  variable: "--font-sans",
+  weight: ["300", "400", "700"],
   display: "swap",
-});
-
-const body = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500"],
-  display: "swap",
+  fallback: ["Futura", "Century Gothic", "Arial", "sans-serif"],
 });
 
 // Title stays under 60 chars and the description under 155 so SERPs render
@@ -92,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={sans.variable}
     >
       <body className="bg-surface-tuxedo text-surface-ivory" suppressHydrationWarning>
         <JsonLd schema={organization} />

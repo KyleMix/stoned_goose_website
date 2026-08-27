@@ -58,7 +58,7 @@ export default async function ProductPage(props: {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <Link
             href="/shop"
-            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55 transition-colors hover:text-accent-gold"
+            className="t-eyebrow text-smoke transition-colors hover:text-accent-gold"
           >
             ← Back to shop
           </Link>

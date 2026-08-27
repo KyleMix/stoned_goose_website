@@ -76,7 +76,7 @@ export default function WatchPage() {
         title={
           <>
             Media{" "}
-            <span className="italic text-accent-gold">&amp;</span>{" "}
+            <span className="text-accent-gold">&amp;</span>{""}
             Clips
           </>
         }
@@ -85,16 +85,16 @@ export default function WatchPage() {
 
       <SectionRenderer sections={watchTopSections} pageSlug="watch" />
 
-      <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-24">
+      <section className="border-b border-smoke bg-surface-tuxedo py-16 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
             <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+              <p className="t-eyebrow text-smoke">
                 Featured / Full Special
               </p>
               <Link
                 href="/shows"
-                className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+                className="t-eyebrow text-smoke hover:text-accent-gold"
               >
                 Catch the next one live ↗
               </Link>
@@ -104,7 +104,7 @@ export default function WatchPage() {
               href={featuredSpecial.comedianHandle}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+              className="t-eyebrow text-smoke hover:text-accent-gold"
             >
               {featuredSpecial.title} on Instagram ↗
             </TrackedAnchor>
@@ -120,13 +120,13 @@ export default function WatchPage() {
             </div>
 
             <div className="md:col-span-4">
-              <h2 className="heading-display text-[clamp(2.5rem,5vw,4rem)] text-surface-ivory">
+              <h2 className="t-headline display-1">
                 {featuredSpecial.title}
               </h2>
-              <p className="mt-2 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+              <p className="mt-2 t-eyebrow">
                 {featuredSpecial.subtitle}
               </p>
-              <p className="mt-6 font-body text-base text-surface-ivory/85 md:text-lg">
+              <p className="t-body mt-6 text-base md:text-lg">
                 {featuredSpecial.blurb}
               </p>
               <TrackedAnchor
@@ -134,7 +134,7 @@ export default function WatchPage() {
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex h-12 items-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:bg-surface-ivory hover:text-surface-tuxedo"
+                className="mt-8 inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:bg-surface-ivory hover:text-surface-tuxedo"
               >
                 Channel on YouTube ↗
               </TrackedAnchor>
@@ -146,32 +146,32 @@ export default function WatchPage() {
       {news.length > 0 ? (
         <section
           id="from-the-goose"
-          className="border-b border-surface-ivory/10 bg-surface-tuxedo py-20 md:py-24"
+          className="border-b border-smoke bg-surface-tuxedo py-20 md:py-24"
         >
           <div className="mx-auto max-w-[1400px] px-5 md:px-10">
             <SectionHeader
               eyebrow="From the Goose"
               title={
                 <>
-                  News &amp; <span className="italic text-accent-gold">notes</span>
+                  News &amp; <span className="text-accent-gold">notes</span>
                 </>
               }
               subtitle="Hand-written announcements. Show drops, behind-the-scenes, and the things that don't fit on Instagram."
             />
-            <ul className="mt-10 divide-y divide-surface-ivory/15 border-y border-surface-ivory/15">
+            <ul className="mt-10 divide-y divide-smoke border-y border-smoke">
               {news.map((post) => (
                 <li key={post.slug} className="py-7">
-                  <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                  <p className="t-eyebrow text-smoke">
                     {new Date(post.date).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                       year: "numeric",
                     })}
                   </p>
-                  <h3 className="mt-2 font-display text-2xl text-surface-ivory md:text-3xl">
+                  <h3 className="mt-2 t-subhead text-2xl md:text-3xl">
                     {post.title}
                   </h3>
-                  <p className="mt-3 max-w-prose font-body text-base text-surface-ivory/85">
+                  <p className="t-body mt-3 max-w-prose text-base">
                     {post.summary}
                   </p>
                 </li>
@@ -181,18 +181,18 @@ export default function WatchPage() {
         </section>
       ) : null}
 
-      <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-20 md:py-24">
+      <section className="border-b border-smoke bg-surface-tuxedo py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
             <div>
-              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+              <p className="t-eyebrow">
                 Channel
               </p>
-              <h2 className="heading-display mt-3 text-[clamp(2rem,5vw,3.5rem)] text-surface-ivory">
-                Latest <span className="italic text-accent-gold">uploads</span>
+              <h2 className="t-headline mt-3 display-2">
+                Latest <span className="text-accent-gold">uploads</span>
               </h2>
               {youtubeFresh ? (
-                <p className="mt-3 font-body text-sm text-surface-ivory/65">
+                <p className="t-body mt-3 text-sm text-smoke">
                   Auto-synced. YouTube updated {relativeAge(youtubeFeed.fetchedAt)}.
                 </p>
               ) : null}
@@ -202,7 +202,7 @@ export default function WatchPage() {
               href={site.social.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+              className="t-eyebrow text-smoke hover:text-accent-gold"
             >
               YouTube channel ↗
             </TrackedAnchor>
@@ -214,7 +214,7 @@ export default function WatchPage() {
             </div>
           ) : (
             <>
-              <p className="mt-6 max-w-2xl font-body text-base text-surface-ivory/85 md:text-lg">
+              <p className="t-body mt-6 max-w-2xl text-base md:text-lg">
                 {watchCopy.emptyClipsLine}
               </p>
               <TrackedAnchor
@@ -222,7 +222,7 @@ export default function WatchPage() {
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex h-12 items-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                className="mt-8 inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
               >
                 Open the channel ↗
               </TrackedAnchor>
@@ -233,30 +233,30 @@ export default function WatchPage() {
 
       <section
         aria-label="Support on Patreon"
-        className="border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20"
+        className="border-b border-smoke bg-surface-tuxedo py-16 md:py-20"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
-              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+              <p className="t-eyebrow">
                 Patreon
               </p>
-              <h2 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-surface-ivory">
-                Back the <span className="italic text-accent-gold">crew</span>.
+              <h2 className="t-headline mt-4 display-1">
+                Back the <span className="text-accent-gold">crew</span>.
               </h2>
-              <p className="mt-6 max-w-xl font-body text-base text-surface-ivory/85 md:text-lg">
+              <p className="t-body mt-6 max-w-xl text-base md:text-lg">
                 Patreon supporters bankroll the cinematics, the editor hours,
                 and the next dumb idea. Tier up if you want to ride along.
               </p>
               {patreonPosts.length > 0 ? (
-                <ul className="mt-8 space-y-3 border-y border-surface-ivory/15 py-6">
+                <ul className="mt-8 space-y-3 border-y border-smoke py-6">
                   {patreonPosts.map((p) => (
                     <li key={p.link}>
                       <a
                         href={p.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-body text-sm text-surface-ivory hover:text-accent-gold"
+                        className="text-sm text-surface-ivory hover:text-accent-gold"
                       >
                         / {p.title} ↗
                       </a>
@@ -271,7 +271,7 @@ export default function WatchPage() {
                 href={site.social.patreon}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
               >
                 Support on Patreon ↗
               </TrackedAnchor>

@@ -45,19 +45,19 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
-        <Dialog.Content className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-surface-ivory/15 bg-surface-tuxedo p-6 md:p-8">
+        <Dialog.Content className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-smoke bg-surface-tuxedo p-6 md:p-8">
           <div className="flex items-start justify-between gap-6">
             <div>
-              <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+              <p className="t-eyebrow">
                 Add to the map
               </p>
               <Dialog.Title asChild>
-                <h2 className="mt-3 font-display text-2xl text-surface-ivory md:text-3xl">
+                <h2 className="mt-3 t-subhead text-2xl md:text-3xl">
                   Submit a mic<span className="text-accent-gold">.</span>
                 </h2>
               </Dialog.Title>
               <Dialog.Description asChild>
-                <p className="mt-2 font-body text-xs text-surface-ivory/65">
+                <p className="t-body mt-2 text-xs text-smoke">
                   The crew verifies before it lands on the map. Skip the
                   coordinates, we&apos;ll geocode it from the address.
                 </p>
@@ -67,14 +67,14 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
               <button
                 type="button"
                 aria-label="Close"
-                className="font-mono text-xs uppercase tracking-[0.18em] text-surface-ivory/55 hover:text-accent-gold"
+                className="t-eyebrow text-smoke hover:text-accent-gold"
               >
                 ESC
               </button>
             </Dialog.Close>
           </div>
 
-          <div className="mt-6 border-t border-surface-ivory/15 pt-6">
+          <div className="mt-6 border-t border-smoke pt-6">
             <ContactForm
               subject="New open mic submission"
               source="/open-mics / submit"
@@ -164,7 +164,7 @@ function RegionGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <legend className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+      <legend className="t-eyebrow text-smoke">
         Region
         <span aria-hidden className="ml-1 text-accent-gold">*</span>
       </legend>
@@ -172,7 +172,7 @@ function RegionGroup() {
         {REGION_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-3 border border-surface-ivory/15 p-3 transition-colors hover:border-accent-gold/60 has-[:checked]:border-accent-gold has-[:checked]:bg-surface-ivory/[0.04]"
+            className="flex cursor-pointer items-center gap-3 border border-smoke p-3 transition-colors hover:border-accent-gold has-[:checked]:border-accent-gold has-[:checked]:bg-surface-ivory/[0.04]"
           >
             <input
               type="radio"
@@ -180,7 +180,7 @@ function RegionGroup() {
               className="h-4 w-4 accent-accent-gold"
               {...reg}
             />
-            <span className="font-body text-sm text-surface-ivory">{opt.label}</span>
+            <span className="text-sm text-surface-ivory">{opt.label}</span>
           </label>
         ))}
       </div>
@@ -196,7 +196,7 @@ function DayGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <legend className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+      <legend className="t-eyebrow text-smoke">
         Day of week
         <span aria-hidden className="ml-1 text-accent-gold">*</span>
       </legend>
@@ -204,7 +204,7 @@ function DayGroup() {
         {DAY_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-3 border border-surface-ivory/15 p-3 transition-colors hover:border-accent-gold/60 has-[:checked]:border-accent-gold has-[:checked]:bg-surface-ivory/[0.04]"
+            className="flex cursor-pointer items-center gap-3 border border-smoke p-3 transition-colors hover:border-accent-gold has-[:checked]:border-accent-gold has-[:checked]:bg-surface-ivory/[0.04]"
           >
             <input
               type="radio"
@@ -212,7 +212,7 @@ function DayGroup() {
               className="h-4 w-4 accent-accent-gold"
               {...reg}
             />
-            <span className="font-body text-sm text-surface-ivory">{opt.label}</span>
+            <span className="text-sm text-surface-ivory">{opt.label}</span>
           </label>
         ))}
       </div>

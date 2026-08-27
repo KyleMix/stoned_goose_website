@@ -26,7 +26,7 @@ export default function ContactPage() {
         title={
           <>
             {contactCopy.titleLead}{" "}
-            <span className="italic text-accent-gold">{contactCopy.titleEmphasis}</span>
+            <span className="text-accent-gold">{contactCopy.titleEmphasis}</span>
           </>
         }
         body={contactCopy.body}
@@ -40,10 +40,10 @@ export default function ContactPage() {
                 href={`mailto:${site.contact.email}`}
                 className="group block"
               >
-                <span className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                <span className="t-eyebrow text-smoke">
                   {contactCopy.emailLabel}
                 </span>
-                <p className="mt-2 break-all font-display text-2xl tracking-tight text-surface-ivory transition-colors group-hover:text-accent-gold md:text-4xl">
+                <p className="mt-2 break-all t-subhead text-2xl transition-colors group-hover:text-accent-gold md:text-4xl">
                   {site.contact.email}
                 </p>
               </a>
@@ -51,20 +51,20 @@ export default function ContactPage() {
                 href={`tel:${site.contact.phoneTel}`}
                 className="group mt-8 block"
               >
-                <span className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                <span className="t-eyebrow text-smoke">
                   {contactCopy.phoneLabel}
                 </span>
-                <p className="mt-2 font-display text-2xl tracking-tight text-surface-ivory transition-colors group-hover:text-accent-gold md:text-4xl">
+                <p className="mt-2 t-subhead text-2xl transition-colors group-hover:text-accent-gold md:text-4xl">
                   {site.contact.phone}
                 </p>
               </a>
 
-              <ul className="mt-6 flex flex-wrap items-center gap-3 font-body text-[11px] font-normal uppercase tracking-[0.18em]">
+              <ul className="mt-6 flex flex-wrap items-center gap-3 t-eyebrow">
                 {site.contact.smsEnabled ? (
                   <li>
                     <a
                       href={`sms:${site.contact.phoneTel}`}
-                      className="inline-flex h-10 items-center border border-surface-ivory/30 px-4 text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                      className="inline-flex h-10 items-center border border-smoke px-4 text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
                     >
                       {contactCopy.textCtaLabel}
                     </a>
@@ -86,13 +86,13 @@ export default function ContactPage() {
               </ul>
 
               <div className="mt-10">
-                <span className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                <span className="t-eyebrow text-smoke">
                   {contactCopy.findUsLabel}
                 </span>
-                <p className="mt-2 font-display text-xl text-surface-ivory md:text-2xl">
+                <p className="mt-2 t-subhead text-xl md:text-2xl">
                   {site.contact.address}
                 </p>
-                <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 t-eyebrow text-smoke">
                   {site.serviceAreas.map((area) => (
                     <li key={area}>{area}</li>
                   ))}

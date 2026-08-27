@@ -41,21 +41,21 @@ export function ShopProductCard({ product, borderClass }: Props) {
             // it from the grid entirely.
             <span
               aria-hidden
-              className="flex h-full w-full items-center justify-center border border-surface-ivory/10 font-display text-[5rem] text-surface-ivory/25 transition-colors duration-500 group-hover:text-accent-gold/60"
+              className="flex h-full w-full items-center justify-center border border-smoke t-subhead text-[5rem] text-smoke transition-colors duration-500 group-hover:text-accent-gold"
             >
               {product.name.trim().charAt(0).toUpperCase()}
             </span>
           )}
         </div>
         <div className="mt-6 flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-xl text-surface-ivory group-hover:text-accent-gold md:text-2xl">
+          <h3 className="t-subhead text-xl group-hover:text-accent-gold md:text-2xl">
             {product.name}
           </h3>
-          <span className="shrink-0 font-body text-sm font-bold tabular-nums text-surface-ivory">
+          <span className="shrink-0 text-sm font-bold tabular-nums text-surface-ivory">
             {product.price}
           </span>
         </div>
-        <p className="mt-2 font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55 group-hover:text-accent-gold">
+        <p className="mt-2 t-eyebrow text-smoke group-hover:text-accent-gold">
           View ↗
         </p>
       </Link>

@@ -98,7 +98,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("Outbound Click", { destination: "fourthwall" })}
-          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory"
+          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
         >
           Buy on Fourthwall ↗
         </a>
@@ -119,7 +119,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
       <div className="flex flex-col gap-6">
         {colors.length > 1 ? (
           <div>
-            <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+            <p className="t-eyebrow text-smoke">
               Color{color ? `. ${color}` : ""}
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -134,12 +134,12 @@ export function ShopProductDetail({ product }: { product: Product }) {
                     aria-pressed={active}
                     onClick={() => onColor(c.name)}
                     className={`h-8 w-8 rounded-full border transition-colors ${
-                      active ? "border-accent-gold" : "border-surface-ivory/30 hover:border-surface-ivory"
+                      active ? "border-accent-gold" : "border-smoke hover:border-surface-ivory"
                     }`}
                     style={c.swatch ? { backgroundColor: c.swatch } : undefined}
                   >
                     {c.swatch ? null : (
-                      <span className="font-body text-[9px] uppercase text-surface-ivory/70">
+                      <span className="t-eyebrow text-[9px] text-smoke">
                         {c.name.slice(0, 2)}
                       </span>
                     )}
@@ -152,7 +152,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
 
         {sizes.length > 0 ? (
           <div>
-            <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+            <p className="t-eyebrow text-smoke">
               Size
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -165,11 +165,11 @@ export function ShopProductDetail({ product }: { product: Product }) {
                     type="button"
                     disabled={!avail}
                     onClick={() => setSize(s)}
-                    className={`inline-flex h-10 min-w-10 items-center justify-center border px-3 font-body text-[11px] font-bold uppercase tracking-[0.18em] transition-colors ${
+                    className={`inline-flex h-10 min-w-10 items-center justify-center border px-3 t-eyebrow transition-colors ${
                       active
                         ? "border-accent-gold bg-accent-gold text-surface-tuxedo"
-                        : "border-surface-ivory/30 text-surface-ivory/85 hover:border-accent-gold hover:text-accent-gold"
-                    } disabled:cursor-not-allowed disabled:border-surface-ivory/10 disabled:text-surface-ivory/30 disabled:line-through`}
+                        : "border-smoke text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                    } disabled:cursor-not-allowed disabled:border-smoke disabled:text-smoke disabled:line-through`}
                   >
                     {s}
                   </button>
@@ -183,7 +183,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
           type="button"
           disabled={busy || !selected || !selected.available}
           onClick={() => selected && addItem(selected.id)}
-          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:cursor-not-allowed disabled:opacity-50"
         >
           {selected && !selected.available
             ? "Sold out"
@@ -285,11 +285,11 @@ function Layout({
       </div>
 
       <div className="md:pt-2">
-        <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] text-surface-ivory">
+        <h1 className="t-subhead display-2 leading-[0.95]">
           {name}
         </h1>
         {price ? (
-          <p className="mt-4 font-body text-xl font-bold tabular-nums text-accent-gold">
+          <p className="t-body mt-4 text-xl font-bold tabular-nums text-accent-gold">
             {price}
           </p>
         ) : null}
@@ -297,14 +297,14 @@ function Layout({
         <div className="mt-8">{children}</div>
 
         {description ? (
-          <div className="mt-10 border-t border-surface-ivory/15 pt-6">
-            <p className="max-w-prose whitespace-pre-line font-display text-lg leading-snug text-surface-ivory/80 md:text-xl">
+          <div className="mt-10 border-t border-smoke pt-6">
+            <p className="max-w-prose whitespace-pre-line t-subhead text-lg leading-snug md:text-xl">
               {description}
             </p>
           </div>
         ) : null}
 
-        <p className="mt-10 font-body text-[10px] uppercase tracking-[0.18em] text-surface-ivory/55">
+        <p className="mt-10 t-eyebrow text-smoke">
           Checkout, sizing, and shipping handled by Fourthwall.
         </p>
       </div>

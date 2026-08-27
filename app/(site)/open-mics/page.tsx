@@ -51,7 +51,7 @@ export default function OpenMicsPage() {
         eyebrow={openMicAppHero.eyebrow}
         title={
           <>
-            The <span className="italic text-accent-gold">app</span>
+            The <span className="text-accent-gold">app</span>
           </>
         }
         body={openMicAppHero.subhead}
@@ -61,25 +61,25 @@ export default function OpenMicsPage() {
           dead end, and the two products need telling apart honestly. */}
       <section
         aria-labelledby="open-mics-map-route"
-        className="border-b border-surface-ivory/10 bg-surface-tuxedo py-10 md:py-12"
+        className="border-b border-smoke bg-surface-tuxedo py-10 md:py-12"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="border border-accent-gold/40 p-6 md:p-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-accent-gold">
+          <div className="border border-accent-gold p-6 md:p-8">
+            <p className="t-eyebrow">
               {openMicAppMapLink.eyebrow}
             </p>
             <h2
               id="open-mics-map-route"
-              className="mt-3 font-display text-2xl text-surface-ivory md:text-3xl"
+              className="mt-3 t-subhead text-2xl md:text-3xl"
             >
               {openMicAppMapLink.heading}
             </h2>
-            <p className="mt-4 max-w-3xl font-body text-base leading-relaxed text-surface-ivory/85">
+            <p className="t-body mt-4 max-w-3xl text-base leading-relaxed">
               {openMicAppMapLink.body}
             </p>
             <Link
               href={openMicAppMapLink.ctaHref}
-              className="mt-6 inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+              className="mt-6 inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
             >
               {openMicAppMapLink.ctaLabel} ↗
             </Link>
@@ -89,12 +89,12 @@ export default function OpenMicsPage() {
 
       <section
         aria-labelledby="open-mics-status"
-        className="section-y-tight border-b border-surface-ivory/10 bg-surface-tuxedo"
+        className="section-y-tight border-b border-smoke bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-8 md:grid-cols-12">
             <div className="md:col-span-5">
-              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+              <p className="t-eyebrow">
                 {openMicAppStatus.eyebrow}
               </p>
               <h2 id="open-mics-status" className="display-2 mt-4 text-surface-ivory">
@@ -105,7 +105,7 @@ export default function OpenMicsPage() {
               {openMicAppStatus.body.map((paragraph) => (
                 <p
                   key={paragraph.slice(0, 24)}
-                  className="font-body text-base leading-relaxed text-surface-ivory/85 md:text-lg"
+                  className="text-base leading-relaxed text-surface-ivory md:text-lg"
                 >
                   {paragraph}
                 </p>
@@ -117,7 +117,7 @@ export default function OpenMicsPage() {
 
       <section
         aria-labelledby="open-mics-what-it-does"
-        className="section-y border-b border-surface-ivory/10 bg-surface-tuxedo"
+        className="section-y border-b border-smoke bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <h2 id="open-mics-what-it-does" className="display-2 text-surface-ivory">
@@ -144,14 +144,14 @@ export default function OpenMicsPage() {
                     height={feature.image.height}
                     loading="lazy"
                     sizes="(min-width: 768px) 320px, 60vw"
-                    className="h-auto w-[60%] max-w-[260px] border border-surface-ivory/15 md:w-full"
+                    className="h-auto w-[60%] max-w-[260px] border border-smoke md:w-full"
                   />
                 </div>
                 <div className="md:col-span-8">
-                  <h3 className="font-display text-2xl text-surface-ivory md:text-4xl">
+                  <h3 className="t-subhead text-2xl md:text-4xl">
                     {feature.heading}
                   </h3>
-                  <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-surface-ivory/85 md:text-lg">
+                  <p className="t-body mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
                     {feature.body}
                   </p>
                 </div>
@@ -159,11 +159,11 @@ export default function OpenMicsPage() {
             ))}
           </div>
 
-          <div className="mt-16 border-t border-surface-ivory/15 pt-10 md:mt-24">
-            <h3 className="font-display text-2xl text-surface-ivory md:text-3xl">
+          <div className="mt-16 border-t border-smoke pt-10 md:mt-24">
+            <h3 className="t-subhead text-2xl md:text-3xl">
               {openMicAppFree.heading}
             </h3>
-            <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-surface-ivory/85 md:text-lg">
+            <p className="t-body mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
               {openMicAppFree.body}
             </p>
           </div>
@@ -172,16 +172,16 @@ export default function OpenMicsPage() {
 
       <section
         aria-labelledby="open-mics-one-sheet"
-        className="section-y border-b border-surface-ivory/10 bg-surface-tuxedo"
+        className="section-y border-b border-smoke bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+          <p className="t-eyebrow">
             {openMicAppOneSheet.eyebrow}
           </p>
           <h2 id="open-mics-one-sheet" className="display-2 mt-4 text-surface-ivory">
             {openMicAppOneSheet.heading}
           </h2>
-          <p className="mt-6 max-w-2xl font-body text-base leading-relaxed text-surface-ivory/85 md:text-lg">
+          <p className="t-body mt-6 max-w-2xl text-base leading-relaxed md:text-lg">
             {openMicAppOneSheet.body}
           </p>
 
@@ -191,7 +191,7 @@ export default function OpenMicsPage() {
 
           <a
             href={openMicAppOneSheet.pdf.href}
-            className="mt-10 inline-flex min-h-12 items-center border border-surface-ivory/30 px-6 py-3 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+            className="mt-10 inline-flex min-h-12 items-center border border-smoke px-6 py-3 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
           >
             {openMicAppOneSheet.pdf.label} ↓
           </a>
@@ -214,11 +214,11 @@ export default function OpenMicsPage() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <h2
             id="open-mics-app-contact"
-            className="font-display text-2xl text-surface-ivory md:text-3xl"
+            className="t-subhead text-2xl md:text-3xl"
           >
             {openMicAppContact.heading}
           </h2>
-          <p className="mt-4 max-w-2xl font-body text-base text-surface-ivory/85">
+          <p className="t-body mt-4 max-w-2xl text-base">
             {openMicAppContact.body}
           </p>
           <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
@@ -226,7 +226,7 @@ export default function OpenMicsPage() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   {link.label} ↗
                 </Link>
@@ -235,7 +235,7 @@ export default function OpenMicsPage() {
             <li>
               <a
                 href={`mailto:${site.contact.email}`}
-                className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+                className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
               >
                 {site.contact.email} ↗
               </a>

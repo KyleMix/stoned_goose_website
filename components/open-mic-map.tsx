@@ -85,7 +85,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       }).addTo(map);
 
       const icon = L.divIcon({
-        className: "open-mic-pin",
+        className:"open-mic-pin",
         html: '<span aria-hidden="true"></span>',
         iconSize: [22, 22],
         iconAnchor: [11, 11],
@@ -94,7 +94,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       // swapping icons never shifts the pin. Both kept on refs for the
       // selectedId effect below.
       const selectedIcon = L.divIcon({
-        className: "open-mic-pin open-mic-pin--selected",
+        className:"open-mic-pin open-mic-pin--selected",
         html: '<span aria-hidden="true"></span>',
         iconSize: [22, 22],
         iconAnchor: [11, 11],
@@ -116,7 +116,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
           const size = count >= 25 ? 56 : count >= 10 ? 46 : 36;
           return L.divIcon({
             html: `<span aria-hidden="true">${count}</span>`,
-            className: "open-mic-cluster",
+            className:"open-mic-cluster",
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
           });
@@ -212,9 +212,9 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       <div
         role="region"
         aria-label="Open mics map"
-        className="flex aspect-[4/3] w-full items-center justify-center border border-surface-ivory/15 bg-surface-tuxedo px-6 text-center md:aspect-[16/10]"
+        className="flex aspect-[4/3] w-full items-center justify-center border border-smoke bg-surface-tuxedo px-6 text-center md:aspect-[16/10]"
       >
-        <p className="max-w-sm font-body text-sm text-surface-ivory/85">
+        <p className="t-body max-w-sm text-sm">
           The map did not load. Every mic is still in the list below.
         </p>
       </div>
@@ -226,7 +226,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       ref={containerRef}
       role="region"
       aria-label="Open mics map"
-      className="aspect-[4/3] w-full isolate overflow-hidden border border-surface-ivory/15 bg-surface-tuxedo md:aspect-[16/10]"
+      className="aspect-[4/3] w-full isolate overflow-hidden border border-smoke bg-surface-tuxedo md:aspect-[16/10]"
     />
   );
 }

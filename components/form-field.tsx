@@ -8,7 +8,7 @@ import { useFormContext } from "react-hook-form";
 // Keyboard focus keeps a visible hazard outline (the border-color shift
 // alone is too subtle to satisfy WCAG focus visibility).
 const baseInputClass =
-  "block w-full min-h-[48px] bg-transparent border-0 border-b border-surface-ivory/25 px-0 py-3 font-body text-base text-surface-ivory placeholder:text-surface-ivory/50 focus:border-accent-gold focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold";
+  "block w-full min-h-[48px] bg-transparent border-0 border-b border-smoke px-0 py-3 text-base text-surface-ivory placeholder:text-smoke focus:border-accent-gold focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold";
 
 const errorInputClass = "border-accent-gold";
 
@@ -22,7 +22,7 @@ export function FieldLabel({ htmlFor, children, required }: LabelProps) {
   return (
     <label
       htmlFor={htmlFor}
-      className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55"
+      className="t-eyebrow text-smoke"
     >
       {children}
       {required && <span aria-hidden className="ml-1 text-accent-gold">*</span>}
@@ -37,7 +37,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
     <p
       id={id}
       role={message ? "alert" : undefined}
-      className="min-h-[1rem] font-body text-[11px] font-normal tracking-wide text-accent-gold"
+      className="min-h-[1rem] text-[11px] font-normal tracking-wide text-accent-gold"
     >
       {message ?? ""}
     </p>
@@ -113,7 +113,7 @@ export function TextField({
         defaultValue={ctx ? undefined : defaultValue}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={error ? errorId : undefined}
-        className={`${baseInputClass} ${error ? errorInputClass : ""}`}
+        className={`${baseInputClass} ${error ? errorInputClass :""}`}
         {...(reg ?? { name, required })}
       />
       <FieldError id={errorId} message={error} />
@@ -154,7 +154,7 @@ export function TextAreaField({
         rows={rows}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={error ? errorId : undefined}
-        className={`${baseInputClass} resize-none ${error ? errorInputClass : ""}`}
+        className={`${baseInputClass} resize-none ${error ? errorInputClass :""}`}
         {...(reg ?? { name, required })}
       />
       <FieldError id={errorId} message={error} />

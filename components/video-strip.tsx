@@ -19,17 +19,17 @@ export function VideoStrip({ limit = 5 }: Props) {
   return (
     <section
       aria-labelledby="home-video-strip"
-      className="border-y border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20"
+      className="border-y border-smoke bg-surface-tuxedo py-16 md:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
           <div>
-            <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+            <p className="t-eyebrow">
               Watch
             </p>
             <h2
               id="home-video-strip"
-              className="heading-display mt-3 text-[clamp(1.8rem,4vw,2.6rem)] text-surface-ivory"
+              className="t-headline mt-3 display-3"
             >
               On the channel
               <span className="text-accent-gold">.</span>
@@ -37,7 +37,7 @@ export function VideoStrip({ limit = 5 }: Props) {
           </div>
           <Link
             href="/watch"
-            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+            className="t-eyebrow text-smoke hover:text-accent-gold"
           >
             All videos ↗
           </Link>

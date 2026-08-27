@@ -94,11 +94,11 @@ export function OpenMicExplorer({ mics }: Props) {
   return (
     <div className="grid gap-10 md:grid-cols-12">
       <aside className="md:col-span-4 md:sticky md:top-24 md:self-start">
-        <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+        <p className="t-eyebrow">
           Filter
         </p>
         <fieldset className="mt-4">
-          <legend className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+          <legend className="t-eyebrow text-smoke">
             Day
           </legend>
           <div className="mt-3 flex flex-wrap gap-2">
@@ -117,7 +117,7 @@ export function OpenMicExplorer({ mics }: Props) {
           </div>
         </fieldset>
         <fieldset className="mt-6">
-          <legend className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+          <legend className="t-eyebrow text-smoke">
             Frequency
           </legend>
           <div className="mt-3 flex flex-wrap gap-2">
@@ -134,7 +134,7 @@ export function OpenMicExplorer({ mics }: Props) {
         </fieldset>
         {hasCities ? (
           <fieldset className="mt-6">
-            <legend className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+            <legend className="t-eyebrow text-smoke">
               City
             </legend>
             <div className="relative mt-3">
@@ -142,7 +142,7 @@ export function OpenMicExplorer({ mics }: Props) {
                 aria-label="Filter by city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full appearance-none border border-surface-ivory/30 bg-surface-tuxedo py-2.5 pl-3 pr-9 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-ivory/85 transition-colors hover:border-accent-gold focus:border-accent-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
+                className="w-full appearance-none border border-smoke bg-surface-tuxedo py-2.5 pl-3 pr-9 t-eyebrow text-smoke transition-colors hover:border-accent-gold focus:border-accent-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
               >
                 <option value="all">All cities</option>
                 {cityGroups.map((g) => (
@@ -157,15 +157,15 @@ export function OpenMicExplorer({ mics }: Props) {
               </select>
               <span
                 aria-hidden
-                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 font-mono text-xs text-surface-ivory/55"
+                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-smoke"
               >
                 ▾
               </span>
             </div>
           </fieldset>
         ) : null}
-        <div className="mt-6 flex items-center justify-between border-t border-surface-ivory/10 pt-4">
-          <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+        <div className="mt-6 flex items-center justify-between border-t border-smoke pt-4">
+          <p className="t-eyebrow text-smoke">
             {filtered.length} of {mics.length}{" "}
             {mics.length === 1 ? "mic" : "mics"}
           </p>
@@ -173,7 +173,7 @@ export function OpenMicExplorer({ mics }: Props) {
             <button
               type="button"
               onClick={clearAll}
-              className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55 underline underline-offset-4 transition-colors hover:text-accent-gold"
+              className="t-eyebrow text-smoke underline underline-offset-4 transition-colors hover:text-accent-gold"
             >
               Clear all
             </button>
@@ -185,10 +185,10 @@ export function OpenMicExplorer({ mics }: Props) {
           <p
             role="status"
             aria-live="polite"
-            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55"
+            className="t-eyebrow text-smoke"
           >
             Showing{" "}
-            <span className="text-surface-ivory">{filtered.length}</span>{" "}
+            <span className="text-surface-ivory">{filtered.length}</span>{""}
             {filtered.length === 1 ? "mic" : "mics"}
             {activeFilters.length === 0 ? " across the region" : null}
           </p>
@@ -197,7 +197,7 @@ export function OpenMicExplorer({ mics }: Props) {
               key={f.key}
               type="button"
               onClick={f.clear}
-              className="inline-flex items-center gap-1.5 border border-accent-gold/60 px-2 py-1 font-body text-[10px] font-bold uppercase tracking-[0.18em] text-accent-gold transition-colors hover:border-accent-gold hover:text-surface-ivory"
+              className="inline-flex items-center gap-1.5 border border-accent-gold px-2 py-1 t-eyebrow transition-colors hover:border-accent-gold hover:text-surface-ivory"
               aria-label={`Remove ${f.label} filter`}
             >
               {f.label}
@@ -243,10 +243,10 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex h-9 items-center border px-3 font-body text-[11px] font-bold uppercase tracking-[0.18em] transition-colors ${
+      className={`inline-flex h-9 items-center border px-3 t-eyebrow transition-colors ${
         active
           ? "border-accent-gold bg-accent-gold text-surface-tuxedo"
-          : "border-surface-ivory/30 text-surface-ivory/85 hover:border-accent-gold hover:text-surface-ivory"
+          : "border-smoke text-surface-ivory hover:border-accent-gold hover:text-surface-ivory"
       }`}
     >
       {children}
@@ -256,6 +256,6 @@ function Chip({
 
 function MapSkeleton() {
   return (
-    <div className="aspect-[4/3] w-full animate-pulse border border-surface-ivory/15 bg-surface-tuxedo md:aspect-[16/10]" />
+    <div className="aspect-[4/3] w-full animate-pulse border border-smoke bg-surface-tuxedo md:aspect-[16/10]" />
   );
 }

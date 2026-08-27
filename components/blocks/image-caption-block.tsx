@@ -10,7 +10,7 @@ const ASPECT_CLASS: Record<ImageCaptionBlockData["aspect"], string> = {
 export function ImageCaptionBlock({ block }: { block: ImageCaptionBlockData }) {
   if (!block.image) return null;
   return (
-    <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20">
+    <section className="border-b border-smoke bg-surface-tuxedo py-16 md:py-20">
       <div className="mx-auto max-w-[1100px] px-5 md:px-10">
         <figure>
           <div className={`relative w-full overflow-hidden bg-surface-tuxedo ${ASPECT_CLASS[block.aspect]}`}>
@@ -28,7 +28,7 @@ export function ImageCaptionBlock({ block }: { block: ImageCaptionBlockData }) {
             />
           </div>
           {block.caption ? (
-            <figcaption className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-surface-ivory/60">
+            <figcaption className="mt-4 t-eyebrow text-smoke">
               {block.caption}
             </figcaption>
           ) : null}

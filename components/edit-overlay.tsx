@@ -124,11 +124,14 @@ function EditOverlayInner() {
   const targets = targetsForPath(pathname);
 
   return (
-    <div className="fixed bottom-4 right-4 z-[80] font-mono text-xs">
+    <div className="fixed bottom-4 right-4 z-[80] text-xs">
       {open ? (
-        <div className="w-72 rounded border border-surface-tuxedo/15 bg-surface-ivory text-surface-tuxedo">
-          <div className="flex items-center justify-between gap-2 border-b border-surface-tuxedo/10 px-3 py-2">
-            <span className="uppercase tracking-[0.18em]">
+        <div
+          data-surface="ivory"
+          className="w-72 rounded border border-smoke bg-surface-ivory text-surface-tuxedo"
+        >
+          <div className="flex items-center justify-between gap-2 border-b border-smoke px-3 py-2">
+            <span className="t-eyebrow">
               Edit<span className="text-accent-gold">.</span>
             </span>
             <div className="flex items-center gap-2">
@@ -136,20 +139,20 @@ function EditOverlayInner() {
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="Collapse edit overlay"
-                className="text-surface-tuxedo/60 hover:text-surface-tuxedo"
+                className="text-smoke hover:text-surface-tuxedo"
               >
                 <span aria-hidden="true">_</span>
               </button>
               <Link
                 href={`${pathname}?edit=0`}
                 aria-label="Turn off edit overlay"
-                className="text-surface-tuxedo/60 hover:text-surface-tuxedo"
+                className="text-smoke hover:text-surface-tuxedo"
               >
                 <span aria-hidden="true">x</span>
               </Link>
             </div>
           </div>
-          <ul className="divide-y divide-surface-tuxedo/10">
+          <ul className="divide-y divide-smoke">
             {targets.map((t) => (
               <li key={t.href}>
                 <Link
@@ -158,11 +161,11 @@ function EditOverlayInner() {
                   rel="noopener noreferrer"
                   className="flex flex-col gap-0.5 px-3 py-2 hover:bg-surface-ivory focus:bg-accent-gold/40 focus:outline-none"
                 >
-                  <span className="text-[0.7rem] uppercase tracking-[0.16em]">
+                  <span className="t-eyebrow text-[0.7rem]">
                     {t.label}
                   </span>
                   {t.hint ? (
-                    <span className="text-[0.65rem] normal-case text-surface-tuxedo/60">
+                    <span className="text-[0.65rem] normal-case text-smoke">
                       {t.hint}
                     </span>
                   ) : null}
@@ -170,7 +173,7 @@ function EditOverlayInner() {
               </li>
             ))}
           </ul>
-          <div className="border-t border-surface-tuxedo/10 px-3 py-2 text-[0.6rem] uppercase tracking-[0.18em] text-surface-tuxedo/50">
+          <div className="border-t border-smoke px-3 py-2 t-eyebrow text-[0.6rem] text-smoke">
             ?edit=0 to hide
           </div>
         </div>
@@ -178,7 +181,7 @@ function EditOverlayInner() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="rounded border border-surface-tuxedo/20 bg-accent-gold px-3 py-2 uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+          className="rounded border border-smoke bg-accent-gold px-3 py-2 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
         >
           Edit<span className="text-surface-tuxedo">.</span>
         </button>

@@ -45,6 +45,20 @@ const config: Config = {
     boxShadow: { none: "none" },
     dropShadow: { none: "none" },
 
+    // One typeface for the entire site. The family scale is replaced, not
+    // extended, so `font-serif` and `font-mono` no longer exist. The chain
+    // after the variable is the declared fallback: Futura, Century Gothic,
+    // Arial, sans-serif.
+    fontFamily: {
+      sans: [
+        "var(--font-sans)",
+        "Futura",
+        "Century Gothic",
+        "Arial",
+        "sans-serif",
+      ],
+    },
+
     extend: {
       // Tracking is part of the type role, not a per-caller choice.
       //   tracking-headline  Bold 700 uppercase

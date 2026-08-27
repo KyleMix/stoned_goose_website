@@ -74,11 +74,11 @@ export default async function ComedianPage(props: {
         schema={buildBreadcrumbs(`/roster/${comedian.slug}`, comedian.name)}
       />
 
-      <section className="border-b border-surface-ivory/10 bg-surface-tuxedo pb-16 pt-32 md:pb-20 md:pt-40">
+      <section className="border-b border-smoke bg-surface-tuxedo pb-16 pt-32 md:pb-20 md:pt-40">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <Link
             href="/roster"
-            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55 hover:text-accent-gold"
+            className="t-eyebrow text-smoke hover:text-accent-gold"
           >
             ← The Roster
           </Link>
@@ -108,10 +108,10 @@ export default async function ComedianPage(props: {
             </div>
 
             <div className="md:col-span-8">
-              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+              <p className="t-eyebrow">
                 The Roster
               </p>
-              <h1 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-surface-ivory">
+              <h1 className="t-headline mt-4 display-1">
                 {comedian.name}
                 <span className="text-accent-gold">.</span>
               </h1>
@@ -123,7 +123,7 @@ export default async function ComedianPage(props: {
                       href={comedian.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-ivory/70 hover:text-accent-gold"
+                      className="t-eyebrow text-smoke hover:text-accent-gold"
                     >
                       Instagram ↗
                     </a>
@@ -133,7 +133,7 @@ export default async function ComedianPage(props: {
                       href={comedian.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-ivory/70 hover:text-accent-gold"
+                      className="t-eyebrow text-smoke hover:text-accent-gold"
                     >
                       Facebook ↗
                     </a>
@@ -146,7 +146,7 @@ export default async function ComedianPage(props: {
                   {bioParagraphs.map((p, i) => (
                     <p
                       key={i}
-                      className="font-body text-base leading-relaxed text-surface-ivory/85 md:text-lg"
+                      className="text-base leading-relaxed text-surface-ivory md:text-lg"
                     >
                       {p}
                     </p>
@@ -156,14 +156,14 @@ export default async function ComedianPage(props: {
 
               {comedian.credits && comedian.credits.length > 0 && (
                 <div className="mt-10">
-                  <h2 className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                  <h2 className="t-eyebrow text-smoke">
                     Credits
                   </h2>
                   <ul className="mt-4 space-y-2">
                     {comedian.credits.map((credit) => (
                       <li
                         key={credit}
-                        className="flex items-baseline gap-3 font-body text-sm text-surface-ivory/85"
+                        className="flex items-baseline gap-3 text-sm text-surface-ivory"
                       >
                         <span aria-hidden className="text-accent-gold">/</span>
                         <span>{credit}</span>
@@ -178,9 +178,9 @@ export default async function ComedianPage(props: {
       </section>
 
       {reelId && (
-        <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20">
+        <section className="border-b border-smoke bg-surface-tuxedo py-16 md:py-20">
           <div className="mx-auto max-w-[1100px] px-5 md:px-10">
-            <h2 className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+            <h2 className="t-eyebrow">
               The reel
             </h2>
             <div className="relative mt-6 aspect-video w-full overflow-hidden bg-surface-tuxedo">
@@ -199,14 +199,14 @@ export default async function ComedianPage(props: {
 
       <section className="bg-surface-tuxedo py-16 md:py-20">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="flex flex-wrap items-center justify-between gap-6 border border-surface-ivory/15 p-8 md:p-10">
-            <p className="max-w-xl font-body text-base text-surface-ivory/85 md:text-lg">
+          <div className="flex flex-wrap items-center justify-between gap-6 border border-smoke p-8 md:p-10">
+            <p className="t-body max-w-xl text-base md:text-lg">
               Want {comedian.name} on your lineup? Book the intro call and
               tell us about the room.
             </p>
             <Link
               href="/book"
-              className="inline-flex h-12 shrink-0 items-center bg-accent-gold px-6 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+              className="inline-flex h-12 shrink-0 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
             >
               Book a show ↗
             </Link>

@@ -29,7 +29,7 @@ export function Hero() {
   return (
     <section
       aria-label="Hero"
-      className="relative isolate overflow-hidden border-b border-surface-ivory/10 bg-surface-tuxedo"
+      className="relative isolate overflow-hidden border-b border-smoke bg-surface-tuxedo"
     >
       {/* Background: solid black + a soft directional vignette. Site-wide grain
           handles texture on top. No video, no stock photo. */}
@@ -47,7 +47,7 @@ export function Hero() {
             priority
             className="h-7 w-auto opacity-60"
           />
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-surface-ivory/55">
+          <p className="t-eyebrow text-smoke">
             Now booking{" "}
             <span className="text-surface-ivory">corporate events + media production</span>
           </p>
@@ -56,7 +56,7 @@ export function Hero() {
         {/* Two-line lockup, same display size, left-aligned, period-as-accent.
             Per-letter rise on mount via TextEffect. Reduced-motion renders
             the static string. */}
-        <h1 className="heading-display mt-8 text-[clamp(3.5rem,12vw,11rem)] text-surface-ivory">
+        <h1 className="t-headline mt-8 display-hero">
           <TextEffect as="span" text="Stoned Goose" className="block" />
           <TextEffect
             as="span"
@@ -67,13 +67,13 @@ export function Hero() {
           />
         </h1>
 
-        {/* Baseline-aligned row: subhead left, italic tagline right.
+        {/* Baseline-aligned row: subhead left, tagline right.
             items-baseline anchors both first-line baselines to the same line. */}
-        <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-surface-ivory/15 pt-8 md:mt-12">
-          <p className="col-span-12 max-w-md font-body text-base leading-snug text-surface-ivory/85 md:col-span-7 md:text-lg">
+        <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-smoke pt-8 md:mt-12">
+          <p className="t-body col-span-12 max-w-md text-base leading-snug md:col-span-7 md:text-lg">
             {hero.subhead}
           </p>
-          <p className="col-span-12 font-display text-3xl italic leading-snug text-surface-ivory md:col-span-5 md:text-right md:text-4xl">
+          <p className="col-span-12 t-subhead text-3xl leading-snug md:col-span-5 md:text-right md:text-4xl">
             {hero.italicLine}
           </p>
         </div>
@@ -84,7 +84,7 @@ export function Hero() {
           <Link
             href={hero.primary.href}
             onClick={() => track("CTA Click", { cta: "hero-primary" })}
-            className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 font-body text-sm font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory"
+            className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
           >
             {hero.primary.label}
             <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -93,7 +93,7 @@ export function Hero() {
           </Link>
           <Link
             href={hero.secondary.href}
-            className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+            className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
           >
             {hero.secondary.label} ↗
           </Link>
@@ -101,7 +101,7 @@ export function Hero() {
             <Link
               key={t.href}
               href={t.href}
-              className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/65 underline-offset-4 hover:text-accent-gold hover:underline"
+              className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
             >
               {t.label} ↗
             </Link>
@@ -109,11 +109,11 @@ export function Hero() {
         </div>
 
         {next ? (
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t-2 border-accent-gold/60 pt-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-gold">
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t-2 border-accent-gold pt-6">
+            <p className="t-eyebrow">
               Next on stage
             </p>
-            <p className="font-body text-sm text-surface-ivory md:text-base">
+            <p className="t-body text-sm md:text-base">
               {[nextDate, next.name, nextVenue].filter(Boolean).join(". ")}
             </p>
             <a
@@ -122,7 +122,7 @@ export function Hero() {
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
               onClick={() => track("CTA Click", { cta: "hero-next-show" })}
-              className="inline-flex h-11 items-center bg-accent-gold px-5 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory"
+              className="inline-flex h-11 items-center bg-accent-gold px-5 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
             >
               Get tickets ↗
             </a>

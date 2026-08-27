@@ -30,7 +30,11 @@ The palette, type, and marks are specified. Where taste and the spec disagree, t
 - Sponsor logos in their own brand colors, inside a Smoke strip at the page foot, are the one sanctioned exception.
 
 ### Type
-One typeface: Josefin Sans, weights 300 / 400 / 700 only. The theme defines exactly those three, so `font-medium` and `font-semibold` do not exist. Fallback chain is Futura, Century Gothic, Arial, sans-serif.
+One typeface: Josefin Sans, loaded via `next/font/google` at weights 300 / 400 / 700 only and self-hosted into the static export. The theme replaces `fontFamily` and `fontWeight`, so `font-serif`, `font-mono`, `font-medium` and `font-semibold` do not exist. Fallback chain is Futura, Century Gothic, Arial, sans-serif. No italics: the face is not loaded, so an `italic` class renders a synthesized oblique.
+
+Use the role classes (`.t-headline`, `.t-subhead`, `.t-eyebrow`, `.t-body`, `.t-fine`) or the components in `components/brand/type.tsx`. Never restate a role's weight, case, tracking or color at the call site. Size comes from the display scale (`display-mega/hero/1/2/3`); do not hand-roll a `clamp()`.
+
+Color is surface-aware. Wrap a section in `<Surface tone="ivory">` (or set `data-surface="ivory"`) and every role inside flips at once. A bare `bg-surface-ivory` renders a gold headline on ivory, which is 1.88:1 and forbidden.
 
 | Role | Weight | Case | Tracking | Color |
 |---|---|---|---|---|

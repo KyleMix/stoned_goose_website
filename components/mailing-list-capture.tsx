@@ -87,15 +87,15 @@ export function MailingListCapture({
     <section
       id={id}
       aria-label="Mailing list signup"
-      className="border-y border-surface-ivory/10 bg-surface-tuxedo py-12 md:py-16"
+      className="border-y border-smoke bg-surface-tuxedo py-12 md:py-16"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-5">
-            <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+            <p className="t-eyebrow">
               {eyebrow}
             </p>
-            <p className="mt-3 font-display text-2xl leading-tight text-surface-ivory md:text-3xl">
+            <p className="mt-3 t-subhead text-2xl leading-tight md:text-3xl">
               {headline}
             </p>
           </div>
@@ -110,12 +110,12 @@ export function MailingListCapture({
               <div
                 role="status"
                 aria-live="polite"
-                className="border-y border-accent-gold/40 py-6 motion-safe:animate-fade-in"
+                className="border-y border-accent-gold py-6 motion-safe:animate-fade-in"
               >
-                <p className="font-display text-3xl text-surface-ivory md:text-4xl">
-                  Locked <span className="italic text-accent-gold">in</span>.
+                <p className="t-subhead text-3xl md:text-4xl">
+                  Locked <span className="text-accent-gold">in</span>.
                 </p>
-                <p className="mt-2 font-body text-sm text-surface-ivory/85">
+                <p className="t-body mt-2 text-sm">
                   {successBody}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export function MailingListCapture({
               <>
                 <div className="flex flex-col items-stretch gap-4 md:flex-row md:flex-wrap md:items-end">
                   <label className="flex-1 md:min-w-[220px]">
-                    <span className="block font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                    <span className="block t-eyebrow text-smoke">
                       Email
                     </span>
                     <input
@@ -133,13 +133,13 @@ export function MailingListCapture({
                       autoComplete="email"
                       inputMode="email"
                       placeholder="you@email.com"
-                      className="mt-2 block min-h-[48px] w-full bg-transparent border-0 border-b border-surface-ivory/25 px-0 py-3 font-body text-base text-surface-ivory placeholder:text-surface-ivory/50 focus:border-accent-gold focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+                      className="mt-2 block min-h-[48px] w-full bg-transparent border-0 border-b border-smoke px-0 py-3 text-base text-surface-ivory placeholder:text-smoke focus:border-accent-gold focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
                     />
                   </label>
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-50 md:w-auto md:justify-start"
+                    className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-accent-gold px-6 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-50 md:w-auto md:justify-start"
                   >
                     {status === "loading" ? "Sending..." : submitLabel}
                     <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -159,12 +159,12 @@ export function MailingListCapture({
                 {status === "error" ? (
                   <p
                     role="alert"
-                    className="mt-3 font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/70"
+                    className="mt-3 t-eyebrow text-smoke"
                   >
                     Something went wrong. Email {site.contact.email} directly.
                   </p>
                 ) : (
-                  <p className="mt-3 font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                  <p className="mt-3 t-eyebrow text-smoke">
                     No spam. Unsubscribe whenever.
                   </p>
                 )}

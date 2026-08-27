@@ -68,30 +68,30 @@ export default function RosterPage() {
 
       <SectionRenderer sections={rosterTopSections} pageSlug="roster" />
 
-      <section className="relative border-b border-surface-ivory/10 bg-surface-tuxedo py-20 md:py-28">
+      <section className="relative border-b border-smoke bg-surface-tuxedo py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
             eyebrow="The Operation"
             title={
               <>
-                Four <span className="italic text-accent-gold">pillars</span>
+                Four <span className="text-accent-gold">pillars</span>
               </>
             }
             subtitle="The four functions the crew is organized around."
           />
-          <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden border border-surface-ivory/15 md:grid-cols-2">
+          <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden border border-smoke md:grid-cols-2">
             {pillars.map((p, i) => (
               <li
                 key={p.title}
                 className="relative bg-surface-tuxedo p-8 transition-colors hover:bg-surface-ivory/[0.025] md:p-10"
               >
-                <span className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                <span className="t-eyebrow text-smoke">
                   /0{i + 1}
                 </span>
-                <h3 className="heading-display mt-3 text-3xl text-surface-ivory md:text-4xl">
+                <h3 className="t-headline mt-3 text-3xl md:text-4xl">
                   {p.title}
                 </h3>
-                <p className="mt-4 max-w-md font-body text-sm text-surface-ivory/85 md:text-base">
+                <p className="t-body mt-4 max-w-md text-sm md:text-base">
                   {p.body}
                 </p>
               </li>
@@ -100,25 +100,28 @@ export default function RosterPage() {
         </div>
       </section>
 
-      <section className="relative border-b border-surface-ivory/10 bg-surface-ivory py-20 text-surface-tuxedo md:py-28">
+      <section
+        data-surface="ivory"
+        className="relative border-b border-smoke bg-surface-ivory py-20 text-surface-tuxedo md:py-28"
+      >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
             eyebrow={aboutCopy.crewSubhead}
             title={
               <>
-                The <span className="italic">Crew</span>
+                The <span className="">Crew</span>
               </>
             }
             tone="light"
           />
 
-          <ul className="mt-16 divide-y divide-surface-tuxedo/15">
+          <ul className="mt-16 divide-y divide-smoke">
             {members.map((m, i) => (
               <li
                 key={m.slug}
                 className="group grid grid-cols-12 items-center gap-6 py-8 md:gap-10 md:py-12"
               >
-                <span className="col-span-2 font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-tuxedo/60 md:col-span-1">
+                <span className="col-span-2 t-eyebrow text-smoke md:col-span-1">
                   {m.index}
                 </span>
                 <div className="col-span-10 md:col-span-3">
@@ -141,10 +144,10 @@ export default function RosterPage() {
                   </div>
                 </div>
                 <div className="col-span-12 md:col-span-8">
-                  <h3 className="heading-display text-[clamp(2.4rem,8vw,5.5rem)] text-surface-tuxedo">
+                  <h3 className="t-headline display-1 text-surface-tuxedo">
                     {m.name}
                   </h3>
-                  <p className="mt-2 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-tuxedo/70">
+                  <p className="mt-2 t-eyebrow text-smoke">
                     {m.role}
                   </p>
                   {m.bio ? (
@@ -153,7 +156,7 @@ export default function RosterPage() {
                         aria-hidden
                         className="mt-5 block h-px max-w-[80px] bg-surface-tuxedo/30"
                       />
-                      <p className="mt-5 max-w-prose font-body text-base leading-relaxed text-surface-tuxedo/80 md:text-lg">
+                      <p className="t-body mt-5 max-w-prose text-base leading-relaxed text-surface-tuxedo md:text-lg">
                         {m.bio}
                       </p>
                     </>
@@ -171,12 +174,12 @@ export default function RosterPage() {
             eyebrow="Our Friends"
             title={
               <>
-                Comics in the <span className="italic text-accent-gold">rotation</span>
+                Comics in the <span className="text-accent-gold">rotation</span>
               </>
             }
             subtitle={comediansCopy.subhead}
           />
-          <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.28em] text-surface-ivory/55">
+          <p className="mt-10 t-eyebrow text-smoke">
             {comediansCopy.kicker}
           </p>
           <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
@@ -201,7 +204,7 @@ export default function RosterPage() {
                     {c.hasEpk && (
                       <Link
                         href={`/roster/${c.slug}`}
-                        className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-surface-ivory hover:text-accent-gold"
+                        className="t-eyebrow text-surface-ivory hover:text-accent-gold"
                       >
                         EPK ↗
                       </Link>
@@ -212,7 +215,7 @@ export default function RosterPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${c.name} on Instagram`}
-                        className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-surface-ivory hover:text-accent-gold"
+                        className="t-eyebrow text-surface-ivory hover:text-accent-gold"
                       >
                         IG ↗
                       </a>
@@ -223,14 +226,14 @@ export default function RosterPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${c.name} on Facebook`}
-                        className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-surface-ivory hover:text-accent-gold"
+                        className="t-eyebrow text-surface-ivory hover:text-accent-gold"
                       >
                         FB ↗
                       </a>
                     )}
                   </div>
                 </div>
-                <h3 className="mt-4 font-display text-xl text-surface-ivory md:text-2xl">
+                <h3 className="mt-4 t-subhead text-xl md:text-2xl">
                   {c.hasEpk ? (
                     <Link
                       href={`/roster/${c.slug}`}
@@ -247,7 +250,7 @@ export default function RosterPage() {
                     {c.hasEpk && (
                       <Link
                         href={`/roster/${c.slug}`}
-                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-bold uppercase tracking-[0.18em] text-surface-ivory/70 active:text-accent-gold"
+                        className="inline-flex min-h-[44px] items-center t-eyebrow text-smoke active:text-accent-gold"
                       >
                         EPK ↗
                       </Link>
@@ -258,7 +261,7 @@ export default function RosterPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${c.name} on Instagram`}
-                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-bold uppercase tracking-[0.18em] text-surface-ivory/70 active:text-accent-gold"
+                        className="inline-flex min-h-[44px] items-center t-eyebrow text-smoke active:text-accent-gold"
                       >
                         IG ↗
                       </a>
@@ -269,7 +272,7 @@ export default function RosterPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${c.name} on Facebook`}
-                        className="inline-flex min-h-[44px] items-center font-body text-[10px] font-bold uppercase tracking-[0.18em] text-surface-ivory/70 active:text-accent-gold"
+                        className="inline-flex min-h-[44px] items-center t-eyebrow text-smoke active:text-accent-gold"
                       >
                         FB ↗
                       </a>
@@ -279,19 +282,19 @@ export default function RosterPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-surface-ivory/15 pt-8">
-            <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+          <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-smoke pt-8">
+            <p className="t-eyebrow text-smoke">
               Catch them live
             </p>
             <Link
               href="/shows"
-              className="inline-flex h-11 items-center bg-accent-gold px-5 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+              className="inline-flex h-11 items-center bg-accent-gold px-5 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
             >
               See upcoming shows ↗
             </Link>
             <Link
               href="/watch"
-              className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+              className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
             >
               Or watch the tape ↗
             </Link>

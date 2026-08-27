@@ -109,7 +109,7 @@ export function SearchPaletteDialog({ open, onOpenChange }: Props) {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
         <Dialog.Content
           aria-describedby={undefined}
-          className="fixed left-1/2 top-[14svh] z-50 w-[min(640px,92vw)] -translate-x-1/2 border border-surface-ivory/15 bg-surface-tuxedo"
+          className="fixed left-1/2 top-[14svh] z-50 w-[min(640px,92vw)] -translate-x-1/2 border border-smoke bg-surface-tuxedo"
         >
           <Dialog.Title className="sr-only">Search</Dialog.Title>
           <Command
@@ -117,18 +117,18 @@ export function SearchPaletteDialog({ open, onOpenChange }: Props) {
             label="Search Stoned Goose Productions"
             className="flex flex-col"
           >
-            <div className="flex items-center gap-3 border-b border-surface-ivory/15 px-5 py-4">
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-gold">
+            <div className="flex items-center gap-3 border-b border-smoke px-5 py-4">
+              <span className="t-eyebrow">
                 /
               </span>
               <Command.Input
                 value={query}
                 onValueChange={setQuery}
                 placeholder="Search shows, comics, services..."
-                className="flex-1 bg-transparent font-body text-base text-surface-ivory placeholder:text-surface-ivory/55 focus:outline-none"
+                className="flex-1 bg-transparent text-base text-surface-ivory placeholder:text-smoke focus:outline-none"
                 autoFocus
               />
-              <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-surface-ivory/55 md:inline">
+              <span className="hidden t-eyebrow text-smoke md:inline">
                 ESC
               </span>
             </div>
@@ -147,17 +147,17 @@ export function SearchPaletteDialog({ open, onOpenChange }: Props) {
             </div>
             <Command.List className="max-h-[60svh] overflow-y-auto py-2">
               {status === "loading" && (
-                <p className="px-5 py-4 font-body text-sm text-surface-ivory/55">
+                <p className="t-body px-5 py-4 text-sm text-smoke">
                   Searching.
                 </p>
               )}
               {status === "empty" && (
-                <p className="px-5 py-4 font-body text-sm text-surface-ivory/55">
+                <p className="t-body px-5 py-4 text-sm text-smoke">
                   Nothing matches that. The map is bigger than the search box.
                 </p>
               )}
               {status === "error" && (
-                <p className="px-5 py-4 font-body text-sm text-surface-ivory/55">
+                <p className="t-body px-5 py-4 text-sm text-smoke">
                   Search index not built. Run a production build.
                 </p>
               )}
@@ -177,20 +177,20 @@ export function SearchPaletteDialog({ open, onOpenChange }: Props) {
                     onClick={() => onOpenChange(false)}
                     className="block cursor-pointer border-l-2 border-transparent px-5 py-3 hover:border-surface-ivory hover:bg-surface-ivory/[0.04] data-[selected=true]:border-accent-gold data-[selected=true]:bg-surface-ivory/[0.04]"
                   >
-                    <p className="font-display text-base text-surface-ivory md:text-lg">
+                    <p className="t-subhead text-base md:text-lg">
                       {h.title}
                     </p>
-                    <p className="mt-1 line-clamp-2 font-body text-xs text-surface-ivory/65">
+                    <p className="t-body mt-1 line-clamp-2 text-xs text-smoke">
                       {h.excerpt}
                     </p>
-                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-surface-ivory/55">
+                    <p className="mt-1 t-eyebrow text-smoke">
                       {prettyUrl(h.url)}
                     </p>
                   </Link>
                 </Command.Item>
               ))}
             </Command.List>
-            <p className="border-t border-surface-ivory/15 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-surface-ivory/55">
+            <p className="border-t border-smoke px-5 py-3 t-eyebrow text-smoke">
               ⌘K to toggle. Index rebuilds on deploy.
             </p>
           </Command>

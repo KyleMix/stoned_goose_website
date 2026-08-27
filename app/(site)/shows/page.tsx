@@ -63,7 +63,7 @@ export default function ShowsPage() {
         eyebrow="Tour Diary"
         title={
           <>
-            Upcoming <span className="italic text-accent-gold">Shows</span>
+            Upcoming <span className="text-accent-gold">Shows</span>
           </>
         }
         body={showsCopy.subhead}
@@ -77,12 +77,12 @@ export default function ShowsPage() {
           className="border-y-2 border-accent-gold bg-surface-tuxedo"
         >
           <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-5 py-3 md:px-10">
-            <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory">
+            <p className="t-eyebrow text-surface-ivory">
               Presale code{" "}
-              <span className="text-accent-gold">{presale.code}</span> for{" "}
+              <span className="text-accent-gold">{presale.code}</span> for{""}
               {presale.venueName}
             </p>
-            <p className="font-body text-[10px] font-normal uppercase tracking-[0.22em] text-surface-ivory/65">
+            <p className="t-eyebrow text-smoke">
               Expires {formatDate(presale.expiresAt)}
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function ShowsPage() {
       ) : null}
 
       {/* Upcoming list */}
-      <section className="section-y border-b border-surface-ivory/10 bg-surface-tuxedo">
+      <section className="section-y border-b border-smoke bg-surface-tuxedo">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
             <h2 className="display-2 text-surface-ivory">
@@ -100,14 +100,14 @@ export default function ShowsPage() {
               {hasShows ? (
                 <a
                   href="/shows/feed.ics"
-                  className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+                  className="t-eyebrow text-smoke hover:text-accent-gold"
                 >
                   Subscribe (.ics) ↗
                 </a>
               ) : null}
               <a
                 href="/shows/feed.xml"
-                className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+                className="t-eyebrow text-smoke hover:text-accent-gold"
               >
                 RSS ↗
               </a>
@@ -116,7 +116,7 @@ export default function ShowsPage() {
                 href={site.social.eventbrite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+                className="t-eyebrow text-smoke hover:text-accent-gold"
               >
                 View all on Eventbrite ↗
               </TrackedAnchor>
@@ -124,7 +124,7 @@ export default function ShowsPage() {
           </div>
 
           {hasShows ? (
-            <ul className="divide-y divide-surface-ivory/15 border-y border-surface-ivory/15">
+            <ul className="divide-y divide-smoke border-y border-smoke">
               {upcomingShows.map((show) => {
                 const status = show.status ?? "tba";
                 const venueLine = [show.venue?.name, show.venue?.city, show.venue?.region]
@@ -136,29 +136,29 @@ export default function ShowsPage() {
                     className="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 py-7"
                   >
                     <div className="col-span-12 md:col-span-3">
-                      <p className="font-display text-2xl text-surface-ivory md:text-3xl">
+                      <p className="t-subhead text-2xl md:text-3xl">
                         {formatDate(show.start)}
                       </p>
-                      <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                      <p className="t-eyebrow text-smoke">
                         {show.doorTime ?? formatTime(show.start)}
                       </p>
                     </div>
                     <div className="col-span-12 md:col-span-6">
-                      <h3 className="font-display text-2xl text-surface-ivory md:text-3xl">
+                      <h3 className="t-subhead text-2xl md:text-3xl">
                         {show.name}
                       </h3>
                       {venueLine && (
-                        <p className="mt-1 font-body text-sm text-surface-ivory/85">
+                        <p className="t-body mt-1 text-sm">
                           {venueLine}
                         </p>
                       )}
                       {show.ticketPrice && (
-                        <p className="mt-1 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+                        <p className="mt-1 t-eyebrow">
                           {show.ticketPrice}
                         </p>
                       )}
                       {show.summary && (
-                        <p className="mt-3 max-w-prose font-body text-sm text-surface-ivory/70">
+                        <p className="t-body mt-3 max-w-prose text-sm text-smoke">
                           {show.summary}
                         </p>
                       )}
@@ -170,12 +170,12 @@ export default function ShowsPage() {
                           href={show.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex h-11 items-center bg-accent-gold px-5 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                          className="inline-flex h-11 items-center bg-accent-gold px-5 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
                         >
                           Get tickets ↗
                         </TrackedAnchor>
                       ) : (
-                        <span className="inline-flex h-11 items-center border border-surface-ivory/30 px-5 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory/65">
+                        <span className="inline-flex h-11 items-center border border-smoke px-5 t-eyebrow text-smoke">
                           {status === "free"
                             ? "Free / at the door"
                             : "Details soon"}
@@ -203,11 +203,11 @@ export default function ShowsPage() {
               })}
             </ul>
           ) : (
-            <div className="border-y border-surface-ivory/15 px-1 py-12 md:py-16">
-              <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+            <div className="border-y border-smoke px-1 py-12 md:py-16">
+              <p className="t-eyebrow text-smoke">
                 Currently. Empty calendar.
               </p>
-              <p className="mt-4 max-w-3xl font-display text-3xl leading-[1.05] text-surface-ivory md:text-5xl">
+              <p className="mt-4 max-w-3xl t-subhead text-3xl leading-[1.05] md:text-5xl">
                 {showsCopy.emptyState}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -216,36 +216,36 @@ export default function ShowsPage() {
                   href={site.social.eventbrite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                  className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
                 >
                   See all dates on Eventbrite ↗
                 </TrackedAnchor>
                 <a
                   href="#mailing-list"
-                  className="font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory/65 underline underline-offset-4 hover:text-accent-gold"
+                  className="t-eyebrow text-smoke underline underline-offset-4 hover:text-accent-gold"
                 >
                   Get the announcement first
                 </a>
               </div>
-              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-surface-ivory/15 pt-6">
-                <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-smoke pt-6">
+                <p className="t-eyebrow text-smoke">
                   While you wait
                 </p>
                 <Link
                   href="/watch"
-                  className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   Watch the last one ↗
                 </Link>
                 <Link
                   href="/roster"
-                  className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   Meet the roster ↗
                 </Link>
                 <Link
                   href="/open-mics/map"
-                  className="font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/85 underline-offset-4 hover:text-accent-gold hover:underline"
+                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   Hit an open mic ↗
                 </Link>
@@ -258,18 +258,18 @@ export default function ShowsPage() {
       {hasShows ? (
         <section
           aria-label="Subscribe to shows calendar"
-          className="section-y-tight border-b border-surface-ivory/10 bg-surface-tuxedo"
+          className="section-y-tight border-b border-smoke bg-surface-tuxedo"
         >
           <div className="mx-auto max-w-[1400px] px-5 md:px-10">
             <div className="grid gap-8 md:grid-cols-12 md:items-end">
               <div className="md:col-span-7">
-                <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
+                <p className="t-eyebrow">
                   Subscribe
                 </p>
                 <h2 className="display-2 mt-3 text-surface-ivory">
-                  Drop the dates straight into your <span className="italic text-accent-gold">calendar</span>.
+                  Drop the dates straight into your <span className="text-accent-gold">calendar</span>.
                 </h2>
-                <p className="mt-4 max-w-xl font-body text-base text-surface-ivory/85 md:text-lg">
+                <p className="t-body mt-4 max-w-xl text-base md:text-lg">
                   Subscribe once and new shows arrive in Apple Calendar, Google Calendar, or anything that reads .ics. No emails, no reminders we did not write.
                 </p>
               </div>
@@ -277,7 +277,7 @@ export default function ShowsPage() {
                 <li>
                   <a
                     href="/shows/feed.ics"
-                    className="inline-flex h-12 items-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                    className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
                   >
                     Add .ics feed ↗
                   </a>
@@ -285,7 +285,7 @@ export default function ShowsPage() {
                 <li>
                   <a
                     href="/shows/feed.xml"
-                    className="inline-flex h-12 items-center border border-surface-ivory/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                    className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
                   >
                     RSS ↗
                   </a>

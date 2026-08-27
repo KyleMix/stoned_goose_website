@@ -63,37 +63,83 @@ decisions, see the Phase 0 audit.
 
 ## Type
 
-One typeface. Weights 300 / 400 / 700 only; the theme defines exactly those
-three, so `font-medium` and `font-semibold` do not exist.
+One typeface: **Josefin Sans**, loaded through `next/font/google` at weights
+300 / 400 / 700 only, `display: swap`. No italics: the face is not loaded and
+the browser would synthesize an oblique, which the spec forbids.
 
-| Role      | Weight        | Case      | Tracking            | Color                              |
-| --------- | ------------- | --------- | ------------------- | ---------------------------------- |
-| Headline  | `font-bold`   | uppercase | `tracking-headline` | tuxedo on ivory, gold on tuxedo    |
-| Subhead   | `font-bold`   | uppercase | `tracking-subhead`  | tuxedo on ivory, ivory on tuxedo   |
-| Eyebrow   | `font-normal` | uppercase | `tracking-eyebrow`  | `gold-ink` on ivory, gold on tuxedo |
-| Body      | `font-light`  | sentence  | normal              | tuxedo on ivory, ivory on tuxedo   |
-| Fine print | `font-normal` | sentence  | normal              | `smoke`                            |
+next/font self-hosts the woff2 into the static export at build time, so the
+Workers Static Assets deploy serves the font from its own origin. There is no
+runtime request to fonts.gstatic.com. The emitted chain is:
 
-| Tracking token      | Value    |
-| ------------------- | -------- |
-| `tracking-headline` | `0.04em` |
-| `tracking-subhead`  | `0.06em` |
-| `tracking-eyebrow`  | `0.26em` |
+    Josefin Sans, Josefin Sans Fallback, Futura, Century Gothic, Arial, sans-serif
+
+`Josefin Sans Fallback` is the size-adjusted metric fallback next/font derives
+automatically; the rest is the declared chain.
+
+The theme replaces `fontFamily` and `fontWeight` rather than extending them, so
+`font-serif`, `font-mono`, `font-medium` and `font-semibold` do not exist.
+
+### The five roles
+
+Weight, case, tracking and color belong to the role, not the call site. Use the
+class, or the component in `components/brand/type.tsx`.
+
+| Role       | Class         | Component     | Weight | Case      | Tracking |
+| ---------- | ------------- | ------------- | ------ | --------- | -------- |
+| Headline   | `.t-headline` | `<Headline>`  | 700    | uppercase | `0.04em` |
+| Subhead    | `.t-subhead`  | `<Subhead>`   | 700    | uppercase | `0.06em` |
+| Eyebrow    | `.t-eyebrow`  | `<Eyebrow>`   | 400    | uppercase | `0.26em` |
+| Body       | `.t-body`     | `<Body>`      | 300    | sentence  | normal   |
+| Fine print | `.t-fine`     | `<FinePrint>` | 400    | sentence  | normal   |
+
+Roles live in the `components` layer, not `utilities`, so an explicit
+`hover:text-accent-gold` or a one-off `text-surface-ivory` at the call site
+still wins. The role is a default, never a lock. Do not restate a role's own
+weight, case, tracking or color next to it.
+
+### Surface-aware color
+
+Color is not a per-caller decision. A section declares its surface and every
+role inside flips at once:
+
+| Role       | on tuxedo (default) | on `data-surface="ivory"` |
+| ---------- | ------------------- | ------------------------- |
+| Headline   | `accent-gold`       | `surface-tuxedo`          |
+| Subhead    | `surface-ivory`     | `surface-tuxedo`          |
+| Eyebrow    | `accent-gold`       | `gold-ink`                |
+| Body       | `surface-ivory`     | `surface-tuxedo`          |
+| Fine print | `smoke`             | `smoke`                   |
+
+Use `<Surface tone="ivory">` from `components/brand/surface.tsx`, which sets the
+background and the attribute together. A bare `bg-surface-ivory` leaves
+descendants guessing and will render a gold headline on ivory: 1.88:1, the one
+pairing the spec forbids outright.
+
+### Secondary labels
+
+An uppercase tracked label in a muted color has no slot in the spec, which
+gives Eyebrow exactly one color per surface. Rather than turn 139 metadata
+labels gold, they take **Smoke**: on palette, and 5.38:1 on tuxedo against the
+off-palette alpha composites they replaced. Flagged for ratification.
 
 ## Display type scale
 
-Named steps in `globals.css`. Use these instead of hand-rolling a `clamp()` on
-each heading.
+Size only. Pair with `.t-headline` or `.t-subhead`, which carry everything else.
 
-| Class        | Size                         | Role                                        |
-| ------------ | ---------------------------- | ------------------------------------------- |
-| (PageHeader) | `clamp(3rem, 11vw, 9rem)`    | Page masthead `<h1>`, owned by `PageHeader`  |
-| `display-1`  | `clamp(2.4rem, 7vw, 5rem)`   | Top section heading (home hero sections)     |
-| `display-2`  | `clamp(2rem, 5vw, 3.5rem)`   | Standard section heading                     |
-| `display-3`  | `clamp(1.8rem, 4vw, 2.6rem)` | Sub-section / strip heading                  |
+Retuned for Josefin Sans: uppercase at +4% tracking sets roughly a third wider
+than the sentence-case serif it replaced, so every step came down to keep short
+headlines on one line.
 
-The page masthead size is centralized in `components/page-header.tsx`; every
-internal page uses that component, so it stays consistent without a utility.
+| Class          | Size                           | Role                           |
+| -------------- | ------------------------------ | ------------------------------ |
+| `display-mega` | `clamp(4rem, 14vw, 12rem)`     | Short statement numerals (404) |
+| `display-hero` | `clamp(2.5rem, 8vw, 7rem)`     | Page masthead and hero `<h1>`  |
+| `display-1`    | `clamp(2rem, 5.5vw, 4rem)`     | Top section heading            |
+| `display-2`    | `clamp(1.75rem, 4.5vw, 3rem)`  | Standard section heading       |
+| `display-3`    | `clamp(1.5rem, 3.5vw, 2.2rem)` | Sub-section / strip heading    |
+
+Do not hand-roll a `clamp()` next to these. Add a step here if a real gap
+appears.
 
 ## Section vertical rhythm
 
@@ -107,12 +153,6 @@ Three documented steps replace the ad-hoc `py-16/20/24/28/32` spread.
 
 New sections should pick one of these rather than a raw `py-*` value.
 
-## Surface declaration
-
-A section declares its surface with `data-surface="ivory"` so descendants can
-respond structurally instead of each control guessing. Focus outlines use it
-today: gold on tuxedo, tuxedo on ivory.
-
 ## Radius
 
 The brand is sharp-cornered: borders and surfaces use the default `0` radius.
@@ -121,9 +161,11 @@ cards, buttons, or inputs.
 
 ## Forbidden
 
-No gradients. No shadows, glows, or glassmorphism. No recoloring a mark in CSS
-(`filter`, `mix-blend-mode`, or a background behind a knockout). No color
-overlay on photography. Photos run full color or black and white.
+No gradients. No shadows, glows, or glassmorphism. No italics: only three
+upright weights are loaded, so an `italic` class would render a synthesized
+oblique. No recoloring a mark in CSS (`filter`, `mix-blend-mode`, or a
+background behind a knockout). No color overlay on photography. Photos run full
+color or black and white.
 
 ## Motion
 

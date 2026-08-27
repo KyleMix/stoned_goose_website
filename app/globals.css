@@ -7,9 +7,6 @@
 
 @layer base {
   :root {
-    --font-display: "Fraunces", Georgia, serif;
-    --font-body: "Inter", ui-sans-serif, system-ui;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
     /* Anchor scroll offset = nav height + 24px breathing room. Used by
        [id] scroll-margin-top so #anchors don't crash into the fixed nav. */
     --scroll-offset: 88px;
@@ -30,7 +27,7 @@
   body {
     background: #0f0f0f;
     color: #f4eee2;
-    font-family: var(--font-body);
+    font-family: theme(fontFamily.sans);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -75,13 +72,87 @@
     outline-color: #0f0f0f;
   }
 
-  /* Nicer h tags by default; pages still override */
+  /* Headings default to the Headline role. Pages set size; weight, case and
+     tracking are not a per-caller choice. */
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
-    font-feature-settings: "ss01", "ss02";
-    letter-spacing: -0.04em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+
+@layer components {
+  /* ---------------------------------------------------------------
+     The five type roles. Weight, case, tracking and color belong to the role,
+     not to the call site. Color is surface-aware: the site's default surface
+     is Tuxedo, and a section marks itself with data-surface="ivory" to flip
+     every role inside it at once. That keeps "gold headline on black, tuxedo
+     headline on ivory" structural instead of per-caller.
+
+     These sit in the components layer, not utilities, so an explicit
+     `hover:text-accent-gold` or `text-surface-ivory` at the call site still
+     wins. The role supplies the default, never a lock.
+
+     Size is deliberately NOT baked into headline and subhead: pair them with
+     a display-N step, or an explicit text-* size.
+     --------------------------------------------------------------- */
+
+  .t-headline {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: #d4aa4a;
+  }
+
+  .t-subhead {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    color: #f4eee2;
+  }
+
+  .t-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    line-height: 1.4;
+    color: #d4aa4a;
+  }
+
+  .t-body {
+    font-weight: 300;
+    letter-spacing: normal;
+    line-height: 1.6;
+    color: #f4eee2;
+  }
+
+  /* Fine print is Smoke on both surfaces. It clears AA on Tuxedo (5.38:1) but
+     not on Ivory (3.08:1), so an ivory section should carry fine print only at
+     large sizes, or not at all. See docs/design-tokens.md. */
+  .t-fine {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.5;
+    color: #8c8781;
+  }
+
+  [data-surface="ivory"] .t-headline {
+    color: #0f0f0f;
+  }
+  [data-surface="ivory"] .t-subhead {
+    color: #0f0f0f;
+  }
+  [data-surface="ivory"] .t-eyebrow {
+    color: #8a6a21;
+  }
+  [data-surface="ivory"] .t-body {
+    color: #0f0f0f;
   }
 }
 
@@ -94,34 +165,33 @@
     text-wrap: pretty;
   }
 
-  .heading-display {
-    font-family: var(--font-display);
-    letter-spacing: -0.045em;
-    line-height: 0.92;
-  }
+  /* Documented display type scale. Size only: pair with .t-headline or
+     .t-subhead, which carry the weight, case, tracking and color.
 
-  /* Documented display type scale. One named step per role so headings stay
-     consistent across pages instead of each hand-rolling a clamp(). See
-     docs/design-tokens.md. All steps share the display family + tight rhythm.
-       display-1: top section heading (home hero sections)
-       display-2: standard section heading (book, shows, open-mics)
-       display-3: sub-section / strip heading */
-  .display-1,
-  .display-2,
-  .display-3 {
-    font-family: var(--font-display);
-    letter-spacing: -0.045em;
-    line-height: 0.92;
+     Retuned for Josefin Sans. Uppercase at +4% tracking sets roughly a third
+     wider than the sentence-case serif this replaced, so every step came down
+     to keep short headlines on one line. Do not hand-roll a clamp() next to
+     these: add a step here if a real gap appears.
+
+       display-mega: short statement numerals (404)
+       display-hero: page masthead and hero h1
+       display-1:    top section heading
+       display-2:    standard section heading
+       display-3:    sub-section / strip heading */
+  .display-mega {
+    font-size: clamp(4rem, 14vw, 12rem);
+  }
+  .display-hero {
+    font-size: clamp(2.5rem, 8vw, 7rem);
   }
   .display-1 {
-    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-size: clamp(2rem, 5.5vw, 4rem);
   }
   .display-2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.75rem, 4.5vw, 3rem);
   }
   .display-3 {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    line-height: 1;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   }
 
   /* Section vertical rhythm. Three documented steps replace the ad-hoc
@@ -202,8 +272,25 @@
   font-weight: 700;
   letter-spacing: 0.05em;
 }
+/* Leaflet ships Helvetica Neue on its container and Lucida Console on the
+   attribution and scale controls. One typeface for the whole site, so the
+   vendor stack is overridden rather than left to leak onto /open-mics/map. */
+html body .leaflet-container,
+html body .leaflet-container .leaflet-control,
+html body .leaflet-container .leaflet-control-attribution,
+html body .leaflet-container .leaflet-control-scale-line,
+html body .leaflet-popup-content,
+html body .leaflet-control-zoom-in,
+html body .leaflet-control-zoom-out {
+  font-family: theme(fontFamily.sans);
+}
+/* The zoom controls set a `font:` shorthand, which resets weight and size too. */
+html body .leaflet-control-zoom-in,
+html body .leaflet-control-zoom-out {
+  font-size: 18px;
+  font-weight: 700;
+}
 .leaflet-popup-content {
-  font-family: var(--font-body);
   font-size: 12px;
 }
 
@@ -228,12 +315,12 @@
   --fc-button-active-border-color: #d4aa4a;
 }
 .comedy-calendar .fc-toolbar-title {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: theme(fontFamily.sans);
   font-size: clamp(1.4rem, 3vw, 2rem);
   color: #f4eee2;
 }
 .comedy-calendar .fc-button {
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: theme(fontFamily.sans);
   font-size: 11px;
   font-weight: 400;
   text-transform: uppercase;
@@ -268,7 +355,7 @@
 }
 .comedy-calendar .fc-event {
   border-radius: 0;
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: theme(fontFamily.sans);
   font-size: 12px;
   cursor: pointer;
 }

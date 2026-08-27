@@ -44,7 +44,7 @@ export function YouTubeGrid({ videos }: Props) {
               <button
                 type="button"
                 onClick={() => openVideo(v.id)}
-                className="group block w-full border border-surface-ivory/15 bg-surface-tuxedo text-left transition-colors hover:border-accent-gold/60"
+                className="group block w-full border border-smoke bg-surface-tuxedo text-left transition-colors hover:border-accent-gold"
               >
                 <div className="relative aspect-video w-full overflow-hidden bg-surface-tuxedo">
                   <Image
@@ -68,10 +68,10 @@ export function YouTubeGrid({ videos }: Props) {
                   </span>
                 </div>
                 <div className="p-4">
-                  <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                  <p className="t-eyebrow text-smoke">
                     YouTube
                   </p>
-                  <p className="mt-2 font-display text-base text-surface-ivory group-hover:text-accent-gold md:text-lg">
+                  <p className="mt-2 t-subhead text-base group-hover:text-accent-gold md:text-lg">
                     {v.title}
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export function YouTubeGrid({ videos }: Props) {
                   href={active.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center px-3 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
+                  className="inline-flex h-10 items-center px-3 t-eyebrow text-smoke hover:text-accent-gold"
                 >
                   Watch on YouTube ↗
                 </a>
@@ -103,7 +103,7 @@ export function YouTubeGrid({ videos }: Props) {
                   <button
                     type="button"
                     aria-label="Close player"
-                    className="inline-flex h-10 items-center bg-accent-gold px-4 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
+                    className="inline-flex h-10 items-center bg-accent-gold px-4 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
                   >
                     Close ✕
                   </button>

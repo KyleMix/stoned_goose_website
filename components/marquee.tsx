@@ -20,7 +20,7 @@ export function Marquee({
   return (
     <div
       className={cn(
-        "marquee relative w-full overflow-hidden border-y border-surface-ivory/15 bg-surface-tuxedo py-5",
+        "marquee relative w-full overflow-hidden border-y border-smoke bg-surface-tuxedo py-5",
         className,
       )}
     >
@@ -34,7 +34,7 @@ export function Marquee({
         {track.map((word, i) => (
           <span
             key={`${word}-${i}`}
-            className="font-display text-3xl uppercase tracking-display text-surface-ivory/90 md:text-5xl"
+            className="t-subhead text-3xl md:text-5xl"
           >
             <span>{word}</span>
             <span className="ml-10 inline-block text-accent-gold">{separator}</span>

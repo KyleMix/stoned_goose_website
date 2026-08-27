@@ -32,7 +32,7 @@ export default function ProCalendarPage() {
         eyebrow="The Big Rooms"
         title={
           <>
-            Pro <span className="italic text-accent-gold">Comedy</span> Calendar
+            Pro <span className="text-accent-gold">Comedy</span> Calendar
           </>
         }
         body={`Big-name touring comics across the Pacific Northwest, one grid. ${clubNames}. Click a show and go straight to tickets.`}
@@ -44,10 +44,10 @@ export default function ProCalendarPage() {
         footnote={proCalendarDisclaimer.footnote}
       />
 
-      <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-12 md:py-16">
+      <section className="border-b border-smoke bg-surface-tuxedo py-12 md:py-16">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <ProShowsCalendar />
-          <p className="mt-6 max-w-2xl font-body text-sm text-surface-ivory/65">
+          <p className="t-body mt-6 max-w-2xl text-sm text-smoke">
             Listings sync automatically from each club&apos;s site
             {proShowsFetchedAt
               ? `, last updated ${new Date(proShowsFetchedAt).toLocaleDateString("en-US", { month: "long", day: "numeric" })}`

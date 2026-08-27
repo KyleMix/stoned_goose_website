@@ -57,7 +57,7 @@ export function OneSheetGallery({ pages }: Props) {
                 thumbnails.current[i] = node;
               }}
               onClick={() => open(i)}
-              className="group block w-full border border-surface-ivory/15 bg-surface-tuxedo p-2 text-left transition-colors hover:border-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+              className="group block w-full border border-smoke bg-surface-tuxedo p-2 text-left transition-colors hover:border-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
             >
               <Image
                 src={page.src}
@@ -68,7 +68,7 @@ export function OneSheetGallery({ pages }: Props) {
                 sizes="(min-width: 1024px) 250px, (min-width: 640px) 30vw, 45vw"
                 className="h-auto w-full"
               />
-              <span className="mt-2 block font-mono text-[10px] uppercase tracking-[0.28em] text-surface-ivory/55 group-hover:text-accent-gold">
+              <span className="mt-2 block t-eyebrow text-smoke group-hover:text-accent-gold">
                 Page {page.page} of {pages.length}
               </span>
               <span className="sr-only">. Enlarge.</span>
@@ -101,11 +101,11 @@ export function OneSheetGallery({ pages }: Props) {
                 step(-1);
               }
             }}
-            className="fixed left-1/2 top-1/2 z-50 flex max-h-[94svh] w-[min(1000px,94vw)] -translate-x-1/2 -translate-y-1/2 flex-col border border-surface-ivory/15 bg-surface-tuxedo p-4 md:p-6"
+            className="fixed left-1/2 top-1/2 z-50 flex max-h-[94svh] w-[min(1000px,94vw)] -translate-x-1/2 -translate-y-1/2 flex-col border border-smoke bg-surface-tuxedo p-4 md:p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <Dialog.Title asChild>
-                <h3 className="font-mono text-[11px] uppercase tracking-[0.28em] text-surface-ivory/55">
+                <h3 className="t-eyebrow text-smoke">
                   Feature overview. Page {current ? current.page : 1} of{" "}
                   {pages.length}
                 </h3>
@@ -113,7 +113,7 @@ export function OneSheetGallery({ pages }: Props) {
               <Dialog.Close asChild>
                 <button
                   type="button"
-                  className="shrink-0 font-mono text-xs uppercase tracking-[0.18em] text-surface-ivory/55 hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+                  className="shrink-0 t-eyebrow text-smoke hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
                 >
                   Close (esc)
                 </button>
@@ -121,7 +121,7 @@ export function OneSheetGallery({ pages }: Props) {
             </div>
 
             <Dialog.Description asChild>
-              <p className="mt-2 font-body text-xs text-surface-ivory/65">
+              <p className="t-body mt-2 text-xs text-smoke">
                 Use the arrow keys or the buttons below to move between pages.
               </p>
             </Dialog.Description>
@@ -140,18 +140,18 @@ export function OneSheetGallery({ pages }: Props) {
               </div>
             ) : null}
 
-            <div className="mt-4 flex items-center justify-between gap-4 border-t border-surface-ivory/15 pt-4">
+            <div className="mt-4 flex items-center justify-between gap-4 border-t border-smoke pt-4">
               <button
                 type="button"
                 onClick={() => step(-1)}
-                className="inline-flex h-11 items-center border border-surface-ivory/30 px-4 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+                className="inline-flex h-11 items-center border border-smoke px-4 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
               >
                 ← Previous page
               </button>
               <button
                 type="button"
                 onClick={() => step(1)}
-                className="inline-flex h-11 items-center border border-surface-ivory/30 px-4 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+                className="inline-flex h-11 items-center border border-smoke px-4 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
               >
                 Next page →
               </button>
