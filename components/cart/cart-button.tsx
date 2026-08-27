@@ -13,7 +13,7 @@ export function CartButton() {
       type="button"
       onClick={openCart}
       aria-label={`Open cart, ${count} ${count === 1 ? "item" : "items"}`}
-      className="relative inline-flex items-center gap-2 border border-bone/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/65 transition-colors hover:border-slime hover:text-slime"
+      className="relative inline-flex items-center gap-2 border border-surface-ivory/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-surface-ivory/65 transition-colors hover:border-accent-gold hover:text-accent-gold"
     >
       <svg
         aria-hidden
@@ -28,7 +28,7 @@ export function CartButton() {
       </svg>
       <span>Cart</span>
       {count > 0 ? (
-        <span className="min-w-4 rounded-full bg-hazard px-1 text-center font-body text-[10px] font-semibold leading-4 text-ink">
+        <span className="min-w-4 rounded-full bg-accent-gold px-1 text-center font-body text-[10px] font-bold leading-4 text-surface-tuxedo">
           {count}
         </span>
       ) : null}

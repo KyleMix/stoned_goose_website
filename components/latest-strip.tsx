@@ -18,26 +18,26 @@ export function LatestStrip({ limit = 6 }: Props) {
   return (
     <section
       aria-labelledby="home-latest-strip"
-      className="border-y border-bone/10 bg-ink py-16 md:py-20"
+      className="border-y border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
           <div>
-            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+            <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
               Latest
             </p>
             <h2
               id="home-latest-strip"
-              className="heading-display mt-3 text-[clamp(1.8rem,4vw,2.6rem)] text-bone"
+              className="heading-display mt-3 text-[clamp(1.8rem,4vw,2.6rem)] text-surface-ivory"
             >
               From the feed
-              <span className="text-hazard">.</span>
+              <span className="text-accent-gold">.</span>
             </h2>
           </div>
           <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
             <Link
               href="/watch"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+              className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
             >
               See all on Watch ↗
             </Link>
@@ -47,7 +47,7 @@ export function LatestStrip({ limit = 6 }: Props) {
               href={site.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+              className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
             >
               Open Instagram ↗
             </FeedLink>
@@ -64,7 +64,7 @@ export function LatestStrip({ limit = 6 }: Props) {
                   <Link
                     href={href ?? "/watch"}
                     aria-label={label}
-                    className="group relative block h-full w-full overflow-hidden bg-haze-500"
+                    className="group relative block h-full w-full overflow-hidden bg-surface-tuxedo"
                   >
                     <PosterContent poster={poster} label={label} kind="Update" />
                   </Link>
@@ -76,7 +76,7 @@ export function LatestStrip({ limit = 6 }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="group relative block h-full w-full overflow-hidden bg-haze-500"
+                    className="group relative block h-full w-full overflow-hidden bg-surface-tuxedo"
                   >
                     <PosterContent
                       poster={poster}
@@ -121,7 +121,7 @@ function PosterContent({
           unoptimized
         />
       ) : (
-        <span className="absolute inset-0 flex items-center justify-center font-body text-[10px] uppercase tracking-[0.18em] text-bone/55">
+        <span className="absolute inset-0 flex items-center justify-center font-body text-[10px] uppercase tracking-[0.18em] text-surface-ivory/55">
           {kind}
         </span>
       )}
@@ -129,7 +129,7 @@ function PosterContent({
         aria-hidden
         className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
       />
-      <span className="absolute right-1.5 top-1.5 inline-flex items-center bg-hazard px-1.5 py-0.5 font-body text-[8px] font-semibold uppercase tracking-[0.18em] text-ink">
+      <span className="absolute right-1.5 top-1.5 inline-flex items-center bg-accent-gold px-1.5 py-0.5 font-body text-[8px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo">
         {kind}
       </span>
     </>

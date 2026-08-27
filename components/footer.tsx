@@ -18,7 +18,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-bone/15 bg-ink text-bone">
+    <footer className="relative border-t border-surface-ivory/15 bg-surface-tuxedo text-surface-ivory">
       <div className="mx-auto max-w-[1400px] px-5 pb-10 pt-20 md:px-10 md:pt-32">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -30,16 +30,16 @@ export function Footer() {
               priority={false}
               className="block h-32 w-auto md:h-40"
             />
-            <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            <p className="mt-4 font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
               {footerCopy.locality}
             </p>
             <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-[-0.02em] md:text-7xl">
-              Stoned Goose<span className="text-hazard">.</span>
+              Stoned Goose<span className="text-accent-gold">.</span>
             </h2>
-            <p className="mt-6 max-w-md font-body text-sm text-bone/80">
+            <p className="mt-6 max-w-md font-body text-sm text-surface-ivory/80">
               {site.description}
             </p>
-            <div className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-bone/70">
+            <div className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-surface-ivory/70">
               <p>{site.contact.email}</p>
               <p>{site.contact.phone}</p>
               <p>{site.contact.locality}, {site.contact.region}</p>
@@ -51,7 +51,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-bone/10 pt-8">
+        <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-surface-ivory/10 pt-8">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {socials.map((s) => (
               <a
@@ -62,19 +62,19 @@ export function Footer() {
                 onClick={() =>
                   track("Outbound Click", { destination: s.destination })
                 }
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-slime"
+                className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/70 transition-colors hover:text-accent-gold"
               >
                 {s.label} <span aria-hidden>↗</span>
               </a>
             ))}
           </div>
-          <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+          <div className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
             <p>© {year} Stoned Goose Productions</p>
             {footerCopy.creditLine ? (
               footerCopy.creditHref ? (
                 <a
                   href={footerCopy.creditHref}
-                  className="transition-colors hover:text-slime"
+                  className="transition-colors hover:text-accent-gold"
                   target={/^https?:/.test(footerCopy.creditHref) ? "_blank" : undefined}
                   rel={/^https?:/.test(footerCopy.creditHref) ? "noopener noreferrer" : undefined}
                 >
@@ -101,7 +101,7 @@ function FooterColumn({
 }) {
   return (
     <div className="md:col-span-2">
-      <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+      <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
         {label}
       </p>
       <ul className="mt-4 space-y-2">
@@ -109,7 +109,7 @@ function FooterColumn({
           <li key={it.href}>
             <Link
               href={it.href}
-              className="font-body text-sm text-bone/85 transition-colors hover:text-slime"
+              className="font-body text-sm text-surface-ivory/85 transition-colors hover:text-accent-gold"
             >
               {it.label}
             </Link>

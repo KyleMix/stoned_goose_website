@@ -19,7 +19,7 @@ const BookCallEmbed = dynamic(
     loading: () => (
       <div
         aria-hidden
-        className="min-h-[420px] animate-pulse border border-bone/10 bg-bone/[0.03]"
+        className="min-h-[420px] animate-pulse border border-surface-ivory/10 bg-surface-ivory/[0.03]"
       />
     ),
   },
@@ -33,9 +33,9 @@ import {
 import { track } from "@/lib/analytics";
 
 const CHIP_BASE =
-  "h-11 border px-4 font-body text-[11px] font-medium uppercase tracking-[0.18em] transition-colors";
-const CHIP_OFF = "border-bone/25 text-bone/70 hover:border-slime hover:text-slime";
-const CHIP_ON = "border-hazard bg-hazard text-ink";
+  "h-11 border px-4 font-body text-[11px] font-normal uppercase tracking-[0.18em] transition-colors";
+const CHIP_OFF = "border-surface-ivory/25 text-surface-ivory/70 hover:border-accent-gold hover:text-accent-gold";
+const CHIP_ON = "border-accent-gold bg-accent-gold text-surface-tuxedo";
 
 export function BookPlanner({ calLink }: { calLink: string | null }) {
   const [choices, setChoices] = useState<Record<string, number>>({});
@@ -79,14 +79,14 @@ export function BookPlanner({ calLink }: { calLink: string | null }) {
       {calLink ? (
         <section
           id="call"
-          className="scroll-mt-24 border-b border-bone/10 bg-ink py-16 md:py-20"
+          className="scroll-mt-24 border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20"
         >
           <div className="mx-auto max-w-[1400px] px-5 md:px-10">
             <SectionHeader
               eyebrow="Start here"
               title={
                 <>
-                  Book a free <span className="italic text-hazard">intro</span>{" "}
+                  Book a free <span className="italic text-accent-gold">intro</span>{" "}
                   call.
                 </>
               }
@@ -101,14 +101,14 @@ export function BookPlanner({ calLink }: { calLink: string | null }) {
 
       <section
         id="plan"
-        className="scroll-mt-24 border-b border-bone/10 bg-ink py-16 md:py-20"
+        className="scroll-mt-24 border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
             eyebrow={plannerCopy.eyebrow}
             title={
               <>
-                Build your <span className="italic text-hazard">show</span>.
+                Build your <span className="italic text-accent-gold">show</span>.
               </>
             }
             subtitle={plannerCopy.subtitle}
@@ -118,7 +118,7 @@ export function BookPlanner({ calLink }: { calLink: string | null }) {
             <div className="space-y-8 md:col-span-7">
               {plannerQuestions.map((q) => (
                 <fieldset key={q.id}>
-                  <legend className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <legend className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
                     {q.label}
                   </legend>
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -142,7 +142,7 @@ export function BookPlanner({ calLink }: { calLink: string | null }) {
               ))}
 
               <fieldset>
-                <legend className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                <legend className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
                   Add-ons (optional)
                 </legend>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -173,27 +173,27 @@ export function BookPlanner({ calLink }: { calLink: string | null }) {
               {tier ? (
                 <div
                   aria-live="polite"
-                  className="flex h-full flex-col border border-bone/15 p-8 md:p-10"
+                  className="flex h-full flex-col border border-surface-ivory/15 p-8 md:p-10"
                 >
-                  <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+                  <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
                     {plannerCopy.resultEyebrow}
                   </p>
-                  <h3 className="heading-display mt-3 text-3xl text-bone md:text-4xl">
+                  <h3 className="heading-display mt-3 text-3xl text-surface-ivory md:text-4xl">
                     {tier.name}
                   </h3>
-                  <p className="mt-2 font-body text-sm font-semibold uppercase tracking-[0.18em] text-hazard">
+                  <p className="mt-2 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent-gold">
                     {tier.price}
                   </p>
-                  <p className="mt-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <p className="mt-2 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
                     {tier.bestFor}
                   </p>
-                  <ul className="mt-6 space-y-3 border-t border-bone/15 pt-6">
+                  <ul className="mt-6 space-y-3 border-t border-surface-ivory/15 pt-6">
                     {tier.items.map((it) => (
                       <li
                         key={it}
-                        className="flex items-baseline gap-3 font-body text-sm text-bone/85"
+                        className="flex items-baseline gap-3 font-body text-sm text-surface-ivory/85"
                       >
-                        <span aria-hidden className="text-hazard">/</span>
+                        <span aria-hidden className="text-accent-gold">/</span>
                         <span>{it}</span>
                       </li>
                     ))}
@@ -204,18 +204,18 @@ export function BookPlanner({ calLink }: { calLink: string | null }) {
                         <button
                           type="button"
                           onClick={applyToCall}
-                          className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+                          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
                         >
                           {plannerCopy.applyLabel}
                         </button>
-                        <p className="font-body text-xs text-bone/55">
+                        <p className="font-body text-xs text-surface-ivory/55">
                           {plannerCopy.applyHint}
                         </p>
                       </>
                     ) : (
                       <a
                         href="#quote"
-                        className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+                        className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
                       >
                         {plannerCopy.fallbackLabel}
                       </a>
@@ -223,8 +223,8 @@ export function BookPlanner({ calLink }: { calLink: string | null }) {
                   </div>
                 </div>
               ) : (
-                <div className="flex h-full items-center border border-dashed border-bone/15 p-8 md:p-10">
-                  <p className="font-body text-sm text-bone/55">
+                <div className="flex h-full items-center border border-dashed border-surface-ivory/15 p-8 md:p-10">
+                  <p className="font-body text-sm text-surface-ivory/55">
                     Answer the first two and a package lands here.
                   </p>
                 </div>

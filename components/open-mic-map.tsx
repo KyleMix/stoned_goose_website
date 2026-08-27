@@ -212,9 +212,9 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       <div
         role="region"
         aria-label="Open mics map"
-        className="flex aspect-[4/3] w-full items-center justify-center border border-bone/15 bg-haze-500 px-6 text-center md:aspect-[16/10]"
+        className="flex aspect-[4/3] w-full items-center justify-center border border-surface-ivory/15 bg-surface-tuxedo px-6 text-center md:aspect-[16/10]"
       >
-        <p className="max-w-sm font-body text-sm text-bone/85">
+        <p className="max-w-sm font-body text-sm text-surface-ivory/85">
           The map did not load. Every mic is still in the list below.
         </p>
       </div>
@@ -226,7 +226,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       ref={containerRef}
       role="region"
       aria-label="Open mics map"
-      className="aspect-[4/3] w-full isolate overflow-hidden border border-bone/15 bg-haze-500 md:aspect-[16/10]"
+      className="aspect-[4/3] w-full isolate overflow-hidden border border-surface-ivory/15 bg-surface-tuxedo md:aspect-[16/10]"
     />
   );
 }

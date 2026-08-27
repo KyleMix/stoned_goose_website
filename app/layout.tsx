@@ -85,7 +85,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#0A0A0A",
+  themeColor: "#0F0F0F",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -94,7 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
-      <body className="bg-ink text-bone" suppressHydrationWarning>
+      <body className="bg-surface-tuxedo text-surface-ivory" suppressHydrationWarning>
         <JsonLd schema={organization} />
         {children}
       </body>

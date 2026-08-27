@@ -32,7 +32,7 @@ export default function BookPage() {
         eyebrow="Work With Us"
         title={
           <>
-            Book <span className="italic text-hazard">Us</span>
+            Book <span className="italic text-accent-gold">Us</span>
           </>
         }
         body="Live shows, on-camera production, podcasts, collaborations, and sponsorships. Start with a free intro call and we'll map the rest together."
@@ -40,38 +40,38 @@ export default function BookPage() {
 
       <nav
         aria-label="Book Us sections"
-        className="border-b border-bone/10 bg-ink"
+        className="border-b border-surface-ivory/10 bg-surface-tuxedo"
       >
         <div className="mx-auto flex max-w-[1400px] flex-wrap gap-x-8 gap-y-3 px-5 py-5 md:px-10">
           {calLink ? (
             <a
               href="#call"
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+              className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
             >
               Book a call ↓
             </a>
           ) : null}
           <a
             href="#plan"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
           >
             Build your show ↓
           </a>
           <a
             href="#venues"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
           >
             All services ↓
           </a>
           <a
             href="#sponsors"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
           >
             Sponsors ↓
           </a>
           <a
             href="#quote"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
           >
             Quote form ↓
           </a>
@@ -82,14 +82,14 @@ export default function BookPage() {
 
       <section
         id="venues"
-        className="section-y-tight scroll-mt-24 border-b border-bone/10 bg-ink"
+        className="section-y-tight scroll-mt-24 border-b border-surface-ivory/10 bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
             eyebrow="All services"
             title={
               <>
-                Pick the <span className="italic text-hazard">lane</span> that fits.
+                Pick the <span className="italic text-accent-gold">lane</span> that fits.
               </>
             }
             subtitle="Live shows, on-camera production, podcasts, collaboration. Each one ships a brief and a quote form."
@@ -98,25 +98,25 @@ export default function BookPage() {
             {services.filter((s) => !s.draft).map((s, i) => (
               <li
                 key={s.slug}
-                className="group grid grid-cols-12 items-baseline gap-x-6 gap-y-3 border-t border-bone/15 py-7 last:border-b transition-colors hover:bg-bone/[0.025]"
+                className="group grid grid-cols-12 items-baseline gap-x-6 gap-y-3 border-t border-surface-ivory/15 py-7 last:border-b transition-colors hover:bg-surface-ivory/[0.025]"
               >
-                <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/55 md:col-span-1">
+                <span className="col-span-2 font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/55 md:col-span-1">
                   /{String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="col-span-10 md:col-span-7">
                   <Link
                     href={`/book/${s.slug}`}
-                    className="font-display text-2xl text-bone transition-colors group-hover:text-slime md:text-4xl"
+                    className="font-display text-2xl text-surface-ivory transition-colors group-hover:text-accent-gold md:text-4xl"
                   >
                     {s.title}
                   </Link>
-                  <p className="mt-2 max-w-prose font-body text-sm text-bone/85 md:text-base">
+                  <p className="mt-2 max-w-prose font-body text-sm text-surface-ivory/85 md:text-base">
                     {s.summary}
                   </p>
                 </div>
                 <Link
                   href={`/book/${s.slug}`}
-                  className="col-span-12 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-slime md:col-span-4 md:text-right"
+                  className="col-span-12 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55 transition-colors hover:text-accent-gold md:col-span-4 md:text-right"
                 >
                   Read brief ↗
                 </Link>
@@ -128,7 +128,7 @@ export default function BookPage() {
 
       <section
         id="sponsors"
-        className="section-y scroll-mt-24 border-b border-bone/10 bg-ink"
+        className="section-y scroll-mt-24 border-b border-surface-ivory/10 bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <SectionHeader
@@ -136,31 +136,31 @@ export default function BookPage() {
             title={
               <>
                 Put your name on live{" "}
-                <span className="italic text-hazard">comedy</span> in the South
+                <span className="italic text-accent-gold">comedy</span> in the South
                 Sound.
               </>
             }
             subtitle="Sponsor recurring live comedy and get in front of real rooms in Olympia, Lacey, Tacoma, and beyond."
           />
 
-          <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden border border-bone/15 md:grid-cols-3">
+          <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden border border-surface-ivory/15 md:grid-cols-3">
             {sponsorshipTiers.map((t) => (
-              <li key={t.name} className="flex flex-col bg-ink p-8 md:p-10">
+              <li key={t.name} className="flex flex-col bg-surface-tuxedo p-8 md:p-10">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="heading-display text-3xl text-bone md:text-4xl">
+                  <h3 className="heading-display text-3xl text-surface-ivory md:text-4xl">
                     {t.name}
                   </h3>
-                  <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-hazard">
+                  <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-accent-gold">
                     {t.price}
                   </span>
                 </div>
-                <ul className="mt-6 space-y-3 border-t border-bone/15 pt-6">
+                <ul className="mt-6 space-y-3 border-t border-surface-ivory/15 pt-6">
                   {t.deliverables.map((d) => (
                     <li
                       key={d}
-                      className="flex items-baseline gap-3 font-body text-sm text-bone/85"
+                      className="flex items-baseline gap-3 font-body text-sm text-surface-ivory/85"
                     >
-                      <span aria-hidden className="text-hazard">/</span>
+                      <span aria-hidden className="text-accent-gold">/</span>
                       <span>{d}</span>
                     </li>
                   ))}
@@ -169,14 +169,14 @@ export default function BookPage() {
             ))}
           </ol>
 
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border border-bone/15 p-8 md:p-10">
-            <p className="max-w-xl font-body text-base text-bone/85 md:text-lg">
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border border-surface-ivory/15 p-8 md:p-10">
+            <p className="max-w-xl font-body text-base text-surface-ivory/85 md:text-lg">
               Want the one-sheet, the numbers, or a custom build? Book the
               intro call and we&apos;ll bring the deck.
             </p>
             <a
               href={calLink ? "#call" : "#quote"}
-              className="inline-flex h-12 shrink-0 items-center bg-hazard px-6 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+              className="inline-flex h-12 shrink-0 items-center bg-accent-gold px-6 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
             >
               {calLink ? "Book a call ↗" : "Get a quote ↗"}
             </a>
@@ -186,22 +186,22 @@ export default function BookPage() {
 
       <PressStrip />
 
-      <section id="quote" className="section-y scroll-mt-24 bg-ink">
+      <section id="quote" className="section-y scroll-mt-24 bg-surface-tuxedo">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
-              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
                 Quote
               </p>
-              <h2 className="display-2 mt-4 text-bone">
+              <h2 className="display-2 mt-4 text-surface-ivory">
                 Can&apos;t do a call? Get a{" "}
-                <span className="italic text-hazard">quote</span>.
+                <span className="italic text-accent-gold">quote</span>.
               </h2>
-              <p className="mt-6 font-body text-base text-bone/85 md:text-lg">
+              <p className="mt-6 font-body text-base text-surface-ivory/85 md:text-lg">
                 Tell us what you&apos;re planning and we&apos;ll map the right
                 package.
               </p>
-              <ul className="mt-8 space-y-2 font-body text-sm text-bone/85">
+              <ul className="mt-8 space-y-2 font-body text-sm text-surface-ivory/85">
                 <li>/ Fast turnaround within 1-2 business days.</li>
                 <li>/ Clear options tailored to your audience size.</li>
                 <li>/ Bundled pricing for production + talent.</li>

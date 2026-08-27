@@ -98,7 +98,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("Outbound Click", { destination: "fourthwall" })}
-          className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime"
+          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory"
         >
           Buy on Fourthwall ↗
         </a>
@@ -119,7 +119,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
       <div className="flex flex-col gap-6">
         {colors.length > 1 ? (
           <div>
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
               Color{color ? `. ${color}` : ""}
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -134,12 +134,12 @@ export function ShopProductDetail({ product }: { product: Product }) {
                     aria-pressed={active}
                     onClick={() => onColor(c.name)}
                     className={`h-8 w-8 rounded-full border transition-colors ${
-                      active ? "border-hazard" : "border-bone/30 hover:border-slime"
+                      active ? "border-accent-gold" : "border-surface-ivory/30 hover:border-surface-ivory"
                     }`}
                     style={c.swatch ? { backgroundColor: c.swatch } : undefined}
                   >
                     {c.swatch ? null : (
-                      <span className="font-body text-[9px] uppercase text-bone/70">
+                      <span className="font-body text-[9px] uppercase text-surface-ivory/70">
                         {c.name.slice(0, 2)}
                       </span>
                     )}
@@ -152,7 +152,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
 
         {sizes.length > 0 ? (
           <div>
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
               Size
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -165,11 +165,11 @@ export function ShopProductDetail({ product }: { product: Product }) {
                     type="button"
                     disabled={!avail}
                     onClick={() => setSize(s)}
-                    className={`inline-flex h-10 min-w-10 items-center justify-center border px-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
+                    className={`inline-flex h-10 min-w-10 items-center justify-center border px-3 font-body text-[11px] font-bold uppercase tracking-[0.18em] transition-colors ${
                       active
-                        ? "border-hazard bg-hazard text-ink"
-                        : "border-bone/30 text-bone/85 hover:border-slime hover:text-slime"
-                    } disabled:cursor-not-allowed disabled:border-bone/10 disabled:text-bone/30 disabled:line-through`}
+                        ? "border-accent-gold bg-accent-gold text-surface-tuxedo"
+                        : "border-surface-ivory/30 text-surface-ivory/85 hover:border-accent-gold hover:text-accent-gold"
+                    } disabled:cursor-not-allowed disabled:border-surface-ivory/10 disabled:text-surface-ivory/30 disabled:line-through`}
                   >
                     {s}
                   </button>
@@ -183,7 +183,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
           type="button"
           disabled={busy || !selected || !selected.available}
           onClick={() => selected && addItem(selected.id)}
-          className="inline-flex h-12 items-center justify-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:cursor-not-allowed disabled:opacity-50"
         >
           {selected && !selected.available
             ? "Sold out"
@@ -245,7 +245,7 @@ function Layout({
   return (
     <div className="mt-8 grid gap-10 md:grid-cols-2 md:gap-14">
       <div className="flex flex-col gap-3">
-        <div className="relative aspect-square w-full overflow-hidden bg-haze-500">
+        <div className="relative aspect-square w-full overflow-hidden bg-surface-tuxedo">
           {main ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -265,8 +265,8 @@ function Layout({
                 type="button"
                 aria-label={`View image ${i + 1}`}
                 onClick={() => setImageIndex(i)}
-                className={`relative aspect-square overflow-hidden border bg-haze-500 transition-colors ${
-                  i === imageIndex ? "border-hazard" : "border-transparent hover:border-slime"
+                className={`relative aspect-square overflow-hidden border bg-surface-tuxedo transition-colors ${
+                  i === imageIndex ? "border-accent-gold" : "border-transparent hover:border-surface-ivory"
                 }`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -285,11 +285,11 @@ function Layout({
       </div>
 
       <div className="md:pt-2">
-        <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] text-bone">
+        <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] text-surface-ivory">
           {name}
         </h1>
         {price ? (
-          <p className="mt-4 font-body text-xl font-semibold tabular-nums text-hazard">
+          <p className="mt-4 font-body text-xl font-bold tabular-nums text-accent-gold">
             {price}
           </p>
         ) : null}
@@ -297,14 +297,14 @@ function Layout({
         <div className="mt-8">{children}</div>
 
         {description ? (
-          <div className="mt-10 border-t border-bone/15 pt-6">
-            <p className="max-w-prose whitespace-pre-line font-display text-lg leading-snug text-bone/80 md:text-xl">
+          <div className="mt-10 border-t border-surface-ivory/15 pt-6">
+            <p className="max-w-prose whitespace-pre-line font-display text-lg leading-snug text-surface-ivory/80 md:text-xl">
               {description}
             </p>
           </div>
         ) : null}
 
-        <p className="mt-10 font-body text-[10px] uppercase tracking-[0.18em] text-bone/55">
+        <p className="mt-10 font-body text-[10px] uppercase tracking-[0.18em] text-surface-ivory/55">
           Checkout, sizing, and shipping handled by Fourthwall.
         </p>
       </div>

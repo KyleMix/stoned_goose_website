@@ -71,7 +71,7 @@ export function Nav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
         scrolled || open
-          ? "bg-ink/85 backdrop-blur-md border-b border-bone/10"
+          ? "bg-surface-tuxedo/85 backdrop-blur-md border-b border-surface-ivory/10"
           : "bg-transparent",
       )}
     >
@@ -93,11 +93,11 @@ export function Nav() {
               "motion-reduce:translate-x-0 motion-reduce:opacity-90 motion-reduce:transition-none",
             )}
           />
-          <span className="font-display text-xl leading-none tracking-[-0.02em] text-bone md:text-[1.4rem]">
+          <span className="font-display text-xl leading-none tracking-[-0.02em] text-surface-ivory md:text-[1.4rem]">
             Stoned Goose
             <span
               aria-hidden
-              className="text-hazard transition-[text-decoration-color] group-hover:underline group-hover:decoration-slime group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-hazard group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
+              className="text-accent-gold transition-[text-decoration-color] group-hover:underline group-hover:decoration-accent-gold group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-accent-gold group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
             >
               .
             </span>
@@ -109,7 +109,7 @@ export function Nav() {
             <Link
               key={item.href}
               href={item.href}
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-slime"
+              className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/70 transition-colors hover:text-accent-gold"
             >
               {item.label}
             </Link>
@@ -123,7 +123,7 @@ export function Nav() {
                 new KeyboardEvent("keydown", { key: "k", metaKey: true }),
               );
             }}
-            className="inline-flex items-center gap-2 border border-bone/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/65 transition-colors hover:border-slime hover:text-slime"
+            className="inline-flex items-center gap-2 border border-surface-ivory/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-surface-ivory/65 transition-colors hover:border-accent-gold hover:text-accent-gold"
           >
             <span aria-hidden>/</span>
             <span>Search</span>
@@ -132,9 +132,9 @@ export function Nav() {
           <Link
             href="/shows"
             onClick={() => track("CTA Click", { cta: "nav-tickets" })}
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 transition-colors hover:text-slime"
+            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory underline underline-offset-4 decoration-accent-gold decoration-2 transition-colors hover:text-accent-gold"
           >
-            Tickets<span className="text-hazard">.</span> ↗
+            Tickets<span className="text-accent-gold">.</span> ↗
           </Link>
         </nav>
 
@@ -146,7 +146,7 @@ export function Nav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex min-h-[44px] items-center gap-2 border border-bone/25 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime hover:text-slime md:hidden"
+          className="inline-flex min-h-[44px] items-center gap-2 border border-surface-ivory/25 px-3 py-2 font-mono text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/85 transition-colors hover:border-accent-gold hover:text-accent-gold md:hidden"
         >
           <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
             <span
@@ -182,7 +182,7 @@ export function Nav() {
       <div
         ref={panelRef}
         className={cn(
-          "fixed inset-0 top-16 z-40 origin-top bg-ink transition-[clip-path,opacity] duration-500 md:hidden",
+          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:hidden",
           open
             ? "[clip-path:inset(0_0_0_0)] opacity-100"
             : "pointer-events-none [clip-path:inset(0_0_100%_0)] opacity-0",
@@ -194,16 +194,16 @@ export function Nav() {
         >
           <ul className="flex flex-col">
             {nav.map((item, i) => (
-              <li key={item.href} className="border-b border-bone/10">
+              <li key={item.href} className="border-b border-surface-ivory/10">
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="flex items-baseline justify-between py-3.5"
                 >
-                  <span className="font-display text-2xl uppercase tracking-[-0.02em] text-bone">
+                  <span className="font-display text-2xl uppercase tracking-[-0.02em] text-surface-ivory">
                     {item.label}
                   </span>
-                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <span className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </Link>
@@ -218,8 +218,8 @@ export function Nav() {
               const venue = next.venue?.name ?? next.venue?.city ?? null;
               if (!date && !venue) return null;
               return (
-                <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  <span className="text-hazard">Next on stage. </span>
+                <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
+                  <span className="text-accent-gold">Next on stage. </span>
                   {[date, venue].filter(Boolean).join(". ")}
                 </p>
               );
@@ -230,11 +230,11 @@ export function Nav() {
                 track("CTA Click", { cta: "nav-tickets-mobile" });
                 setOpen(false);
               }}
-              className="flex h-12 w-full items-center justify-center bg-hazard font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink"
+              className="flex h-12 w-full items-center justify-center bg-accent-gold font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo"
             >
               Tickets.
             </Link>
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
               {site.contact.email}
             </p>
           </div>

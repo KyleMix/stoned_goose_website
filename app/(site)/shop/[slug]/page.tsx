@@ -54,11 +54,11 @@ export default async function ProductPage(props: {
     <>
       <JsonLd schema={buildBreadcrumbs(`/shop/${product.slug}`, product.name)} />
       <JsonLd schema={buildProductSchema(product)} />
-      <section className="bg-ink py-28 md:py-32">
+      <section className="bg-surface-tuxedo py-28 md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <Link
             href="/shop"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 transition-colors hover:text-slime"
+            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55 transition-colors hover:text-accent-gold"
           >
             ← Back to shop
           </Link>

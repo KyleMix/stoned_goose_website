@@ -33,7 +33,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       ) : null}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-hazard focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:text-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-accent-gold focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:text-surface-tuxedo"
       >
         Skip to content
       </a>

@@ -61,12 +61,12 @@ export function FacebookPagePlugin() {
   return (
     <section
       aria-label="Stoned Goose on Facebook"
-      className="border-b border-bone/10 bg-ink py-16 md:py-20"
+      className="border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
-          <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
-            From <span className="italic text-hazard">Facebook</span>
+          <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-surface-ivory">
+            From <span className="italic text-accent-gold">Facebook</span>
           </h2>
           <FeedLink
             platform="facebook"
@@ -74,7 +74,7 @@ export function FacebookPagePlugin() {
             href={site.social.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
           >
             Open page ↗
           </FeedLink>
@@ -82,7 +82,7 @@ export function FacebookPagePlugin() {
 
         <div
           ref={wrapperRef}
-          className="relative mx-auto w-full max-w-[500px] overflow-hidden border border-bone/15 bg-haze-500"
+          className="relative mx-auto w-full max-w-[500px] overflow-hidden border border-surface-ivory/15 bg-surface-tuxedo"
           style={{ minHeight: 280 }}
           onMouseEnter={() => {
             if (tracked) return;

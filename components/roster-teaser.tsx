@@ -10,24 +10,24 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
   return (
     <section
       aria-labelledby="home-roster"
-      className="border-b border-bone/10 bg-bone py-20 text-ink md:py-24"
+      className="border-b border-surface-ivory/10 bg-surface-ivory py-20 text-surface-tuxedo md:py-24"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-ink/70">
+            <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-tuxedo/70">
               The Roster
             </p>
             <h2
               id="home-roster"
-              className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-ink"
+              className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-surface-tuxedo"
             >
-              Comics in the rotation<span className="text-hazard">.</span>
+              Comics in the rotation<span className="text-accent-gold">.</span>
             </h2>
           </div>
           <Link
             href="/roster"
-            className="inline-flex h-12 items-center border border-ink/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:border-slime hover:text-slime"
+            className="inline-flex h-12 items-center border border-surface-tuxedo/30 px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:border-accent-gold hover:text-accent-gold"
           >
             Meet the roster ↗
           </Link>
@@ -51,7 +51,7 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
                   className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-0"
                 />
               </div>
-              <p className="mt-3 font-display text-sm text-ink md:text-base">
+              <p className="mt-3 font-display text-sm text-surface-tuxedo md:text-base">
                 {c.name}
               </p>
             </li>

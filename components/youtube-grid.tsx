@@ -44,9 +44,9 @@ export function YouTubeGrid({ videos }: Props) {
               <button
                 type="button"
                 onClick={() => openVideo(v.id)}
-                className="group block w-full border border-bone/15 bg-ink text-left transition-colors hover:border-slime/60"
+                className="group block w-full border border-surface-ivory/15 bg-surface-tuxedo text-left transition-colors hover:border-accent-gold/60"
               >
-                <div className="relative aspect-video w-full overflow-hidden bg-haze-500">
+                <div className="relative aspect-video w-full overflow-hidden bg-surface-tuxedo">
                   <Image
                     src={poster}
                     alt={v.title}
@@ -60,7 +60,7 @@ export function YouTubeGrid({ videos }: Props) {
                     className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
                   />
                   <span className="absolute inset-0 flex items-center justify-center">
-                    <span className="flex h-12 w-12 items-center justify-center bg-hazard text-ink transition-transform group-hover:scale-105">
+                    <span className="flex h-12 w-12 items-center justify-center bg-accent-gold text-surface-tuxedo transition-transform group-hover:scale-105">
                       <span aria-hidden className="text-xl">
                         ▸
                       </span>
@@ -68,10 +68,10 @@ export function YouTubeGrid({ videos }: Props) {
                   </span>
                 </div>
                 <div className="p-4">
-                  <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
                     YouTube
                   </p>
-                  <p className="mt-2 font-display text-base text-bone group-hover:text-slime md:text-lg">
+                  <p className="mt-2 font-display text-base text-surface-ivory group-hover:text-accent-gold md:text-lg">
                     {v.title}
                   </p>
                 </div>
@@ -83,7 +83,7 @@ export function YouTubeGrid({ videos }: Props) {
 
       {active ? (
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/95 data-[state=open]:animate-in data-[state=closed]:animate-out" />
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/95 data-[state=open]:animate-in data-[state=closed]:animate-out" />
           <Dialog.Content
             aria-describedby={undefined}
             className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8 focus:outline-none"
@@ -95,7 +95,7 @@ export function YouTubeGrid({ videos }: Props) {
                   href={active.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center px-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+                  className="inline-flex h-10 items-center px-3 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-ivory/65 hover:text-accent-gold"
                 >
                   Watch on YouTube ↗
                 </a>
@@ -103,13 +103,13 @@ export function YouTubeGrid({ videos }: Props) {
                   <button
                     type="button"
                     aria-label="Close player"
-                    className="inline-flex h-10 items-center bg-hazard px-4 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+                    className="inline-flex h-10 items-center bg-accent-gold px-4 font-body text-[11px] font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
                   >
                     Close ✕
                   </button>
                 </Dialog.Close>
               </div>
-              <div className="relative aspect-video w-full overflow-hidden bg-ink">
+              <div className="relative aspect-video w-full overflow-hidden bg-surface-tuxedo">
                 <iframe
                   src={`https://www.youtube.com/embed/${active.id}?autoplay=1&rel=0`}
                   title={active.title}

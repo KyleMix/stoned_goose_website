@@ -20,7 +20,7 @@ export function ShopProductCard({ product, borderClass }: Props) {
         onClick={() => track("Shop Click", { product: product.name })}
         className="flex h-full flex-col justify-between p-6 md:p-8"
       >
-        <div className="relative aspect-square w-full overflow-hidden bg-haze-500">
+        <div className="relative aspect-square w-full overflow-hidden bg-surface-tuxedo">
           {product.image ? (
             <>
               <Image
@@ -41,21 +41,21 @@ export function ShopProductCard({ product, borderClass }: Props) {
             // it from the grid entirely.
             <span
               aria-hidden
-              className="flex h-full w-full items-center justify-center border border-bone/10 font-display text-[5rem] text-bone/25 transition-colors duration-500 group-hover:text-slime/60"
+              className="flex h-full w-full items-center justify-center border border-surface-ivory/10 font-display text-[5rem] text-surface-ivory/25 transition-colors duration-500 group-hover:text-accent-gold/60"
             >
               {product.name.trim().charAt(0).toUpperCase()}
             </span>
           )}
         </div>
         <div className="mt-6 flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-xl text-bone group-hover:text-slime md:text-2xl">
+          <h3 className="font-display text-xl text-surface-ivory group-hover:text-accent-gold md:text-2xl">
             {product.name}
           </h3>
-          <span className="shrink-0 font-body text-sm font-semibold tabular-nums text-bone">
+          <span className="shrink-0 font-body text-sm font-bold tabular-nums text-surface-ivory">
             {product.price}
           </span>
         </div>
-        <p className="mt-2 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55 group-hover:text-slime">
+        <p className="mt-2 font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55 group-hover:text-accent-gold">
           View ↗
         </p>
       </Link>

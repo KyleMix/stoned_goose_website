@@ -44,20 +44,20 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
-        <Dialog.Content className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-bone/15 bg-ink p-6 shadow-2xl md:p-8">
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
+        <Dialog.Content className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-surface-ivory/15 bg-surface-tuxedo p-6 md:p-8">
           <div className="flex items-start justify-between gap-6">
             <div>
-              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-slime">
+              <p className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-accent-gold">
                 Add to the map
               </p>
               <Dialog.Title asChild>
-                <h2 className="mt-3 font-display text-2xl text-bone md:text-3xl">
-                  Submit a mic<span className="text-slime">.</span>
+                <h2 className="mt-3 font-display text-2xl text-surface-ivory md:text-3xl">
+                  Submit a mic<span className="text-accent-gold">.</span>
                 </h2>
               </Dialog.Title>
               <Dialog.Description asChild>
-                <p className="mt-2 font-body text-xs text-bone/65">
+                <p className="mt-2 font-body text-xs text-surface-ivory/65">
                   The crew verifies before it lands on the map. Skip the
                   coordinates, we&apos;ll geocode it from the address.
                 </p>
@@ -67,14 +67,14 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
               <button
                 type="button"
                 aria-label="Close"
-                className="font-mono text-xs uppercase tracking-[0.18em] text-bone/55 hover:text-slime"
+                className="font-mono text-xs uppercase tracking-[0.18em] text-surface-ivory/55 hover:text-accent-gold"
               >
                 ESC
               </button>
             </Dialog.Close>
           </div>
 
-          <div className="mt-6 border-t border-bone/15 pt-6">
+          <div className="mt-6 border-t border-surface-ivory/15 pt-6">
             <ContactForm
               subject="New open mic submission"
               source="/open-mics / submit"
@@ -164,23 +164,23 @@ function RegionGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+      <legend className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
         Region
-        <span aria-hidden className="ml-1 text-hazard">*</span>
+        <span aria-hidden className="ml-1 text-accent-gold">*</span>
       </legend>
       <div className="grid grid-cols-2 gap-2">
         {REGION_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-3 border border-bone/15 p-3 transition-colors hover:border-slime/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
+            className="flex cursor-pointer items-center gap-3 border border-surface-ivory/15 p-3 transition-colors hover:border-accent-gold/60 has-[:checked]:border-accent-gold has-[:checked]:bg-surface-ivory/[0.04]"
           >
             <input
               type="radio"
               value={opt.value}
-              className="h-4 w-4 accent-hazard"
+              className="h-4 w-4 accent-accent-gold"
               {...reg}
             />
-            <span className="font-body text-sm text-bone">{opt.label}</span>
+            <span className="font-body text-sm text-surface-ivory">{opt.label}</span>
           </label>
         ))}
       </div>
@@ -196,23 +196,23 @@ function DayGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+      <legend className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
         Day of week
-        <span aria-hidden className="ml-1 text-hazard">*</span>
+        <span aria-hidden className="ml-1 text-accent-gold">*</span>
       </legend>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {DAY_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-center gap-3 border border-bone/15 p-3 transition-colors hover:border-slime/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
+            className="flex cursor-pointer items-center gap-3 border border-surface-ivory/15 p-3 transition-colors hover:border-accent-gold/60 has-[:checked]:border-accent-gold has-[:checked]:bg-surface-ivory/[0.04]"
           >
             <input
               type="radio"
               value={opt.value}
-              className="h-4 w-4 accent-hazard"
+              className="h-4 w-4 accent-accent-gold"
               {...reg}
             />
-            <span className="font-body text-sm text-bone">{opt.label}</span>
+            <span className="font-body text-sm text-surface-ivory">{opt.label}</span>
           </label>
         ))}
       </div>

@@ -28,8 +28,8 @@
 
   html,
   body {
-    background: #0a0a0a;
-    color: #efe9dd;
+    background: #0f0f0f;
+    color: #f4eee2;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
   }
@@ -39,13 +39,22 @@
   }
 
   ::selection {
-    background: #f2ea00;
-    color: #0a0a0a;
+    background: #d4aa4a;
+    color: #0f0f0f;
   }
 
   ::-moz-selection {
-    background: #f2ea00;
-    color: #0a0a0a;
+    background: #d4aa4a;
+    color: #0f0f0f;
+  }
+
+  /* Tailwind's preflight hardcodes gray-400 for placeholders, which is off
+     palette now that the gray scale is gone. Smoke is the only permitted gray. */
+  input::-moz-placeholder,
+  textarea::-moz-placeholder,
+  ::placeholder {
+    color: #8c8781;
+    opacity: 1;
   }
 
   /* Anchor scroll lands below the fixed nav with breathing room. */
@@ -53,10 +62,17 @@
     scroll-margin-top: var(--scroll-offset);
   }
 
-  /* Editorial baseline focus */
+  /* Focus is a flat outline, never a glow or shadow. Marquee Gold clears the
+     3:1 non-text contrast threshold on Tuxedo (8.81:1) but not on Ivory
+     (1.88:1), so ivory sections flip the outline to Tuxedo. Sections opt in
+     structurally by setting data-surface, rather than each control guessing. */
   :focus-visible {
-    outline: 2px solid #f2ea00;
+    outline: 2px solid #d4aa4a;
     outline-offset: 2px;
+  }
+
+  [data-surface="ivory"] :focus-visible {
+    outline-color: #0f0f0f;
   }
 
   /* Nicer h tags by default; pages still override */
@@ -76,34 +92,6 @@
 
   .text-pretty {
     text-wrap: pretty;
-  }
-
-  /* Halftone treatment for B&W photography */
-  .halftone {
-    filter: grayscale(1) contrast(1.1);
-    background-image: radial-gradient(rgba(0, 0, 0, 0.55) 1px, transparent 1.2px);
-    background-size: 3px 3px;
-    background-blend-mode: multiply;
-  }
-
-  .blob {
-    border-radius: 47% 53% 60% 40% / 38% 51% 49% 62%;
-  }
-
-  /* CRT scanline overlay - opt in per element */
-  .scanlines::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(239, 233, 221, 0.04) 0px,
-      rgba(239, 233, 221, 0.04) 1px,
-      transparent 1px,
-      transparent 3px
-    );
-    mix-blend-mode: overlay;
   }
 
   .heading-display {
@@ -167,21 +155,15 @@
       padding-bottom: 8rem;
     }
   }
-
-  .rule {
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      rgba(239, 233, 221, 0.2),
-      rgba(239, 233, 221, 0.05),
-      transparent
-    );
-  }
 }
 
 /* Leaflet pin and cluster styling. Loaded globally so the dynamically imported
    open-mic-map can rely on these on first paint instead of injecting styles at
-   hydration. */
+   hydration.
+
+   Pins are flat fills with a Tuxedo keyline. The previous glow rings
+   (box-shadow spread in the accent color) are gone: the spec forbids shadows
+   and glows, so state reads as a fill swap instead. */
 .open-mic-pin {
   background: transparent;
   border: 0;
@@ -190,23 +172,17 @@
   display: block;
   width: 22px;
   height: 22px;
-  background: #f2ea00;
-  border: 2px solid #0a0a0a;
+  background: #d4aa4a;
+  border: 2px solid #0f0f0f;
   border-radius: 9999px;
-  box-shadow: 0 0 0 2px rgba(242, 234, 0, 0.35);
-  transition:
-    background-color 200ms ease,
-    box-shadow 200ms ease;
+  transition: background-color 200ms ease;
 }
-/* Green is the universal hover/interaction color. Pins flip to slime on
-   hover and stay slime while their mic is the selected one. */
+/* Interaction flips the fill to Ivory. Gold rests, Ivory responds. */
 .open-mic-pin span:hover {
-  background: #3ddc6e;
-  box-shadow: 0 0 0 2px rgba(61, 220, 110, 0.35);
+  background: #f4eee2;
 }
 .open-mic-pin--selected span {
-  background: #3ddc6e;
-  box-shadow: 0 0 0 3px rgba(61, 220, 110, 0.45);
+  background: #f4eee2;
 }
 .open-mic-cluster {
   background: transparent;
@@ -218,71 +194,74 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: #f2ea00;
-  color: #0a0a0a;
-  border: 2px solid #0a0a0a;
+  background: #d4aa4a;
+  color: #0f0f0f;
+  border: 2px solid #0f0f0f;
   border-radius: 9999px;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.05em;
-  box-shadow: 0 0 0 4px rgba(242, 234, 0, 0.35);
 }
 .leaflet-popup-content {
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
 }
 
 /* FullCalendar theming for /calendar. Plain CSS outside @layer for the same
-   reason as the Leaflet styles above: the markup is injected client-side. */
+   reason as the Leaflet styles above: the markup is injected client-side.
+   Hairlines and secondary text run on Smoke, the only permitted gray. */
 .comedy-calendar {
   --fc-page-bg-color: transparent;
-  --fc-border-color: rgba(239, 233, 221, 0.15);
-  --fc-neutral-bg-color: rgba(239, 233, 221, 0.04);
-  --fc-today-bg-color: rgba(242, 234, 0, 0.08);
+  --fc-border-color: #8c8781;
+  --fc-neutral-bg-color: transparent;
+  --fc-today-bg-color: transparent;
   --fc-event-bg-color: transparent;
-  --fc-event-border-color: rgba(239, 233, 221, 0.4);
-  --fc-event-text-color: #efe9dd;
-  --fc-list-event-hover-bg-color: rgba(239, 233, 221, 0.05);
+  --fc-event-border-color: #8c8781;
+  --fc-event-text-color: #f4eee2;
+  --fc-list-event-hover-bg-color: transparent;
   --fc-button-bg-color: transparent;
-  --fc-button-border-color: rgba(239, 233, 221, 0.25);
-  --fc-button-text-color: #efe9dd;
+  --fc-button-border-color: #8c8781;
+  --fc-button-text-color: #f4eee2;
   --fc-button-hover-bg-color: transparent;
-  --fc-button-hover-border-color: #3ddc6e;
-  --fc-button-active-bg-color: #f2ea00;
-  --fc-button-active-border-color: #f2ea00;
+  --fc-button-hover-border-color: #d4aa4a;
+  --fc-button-active-bg-color: #d4aa4a;
+  --fc-button-active-border-color: #d4aa4a;
 }
 .comedy-calendar .fc-toolbar-title {
   font-family: var(--font-display), Georgia, serif;
   font-size: clamp(1.4rem, 3vw, 2rem);
-  color: #efe9dd;
+  color: #f4eee2;
 }
 .comedy-calendar .fc-button {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.26em;
   border-radius: 0;
   padding: 0.55em 1em;
   transition: border-color 200ms ease, color 200ms ease;
 }
 .comedy-calendar .fc-button:hover {
-  color: #3ddc6e;
+  color: #d4aa4a;
 }
 .comedy-calendar .fc-button-primary:not(:disabled).fc-button-active,
 .comedy-calendar .fc-button-primary:not(:disabled):active {
-  color: #0a0a0a;
+  color: #0f0f0f;
 }
 .comedy-calendar .fc-col-header-cell-cushion,
 .comedy-calendar .fc-daygrid-day-number,
 .comedy-calendar .fc-list-day-text,
 .comedy-calendar .fc-list-day-side-text {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(239, 233, 221, 0.65);
+  letter-spacing: 0.26em;
+  color: #8c8781;
+}
+/* Today reads as a gold day number rather than a tinted cell, so the grid
+   keeps two surfaces instead of three. */
+.comedy-calendar .fc-day-today .fc-daygrid-day-number {
+  color: #d4aa4a;
 }
 .comedy-calendar a {
   color: inherit;
@@ -294,48 +273,46 @@
   cursor: pointer;
 }
 .comedy-calendar .fc-event:hover {
-  border-color: #3ddc6e;
-  color: #3ddc6e;
+  border-color: #d4aa4a;
+  color: #d4aa4a;
 }
 .comedy-calendar .sgp-event-show {
-  background: #f2ea00;
-  border-color: #f2ea00;
-  color: #0a0a0a;
-  font-weight: 600;
+  background: #d4aa4a;
+  border-color: #d4aa4a;
+  color: #0f0f0f;
+  font-weight: 700;
 }
 .comedy-calendar .sgp-event-show:hover {
-  background: #3ddc6e;
-  border-color: #3ddc6e;
-  color: #0a0a0a;
+  background: #f4eee2;
+  border-color: #f4eee2;
+  color: #0f0f0f;
 }
 .comedy-calendar .sgp-event-show .fc-event-main,
 .comedy-calendar .sgp-event-show .fc-list-event-title a {
-  color: #0a0a0a;
+  color: #0f0f0f;
 }
 .comedy-calendar .fc-list-event-title a {
-  color: #efe9dd;
+  color: #f4eee2;
 }
 .comedy-calendar .fc-list-event:hover .fc-list-event-title a {
-  color: #3ddc6e;
+  color: #d4aa4a;
 }
 .comedy-calendar .fc-daygrid-more-link {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
-  color: #f2ea00;
+  color: #d4aa4a;
 }
 .comedy-calendar .fc-daygrid-more-link:hover {
-  color: #3ddc6e;
+  color: #f4eee2;
 }
 .comedy-calendar .fc-popover {
-  background: #0a0a0a;
-  border: 1px solid rgba(239, 233, 221, 0.25);
+  background: #0f0f0f;
+  border: 1px solid #8c8781;
 }
 .comedy-calendar .fc-popover-title {
-  color: #efe9dd;
-  font-family: var(--font-mono), ui-monospace, monospace;
+  color: #f4eee2;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.26em;
 }
 .comedy-calendar .fc-daygrid-event {
   padding: 3px 6px;
@@ -350,29 +327,26 @@
 }
 .comedy-calendar .sgp-event-time {
   flex: none;
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
   letter-spacing: 0.04em;
-  opacity: 0.75;
+  color: #8c8781;
 }
 .comedy-calendar .sgp-event-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-weight: 600;
+  font-weight: 700;
 }
 .comedy-calendar .sgp-event-count {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
-  opacity: 0.75;
+  color: #8c8781;
 }
 .comedy-calendar .sgp-event-club {
   flex: none;
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  opacity: 0.6;
+  letter-spacing: 0.26em;
+  color: #8c8781;
 }
 .comedy-calendar .fc-list-event .sgp-event-inner {
   justify-content: space-between;

@@ -8,9 +8,9 @@ import { useFormContext } from "react-hook-form";
 // Keyboard focus keeps a visible hazard outline (the border-color shift
 // alone is too subtle to satisfy WCAG focus visibility).
 const baseInputClass =
-  "block w-full min-h-[48px] bg-transparent border-0 border-b border-bone/25 px-0 py-3 font-body text-base text-bone placeholder:text-bone/50 focus:border-hazard focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-hazard";
+  "block w-full min-h-[48px] bg-transparent border-0 border-b border-surface-ivory/25 px-0 py-3 font-body text-base text-surface-ivory placeholder:text-surface-ivory/50 focus:border-accent-gold focus:outline-none focus:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold";
 
-const errorInputClass = "border-hazard";
+const errorInputClass = "border-accent-gold";
 
 type LabelProps = {
   htmlFor: string;
@@ -22,10 +22,10 @@ export function FieldLabel({ htmlFor, children, required }: LabelProps) {
   return (
     <label
       htmlFor={htmlFor}
-      className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55"
+      className="font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55"
     >
       {children}
-      {required && <span aria-hidden className="ml-1 text-hazard">*</span>}
+      {required && <span aria-hidden className="ml-1 text-accent-gold">*</span>}
     </label>
   );
 }
@@ -37,7 +37,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
     <p
       id={id}
       role={message ? "alert" : undefined}
-      className="min-h-[1rem] font-body text-[11px] font-medium tracking-wide text-hazard"
+      className="min-h-[1rem] font-body text-[11px] font-normal tracking-wide text-accent-gold"
     >
       {message ?? ""}
     </p>

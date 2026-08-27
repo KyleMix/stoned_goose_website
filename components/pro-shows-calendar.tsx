@@ -125,10 +125,10 @@ export function ProShowsCalendar() {
           type="button"
           aria-pressed={clubFilter === "all"}
           onClick={() => setClubFilter("all")}
-          className={`flex h-16 items-center border px-5 font-body text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
+          className={`flex h-16 items-center border px-5 font-body text-[11px] font-bold uppercase tracking-[0.18em] transition-colors ${
             clubFilter === "all"
-              ? "border-hazard bg-hazard text-ink"
-              : "border-bone/25 text-bone/70 hover:border-slime hover:text-slime"
+              ? "border-accent-gold bg-accent-gold text-surface-tuxedo"
+              : "border-surface-ivory/25 text-surface-ivory/70 hover:border-accent-gold hover:text-accent-gold"
           }`}
         >
           All clubs
@@ -144,8 +144,8 @@ export function ProShowsCalendar() {
               onClick={() => setClubFilter(selected ? "all" : club.slug)}
               className={`flex h-16 items-center border px-5 transition-colors ${
                 selected
-                  ? "border-hazard bg-bone/[0.06]"
-                  : "border-bone/25 hover:border-slime"
+                  ? "border-accent-gold bg-surface-ivory/[0.06]"
+                  : "border-surface-ivory/25 hover:border-accent-gold"
               }`}
             >
               {club.logo ? (
@@ -158,8 +158,8 @@ export function ProShowsCalendar() {
                 />
               ) : (
                 <span
-                  className={`font-body text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                    selected ? "text-hazard" : "text-bone/70"
+                  className={`font-body text-[11px] font-bold uppercase tracking-[0.18em] ${
+                    selected ? "text-accent-gold" : "text-surface-ivory/70"
                   }`}
                 >
                   {club.name}
@@ -199,14 +199,14 @@ export function ProShowsCalendar() {
       </div>
 
       {proShows.some((s) => s.featured) ? (
-        <p className="mt-6 flex items-center gap-2 font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65">
-          <span aria-hidden className="h-3 w-3 bg-hazard" />
+        <p className="mt-6 flex items-center gap-2 font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/65">
+          <span aria-hidden className="h-3 w-3 bg-accent-gold" />
           Spotlight shows
         </p>
       ) : null}
 
       {proShows.length === 0 ? (
-        <p className="mt-6 font-body text-sm text-bone/65">
+        <p className="mt-6 font-body text-sm text-surface-ivory/65">
           No synced shows yet. The calendar fills in automatically once the
           club feeds run.
         </p>

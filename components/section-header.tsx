@@ -32,8 +32,8 @@ export function SectionHeader({
       {eyebrow && (
         <div
           className={cn(
-            "font-body text-[11px] font-medium uppercase tracking-[0.18em]",
-            light ? "text-ink/70" : "text-bone/55",
+            "font-body text-[11px] font-normal uppercase tracking-[0.18em]",
+            light ? "text-surface-tuxedo/70" : "text-surface-ivory/55",
           )}
         >
           <span>{eyebrow}</span>
@@ -42,7 +42,7 @@ export function SectionHeader({
       <h2
         className={cn(
           "heading-display text-[clamp(2.4rem,7vw,5.5rem)] text-balance",
-          light ? "text-ink" : "text-bone",
+          light ? "text-surface-tuxedo" : "text-surface-ivory",
         )}
       >
         {title}
@@ -51,7 +51,7 @@ export function SectionHeader({
         <p
           className={cn(
             "max-w-2xl font-body text-base leading-relaxed md:text-lg",
-            light ? "text-ink/70" : "text-bone/85",
+            light ? "text-surface-tuxedo/70" : "text-surface-ivory/85",
           )}
         >
           {subtitle}

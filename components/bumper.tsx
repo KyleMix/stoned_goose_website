@@ -30,21 +30,21 @@ export function Bumper({
     <section
       aria-hidden
       className={cn(
-        "relative border-y border-bone/10 bg-ink",
+        "relative border-y border-surface-ivory/10 bg-surface-tuxedo",
         density === "default" ? "py-24 md:py-36" : "py-16 md:py-24",
         className,
       )}
     >
       <div className="mx-auto flex max-w-[900px] flex-col items-center px-5 text-center">
         {eyebrow && (
-          <p className="font-body text-[10px] font-medium uppercase tracking-[0.32em] text-bone/55">
+          <p className="font-body text-[10px] font-normal uppercase tracking-[0.32em] text-surface-ivory/55">
             {eyebrow}
           </p>
         )}
 
         <p
           className={cn(
-            "mt-6 font-display italic leading-[1.05] text-bone",
+            "mt-6 font-display italic leading-[1.05] text-surface-ivory",
             "text-[clamp(2rem,5.5vw,4.5rem)]",
           )}
         >
@@ -52,14 +52,14 @@ export function Bumper({
         </p>
 
         {footnote && (
-          <p className="mt-8 font-body text-[10px] font-medium uppercase tracking-[0.32em] text-bone/55">
+          <p className="mt-8 font-body text-[10px] font-normal uppercase tracking-[0.32em] text-surface-ivory/55">
             {footnote}
           </p>
         )}
       </div>
 
       {bug && (
-        <span className="pointer-events-none absolute bottom-4 right-5 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/30 md:bottom-6 md:right-10">
+        <span className="pointer-events-none absolute bottom-4 right-5 font-body text-[10px] font-normal uppercase tracking-[0.18em] text-surface-ivory/30 md:bottom-6 md:right-10">
           [ stoned goose ]
         </span>
       )}

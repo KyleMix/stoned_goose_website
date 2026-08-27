@@ -112,7 +112,7 @@ export default async function ServiceDetailPage(props: {
               <span key={i} className="block">
                 {part}
                 {i < arr.length - 1 && (
-                  <span className="italic text-hazard"> &amp; </span>
+                  <span className="italic text-accent-gold"> &amp; </span>
                 )}
               </span>
             ))}
@@ -124,11 +124,11 @@ export default async function ServiceDetailPage(props: {
       {svc.draft ? (
         <aside
           aria-label="Draft notice"
-          className="border-y-2 border-hazard bg-ink"
+          className="border-y-2 border-accent-gold bg-surface-tuxedo"
         >
           <div className="mx-auto max-w-[1400px] px-5 py-3 md:px-10">
-            <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone">
-              Draft<span className="text-hazard">.</span> Final copy lands soon. Send a quote request and we&apos;ll fill in the details with you.
+            <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory">
+              Draft<span className="text-accent-gold">.</span> Final copy lands soon. Send a quote request and we&apos;ll fill in the details with you.
             </p>
           </div>
         </aside>
@@ -139,9 +139,9 @@ export default async function ServiceDetailPage(props: {
         const ideal = realItems(svc.idealFor);
         if (what.length === 0 && ideal.length === 0) return null;
         return (
-          <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
+          <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-16 md:py-20">
             <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-              <div className="grid gap-px overflow-hidden border border-bone/15 md:grid-cols-2">
+              <div className="grid gap-px overflow-hidden border border-surface-ivory/15 md:grid-cols-2">
                 {what.length > 0 ? <Block title="What you get" items={what} /> : null}
                 {ideal.length > 0 ? <Block title="Ideal for" items={ideal} /> : null}
               </div>
@@ -154,18 +154,18 @@ export default async function ServiceDetailPage(props: {
         const steps = realItems(svc.process);
         if (steps.length === 0) return null;
         return (
-          <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+          <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-20 md:py-24">
             <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-              <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
+              <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-surface-ivory">
                 Process
               </h2>
-              <ol className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-bone/15 md:grid-cols-3">
+              <ol className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-surface-ivory/15 md:grid-cols-3">
                 {steps.map((step, i) => (
-                  <li key={i} className="bg-ink p-8 md:p-10">
-                    <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-hazard">
+                  <li key={i} className="bg-surface-tuxedo p-8 md:p-10">
+                    <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-accent-gold">
                       /{String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="mt-4 font-display text-2xl text-bone md:text-3xl">
+                    <p className="mt-4 font-display text-2xl text-surface-ivory md:text-3xl">
                       {step}
                     </p>
                   </li>
@@ -176,19 +176,19 @@ export default async function ServiceDetailPage(props: {
         );
       })()}
 
-      <section id="quote" className="scroll-mt-24 border-b border-bone/10 bg-ink py-20 md:py-24">
+      <section id="quote" className="scroll-mt-24 border-b border-surface-ivory/10 bg-surface-tuxedo py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
-              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
                 Pricing
               </p>
-              <p className="mt-4 font-display text-3xl leading-snug text-bone md:text-4xl">
+              <p className="mt-4 font-display text-3xl leading-snug text-surface-ivory md:text-4xl">
                 {svc.pricing}
               </p>
             </div>
             <div className="md:col-span-7">
-              <p className="mb-6 font-body text-sm text-bone/65">
+              <p className="mb-6 font-body text-sm text-surface-ivory/65">
                 Tell us what you&apos;re planning and we&apos;ll scope it.
               </p>
               <ContactForm
@@ -251,31 +251,31 @@ export default async function ServiceDetailPage(props: {
         const faqs = svc.faqs.filter((f) => !/^\s*TODO\b/i.test(f.a));
         if (faqs.length === 0) return null;
         return (
-          <section className="border-b border-bone/10 bg-ink py-20 md:py-24">
+          <section className="border-b border-surface-ivory/10 bg-surface-tuxedo py-20 md:py-24">
             <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-              <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
+              <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-surface-ivory">
                 FAQ
               </h2>
-              <ul className="mt-10 divide-y divide-bone/15 border-y border-bone/15">
+              <ul className="mt-10 divide-y divide-surface-ivory/15 border-y border-surface-ivory/15">
                 {faqs.map((f, i) => (
                   <li key={i} className="py-7">
                     <details className="group grid grid-cols-12 gap-x-6">
                       <summary className="col-span-12 grid cursor-pointer grid-cols-12 items-baseline gap-x-6 list-none [&::-webkit-details-marker]:hidden">
-                        <span className="col-span-2 font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/55 md:col-span-1">
+                        <span className="col-span-2 font-body text-xs font-normal uppercase tracking-[0.18em] text-surface-ivory/55 md:col-span-1">
                           /0{i + 1}
                         </span>
-                        <h3 className="col-span-9 font-display text-2xl text-bone group-hover:text-slime md:col-span-10 md:text-3xl">
+                        <h3 className="col-span-9 font-display text-2xl text-surface-ivory group-hover:text-accent-gold md:col-span-10 md:text-3xl">
                           {f.q}
                         </h3>
                         <span
                           aria-hidden
-                          className="col-span-1 text-right font-body text-xl text-bone/55 transition-transform duration-200 group-open:rotate-45"
+                          className="col-span-1 text-right font-body text-xl text-surface-ivory/55 transition-transform duration-200 group-open:rotate-45"
                         >
                           +
                         </span>
                       </summary>
                       <div className="col-span-12 mt-4 md:col-start-2 md:col-span-11">
-                        <p className="max-w-prose font-body text-base text-bone/85">
+                        <p className="max-w-prose font-body text-base text-surface-ivory/85">
                           {f.a}
                         </p>
                       </div>
@@ -288,14 +288,14 @@ export default async function ServiceDetailPage(props: {
         );
       })()}
 
-      <section className="bg-ink py-20 md:py-24">
+      <section className="bg-surface-tuxedo py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="flex flex-wrap items-center justify-between gap-6 border-y border-bone/15 py-10">
+          <div className="flex flex-wrap items-center justify-between gap-6 border-y border-surface-ivory/15 py-10">
             <div>
-              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+              <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-surface-ivory/55">
                 Next service
               </p>
-              <p className="mt-2 font-display text-3xl text-bone md:text-4xl">
+              <p className="mt-2 font-display text-3xl text-surface-ivory md:text-4xl">
                 {next.title}
               </p>
             </div>
@@ -308,7 +308,7 @@ export default async function ServiceDetailPage(props: {
               />
               <Link
                 href={`/book/${next.slug}`}
-                className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+                className="inline-flex h-12 items-center bg-accent-gold px-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-tuxedo hover:bg-surface-ivory"
               >
                 Read {next.title} ↗
               </Link>
@@ -324,17 +324,17 @@ export default async function ServiceDetailPage(props: {
 
 function Block({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="bg-ink p-8 md:p-10">
-      <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+    <div className="bg-surface-tuxedo p-8 md:p-10">
+      <p className="font-body text-[11px] font-normal uppercase tracking-[0.18em] text-accent-gold">
         {title}
       </p>
       <ul className="mt-6 space-y-4">
         {items.map((item, i) => (
           <li key={i} className="flex items-baseline gap-4">
-            <span className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone/55">
+            <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-surface-ivory/55">
               /0{i + 1}
             </span>
-            <span className="font-body text-base text-bone/85">{item}</span>
+            <span className="font-body text-base text-surface-ivory/85">{item}</span>
           </li>
         ))}
       </ul>
