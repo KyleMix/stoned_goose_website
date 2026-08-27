@@ -20,11 +20,13 @@ export type Sponsor = {
   name: string;
   /** Path under /public. The sponsor's own artwork, unmodified. */
   logo: string;
-  /** Rendered width in px. Height follows the intrinsic ratio. */
-  width: number;
-  height: number;
   url?: string;
 };
+
+// Logos arrive from the CMS at whatever size the sponsor supplied, so they are
+// normalised by HEIGHT and left to find their own width. Sizing by width would
+// make a wide wordmark and a square badge read as wildly different weights.
+const LOGO_HEIGHT = 40;
 
 export function SponsorStrip({
   sponsors,
@@ -51,9 +53,14 @@ export function SponsorStrip({
               <Image
                 src={s.logo}
                 alt={s.name}
-                width={s.width}
-                height={s.height}
-                className="block h-auto w-auto"
+                width={240}
+                height={LOGO_HEIGHT}
+                sizes="240px"
+                className="block"
+                // width:auto in the inline style so it beats the width
+                // next/image sets as an attribute; the logo then finds its
+                // own width from its intrinsic ratio at a fixed height.
+                style={{ height: LOGO_HEIGHT, width: "auto" }}
               />
             );
             return (

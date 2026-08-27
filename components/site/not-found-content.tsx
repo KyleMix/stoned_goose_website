@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Lockup } from "@/components/brand/lockup";
 import { useEffect, useState } from "react";
 import { upcomingShows } from "@/content/shows";
@@ -58,13 +59,19 @@ function nextShowLine(): { date: string; venue: string; href: string } | null {
   return { date, venue, href: `/shows#${next.id}` };
 }
 
-export default function NotFound() {
+export function NotFoundContent() {
+  const router = useRouter();
   const [picks, setPicks] = useState<Suggestion[]>(DEFAULTS);
+  const [canGoBack, setCanGoBack] = useState(false);
   const nextShow = nextShowLine();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setPicks(suggestionsForPath(window.location.pathname));
+      // history.length is 1 when this is the first page of the session, which
+      // is the common case for a bad link from search or social. Showing a
+      // back button then would be a control that does nothing.
+      setCanGoBack(window.history.length > 1);
     }
   }, []);
 
@@ -75,12 +82,12 @@ export default function NotFound() {
         <p className="mt-10 t-eyebrow">
           [ Static / 404 / Misfire ]
         </p>
-        <h1 className="t-headline mt-6 display-mega">
-          Lost.
+        <h1 className="t-headline mt-6 display-hero">
+          This bit bombed.
         </h1>
         <p className="t-body mt-6 max-w-xl text-base md:text-lg">
-          That page either never existed or got cut from the special. Try one of
-          these instead.
+          The page you wanted got cut for time. Somebody in the back is still
+          heckling. Here is where everyone else went.
         </p>
 
         <ul className="mt-10 divide-y divide-smoke border-y border-smoke">
@@ -133,9 +140,22 @@ export default function NotFound() {
         </ul>
 
         <div className="mt-10 flex flex-wrap gap-3 pb-20">
+          {canGoBack ? (
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+            >
+              ← Go back
+            </button>
+          ) : null}
           <Link
             href="/"
-            className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+            className={
+              canGoBack
+                ? "inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                : "inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+            }
           >
             Back to home ↗
           </Link>

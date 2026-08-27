@@ -474,6 +474,16 @@ collections:
               - { name: name, label: Package name, widget: string }
               - { name: price, label: Price, as shown, widget: string, hint: 'Written out, e.g. "$500 per show".' }
               - { name: deliverables, label: What the sponsor gets, widget: list, field: { name: item, label: Item, widget: string } }
+          - name: sponsors
+            label: Sponsor logos (shown in the strip at the foot of /book)
+            widget: list
+            required: false
+            hint: 'Real sponsors only. Upload the logo exactly as the sponsor supplies it: their brand colours are the one sanctioned exception to our five-colour palette, and their mark is not ours to restyle. The strip hides itself when this list is empty.'
+            fields:
+              - { name: name, label: Sponsor name, widget: string, hint: 'Used as the image alt text.' }
+              - { name: logo, label: Logo, widget: image, media_folder: /public/images/sponsors, public_folder: /images/sponsors, hint: 'PNG or SVG with a transparent background. It sits on a grey strip.' }
+              - { name: url, label: Sponsor website, widget: string, required: false, pattern: ['^(https?://.*)?$', 'Must start with http:// or https://'] }
+
           - name: stats
             label: Stats (not shown anywhere yet)
             widget: list

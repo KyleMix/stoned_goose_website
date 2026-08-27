@@ -5,7 +5,6 @@ import { CartDrawer } from "@/components/cart/cart-drawer";
 import { Grain } from "@/components/grain";
 import { EditOverlay } from "@/components/edit-overlay";
 import { RouteFocusManager } from "@/components/route-focus-manager";
-import { SearchPalette } from "@/components/search-palette";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
 // The Organization/LocalBusiness entity is emitted once by the root layout
@@ -39,7 +38,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       </a>
       <CartProvider>
         <Nav />
-        <main id="main" tabIndex={-1} data-pagefind-body>
+        <main id="main" tabIndex={-1}>
           {children}
         </main>
         <CartDrawer />
@@ -47,7 +46,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <Footer />
       <Grain />
       <RouteFocusManager />
-      <SearchPalette />
       <SmoothScroll />
       <EditOverlay />
     </>

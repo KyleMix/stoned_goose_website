@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/content/services";
 import { Badge } from "@/components/brand/badge";
-import { sponsorshipTiers } from "@/content/sponsorships";
+import { sponsorshipTiers, sponsors } from "@/content/sponsorships";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { SectionHeader } from "@/components/section-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField } from "@/components/form-field";
 import { StickyQuoteRail } from "@/components/sticky-quote-rail";
+import { SponsorStrip } from "@/components/brand/sponsor-strip";
 import { PressStrip } from "@/components/press-strip";
 import { BookPlanner } from "@/components/book-planner";
 import { JsonLd } from "@/components/json-ld";
@@ -280,6 +281,10 @@ export default function BookPage() {
           </div>
         </div>
       </section>
+
+      {/* The one sanctioned Smoke surface, at the page foot as the spec puts
+          it. Renders nothing until there are real sponsors in the CMS. */}
+      <SponsorStrip sponsors={sponsors} />
 
       {calLink ? (
         <StickyQuoteRail

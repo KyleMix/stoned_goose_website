@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
@@ -11,7 +12,20 @@ import { CartButton } from "@/components/cart/cart-button";
 import { formatShowMonthDay } from "@/lib/dates";
 
 
+/** The marquee line: next show, date and venue. Null when nothing is booked. */
+function nextShowMarquee() {
+  const next = upcomingShows[0];
+  if (!next) return null;
+  const date = formatShowMonthDay(next.start);
+  const venue = next.venue?.name ?? next.venue?.city ?? null;
+  const parts = [date, venue].filter(Boolean);
+  if (!parts.length) return null;
+  return { line: parts.join(" / "), href: next.ticketUrl ?? "/shows" };
+}
+
 export function Nav() {
+  const pathname = usePathname();
+  const marquee = nextShowMarquee();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -56,15 +70,40 @@ export function Nav() {
 
   return (
     <>
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled || open
-          ? "bg-surface-tuxedo border-b border-smoke"
-          : "bg-transparent",
-      )}
-    >
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-10">
+    <header className="fixed inset-x-0 top-0 z-50 bg-surface-tuxedo">
+      {/* The marquee board. The brand system is called Marquee, so the header
+          opens the way a theatre marquee does: what is on, and when. It
+          collapses on scroll to give the page back its height, which is the
+          one thing the scroll state is for now. Hidden entirely when the
+          calendar is empty rather than showing a placeholder. */}
+      {marquee ? (
+        <div
+          aria-hidden={scrolled}
+          className={cn(
+            "overflow-hidden border-b border-accent-gold transition-[height,opacity] duration-300",
+            scrolled || open ? "h-0 opacity-0" : "h-9 opacity-100",
+          )}
+        >
+          <Link
+            href={marquee.href}
+            tabIndex={scrolled ? -1 : undefined}
+            onClick={() => track("CTA Click", { cta: "nav-marquee" })}
+            className="mx-auto flex h-9 max-w-[1400px] items-center gap-3 px-5 md:px-10"
+          >
+            <span className="t-eyebrow shrink-0">Now playing</span>
+            <span className="t-eyebrow truncate text-surface-ivory">
+              {marquee.line}
+            </span>
+            {/* The whole strip is the link, so this is a desktop affordance
+                only. On a narrow screen it would wrap inside a 36px bar. */}
+            <span aria-hidden className="ml-auto hidden shrink-0 t-eyebrow text-smoke sm:inline">
+              Tickets ↗
+            </span>
+          </Link>
+        </div>
+      ) : null}
+
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between border-b border-smoke px-5 md:h-20 md:px-10">
         <Link
           href="/"
           aria-label={`${site.shortName} home`}
@@ -86,31 +125,43 @@ export function Nav() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="t-eyebrow text-smoke transition-colors hover:text-accent-gold"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <button
-            type="button"
-            aria-label="Search the site"
-            onClick={() => {
-              track("Search Open", { source: "nav" });
-              window.dispatchEvent(
-                new KeyboardEvent("keydown", { key: "k", metaKey: true }),
-              );
-            }}
-            className="inline-flex items-center gap-2 border border-smoke px-2.5 py-1.5 t-eyebrow text-smoke transition-colors hover:border-accent-gold hover:text-accent-gold"
-          >
-            <span aria-hidden>/</span>
-            <span>Search</span>
-            <span aria-hidden className="opacity-60">⌘K</span>
-          </button>
+        {/* Numbered like the section indexes used elsewhere on the site, so
+            the header reads as a contents list rather than a row of links.
+            The number is what carries the active state: it goes gold while
+            its label goes ivory, which is the same rest/respond swap the
+            rest of the system uses. */}
+        <nav aria-label="Primary" className="hidden items-center gap-6 md:flex lg:gap-7">
+          {nav.map((item, i) => {
+            const active =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className="group inline-flex items-baseline gap-1.5"
+              >
+                <span
+                  aria-hidden
+                  className={cn(
+                    "t-eyebrow transition-colors",
+                    active ? "text-accent-gold" : "text-smoke",
+                  )}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span
+                  className={cn(
+                    "t-eyebrow transition-colors group-hover:text-accent-gold",
+                    active ? "text-surface-ivory" : "text-smoke",
+                  )}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
           <Link
             href="/shows"
             onClick={() => track("CTA Click", { cta: "nav-tickets" })}
