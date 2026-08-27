@@ -101,6 +101,10 @@ export function StickyQuoteRail({
         <a
           href={`#${targetId}`}
           onClick={handleClick}
+          // The rail is aria-hidden while parked offscreen, so the CTA has to
+          // leave the tab order with it. Without this a keyboard user tabs
+          // into a link screen readers have been told is not there.
+          tabIndex={shown ? undefined : -1}
           className="inline-flex h-10 shrink-0 items-center bg-accent-gold px-5 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
         >
           {ctaLabel}
