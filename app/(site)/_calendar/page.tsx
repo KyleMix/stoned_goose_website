@@ -13,6 +13,7 @@ import {
   proClubs,
   proShowsFetchedAt,
 } from "@/content/pro-shows";
+import { formatMonthDay } from "@/lib/dates";
 
 export const metadata: Metadata = {
   title: "Pro Comedy Calendar",
@@ -50,7 +51,7 @@ export default function ProCalendarPage() {
           <p className="t-body mt-6 max-w-2xl text-sm text-smoke">
             Listings sync automatically from each club&apos;s site
             {proShowsFetchedAt
-              ? `, last updated ${new Date(proShowsFetchedAt).toLocaleDateString("en-US", { month: "long", day: "numeric" })}`
+              ? `, last updated ${formatMonthDay(proShowsFetchedAt)}`
               : ""}
             . Spot a missing show? Tell us at the contact page and we&apos;ll
             add it.

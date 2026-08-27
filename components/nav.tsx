@@ -8,18 +8,8 @@ import { primaryNav as nav } from "@/lib/navigation";
 import { upcomingShows } from "@/content/shows";
 import { track } from "@/lib/analytics";
 import { CartButton } from "@/components/cart/cart-button";
+import { formatShowMonthDay } from "@/lib/dates";
 
-function formatNextShowDate(iso: string | null): string | null {
-  if (!iso) return null;
-  try {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-    }).format(new Date(iso));
-  } catch {
-    return null;
-  }
-}
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -204,7 +194,7 @@ export function Nav() {
             {(() => {
               const next = upcomingShows[0];
               if (!next) return null;
-              const date = formatNextShowDate(next.start);
+              const date = formatShowMonthDay(next.start);
               const venue = next.venue?.name ?? next.venue?.city ?? null;
               if (!date && !venue) return null;
               return (

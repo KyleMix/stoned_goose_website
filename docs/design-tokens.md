@@ -219,6 +219,59 @@ slot cannot be transparent.
 Still open: these are raster. SVG remains the better end state and is what the
 40 foot banner case would need. Do not trace the goose to get there.
 
+## Primitives
+
+Reusable pieces in `components/brand/`. Start from these rather than
+hand-rolling: they carry the rules that would otherwise live in a comment.
+
+| Piece | What it enforces |
+| ----- | ---------------- |
+| `<Lockup>` / `<Badge>` | Minimum widths, aspect, no recoloring, no double padding |
+| `<Surface tone>` | Sets the background and declares `data-surface` together |
+| `<Headline>` etc. | The five type roles |
+| `<MonocleRing>` | 3px gold circle, bleed off a corner or frame a headshot |
+| `<GoldRule>` | Flat 1px gold hairline, never a gradient |
+| `<ShowInfoBlock>` | The fixed show-info order |
+| `<SponsorStrip>` | The one sanctioned Smoke surface |
+
+### The monocle ring
+
+One ring per page section, maximum. It is the signature device; at full size on
+everything it stops meaning anything.
+
+That limit is enforced, not requested: `scripts/test/monocle-ring.test.ts`
+walks every TSX file, tracks `<section>` nesting, and fails the build when one
+section holds two rings, or when a ring sits outside any section (where a bleed
+would anchor to the wrong ancestor). Sibling sections may each have one.
+
+It is a `<div>` with a border. No SVG, no dependency, no glow.
+
+### Show info
+
+`<ShowInfoBlock>` renders date, venue, doors and show time, price, ticket link.
+Always that order, on every poster, card and event page. The order is not a
+prop and cannot be changed from a call site; `layout` only changes how the rows
+sit. Missing fields are skipped rather than filled in.
+
+Formatting comes from `lib/dates.ts`, which pins every date to
+`America/Los_Angeles`. This matters more than it looks: the site is a static
+export, so dates are formatted once at build time on whatever machine ran the
+build. CI runs in UTC, which was rendering a 7:00 PM Olympia show as "Sun, Oct
+18, 2:00 AM" instead of "Sat, Oct 17, 7:00 PM". Wrong time and wrong day, on
+the primary content of the site. Every date formatter in the app now goes
+through that module; none call `Intl.DateTimeFormat` directly.
+
+### The sponsor strip
+
+Sponsor logos at the page foot, in a Smoke strip. This is the one sanctioned
+exception to the five colors: sponsor logos run in their own brand colors and
+are never recolored to fit the palette, since a restyled sponsor mark is worse
+than an off-palette one.
+
+The licence covers the logos and nothing else. Type on the strip runs Tuxedo
+via `data-surface="smoke"`, which is 5.38:1; gold there would be 1.64:1 and
+ivory 3.08:1. The component renders nothing when there are no sponsors.
+
 ## Section vertical rhythm
 
 Three documented steps replace the ad-hoc `py-16/20/24/28/32` spread.

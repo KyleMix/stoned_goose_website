@@ -14,6 +14,8 @@ import { SectionRenderer } from "@/components/section-renderer";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { AddToCalendar } from "@/components/add-to-calendar";
 import { ShareButton } from "@/components/share-button";
+import { ShowInfoBlock } from "@/components/brand/show-info-block";
+import { formatShowDate } from "@/lib/dates";
 import { FacebookPagePlugin } from "@/components/facebook-page-plugin";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbs, buildShowsItemList } from "@/lib/schema";
@@ -30,23 +32,6 @@ export const metadata: Metadata = {
     },
   },
 };
-
-function formatDate(value: string | null) {
-  if (!value) return "Date TBD";
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(value));
-}
-
-function formatTime(value: string | null) {
-  if (!value) return "Time TBD";
-  return new Intl.DateTimeFormat("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(new Date(value));
-}
 
 export default function ShowsPage() {
   const hasShows = upcomingShows.length > 0;
@@ -83,7 +68,7 @@ export default function ShowsPage() {
               {presale.venueName}
             </p>
             <p className="t-eyebrow text-smoke">
-              Expires {formatDate(presale.expiresAt)}
+              Expires {formatShowDate(presale.expiresAt)}
             </p>
           </div>
         </aside>
@@ -135,28 +120,13 @@ export default function ShowsPage() {
                     key={show.id}
                     className="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 py-7"
                   >
-                    <div className="col-span-12 md:col-span-3">
-                      <p className="t-subhead text-2xl md:text-3xl">
-                        {formatDate(show.start)}
-                      </p>
-                      <p className="t-eyebrow text-smoke">
-                        {show.doorTime ?? formatTime(show.start)}
-                      </p>
-                    </div>
-                    <div className="col-span-12 md:col-span-6">
+                    <div className="col-span-12 md:col-span-9">
                       <h3 className="t-subhead text-2xl md:text-3xl">
                         {show.name}
                       </h3>
-                      {venueLine && (
-                        <p className="t-body mt-1 text-sm">
-                          {venueLine}
-                        </p>
-                      )}
-                      {show.ticketPrice && (
-                        <p className="mt-1 t-eyebrow">
-                          {show.ticketPrice}
-                        </p>
-                      )}
+                      {/* Date, venue, doors and show, price. Always that
+                          order, here and everywhere else. */}
+                      <ShowInfoBlock show={show} className="mt-3" />
                       {show.summary && (
                         <p className="t-body mt-3 max-w-prose text-sm text-smoke">
                           {show.summary}

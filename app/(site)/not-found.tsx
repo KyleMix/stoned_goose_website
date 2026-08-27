@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Lockup } from "@/components/brand/lockup";
 import { useEffect, useState } from "react";
 import { upcomingShows } from "@/content/shows";
+import { formatShowMonthDay } from "@/lib/dates";
 
 type Suggestion = { href: string; label: string };
 
@@ -52,15 +53,7 @@ function suggestionsForPath(path: string): Suggestion[] {
 function nextShowLine(): { date: string; venue: string; href: string } | null {
   const next = upcomingShows[0];
   if (!next?.start) return null;
-  let date = "Date TBD";
-  try {
-    date = new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-    }).format(new Date(next.start));
-  } catch {
-    // fall through with TBD
-  }
+  const date = formatShowMonthDay(next.start) ?? "Date TBD";
   const venue = next.venue?.name ?? next.venue?.city ?? "TBD";
   return { date, venue, href: `/shows#${next.id}` };
 }

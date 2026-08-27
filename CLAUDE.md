@@ -59,10 +59,11 @@ Headlines and subheads are always uppercase and letterspaced. Body is always sen
 - `/open-mics` is an information utility, not a sales surface. It carries no page-level mark: the site header lockup is the only brand furniture it needs. Don't add one.
 
 ### The monocle ring
-A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framing a headshot. **One ring per page section, maximum.** Use the `<MonocleRing />` component so the limit is enforceable.
+A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framing a headshot. **One ring per page section, maximum.** Use `<MonocleRing />`: `scripts/test/monocle-ring.test.ts` fails the build on a second ring in one section, so the limit is real rather than advisory.
 
 ### Layout
 - Show info renders in this order every time, everywhere: date, venue, doors and show time, price, ticket link. Use `<ShowInfoBlock />`.
+- All date and time formatting goes through `lib/dates.ts`, which pins to `America/Los_Angeles`. Never call `Intl.DateTimeFormat` directly: this is a static export, so an unpinned date is frozen in the build machine's timezone and CI runs in UTC.
 - Start from an existing primitive. Change the words and the photo, nothing else.
 
 ## House rules

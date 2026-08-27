@@ -4,34 +4,26 @@ import Link from "next/link";
 import { hero } from "@/content/home";
 import { upcomingShows } from "@/content/shows";
 import { track } from "@/lib/analytics";
+import { formatShowDateShort } from "@/lib/dates";
 import { TextEffect } from "@/components/text-effect";
-
-function formatShowDate(iso: string | null): string | null {
-  if (!iso) return null;
-  try {
-    return new Intl.DateTimeFormat("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    }).format(new Date(iso));
-  } catch {
-    return null;
-  }
-}
+import { MonocleRing } from "@/components/brand/monocle-ring";
+import { GoldRule } from "@/components/brand/gold-rule";
 
 export function Hero() {
   // The next real show gets a ticket strip above the fold. Renders nothing
   // while the calendar is empty, lights up the moment a show is entered.
   const next = upcomingShows[0];
-  const nextDate = next ? formatShowDate(next.start) : null;
+  const nextDate = next ? formatShowDateShort(next.start) : null;
   const nextVenue = next ? next.venue?.name ?? next.venue?.city ?? null : null;
   return (
     <section
       aria-label="Hero"
       className="relative isolate overflow-hidden border-b border-smoke bg-surface-tuxedo"
     >
-      {/* Background: solid black + a soft directional vignette. Site-wide grain
-          handles texture on top. No video, no stock photo. */}
+      {/* The signature device, once. One ring per section is the rule, and
+          scripts/test/monocle-ring.test.ts fails the build if a second lands
+          in here. The section is `relative`, which the bleed anchors to. */}
+      <MonocleRing corner="bottom-right" size={420} />
 
       <div className="relative mx-auto max-w-[1400px] px-5 pb-16 pt-32 md:px-10 md:pb-20 md:pt-36">
         {/* Status banner. No mark: the headline below already sets the
@@ -60,7 +52,8 @@ export function Hero() {
 
         {/* Baseline-aligned row: subhead left, tagline right.
             items-baseline anchors both first-line baselines to the same line. */}
-        <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-smoke pt-8 md:mt-12">
+        <GoldRule className="mt-10 md:mt-12" />
+        <div className="mt-8 grid grid-cols-12 items-baseline gap-x-8 gap-y-4">
           <p className="t-body col-span-12 max-w-md text-base leading-snug md:col-span-7 md:text-lg">
             {hero.subhead}
           </p>

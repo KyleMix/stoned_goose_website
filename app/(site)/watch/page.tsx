@@ -18,6 +18,7 @@ import { FeaturedSpecialPlayer } from "@/components/featured-special-player";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { YouTubeGrid, type GridVideo } from "@/components/youtube-grid";
 import { JsonLd } from "@/components/json-ld";
+import { formatPostDate } from "@/lib/dates";
 import { buildBreadcrumbs, buildVideoObject } from "@/lib/schema";
 import { normalizeCuratedVideos, normalizeFeedVideo } from "@/lib/videos";
 import { youtubeFeed, relativeAge } from "@/lib/feeds";
@@ -162,11 +163,7 @@ export default function WatchPage() {
               {news.map((post) => (
                 <li key={post.slug} className="py-7">
                   <p className="t-eyebrow text-smoke">
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
+                    {formatPostDate(post.date)}
                   </p>
                   <h3 className="mt-2 t-subhead text-2xl md:text-3xl">
                     {post.title}

@@ -169,6 +169,22 @@
   [data-surface="ivory"] .text-smoke {
     color: #0f0f0f;
   }
+
+  /* The sponsor strip is the one sanctioned Smoke surface, and the spec's own
+     exception to "every section is ivory or tuxedo". Type on it runs Tuxedo:
+     that is 5.38:1, where gold would be 1.64:1 and ivory 3.08:1. Sponsor logos
+     themselves keep their own brand colors, which is the whole point of the
+     exception, and are never recolored to fit. */
+  [data-surface="smoke"] .t-headline,
+  [data-surface="smoke"] .t-subhead,
+  [data-surface="smoke"] .t-eyebrow,
+  [data-surface="smoke"] .t-body,
+  [data-surface="smoke"] .t-fine {
+    color: #0f0f0f;
+  }
+  [data-surface="smoke"] :focus-visible {
+    outline-color: #0f0f0f;
+  }
 }
 
 @layer utilities {
