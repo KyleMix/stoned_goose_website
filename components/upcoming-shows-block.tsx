@@ -89,10 +89,6 @@ export function UpcomingShowsBlock() {
                               className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                               unoptimized
                             />
-                            <span
-                              aria-hidden
-                              className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] opacity-50 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0"
-                            />
                             <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-eyebrow text-surface-tuxedo">
                               ▸
                             </span>

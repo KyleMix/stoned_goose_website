@@ -24,7 +24,7 @@ const config: Config = {
       "accent-gold": "#D4AA4A",
 
       // Small gold text on ivory only. Label size. Never on black.
-      "gold-ink": "#8A6A21",
+      "gold-ink": "#87681F",
 
       // The only permitted gray. Secondary text and hairlines.
       smoke: "#8C8781",

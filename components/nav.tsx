@@ -71,7 +71,7 @@ export function Nav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
         scrolled || open
-          ? "bg-surface-tuxedo/85 backdrop-blur-md border-b border-smoke"
+          ? "bg-surface-tuxedo border-b border-smoke"
           : "bg-transparent",
       )}
     >
@@ -174,11 +174,9 @@ export function Nav() {
       </div>
     </header>
 
-      {/* Mobile menu panel. Kept OUTSIDE <header> on purpose: the header gets
-          backdrop-blur when open, and a backdrop-filter makes that element the
-          containing block for fixed descendants, which would collapse this
-          full-screen panel to the header's height. As a sibling it stays
-          fixed to the viewport. */}
+      {/* Mobile menu panel. Kept OUTSIDE <header> on purpose: a fixed
+          descendant of the header would be positioned against it rather than
+          the viewport. As a sibling it stays fixed to the viewport. */}
       <div
         ref={panelRef}
         className={cn(

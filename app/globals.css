@@ -149,9 +149,24 @@
     color: #0f0f0f;
   }
   [data-surface="ivory"] .t-eyebrow {
-    color: #8a6a21;
+    color: #87681f;
   }
   [data-surface="ivory"] .t-body {
+    color: #0f0f0f;
+  }
+
+  /* Smoke is the only permitted gray, and no single gray can clear AA body
+     text on both surfaces: passing on Tuxedo needs relative luminance >= 0.197,
+     passing on Ivory needs <= 0.152. The windows do not overlap, so this is a
+     constraint of the palette, not a tuning problem.
+
+     Resolution: Smoke keeps its job as a hairline on both surfaces, where the
+     3:1 non-text threshold applies and it passes (3.08:1 on ivory, 5.38:1 on
+     tuxedo). Smoke TEXT on ivory flips to Tuxedo ink. Hierarchy on ivory is
+     then carried by size and weight rather than tint, which is how a printed
+     page does it anyway. */
+  [data-surface="ivory"] .t-fine,
+  [data-surface="ivory"] .text-smoke {
     color: #0f0f0f;
   }
 }

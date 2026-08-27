@@ -137,10 +137,6 @@ export default function RosterPage() {
                       className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                       priority={i < 2}
                     />
-                    <span
-                      aria-hidden
-                      className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-0"
-                    />
                   </div>
                 </div>
                 <div className="col-span-12 md:col-span-8">
@@ -154,7 +150,7 @@ export default function RosterPage() {
                     <>
                       <span
                         aria-hidden
-                        className="mt-5 block h-px max-w-[80px] bg-surface-tuxedo/30"
+                        className="mt-5 block h-px max-w-[80px] bg-smoke"
                       />
                       <p className="t-body mt-5 max-w-prose text-base leading-relaxed text-surface-tuxedo md:text-lg">
                         {m.bio}
@@ -195,10 +191,6 @@ export default function RosterPage() {
                       ? { placeholder: "blur" as const, blurDataURL: getPlaceholder(c.photo)! }
                       : {})}
                     className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
-                  />
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-0"
                   />
                   <div className="absolute inset-x-0 bottom-0 z-10 hidden translate-y-full items-center justify-center gap-4 bg-surface-tuxedo px-4 py-4 transition-transform duration-300 group-hover:translate-y-0 group-focus-within:translate-y-0 md:flex">
                     {c.hasEpk && (

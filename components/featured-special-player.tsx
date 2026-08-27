@@ -51,10 +51,6 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
           className="object-cover [filter:grayscale(1)_contrast(1.1)]"
           priority
         />
-        <span
-          aria-hidden
-          className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
-        />
         <div className="absolute inset-0 flex items-center justify-center">
           {ytId ? (
             <Dialog.Trigger asChild>
@@ -69,7 +65,7 @@ export function FeaturedSpecialPlayer({ poster, alt, videoUrl }: Props) {
               </button>
             </Dialog.Trigger>
           ) : (
-            <span className="border border-accent-gold bg-surface-tuxedo/85 px-5 py-3 t-eyebrow text-surface-ivory backdrop-blur-sm md:text-xs">
+            <span className="border border-accent-gold bg-surface-tuxedo px-5 py-3 t-eyebrow text-surface-ivory md:text-xs">
               Coming soon
             </span>
           )}

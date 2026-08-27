@@ -100,10 +100,6 @@ export default async function ComedianPage(props: {
                     : {})}
                   className="object-cover [filter:grayscale(1)_contrast(1.05)]"
                 />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60"
-                />
               </div>
             </div>
 

@@ -80,7 +80,7 @@ export function StickyQuoteRail({
   }
 
   const baseClass =
-    "fixed inset-x-0 bottom-0 z-40 border-t border-smoke bg-surface-tuxedo/95 backdrop-blur-md md:border-t md:px-6";
+    "fixed inset-x-0 bottom-0 z-40 border-t border-smoke bg-surface-tuxedo md:border-t md:px-6";
   const transitionClass = reducedMotionRef.current
     ? ""
     : "transition-transform duration-300";

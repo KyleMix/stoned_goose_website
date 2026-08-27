@@ -55,10 +55,6 @@ export function YouTubeGrid({ videos }: Props) {
                     className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                     unoptimized
                   />
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
-                  />
                   <span className="absolute inset-0 flex items-center justify-center">
                     <span className="flex h-12 w-12 items-center justify-center bg-accent-gold text-surface-tuxedo transition-transform group-hover:scale-105">
                       <span aria-hidden className="text-xl">

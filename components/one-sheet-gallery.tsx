@@ -84,7 +84,7 @@ export function OneSheetGallery({ pages }: Props) {
         }}
       >
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/90 backdrop-blur-sm" />
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/90" />
           <Dialog.Content
             aria-label="Feature overview pages"
             onCloseAutoFocus={(event) => {

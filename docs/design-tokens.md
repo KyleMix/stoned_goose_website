@@ -19,7 +19,7 @@ shows up in review as unstyled output instead of shipping quietly.
 | `surface-tuxedo` | `#0F0F0F` | Background, or headline text on ivory                   |
 | `surface-ivory`  | `#F4EEE2` | Background, or text on tuxedo                           |
 | `accent-gold`    | `#D4AA4A` | Accent, rules, the monocle ring, headline text on tuxedo |
-| `gold-ink`       | `#8A6A21` | Small gold text on ivory only                           |
+| `gold-ink`       | `#87681F` | Small gold text on ivory only                           |
 | `smoke`          | `#8C8781` | Secondary text and hairlines. The only permitted gray.  |
 
 Names are deliberately verbose. `bg-surface-ivory` and `text-gold-ink` state
@@ -46,20 +46,47 @@ distinguishable. No glows, no shadows, no gradient scrims.
 
 ### Contrast
 
-Measured against WCAG 2.1. Two pairings fail AA at small sizes and the fix is
-size or surface, never a new color.
+Measured against WCAG 2.1, and verified in the browser: an audit walks every
+rendered text node on nine routes, resolves its real painted background, and
+checks the ratio against its size class. It currently reports zero failures.
 
-| Pairing                   | Ratio     | AA normal | AA large |
-| ------------------------- | --------- | --------- | -------- |
-| `surface-ivory` on tuxedo | 16.59:1   | pass      | pass     |
-| `accent-gold` on tuxedo   | 8.81:1    | pass      | pass     |
-| `smoke` on tuxedo         | 5.38:1    | pass      | pass     |
-| `gold-ink` on ivory       | 4.36:1    | **fail**  | pass     |
-| `smoke` on ivory          | 3.08:1    | **fail**  | pass     |
-| `accent-gold` on ivory    | 1.88:1    | **fail**  | **fail** |
+| Pairing                   | Ratio   | AA normal | AA large | Non-text (3:1) |
+| ------------------------- | ------- | --------- | -------- | -------------- |
+| `surface-ivory` on tuxedo | 16.59:1 | pass      | pass     | pass           |
+| `surface-tuxedo` on ivory | 16.59:1 | pass      | pass     | pass           |
+| `accent-gold` on tuxedo   | 8.81:1  | pass      | pass     | pass           |
+| `smoke` on tuxedo         | 5.38:1  | pass      | pass     | pass           |
+| `gold-ink` on ivory       | 4.51:1  | pass      | pass     | pass           |
+| `smoke` on ivory          | 3.08:1  | **fail**  | pass     | pass           |
+| `accent-gold` on ivory    | 1.88:1  | **fail**  | **fail** | **fail**       |
 
-`accent-gold` on ivory is forbidden outright. The other two failures are open
-decisions, see the Phase 0 audit.
+Two of these needed resolving. Neither was solved by inventing a color.
+
+**`gold-ink` was `#8A6A21`, at 4.36:1.** That is 0.14 short of AA, and the spec
+puts Dark Gold on ivory at label size, which is small text, so no size or
+weight change could rescue it. A search over the neighbouring RGB space for the
+smallest perceptual change that clears 4.5:1 returned `#87681F`: dE76 of 0.97
+from the original, below the just-noticeable difference on adjacent flat
+patches. Three hex digits moved and the pairing passes at every size.
+
+**`smoke` on ivory cannot be fixed at all, and that is a fact about the
+palette.** Clearing 4.5:1 against Tuxedo requires relative luminance of at
+least 0.1965; clearing it against Ivory requires at most 0.1519. The windows do
+not overlap, so no single gray passes body text on both surfaces. Since Smoke
+is the only permitted gray, the resolution is to split its two jobs:
+
+- As a **hairline or border**, the 3:1 non-text threshold applies and Smoke
+  passes on both surfaces (3.08:1 and 5.38:1). Unchanged everywhere.
+- As **text**, Smoke stays on tuxedo and flips to Tuxedo ink on ivory. On an
+  ivory surface, hierarchy is carried by size and weight rather than tint,
+  which is how a printed page does it anyway.
+
+`accent-gold` on ivory stays forbidden at any size; the type roles make it
+unreachable rather than merely discouraged.
+
+**Focus** is a flat 2px outline, never a glow. Gold clears the 3:1 non-text
+threshold on tuxedo but not on ivory, so `[data-surface="ivory"] :focus-visible`
+flips it to Tuxedo ink.
 
 ## Type
 

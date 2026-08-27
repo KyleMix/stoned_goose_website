@@ -47,10 +47,6 @@ export function RosterTeaser({ limit = 8 }: { limit?: number }) {
                   {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}
                   className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                 />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-0"
-                />
               </div>
               <p className="mt-3 t-subhead text-sm text-surface-tuxedo md:text-base">
                 {c.name}

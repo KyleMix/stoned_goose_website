@@ -22,10 +22,6 @@ export function ImageCaptionBlock({ block }: { block: ImageCaptionBlockData }) {
               className="object-cover [filter:grayscale(1)_contrast(1.05)]"
               unoptimized
             />
-            <span
-              aria-hidden
-              className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
-            />
           </div>
           {block.caption ? (
             <figcaption className="mt-4 t-eyebrow text-smoke">

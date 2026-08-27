@@ -18,14 +18,15 @@ The palette, type, and marks are specified. Where taste and the spec disagree, t
 | `surface-tuxedo` | `#0F0F0F` | Background, or headline text on ivory |
 | `surface-ivory` | `#F4EEE2` | Background, or text on tuxedo |
 | `accent-gold` | `#D4AA4A` | Accent, rules, the monocle ring, headline text on tuxedo |
-| `gold-ink` | `#8A6A21` | Small gold text on ivory only |
+| `gold-ink` | `#87681F` | Small gold text on ivory only |
 | `smoke` | `#8C8781` | Secondary text, hairlines. The only permitted gray. |
 
 - Every section is either an ivory surface or a tuxedo surface. There is no third surface. **No gold backgrounds anywhere on this site**, ever. Gold as a full background is for Instagram stories and merch only.
 - Gold never carries body text. Gold text is headline size on tuxedo, or `gold-ink` at label size on ivory. Nothing else. Never `accent-gold` on ivory at any size: it measures 1.88:1.
 - No second accent color. The old hazard yellow and slime green are retired and must not come back.
 - **Interaction is a fill swap, not a new color.** Gold rests, ivory responds: a gold CTA hovers to ivory, ivory text hovers to gold. Where a selected state is gold, its hover is ivory so the two stay distinguishable.
-- No gradients. Not on heroes, not on buttons, not on card hovers, not as a scrim. Use a flat panel.
+- No gradients. Not on heroes, not on buttons, not on card hovers, not as a scrim, not as a halftone screen over a photo. Use a flat panel.
+- Photography runs as shot, full color or black and white. No screens, no tints, no overlays.
 - No shadows, glows, or glassmorphism. Focus is a flat 2px outline, gold on tuxedo, tuxedo on ivory (sections declare `data-surface="ivory"`).
 - Sponsor logos in their own brand colors, inside a Smoke strip at the page foot, are the one sanctioned exception.
 
@@ -55,6 +56,7 @@ Headlines and subheads are always uppercase and letterspaced. Body is always sen
 - **Never recolor a mark in CSS.** No filter, no mix-blend-mode, no background-color behind a knockout. Every colorway exists as a file.
 - Never place a mark over a photo without a solid tuxedo panel behind it.
 - Don't mix lockup and badge on one page unless it genuinely serves both audiences, and then keep them in separate sections.
+- `/open-mics` is an information utility, not a sales surface. It carries no page-level mark: the site header lockup is the only brand furniture it needs. Don't add one.
 
 ### The monocle ring
 A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framing a headshot. **One ring per page section, maximum.** Use the `<MonocleRing />` component so the limit is enforceable.

@@ -44,7 +44,7 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
         <Dialog.Content className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-smoke bg-surface-tuxedo p-6 md:p-8">
           <div className="flex items-start justify-between gap-6">
             <div>

@@ -97,10 +97,6 @@ export function NewsCard({ item }: { item: NewsItem }) {
             {labels[item.kind]}
           </span>
         )}
-        <span
-          aria-hidden
-          className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.5)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50 transition-opacity duration-500 group-hover:opacity-0"
-        />
         {item.kind === "tiktok" || (item.kind === "instagram" && item.isVideo) ? (
           <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-eyebrow text-surface-tuxedo">
             ▸

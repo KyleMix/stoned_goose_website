@@ -22,19 +22,13 @@ export function ShopProductCard({ product, borderClass }: Props) {
       >
         <div className="relative aspect-square w-full overflow-hidden bg-surface-tuxedo">
           {product.image ? (
-            <>
-              <Image
-                src={product.image}
-                alt={product.imageAlt || product.name}
-                fill
-                sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
-              <span
-                aria-hidden
-                className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.35)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-25 transition-opacity duration-500 group-hover:opacity-0"
-              />
-            </>
+            <Image
+              src={product.image}
+              alt={product.imageAlt || product.name}
+              fill
+              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            />
           ) : (
             // No photo synced yet: a typographic card keeps the product
             // shoppable instead of hiding

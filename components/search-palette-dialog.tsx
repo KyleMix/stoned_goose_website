@@ -106,7 +106,7 @@ export function SearchPaletteDialog({ open, onOpenChange }: Props) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
         <Dialog.Content
           aria-describedby={undefined}
           className="fixed left-1/2 top-[14svh] z-50 w-[min(640px,92vw)] -translate-x-1/2 border border-smoke bg-surface-tuxedo"

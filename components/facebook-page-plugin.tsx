@@ -105,12 +105,7 @@ export function FacebookPagePlugin() {
               loading="lazy"
               className="block w-full"
             />
-          ) : (
-            <span
-              aria-hidden
-              className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
-            />
-          )}
+          ) : null}
         </div>
       </div>
     </section>

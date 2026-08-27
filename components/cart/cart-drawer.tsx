@@ -13,7 +13,7 @@ export function CartDrawer() {
   return (
     <Dialog.Root open={open} onOpenChange={(o) => (o ? undefined : closeCart())}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-[60] bg-surface-tuxedo/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
+        <Dialog.Overlay className="fixed inset-0 z-[60] bg-surface-tuxedo/80 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
         <Dialog.Content className="fixed right-0 top-0 z-[60] flex h-full w-[min(420px,92vw)] flex-col border-l border-smoke bg-surface-tuxedo">
           {/* Announce in-flight cart updates to screen readers; the buttons
               only communicate busy state visually via disabled styling. */}

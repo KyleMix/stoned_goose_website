@@ -636,7 +636,7 @@ collections:
         pattern: true
     fields:
       - { name: name, label: Name, widget: string }
-      - { name: photo, label: Portrait photo, widget: image, required: false, media_folder: /public/images/comedians, public_folder: '', hint: 'Vertical photo, taller than wide (3:4), at least 800px wide. The halftone effect is applied by the site, upload the normal photo. Big phone photos get compressed automatically after saving.' }
+      - { name: photo, label: Portrait photo, widget: image, required: false, media_folder: /public/images/comedians, public_folder: '', hint: 'Vertical photo, taller than wide (3:4), at least 800px wide. Photos run as shot, full color or black and white, so upload the version you want people to see. Big phone photos get compressed automatically after saving.' }
       - { name: photoAlt, label: Portrait alt text, widget: string, required: false, hint: 'Describe the photo for screen readers, e.g. "Alexa Hansen headshot". Left blank, the site uses the name.' }
       - { name: instagram, label: Instagram URL, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'Full profile link, e.g. https://www.instagram.com/handle.' }
       - { name: facebook, label: Facebook URL, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'] }
