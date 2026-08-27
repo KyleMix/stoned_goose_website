@@ -345,6 +345,34 @@ The licence covers the logos and nothing else. Type on the strip runs Tuxedo
 via `data-surface="smoke"`, which is 5.38:1; gold there would be 1.64:1 and
 ivory 3.08:1. The component renders nothing when there are no sponsors.
 
+## Acceptance
+
+`scripts/test/acceptance.mjs` checks the runtime half of the brand rules
+against a built and served site: section surfaces, the gold text rules,
+gradients and shadows, mark minimum sizes, clear space, show-info order, and
+mark mixing. Run it before a release:
+
+    npm run build && node scripts/serve-out.mjs &
+    node scripts/test/acceptance.mjs
+
+It is not in `npm run test` because it needs a built export and a running
+server. The static half is covered there instead:
+`brand-assets.test.ts` guards the logo masters, `monocle-ring.test.ts` guards
+the one-ring-per-section rule, and `validate-content.ts` guards the CMS shapes.
+
+### The gold text rule, as implemented
+
+The checklist says "no gold text below headline size on black". Read literally
+that forbids the Eyebrow role, which the spec's own type table puts at Marquee
+Gold on black at label size, and which two of its four reference layouts show.
+The two statements cannot both hold.
+
+Implemented reading: what is forbidden is gold BODY text. Gold is allowed at
+headline size, or in the Eyebrow role (Regular 400, uppercase, +26%). The
+acceptance script encodes that, and currently finds 44 gold headlines and 55
+gold eyebrows with nothing outside those two categories. Flagged so the brand
+page can be corrected.
+
 ## Section vertical rhythm
 
 Three documented steps replace the ad-hoc `py-16/20/24/28/32` spread.

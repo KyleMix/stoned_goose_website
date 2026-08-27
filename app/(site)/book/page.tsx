@@ -173,7 +173,7 @@ export default function BookPage() {
                       key={d}
                       className="flex items-baseline gap-3 text-sm text-surface-ivory"
                     >
-                      <span aria-hidden className="text-accent-gold">/</span>
+                      <span aria-hidden className="text-smoke">/</span>
                       <span>{d}</span>
                     </li>
                   ))}

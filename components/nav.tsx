@@ -116,9 +116,12 @@ export function Nav() {
               size in the footer. */}
           <span className="t-subhead text-xl leading-none md:text-[1.4rem]">
             Stoned Goose
+            {/* Punctuation, not an accent. The retired system coloured this
+                period gold; Marquee has no such device, and at subhead size
+                gold is neither a headline nor an eyebrow. */}
             <span
               aria-hidden
-              className="text-accent-gold transition-[text-decoration-color] group-hover:underline group-hover:decoration-accent-gold group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-accent-gold group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
+              className="transition-[text-decoration-color] group-hover:underline group-hover:decoration-accent-gold group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-accent-gold group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
             >
               .
             </span>
