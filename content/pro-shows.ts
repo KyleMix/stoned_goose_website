@@ -35,7 +35,7 @@ export type ProShow = {
   /** Ticket purchase URL on the club's site. */
   url: string;
   image?: string;
-  /** Spotlit shows render in the hazard style on the calendar. */
+  /** Spotlit shows render in the gold style on the calendar. */
   featured?: boolean;
 };
 
