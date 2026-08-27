@@ -15,6 +15,13 @@
 // Failure behavior matches the other sync scripts: a club that cannot be
 // fetched keeps its previously synced shows, and the script always exits 0
 // so static builds never break on a third-party outage.
+//
+// A scrape rarely fails by going offline. It fails by returning 200 with
+// markup we no longer understand: a redesign, a bot interstitial, a renamed
+// plugin. That parses to zero events, which is indistinguishable from an
+// empty calendar unless you look at what was there before. reconcileClub
+// looks, and refuses to let a club that had listings drop to none on the
+// strength of a clean parse alone.
 
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -42,7 +49,10 @@ function sleep(ms: number) {
 
 async function fetchText(url: string): Promise<string | null> {
   try {
-    const res = await fetch(url, { headers: BROWSER_HEADERS, redirect: "follow" });
+    const res = await fetch(url, {
+      headers: BROWSER_HEADERS,
+      redirect: "follow",
+    });
     if (!res.ok) {
       console.warn(`[pro-shows] ${url} -> ${res.status} ${res.statusText}`);
       return null;
@@ -176,9 +186,7 @@ async function syncSeatengine(club: ProClub): Promise<ProShow[] | null> {
     }
   }
 
-  candidates = candidates.filter(
-    (e) => !matchesAny(e.title, club.excludeText),
-  );
+  candidates = candidates.filter((e) => !matchesAny(e.title, club.excludeText));
 
   // includeText filter ("Special Event"): the badge lives on the detail
   // page, so verify each candidate there.
@@ -236,7 +244,9 @@ async function syncTribe(club: ProClub): Promise<ProShow[] | null> {
   if (events) {
     return events
       .filter((e) => e.title && e.start_date)
-      .filter((e) => !matchesAny(decodeEntities(e.title ?? ""), club.excludeText))
+      .filter(
+        (e) => !matchesAny(decodeEntities(e.title ?? ""), club.excludeText),
+      )
       .map((e) => ({
         id: `${club.slug}-${e.start_date}-${slugify(e.title ?? "")}`,
         clubSlug: club.slug,
@@ -283,6 +293,52 @@ function decodeEntities(s: string): string {
 
 // --- Main --------------------------------------------------------------------
 
+// Decides what a single club contributes to this run, given what it had
+// before. Pure and exported so scripts/test/sync-guards.test.ts can pin the
+// three cases without touching the network.
+//
+//   fetched === null   transport failed. Keep what we had.
+//   fetched is empty   parsed clean but found nothing. If the club had
+//                      upcoming shows a moment ago, that is a broken scrape
+//                      far more often than a cleared calendar, so keep them
+//                      and say so. They age out on their own via the cutoff,
+//                      so a club that really has gone dark still empties.
+//   otherwise          trust the fetch.
+export function reconcileClub(
+  clubSlug: string,
+  fetched: ProShow[] | null,
+  previousShows: ProShow[],
+  cutoff: Date,
+): { shows: ProShow[]; warning: string | null } {
+  const previousUpcoming = previousShows.filter(
+    (s) => s.clubSlug === clubSlug && isUpcoming(s, cutoff),
+  );
+
+  if (fetched === null) {
+    return {
+      shows: previousUpcoming,
+      warning: `${clubSlug}: fetch failed, keeping ${previousUpcoming.length} previously synced shows`,
+    };
+  }
+
+  if (fetched.length === 0 && previousUpcoming.length > 0) {
+    return {
+      shows: previousUpcoming,
+      warning:
+        `${clubSlug}: parsed 0 events but ${previousUpcoming.length} were synced before. ` +
+        `Treating as a broken scrape and keeping them. Check the adapter if this repeats.`,
+    };
+  }
+
+  return { shows: fetched, warning: null };
+}
+
+// A show still worth listing: parseable date, not already past.
+function isUpcoming(show: ProShow, cutoff: Date): boolean {
+  const d = new Date(show.start);
+  return !Number.isNaN(d.getTime()) && d >= cutoff;
+}
+
 async function main() {
   let previous: { shows?: ProShow[] } = {};
   try {
@@ -292,36 +348,50 @@ async function main() {
   }
   const previousShows = Array.isArray(previous.shows) ? previous.shows : [];
 
+  // Hoisted above the loop so the keep-or-drop decision and the final filter
+  // agree on what counts as past.
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 1);
+
   const all: ProShow[] = [];
   for (const club of proClubs) {
     const adapter = club.platform === "tribe" ? syncTribe : syncSeatengine;
-    const shows = await adapter(club);
-    if (shows === null) {
-      const kept = previousShows.filter((s) => s.clubSlug === club.slug);
-      console.warn(
-        `[pro-shows] ${club.slug}: fetch failed, keeping ${kept.length} previously synced shows`,
-      );
-      all.push(...kept);
-    } else {
-      console.log(`[pro-shows] ${club.slug}: ${shows.length} shows`);
-      all.push(...shows);
-    }
+    const fetched = await adapter(club);
+    const { shows, warning } = reconcileClub(
+      club.slug,
+      fetched,
+      previousShows,
+      cutoff,
+    );
+    if (warning) console.warn(`[pro-shows] ${warning}`);
+    else console.log(`[pro-shows] ${club.slug}: ${shows.length} shows`);
+    all.push(...shows);
   }
 
   // Dedupe (same club + start + title can arrive from both listing and
   // detail passes) and drop past dates.
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - 1);
   const unique = new Map<string, ProShow>();
   for (const s of all) {
-    const d = new Date(s.start);
-    if (Number.isNaN(d.getTime()) || d < cutoff) continue;
+    if (!isUpcoming(s, cutoff)) continue;
     unique.set(`${s.clubSlug}|${s.start}|${s.title.toLowerCase()}`, s);
   }
 
   const shows = [...unique.values()].sort((a, b) =>
     a.start.localeCompare(b.start),
   );
+
+  // Only rewrite when the listing actually moved. fetchedAt used to change on
+  // every run, so the 6-hourly cron committed a diff 1400 times a year whether
+  // or not anything happened, and a real deletion arrived looking exactly like
+  // the noise. It also reads better on /calendar: "last updated" now means the
+  // lineup changed, not that a job ran.
+  if (JSON.stringify(previous.shows ?? null) === JSON.stringify(shows)) {
+    console.log(
+      `[pro-shows] ${shows.length} shows, unchanged. Leaving JSON alone.`,
+    );
+    return;
+  }
+
   writeJson(OUT_PATH, { fetchedAt: new Date().toISOString(), shows });
   console.log(`[pro-shows] wrote ${shows.length} shows`);
 }

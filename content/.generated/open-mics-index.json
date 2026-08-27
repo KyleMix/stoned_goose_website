@@ -768,22 +768,6 @@
     "id": "log-cabin-bar-grill-olympia-wa-monday"
   },
   {
-    "name": "Lolo Pass",
-    "venue": "Lolo Pass",
-    "address": "1616 E Burnside St",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.520229800869764,
-    "lng": -122.67208624399176,
-    "day": "Thursday",
-    "frequency": "weekly",
-    "time": "7:30pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "",
-    "id": "lolo-pass-portland-thursday"
-  },
-  {
     "name": "Lucky Dime",
     "venue": "Lucky Dime",
     "address": "1618 Hewitt Ave",
@@ -855,14 +839,14 @@
     "address": "532 SE Grand Ave",
     "city": "Portland",
     "region": "OR",
+    "day": "Thursday",
+    "time": "9pm",
+    "frequency": "weekly",
+    "host": "",
+    "signupUrl": "In person",
+    "notes": "",
     "lat": 45.52520045777066,
     "lng": -122.6758509498741,
-    "day": "Friday",
-    "frequency": "weekly",
-    "time": "9pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "",
     "id": "my-father-s-place-portland-friday"
   },
   {
@@ -1188,25 +1172,6 @@
     "id": "tacoma-comedy-downtown-tacoma-wednesday"
   },
   {
-    "name": "The 4th Wall PDX",
-    "venue": "The 4th Wall PDX",
-    "address": "1445 SE Hawthorne Blvd",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.52068207827878,
-    "lng": -122.68072602426184,
-    "day": "Wednesday",
-    "frequency": "monthly",
-    "weeks": [
-      "Last"
-    ],
-    "time": "7pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Set 4(5 for women and LGBTQIA+)/ do not punch down",
-    "id": "the-4th-wall-pdx-portland-wednesday"
-  },
-  {
     "name": "The 884 pub",
     "venue": "The 884 pub",
     "address": "757 S National Ave",
@@ -1221,26 +1186,6 @@
     "signupUrl": "",
     "notes": "Only Comedy. Free. Set 5-8/. Age 21+. Parking. on street",
     "id": "the-884-pub-bremerton-thursday"
-  },
-  {
-    "name": "The Automatic Bar",
-    "venue": "The Automatic Bar",
-    "address": "3652 SE Division St",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.526846601052874,
-    "lng": -122.67930217441062,
-    "day": "Wednesday",
-    "frequency": "biweekly",
-    "weeks": [
-      "1st",
-      "3rd"
-    ],
-    "time": "8pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Set 4/",
-    "id": "the-automatic-bar-portland-wednesday"
   },
   {
     "name": "The bake shop",
@@ -1308,22 +1253,6 @@
     "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfuYAWfEY1-5_-NZKJEj29tGBlVCd199VODeKqcZrEepdGMMw/viewform?fbclid=PAT01DUAMxkvVleHRuA2FlbQIxMAABp0yUa43hVpwFREA2xJiJcN44lynSA_u5eb8vo9EJHO1dfx5oZlyOTwEPDqDG_aem_5EF2EhVnEyjsh-wXGLM0Ow",
     "notes": "Set 5/",
     "id": "the-fan-club-lakewood-tuesday"
-  },
-  {
-    "name": "The High Dive",
-    "venue": "The High Dive",
-    "address": "1406 SE 12th Ave",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.508279423208975,
-    "lng": -122.68066157015335,
-    "day": "Monday",
-    "frequency": "weekly",
-    "time": "10",
-    "host": "https://www.facebook.com/ian.albanese",
-    "signupUrl": "",
-    "notes": "FB email the host on monday for a spot",
-    "id": "the-high-dive-portland-monday"
   },
   {
     "name": "Lock'n Laugh",
@@ -1475,22 +1404,6 @@
     "signupUrl": "",
     "notes": "",
     "id": "uisce-irish-pub-bellingham-monday"
-  },
-  {
-    "name": "Unlimited IPA",
-    "venue": "Unlimited IPA",
-    "address": "6350 SE Foster Rd",
-    "city": "Portland",
-    "region": "OR",
-    "lat": 45.519999450675215,
-    "lng": -122.6686800640879,
-    "day": "Sunday",
-    "frequency": "weekly",
-    "time": "7pm",
-    "host": "",
-    "signupUrl": "",
-    "notes": "Set 5/",
-    "id": "unlimited-ipa-portland-sunday"
   },
   {
     "name": "Wig Wam",

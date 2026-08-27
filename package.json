@@ -14,7 +14,7 @@
     "serve:out": "node scripts/serve-out.mjs",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx scripts/test/open-mics-normalize.test.ts && tsx scripts/test/schema.test.ts && tsx scripts/test/reserved-slugs.test.ts && tsx scripts/test/legal-docs.test.ts && tsx scripts/test/brand-assets.test.ts && tsx scripts/test/monocle-ring.test.ts && npm run content:validate",
+    "test": "tsx scripts/test/open-mics-normalize.test.ts && tsx scripts/test/schema.test.ts && tsx scripts/test/reserved-slugs.test.ts && tsx scripts/test/legal-docs.test.ts && tsx scripts/test/brand-assets.test.ts && tsx scripts/test/monocle-ring.test.ts && tsx scripts/test/sync-guards.test.ts && tsx scripts/test/content-index-drift.test.ts && npm run content:validate",
     "mics:quality": "tsx scripts/open-mics-quality.ts",
     "analyze": "ANALYZE=true next build",
     "sync": "npm run sync:shows && npm run sync:facebook-events && npm run sync:fourthwall && npm run sync:patreon && npm run sync:open-mics && npm run sync:pro-shows",
