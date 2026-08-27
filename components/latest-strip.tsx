@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FeedLink } from "@/components/feed-link";
 import { buildNewsFeed } from "@/lib/news-feed";
 import { site } from "@/content/site";
+import { Surface, type SurfaceTone } from "@/components/brand/surface";
 
 type Props = {
   limit?: number;
@@ -11,14 +12,16 @@ type Props = {
 // Home-page strip pulling from the unified news feed (curated posts +
 // auto-synced Instagram + TikTok). Replaces the old InstagramStrip.
 // Renders nothing when the feed is empty.
-export function LatestStrip({ limit = 6 }: Props) {
+export function LatestStrip({ limit = 6, tone = "tuxedo" }: Props & SurfaceTone) {
   const items = buildNewsFeed().slice(0, limit);
   if (items.length === 0) return null;
 
   return (
-    <section
+    <Surface
+      tone={tone}
+      as="section"
       aria-labelledby="home-latest-strip"
-      className="border-y border-smoke bg-surface-tuxedo py-16 md:py-20"
+      className="border-y border-smoke py-16 md:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
@@ -64,7 +67,7 @@ export function LatestStrip({ limit = 6 }: Props) {
                   <Link
                     href={href ?? "/watch"}
                     aria-label={label}
-                    className="group relative block h-full w-full overflow-hidden bg-surface-tuxedo"
+                    className="group relative block h-full w-full overflow-hidden"
                   >
                     <PosterContent poster={poster} label={label} kind="Update" />
                   </Link>
@@ -76,7 +79,7 @@ export function LatestStrip({ limit = 6 }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="group relative block h-full w-full overflow-hidden bg-surface-tuxedo"
+                    className="group relative block h-full w-full overflow-hidden"
                   >
                     <PosterContent
                       poster={poster}
@@ -96,7 +99,7 @@ export function LatestStrip({ limit = 6 }: Props) {
           })}
         </ul>
       </div>
-    </section>
+    </Surface>
   );
 }
 

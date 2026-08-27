@@ -5,6 +5,7 @@ import { ShopProductCard } from "@/components/shop-product-card";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbs } from "@/lib/schema";
+import { Surface } from "@/components/brand/surface";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -99,7 +100,7 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <section className="bg-surface-tuxedo py-20 md:py-24">
+      <Surface tone="ivory" as="section" className="py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <h2 className="t-headline display-1">
             All <span className="text-accent-gold">products</span> live on
@@ -119,7 +120,7 @@ export default function ShopPage() {
             Open the store ↗
           </TrackedAnchor>
         </div>
-      </section>
+      </Surface>
     </>
   );
 }

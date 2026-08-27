@@ -7,6 +7,8 @@ import { TextField, TextAreaField } from "@/components/form-field";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbs } from "@/lib/schema";
+import { Surface } from "@/components/brand/surface";
+import { Badge } from "@/components/brand/badge";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -32,8 +34,17 @@ export default function ContactPage() {
         body={contactCopy.body}
       />
 
-      <section className="bg-surface-tuxedo py-20 md:py-28">
+      <Surface tone="ivory" as="section" className="py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          {/* Client-facing surface, so it carries the badge. The lockup is in
+              the footer and the two never share a section. Tuxedo colorway
+              because this band is ivory; the badge is never recolored in CSS. */}
+          <Badge
+            colorway="tuxedo"
+            width={140}
+            alt=""
+            className="mb-12 hidden md:block"
+          />
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <a
@@ -139,7 +150,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Surface>
     </>
   );
 }

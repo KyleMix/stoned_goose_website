@@ -3,6 +3,7 @@
 import { type FormEvent, useState } from "react";
 import { site } from "@/content/site";
 import { track } from "@/lib/analytics";
+import { Surface, type SurfaceTone } from "@/components/brand/surface";
 
 type Props = {
   /** Page slug for the formsubmit subject line and Plausible event prop. */
@@ -31,7 +32,8 @@ export function MailingListCapture({
   headline = "Show announcements, presale codes, and the occasional weird thing.",
   submitLabel = "Sign me up",
   successBody = "You're on the list. See you at the next show.",
-}: Props) {
+  tone = "tuxedo",
+}: Props & SurfaceTone) {
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -84,10 +86,12 @@ export function MailingListCapture({
   }
 
   return (
-    <section
+    <Surface
+      tone={tone}
+      as="section"
       id={id}
       aria-label="Mailing list signup"
-      className="border-y border-smoke bg-surface-tuxedo py-12 md:py-16"
+      className="border-y border-smoke py-12 md:py-16"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
@@ -173,6 +177,6 @@ export function MailingListCapture({
           </form>
         </div>
       </div>
-    </section>
+    </Surface>
   );
 }

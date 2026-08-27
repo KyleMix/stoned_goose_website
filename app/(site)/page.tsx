@@ -38,7 +38,9 @@ export default function HomePage() {
 
       <UpcomingShowsBlock />
 
-      <OpenMicTeaser />
+      {/* First ivory band: the page turns from what we put on to
+          what the scene is doing. */}
+      <OpenMicTeaser tone="ivory" />
 
       <VideoStrip limit={5} />
 
@@ -46,7 +48,8 @@ export default function HomePage() {
 
       <RotatingBumper slot="aside" />
 
-      <ServicesOverview />
+      {/* Second: audience to client. */}
+      <ServicesOverview tone="ivory" />
 
       <ShopStrip limit={3} />
 
@@ -68,7 +71,8 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      <MailingListCapture page="home" />
+      {/* Third: the closing ask. */}
+      <MailingListCapture page="home" tone="ivory" />
 
       <SectionRenderer sections={homeBottomSections} pageSlug="home" />
 

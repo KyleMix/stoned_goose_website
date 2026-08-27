@@ -5,12 +5,13 @@ import { youtubeVideos } from "@/content/watch";
 import { site } from "@/content/site";
 import { extractYouTubeId } from "@/lib/youtube";
 import { TrackedAnchor } from "@/components/tracked-anchor";
+import { Surface, type SurfaceTone } from "@/components/brand/surface";
 
 // Tight home-page version. With real shows it renders a 3-row preview and
 // defers detail to /shows. With an empty calendar it shows a graceful
 // "recently produced" fallback built from the real watch episodes rather than
 // a bare "nothing here" line.
-export function UpcomingShowsBlock() {
+export function UpcomingShowsBlock({ tone = "tuxedo" }: SurfaceTone) {
   const hasShows = upcomingShows.length > 0;
 
   // Real, hand-picked work for the empty-calendar fallback. No invented data:
@@ -25,10 +26,12 @@ export function UpcomingShowsBlock() {
   const showWork = !hasShows && recentWork.length > 0;
 
   return (
-    <section
+    <Surface
+      tone={tone}
+      as="section"
       id="shows"
       aria-label="Upcoming shows"
-      className="section-y relative bg-surface-tuxedo"
+      className="section-y relative"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
@@ -78,9 +81,9 @@ export function UpcomingShowsBlock() {
                           href={href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group block border border-smoke bg-surface-tuxedo transition-colors hover:border-accent-gold"
+                          className="group block border border-smoke transition-colors hover:border-accent-gold"
                         >
-                          <div className="relative aspect-video w-full overflow-hidden bg-surface-tuxedo">
+                          <div className="relative aspect-video w-full overflow-hidden">
                             <Image
                               src={poster}
                               alt={v.title.trim()}
@@ -145,6 +148,6 @@ export function UpcomingShowsBlock() {
           </div>
         </div>
       </div>
-    </section>
+    </Surface>
   );
 }

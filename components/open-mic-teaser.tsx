@@ -1,15 +1,18 @@
 import Link from "next/link";
 import { openMicsFeed } from "@/content/open-mics";
+import { Surface, type SurfaceTone } from "@/components/brand/surface";
 
 // Lightweight home-page teaser. Skips the Leaflet bundle by rendering a
 // short text list of the next mics. The full map lives at /open-mics/map.
-export function OpenMicTeaser() {
+export function OpenMicTeaser({ tone = "tuxedo" }: SurfaceTone) {
   const sample = openMicsFeed.mics.slice(0, 4);
 
   return (
-    <section
+    <Surface
+      tone={tone}
+      as="section"
       aria-labelledby="home-open-mics"
-      className="section-y border-y border-smoke bg-surface-tuxedo"
+      className="section-y border-y border-smoke"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
@@ -74,6 +77,6 @@ export function OpenMicTeaser() {
           </div>
         </div>
       </div>
-    </section>
+    </Surface>
   );
 }

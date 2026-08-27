@@ -270,7 +270,7 @@ export default function ShowsPage() {
 
       <SectionRenderer sections={showsBottomSections} pageSlug="shows" />
 
-      <MailingListCapture page="shows" id="mailing-list" />
+      <MailingListCapture page="shows" id="mailing-list" tone="ivory" />
     </>
   );
 }

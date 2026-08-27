@@ -279,7 +279,7 @@ export default function WatchPage() {
 
       <SectionRenderer sections={watchBottomSections} pageSlug="watch" />
 
-      <MailingListCapture page="watch" />
+      <MailingListCapture page="watch" tone="ivory" />
     </>
   );
 }

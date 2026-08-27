@@ -1,15 +1,18 @@
 import Link from "next/link";
 import { products, shopCopy } from "@/content/shop";
 import { ShopProductCard } from "@/components/shop-product-card";
+import { Surface, type SurfaceTone } from "@/components/brand/surface";
 
-export function ShopStrip({ limit = 3 }: { limit?: number }) {
+export function ShopStrip({ limit = 3, tone = "tuxedo" }: { limit?: number } & SurfaceTone) {
   const visible = products.filter((p) => Boolean(p.image)).slice(0, limit);
   if (visible.length === 0) return null;
 
   return (
-    <section
+    <Surface
+      tone={tone}
+      as="section"
       aria-labelledby="home-shop-strip"
-      className="border-b border-smoke bg-surface-tuxedo py-20 md:py-24"
+      className="border-b border-smoke py-20 md:py-24"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
@@ -41,6 +44,6 @@ export function ShopStrip({ limit = 3 }: { limit?: number }) {
           ))}
         </ul>
       </div>
-    </section>
+    </Surface>
   );
 }

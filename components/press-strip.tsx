@@ -1,14 +1,17 @@
 import { press } from "@/content/site";
+import { Surface, type SurfaceTone } from "@/components/brand/surface";
 
 // Slim row of pull quotes. Renders only when content/site.ts `press` array
 // is non-empty. Owner-editable. No invented quotes.
-export function PressStrip() {
+export function PressStrip({ tone = "tuxedo" }: SurfaceTone) {
   if (press.length === 0) return null;
 
   return (
-    <section
+    <Surface
+      tone={tone}
+      as="section"
       aria-label="Press"
-      className="border-y border-smoke bg-surface-tuxedo py-16 md:py-20"
+      className="border-y border-smoke py-16 md:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <p className="t-eyebrow">
@@ -45,6 +48,6 @@ export function PressStrip() {
           })}
         </ul>
       </div>
-    </section>
+    </Surface>
   );
 }

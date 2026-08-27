@@ -10,6 +10,7 @@ import { ContactForm } from "@/components/contact-form";
 import { TextField } from "@/components/form-field";
 import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 import { SponsorStrip } from "@/components/brand/sponsor-strip";
+import { Surface } from "@/components/brand/surface";
 import { PressStrip } from "@/components/press-strip";
 import { BookPlanner } from "@/components/book-planner";
 import { JsonLd } from "@/components/json-ld";
@@ -196,9 +197,14 @@ export default function BookPage() {
         </div>
       </section>
 
-      <PressStrip />
+      <PressStrip tone="ivory" />
 
-      <section id="quote" className="section-y scroll-mt-24 bg-surface-tuxedo">
+      <Surface
+        tone="ivory"
+        as="section"
+        id="quote"
+        className="section-y scroll-mt-24"
+      >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
@@ -280,7 +286,7 @@ export default function BookPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Surface>
 
       {/* The one sanctioned Smoke surface, at the page foot as the spec puts
           it. Renders nothing until there are real sponsors in the CMS. */}

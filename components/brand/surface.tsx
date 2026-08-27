@@ -9,6 +9,9 @@ import { cn } from "@/lib/utils";
  * restating them. Sections should use this rather than a bare `bg-*` class:
  * a background set on its own leaves descendants guessing.
  */
+/** Shared prop shape for a block whose surface its page decides. */
+export type SurfaceTone = { tone?: "tuxedo" | "ivory" };
+
 export function Surface({
   tone,
   children,

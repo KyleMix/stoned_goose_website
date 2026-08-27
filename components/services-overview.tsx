@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { services } from "@/content/services";
+import { Surface, type SurfaceTone } from "@/components/brand/surface";
 
 // Tight TV-guide style listing. Just titles. The detail pages carry the
 // depth. The home is for orientation, not selling.
-export function ServicesOverview() {
+export function ServicesOverview({ tone = "tuxedo" }: SurfaceTone) {
   return (
-    <section
+    <Surface
+      tone={tone}
+      as="section"
       id="services"
       aria-label="Services"
-      className="relative bg-surface-tuxedo py-20 md:py-28"
+      className="relative py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
@@ -62,6 +65,6 @@ export function ServicesOverview() {
           </Link>
         </div>
       </div>
-    </section>
+    </Surface>
   );
 }

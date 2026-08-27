@@ -142,6 +142,43 @@ background and the attribute together. A bare `bg-surface-ivory` leaves
 descendants guessing and will render a gold headline on ivory: 1.88:1, the one
 pairing the spec forbids outright.
 
+### Defaults and guards
+
+The surface rules come in two kinds, and the difference is deliberate.
+
+**Defaults** are the five role colours. They use `:where([data-surface="ivory"])`,
+which contributes zero specificity, so the rule still flips the role but loses
+to any colour utility the call site sets. The role is a default, never a lock.
+This matters: written at full specificity, they beat an explicit
+`text-surface-tuxedo` on a gold CTA sitting inside an ivory section, turning
+its label Dark Gold on gold at 2.39:1.
+
+**Guards** are the forbidden pairings. They keep full specificity and are meant
+to beat a call site, because a component that renders on both surfaces cannot
+know which one it is on and the failure mode is illegible text:
+
+| On an ivory surface | Becomes | Why |
+| ------------------- | ------- | --- |
+| `.text-smoke`, `.t-fine` | `surface-tuxedo` | 3.08:1, fails AA, and no gray passes on both surfaces |
+| `.text-accent-gold` | `gold-ink` | 1.88:1, the pairing the spec forbids at any size |
+| `.text-surface-ivory` | `surface-tuxedo` | 1:1, always a mistake |
+
+The gold guard puts Dark Gold above label size, which the written spec reserves
+for labels. The alternative was shipping 1.88:1 or dropping the gold emphasis
+device from every ivory section. Flagged for ratification.
+
+### Surface rhythm
+
+Ivory punctuates; it does not stripe. Alternating every section reads as a
+barcode, and the spec's reference layouts use ivory as an insert. Each route
+gets one to three ivory bands placed at a shift in what the page is doing, and
+the closing ask is ivory on every route that has one.
+
+Blocks that appear on more than one page take a `tone` prop rather than
+hardcoding a background, because their surface is a property of where they sit.
+They route it through `<Surface>`, which sets the background and declares
+`data-surface` together.
+
 ### Secondary labels
 
 An uppercase tracked label in a muted color has no slot in the spec, which

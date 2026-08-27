@@ -68,7 +68,7 @@
     outline-offset: 2px;
   }
 
-  [data-surface="ivory"] :focus-visible {
+  :where([data-surface="ivory"]) :focus-visible {
     outline-color: #0f0f0f;
   }
 
@@ -142,32 +142,49 @@
     color: #8c8781;
   }
 
-  [data-surface="ivory"] .t-headline {
+  :where([data-surface="ivory"]) .t-headline {
     color: #0f0f0f;
   }
-  [data-surface="ivory"] .t-subhead {
+  :where([data-surface="ivory"]) .t-subhead {
     color: #0f0f0f;
   }
-  [data-surface="ivory"] .t-eyebrow {
+  :where([data-surface="ivory"]) .t-eyebrow {
     color: #87681f;
   }
-  [data-surface="ivory"] .t-body {
+  :where([data-surface="ivory"]) .t-body {
     color: #0f0f0f;
   }
 
-  /* Smoke is the only permitted gray, and no single gray can clear AA body
-     text on both surfaces: passing on Tuxedo needs relative luminance >= 0.197,
-     passing on Ivory needs <= 0.152. The windows do not overlap, so this is a
-     constraint of the palette, not a tuning problem.
+  /* ------------------------------------------------------------------
+     Guards, as opposed to the defaults above.
+     ------------------------------------------------------------------
+     The role rules use :where() so a call site can override them: the role
+     is a default, never a lock. These four are the opposite. Each names a
+     pairing that is forbidden outright, so they keep full specificity and
+     deliberately beat an explicit utility. A component that renders on both
+     surfaces cannot know which it is on, and the failure mode here is
+     illegible text rather than a stylistic difference.
 
-     Resolution: Smoke keeps its job as a hairline on both surfaces, where the
-     3:1 non-text threshold applies and it passes (3.08:1 on ivory, 5.38:1 on
-     tuxedo). Smoke TEXT on ivory flips to Tuxedo ink. Hierarchy on ivory is
-     then carried by size and weight rather than tint, which is how a printed
-     page does it anyway. */
+     Smoke text on ivory is 3.08:1 and fails AA. No gray can pass on both
+     surfaces (see docs/design-tokens.md), so on ivory it becomes Tuxedo ink
+     and hierarchy is carried by size and weight instead of tint.
+
+     Marquee Gold on ivory is 1.88:1, the one pairing the spec forbids at any
+     size. It becomes Dark Gold, which is 4.51:1 and passes at every size the
+     site actually renders. Note this puts Dark Gold above label size, which
+     the written spec reserves for labels; the alternative was either shipping
+     1.88:1 or dropping the gold emphasis device from every ivory section.
+     Flagged for ratification.
+
+     Ivory text on ivory is 1:1 and is always a mistake. */
   [data-surface="ivory"] .t-fine,
-  [data-surface="ivory"] .text-smoke {
+  [data-surface="ivory"] .text-smoke,
+  [data-surface="ivory"] .text-surface-ivory {
     color: #0f0f0f;
+  }
+
+  [data-surface="ivory"] .text-accent-gold {
+    color: #87681f;
   }
 
   /* The sponsor strip is the one sanctioned Smoke surface, and the spec's own
@@ -175,14 +192,14 @@
      that is 5.38:1, where gold would be 1.64:1 and ivory 3.08:1. Sponsor logos
      themselves keep their own brand colors, which is the whole point of the
      exception, and are never recolored to fit. */
-  [data-surface="smoke"] .t-headline,
-  [data-surface="smoke"] .t-subhead,
-  [data-surface="smoke"] .t-eyebrow,
-  [data-surface="smoke"] .t-body,
-  [data-surface="smoke"] .t-fine {
+  :where([data-surface="smoke"]) .t-headline,
+  :where([data-surface="smoke"]) .t-subhead,
+  :where([data-surface="smoke"]) .t-eyebrow,
+  :where([data-surface="smoke"]) .t-body,
+  :where([data-surface="smoke"]) .t-fine {
     color: #0f0f0f;
   }
-  [data-surface="smoke"] :focus-visible {
+  :where([data-surface="smoke"]) :focus-visible {
     outline-color: #0f0f0f;
   }
 }

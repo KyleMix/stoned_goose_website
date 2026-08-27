@@ -205,6 +205,7 @@ export default function OpenMicsPage() {
         headline="One email when Open Mic Explorer hits the App Store and Google Play."
         submitLabel="Notify me"
         successBody="Got it. You get one email when it lands, and nothing else."
+        tone="ivory"
       />
 
       <section
