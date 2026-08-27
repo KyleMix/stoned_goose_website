@@ -16,13 +16,16 @@ const CANVAS = { width: 1750, height: 1750 } as const;
 /** 96px artwork minimum converted to file width: 96 * 1750 / 1466. */
 export const BADGE_MIN_WIDTH = 115;
 
-const SRC = {
-  tuxedo: "/brand/SGP_Badge_Tuxedo.png",
-  ivory: "/brand/SGP_Badge_Ivory.png",
-  gold: "/brand/SGP_Badge_Gold.png",
+const FILE = {
+  tuxedo: "SGP_Badge_Tuxedo.png",
+  ivory: "SGP_Badge_Ivory.png",
+  gold: "SGP_Badge_Gold.png",
 } as const;
 
-export type BadgeColorway = keyof typeof SRC;
+/** See the note in lockup.tsx. Above this the master is served instead. */
+const WEB_MAX = 200;
+
+export type BadgeColorway = keyof typeof FILE;
 
 type Props = {
   colorway: BadgeColorway;
@@ -47,10 +50,11 @@ export function Badge({
     );
   }
   const w = Math.max(width, BADGE_MIN_WIDTH);
+  const src = `/brand/${w <= WEB_MAX ? "web/" : ""}${FILE[colorway]}`;
 
   return (
     <Image
-      src={SRC[colorway]}
+      src={src}
       alt={alt}
       width={w}
       height={w}

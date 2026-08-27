@@ -253,6 +253,20 @@ dark browser chrome. Nothing in that script recolors a mark; the only
 background it paints is the Tuxedo square the iOS slot requires, since that
 slot cannot be transparent.
 
+### Web renditions
+
+The masters are print resolution and must stay that way, but they are far too
+heavy to serve. The lockup is 3353px and 523KB, and the footer renders it at
+320px on every page: ten times the pixels the slot needs. Static export sets
+`images.unoptimized`, so next/image resizes nothing and whatever a component
+references is what the browser downloads.
+
+`npm run brand:generate` writes `public/brand/web/`, one rendition per colorway
+at twice the documented web maximum (800px lockup, 400px badge), so a 400px
+render is still retina sharp. `<Lockup>` and `<Badge>` pick the rendition below
+that maximum and fall back to the master above it, so a large placement never
+upscales. This cut every page from 523KB of imagery to 105KB.
+
 Still open: these are raster. SVG remains the better end state and is what the
 40 foot banner case would need. Do not trace the goose to get there.
 

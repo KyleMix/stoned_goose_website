@@ -25,14 +25,25 @@ const CANVAS = { width: 3353, height: 3028 } as const;
 /** 240px artwork minimum converted to file width: 240 * 3353 / 2863. */
 export const LOCKUP_MIN_WIDTH = 281;
 
-const SRC = {
-  tuxedo: "/brand/SGP_Lockup_Tuxedo.png",
-  ivory: "/brand/SGP_Lockup_Ivory.png",
-  gold: "/brand/SGP_Lockup_Gold.png",
-  white: "/brand/SGP_Lockup_White.png",
+const FILE = {
+  tuxedo: "SGP_Lockup_Tuxedo.png",
+  ivory: "SGP_Lockup_Ivory.png",
+  gold: "SGP_Lockup_Gold.png",
+  white: "SGP_Lockup_White.png",
 } as const;
 
-export type LockupColorway = keyof typeof SRC;
+/**
+ * Widest web use the 800px rendition stays retina-sharp for. Above this the
+ * master is served instead, so a large placement never upscales.
+ *
+ * This matters because static export sets images.unoptimized: next/image will
+ * not resize anything, so whatever is referenced here is what the browser
+ * downloads. The master is 3353px and 523KB, which is ten times the pixels a
+ * 320px footer slot needs. `npm run brand:generate` writes the renditions.
+ */
+const WEB_MAX = 400;
+
+export type LockupColorway = keyof typeof FILE;
 
 type Props = {
   colorway: LockupColorway;
@@ -63,10 +74,11 @@ export function Lockup({
   }
   const w = Math.max(width, LOCKUP_MIN_WIDTH);
   const h = Math.round((w * CANVAS.height) / CANVAS.width);
+  const src = `/brand/${w <= WEB_MAX ? "web/" : ""}${FILE[colorway]}`;
 
   return (
     <Image
-      src={SRC[colorway]}
+      src={src}
       alt={alt}
       width={w}
       height={h}
