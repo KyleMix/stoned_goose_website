@@ -25,22 +25,22 @@ type Props = {
 export function LegalDocument({ title, intro, body }: Props) {
   return (
     <article>
-      <header className="border-b border-bone/10 bg-ink pb-12 pt-32 md:pb-14 md:pt-36">
+      <header className="border-b border-smoke bg-surface-tuxedo pb-12 pt-32 md:pb-14 md:pt-36">
         <div className="mx-auto max-w-[820px] px-5 md:px-10">
-          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+          <p className="t-eyebrow">
             Open Mic Explorer
           </p>
-          <h1 className="heading-display mt-4 text-[clamp(2rem,7vw,3.5rem)] text-bone">
+          <h1 className="t-headline mt-4 display-2">
             {title}
-            <span className="text-hazard">.</span>
+            <span className="text-accent-gold">.</span>
           </h1>
-          <p className="mt-6 font-body text-sm leading-relaxed text-bone/70">
+          <p className="t-body mt-6 text-sm leading-relaxed text-smoke">
             {intro}
           </p>
         </div>
       </header>
 
-      <div className="section-y bg-ink">
+      <div className="section-y bg-surface-tuxedo">
         <div className="mx-auto max-w-[820px] px-5 md:px-10">
           {body.map((node, i) => {
             switch (node.kind) {
@@ -49,7 +49,7 @@ export function LegalDocument({ title, intro, body }: Props) {
                 return (
                   <h2
                     key={i}
-                    className="mt-12 font-display text-2xl text-bone first:mt-0 md:text-3xl"
+                    className="mt-12 t-subhead text-2xl first:mt-0 md:text-3xl"
                   >
                     {node.text}
                   </h2>
@@ -58,7 +58,7 @@ export function LegalDocument({ title, intro, body }: Props) {
                 return (
                   <p
                     key={i}
-                    className="mt-5 font-body text-base leading-relaxed text-bone/85"
+                    className="mt-5 text-base leading-relaxed text-surface-ivory"
                   >
                     {node.text}
                   </p>
@@ -67,12 +67,12 @@ export function LegalDocument({ title, intro, body }: Props) {
                 return (
                   <ul
                     key={i}
-                    className="mt-5 space-y-3 border-l border-bone/15 pl-5"
+                    className="mt-5 space-y-3 border-l border-smoke pl-5"
                   >
                     {node.items.map((item, j) => (
                       <li
                         key={j}
-                        className="font-body text-base leading-relaxed text-bone/85"
+                        className="text-base leading-relaxed text-surface-ivory"
                       >
                         {item}
                       </li>

@@ -32,7 +32,7 @@ export default function OpenMicExplorerPrivacyPage() {
             This policy covers the{" "}
             <Link
               href="/open-mics"
-              className="underline underline-offset-4 hover:text-slime"
+              className="underline underline-offset-4 hover:text-accent-gold"
             >
               Open Mic Explorer
             </Link>{" "}
@@ -40,14 +40,14 @@ export default function OpenMicExplorerPrivacyPage() {
             account, use{" "}
             <Link
               href="/open-mics/delete-account"
-              className="underline underline-offset-4 hover:text-slime"
+              className="underline underline-offset-4 hover:text-accent-gold"
             >
               the deletion page
             </Link>
             , or write to{" "}
             <a
               href={`mailto:${site.contact.email}`}
-              className="underline underline-offset-4 hover:text-slime"
+              className="underline underline-offset-4 hover:text-accent-gold"
             >
               {site.contact.email}
             </a>

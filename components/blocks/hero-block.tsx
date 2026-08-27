@@ -17,21 +17,17 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
   return (
     <section
       aria-label="Hero"
-      className="relative isolate overflow-hidden border-b border-bone/10 bg-ink"
+      className="relative isolate overflow-hidden border-b border-smoke bg-surface-tuxedo"
     >
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_30%_0%,rgba(239,233,221,0.06),transparent_55%),radial-gradient(ellipse_at_85%_85%,rgba(242,234,0,0.05),transparent_55%)]"
-      />
 
       <div className="relative mx-auto max-w-[1400px] px-5 pb-16 pt-32 md:px-10 md:pb-20 md:pt-36">
         {block.eyebrow ? (
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
+          <p className="t-eyebrow text-smoke">
             {block.eyebrow}
           </p>
         ) : null}
 
-        <h1 className="heading-display mt-8 text-[clamp(3.5rem,12vw,11rem)] text-bone">
+        <h1 className="t-headline mt-8 display-hero">
           {secondHalf.length > 0 ? (
             <>
               <TextEffect as="span" text={firstHalf} className="block" />
@@ -40,7 +36,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
                 text={secondHalf}
                 className="block"
                 delay={0.35}
-                trailing={<span className="text-hazard">.</span>}
+                trailing={<span className="text-accent-gold">.</span>}
               />
             </>
           ) : (
@@ -48,20 +44,20 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
               as="span"
               text={firstHalf}
               className="block"
-              trailing={<span className="text-hazard">.</span>}
+              trailing={<span className="text-accent-gold">.</span>}
             />
           )}
         </h1>
 
         {(block.subhead || block.italicLine) && (
-          <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-bone/15 pt-8 md:mt-12">
+          <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-smoke pt-8 md:mt-12">
             {block.subhead ? (
-              <p className="col-span-12 max-w-md font-body text-base leading-snug text-bone/85 md:col-span-7 md:text-lg">
+              <p className="t-body col-span-12 max-w-md text-base leading-snug md:col-span-7 md:text-lg">
                 {block.subhead}
               </p>
             ) : null}
             {block.italicLine ? (
-              <p className="col-span-12 font-display text-3xl italic leading-snug text-bone md:col-span-5 md:text-right md:text-4xl">
+              <p className="col-span-12 t-subhead text-3xl leading-snug md:col-span-5 md:text-right md:text-4xl">
                 {block.italicLine}
               </p>
             ) : null}
@@ -74,7 +70,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
               <Link
                 href={block.primaryCtaHref}
                 onClick={() => track("CTA Click", { cta: `${pageSlug}-hero-primary` })}
-                className="group inline-flex h-12 items-center gap-3 bg-hazard px-7 font-body text-sm font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime"
+                className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
               >
                 {block.primaryCtaLabel}
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -85,7 +81,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
             {block.secondaryCtaLabel && block.secondaryCtaHref ? (
               <Link
                 href={block.secondaryCtaHref}
-                className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+                className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
               >
                 {block.secondaryCtaLabel} ↗
               </Link>

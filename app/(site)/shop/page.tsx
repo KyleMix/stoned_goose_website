@@ -5,6 +5,7 @@ import { ShopProductCard } from "@/components/shop-product-card";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbs } from "@/lib/schema";
+import { Surface } from "@/components/brand/surface";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -30,15 +31,15 @@ export default function ShopPage() {
         eyebrow="Fourthwall Storefront"
         title={
           <>
-            Fresh <span className="italic text-hazard">Merch</span>
+            Fresh <span className="text-accent-gold">Merch</span>
           </>
         }
         body={shopCopy.subhead}
       />
 
-      <section className="border-b border-bone/10 bg-ink py-12 md:py-16">
+      <section className="border-b border-smoke bg-surface-tuxedo py-12 md:py-16">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-baseline justify-between gap-4 px-5 md:px-10">
-          <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+          <p className="t-eyebrow text-smoke">
             {visibleProducts.length} products / external checkout via Fourthwall
           </p>
           <TrackedAnchor
@@ -46,7 +47,7 @@ export default function ShopPage() {
             href={shopCopy.collectionUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="t-eyebrow text-smoke hover:text-accent-gold"
           >
             View OG Bigboy collection ↗
           </TrackedAnchor>
@@ -54,20 +55,20 @@ export default function ShopPage() {
       </section>
 
       {productsByCategory(visibleProducts).map(({ category, products: items }) => (
-        <section key={category} className="bg-ink pb-12 pt-8 md:pb-16 md:pt-10">
+        <section key={category} className="bg-surface-tuxedo pb-12 pt-8 md:pb-16 md:pt-10">
           <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-            <div className="flex items-baseline justify-between gap-4 border-b border-bone/10 pb-4">
-              <h2 className="font-display text-2xl text-bone md:text-3xl">
+            <div className="flex items-baseline justify-between gap-4 border-b border-smoke pb-4">
+              <h2 className="t-subhead text-2xl md:text-3xl">
                 {category}
-                <span className="text-hazard">.</span>
+                <span className="text-accent-gold">.</span>
               </h2>
-              <span className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+              <span className="t-eyebrow text-smoke">
                 {items.length} {items.length === 1 ? "item" : "items"}
               </span>
             </div>
             <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((p, i) => {
-                const borderClass = `group relative border-bone/15 ${
+                const borderClass = `group relative border-smoke ${
                   i === 0 ? "border-t" : ""
                 } border-b sm:border-r ${
                   i % 2 === 1 ? "sm:border-r-0 lg:border-r" : ""
@@ -85,27 +86,27 @@ export default function ShopPage() {
         </section>
       ))}
 
-      <section className="bg-ink pb-12">
+      <section className="bg-surface-tuxedo pb-12">
         <div className="mx-auto flex max-w-[1400px] justify-end px-5 md:px-10">
           <TrackedAnchor
             destination="fourthwall"
             href={shopCopy.storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="t-eyebrow text-smoke hover:text-accent-gold"
           >
             More merch on Fourthwall ↗
           </TrackedAnchor>
         </div>
       </section>
 
-      <section className="bg-ink py-20 md:py-24">
+      <Surface tone="ivory" as="section" className="py-20 md:py-24">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <h2 className="heading-display text-[clamp(2.4rem,7vw,5rem)] text-bone">
-            All <span className="italic text-hazard">products</span> live on
+          <h2 className="t-headline display-1">
+            All <span className="text-accent-gold">products</span> live on
             Fourthwall.
           </h2>
-          <p className="mt-6 max-w-2xl font-body text-base text-bone/85 md:text-lg">
+          <p className="t-body mt-6 max-w-2xl text-base md:text-lg">
             Checkout, sizing, and shipping are handled by Fourthwall. Use the
             store link if you want the full collection or supporter pricing.
           </p>
@@ -114,12 +115,12 @@ export default function ShopPage() {
             href={shopCopy.storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+            className="mt-8 inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
           >
             Open the store ↗
           </TrackedAnchor>
         </div>
-      </section>
+      </Surface>
     </>
   );
 }

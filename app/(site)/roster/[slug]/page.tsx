@@ -74,11 +74,11 @@ export default async function ComedianPage(props: {
         schema={buildBreadcrumbs(`/roster/${comedian.slug}`, comedian.name)}
       />
 
-      <section className="border-b border-bone/10 bg-ink pb-16 pt-32 md:pb-20 md:pt-40">
+      <section className="border-b border-smoke bg-surface-tuxedo pb-16 pt-32 md:pb-20 md:pt-40">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <Link
             href="/roster"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55 hover:text-slime"
+            className="t-eyebrow text-smoke hover:text-accent-gold"
           >
             ← The Roster
           </Link>
@@ -100,20 +100,16 @@ export default async function ComedianPage(props: {
                     : {})}
                   className="object-cover [filter:grayscale(1)_contrast(1.05)]"
                 />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.45)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-60"
-                />
               </div>
             </div>
 
             <div className="md:col-span-8">
-              <p className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+              <p className="t-eyebrow">
                 The Roster
               </p>
-              <h1 className="heading-display mt-4 text-[clamp(2.4rem,7vw,5rem)] text-bone">
+              <h1 className="t-headline mt-4 display-1">
                 {comedian.name}
-                <span className="text-hazard">.</span>
+                <span className="text-accent-gold">.</span>
               </h1>
 
               {(comedian.instagram || comedian.facebook) && (
@@ -123,7 +119,7 @@ export default async function ComedianPage(props: {
                       href={comedian.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/70 hover:text-slime"
+                      className="t-eyebrow text-smoke hover:text-accent-gold"
                     >
                       Instagram ↗
                     </a>
@@ -133,7 +129,7 @@ export default async function ComedianPage(props: {
                       href={comedian.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-bone/70 hover:text-slime"
+                      className="t-eyebrow text-smoke hover:text-accent-gold"
                     >
                       Facebook ↗
                     </a>
@@ -146,7 +142,7 @@ export default async function ComedianPage(props: {
                   {bioParagraphs.map((p, i) => (
                     <p
                       key={i}
-                      className="font-body text-base leading-relaxed text-bone/85 md:text-lg"
+                      className="text-base leading-relaxed text-surface-ivory md:text-lg"
                     >
                       {p}
                     </p>
@@ -156,16 +152,16 @@ export default async function ComedianPage(props: {
 
               {comedian.credits && comedian.credits.length > 0 && (
                 <div className="mt-10">
-                  <h2 className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <h2 className="t-eyebrow text-smoke">
                     Credits
                   </h2>
                   <ul className="mt-4 space-y-2">
                     {comedian.credits.map((credit) => (
                       <li
                         key={credit}
-                        className="flex items-baseline gap-3 font-body text-sm text-bone/85"
+                        className="flex items-baseline gap-3 text-sm text-surface-ivory"
                       >
-                        <span aria-hidden className="text-hazard">/</span>
+                        <span aria-hidden className="text-accent-gold">/</span>
                         <span>{credit}</span>
                       </li>
                     ))}
@@ -178,12 +174,12 @@ export default async function ComedianPage(props: {
       </section>
 
       {reelId && (
-        <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
+        <section className="border-b border-smoke bg-surface-tuxedo py-16 md:py-20">
           <div className="mx-auto max-w-[1100px] px-5 md:px-10">
-            <h2 className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-hazard">
+            <h2 className="t-eyebrow">
               The reel
             </h2>
-            <div className="relative mt-6 aspect-video w-full overflow-hidden bg-haze-500">
+            <div className="relative mt-6 aspect-video w-full overflow-hidden bg-surface-tuxedo">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${reelId}`}
                 title={`${comedian.name} reel`}
@@ -197,16 +193,16 @@ export default async function ComedianPage(props: {
         </section>
       )}
 
-      <section className="bg-ink py-16 md:py-20">
+      <section className="bg-surface-tuxedo py-16 md:py-20">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="flex flex-wrap items-center justify-between gap-6 border border-bone/15 p-8 md:p-10">
-            <p className="max-w-xl font-body text-base text-bone/85 md:text-lg">
+          <div className="flex flex-wrap items-center justify-between gap-6 border border-smoke p-8 md:p-10">
+            <p className="t-body max-w-xl text-base md:text-lg">
               Want {comedian.name} on your lineup? Book the intro call and
               tell us about the room.
             </p>
             <Link
               href="/book"
-              className="inline-flex h-12 shrink-0 items-center bg-hazard px-6 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+              className="inline-flex h-12 shrink-0 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
             >
               Book a show ↗
             </Link>

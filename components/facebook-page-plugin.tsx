@@ -61,12 +61,12 @@ export function FacebookPagePlugin() {
   return (
     <section
       aria-label="Stoned Goose on Facebook"
-      className="border-b border-bone/10 bg-ink py-16 md:py-20"
+      className="border-b border-smoke bg-surface-tuxedo py-16 md:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4">
-          <h2 className="heading-display text-[clamp(2rem,5vw,3.5rem)] text-bone">
-            From <span className="italic text-hazard">Facebook</span>
+          <h2 className="t-headline display-2">
+            From <span className="text-accent-gold">Facebook</span>
           </h2>
           <FeedLink
             platform="facebook"
@@ -74,7 +74,7 @@ export function FacebookPagePlugin() {
             href={site.social.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/65 hover:text-slime"
+            className="t-eyebrow text-smoke hover:text-accent-gold"
           >
             Open page ↗
           </FeedLink>
@@ -82,7 +82,7 @@ export function FacebookPagePlugin() {
 
         <div
           ref={wrapperRef}
-          className="relative mx-auto w-full max-w-[500px] overflow-hidden border border-bone/15 bg-haze-500"
+          className="relative mx-auto w-full max-w-[500px] overflow-hidden border border-smoke bg-surface-tuxedo"
           style={{ minHeight: 280 }}
           onMouseEnter={() => {
             if (tracked) return;
@@ -105,12 +105,7 @@ export function FacebookPagePlugin() {
               loading="lazy"
               className="block w-full"
             />
-          ) : (
-            <span
-              aria-hidden
-              className="absolute inset-0 [background-image:radial-gradient(rgba(10,10,10,0.4)_1px,transparent_1.2px)] [background-size:3px_3px] mix-blend-multiply opacity-50"
-            />
-          )}
+          ) : null}
         </div>
       </div>
     </section>

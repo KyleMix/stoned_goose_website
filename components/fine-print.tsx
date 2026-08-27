@@ -11,19 +11,19 @@ type Props = {
 export function FinePrint({ eyebrow, body, footnote }: Props) {
   if (!body) return null;
   return (
-    <section className="border-b border-bone/10 bg-ink py-10 md:py-12">
+    <section className="border-b border-smoke bg-surface-tuxedo py-10 md:py-12">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <div className="border border-bone/15 p-6 md:p-8">
+        <div className="border border-smoke p-6 md:p-8">
           {eyebrow ? (
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-hazard">
+            <p className="t-eyebrow">
               {eyebrow}
             </p>
           ) : null}
-          <p className="mt-3 max-w-3xl font-body text-sm leading-relaxed text-bone/85">
+          <p className="t-body mt-3 max-w-3xl text-sm">
             {body}
           </p>
           {footnote ? (
-            <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-bone/55">
+            <p className="t-fine mt-3">
               {footnote}
             </p>
           ) : null}

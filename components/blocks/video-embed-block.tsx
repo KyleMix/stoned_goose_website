@@ -33,10 +33,10 @@ export function VideoEmbedBlock({ block }: { block: VideoEmbedBlockData }) {
   if (!src) return null;
 
   return (
-    <section className="border-b border-bone/10 bg-ink py-16 md:py-20">
+    <section className="border-b border-smoke bg-surface-tuxedo py-16 md:py-20">
       <div className="mx-auto max-w-[1100px] px-5 md:px-10">
         <figure>
-          <div className="relative w-full overflow-hidden bg-haze-500 aspect-video">
+          <div className="relative w-full overflow-hidden bg-surface-tuxedo aspect-video">
             <iframe
               src={src}
               title={block.caption || "Embedded video"}
@@ -47,7 +47,7 @@ export function VideoEmbedBlock({ block }: { block: VideoEmbedBlockData }) {
             />
           </div>
           {block.caption ? (
-            <figcaption className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-bone/60">
+            <figcaption className="mt-4 t-eyebrow text-smoke">
               {block.caption}
             </figcaption>
           ) : null}

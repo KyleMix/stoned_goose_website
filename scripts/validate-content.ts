@@ -306,6 +306,14 @@ const singletons: Record<string, z.ZodTypeAny> = {
           z.object({ name: str, price: str, deliverables: z.array(str) }).strict(),
         ),
       ),
+      // Sponsor logos for the strip at the foot of /book. name and logo are
+      // both required: a sponsor with no artwork cannot be rendered, and the
+      // name is the image alt text.
+      sponsors: opt(
+        z.array(
+          z.object({ name: str, logo: str, url: opt(str) }).strict(),
+        ),
+      ),
     })
     .strict(),
 

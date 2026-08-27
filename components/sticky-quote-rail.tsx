@@ -80,7 +80,7 @@ export function StickyQuoteRail({
   }
 
   const baseClass =
-    "fixed inset-x-0 bottom-0 z-40 border-t border-bone/15 bg-ink/95 backdrop-blur-md md:border-t md:px-6";
+    "fixed inset-x-0 bottom-0 z-40 border-t border-smoke bg-surface-tuxedo md:border-t md:px-6";
   const transitionClass = reducedMotionRef.current
     ? ""
     : "transition-transform duration-300";
@@ -94,14 +94,18 @@ export function StickyQuoteRail({
       className={`${baseClass} ${transitionClass} ${visibilityClass}`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 py-3 md:px-10">
-        <p className="truncate font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/85">
-          <span className="text-bone/55">{kicker} / </span>
+        <p className="truncate t-eyebrow text-smoke">
+          <span className="text-smoke">{kicker} / </span>
           {label}
         </p>
         <a
           href={`#${targetId}`}
           onClick={handleClick}
-          className="inline-flex h-10 shrink-0 items-center bg-hazard px-5 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+          // The rail is aria-hidden while parked offscreen, so the CTA has to
+          // leave the tab order with it. Without this a keyboard user tabs
+          // into a link screen readers have been told is not there.
+          tabIndex={shown ? undefined : -1}
+          className="inline-flex h-10 shrink-0 items-center bg-accent-gold px-5 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
         >
           {ctaLabel}
         </a>

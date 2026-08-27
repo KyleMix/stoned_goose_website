@@ -26,8 +26,8 @@ export function BookCallEmbed({ calLink, notes }: Props) {
         theme: "dark",
         layout: "month_view",
         cssVarsPerTheme: {
-          dark: { "cal-brand": "#F2EA00" },
-          light: { "cal-brand": "#0A0A0A" },
+          dark: { "cal-brand": "#D4AA4A" },
+          light: { "cal-brand": "#0F0F0F" },
         },
         hideEventTypeDetails: false,
       });

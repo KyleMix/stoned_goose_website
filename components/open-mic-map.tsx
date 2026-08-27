@@ -16,8 +16,7 @@ import "leaflet.markercluster/dist/MarkerCluster.css";
 // than at the top of the file so SSR (and the static export build step)
 // never executes the Leaflet bundle.
 
-const TILE_URL =
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const TILE_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
@@ -37,7 +36,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
   const clusterRef = useRef<unknown | null>(null);
   const onSelectRef = useRef(onSelect);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
-  // Default (hazard) and selected (slime) divIcons, plus a handle on the marker
+  // Default (gold) and selected (ivory) divIcons, plus a handle on the marker
   // currently shown as selected so we can revert it when selection moves.
   const defaultIconRef = useRef<unknown | null>(null);
   const selectedIconRef = useRef<unknown | null>(null);
@@ -90,8 +89,9 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
         iconSize: [22, 22],
         iconAnchor: [11, 11],
       });
-      // Slime variant marks the selected mic. Same geometry as the default so
-      // swapping icons never shifts the pin. Both kept on refs for the
+      // Ivory variant marks the selected mic: gold rests, ivory responds, so
+      // selection is the same fill swap as hover. Same geometry as the default
+      // so swapping icons never shifts the pin. Both kept on refs for the
       // selectedId effect below.
       const selectedIcon = L.divIcon({
         className: "open-mic-pin open-mic-pin--selected",
@@ -105,7 +105,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
 
       // Cluster group spiderfies dense pins (Olympia/Tacoma overlap at low
       // zoom). Cluster icons styled in the global CSS block below to match
-      // the hazard-yellow pin language.
+      // the gold-on-tuxedo pin language.
       const cluster = L.markerClusterGroup({
         showCoverageOnHover: false,
         spiderfyOnMaxZoom: true,
@@ -115,7 +115,10 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
           const count = c.getChildCount();
           const size = count >= 25 ? 56 : count >= 10 ? 46 : 36;
           return L.divIcon({
-            html: `<span aria-hidden="true">${count}</span>`,
+            // Leaflet gives every marker role="button" and tabindex 0, so
+            // the count alone is not an accessible name. The visible glyph
+            // stays hidden and a real one rides along beside it.
+            html: `<span aria-hidden="true">${count}</span><span class="sr-only">Zoom to ${count} open mics in this area</span>`,
             className: "open-mic-cluster",
             iconSize: [size, size],
             iconAnchor: [size / 2, size / 2],
@@ -124,7 +127,10 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       });
 
       mics.forEach((m) => {
-        const marker = L.marker([m.lat, m.lng], { icon });
+        // Same reason as the cluster icons: the pin is a role="button" whose
+        // only content is aria-hidden. Leaflet writes options.title onto the
+        // icon element, which names it.
+        const marker = L.marker([m.lat, m.lng], { icon, title: m.nameDisplay });
         marker.bindPopup(
           `<strong>${escapeHtml(m.nameDisplay)}</strong><br/>${escapeHtml(m.venueDisplay)}<br/>${escapeHtml(m.dayTimeDisplay)}`,
         );
@@ -166,9 +172,9 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       setIcon?: (icon: unknown) => unknown;
     };
 
-    // Revert the previously selected pin to the default (hazard) icon before
+    // Revert the previously selected pin to the default gold icon before
     // doing anything else, so deselection and moving the selection both clear
-    // the slime state.
+    // the ivory state.
     const prev = selectedMarkerRef.current as IconMarker | null;
     if (prev?.setIcon && defaultIconRef.current) {
       prev.setIcon(defaultIconRef.current);
@@ -179,7 +185,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
     const marker = markersRef.current.get(selectedId) as IconMarker | undefined;
     if (!marker?.getLatLng) return;
 
-    // Mark the active mic with the slime icon and remember it for next time.
+    // Mark the active mic with the ivory icon and remember it for next time.
     if (marker.setIcon && selectedIconRef.current) {
       marker.setIcon(selectedIconRef.current);
       selectedMarkerRef.current = marker;
@@ -188,16 +194,16 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
     // markercluster handles zoom-and-spiderfy via `zoomToShowLayer` so a
     // clustered marker actually opens. Falls back to setView for unclustered
     // contexts. Defensive. Should always be clustered now.
-    const cluster = clusterRef.current as
-      | { zoomToShowLayer?: (m: unknown, cb: () => void) => void }
-      | null;
+    const cluster = clusterRef.current as {
+      zoomToShowLayer?: (m: unknown, cb: () => void) => void;
+    } | null;
     if (cluster?.zoomToShowLayer) {
       cluster.zoomToShowLayer(marker, () => marker.openPopup?.());
       return;
     }
-    const map = mapRef.current as
-      | { setView?: (latlng: [number, number], zoom: number) => unknown }
-      | null;
+    const map = mapRef.current as {
+      setView?: (latlng: [number, number], zoom: number) => unknown;
+    } | null;
     if (!map?.setView) return;
     const { lat, lng } = marker.getLatLng();
     map.setView([lat, lng], 13);
@@ -212,9 +218,9 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       <div
         role="region"
         aria-label="Open mics map"
-        className="flex aspect-[4/3] w-full items-center justify-center border border-bone/15 bg-haze-500 px-6 text-center md:aspect-[16/10]"
+        className="flex aspect-[4/3] w-full items-center justify-center border border-smoke bg-surface-tuxedo px-6 text-center md:aspect-[16/10]"
       >
-        <p className="max-w-sm font-body text-sm text-bone/85">
+        <p className="t-body max-w-sm text-sm">
           The map did not load. Every mic is still in the list below.
         </p>
       </div>
@@ -226,7 +232,7 @@ export function OpenMicMap({ mics, selectedId, onSelect }: Props) {
       ref={containerRef}
       role="region"
       aria-label="Open mics map"
-      className="aspect-[4/3] w-full isolate overflow-hidden border border-bone/15 bg-haze-500 md:aspect-[16/10]"
+      className="aspect-[4/3] w-full isolate overflow-hidden border border-smoke bg-surface-tuxedo md:aspect-[16/10]"
     />
   );
 }

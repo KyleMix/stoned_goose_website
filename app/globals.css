@@ -7,9 +7,6 @@
 
 @layer base {
   :root {
-    --font-display: "Fraunces", Georgia, serif;
-    --font-body: "Inter", ui-sans-serif, system-ui;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
     /* Anchor scroll offset = nav height + 24px breathing room. Used by
        [id] scroll-margin-top so #anchors don't crash into the fixed nav. */
     --scroll-offset: 88px;
@@ -28,9 +25,9 @@
 
   html,
   body {
-    background: #0a0a0a;
-    color: #efe9dd;
-    font-family: var(--font-body);
+    background: #0f0f0f;
+    color: #f4eee2;
+    font-family: theme(fontFamily.sans);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -39,13 +36,22 @@
   }
 
   ::selection {
-    background: #f2ea00;
-    color: #0a0a0a;
+    background: #d4aa4a;
+    color: #0f0f0f;
   }
 
   ::-moz-selection {
-    background: #f2ea00;
-    color: #0a0a0a;
+    background: #d4aa4a;
+    color: #0f0f0f;
+  }
+
+  /* Tailwind's preflight hardcodes gray-400 for placeholders, which is off
+     palette now that the gray scale is gone. Smoke is the only permitted gray. */
+  input::-moz-placeholder,
+  textarea::-moz-placeholder,
+  ::placeholder {
+    color: #8c8781;
+    opacity: 1;
   }
 
   /* Anchor scroll lands below the fixed nav with breathing room. */
@@ -53,19 +59,148 @@
     scroll-margin-top: var(--scroll-offset);
   }
 
-  /* Editorial baseline focus */
+  /* Focus is a flat outline, never a glow or shadow. Marquee Gold clears the
+     3:1 non-text contrast threshold on Tuxedo (8.81:1) but not on Ivory
+     (1.88:1), so ivory sections flip the outline to Tuxedo. Sections opt in
+     structurally by setting data-surface, rather than each control guessing. */
   :focus-visible {
-    outline: 2px solid #f2ea00;
+    outline: 2px solid #d4aa4a;
     outline-offset: 2px;
   }
 
-  /* Nicer h tags by default; pages still override */
+  :where([data-surface="ivory"]) :focus-visible {
+    outline-color: #0f0f0f;
+  }
+
+  /* Headings default to the Headline role. Pages set size; weight, case and
+     tracking are not a per-caller choice. */
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
-    font-feature-settings: "ss01", "ss02";
-    letter-spacing: -0.04em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+}
+
+@layer components {
+  /* ---------------------------------------------------------------
+     The five type roles. Weight, case, tracking and color belong to the role,
+     not to the call site. Color is surface-aware: the site's default surface
+     is Tuxedo, and a section marks itself with data-surface="ivory" to flip
+     every role inside it at once. That keeps "gold headline on black, tuxedo
+     headline on ivory" structural instead of per-caller.
+
+     These sit in the components layer, not utilities, so an explicit
+     `hover:text-accent-gold` or `text-surface-ivory` at the call site still
+     wins. The role supplies the default, never a lock.
+
+     Size is deliberately NOT baked into headline and subhead: pair them with
+     a display-N step, or an explicit text-* size.
+     --------------------------------------------------------------- */
+
+  .t-headline {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: #d4aa4a;
+  }
+
+  .t-subhead {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    color: #f4eee2;
+  }
+
+  .t-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    line-height: 1.4;
+    color: #d4aa4a;
+  }
+
+  .t-body {
+    font-weight: 300;
+    letter-spacing: normal;
+    line-height: 1.6;
+    color: #f4eee2;
+  }
+
+  /* Fine print is Smoke on both surfaces. It clears AA on Tuxedo (5.38:1) but
+     not on Ivory (3.08:1), so an ivory section should carry fine print only at
+     large sizes, or not at all. See docs/design-tokens.md. */
+  .t-fine {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.5;
+    color: #8c8781;
+  }
+
+  :where([data-surface="ivory"]) .t-headline {
+    color: #0f0f0f;
+  }
+  :where([data-surface="ivory"]) .t-subhead {
+    color: #0f0f0f;
+  }
+  :where([data-surface="ivory"]) .t-eyebrow {
+    color: #87681f;
+  }
+  :where([data-surface="ivory"]) .t-body {
+    color: #0f0f0f;
+  }
+
+  /* ------------------------------------------------------------------
+     Guards, as opposed to the defaults above.
+     ------------------------------------------------------------------
+     The role rules use :where() so a call site can override them: the role
+     is a default, never a lock. These four are the opposite. Each names a
+     pairing that is forbidden outright, so they keep full specificity and
+     deliberately beat an explicit utility. A component that renders on both
+     surfaces cannot know which it is on, and the failure mode here is
+     illegible text rather than a stylistic difference.
+
+     Smoke text on ivory is 3.08:1 and fails AA. No gray can pass on both
+     surfaces (see docs/design-tokens.md), so on ivory it becomes Tuxedo ink
+     and hierarchy is carried by size and weight instead of tint.
+
+     Marquee Gold on ivory is 1.88:1, the one pairing the spec forbids at any
+     size. It becomes Dark Gold, which is 4.51:1 and passes at every size the
+     site actually renders. Note this puts Dark Gold above label size, which
+     the written spec reserves for labels; the alternative was either shipping
+     1.88:1 or dropping the gold emphasis device from every ivory section.
+     Flagged for ratification.
+
+     Ivory text on ivory is 1:1 and is always a mistake. */
+  [data-surface="ivory"] .t-fine,
+  [data-surface="ivory"] .text-smoke,
+  [data-surface="ivory"] .text-surface-ivory {
+    color: #0f0f0f;
+  }
+
+  [data-surface="ivory"] .text-accent-gold {
+    color: #87681f;
+  }
+
+  /* The sponsor strip is the one sanctioned Smoke surface, and the spec's own
+     exception to "every section is ivory or tuxedo". Type on it runs Tuxedo:
+     that is 5.38:1, where gold would be 1.64:1 and ivory 3.08:1. Sponsor logos
+     themselves keep their own brand colors, which is the whole point of the
+     exception, and are never recolored to fit. */
+  :where([data-surface="smoke"]) .t-headline,
+  :where([data-surface="smoke"]) .t-subhead,
+  :where([data-surface="smoke"]) .t-eyebrow,
+  :where([data-surface="smoke"]) .t-body,
+  :where([data-surface="smoke"]) .t-fine {
+    color: #0f0f0f;
+  }
+  :where([data-surface="smoke"]) :focus-visible {
+    outline-color: #0f0f0f;
   }
 }
 
@@ -78,62 +213,33 @@
     text-wrap: pretty;
   }
 
-  /* Halftone treatment for B&W photography */
-  .halftone {
-    filter: grayscale(1) contrast(1.1);
-    background-image: radial-gradient(rgba(0, 0, 0, 0.55) 1px, transparent 1.2px);
-    background-size: 3px 3px;
-    background-blend-mode: multiply;
-  }
+  /* Documented display type scale. Size only: pair with .t-headline or
+     .t-subhead, which carry the weight, case, tracking and color.
 
-  .blob {
-    border-radius: 47% 53% 60% 40% / 38% 51% 49% 62%;
-  }
+     Retuned for Josefin Sans. Uppercase at +4% tracking sets roughly a third
+     wider than the sentence-case serif this replaced, so every step came down
+     to keep short headlines on one line. Do not hand-roll a clamp() next to
+     these: add a step here if a real gap appears.
 
-  /* CRT scanline overlay - opt in per element */
-  .scanlines::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(239, 233, 221, 0.04) 0px,
-      rgba(239, 233, 221, 0.04) 1px,
-      transparent 1px,
-      transparent 3px
-    );
-    mix-blend-mode: overlay;
+       display-mega: short statement numerals (404)
+       display-hero: page masthead and hero h1
+       display-1:    top section heading
+       display-2:    standard section heading
+       display-3:    sub-section / strip heading */
+  .display-mega {
+    font-size: clamp(4rem, 14vw, 12rem);
   }
-
-  .heading-display {
-    font-family: var(--font-display);
-    letter-spacing: -0.045em;
-    line-height: 0.92;
-  }
-
-  /* Documented display type scale. One named step per role so headings stay
-     consistent across pages instead of each hand-rolling a clamp(). See
-     docs/design-tokens.md. All steps share the display family + tight rhythm.
-       display-1: top section heading (home hero sections)
-       display-2: standard section heading (book, shows, open-mics)
-       display-3: sub-section / strip heading */
-  .display-1,
-  .display-2,
-  .display-3 {
-    font-family: var(--font-display);
-    letter-spacing: -0.045em;
-    line-height: 0.92;
+  .display-hero {
+    font-size: clamp(2.5rem, 8vw, 7rem);
   }
   .display-1 {
-    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-size: clamp(2rem, 5.5vw, 4rem);
   }
   .display-2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.75rem, 4.5vw, 3rem);
   }
   .display-3 {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    line-height: 1;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   }
 
   /* Section vertical rhythm. Three documented steps replace the ad-hoc
@@ -167,21 +273,15 @@
       padding-bottom: 8rem;
     }
   }
-
-  .rule {
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      rgba(239, 233, 221, 0.2),
-      rgba(239, 233, 221, 0.05),
-      transparent
-    );
-  }
 }
 
 /* Leaflet pin and cluster styling. Loaded globally so the dynamically imported
    open-mic-map can rely on these on first paint instead of injecting styles at
-   hydration. */
+   hydration.
+
+   Pins are flat fills with a Tuxedo keyline. The previous glow rings
+   (box-shadow spread in the accent color) are gone: the spec forbids shadows
+   and glows, so state reads as a fill swap instead. */
 .open-mic-pin {
   background: transparent;
   border: 0;
@@ -190,23 +290,17 @@
   display: block;
   width: 22px;
   height: 22px;
-  background: #f2ea00;
-  border: 2px solid #0a0a0a;
+  background: #d4aa4a;
+  border: 2px solid #0f0f0f;
   border-radius: 9999px;
-  box-shadow: 0 0 0 2px rgba(242, 234, 0, 0.35);
-  transition:
-    background-color 200ms ease,
-    box-shadow 200ms ease;
+  transition: background-color 200ms ease;
 }
-/* Green is the universal hover/interaction color. Pins flip to slime on
-   hover and stay slime while their mic is the selected one. */
+/* Interaction flips the fill to Ivory. Gold rests, Ivory responds. */
 .open-mic-pin span:hover {
-  background: #3ddc6e;
-  box-shadow: 0 0 0 2px rgba(61, 220, 110, 0.35);
+  background: #f4eee2;
 }
 .open-mic-pin--selected span {
-  background: #3ddc6e;
-  box-shadow: 0 0 0 3px rgba(61, 220, 110, 0.45);
+  background: #f4eee2;
 }
 .open-mic-cluster {
   background: transparent;
@@ -218,124 +312,142 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: #f2ea00;
-  color: #0a0a0a;
-  border: 2px solid #0a0a0a;
+  background: #d4aa4a;
+  color: #0f0f0f;
+  border: 2px solid #0f0f0f;
   border-radius: 9999px;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.05em;
-  box-shadow: 0 0 0 4px rgba(242, 234, 0, 0.35);
+}
+/* Leaflet ships Helvetica Neue on its container and Lucida Console on the
+   attribution and scale controls. One typeface for the whole site, so the
+   vendor stack is overridden rather than left to leak onto /open-mics/map. */
+html body .leaflet-container,
+html body .leaflet-container .leaflet-control,
+html body .leaflet-container .leaflet-control-attribution,
+html body .leaflet-container .leaflet-control-scale-line,
+html body .leaflet-popup-content,
+html body .leaflet-control-zoom-in,
+html body .leaflet-control-zoom-out {
+  font-family: theme(fontFamily.sans);
+}
+/* The zoom controls set a `font:` shorthand, which resets weight and size too. */
+html body .leaflet-control-zoom-in,
+html body .leaflet-control-zoom-out {
+  font-size: 18px;
+  font-weight: 700;
 }
 .leaflet-popup-content {
-  font-family: ui-sans-serif, system-ui, sans-serif;
   font-size: 12px;
 }
 
 /* FullCalendar theming for /calendar. Plain CSS outside @layer for the same
-   reason as the Leaflet styles above: the markup is injected client-side. */
+   reason as the Leaflet styles above: the markup is injected client-side.
+   Hairlines and secondary text run on Smoke, the only permitted gray. */
 .comedy-calendar {
   --fc-page-bg-color: transparent;
-  --fc-border-color: rgba(239, 233, 221, 0.15);
-  --fc-neutral-bg-color: rgba(239, 233, 221, 0.04);
-  --fc-today-bg-color: rgba(242, 234, 0, 0.08);
+  --fc-border-color: #8c8781;
+  --fc-neutral-bg-color: transparent;
+  --fc-today-bg-color: transparent;
   --fc-event-bg-color: transparent;
-  --fc-event-border-color: rgba(239, 233, 221, 0.4);
-  --fc-event-text-color: #efe9dd;
-  --fc-list-event-hover-bg-color: rgba(239, 233, 221, 0.05);
+  --fc-event-border-color: #8c8781;
+  --fc-event-text-color: #f4eee2;
+  --fc-list-event-hover-bg-color: transparent;
   --fc-button-bg-color: transparent;
-  --fc-button-border-color: rgba(239, 233, 221, 0.25);
-  --fc-button-text-color: #efe9dd;
+  --fc-button-border-color: #8c8781;
+  --fc-button-text-color: #f4eee2;
   --fc-button-hover-bg-color: transparent;
-  --fc-button-hover-border-color: #3ddc6e;
-  --fc-button-active-bg-color: #f2ea00;
-  --fc-button-active-border-color: #f2ea00;
+  --fc-button-hover-border-color: #d4aa4a;
+  --fc-button-active-bg-color: #d4aa4a;
+  --fc-button-active-border-color: #d4aa4a;
 }
 .comedy-calendar .fc-toolbar-title {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: theme(fontFamily.sans);
   font-size: clamp(1.4rem, 3vw, 2rem);
-  color: #efe9dd;
+  color: #f4eee2;
 }
 .comedy-calendar .fc-button {
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: theme(fontFamily.sans);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.26em;
   border-radius: 0;
   padding: 0.55em 1em;
   transition: border-color 200ms ease, color 200ms ease;
 }
 .comedy-calendar .fc-button:hover {
-  color: #3ddc6e;
+  color: #d4aa4a;
 }
 .comedy-calendar .fc-button-primary:not(:disabled).fc-button-active,
 .comedy-calendar .fc-button-primary:not(:disabled):active {
-  color: #0a0a0a;
+  color: #0f0f0f;
 }
 .comedy-calendar .fc-col-header-cell-cushion,
 .comedy-calendar .fc-daygrid-day-number,
 .comedy-calendar .fc-list-day-text,
 .comedy-calendar .fc-list-day-side-text {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(239, 233, 221, 0.65);
+  letter-spacing: 0.26em;
+  color: #8c8781;
+}
+/* Today reads as a gold day number rather than a tinted cell, so the grid
+   keeps two surfaces instead of three. */
+.comedy-calendar .fc-day-today .fc-daygrid-day-number {
+  color: #d4aa4a;
 }
 .comedy-calendar a {
   color: inherit;
 }
 .comedy-calendar .fc-event {
   border-radius: 0;
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-family: theme(fontFamily.sans);
   font-size: 12px;
   cursor: pointer;
 }
 .comedy-calendar .fc-event:hover {
-  border-color: #3ddc6e;
-  color: #3ddc6e;
+  border-color: #d4aa4a;
+  color: #d4aa4a;
 }
 .comedy-calendar .sgp-event-show {
-  background: #f2ea00;
-  border-color: #f2ea00;
-  color: #0a0a0a;
-  font-weight: 600;
+  background: #d4aa4a;
+  border-color: #d4aa4a;
+  color: #0f0f0f;
+  font-weight: 700;
 }
 .comedy-calendar .sgp-event-show:hover {
-  background: #3ddc6e;
-  border-color: #3ddc6e;
-  color: #0a0a0a;
+  background: #f4eee2;
+  border-color: #f4eee2;
+  color: #0f0f0f;
 }
 .comedy-calendar .sgp-event-show .fc-event-main,
 .comedy-calendar .sgp-event-show .fc-list-event-title a {
-  color: #0a0a0a;
+  color: #0f0f0f;
 }
 .comedy-calendar .fc-list-event-title a {
-  color: #efe9dd;
+  color: #f4eee2;
 }
 .comedy-calendar .fc-list-event:hover .fc-list-event-title a {
-  color: #3ddc6e;
+  color: #d4aa4a;
 }
 .comedy-calendar .fc-daygrid-more-link {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
-  color: #f2ea00;
+  color: #d4aa4a;
 }
 .comedy-calendar .fc-daygrid-more-link:hover {
-  color: #3ddc6e;
+  color: #f4eee2;
 }
 .comedy-calendar .fc-popover {
-  background: #0a0a0a;
-  border: 1px solid rgba(239, 233, 221, 0.25);
+  background: #0f0f0f;
+  border: 1px solid #8c8781;
 }
 .comedy-calendar .fc-popover-title {
-  color: #efe9dd;
-  font-family: var(--font-mono), ui-monospace, monospace;
+  color: #f4eee2;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.26em;
 }
 .comedy-calendar .fc-daygrid-event {
   padding: 3px 6px;
@@ -350,29 +462,26 @@
 }
 .comedy-calendar .sgp-event-time {
   flex: none;
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
   letter-spacing: 0.04em;
-  opacity: 0.75;
+  color: #8c8781;
 }
 .comedy-calendar .sgp-event-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-weight: 600;
+  font-weight: 700;
 }
 .comedy-calendar .sgp-event-count {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
-  opacity: 0.75;
+  color: #8c8781;
 }
 .comedy-calendar .sgp-event-club {
   flex: none;
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  opacity: 0.6;
+  letter-spacing: 0.26em;
+  color: #8c8781;
 }
 .comedy-calendar .fc-list-event .sgp-event-inner {
   justify-content: space-between;

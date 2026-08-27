@@ -52,29 +52,29 @@ export function OpenMicUpdateDialog({ mic }: Props) {
         <button
           type="button"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex h-10 items-center font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55 hover:text-slime"
+          className="inline-flex h-10 items-center t-eyebrow text-smoke hover:text-accent-gold"
         >
           Report change ↗
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-surface-tuxedo/80 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:data-[state=open]:animate-none" />
         <Dialog.Content
-          className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-bone/15 bg-ink p-6 shadow-2xl md:p-8"
+          className="fixed left-1/2 top-[8svh] z-50 max-h-[88svh] w-[min(640px,92vw)] -translate-x-1/2 overflow-y-auto border border-smoke bg-surface-tuxedo p-6 md:p-8"
         >
           <div className="flex items-start justify-between gap-6">
             <div>
-              <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
+              <p className="t-eyebrow">
                 Report a change
               </p>
               <Dialog.Title asChild>
-                <h2 className="mt-3 font-display text-2xl text-bone md:text-3xl">
-                  {mic.name}<span className="text-hazard">.</span>
+                <h2 className="mt-3 t-subhead text-2xl md:text-3xl">
+                  {mic.name}<span className="text-accent-gold">.</span>
                 </h2>
               </Dialog.Title>
               <Dialog.Description asChild>
-                <p className="mt-2 font-body text-xs text-bone/65">
-                  Currently mapped as <span className="text-bone/85">{mic.day} {mic.time}</span>{" "}
+                <p className="t-body mt-2 text-xs text-smoke">
+                  Currently mapped as <span className="text-surface-ivory">{mic.day} {mic.time}</span>{""}
                   at {mic.address}, {mic.city}, {mic.region}.
                 </p>
               </Dialog.Description>
@@ -83,14 +83,14 @@ export function OpenMicUpdateDialog({ mic }: Props) {
               <button
                 type="button"
                 aria-label="Close"
-                className="font-mono text-xs uppercase tracking-[0.18em] text-bone/55 hover:text-slime"
+                className="t-eyebrow text-smoke hover:text-accent-gold"
               >
                 ESC
               </button>
             </Dialog.Close>
           </div>
 
-          <div className="mt-6 border-t border-bone/15 pt-6">
+          <div className="mt-6 border-t border-smoke pt-6">
             <ContactForm
               subject={`Open mic update. ${mic.name}`}
               source={`/open-mics / report. ${mic.id}`}
@@ -146,25 +146,25 @@ function FieldGroup() {
 
   return (
     <fieldset className="space-y-3">
-      <legend className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+      <legend className="t-eyebrow text-smoke">
         What needs updating?
-        <span aria-hidden className="ml-1 text-hazard">*</span>
+        <span aria-hidden className="ml-1 text-accent-gold">*</span>
       </legend>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {FIELD_OPTIONS.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-start gap-3 border border-bone/15 p-3 transition-colors hover:border-slime/60 has-[:checked]:border-hazard has-[:checked]:bg-bone/[0.04]"
+            className="flex cursor-pointer items-start gap-3 border border-smoke p-3 transition-colors hover:border-accent-gold has-[:checked]:border-accent-gold has-[:checked]:bg-surface-ivory/[0.04]"
           >
             <input
               type="radio"
               value={opt.value}
-              className="mt-1 h-4 w-4 accent-hazard"
+              className="mt-1 h-4 w-4 accent-accent-gold"
               {...reg}
             />
             <span className="flex flex-col">
-              <span className="font-body text-sm text-bone">{opt.label}</span>
-              <span className="font-body text-[11px] text-bone/55">{opt.hint}</span>
+              <span className="text-sm text-surface-ivory">{opt.label}</span>
+              <span className="text-[11px] text-smoke">{opt.hint}</span>
             </span>
           </label>
         ))}

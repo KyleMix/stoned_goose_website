@@ -33,21 +33,21 @@ export default function OpenMicExplorerTermsPage() {
             This is the agreement the{" "}
             <Link
               href="/open-mics"
-              className="underline underline-offset-4 hover:text-slime"
+              className="underline underline-offset-4 hover:text-accent-gold"
             >
               Open Mic Explorer
             </Link>{" "}
             app asks you to accept, published as it stands in the app. The{" "}
             <Link
               href="/open-mics/privacy"
-              className="underline underline-offset-4 hover:text-slime"
+              className="underline underline-offset-4 hover:text-accent-gold"
             >
               privacy policy
             </Link>{" "}
             covers what the app collects. Questions go to{" "}
             <a
               href={`mailto:${site.contact.email}`}
-              className="underline underline-offset-4 hover:text-slime"
+              className="underline underline-offset-4 hover:text-accent-gold"
             >
               {site.contact.email}
             </a>

@@ -1,9 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Lockup } from "@/components/brand/lockup";
 import { useEffect, useState } from "react";
 import { upcomingShows } from "@/content/shows";
+import { formatShowMonthDay } from "@/lib/dates";
 
 type Suggestion = { href: string; label: string };
 
@@ -52,54 +54,43 @@ function suggestionsForPath(path: string): Suggestion[] {
 function nextShowLine(): { date: string; venue: string; href: string } | null {
   const next = upcomingShows[0];
   if (!next?.start) return null;
-  let date = "Date TBD";
-  try {
-    date = new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-    }).format(new Date(next.start));
-  } catch {
-    // fall through with TBD
-  }
+  const date = formatShowMonthDay(next.start) ?? "Date TBD";
   const venue = next.venue?.name ?? next.venue?.city ?? "TBD";
   return { date, venue, href: `/shows#${next.id}` };
 }
 
-export default function NotFound() {
+export function NotFoundContent() {
+  const router = useRouter();
   const [picks, setPicks] = useState<Suggestion[]>(DEFAULTS);
+  const [canGoBack, setCanGoBack] = useState(false);
   const nextShow = nextShowLine();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setPicks(suggestionsForPath(window.location.pathname));
+      // history.length is 1 when this is the first page of the session, which
+      // is the common case for a bad link from search or social. Showing a
+      // back button then would be a control that does nothing.
+      setCanGoBack(window.history.length > 1);
     }
   }, []);
 
   return (
-    <section className="relative flex min-h-[88svh] flex-col items-start bg-ink pt-32 md:pt-40">
+    <section className="relative flex min-h-[88svh] flex-col items-start bg-surface-tuxedo pt-32 md:pt-40">
       <div className="mx-auto w-full max-w-[1400px] px-5 md:px-10">
-        <div className="relative h-[180px] w-[180px] md:h-[260px] md:w-[260px]">
-          <Image
-            src="/brand/stoned-goose-logo-full.png"
-            alt="Stoned Goose Productions"
-            fill
-            sizes="(min-width: 768px) 260px, 180px"
-            className="object-contain"
-            priority
-          />
-        </div>
-        <p className="mt-10 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
+        <Lockup colorway="gold" width={300} priority />
+        <p className="mt-10 t-eyebrow">
           [ Static / 404 / Misfire ]
         </p>
-        <h1 className="heading-display mt-6 text-[clamp(4rem,18vw,16rem)] text-bone">
-          Lost.
+        <h1 className="t-headline mt-6 display-hero">
+          This bit bombed.
         </h1>
-        <p className="mt-6 max-w-xl font-body text-base text-bone/85 md:text-lg">
-          That page either never existed or got cut from the special. Try one of
-          these instead.
+        <p className="t-body mt-6 max-w-xl text-base md:text-lg">
+          The page you wanted got cut for time. Somebody in the back is still
+          heckling. Here is where everyone else went.
         </p>
 
-        <ul className="mt-10 divide-y divide-bone/15 border-y border-bone/15">
+        <ul className="mt-10 divide-y divide-smoke border-y border-smoke">
           {picks.map((s, i) => (
             <li key={s.href}>
               <Link
@@ -107,16 +98,16 @@ export default function NotFound() {
                 className="group flex items-baseline justify-between gap-4 py-5"
               >
                 <span className="flex items-baseline gap-4">
-                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <span className="t-eyebrow text-smoke">
                     /0{i + 1}
                   </span>
-                  <span className="font-display text-2xl text-bone group-hover:text-slime md:text-3xl">
+                  <span className="t-subhead text-2xl group-hover:text-accent-gold md:text-3xl">
                     {s.label}
                   </span>
                 </span>
                 <span
                   aria-hidden
-                  className="font-body text-base text-bone/55 group-hover:text-slime"
+                  className="text-base text-smoke group-hover:text-accent-gold"
                 >
                   ↗
                 </span>
@@ -130,16 +121,16 @@ export default function NotFound() {
                 className="group flex items-baseline justify-between gap-4 py-5"
               >
                 <span className="flex items-baseline gap-4">
-                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
+                  <span className="t-eyebrow">
                     /now
                   </span>
-                  <span className="font-display text-2xl text-bone group-hover:text-slime md:text-3xl">
+                  <span className="t-subhead text-2xl group-hover:text-accent-gold md:text-3xl">
                     Next on stage. {nextShow.date}. {nextShow.venue}.
                   </span>
                 </span>
                 <span
                   aria-hidden
-                  className="font-body text-base text-bone/55 group-hover:text-slime"
+                  className="text-base text-smoke group-hover:text-accent-gold"
                 >
                   ↗
                 </span>
@@ -149,15 +140,28 @@ export default function NotFound() {
         </ul>
 
         <div className="mt-10 flex flex-wrap gap-3 pb-20">
+          {canGoBack ? (
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+            >
+              ← Go back
+            </button>
+          ) : null}
           <Link
             href="/"
-            className="inline-flex h-12 items-center bg-hazard px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink hover:bg-slime"
+            className={
+              canGoBack
+                ? "inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                : "inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+            }
           >
             Back to home ↗
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-12 items-center border border-bone/30 px-6 font-body text-xs font-semibold uppercase tracking-[0.18em] text-bone hover:border-slime hover:text-slime"
+            className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
           >
             Talk to us ↗
           </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Lockup } from "@/components/brand/lockup";
 import Link from "next/link";
 import { footer as footerCopy, site } from "@/content/site";
 import { footerColumns } from "@/lib/navigation";
@@ -18,28 +18,21 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-bone/15 bg-ink text-bone">
+    <footer className="relative border-t border-smoke bg-surface-tuxedo text-surface-ivory">
       <div className="mx-auto max-w-[1400px] px-5 pb-10 pt-20 md:px-10 md:pt-32">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Image
-              src="/brand/stoned-goose-logo-full.png"
-              alt="Stoned Goose Productions"
-              width={320}
-              height={320}
-              priority={false}
-              className="block h-32 w-auto md:h-40"
-            />
-            <p className="mt-4 font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            {/* The lockup carries the wordmark, so the display-size
+                "Stoned Goose." that used to sit under it is gone: the name
+                would have read twice in one block. */}
+            <Lockup colorway="gold" width={320} />
+            <p className="mt-4 t-eyebrow text-smoke">
               {footerCopy.locality}
             </p>
-            <h2 className="mt-3 font-display text-5xl leading-[0.95] tracking-[-0.02em] md:text-7xl">
-              Stoned Goose<span className="text-hazard">.</span>
-            </h2>
-            <p className="mt-6 max-w-md font-body text-sm text-bone/80">
+            <p className="t-body mt-6 max-w-md text-sm">
               {site.description}
             </p>
-            <div className="mt-8 space-y-1 font-mono text-xs uppercase tracking-[0.18em] text-bone/70">
+            <div className="mt-8 space-y-1 t-eyebrow text-smoke">
               <p>{site.contact.email}</p>
               <p>{site.contact.phone}</p>
               <p>{site.contact.locality}, {site.contact.region}</p>
@@ -51,7 +44,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-bone/10 pt-8">
+        <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-smoke pt-8">
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {socials.map((s) => (
               <a
@@ -62,19 +55,19 @@ export function Footer() {
                 onClick={() =>
                   track("Outbound Click", { destination: s.destination })
                 }
-                className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-slime"
+                className="t-eyebrow text-smoke transition-colors hover:text-accent-gold"
               >
                 {s.label} <span aria-hidden>↗</span>
               </a>
             ))}
           </div>
-          <div className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+          <div className="t-eyebrow text-smoke">
             <p>© {year} Stoned Goose Productions</p>
             {footerCopy.creditLine ? (
               footerCopy.creditHref ? (
                 <a
                   href={footerCopy.creditHref}
-                  className="transition-colors hover:text-slime"
+                  className="transition-colors hover:text-accent-gold"
                   target={/^https?:/.test(footerCopy.creditHref) ? "_blank" : undefined}
                   rel={/^https?:/.test(footerCopy.creditHref) ? "noopener noreferrer" : undefined}
                 >
@@ -101,7 +94,7 @@ function FooterColumn({
 }) {
   return (
     <div className="md:col-span-2">
-      <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+      <p className="t-eyebrow text-smoke">
         {label}
       </p>
       <ul className="mt-4 space-y-2">
@@ -109,7 +102,7 @@ function FooterColumn({
           <li key={it.href}>
             <Link
               href={it.href}
-              className="font-body text-sm text-bone/85 transition-colors hover:text-slime"
+              className="text-sm text-surface-ivory transition-colors hover:text-accent-gold"
             >
               {it.label}
             </Link>

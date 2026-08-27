@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
@@ -9,20 +9,23 @@ import { primaryNav as nav } from "@/lib/navigation";
 import { upcomingShows } from "@/content/shows";
 import { track } from "@/lib/analytics";
 import { CartButton } from "@/components/cart/cart-button";
+import { formatShowMonthDay } from "@/lib/dates";
 
-function formatNextShowDate(iso: string | null): string | null {
-  if (!iso) return null;
-  try {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-    }).format(new Date(iso));
-  } catch {
-    return null;
-  }
+
+/** The marquee line: next show, date and venue. Null when nothing is booked. */
+function nextShowMarquee() {
+  const next = upcomingShows[0];
+  if (!next) return null;
+  const date = formatShowMonthDay(next.start);
+  const venue = next.venue?.name ?? next.venue?.city ?? null;
+  const parts = [date, venue].filter(Boolean);
+  if (!parts.length) return null;
+  return { line: parts.join(" / "), href: next.ticketUrl ?? "/shows" };
 }
 
 export function Nav() {
+  const pathname = usePathname();
+  const marquee = nextShowMarquee();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -67,74 +70,107 @@ export function Nav() {
 
   return (
     <>
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled || open
-          ? "bg-ink/85 backdrop-blur-md border-b border-bone/10"
-          : "bg-transparent",
-      )}
-    >
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-10">
+    <header className="fixed inset-x-0 top-0 z-50 bg-surface-tuxedo">
+      {/* The marquee board. The brand system is called Marquee, so the header
+          opens the way a theatre marquee does: what is on, and when. It
+          collapses on scroll to give the page back its height, which is the
+          one thing the scroll state is for now. Hidden entirely when the
+          calendar is empty rather than showing a placeholder. */}
+      {marquee ? (
+        <div
+          aria-hidden={scrolled}
+          className={cn(
+            "overflow-hidden border-b border-accent-gold transition-[height,opacity] duration-300",
+            scrolled || open ? "h-0 opacity-0" : "h-9 opacity-100",
+          )}
+        >
+          <Link
+            href={marquee.href}
+            tabIndex={scrolled ? -1 : undefined}
+            onClick={() => track("CTA Click", { cta: "nav-marquee" })}
+            className="mx-auto flex h-9 max-w-[1400px] items-center gap-3 px-5 md:px-10"
+          >
+            <span className="t-eyebrow shrink-0">Now playing</span>
+            <span className="t-eyebrow truncate text-surface-ivory">
+              {marquee.line}
+            </span>
+            {/* The whole strip is the link, so this is a desktop affordance
+                only. On a narrow screen it would wrap inside a 36px bar. */}
+            <span aria-hidden className="ml-auto hidden shrink-0 t-eyebrow text-smoke sm:inline">
+              Tickets ↗
+            </span>
+          </Link>
+        </div>
+      ) : null}
+
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between border-b border-smoke px-5 md:h-20 md:px-10">
         <Link
           href="/"
           aria-label={`${site.shortName} home`}
           className="group inline-flex items-center gap-2"
         >
-          <Image
-            src="/brand/stoned-goose-mark-illustration.png"
-            alt=""
-            width={28}
-            height={24}
-            className={cn(
-              "h-6 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
-              "group-hover:translate-x-0 group-hover:opacity-90",
-              "group-focus-visible:translate-x-0 group-focus-visible:opacity-90",
-              "motion-reduce:translate-x-0 motion-reduce:opacity-90 motion-reduce:transition-none",
-            )}
-          />
-          <span className="font-display text-xl leading-none tracking-[-0.02em] text-bone md:text-[1.4rem]">
+          {/* No mark here on purpose. The lockup's minimum is 281px wide and
+              254px tall, which cannot sit in a 64px bar, and shrinking it past
+              the minimum is the rule this system exists to prevent. A header
+              this size carries the wordmark as type. The lockup runs at full
+              size in the footer. */}
+          <span className="t-subhead text-xl leading-none md:text-[1.4rem]">
             Stoned Goose
+            {/* Punctuation, not an accent. The retired system coloured this
+                period gold; Marquee has no such device, and at subhead size
+                gold is neither a headline nor an eyebrow. */}
             <span
               aria-hidden
-              className="text-hazard transition-[text-decoration-color] group-hover:underline group-hover:decoration-slime group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-hazard group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
+              className="transition-[text-decoration-color] group-hover:underline group-hover:decoration-accent-gold group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-accent-gold group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
             >
               .
             </span>
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone/70 transition-colors hover:text-slime"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <button
-            type="button"
-            aria-label="Search the site"
-            onClick={() => {
-              track("Search Open", { source: "nav" });
-              window.dispatchEvent(
-                new KeyboardEvent("keydown", { key: "k", metaKey: true }),
-              );
-            }}
-            className="inline-flex items-center gap-2 border border-bone/15 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-bone/65 transition-colors hover:border-slime hover:text-slime"
-          >
-            <span aria-hidden>/</span>
-            <span>Search</span>
-            <span aria-hidden className="opacity-60">⌘K</span>
-          </button>
+        {/* Numbered like the section indexes used elsewhere on the site, so
+            the header reads as a contents list rather than a row of links.
+            The number is what carries the active state: it goes gold while
+            its label goes ivory, which is the same rest/respond swap the
+            rest of the system uses. */}
+        <nav aria-label="Primary" className="hidden items-center gap-6 md:flex lg:gap-7">
+          {nav.map((item, i) => {
+            const active =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className="group inline-flex items-baseline gap-1.5"
+              >
+                <span
+                  aria-hidden
+                  className={cn(
+                    "t-eyebrow transition-colors",
+                    active ? "text-accent-gold" : "text-smoke",
+                  )}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span
+                  className={cn(
+                    "t-eyebrow transition-colors group-hover:text-accent-gold",
+                    active ? "text-surface-ivory" : "text-smoke",
+                  )}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
           <Link
             href="/shows"
             onClick={() => track("CTA Click", { cta: "nav-tickets" })}
-            className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-bone underline underline-offset-4 decoration-hazard decoration-2 transition-colors hover:text-slime"
+            className="t-eyebrow text-surface-ivory underline underline-offset-4 decoration-accent-gold decoration-2 transition-colors hover:text-accent-gold"
           >
-            Tickets<span className="text-hazard">.</span> ↗
+            Tickets<span className="text-accent-gold">.</span> ↗
           </Link>
         </nav>
 
@@ -146,7 +182,7 @@ export function Nav() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex min-h-[44px] items-center gap-2 border border-bone/25 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bone/85 transition-colors hover:border-slime hover:text-slime md:hidden"
+          className="inline-flex min-h-[44px] items-center gap-2 border border-smoke px-3 py-2 t-eyebrow text-smoke transition-colors hover:border-accent-gold hover:text-accent-gold md:hidden"
         >
           <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
             <span
@@ -174,15 +210,13 @@ export function Nav() {
       </div>
     </header>
 
-      {/* Mobile menu panel. Kept OUTSIDE <header> on purpose: the header gets
-          backdrop-blur when open, and a backdrop-filter makes that element the
-          containing block for fixed descendants, which would collapse this
-          full-screen panel to the header's height. As a sibling it stays
-          fixed to the viewport. */}
+      {/* Mobile menu panel. Kept OUTSIDE <header> on purpose: a fixed
+          descendant of the header would be positioned against it rather than
+          the viewport. As a sibling it stays fixed to the viewport. */}
       <div
         ref={panelRef}
         className={cn(
-          "fixed inset-0 top-16 z-40 origin-top bg-ink transition-[clip-path,opacity] duration-500 md:hidden",
+          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:hidden",
           open
             ? "[clip-path:inset(0_0_0_0)] opacity-100"
             : "pointer-events-none [clip-path:inset(0_0_100%_0)] opacity-0",
@@ -194,16 +228,16 @@ export function Nav() {
         >
           <ul className="flex flex-col">
             {nav.map((item, i) => (
-              <li key={item.href} className="border-b border-bone/10">
+              <li key={item.href} className="border-b border-smoke">
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="flex items-baseline justify-between py-3.5"
                 >
-                  <span className="font-display text-2xl uppercase tracking-[-0.02em] text-bone">
+                  <span className="t-subhead text-2xl">
                     {item.label}
                   </span>
-                  <span className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+                  <span className="t-eyebrow text-smoke">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </Link>
@@ -214,12 +248,12 @@ export function Nav() {
             {(() => {
               const next = upcomingShows[0];
               if (!next) return null;
-              const date = formatNextShowDate(next.start);
+              const date = formatShowMonthDay(next.start);
               const venue = next.venue?.name ?? next.venue?.city ?? null;
               if (!date && !venue) return null;
               return (
-                <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
-                  <span className="text-hazard">Next on stage. </span>
+                <p className="t-eyebrow text-smoke">
+                  <span className="text-accent-gold">Next on stage. </span>
                   {[date, venue].filter(Boolean).join(". ")}
                 </p>
               );
@@ -230,11 +264,11 @@ export function Nav() {
                 track("CTA Click", { cta: "nav-tickets-mobile" });
                 setOpen(false);
               }}
-              className="flex h-12 w-full items-center justify-center bg-hazard font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink"
+              className="flex h-12 w-full items-center justify-center bg-accent-gold t-eyebrow text-surface-tuxedo"
             >
               Tickets.
             </Link>
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-bone/55">
+            <p className="t-eyebrow text-smoke">
               {site.contact.email}
             </p>
           </div>

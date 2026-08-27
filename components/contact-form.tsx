@@ -28,13 +28,13 @@ type Props = {
   /** Additional Plausible events to fire on success. */
   successEvents?: SuccessEvent[];
   /** Named validation schema. When set, react-hook-form validates fields
-   *  via the matching Zod schema in lib/form-schemas before submission. */
+   * via the matching Zod schema in lib/form-schemas before submission. */
   schema?: FormSchemaName;
   /** Optional react-hook-form default values. */
   defaultValues?: Record<string, string>;
   /** Optional non-validated key/value pairs merged into the formsubmit POST.
-   *  Use for hidden routing tags (service, source variants, etc.) without
-   *  declaring them in the Zod schema. */
+   * Use for hidden routing tags (service, source variants, etc.) without
+   * declaring them in the Zod schema. */
   staticPayload?: Record<string, string>;
   /** The form fields to render */
   children: ReactNode;
@@ -156,7 +156,7 @@ export function ContactForm({
           <button
             type="submit"
             disabled={status === "loading"}
-            className="group inline-flex h-12 w-full items-center justify-center gap-3 bg-hazard px-7 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime disabled:opacity-50 md:w-auto md:justify-start"
+            className="group inline-flex h-12 w-full items-center justify-center gap-3 bg-accent-gold px-7 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-50 md:w-auto md:justify-start"
           >
             {status === "loading" ? "Sending..." : submitLabel}
             <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -165,12 +165,12 @@ export function ContactForm({
           </button>
 
           {status === "success" && (
-            <p role="status" className="font-body text-sm text-bone/85">
+            <p role="status" className="text-sm text-surface-ivory">
               {successText}
             </p>
           )}
           {status === "error" && (
-            <p role="alert" className="font-body text-sm text-hazard">
+            <p role="alert" className="text-sm text-accent-gold">
               {errorText}
             </p>
           )}

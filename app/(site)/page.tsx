@@ -38,7 +38,9 @@ export default function HomePage() {
 
       <UpcomingShowsBlock />
 
-      <OpenMicTeaser />
+      {/* First ivory band: the page turns from what we put on to
+          what the scene is doing. */}
+      <OpenMicTeaser tone="ivory" />
 
       <VideoStrip limit={5} />
 
@@ -46,29 +48,31 @@ export default function HomePage() {
 
       <RotatingBumper slot="aside" />
 
-      <ServicesOverview />
+      {/* Second: audience to client. */}
+      <ServicesOverview tone="ivory" />
 
       <ShopStrip limit={3} />
 
       <PressStrip />
 
       {mission ? (
-        <section className="section-y-lg border-y border-bone/10 bg-ink">
+        <section className="section-y-lg border-y border-smoke bg-surface-tuxedo">
           <div className="mx-auto max-w-[1100px] px-5 md:px-10">
-            <p className="font-body text-[10px] font-medium uppercase tracking-[0.18em] text-hazard">
+            <p className="t-eyebrow">
               {mission.eyebrow}
             </p>
-            <h2 className="display-1 mt-4 text-bone">
+            <h2 className="display-1 mt-4 text-surface-ivory">
               {mission.heading}
             </h2>
-            <p className="mt-8 max-w-3xl font-body text-lg leading-relaxed text-bone/85 md:text-xl">
+            <p className="t-body mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
               {mission.body}
             </p>
           </div>
         </section>
       ) : null}
 
-      <MailingListCapture page="home" />
+      {/* Third: the closing ask. */}
+      <MailingListCapture page="home" tone="ivory" />
 
       <SectionRenderer sections={homeBottomSections} pageSlug="home" />
 

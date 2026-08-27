@@ -1,83 +1,63 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { hero } from "@/content/home";
 import { upcomingShows } from "@/content/shows";
 import { track } from "@/lib/analytics";
+import { formatShowDateShort } from "@/lib/dates";
 import { TextEffect } from "@/components/text-effect";
-
-function formatShowDate(iso: string | null): string | null {
-  if (!iso) return null;
-  try {
-    return new Intl.DateTimeFormat("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    }).format(new Date(iso));
-  } catch {
-    return null;
-  }
-}
+import { MonocleRing } from "@/components/brand/monocle-ring";
+import { GoldRule } from "@/components/brand/gold-rule";
 
 export function Hero() {
   // The next real show gets a ticket strip above the fold. Renders nothing
   // while the calendar is empty, lights up the moment a show is entered.
   const next = upcomingShows[0];
-  const nextDate = next ? formatShowDate(next.start) : null;
+  const nextDate = next ? formatShowDateShort(next.start) : null;
   const nextVenue = next ? next.venue?.name ?? next.venue?.city ?? null : null;
   return (
     <section
       aria-label="Hero"
-      className="relative isolate overflow-hidden border-b border-bone/10 bg-ink"
+      className="relative isolate overflow-hidden border-b border-smoke bg-surface-tuxedo"
     >
-      {/* Background: solid black + a soft directional vignette. Site-wide grain
-          handles texture on top. No video, no stock photo. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_30%_0%,rgba(239,233,221,0.06),transparent_55%),radial-gradient(ellipse_at_85%_85%,rgba(242,234,0,0.05),transparent_55%)]"
-      />
+      {/* The signature device, once. One ring per section is the rule, and
+          scripts/test/monocle-ring.test.ts fails the build if a second lands
+          in here. The section is `relative`, which the bleed anchors to. */}
+      <MonocleRing corner="bottom-right" size={420} />
 
       <div className="relative mx-auto max-w-[1400px] px-5 pb-16 pt-32 md:px-10 md:pb-20 md:pt-36">
-        {/* The single mono use, per the spec: a status banner. The 32px mark
-            sits left as a quiet brand-anchor: opacity holds it back so the
-            wordmark below stays the focal point. */}
+        {/* Status banner. No mark: the headline below already sets the
+            wordmark, and the 32px illustration that used to sit here was an
+            order of magnitude under the lockup minimum. */}
         <div className="flex items-center gap-3">
-          <Image
-            src="/brand/stoned-goose-mark-illustration.png"
-            alt=""
-            width={32}
-            height={28}
-            priority
-            className="h-7 w-auto opacity-60"
-          />
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
+          <p className="t-eyebrow text-smoke">
             Now booking{" "}
-            <span className="text-bone">corporate events + media production</span>
+            <span className="text-surface-ivory">corporate events + media production</span>
           </p>
         </div>
 
         {/* Two-line lockup, same display size, left-aligned, period-as-accent.
             Per-letter rise on mount via TextEffect. Reduced-motion renders
             the static string. */}
-        <h1 className="heading-display mt-8 text-[clamp(3.5rem,12vw,11rem)] text-bone">
+        <h1 className="t-headline mt-8 display-hero">
           <TextEffect as="span" text="Stoned Goose" className="block" />
           <TextEffect
             as="span"
             text="Productions"
             className="block"
             delay={0.35}
-            trailing={<span className="text-hazard">.</span>}
+            trailing={<span className="text-accent-gold">.</span>}
           />
         </h1>
 
-        {/* Baseline-aligned row: subhead left, italic tagline right.
+        {/* Baseline-aligned row: subhead left, tagline right.
             items-baseline anchors both first-line baselines to the same line. */}
-        <div className="mt-10 grid grid-cols-12 items-baseline gap-x-8 gap-y-4 border-t border-bone/15 pt-8 md:mt-12">
-          <p className="col-span-12 max-w-md font-body text-base leading-snug text-bone/85 md:col-span-7 md:text-lg">
+        <GoldRule className="mt-10 md:mt-12" />
+        <div className="mt-8 grid grid-cols-12 items-baseline gap-x-8 gap-y-4">
+          <p className="t-body col-span-12 max-w-md text-base leading-snug md:col-span-7 md:text-lg">
             {hero.subhead}
           </p>
-          <p className="col-span-12 font-display text-3xl italic leading-snug text-bone md:col-span-5 md:text-right md:text-4xl">
+          <p className="col-span-12 t-subhead text-3xl leading-snug md:col-span-5 md:text-right md:text-4xl">
             {hero.italicLine}
           </p>
         </div>
@@ -88,7 +68,7 @@ export function Hero() {
           <Link
             href={hero.primary.href}
             onClick={() => track("CTA Click", { cta: "hero-primary" })}
-            className="group inline-flex h-12 items-center gap-3 bg-hazard px-7 font-body text-sm font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime"
+            className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
           >
             {hero.primary.label}
             <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -97,7 +77,7 @@ export function Hero() {
           </Link>
           <Link
             href={hero.secondary.href}
-            className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/85 underline-offset-4 hover:text-slime hover:underline"
+            className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
           >
             {hero.secondary.label} ↗
           </Link>
@@ -105,7 +85,7 @@ export function Hero() {
             <Link
               key={t.href}
               href={t.href}
-              className="font-body text-xs font-medium uppercase tracking-[0.18em] text-bone/65 underline-offset-4 hover:text-slime hover:underline"
+              className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
             >
               {t.label} ↗
             </Link>
@@ -113,11 +93,11 @@ export function Hero() {
         </div>
 
         {next ? (
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t-2 border-hazard/60 pt-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-hazard">
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t-2 border-accent-gold pt-6">
+            <p className="t-eyebrow">
               Next on stage
             </p>
-            <p className="font-body text-sm text-bone md:text-base">
+            <p className="t-body text-sm md:text-base">
               {[nextDate, next.name, nextVenue].filter(Boolean).join(". ")}
             </p>
             <a
@@ -126,7 +106,7 @@ export function Hero() {
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
               onClick={() => track("CTA Click", { cta: "hero-next-show" })}
-              className="inline-flex h-11 items-center bg-hazard px-5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime"
+              className="inline-flex h-11 items-center bg-accent-gold px-5 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
             >
               Get tickets ↗
             </a>

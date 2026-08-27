@@ -12,16 +12,16 @@ export function CtaStripBlock({
   pageSlug: string;
 }) {
   return (
-    <section className="border-y border-bone/10 bg-ink py-20 md:py-28">
+    <section className="border-y border-smoke bg-surface-tuxedo py-20 md:py-28">
       <div className="mx-auto flex max-w-[1100px] flex-col gap-8 px-5 md:flex-row md:items-end md:justify-between md:px-10">
         <div className="max-w-2xl">
           {block.heading ? (
-            <h2 className="heading-display text-[clamp(2rem,5vw,3.6rem)] text-bone">
+            <h2 className="t-headline display-2">
               {block.heading}
             </h2>
           ) : null}
           {block.subhead ? (
-            <p className="mt-5 font-body text-base leading-relaxed text-bone/85 md:text-lg">
+            <p className="t-body mt-5 text-base leading-relaxed md:text-lg">
               {block.subhead}
             </p>
           ) : null}
@@ -33,7 +33,7 @@ export function CtaStripBlock({
               onClick={() =>
                 track("CTA Click", { cta: `${pageSlug}-cta-strip` })
               }
-              className="group inline-flex h-12 items-center gap-3 bg-hazard px-7 font-body text-sm font-semibold uppercase tracking-[0.18em] text-ink transition-colors hover:bg-slime"
+              className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
             >
               {block.primaryCtaLabel}
               <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -41,7 +41,7 @@ export function CtaStripBlock({
               </span>
             </Link>
             {block.note ? (
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-bone/55">
+              <p className="t-eyebrow text-smoke">
                 {block.note}
               </p>
             ) : null}
