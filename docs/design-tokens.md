@@ -168,6 +168,57 @@ headlines on one line.
 Do not hand-roll a `clamp()` next to these. Add a step here if a real gap
 appears.
 
+## The two marks
+
+Seven files under `public/brand/`, all RGBA with straight alpha and a single
+flat ink value across every opaque pixel, so each composites cleanly onto any
+surface. Verified on import: exact canvases, exact palette inks, and alpha
+masks that are pixel-identical within each family, which confirms all four
+lockups and all three badges come from one true knockout.
+
+| File | Canvas | Ink |
+| ---- | ------ | --- |
+| `SGP_Lockup_Tuxedo.png` | 3353 x 3028 | `#0F0F0F` |
+| `SGP_Lockup_Ivory.png`  | 3353 x 3028 | `#F4EEE2` |
+| `SGP_Lockup_Gold.png`   | 3353 x 3028 | `#D4AA4A` |
+| `SGP_Lockup_White.png`  | 3353 x 3028 | `#FFFFFF` |
+| `SGP_Badge_Tuxedo.png`  | 1750 x 1750 | `#0F0F0F` |
+| `SGP_Badge_Ivory.png`   | 1750 x 1750 | `#F4EEE2` |
+| `SGP_Badge_Gold.png`    | 1750 x 1750 | `#D4AA4A` |
+
+Use `<Lockup colorway="gold" width={320} />` and
+`<Badge colorway="ivory" width={140} />`. Never reference the files directly.
+The components enforce four rules the call site cannot get wrong:
+
+1. **Clear space is baked into the artwork**, 245px of the 3353px lockup canvas
+   on every side. Do not add component padding. Padding twice floats the mark
+   and reads undersized.
+2. **Minimum width** is 281px for the lockup and 115px for the badge, the 240px
+   and 96px artwork minimums converted to file width. Smaller values are
+   clamped, with a dev-console warning.
+3. **The lockup canvas is 1.107:1, not square.** Pass a width; height follows.
+   No `aspect-square`, no cropping container.
+4. **Never recolor a mark.** No `filter`, no `mix-blend-mode`, no background
+   behind the knockout. Every colorway you need is already a file. Reaching for
+   a fifth lockup colorway is a design error, not a missing asset.
+
+Lockup on audience surfaces, badge on client surfaces, never both in one
+section. The site footer carries the lockup; `/book` carries the badge.
+
+**The header carries no mark.** The lockup's minimum is 281 x 254px, which
+cannot sit in a 64px bar, and shrinking it past the minimum is the rule this
+system exists to prevent. A header this size carries the wordmark as type.
+
+Icons are generated from `SGP_Badge_Gold.png` by `npm run brand:generate`: the
+circular mark stays recognisable in a round or squircle crop where the 1.107:1
+lockup would have to be letterboxed, and gold holds up against both light and
+dark browser chrome. Nothing in that script recolors a mark; the only
+background it paints is the Tuxedo square the iOS slot requires, since that
+slot cannot be transparent.
+
+Still open: these are raster. SVG remains the better end state and is what the
+40 foot banner case would need. Do not trace the goose to get there.
+
 ## Section vertical rhythm
 
 Three documented steps replace the ad-hoc `py-16/20/24/28/32` spread.

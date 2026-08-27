@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/content/services";
+import { Badge } from "@/components/brand/badge";
 import { sponsorshipTiers } from "@/content/sponsorships";
 import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
@@ -85,15 +86,25 @@ export default function BookPage() {
         className="section-y-tight scroll-mt-24 border-b border-smoke bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <SectionHeader
-            eyebrow="All services"
-            title={
-              <>
-                Pick the <span className="text-accent-gold">lane</span> that fits.
-              </>
-            }
-            subtitle="Live shows, on-camera production, podcasts, collaboration. Each one ships a brief and a quote form."
-          />
+          {/* Client-facing band, so it carries the badge, not the lockup. The
+              two never share a section: the lockup lives in the site footer. */}
+          <div className="flex items-start justify-between gap-10">
+            <SectionHeader
+              eyebrow="All services"
+              title={
+                <>
+                  Pick the <span className="text-accent-gold">lane</span> that fits.
+                </>
+              }
+              subtitle="Live shows, on-camera production, podcasts, collaboration. Each one ships a brief and a quote form."
+            />
+            <Badge
+              colorway="ivory"
+              width={140}
+              alt=""
+              className="hidden shrink-0 md:block"
+            />
+          </div>
           <ol className="mt-10">
             {services.filter((s) => !s.draft).map((s, i) => (
               <li

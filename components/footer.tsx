@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Lockup } from "@/components/brand/lockup";
 import Link from "next/link";
 import { footer as footerCopy, site } from "@/content/site";
 import { footerColumns } from "@/lib/navigation";
@@ -22,20 +22,13 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-5 pb-10 pt-20 md:px-10 md:pt-32">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Image
-              src="/brand/stoned-goose-logo-full.png"
-              alt="Stoned Goose Productions"
-              width={320}
-              height={320}
-              priority={false}
-              className="block h-32 w-auto md:h-40"
-            />
+            {/* The lockup carries the wordmark, so the display-size
+                "Stoned Goose." that used to sit under it is gone: the name
+                would have read twice in one block. */}
+            <Lockup colorway="gold" width={320} />
             <p className="mt-4 t-eyebrow text-smoke">
               {footerCopy.locality}
             </p>
-            <h2 className="mt-3 t-subhead text-5xl leading-[0.95] md:text-7xl">
-              Stoned Goose<span className="text-accent-gold">.</span>
-            </h2>
             <p className="t-body mt-6 max-w-md text-sm">
               {site.description}
             </p>

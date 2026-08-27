@@ -8,8 +8,7 @@
 //   public/images/members      -> max 1000w
 //   public/images/media        -> max 1600w (16:9 posters)
 //   public/images/shows        -> max 1600w (event posters)
-//   public/brand/stoned-goose-logo-full.png  -> max 720w
-//   public/brand/stoned-goose-mark*.png      -> max 480w
+//   public/brand/SGP_*.png                   -> LEAVE. Final logo masters.
 //   public/brand/og-mark.png                 -> leave (used by OG template)
 //   public/brand/favicon-*.png               -> leave (sized intentionally)
 //   public/brand/apple-touch-icon.png        -> leave
@@ -42,8 +41,11 @@ const TARGETS: Target[] = [
     dir: "public/brand",
     maxWidth: 720,
     // Favicons + apple-touch-icon + og-mark have their own sizing rules.
-    // The mark/logo PNGs are what get resized.
-    skip: /^(favicon-|apple-touch-icon|og-mark)/i,
+    // Nothing in public/brand is resized any more. The SGP_ masters are final
+    // art at the canvas sizes the manifest specifies, and downscaling them to
+    // 720w would silently break the documented 3353px lockup and 1750px badge.
+    // Everything else here is generated at an intentional size.
+    skip: /^(SGP_|favicon-|apple-touch-icon|og-mark)/i,
   },
 ];
 

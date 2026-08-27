@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -81,18 +80,11 @@ export function Nav() {
           aria-label={`${site.shortName} home`}
           className="group inline-flex items-center gap-2"
         >
-          <Image
-            src="/brand/stoned-goose-mark-illustration.png"
-            alt=""
-            width={28}
-            height={24}
-            className={cn(
-              "h-6 w-auto -translate-x-2 opacity-0 transition-all duration-300 ease-out",
-              "group-hover:translate-x-0 group-hover:opacity-90",
-              "group-focus-visible:translate-x-0 group-focus-visible:opacity-90",
-              "motion-reduce:translate-x-0 motion-reduce:opacity-90 motion-reduce:transition-none",
-            )}
-          />
+          {/* No mark here on purpose. The lockup's minimum is 281px wide and
+              254px tall, which cannot sit in a 64px bar, and shrinking it past
+              the minimum is the rule this system exists to prevent. A header
+              this size carries the wordmark as type. The lockup runs at full
+              size in the footer. */}
           <span className="t-subhead text-xl leading-none md:text-[1.4rem]">
             Stoned Goose
             <span

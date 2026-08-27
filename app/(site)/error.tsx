@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { Lockup } from "@/components/brand/lockup";
 import { useEffect } from "react";
 
 // Client error boundary for the site. Keeps the Adult Swim register of the 404
@@ -22,16 +22,7 @@ export default function Error({
   return (
     <section className="relative flex min-h-[88svh] flex-col items-start bg-surface-tuxedo pt-32 md:pt-40">
       <div className="mx-auto w-full max-w-[1400px] px-5 md:px-10">
-        <div className="relative h-[180px] w-[180px] md:h-[260px] md:w-[260px]">
-          <Image
-            src="/brand/stoned-goose-logo-full.png"
-            alt="Stoned Goose Productions"
-            fill
-            sizes="(min-width: 768px) 260px, 180px"
-            className="object-contain"
-            priority
-          />
-        </div>
+        <Lockup colorway="gold" width={300} priority />
         <p className="mt-10 t-eyebrow">
           [ Static / 500 / Bombed ]
         </p>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { hero } from "@/content/home";
 import { upcomingShows } from "@/content/shows";
@@ -35,18 +34,10 @@ export function Hero() {
           handles texture on top. No video, no stock photo. */}
 
       <div className="relative mx-auto max-w-[1400px] px-5 pb-16 pt-32 md:px-10 md:pb-20 md:pt-36">
-        {/* The single mono use, per the spec: a status banner. The 32px mark
-            sits left as a quiet brand-anchor: opacity holds it back so the
-            wordmark below stays the focal point. */}
+        {/* Status banner. No mark: the headline below already sets the
+            wordmark, and the 32px illustration that used to sit here was an
+            order of magnitude under the lockup minimum. */}
         <div className="flex items-center gap-3">
-          <Image
-            src="/brand/stoned-goose-mark-illustration.png"
-            alt=""
-            width={32}
-            height={28}
-            priority
-            className="h-7 w-auto opacity-60"
-          />
           <p className="t-eyebrow text-smoke">
             Now booking{" "}
             <span className="text-surface-ivory">corporate events + media production</span>

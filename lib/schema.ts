@@ -49,7 +49,7 @@ export const organization: WithContext<LocalBusiness> = {
   name: site.name,
   legalName: "Stoned Goose Productions LLC",
   url: site.url,
-  logo: `${SITE_URL}/brand/stoned-goose-logo-full.png`,
+  logo: `${SITE_URL}/brand/SGP_Lockup_Gold.png`,
   image: `${SITE_URL}/opengraph.jpg`,
   description: site.description,
   foundingLocation: "Olympia, WA",
