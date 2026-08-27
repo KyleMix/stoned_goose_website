@@ -20,6 +20,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # .lighthouserc.json asserts performance, accessibility and SEO on all
+      # eight routes, and best-practices on seven of them. /book.html is
+      # exempt from best-practices only: it mounts the Cal.com scheduler,
+      # which sets three third-party cookies (__cf_bm on embed.js, and
+      # __Secure-next-auth.csrf-token / .callback-url on /api/auth/session).
+      # That zeroes third-party-cookies (weight 5) and inspector-issues
+      # (weight 1), pinning the category at 21/27 = 0.78 no matter what this
+      # repo does. It is cal.com's cookie policy being measured, not our
+      # code. Revisit if the scheduler ever moves behind a click.
       - name: Run Lighthouse CI
         run: npx --yes @lhci/cli@0.14.x autorun --config=./.lighthouserc.json
         env:
