@@ -83,7 +83,10 @@ async function main() {
   await sharp({
     create: { width: APPLE, height: APPLE, channels: 4, background: TUXEDO },
   })
-    .composite([{ input: await renderAt(sourceFor(APPLE), inset), gravity: "centre" }])
+    // The asset is 180px but iOS renders it at about 60pt on the home screen,
+    // so it is a small-size slot despite the large file. It takes the icon
+    // master, not the badge, whose line art would be illegible at 60pt.
+    .composite([{ input: await renderAt(hasIcon ? ICON : BADGE, inset), gravity: "centre" }])
     .png()
     .toFile(join(OUT, "apple-touch-icon.png"));
   console.log("  -> apple-touch-icon.png (180x180 on Tuxedo)");

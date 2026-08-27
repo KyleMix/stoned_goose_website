@@ -144,17 +144,53 @@ if (existsSync(ICON)) {
     `${png.width}px, too small to downscale cleanly`,
   );
   if (png.colorType === 6) {
-    const PALETTE = new Set(["15,15,15", "244,238,226", "212,170,74", "135,104,31", "140,135,129"]);
+    // The icon grounds the mark on an opaque disc, so its antialiased edges
+    // are opaque blends between two palette colours rather than partially
+    // transparent. Those are legitimate. What is not legitimate is a hue that
+    // does not sit on a line between two palette values, which is how an
+    // off-palette colour would show up. So: allow anything close to such a
+    // blend, reject anything else.
+    const PALETTE: [number, number, number][] = [
+      [15, 15, 15],
+      [244, 238, 226],
+      [212, 170, 74],
+      [135, 104, 31],
+      [140, 135, 129],
+    ];
+    const TOLERANCE = 6; // per-channel, absorbs rounding in the compositor
+
+    function onPaletteBlend(r: number, g: number, b: number) {
+      for (let i = 0; i < PALETTE.length; i += 1) {
+        for (let j = i; j < PALETTE.length; j += 1) {
+          const A = PALETTE[i];
+          const B = PALETTE[j];
+          // Project the pixel onto segment AB, then measure how far off it is.
+          const ab = [B[0] - A[0], B[1] - A[1], B[2] - A[2]];
+          const ap = [r - A[0], g - A[1], b - A[2]];
+          const len2 = ab[0] ** 2 + ab[1] ** 2 + ab[2] ** 2;
+          const t = len2 === 0 ? 0 : Math.min(1, Math.max(0,
+            (ap[0] * ab[0] + ap[1] * ab[1] + ap[2] * ab[2]) / len2));
+          const dr = r - (A[0] + ab[0] * t);
+          const dg = g - (A[1] + ab[1] * t);
+          const db = b - (A[2] + ab[2] * t);
+          if (Math.abs(dr) <= TOLERANCE && Math.abs(dg) <= TOLERANCE && Math.abs(db) <= TOLERANCE) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
     const offPalette = new Set<string>();
     for (let i = 0; i < png.pixels.length; i += 4) {
       if (png.pixels[i + 3] !== 0xff) continue;
-      const key = `${png.pixels[i]},${png.pixels[i + 1]},${png.pixels[i + 2]}`;
-      if (!PALETTE.has(key)) offPalette.add(key);
+      const [r, g, b] = [png.pixels[i], png.pixels[i + 1], png.pixels[i + 2]];
+      if (!onPaletteBlend(r, g, b)) offPalette.add(`${r},${g},${b}`);
     }
     check(
-      "SGP_Icon_Gold.png uses only palette colours",
+      "SGP_Icon_Gold.png stays on the palette",
       offPalette.size === 0,
-      `${offPalette.size} off-palette opaque values, e.g. rgb(${[...offPalette][0]})`,
+      `${offPalette.size} opaque values are not palette colours or blends of two, e.g. rgb(${[...offPalette][0]})`,
     );
   }
 } else {
