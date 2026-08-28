@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-27T21:33:16.347Z",
+  "fetchedAt": "2026-08-28T08:20:31.042Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-27 20:00:00-seattle-international-comedy-competition-qualifiers-with-tay",
@@ -8,14 +8,6 @@
       "start": "2026-08-27T20:00:00",
       "url": "https://www.eventbrite.com/e/seattle-international-comedy-competition-qualifiers-with-taylor-clark-tickets-1997507056377",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-sicc-aug-sep26-f2.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-28T02:30:00Z-willie-macc",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Willie Macc",
-      "start": "2026-08-28T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/378299",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93044/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-08-28 19:15:00-comedy-show-michael-palascak-at-laughs-comedy-8211-seattle",
@@ -216,6 +208,14 @@
       "start": "2026-09-06T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376446",
       "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-07T01:00:00Z-charleston-white",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Charleston White",
+      "start": "2026-09-07T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/354408",
+      "image": "https://files.seatengine.com/talent/headshots/photos/86813/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-07T02:00:00Z-duncan-trussell",
@@ -551,7 +551,7 @@
       "title": "Comedy Show: Erica Rhodes Oct. 16th and 17th at Laughs Comedy- Seattle",
       "start": "2026-10-16T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-seattle-tickets-1985175475286",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/Erica-Rhodes-oct26.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-Erica-Rhodes-sep26.png"
     },
     {
       "id": "laughs-comedy-club-2026-10-18 19:00:00-comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-com",
