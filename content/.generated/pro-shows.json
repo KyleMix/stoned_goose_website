@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-29T05:02:40.253Z",
+  "fetchedAt": "2026-08-29T12:05:35.074Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-08-28 19:15:00-comedy-show-michael-palascak-at-laughs-comedy-8211-seattle",
@@ -8,14 +8,6 @@
       "start": "2026-08-28T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-michael-palascak-at-laughs-comedy-seattle-tickets-1996301469434",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24540_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-29T04:30:00Z-nasser-al-rayess",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Nasser Al-Rayess",
-      "start": "2026-08-29T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/382721",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93945/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-08-29T23:00:00Z-kennedy-enemies-of-freedom",
@@ -432,6 +424,14 @@
       "start": "2026-09-27T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376471",
       "image": "https://files.seatengine.com/talent/headshots/photos/82701/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-28T02:30:00Z-winston-hodges",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Winston Hodges",
+      "start": "2026-09-28T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376522",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92556/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-01 19:00:00-comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seat",
