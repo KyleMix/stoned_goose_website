@@ -1,30 +1,6 @@
 {
-  "fetchedAt": "2026-08-30T02:51:59.802Z",
+  "fetchedAt": "2026-08-30T11:01:00.374Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-08-30T02:00:00Z-kennedy-enemies-of-freedom",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Kennedy: Enemies of Freedom",
-      "start": "2026-08-30T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/360374",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88344/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-30T02:00:00Z-carsen-white-aka-nurse-stankk",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Carsen White aka Nurse Stankk",
-      "start": "2026-08-30T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/374087",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91916/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-08-30T04:30:00Z-carsen-white-aka-nurse-stankk",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Carsen White aka Nurse Stankk",
-      "start": "2026-08-30T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/374088",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91916/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-08-30T22:00:00Z-golden-girls-drag-brunch",
       "clubSlug": "emerald-city-comedy-club",
@@ -210,6 +186,22 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/23692_image.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-12T02:00:00Z-ryan-sickler",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ryan Sickler",
+      "start": "2026-09-12T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/355984",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-12T04:45:00Z-ryan-sickler",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ryan Sickler",
+      "start": "2026-09-12T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/355986",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-09-12T22:30:00Z-joe-wong",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Joe Wong",
@@ -218,12 +210,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/62225/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-13T02:00:00Z-ryan-sickler",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ryan Sickler",
+      "start": "2026-09-13T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/355985",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-09-13T02:00:00Z-randy-feltface-gimmick",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Randy Feltface: “Gimmick”",
       "start": "2026-09-13T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/384671",
       "image": "https://files.seatengine.com/talent/headshots/photos/83847/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-13T04:45:00Z-ryan-sickler",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ryan Sickler",
+      "start": "2026-09-13T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/355987",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-14T02:00:00Z-randy-feltface-gimmick",
@@ -424,6 +432,14 @@
       "start": "2026-09-28T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376522",
       "image": "https://files.seatengine.com/talent/headshots/photos/92556/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-30T02:30:00Z-peter-antoniou",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Peter Antoniou",
+      "start": "2026-09-30T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/369626",
+      "image": "https://files.seatengine.com/talent/headshots/photos/75337/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-01 19:00:00-comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seat",
