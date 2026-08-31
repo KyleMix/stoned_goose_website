@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-30T11:01:00.374Z",
+  "fetchedAt": "2026-08-31T02:45:07.209Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-08-30T22:00:00Z-golden-girls-drag-brunch",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Golden Girls Drag Brunch",
-      "start": "2026-08-30T22:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/379792",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93484/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-09-01T02:30:00Z-jane-don-t-does-america",
       "clubSlug": "emerald-city-comedy-club",
@@ -440,6 +432,14 @@
       "start": "2026-09-30T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/369626",
       "image": "https://files.seatengine.com/talent/headshots/photos/75337/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-01T02:30:00Z-chris-o-connor",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Chris O'Connor",
+      "start": "2026-10-01T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/379283",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91296/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-01 19:00:00-comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seat",
