@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-31T02:45:07.209Z",
+  "fetchedAt": "2026-08-31T22:16:08.327Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-09-01T02:30:00Z-jane-don-t-does-america",
@@ -458,46 +458,6 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24355_image.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-10-03T02:00:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-03T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366329",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-03T04:45:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-03T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366332",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-04T01:00:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-04T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366330",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-04T03:45:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-04T03:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366333",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-05T01:00:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-05T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366331",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
-    {
       "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-sam-jay-on-oct-8th-8211-10th-at-laughs-comedy-se",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Sam Jay on Oct 8th &#8211; 10th at Laughs Comedy- Seattle",
@@ -586,12 +546,52 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24090_image.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-10-24T02:00:00Z-damon-wayans-jr",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Damon Wayans Jr.",
+      "start": "2026-10-24T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/353926",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-24T04:45:00Z-damon-wayans-jr",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Damon Wayans Jr.",
+      "start": "2026-10-24T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/353929",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-25T02:00:00Z-damon-wayans-jr",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Damon Wayans Jr.",
+      "start": "2026-10-25T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/353927",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-25T04:45:00Z-damon-wayans-jr",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Damon Wayans Jr.",
+      "start": "2026-10-25T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/353930",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-25 19:00:00-comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy show: Ahamed Weinberg Oct. 25th Sunday at 7pm",
       "start": "2026-10-25T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm-tickets-1991800481859",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24289_image.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-26T01:00:00Z-damon-wayans-jr",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Damon Wayans Jr.",
+      "start": "2026-10-26T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/353928",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
     },
     {
       "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
