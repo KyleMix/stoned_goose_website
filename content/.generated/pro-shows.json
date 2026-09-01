@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-08-31T22:16:08.327Z",
+  "fetchedAt": "2026-09-01T10:55:07.761Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-09-01T02:30:00Z-jane-don-t-does-america",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jane Don't Does America",
-      "start": "2026-09-01T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/371429",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90623/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-09-02T02:30:00Z-jane-don-t-does-america",
       "clubSlug": "emerald-city-comedy-club",
@@ -186,12 +178,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-12T03:00:00Z-mike-epps",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Mike Epps",
+      "start": "2026-09-12T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/372266",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
+    },
+    {
       "id": "tacoma-comedy-club-2026-09-12T04:45:00Z-ryan-sickler",
       "clubSlug": "tacoma-comedy-club",
       "title": "Ryan Sickler",
       "start": "2026-09-12T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/355986",
       "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-12T05:45:00Z-mike-epps",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Mike Epps",
+      "start": "2026-09-12T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/372270",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-12T22:30:00Z-joe-wong",
@@ -202,12 +210,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/62225/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-12T23:00:00Z-mike-epps",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Mike Epps",
+      "start": "2026-09-12T23:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/372267",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
+    },
+    {
       "id": "tacoma-comedy-club-2026-09-13T02:00:00Z-ryan-sickler",
       "clubSlug": "tacoma-comedy-club",
       "title": "Ryan Sickler",
       "start": "2026-09-13T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/355985",
       "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-13T02:00:00Z-mike-epps",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Mike Epps",
+      "start": "2026-09-13T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/372268",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-13T02:00:00Z-randy-feltface-gimmick",
@@ -224,6 +248,14 @@
       "start": "2026-09-13T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/355987",
       "image": "https://files.seatengine.com/talent/headshots/photos/85326/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-13T04:45:00Z-mike-epps",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Mike Epps",
+      "start": "2026-09-13T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/372269",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-14T02:00:00Z-randy-feltface-gimmick",
@@ -263,7 +295,7 @@
       "title": "Comedy show: Comedian JT Tomlinson Sept 17th at Laughs Comedy",
       "start": "2026-09-17T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-jt-tomlinson-sept-17th-at-laughs-comedy-tickets-1998968295984",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24703_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-jt-tomlinson-sep26-v2.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-18T02:30:00Z-leslie-liao",
@@ -367,7 +399,7 @@
       "title": "Comedy show: Comedian Audrey Stewart at Laughs Comedy",
       "start": "2026-09-24T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-audrey-stewart-at-laughs-comedy-tickets-1998966872727",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24700_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-audrey-stewart-sep26-v3.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-25T02:30:00Z-dylan-carlino",
@@ -447,7 +479,15 @@
       "title": "Comedy show: Comedian Julie Kim Oct. 1st at Laughs Comedy-Seattle",
       "start": "2026-10-01T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seattle-tickets-1999050611191",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24696_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-julie-kim-oct26-v2g.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-02T02:00:00Z-herman-wrice",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Herman Wrice",
+      "start": "2026-10-02T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/364023",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89212/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
