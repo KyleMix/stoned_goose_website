@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-01T10:55:07.761Z",
+  "fetchedAt": "2026-09-01T20:23:22.170Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-09-02T02:30:00Z-jane-don-t-does-america",
@@ -144,6 +144,14 @@
       "start": "2026-09-08T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/382886",
       "image": "https://files.seatengine.com/talent/headshots/photos/94374/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-09-10 20:00:00-seattle-international-comedy-competition-qualifiers-with-tay",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Seattle International Comedy Competition Qualifiers with Taylor Clark",
+      "start": "2026-09-10T20:00:00",
+      "url": "https://www.eventbrite.com/e/seattle-international-comedy-competition-qualifiers-with-taylor-clark-tickets-1997507056377",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-sicc-sep26-f2.png"
     },
     {
       "id": "tacoma-comedy-club-2026-09-11T02:00:00Z-amos-gill",
