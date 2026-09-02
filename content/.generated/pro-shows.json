@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-02T02:17:04.107Z",
+  "fetchedAt": "2026-09-02T10:21:04.403Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-09-02T02:30:00Z-jane-don-t-does-america",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jane Don't Does America",
-      "start": "2026-09-02T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/368994",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90623/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-09-02 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
       "clubSlug": "laughs-comedy-club",
@@ -224,6 +216,14 @@
       "start": "2026-09-12T23:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/372267",
       "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-12T23:00:00Z-comedic-cody-smith",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Comedic Cody Smith",
+      "start": "2026-09-12T23:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366101",
+      "image": "https://files.seatengine.com/talent/headshots/photos/72928/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-09-13T02:00:00Z-ryan-sickler",
@@ -504,6 +504,38 @@
       "start": "2026-10-02T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-ricky-velez-on-oct2nd-and-3rd-laughs-comedy-club-seattle-tickets-1992391807530",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24355_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-03T02:00:00Z-justin-silva",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Justin Silva",
+      "start": "2026-10-03T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/377003",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-03T04:30:00Z-justin-silva",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Justin Silva",
+      "start": "2026-10-03T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/377004",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-04T02:00:00Z-justin-silva",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Justin Silva",
+      "start": "2026-10-04T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/377005",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-04T04:30:00Z-justin-silva",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Justin Silva",
+      "start": "2026-10-04T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/377006",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-sam-jay-on-oct-8th-8211-10th-at-laughs-comedy-se",
