@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-02T20:22:59.721Z",
+  "fetchedAt": "2026-09-03T10:30:22.599Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-09-02 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
@@ -8,14 +8,6 @@
       "start": "2026-09-02T20:00:00",
       "url": "https://www.eventbrite.com/e/bumbershoot-x-laughs-comedy-coop-showdown-qualifiers-tickets-1989839671021",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-03T02:30:00Z-sabrina-wu",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Sabrina Wu",
-      "start": "2026-09-03T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/369623",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79598/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
@@ -520,6 +512,14 @@
       "start": "2026-10-04T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/377006",
       "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-04T22:00:00Z-rocky-horror-drag-brunch",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Rocky Horror Drag Brunch",
+      "start": "2026-10-04T22:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/383977",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94689/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-sam-jay-on-oct-8th-8211-10th-at-laughs-comedy-se",
