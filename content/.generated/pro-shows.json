@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-03T10:30:22.599Z",
+  "fetchedAt": "2026-09-03T20:22:36.563Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-09-02 20:00:00-bumbershoot-x-laughs-comedy-coop-showdown-qualifiers",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Bumbershoot x Laughs Comedy Coop Showdown: Qualifiers",
-      "start": "2026-09-02T20:00:00",
-      "url": "https://www.eventbrite.com/e/bumbershoot-x-laughs-comedy-coop-showdown-qualifiers-tickets-1989839671021",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner1080x540-bumbershoot-sep26-fx5.png"
-    },
     {
       "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
       "clubSlug": "laughs-comedy-club",
@@ -120,14 +112,6 @@
       "start": "2026-09-07T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376443",
       "image": "https://files.seatengine.com/talent/headshots/photos/77601/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-08T02:30:00Z-sergei-putinski",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Sergei Putinski",
-      "start": "2026-09-08T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/382886",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94374/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-10 20:00:00-seattle-international-comedy-competition-qualifiers-with-tay",
