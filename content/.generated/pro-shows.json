@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-03T20:22:36.563Z",
+  "fetchedAt": "2026-09-04T02:20:59.882Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-09-03 20:00:00-comedy-show-comedian-graham-kay-at-laughs-comedy",
@@ -554,6 +554,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/64862/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-10-11 19:00:00-comedy-show-gus-heagerty-oct-11th-sunday-at-7pm-laughs-comed",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Gus Heagerty Oct. 11th -Sunday at 7pm Laughs Comedy Club",
+      "start": "2026-10-11T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-gus-heagerty-oct-11th-sunday-at-7pm-laughs-comedy-club-tickets-1999044753671",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24734_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy show: Comedian Gwen Rose at Laughs Comedy",
@@ -680,6 +688,14 @@
       "start": "2026-11-13T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-heather-shaw-november-13th-and-14th-at-laughs-comedy-seattle-tickets-1985727225586",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23799_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-15 13:00:00-dungeons-and-drag-queens-brunch-show-november-15th-laughs-co",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Dungeons and Drag Queens Brunch Show November 15th -Laughs Comedy- Seattle",
+      "start": "2026-11-15T13:00:00",
+      "url": "https://www.eventbrite.com/e/dungeons-and-drag-queens-brunch-show-november-15th-laughs-comedy-seattle-tickets-1999051552005",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24730_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
