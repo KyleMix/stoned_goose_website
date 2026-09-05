@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-05T09:46:49.353Z",
+  "fetchedAt": "2026-09-05T19:47:58.140Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-09-04 19:15:00-comedy-show-francesca-fiorentini-and-matt-lieb-laughs-comedy",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Francesca Fiorentini and Matt Lieb Laughs Comedy Club",
-      "start": "2026-09-04T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-francesca-fiorentini-and-matt-lieb-laughs-comedy-club-tickets-1989424855296",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-1080x540-fiorentini-lieb-sep26-f2.png"
-    },
     {
       "id": "tacoma-comedy-club-2026-09-06T01:00:00Z-ian-bagg",
       "clubSlug": "tacoma-comedy-club",
@@ -104,6 +96,14 @@
       "start": "2026-09-12T03:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/372266",
       "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-09-12T03:00:00Z-ricci-armani",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ricci Armani",
+      "start": "2026-09-12T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/386881",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95472/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-09-12T04:45:00Z-ryan-sickler",
