@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-06T10:02:23.524Z",
+  "fetchedAt": "2026-09-06T19:51:53.573Z",
   "shows": [
     {
       "id": "tacoma-comedy-club-2026-09-07T01:00:00Z-charleston-white",
@@ -480,6 +480,14 @@
       "start": "2026-10-08T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-sam-jay-on-oct-8th-10th-at-laughs-comedy-seattle-tickets-1985487632958",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/banner-1080x540-sam-jay-oct26-f2.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-comedian-matt-banwart-october-8th-at-laughs-come",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Comedian Matt Banwart October. 8th at Laughs Comedy",
+      "start": "2026-10-08T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-matt-banwart-october-8th-at-laughs-comedy-tickets-1999867347070",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24756_image.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-09T02:30:00Z-big-jay-oakerson",
