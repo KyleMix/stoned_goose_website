@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-06T19:51:53.573Z",
+  "fetchedAt": "2026-09-07T02:12:55.441Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-09-07T01:00:00Z-charleston-white",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Charleston White",
-      "start": "2026-09-07T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/354408",
-      "image": "https://files.seatengine.com/talent/headshots/photos/86813/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-09-07T02:00:00Z-duncan-trussell",
       "clubSlug": "emerald-city-comedy-club",
@@ -266,12 +258,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/94315/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-20T01:00:00Z-ryan-long",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ryan Long",
+      "start": "2026-09-20T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/360352",
+      "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-09-20T02:00:00Z-leslie-liao",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Leslie Liao",
       "start": "2026-09-20T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/370038",
       "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-20T03:45:00Z-ryan-long",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ryan Long",
+      "start": "2026-09-20T03:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/360354",
+      "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-20T04:30:00Z-leslie-liao",
