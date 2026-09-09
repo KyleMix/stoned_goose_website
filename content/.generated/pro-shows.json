@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-07T11:14:06.379Z",
+  "fetchedAt": "2026-09-09T10:33:22.126Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-09-10 20:00:00-seattle-international-comedy-competition-qualifiers-with-tay",
@@ -186,20 +186,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-jt-tomlinson-sep26-v2.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-colin-armstrong",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Colin Armstrong",
-      "start": "2026-09-18T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/378337",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93056/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-ryan-long",
       "clubSlug": "tacoma-comedy-club",
       "title": "Ryan Long",
       "start": "2026-09-18T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/360350",
       "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-colin-armstrong",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Colin Armstrong",
+      "start": "2026-09-18T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/378337",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93056/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-18T02:30:00Z-leslie-liao",
