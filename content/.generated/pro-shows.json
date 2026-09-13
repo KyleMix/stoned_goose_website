@@ -1,30 +1,6 @@
 {
-  "fetchedAt": "2026-09-12T19:59:11.215Z",
+  "fetchedAt": "2026-09-13T02:27:50.099Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-09-12T22:30:00Z-joe-wong",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Joe Wong",
-      "start": "2026-09-12T22:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/383979",
-      "image": "https://files.seatengine.com/talent/headshots/photos/62225/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-09-12T23:00:00Z-mike-epps",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Mike Epps",
-      "start": "2026-09-12T23:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/372267",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91564/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-09-12T23:00:00Z-comedic-cody-smith",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Comedic Cody Smith",
-      "start": "2026-09-12T23:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366101",
-      "image": "https://files.seatengine.com/talent/headshots/photos/72928/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-09-13T02:00:00Z-mike-epps",
       "clubSlug": "tacoma-comedy-club",
@@ -114,20 +90,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-jt-tomlinson-sep26-v2.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-ryan-long",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Ryan Long",
-      "start": "2026-09-18T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/360350",
-      "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-colin-armstrong",
       "clubSlug": "tacoma-comedy-club",
       "title": "Colin Armstrong",
       "start": "2026-09-18T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/378337",
       "image": "https://files.seatengine.com/talent/headshots/photos/93056/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-ryan-long",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ryan Long",
+      "start": "2026-09-18T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/360350",
+      "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-18T02:30:00Z-leslie-liao",
@@ -232,6 +208,14 @@
       "start": "2026-09-20T23:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376523",
       "image": "https://files.seatengine.com/talent/headshots/photos/92561/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-21T02:00:00Z-steve-hofstetter",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Steve Hofstetter",
+      "start": "2026-09-21T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/319288",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/10045/full/data?1460521067"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-21T02:00:00Z-wes-barker",
