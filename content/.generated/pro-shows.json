@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-15T20:44:43.871Z",
+  "fetchedAt": "2026-09-16T10:36:53.498Z",
   "shows": [
     {
       "id": "tacoma-comedy-club-2026-09-17T02:00:00Z-don-mcmillan-2-0-now-powered-by-ai",
@@ -250,6 +250,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/74020/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-09-26T21:30:00Z-kori-king",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Kori King",
+      "start": "2026-09-26T21:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364185",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89012/full/data"
+    },
+    {
       "id": "tacoma-comedy-club-2026-09-27T01:00:00Z-t-j-miller",
       "clubSlug": "tacoma-comedy-club",
       "title": "T.J. Miller",
@@ -416,6 +424,14 @@
       "start": "2026-10-10T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/353363",
       "image": "https://files.seatengine.com/talent/headshots/photos/64862/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-10T23:00:00Z-psychic-standup-with-karen-rontowski",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Psychic Standup with Karen Rontowski",
+      "start": "2026-10-10T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376464",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92389/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-11T02:00:00Z-big-jay-oakerson",
