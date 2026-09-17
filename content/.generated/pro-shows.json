@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-09-16T20:44:51.389Z",
+  "fetchedAt": "2026-09-17T10:46:20.571Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-09-17T02:00:00Z-don-mcmillan-2-0-now-powered-by-ai",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Don McMillan 2.0 Now Powered by AI",
-      "start": "2026-09-17T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/359238",
-      "image": "https://files.seatengine.com/talent/headshots/photos/83335/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-17T02:30:00Z-kev-herrera",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Kev Herrera",
-      "start": "2026-09-17T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376455",
-      "image": "https://files.seatengine.com/talent/headshots/photos/78327/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-09-17 20:00:00-comedy-show-comedian-jt-tomlinson-sept-17th-at-laughs-comedy",
       "clubSlug": "laughs-comedy-club",
@@ -26,20 +10,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-jt-tomlinson-sep26-v2.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-colin-armstrong",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Colin Armstrong",
-      "start": "2026-09-18T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/378337",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93056/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-ryan-long",
       "clubSlug": "tacoma-comedy-club",
       "title": "Ryan Long",
       "start": "2026-09-18T02:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/360350",
       "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-09-18T02:00:00Z-colin-armstrong",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Colin Armstrong",
+      "start": "2026-09-18T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/378337",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93056/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-18T02:30:00Z-leslie-liao",
@@ -464,6 +448,14 @@
       "start": "2026-10-11T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-gus-heagerty-oct-11th-sunday-at-7pm-laughs-comedy-club-tickets-1999044753671",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24734_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-12T02:00:00Z-daniela-mora",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Daniela Mora",
+      "start": "2026-10-12T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/374484",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91998/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
