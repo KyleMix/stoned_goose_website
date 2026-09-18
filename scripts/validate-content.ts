@@ -111,8 +111,6 @@ const singletons: Record<string, z.ZodTypeAny> = {
           .strict(),
       ),
       services: opt(z.object({ eyebrow: opt(str), heading: opt(str) }).strict()),
-      workingOn: opt(z.object({ eyebrow: opt(str), heading: opt(str) }).strict()),
-      people: opt(z.object({ eyebrow: opt(str), heading: opt(str) }).strict()),
       contact: opt(
         z.object({ eyebrow: opt(str), heading: opt(str), body: opt(str) }).strict(),
       ),
