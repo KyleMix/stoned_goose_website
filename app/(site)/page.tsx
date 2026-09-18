@@ -7,7 +7,6 @@ import { ServicesOverview } from "@/components/services-overview";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { PressStrip } from "@/components/press-strip";
 import { LatestStrip } from "@/components/latest-strip";
-import { OpenMicTeaser } from "@/components/open-mic-teaser";
 import { VideoStrip } from "@/components/video-strip";
 import { ShopStrip } from "@/components/shop-strip";
 import { SectionRenderer } from "@/components/section-renderer";
@@ -38,17 +37,13 @@ export default function HomePage() {
 
       <UpcomingShowsBlock />
 
-      {/* First ivory band: the page turns from what we put on to
-          what the scene is doing. */}
-      <OpenMicTeaser tone="ivory" />
-
       <VideoStrip limit={5} />
 
       <LatestStrip limit={6} />
 
       <RotatingBumper slot="aside" />
 
-      {/* Second: audience to client. */}
+      {/* The one ivory band: the page turns from audience to client. */}
       <ServicesOverview tone="ivory" />
 
       <ShopStrip limit={3} />

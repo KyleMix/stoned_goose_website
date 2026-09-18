@@ -1,6 +1,6 @@
-// Bordered disclaimer box used at the top of aggregator pages (/calendar,
-// /open-mics/map). Renders nothing when the body is empty so the CMS can hide
-// it.
+// Bordered disclaimer box used at the top of aggregator pages. /calendar is
+// the only one left since the open mic map was retired. Renders nothing when
+// the body is empty so the CMS can hide it.
 
 type Props = {
   eyebrow?: string;

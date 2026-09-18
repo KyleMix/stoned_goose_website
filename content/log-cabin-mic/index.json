@@ -1,0 +1,42 @@
+{
+  "eyebrow": "The house mic",
+  "titleLead": "Log Cabin",
+  "titleEmphasis": "Comedy",
+  "titleTrail": "Open Mic",
+  "subhead": "Our own room, every Monday at the Log Cabin Bar & Grill in Olympia. Sign ups at 6, show at 7. Show up, go up.",
+  "recurrence": "Every Monday",
+  "venue": {
+    "name": "Log Cabin Bar & Grill",
+    "address": "7035 Pacific Ave SE",
+    "city": "Olympia",
+    "region": "WA",
+    "postalCode": "98503",
+    "mapUrl": "https://maps.google.com/?q=Log+Cabin+Bar+%26+Grill,+7035+Pacific+Ave+SE,+Olympia,+WA+98503"
+  },
+  "signupTime": "6:00 PM",
+  "showTime": "7:00 PM",
+  "endTime": "9:00 PM",
+  "price": "",
+  "motto": "Show up, go up.",
+  "host": "Stoned Goose Productions",
+  "poster": {
+    "src": "/images/open-mics/log-cabin-open-mic.webp",
+    "alt": "Log Cabin Comedy Open Mic poster. The Stoned Goose lockup above the title, every Monday, sign ups 6 PM, show 7 PM, show up go up, at the Log Cabin Bar & Grill, 7035 Pacific Ave SE, Olympia, WA 98503."
+  },
+  "howItWorks": [
+    {
+      "heading": "Sign ups at six.",
+      "body": "Get to the Log Cabin at 6:00 PM and put your name down. That is the whole process. Show up, go up."
+    },
+    {
+      "heading": "Show at seven.",
+      "body": "Two hours, 7:00 PM to 9:00 PM, every Monday. Bring the new material, the old material, or the bit that died last week."
+    },
+    {
+      "heading": "Then stay.",
+      "body": "The comics who stick around for the rest of the list are the comics who get better. Work the room, watch the room."
+    }
+  ],
+  "topSections": [],
+  "bottomSections": []
+}

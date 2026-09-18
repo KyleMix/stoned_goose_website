@@ -56,7 +56,7 @@ Headlines and subheads are always uppercase and letterspaced. Body is always sen
 - **Never recolor a mark in CSS.** No filter, no mix-blend-mode, no background-color behind a knockout. Every colorway exists as a file.
 - Never place a mark over a photo without a solid tuxedo panel behind it.
 - Don't mix lockup and badge on one page unless it genuinely serves both audiences, and then keep them in separate sections.
-- `/open-mics` is an information utility, not a sales surface. It carries no page-level mark: the site header lockup is the only brand furniture it needs. Don't add one.
+- `/open-mics` is the Log Cabin Comedy Open Mic, our own Monday room, and nothing else. The Pacific Northwest map and the Open Mic Explorer app are both retired: do not bring either back. It is an information utility for comics, not a sales surface, so it carries no page-level mark. The site header lockup is the only brand furniture it needs, and the show poster is the event's own artwork, not a mark placement. Don't add one.
 
 ### The monocle ring
 A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framing a headshot. **One ring per page section, maximum.** Use `<MonocleRing />`: `scripts/test/monocle-ring.test.ts` fails the build on a second ring in one section, so the limit is real rather than advisory.
