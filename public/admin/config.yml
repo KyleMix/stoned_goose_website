@@ -98,22 +98,6 @@ collections:
             fields:
               - { name: eyebrow, label: Tiny top line, widget: string, required: false }
               - { name: heading, label: Heading, widget: string, required: false }
-          - name: workingOn
-            label: What we are working on section (headings only)
-            widget: object
-            required: false
-            hint: 'The cards fill themselves from the next show, the latest video, and the open mic map.'
-            fields:
-              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
-              - { name: heading, label: Heading, widget: string, required: false }
-          - name: people
-            label: Who we work with section (headings only)
-            widget: object
-            required: false
-            hint: 'The portraits fill from Crew members and Comedians. Edit those, not this.'
-            fields:
-              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
-              - { name: heading, label: Heading, widget: string, required: false }
           - name: contact
             label: Contact section
             widget: object
