@@ -1,90 +1,76 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { services } from "@/content/services";
-import { Badge } from "@/components/brand/badge";
-import { sponsorshipTiers, sponsors } from "@/content/sponsorships";
 import { site } from "@/content/site";
+import { Badge } from "@/components/brand/badge";
 import { PageHeader } from "@/components/page-header";
 import { SectionHeader } from "@/components/section-header";
-import { ContactForm } from "@/components/contact-form";
-import { TextField } from "@/components/form-field";
-import { StickyQuoteRail } from "@/components/sticky-quote-rail";
-import { SponsorStrip } from "@/components/brand/sponsor-strip";
-import { Surface } from "@/components/brand/surface";
+import { BookingEnquiry } from "@/components/booking-enquiry";
+import { BookCallSection } from "@/components/book-call-section";
 import { PressStrip } from "@/components/press-strip";
-import { BookPlanner } from "@/components/book-planner";
+import { Surface } from "@/components/brand/surface";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbs } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Book Us",
   description:
-    "Book Stoned Goose Productions for live shows, comedy filming, podcasts, collaborations, and sponsorships across the Pacific Northwest.",
+    "Book Stoned Goose Productions for live shows, comedy filming, podcasts, and collaborations across the Pacific Northwest. Free intro call or send us the details.",
   alternates: {
     canonical: "/book",
   },
 };
 
+// One primary path, one secondary path.
+//
+// This page used to offer five ways to start the same conversation: a row of
+// five jump links, a Cal.com embed, a build-your-show estimator, a services
+// list, a sponsor section, a quote form, and a sticky bar repeating the call
+// CTA at every scroll position. Every one of them asked for the same thing.
+//
+// Now: book a call, or send the details. The estimator is gone (its own copy
+// called the result "ballpark only", and the call does that job with a person
+// in it) and sponsors moved to /sponsor, which is a different audience.
 export default function BookPage() {
   const calLink = site.booking.calLink;
+  const live = services.filter((s) => !s.draft);
 
   return (
     <>
       <JsonLd schema={buildBreadcrumbs("/book")} />
       <PageHeader
-        eyebrow="Work With Us"
+        eyebrow="Work with us"
         title={
           <>
-            Book <span className="text-accent-gold">Us</span>
+            Book <span className="text-accent-gold">us</span>
           </>
         }
-        body="Live shows, on-camera production, podcasts, collaborations, and sponsorships. Start with a free intro call and we'll map the rest together."
+        body="Live shows, on-camera production, podcasts, and collaborations. Start with a free intro call, or send us the details and we will come back within two business days."
       />
 
-      <nav
-        aria-label="Book Us sections"
-        className="border-b border-smoke bg-surface-tuxedo"
-      >
-        <div className="mx-auto flex max-w-[1400px] flex-wrap gap-x-8 gap-y-3 px-5 py-5 md:px-10">
+      <section className="border-b border-smoke bg-surface-tuxedo">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-stretch gap-4 px-5 py-8 sm:flex-row sm:items-center md:px-10">
           {calLink ? (
             <a
               href="#call"
-              className="t-eyebrow text-smoke hover:text-accent-gold"
+              className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory sm:justify-start"
             >
-              Book a call ↓
+              Book a free intro call
             </a>
           ) : null}
           <a
-            href="#plan"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
+            href="#enquiry"
+            className="inline-flex min-h-[44px] items-center justify-center t-ui text-smoke underline-offset-4 transition-colors hover:text-accent-gold hover:underline sm:justify-start"
           >
-            Build your show ↓
-          </a>
-          <a
-            href="#venues"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
-          >
-            All services ↓
-          </a>
-          <a
-            href="#sponsors"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
-          >
-            Sponsors ↓
-          </a>
-          <a
-            href="#quote"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
-          >
-            Quote form ↓
+            Or send us the details <span aria-hidden className="ml-1">&darr;</span>
           </a>
         </div>
-      </nav>
+      </section>
 
-      <BookPlanner calLink={calLink} />
+      <BookCallSection calLink={calLink} />
 
       <section
-        id="venues"
+        id="services"
         className="section-y-tight scroll-mt-24 border-b border-smoke bg-surface-tuxedo"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -92,13 +78,13 @@ export default function BookPage() {
               two never share a section: the lockup lives in the site footer. */}
           <div className="flex items-start justify-between gap-10">
             <SectionHeader
-              eyebrow="All services"
+              eyebrow="What we do"
               title={
                 <>
                   Pick the <span className="text-accent-gold">lane</span> that fits.
                 </>
               }
-              subtitle="Live shows, on-camera production, podcasts, collaboration. Each one ships a brief and a quote form."
+              subtitle="Live shows, on-camera production, podcasts, collaboration. Each one has a brief."
             />
             <Badge
               colorway="ivory"
@@ -107,93 +93,28 @@ export default function BookPage() {
               className="hidden shrink-0 md:block"
             />
           </div>
-          <ol className="mt-10">
-            {services.filter((s) => !s.draft).map((s, i) => (
-              <li
-                key={s.slug}
-                className="group grid grid-cols-12 items-baseline gap-x-6 gap-y-3 border-t border-smoke py-7 last:border-b transition-colors hover:bg-surface-ivory/[0.025]"
-              >
-                <span className="col-span-2 t-eyebrow text-smoke md:col-span-1">
-                  /{String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="col-span-10 md:col-span-7">
-                  <Link
-                    href={`/book/${s.slug}`}
-                    className="t-subhead text-2xl transition-colors group-hover:text-accent-gold md:text-4xl"
-                  >
-                    {s.title}
-                  </Link>
-                  <p className="t-body mt-2 max-w-prose text-sm md:text-base">
-                    {s.summary}
-                  </p>
-                </div>
+          <ul className="mt-10">
+            {live.map((s) => (
+              <li key={s.slug} className="border-t border-smoke last:border-b">
                 <Link
                   href={`/book/${s.slug}`}
-                  className="col-span-12 t-eyebrow text-smoke transition-colors hover:text-accent-gold md:col-span-4 md:text-right"
+                  className="group grid grid-cols-12 items-baseline gap-x-6 gap-y-3 py-7 transition-colors hover:bg-surface-ivory/[0.025]"
                 >
-                  Read brief ↗
+                  <div className="col-span-12 md:col-span-8">
+                    <span className="t-subhead text-2xl transition-colors group-hover:text-accent-gold md:text-3xl">
+                      {s.title}
+                    </span>
+                    <span className="t-body mt-2 block max-w-prose text-sm md:text-base">
+                      {s.summary}
+                    </span>
+                  </div>
+                  <span className="col-span-12 t-ui text-smoke transition-colors group-hover:text-accent-gold md:col-span-4 md:text-right">
+                    Read brief <span aria-hidden>&#8599;</span>
+                  </span>
                 </Link>
               </li>
             ))}
-          </ol>
-        </div>
-      </section>
-
-      <section
-        id="sponsors"
-        className="section-y scroll-mt-24 border-b border-smoke bg-surface-tuxedo"
-      >
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <SectionHeader
-            eyebrow="For Sponsors"
-            title={
-              <>
-                Put your name on live{" "}
-                <span className="text-accent-gold">comedy</span> in the South
-                Sound.
-              </>
-            }
-            subtitle="Sponsor recurring live comedy and get in front of real rooms in Olympia, Lacey, Tacoma, and beyond."
-          />
-
-          <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden border border-smoke md:grid-cols-3">
-            {sponsorshipTiers.map((t) => (
-              <li key={t.name} className="flex flex-col bg-surface-tuxedo p-8 md:p-10">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="t-headline text-3xl md:text-4xl">
-                    {t.name}
-                  </h3>
-                  <span className="t-eyebrow">
-                    {t.price}
-                  </span>
-                </div>
-                <ul className="mt-6 space-y-3 border-t border-smoke pt-6">
-                  {t.deliverables.map((d) => (
-                    <li
-                      key={d}
-                      className="flex items-baseline gap-3 text-sm text-surface-ivory"
-                    >
-                      <span aria-hidden className="text-smoke">/</span>
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border border-smoke p-8 md:p-10">
-            <p className="t-body max-w-xl text-base md:text-lg">
-              Want the one-sheet, the numbers, or a custom build? Book the
-              intro call and we&apos;ll bring the deck.
-            </p>
-            <a
-              href={calLink ? "#call" : "#quote"}
-              className="inline-flex h-12 shrink-0 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
-            >
-              {calLink ? "Book a call ↗" : "Get a quote ↗"}
-            </a>
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -202,106 +123,42 @@ export default function BookPage() {
       <Surface
         tone="ivory"
         as="section"
-        id="quote"
+        id="enquiry"
         className="section-y scroll-mt-24"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
-              <p className="t-eyebrow">
-                Quote
-              </p>
-              <h2 className="display-2 mt-4 text-surface-ivory">
-                Can&apos;t do a call? Get a{" "}
-                <span className="text-accent-gold">quote</span>.
+              <p className="t-eyebrow">Send us the details</p>
+              <h2 className="t-headline mt-4 display-2">
+                Can&apos;t do a call? Tell us{" "}
+                <span className="text-accent-gold">here</span>.
               </h2>
               <p className="t-body mt-6 text-base md:text-lg">
-                Tell us what you&apos;re planning and we&apos;ll map the right
-                package.
+                Same inbox, same people. We come back within two business days.
               </p>
-              <ul className="mt-8 space-y-2 text-sm text-surface-ivory">
-                <li>/ Fast turnaround within 1-2 business days.</li>
-                <li>/ Clear options tailored to your audience size.</li>
-                <li>/ Bundled pricing for production + talent.</li>
-              </ul>
+              <p className="t-body mt-6 text-sm">
+                Sponsoring a show instead?{" "}
+                <Link
+                  href="/sponsor"
+                  className="underline underline-offset-4 transition-colors hover:text-accent-gold"
+                >
+                  That lives here
+                </Link>
+                .
+              </p>
             </div>
             <div className="md:col-span-7">
-              <ContactForm
-                subject="Quick Quote"
+              <BookingEnquiry
+                subject="New enquiry from Book Us"
                 source="/book"
-                submitLabel="Request Quote"
-                formName="quote"
-                schema="generalQuote"
-                staticPayload={{ service: "general" }}
-                successEvents={[
-                  { name: "Quote Submitted", props: { service: "general" } },
-                ]}
-              >
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <TextField
-                    id="quote-service"
-                    name="serviceType"
-                    label="Service type"
-                    required
-                    placeholder="Live show, filming, podcast, collab, sponsorship"
-                  />
-                  <TextField
-                    id="quote-date"
-                    name="eventDate"
-                    label="Event date"
-                    type="date"
-                  />
-                  <TextField
-                    id="quote-budget"
-                    name="budget"
-                    label="Budget range"
-                    placeholder="$2k-$5k"
-                  />
-                  <TextField
-                    id="quote-venue"
-                    name="venueSize"
-                    label="Venue size"
-                    placeholder="Estimated audience or seat count"
-                  />
-                </div>
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <TextField
-                    id="quote-name"
-                    name="name"
-                    label="Your name"
-                    autoComplete="name"
-                    placeholder="Who are we talking to?"
-                  />
-                  <TextField
-                    id="quote-email"
-                    name="email"
-                    label="Contact email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    placeholder="you@email.com"
-                  />
-                </div>
-              </ContactForm>
+                formName="enquiry-book"
+                idPrefix="book"
+              />
             </div>
           </div>
         </div>
       </Surface>
-
-      {/* The one sanctioned Smoke surface, at the page foot as the spec puts
-          it. Renders nothing until there are real sponsors in the CMS. */}
-      <SponsorStrip sponsors={sponsors} />
-
-      {calLink ? (
-        <StickyQuoteRail
-          kicker="Intro call"
-          label="Free, 15 minutes"
-          ctaLabel="Book a call ↗"
-          targetId="call"
-        />
-      ) : (
-        <StickyQuoteRail label="All services" targetId="quote" />
-      )}
     </>
   );
 }

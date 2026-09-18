@@ -56,7 +56,7 @@ export function TopVideosGrid({ videos }: Props) {
                   className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                   unoptimized
                 />
-                <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-eyebrow text-surface-tuxedo">
+                <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-ui text-surface-tuxedo">
                   ▸
                 </span>
               </div>

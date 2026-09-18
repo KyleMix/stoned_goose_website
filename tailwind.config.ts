@@ -64,11 +64,13 @@ const config: Config = {
       //   tracking-headline  Bold 700 uppercase
       //   tracking-subhead   Bold 700 uppercase
       //   tracking-eyebrow   Regular 400 uppercase
+      //   tracking-ui        Regular 400 uppercase, interactive labels
       // Body and fine print run at normal tracking and need no token.
       letterSpacing: {
         headline: "0.04em",
         subhead: "0.06em",
         eyebrow: "0.26em",
+        ui: "0.08em",
       },
       maxWidth: {
         col: "70ch",

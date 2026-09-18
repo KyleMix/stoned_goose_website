@@ -17,7 +17,7 @@ const ALL: Record<string, Suggestion> = {
   sponsor: { href: "/book#sponsors", label: "Sponsor a show" },
   contact: { href: "/contact", label: "Contact" },
   watch: { href: "/watch", label: "Watch" },
-  roster: { href: "/roster", label: "The roster" },
+  roster: { href: "/about", label: "About us" },
 };
 
 const DEFAULTS: Suggestion[] = [ALL.shows, ALL.book, ALL.contact];
@@ -91,19 +91,14 @@ export function NotFoundContent() {
         </p>
 
         <ul className="mt-10 divide-y divide-smoke border-y border-smoke">
-          {picks.map((s, i) => (
+          {picks.map((s) => (
             <li key={s.href}>
               <Link
                 href={s.href}
                 className="group flex items-baseline justify-between gap-4 py-5"
               >
-                <span className="flex items-baseline gap-4">
-                  <span className="t-eyebrow text-smoke">
-                    /0{i + 1}
-                  </span>
-                  <span className="t-subhead text-2xl group-hover:text-accent-gold md:text-3xl">
-                    {s.label}
-                  </span>
+                <span className="t-subhead text-2xl group-hover:text-accent-gold md:text-3xl">
+                  {s.label}
                 </span>
                 <span
                   aria-hidden
@@ -144,7 +139,7 @@ export function NotFoundContent() {
             <button
               type="button"
               onClick={() => router.back()}
-              className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+              className="inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
             >
               ← Go back
             </button>
@@ -153,15 +148,15 @@ export function NotFoundContent() {
             href="/"
             className={
               canGoBack
-                ? "inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
-                : "inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                ? "inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                : "inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
             }
           >
             Back to home ↗
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+            className="inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
           >
             Talk to us ↗
           </Link>

@@ -49,7 +49,7 @@ export function ShopProductCard({ product, borderClass }: Props) {
             {product.price}
           </span>
         </div>
-        <p className="mt-2 t-eyebrow text-smoke group-hover:text-accent-gold">
+        <p className="mt-2 t-ui text-smoke group-hover:text-accent-gold">
           View ↗
         </p>
       </Link>

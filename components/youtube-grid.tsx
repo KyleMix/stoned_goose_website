@@ -91,7 +91,7 @@ export function YouTubeGrid({ videos }: Props) {
                   href={active.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center px-3 t-eyebrow text-smoke hover:text-accent-gold"
+                  className="inline-flex h-10 items-center px-3 t-ui text-smoke hover:text-accent-gold"
                 >
                   Watch on YouTube ↗
                 </a>
@@ -99,7 +99,7 @@ export function YouTubeGrid({ videos }: Props) {
                   <button
                     type="button"
                     aria-label="Close player"
-                    className="inline-flex h-10 items-center bg-accent-gold px-4 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                    className="inline-flex h-10 items-center bg-accent-gold px-4 t-ui text-surface-tuxedo hover:bg-surface-ivory"
                   >
                     Close ✕
                   </button>

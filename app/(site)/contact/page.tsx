@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/content/site";
 import { contactCopy } from "@/content/contact-copy";
 import { PageHeader } from "@/components/page-header";
-import { ContactForm } from "@/components/contact-form";
-import { TextField, TextAreaField } from "@/components/form-field";
+import { BookingEnquiry } from "@/components/booking-enquiry";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbs } from "@/lib/schema";
@@ -51,7 +50,7 @@ export default function ContactPage() {
                 href={`mailto:${site.contact.email}`}
                 className="group block"
               >
-                <span className="t-eyebrow text-smoke">
+                <span className="t-eyebrow">
                   {contactCopy.emailLabel}
                 </span>
                 <p className="mt-2 break-all t-subhead text-2xl transition-colors group-hover:text-accent-gold md:text-4xl">
@@ -62,7 +61,7 @@ export default function ContactPage() {
                 href={`tel:${site.contact.phoneTel}`}
                 className="group mt-8 block"
               >
-                <span className="t-eyebrow text-smoke">
+                <span className="t-eyebrow">
                   {contactCopy.phoneLabel}
                 </span>
                 <p className="mt-2 t-subhead text-2xl transition-colors group-hover:text-accent-gold md:text-4xl">
@@ -70,12 +69,12 @@ export default function ContactPage() {
                 </p>
               </a>
 
-              <ul className="mt-6 flex flex-wrap items-center gap-3 t-eyebrow">
+              <ul className="mt-6 flex flex-wrap items-center gap-3">
                 {site.contact.smsEnabled ? (
                   <li>
                     <a
                       href={`sms:${site.contact.phoneTel}`}
-                      className="inline-flex h-10 items-center border border-smoke px-4 text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                      className="inline-flex h-11 items-center border border-smoke px-4 t-ui transition-colors hover:border-accent-gold hover:text-accent-gold"
                     >
                       {contactCopy.textCtaLabel}
                     </a>
@@ -88,7 +87,7 @@ export default function ContactPage() {
                       href={`https://wa.me/${site.contact.whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-10 items-center bg-accent-gold px-4 text-surface-tuxedo hover:bg-surface-ivory"
+                      className="inline-flex h-11 items-center bg-accent-gold px-4 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory"
                     >
                       {contactCopy.whatsappCtaLabel} ↗
                     </TrackedAnchor>
@@ -97,13 +96,13 @@ export default function ContactPage() {
               </ul>
 
               <div className="mt-10">
-                <span className="t-eyebrow text-smoke">
+                <span className="t-eyebrow">
                   {contactCopy.findUsLabel}
                 </span>
                 <p className="mt-2 t-subhead text-xl md:text-2xl">
                   {site.contact.address}
                 </p>
-                <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 t-eyebrow text-smoke">
+                <ul className="t-body mt-6 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-smoke">
                   {site.serviceAreas.map((area) => (
                     <li key={area}>{area}</li>
                   ))}
@@ -112,41 +111,13 @@ export default function ContactPage() {
             </div>
 
             <div className="md:col-span-7">
-              <ContactForm
-                subject="New site contact form message"
-                source="Contact page"
+              <BookingEnquiry
+                subject="New message from the contact page"
+                source="/contact"
+                formName="enquiry-contact"
+                idPrefix="contact"
                 submitLabel={contactCopy.form.submitLabel}
-                successText={contactCopy.form.successText}
-                errorText={contactCopy.form.errorText}
-                formName="contact"
-                schema="contact"
-              >
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <TextField
-                    id="contact-name"
-                    name="name"
-                    label={contactCopy.form.nameLabel}
-                    required
-                    autoComplete="name"
-                  />
-                  <TextField
-                    id="contact-email"
-                    name="email"
-                    label={contactCopy.form.emailLabel}
-                    type="email"
-                    required
-                    autoComplete="email"
-                  />
-                </div>
-                <TextAreaField
-                  id="contact-message"
-                  name="message"
-                  label={contactCopy.form.messageLabel}
-                  required
-                  rows={6}
-                  placeholder={contactCopy.form.messagePlaceholder}
-                />
-              </ContactForm>
+              />
             </div>
           </div>
         </div>

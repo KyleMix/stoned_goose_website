@@ -93,18 +93,29 @@ const singletons: Record<string, z.ZodTypeAny> = {
       hero: z
         .object({
           eyebrow: opt(str),
-          italicLine: opt(str),
           headline: str.min(1),
           subhead: opt(str),
-          primary: z
-            .object({ title: opt(str), body: opt(str), label: opt(str), href: opt(href) })
-            .strict(),
-          secondary: z
-            .object({ title: opt(str), body: opt(str), label: opt(str), href: opt(href) })
-            .strict(),
-          tertiary: opt(z.array(navLink)),
+          primary: z.object({ label: opt(str), href: opt(href) }).strict(),
+          secondary: z.object({ label: opt(str), href: opt(href) }).strict(),
         })
         .strict(),
+      about: opt(
+        z
+          .object({
+            eyebrow: opt(str),
+            heading: opt(str),
+            body: opt(str),
+            ctaLabel: opt(str),
+            ctaHref: opt(href),
+          })
+          .strict(),
+      ),
+      services: opt(z.object({ eyebrow: opt(str), heading: opt(str) }).strict()),
+      workingOn: opt(z.object({ eyebrow: opt(str), heading: opt(str) }).strict()),
+      people: opt(z.object({ eyebrow: opt(str), heading: opt(str) }).strict()),
+      contact: opt(
+        z.object({ eyebrow: opt(str), heading: opt(str), body: opt(str) }).strict(),
+      ),
       marqueeWords: opt(z.array(str)),
       bumpers: z
         .object({ clarification: bumperList, aside: bumperList, outro: bumperList })
@@ -228,12 +239,13 @@ const singletons: Record<string, z.ZodTypeAny> = {
           .object({
             heading: opt(str),
             subhead: opt(str),
+            story: opt(str),
+            oneLine: opt(str),
             crewHeading: opt(str),
             crewSubhead: opt(str),
           })
           .strict(),
       ),
-      pillars: opt(z.array(z.object({ title: str, body: str }).strict())),
       topSections: blocks,
       bottomSections: blocks,
     })

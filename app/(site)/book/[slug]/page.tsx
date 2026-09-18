@@ -7,7 +7,6 @@ import { site } from "@/content/site";
 import { PageHeader } from "@/components/page-header";
 import { ContactForm } from "@/components/contact-form";
 import { TextField, TextAreaField } from "@/components/form-field";
-import { StickyQuoteRail } from "@/components/sticky-quote-rail";
 import { ShareButton } from "@/components/share-button";
 import { jsonLdString } from "@/lib/jsonld";
 import { JsonLd } from "@/components/json-ld";
@@ -162,12 +161,7 @@ export default async function ServiceDetailPage(props: {
               <ol className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-smoke md:grid-cols-3">
                 {steps.map((step, i) => (
                   <li key={i} className="bg-surface-tuxedo p-8 md:p-10">
-                    <span className="t-eyebrow">
-                      /{String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="mt-4 t-subhead text-2xl md:text-3xl">
-                      {step}
-                    </p>
+                    <p className="t-subhead text-2xl md:text-3xl">{step}</p>
                   </li>
                 ))}
               </ol>
@@ -261,10 +255,7 @@ export default async function ServiceDetailPage(props: {
                   <li key={i} className="py-7">
                     <details className="group grid grid-cols-12 gap-x-6">
                       <summary className="col-span-12 grid cursor-pointer grid-cols-12 items-baseline gap-x-6 list-none [&::-webkit-details-marker]:hidden">
-                        <span className="col-span-2 t-eyebrow text-smoke md:col-span-1">
-                          /0{i + 1}
-                        </span>
-                        <h3 className="col-span-9 t-subhead text-2xl group-hover:text-accent-gold md:col-span-10 md:text-3xl">
+                        <h3 className="col-span-11 t-subhead text-2xl group-hover:text-accent-gold md:text-3xl">
                           {f.q}
                         </h3>
                         <span
@@ -274,7 +265,7 @@ export default async function ServiceDetailPage(props: {
                           +
                         </span>
                       </summary>
-                      <div className="col-span-12 mt-4 md:col-start-2 md:col-span-11">
+                      <div className="col-span-12 mt-4 md:col-span-11">
                         <p className="t-body max-w-prose text-base">
                           {f.a}
                         </p>
@@ -308,7 +299,7 @@ export default async function ServiceDetailPage(props: {
               />
               <Link
                 href={`/book/${next.slug}`}
-                className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                className="inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory"
               >
                 Read {next.title} ↗
               </Link>
@@ -316,8 +307,6 @@ export default async function ServiceDetailPage(props: {
           </div>
         </div>
       </section>
-
-      <StickyQuoteRail label={svc.title} targetId="quote" />
     </>
   );
 }
@@ -331,8 +320,8 @@ function Block({ title, items }: { title: string; items: string[] }) {
       <ul className="mt-6 space-y-4">
         {items.map((item, i) => (
           <li key={i} className="flex items-baseline gap-4">
-            <span className="t-eyebrow text-smoke">
-              /0{i + 1}
+            <span aria-hidden className="text-accent-gold">
+              /
             </span>
             <span className="text-base text-surface-ivory">{item}</span>
           </li>

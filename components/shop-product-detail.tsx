@@ -98,7 +98,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("Outbound Click", { destination: "fourthwall" })}
-          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
+          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory"
         >
           Buy on Fourthwall ↗
         </a>
@@ -165,7 +165,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
                     type="button"
                     disabled={!avail}
                     onClick={() => setSize(s)}
-                    className={`inline-flex h-10 min-w-10 items-center justify-center border px-3 t-eyebrow transition-colors ${
+                    className={`inline-flex h-10 min-w-10 items-center justify-center border px-3 t-ui transition-colors ${
                       active
                         ? "border-accent-gold bg-accent-gold text-surface-tuxedo"
                         : "border-smoke text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
@@ -183,7 +183,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
           type="button"
           disabled={busy || !selected || !selected.available}
           onClick={() => selected && addItem(selected.id)}
-          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:cursor-not-allowed disabled:opacity-50"
         >
           {selected && !selected.available
             ? "Sold out"

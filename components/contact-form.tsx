@@ -42,11 +42,28 @@ type Props = {
 
 type Status = "idle" | "loading" | "success" | "error";
 
+// Spam protection, and why it is what it is.
+//
+// Cloudflare Turnstile is not available to this site. Turnstile requires a
+// server-side siteverify call and Cloudflare publishes no static-site
+// exemption; this is a Next.js static export deployed as Workers Static
+// Assets, with no server runtime to make that call from. Adding one means
+// adding a Worker, which is a bigger decision than a form field.
+//
+// So: two passive checks, neither of which costs a real visitor anything.
+//   1. A honeypot input, offscreen and aria-hidden. Bots fill every field.
+//   2. A time trap. The clock starts when the form mounts, and a submission
+//      that arrives faster than a person could plausibly read four labels and
+//      type an answer is treated as automated.
+// Both fail silently into the success state rather than showing an error,
+// because telling a bot which check caught it just teaches the next one.
+const MIN_FILL_MS = 2500;
+
 export function ContactForm({
   subject,
   source,
-  successText = "Got it. We'll be in touch shortly.",
-  errorText = `Something went wrong. Email ${site.contact.email} and we'll handle it directly.`,
+  successText = "Got it. We read every one of these. You'll hear back within two business days.",
+  errorText = "That didn't send. Email us and we'll pick it up there:",
   submitLabel,
   formName,
   successEvents,
@@ -58,6 +75,7 @@ export function ContactForm({
   const [status, setStatus] = useState<Status>("idle");
   const referrerRef = useRef<HTMLInputElement>(null);
   const honeyRef = useRef<HTMLInputElement>(null);
+  const mountedAtRef = useRef<number>(0);
 
   const resolvedSchema = schema ? formSchemas[schema] : undefined;
 
@@ -72,18 +90,25 @@ export function ContactForm({
   });
 
   // document.referrer is captured client-side once we hydrate. Lets the
-  // formsubmit email show where the lead came from.
+  // formsubmit email show where the lead came from. The same pass starts the
+  // time trap's clock: hydration is the earliest moment a human could have
+  // interacted with the form.
   useEffect(() => {
     if (referrerRef.current && typeof document !== "undefined") {
       referrerRef.current.value = document.referrer || "";
     }
+    mountedAtRef.current = Date.now();
   }, []);
 
   async function onSubmit(values: FieldValues) {
     // Honeypot lives outside the Zod schema so RHF doesn't strip it during
     // validation. Bots fill every field; humans never see this input.
     const honey = honeyRef.current?.value ?? "";
-    if (honey.trim() !== "") {
+    const tooFast =
+      mountedAtRef.current > 0 && Date.now() - mountedAtRef.current < MIN_FILL_MS;
+
+    if (honey.trim() !== "" || tooFast) {
+      // Report success and send nothing. See MIN_FILL_MS above.
       setStatus("success");
       methods.reset();
       return;
@@ -156,7 +181,7 @@ export function ContactForm({
           <button
             type="submit"
             disabled={status === "loading"}
-            className="group inline-flex h-12 w-full items-center justify-center gap-3 bg-accent-gold px-7 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-50 md:w-auto md:justify-start"
+            className="group inline-flex h-12 w-full items-center justify-center gap-3 bg-accent-gold px-7 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-50 md:w-auto md:justify-start"
           >
             {status === "loading" ? "Sending..." : submitLabel}
             <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -171,7 +196,13 @@ export function ContactForm({
           )}
           {status === "error" && (
             <p role="alert" className="text-sm text-accent-gold">
-              {errorText}
+              {errorText}{" "}
+              <a
+                href={`mailto:${site.contact.email}`}
+                className="underline underline-offset-4"
+              >
+                {site.contact.email}
+              </a>
             </p>
           )}
         </div>

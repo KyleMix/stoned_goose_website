@@ -124,6 +124,27 @@
     color: #d4aa4a;
   }
 
+  /* The sixth role, ratified after the Marquee spec shipped.
+
+     .t-eyebrow is 11px at .26em and was doing the work of nav links, button
+     labels, inline links and form labels. Those are content, not eyebrows:
+     all-caps at that size and tracking is read slowly or not at all, which is
+     the whole reason the nav was invisible on a 1280px screen.
+
+     .t-ui is the interactive-label role. Same face, same Regular 400, same
+     uppercase, but at a size and tracking a person can actually read. It rests
+     ivory and responds gold, matching the fill swap the rest of the system
+     uses. Use it for nav links, buttons, inline links, chips and field labels.
+     .t-eyebrow goes back to being only an eyebrow. */
+  .t-ui {
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    color: #f4eee2;
+  }
+
   .t-body {
     font-weight: 300;
     letter-spacing: normal;
@@ -152,6 +173,9 @@
     color: #87681f;
   }
   :where([data-surface="ivory"]) .t-body {
+    color: #0f0f0f;
+  }
+  :where([data-surface="ivory"]) .t-ui {
     color: #0f0f0f;
   }
 
@@ -195,6 +219,7 @@
   :where([data-surface="smoke"]) .t-headline,
   :where([data-surface="smoke"]) .t-subhead,
   :where([data-surface="smoke"]) .t-eyebrow,
+  :where([data-surface="smoke"]) .t-ui,
   :where([data-surface="smoke"]) .t-body,
   :where([data-surface="smoke"]) .t-fine {
     color: #0f0f0f;

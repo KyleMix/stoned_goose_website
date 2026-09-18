@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { Hero } from "@/components/hero";
-import { Marquee } from "@/components/marquee";
-import { RotatingBumper } from "@/components/rotating-bumper";
-import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
-import { ServicesOverview } from "@/components/services-overview";
+import { Hero } from "@/components/home/hero";
+import { AboutBlock } from "@/components/home/about-block";
+import { ServicesRow } from "@/components/home/services-row";
+import { WorkingOn } from "@/components/home/working-on";
+import { PeopleStrip } from "@/components/home/people-strip";
+import { ContactBlock } from "@/components/home/contact-block";
 import { MailingListCapture } from "@/components/mailing-list-capture";
-import { PressStrip } from "@/components/press-strip";
-import { LatestStrip } from "@/components/latest-strip";
-import { VideoStrip } from "@/components/video-strip";
-import { ShopStrip } from "@/components/shop-strip";
 import { SectionRenderer } from "@/components/section-renderer";
-import {
-  marqueeWords,
-  mission,
-  homeTopSections,
-  homeBottomSections,
-} from "@/content/home";
+import { homeTopSections, homeBottomSections } from "@/content/home";
 import { site } from "@/content/site";
 import { truncateAtWord } from "@/lib/utils";
 
@@ -25,53 +17,51 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// The page has one job: get a visitor to contact us. Everything here either
+// makes that decision easier (who we are, what we do, who we work with, what
+// we are doing right now) or is the ask itself.
+//
+// What came off: the header ticker, the word marquee, three rotating bumper
+// interludes, the full services list, the merch grid, the social feed strip
+// and the press strip. Twelve rendered bands became seven, the next show went
+// from appearing three times to once, and the page gained the contact form it
+// never had.
+//
+// The removed components are all still in the tree and still available as CMS
+// section blocks, so any of them can be put back from /admin without a deploy.
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee items={marqueeWords} />
-
-      <RotatingBumper slot="clarification" />
 
       <SectionRenderer sections={homeTopSections} pageSlug="home" />
 
-      <UpcomingShowsBlock />
+      {/* Who we are. */}
+      <AboutBlock />
 
-      <VideoStrip limit={5} />
+      {/* What we do. */}
+      <ServicesRow />
 
-      <LatestStrip limit={6} />
+      {/* What we are working on. The next show appears here and nowhere else. */}
+      <WorkingOn />
 
-      <RotatingBumper slot="aside" />
+      {/* Who we work with. */}
+      <PeopleStrip />
 
-      {/* The one ivory band: the page turns from audience to client. */}
-      <ServicesOverview tone="ivory" />
+      {/* The ask. Every CTA above lands here. */}
+      <ContactBlock />
 
-      <ShopStrip limit={3} />
-
-      <PressStrip />
-
-      {mission ? (
-        <section className="section-y-lg border-y border-smoke bg-surface-tuxedo">
-          <div className="mx-auto max-w-[1100px] px-5 md:px-10">
-            <p className="t-eyebrow">
-              {mission.eyebrow}
-            </p>
-            <h2 className="display-1 mt-4 text-surface-ivory">
-              {mission.heading}
-            </h2>
-            <p className="t-body mt-8 max-w-3xl text-lg leading-relaxed md:text-xl">
-              {mission.body}
-            </p>
-          </div>
-        </section>
-      ) : null}
-
-      {/* Third: the closing ask. */}
-      <MailingListCapture page="home" tone="ivory" />
+      {/* Deliberately quiet: a signup should not compete with the form above
+          it. `secondary` drops the gold fill and the display-size type. */}
+      <MailingListCapture
+        page="home"
+        tone="ivory"
+        emphasis="secondary"
+        eyebrow="Newsletter"
+        headline="Show announcements and presale codes, now and then."
+      />
 
       <SectionRenderer sections={homeBottomSections} pageSlug="home" />
-
-      <RotatingBumper slot="outro" />
     </>
   );
 }

@@ -20,14 +20,19 @@ export const quoteSchema = z.object({
   service: z.string().optional(),
 });
 
-export const generalQuoteSchema = z.object({
-  name: z.string().trim().optional(),
+// The one enquiry schema behind every "work with us" form on the site: the
+// home page contact section, /book, and /sponsor all post this shape.
+//
+// Three required fields and one optional. Baymard's form research is blunt
+// that most forms carry roughly twice the fields they need, and every extra
+// required field is a reason to close the tab. Name, email, and what you are
+// planning is everything needed to reply usefully; the date is a nice-to-have
+// and is marked optional in the label rather than silently tolerated.
+export const bookingEnquirySchema = z.object({
+  name: z.string().trim().min(2, "Name is required"),
   email: z.string().trim().email("Use a real email"),
-  serviceType: z.string().trim().min(2, "Service type is required"),
+  planning: z.string().trim().min(10, "Tell us a bit more"),
   eventDate: z.string().optional(),
-  budget: z.string().optional(),
-  venueSize: z.string().optional(),
-  service: z.string().optional(),
 });
 
 export const submitSchema = z.object({
@@ -94,7 +99,7 @@ export const openMicSubmitSchema = z.object({
 export const formSchemas = {
   contact: contactSchema,
   quote: quoteSchema,
-  generalQuote: generalQuoteSchema,
+  bookingEnquiry: bookingEnquirySchema,
   submit: submitSchema,
   sponsorInquiry: sponsorInquirySchema,
   sponsorBooking: sponsorBookingSchema,

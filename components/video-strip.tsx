@@ -40,7 +40,7 @@ export function VideoStrip({ limit = 5, tone = "tuxedo" }: Props & SurfaceTone) 
           </div>
           <Link
             href="/watch"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
+            className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
           >
             All videos ↗
           </Link>

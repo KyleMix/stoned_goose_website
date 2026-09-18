@@ -60,6 +60,12 @@ export const organization: WithContext<LocalBusiness> = {
     addressCountry: "US",
   },
   areaServed: [...site.serviceAreas],
+  // Asserted at the entity level as well as on the contactPoint below, because
+  // the home page now prints both on the page. Sourced from the CMS site
+  // config, same as everything else here, so the markup cannot drift from the
+  // rendered NAP data.
+  email: site.contact.email,
+  telephone: site.contact.phoneTel,
   founder: [
     { "@type": "Person", name: "Kyle Mixon" },
     { "@type": "Person", name: "Joseph Humphrey" },
@@ -204,8 +210,9 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   shows: "Shows",
   "open-mics": "Open Mics",
   watch: "Watch",
-  roster: "Roster",
+  about: "About",
   book: "Book Us",
+  sponsor: "Sponsor a Show",
   shop: "Shop",
   contact: "Contact",
 };

@@ -63,44 +63,76 @@ collections:
           - name: hero
             label: Hero (the big top-of-page section)
             widget: object
+            hint: 'This is the only thing most visitors read. Say who we are, where we are, and what we do.'
             fields:
               - { name: headline, label: Headline, widget: string, hint: 'The huge display line. Keep it short, it renders very large.' }
-              - { name: eyebrow, label: Status banner, widget: string, required: false, hint: 'Tiny line above the headline, e.g. "Now booking fall shows".' }
-              - { name: italicLine, label: Italic line (right column), widget: string, required: false }
-              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'], hint: 'One or two sentences under the headline.' }
+              - { name: eyebrow, label: Tiny line above the headline, widget: string, required: false, hint: 'e.g. "Olympia, Washington".' }
+              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'], hint: 'One or two plain sentences. Who we are, where, and what we do.' }
               - name: primary
                 label: Primary button (yellow)
                 widget: object
                 fields:
-                  - { name: title, label: Card title, widget: string, required: false }
-                  - { name: body, label: Card body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
-                  - { name: label, label: Button text, widget: string, required: false, hint: 'e.g. "Get tickets".' }
-                  - { name: href, label: Button link, widget: string, required: false, pattern: ['^(/\S*|#\S+|https://\S+|mailto:\S+|tel:\S+)$', 'Start with / for site pages, or https:// for outside links.'], hint: 'Where the button goes. Site pages start with a slash, e.g. /shows. Outside links start with https://.' }
+                  - { name: label, label: Button text, widget: string, required: false, hint: 'e.g. "Book us".' }
+                  - { name: href, label: Button link, widget: string, required: false, pattern: ['^(/\S*|#\S+|https://\S+|mailto:\S+|tel:\S+)$', 'Start with / for site pages, or https:// for outside links.'], hint: 'Leave this as #contact so it jumps to the form further down the page.' }
               - name: secondary
                 label: Secondary link
                 widget: object
                 fields:
-                  - { name: title, label: Card title, widget: string, required: false }
-                  - { name: body, label: Card body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes. Use a period or split the sentence.'] }
                   - { name: label, label: Link text, widget: string, required: false }
-                  - { name: href, label: Link target, widget: string, required: false, pattern: ['^(/\S*|#\S+|https://\S+|mailto:\S+|tel:\S+)$', 'Start with / for site pages, or https:// for outside links.'], hint: 'Site pages start with a slash, e.g. /book. Outside links start with https://.' }
-              - name: tertiary
-                label: Small extra links
-                widget: list
-                required: false
-                fields:
-                  - { name: label, label: Link text, widget: string }
-                  - { name: href, label: Link target, widget: string, pattern: ['^(/\S*|#\S+|https://\S+|mailto:\S+|tel:\S+)$', 'Start with / for site pages, or https:// for outside links.'], hint: 'Site pages start with a slash, e.g. /open-mics.' }
+                  - { name: href, label: Link target, widget: string, required: false, pattern: ['^(/\S*|#\S+|https://\S+|mailto:\S+|tel:\S+)$', 'Start with / for site pages, or https:// for outside links.'], hint: 'Site pages start with a slash, e.g. /shows.' }
+          - name: about
+            label: About us section
+            widget: object
+            hint: 'The plain-language paragraph under the hero. Real facts only, no invented stats or clients.'
+            fields:
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: body, label: Body (blank line = new paragraph), widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: ctaLabel, label: Button text, widget: string, required: false, hint: 'e.g. "Meet the crew".' }
+              - { name: ctaHref, label: Button link, widget: string, required: false, pattern: ['^(/\S*|#\S+|https://\S+|mailto:\S+|tel:\S+)$', 'Start with / for site pages, or https:// for outside links.'] }
+          - name: services
+            label: What we do section (headings only)
+            widget: object
+            required: false
+            hint: 'The list itself fills from Services. These are just the two lines above it.'
+            fields:
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+          - name: workingOn
+            label: What we are working on section (headings only)
+            widget: object
+            required: false
+            hint: 'The cards fill themselves from the next show, the latest video, and the open mic map.'
+            fields:
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+          - name: people
+            label: Who we work with section (headings only)
+            widget: object
+            required: false
+            hint: 'The portraits fill from Crew members and Comedians. Edit those, not this.'
+            fields:
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+          - name: contact
+            label: Contact section
+            widget: object
+            required: false
+            hint: 'The form at the bottom of the home page. This is where every button on the page goes.'
+            fields:
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: marqueeWords
             label: Scrolling marquee words
             widget: list
             required: false
-            hint: 'Short words or phrases that scroll across the page. Real claims only, no invented stats.'
+            hint: 'Not on the home page any more. Still available as an optional section block on other pages. Real claims only, no invented stats.'
             field: { name: word, label: Word or phrase, widget: string }
           - name: bumpers
             label: Rotating bumpers (the Adult Swim style cards)
             widget: object
-            hint: 'Each slot rotates through its cards. Keep the register: dry, deadpan, no softening.'
+            hint: 'Not on the home page any more: three interlude bands were pushing the contact form five screens down. Kept here so nothing is lost, and so a slot can be put back on another page. Keep the register: dry, deadpan, no softening.'
             fields:
               - { name: clarification, label: Clarification slot, widget: list, required: false, fields: [{ name: eyebrow, label: Tiny top line, widget: string }, { name: body, label: Body (use \n for a line break), widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
               - { name: aside, label: Aside slot, widget: list, required: false, fields: [{ name: eyebrow, label: Tiny top line, widget: string }, { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }, { name: footnote, label: Footnote, widget: string, required: false }] }
@@ -363,32 +395,30 @@ collections:
           - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
-      # ---------- Roster copy ----------
+      # ---------- About page copy ----------
+      # The file is still content/roster-copy/index.json. The page moved from
+      # /roster to /about; renaming the file would break any open /admin tab
+      # and buys nothing, so only the labels changed.
       - name: roster_copy
-        label: Roster page copy
+        label: About page copy
         file: content/roster-copy/index.json
         fields:
+          - name: about
+            label: About section
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string, required: false }
+              - { name: subhead, label: Subhead (under the page title), widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: story, label: 'Company story (blank line = new paragraph)', widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Real facts only. No invented stats, venues, clients, or claims.' }
+              - { name: oneLine, label: One line about how the crew is organised, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Replaced the old "Four Pillars" block, which described departments a five-person company does not have.' }
+              - { name: crewHeading, label: Crew heading, widget: string, required: false }
+              - { name: crewSubhead, label: Crew eyebrow, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - name: comedians
             label: Comedians section
             widget: object
             fields:
               - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
               - { name: kicker, label: Small print under the grid, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - name: about
-            label: About section
-            widget: object
-            fields:
-              - { name: heading, label: Heading, widget: string, required: false }
-              - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-              - { name: crewHeading, label: Crew heading, widget: string, required: false }
-              - { name: crewSubhead, label: Crew subhead, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - name: pillars
-            label: Pillars (the four functions)
-            widget: list
-            required: false
-            fields:
-              - { name: title, label: Title, widget: string }
-              - { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
@@ -494,7 +524,7 @@ collections:
         file: content/sponsorships/index.json
         fields:
           - name: tiers
-            label: Packages (shown on /book)
+            label: Packages (shown on /sponsor)
             widget: list
             required: false
             fields:
@@ -502,7 +532,7 @@ collections:
               - { name: price, label: Price, as shown, widget: string, hint: 'Written out, e.g. "$500 per show".' }
               - { name: deliverables, label: What the sponsor gets, widget: list, field: { name: item, label: Item, widget: string } }
           - name: sponsors
-            label: Sponsor logos (shown in the strip at the foot of /book)
+            label: Sponsor logos (shown in the strip at the foot of /sponsor)
             widget: list
             required: false
             hint: 'Real sponsors only. Upload the logo exactly as the sponsor supplies it: their brand colours are the one sanctioned exception to our five-colour palette, and their mark is not ours to restyle. The strip hides itself when this list is empty.'
@@ -648,12 +678,12 @@ collections:
       - { name: draft, label: Hide from the calendar, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
-  # Roster: comedians + crew.                                          #
+  # About page: comedians + crew.                                      #
   # ------------------------------------------------------------------ #
   - name: comedians
     label: Comedians
     label_singular: Comedian
-    description: The comedian grid on /roster. A comedian with a bio or reel also gets their own page at /roster/name.
+    description: The comedian grid on /about. A comedian with a bio or reel also gets their own page at /about/name.
     folder: content/comedians
     path: '{{slug}}/index'
     extension: json
@@ -677,7 +707,7 @@ collections:
       - { name: photoAlt, label: Portrait alt text, widget: string, required: false, hint: 'Describe the photo for screen readers, e.g. "Alexa Hansen headshot". Left blank, the site uses the name.' }
       - { name: instagram, label: Instagram URL, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'Full profile link, e.g. https://www.instagram.com/handle.' }
       - { name: facebook, label: Facebook URL, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'] }
-      - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Filling this in gives the comedian their own EPK page at /roster/name.' }
+      - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Filling this in gives the comedian their own EPK page at /about/name.' }
       - { name: reelUrl, label: Reel link (YouTube), widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'A reel also unlocks the EPK page. Full URL like https://www.youtube.com/watch?v=abc12345678.' }
       - name: credits
         label: Credits (festivals, rooms, shows)
@@ -685,12 +715,12 @@ collections:
         required: false
         hint: 'One per line, e.g. "Bumbershoot 2024" or "Tacoma Comedy Club". Real credits only.'
         field: { name: credit, label: Credit, widget: string }
-      - { name: draft, label: Hide from /roster, widget: boolean, default: false }
+      - { name: draft, label: Hide from /about, widget: boolean, default: false }
 
   - name: members
     label: Crew members
     label_singular: Crew member
-    description: The production crew listed on /roster, in display-order.
+    description: The production crew listed on /about, in display-order.
     folder: content/members
     path: '{{slug}}/index'
     extension: json
@@ -707,11 +737,11 @@ collections:
     fields:
       - { name: name, label: Name, widget: string }
       - { name: role, label: Role, widget: string, hint: 'e.g. "Producer" or "Audio".' }
-      - { name: index, label: Display order, widget: string, hint: 'Two digits, e.g. 01. Lowest number shows first.', pattern: ['^\d{2}$', 'Two digits, e.g. 01 or 12.'] }
-      - { name: photo, label: Portrait photo, widget: image, required: false, media_folder: /public/images/members, public_folder: '', hint: 'Vertical photo, taller than wide (3:4), at least 800px wide. Big phone photos get compressed automatically after saving.' }
+      - { name: index, label: Display order, widget: string, hint: 'Two digits, e.g. 01. Lowest number shows first. The number itself is not shown on the site, it only sets the order.', pattern: ['^\d{2}$', 'Two digits, e.g. 01 or 12.'] }
+      - { name: photo, label: Portrait photo, widget: image, required: false, media_folder: /public/images/members, public_folder: '', hint: 'Vertical photo, taller than wide. It is cropped to 4:5 with the face in the upper middle, so leave headroom. At least 800px wide. Big phone photos get compressed automatically after saving.' }
       - { name: photoAlt, label: Portrait alt text, widget: string, required: false, hint: 'Describe the photo for screen readers. Left blank, the site uses the name.' }
       - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-      - { name: draft, label: Hide from /roster, widget: boolean, default: false }
+      - { name: draft, label: Hide from /about, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #
   # Booking: services + pricing tiers.                                 #
@@ -877,7 +907,7 @@ collections:
         field: draft
         pattern: true
     fields:
-      - { name: title, label: Page title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Also sets the address: "About" becomes /about. Some names are reserved by the site (shows, watch, roster, book, shop, contact, open-mics) and will fail the deploy.' }
+      - { name: title, label: Page title, widget: string, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Also sets the address: "Press kit" becomes /press-kit. Some names are reserved by the site (shows, watch, about, book, sponsor, shop, contact, open-mics) and will fail the deploy.' }
       - { name: sections, label: Page sections, widget: list, required: false, types: *section_types, hint: 'The page body. Add blocks with the plus button, drag to reorder.' }
       - { name: seoDescription, label: Search result description, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'What search results show under the title. Aim for under 160 characters and be specific about the page.' }
       - { name: ogImage, label: Social share image, widget: image, required: false, media_folder: /public/images/pages, public_folder: /images/pages, hint: 'Shown when the page is shared on social media. Wide image, 1200x630 pixels.' }

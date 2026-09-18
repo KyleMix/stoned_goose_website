@@ -47,7 +47,7 @@ export default function ShopPage() {
             href={shopCopy.collectionUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
+            className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
           >
             View OG Bigboy collection ↗
           </TrackedAnchor>
@@ -93,7 +93,7 @@ export default function ShopPage() {
             href={shopCopy.storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
+            className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
           >
             More merch on Fourthwall ↗
           </TrackedAnchor>
@@ -115,7 +115,7 @@ export default function ShopPage() {
             href={shopCopy.storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+            className="mt-8 inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
           >
             Open the store ↗
           </TrackedAnchor>

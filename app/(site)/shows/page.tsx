@@ -85,14 +85,14 @@ export default function ShowsPage() {
               {hasShows ? (
                 <a
                   href="/shows/feed.ics"
-                  className="t-eyebrow text-smoke hover:text-accent-gold"
+                  className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
                 >
                   Subscribe (.ics) ↗
                 </a>
               ) : null}
               <a
                 href="/shows/feed.xml"
-                className="t-eyebrow text-smoke hover:text-accent-gold"
+                className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
               >
                 RSS ↗
               </a>
@@ -101,7 +101,7 @@ export default function ShowsPage() {
                 href={site.social.eventbrite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="t-eyebrow text-smoke hover:text-accent-gold"
+                className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
               >
                 View all on Eventbrite ↗
               </TrackedAnchor>
@@ -140,12 +140,12 @@ export default function ShowsPage() {
                           href={show.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex h-11 items-center bg-accent-gold px-5 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                          className="inline-flex h-11 items-center bg-accent-gold px-5 t-ui text-surface-tuxedo hover:bg-surface-ivory"
                         >
                           Get tickets ↗
                         </TrackedAnchor>
                       ) : (
-                        <span className="inline-flex h-11 items-center border border-smoke px-5 t-eyebrow text-smoke">
+                        <span className="inline-flex h-11 items-center border border-smoke px-5 t-ui text-smoke">
                           {status === "free"
                             ? "Free / at the door"
                             : "Details soon"}
@@ -186,13 +186,13 @@ export default function ShowsPage() {
                   href={site.social.eventbrite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                  className="inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
                 >
                   See all dates on Eventbrite ↗
                 </TrackedAnchor>
                 <a
                   href="#mailing-list"
-                  className="t-eyebrow text-smoke underline underline-offset-4 hover:text-accent-gold"
+                  className="inline-flex min-h-[44px] items-center t-ui text-smoke underline underline-offset-4 hover:text-accent-gold"
                 >
                   Get the announcement first
                 </a>
@@ -203,19 +203,19 @@ export default function ShowsPage() {
                 </p>
                 <Link
                   href="/watch"
-                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
+                  className="inline-flex min-h-[44px] items-center t-ui text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   Watch the last one ↗
                 </Link>
                 <Link
-                  href="/roster"
-                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
+                  href="/about"
+                  className="inline-flex min-h-[44px] items-center t-ui text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
-                  Meet the roster ↗
+                  Meet the crew ↗
                 </Link>
                 <Link
                   href="/open-mics"
-                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
+                  className="inline-flex min-h-[44px] items-center t-ui text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   Hit an open mic ↗
                 </Link>
@@ -247,7 +247,7 @@ export default function ShowsPage() {
                 <li>
                   <a
                     href="/shows/feed.ics"
-                    className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                    className="inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
                   >
                     Add .ics feed ↗
                   </a>
@@ -255,7 +255,7 @@ export default function ShowsPage() {
                 <li>
                   <a
                     href="/shows/feed.xml"
-                    className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                    className="inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
                   >
                     RSS ↗
                   </a>

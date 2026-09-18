@@ -1,27 +1,16 @@
 {
   "hero": {
-    "eyebrow": "Now Booking.",
-    "italicLine": "lights on. jokes loaded.",
+    "eyebrow": "Olympia, Washington",
     "headline": "Stoned Goose Productions",
-    "subhead": "Crafting cinematic stand-up, curated showcases, and comedy chaos across your city.",
+    "subhead": "We are a five-person comedy production company in Olympia, Washington. We produce live stand-up across the South Sound, and we shoot, record, and publish what comes out of it.",
     "primary": {
-      "title": "Tickets.",
-      "body": "See what's next in Olympia and across the South Sound, then lock in your seats.",
-      "label": "Browse Shows",
-      "href": "/shows"
+      "label": "Book us",
+      "href": "#contact"
     },
     "secondary": {
-      "title": "Open Mic.",
-      "body": "Our own room, every Monday at the Log Cabin Bar & Grill in Olympia. Sign ups at 6, show at 7.",
-      "label": "Show up, go up",
-      "href": "/open-mics"
-    },
-    "tertiary": [
-      {
-        "label": "Book Us",
-        "href": "/book"
-      }
-    ]
+      "label": "See upcoming shows",
+      "href": "/shows"
+    }
   },
   "marqueeWords": [
     "Stoned Goose Productions",
@@ -92,5 +81,29 @@
     "eyebrow": "",
     "heading": "",
     "body": ""
+  },
+  "about": {
+    "eyebrow": "About us",
+    "heading": "Five people who put on comedy shows.",
+    "body": "Stoned Goose Productions is a five-person comedy production company based in Olympia, Washington. We started in January 2025.\n\nWe produce live stand-up across Olympia, Lacey, Tacoma, and the wider South Sound. That means booking the lineup, running the room, and handling the parts of a show an audience is never supposed to notice. We also work on camera and behind a microphone, producing video and podcasts for comics and for the people who hire us.\n\nWe run our own room too: the Log Cabin Comedy Open Mic, every Monday at the Log Cabin Bar & Grill in Olympia. Sign ups at 6, show at 7.",
+    "ctaLabel": "Meet the crew",
+    "ctaHref": "/about"
+  },
+  "services": {
+    "eyebrow": "What we do",
+    "heading": "Four things."
+  },
+  "workingOn": {
+    "eyebrow": "Right now",
+    "heading": "What we are working on."
+  },
+  "people": {
+    "eyebrow": "Who we work with",
+    "heading": "Our crew, and the comics we book."
+  },
+  "contact": {
+    "eyebrow": "Book us",
+    "heading": "Tell us what you are planning.",
+    "body": "A room, an event, a set you want on tape, a podcast you want made. Send us the details and we will come back within two business days."
   }
 }

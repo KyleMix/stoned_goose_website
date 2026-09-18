@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -20,8 +20,17 @@ type BleedProps = {
   mode?: "bleed";
   /** Which section corner the ring hangs off. */
   corner: "top-left" | "top-right" | "bottom-left" | "bottom-right";
-  /** Diameter in px. */
+  /** Diameter in px, from the md breakpoint up. */
   size: number;
+  /**
+   * Diameter in px below md. Defaults to `size`.
+   *
+   * A ring sized for a 1400px section sweeps straight through the copy on a
+   * 375px screen, and a thin gold line crossing a paragraph is a legibility
+   * problem rather than a flourish. Give the phone a smaller circle instead of
+   * dropping the device.
+   */
+  sizeSm?: number;
   className?: string;
   children?: never;
 };
@@ -58,17 +67,26 @@ export function MonocleRing(props: BleedProps | FrameProps) {
     );
   }
 
-  const { corner, size, className } = props;
+  const { corner, size, sizeSm, className } = props;
   return (
     <div
       aria-hidden
       className={cn(
         // The parent section must be `relative` for the bleed to anchor.
         "pointer-events-none absolute rounded-full border-accent-gold",
+        // Sized through custom properties so the breakpoint lives in classes
+        // rather than in an inline style a media query cannot reach.
+        "h-[var(--ring-sm)] w-[var(--ring-sm)] md:h-[var(--ring)] md:w-[var(--ring)]",
         CORNER[corner],
         className,
       )}
-      style={{ width: size, height: size, borderWidth: STROKE }}
+      style={
+        {
+          "--ring": `${size}px`,
+          "--ring-sm": `${sizeSm ?? size}px`,
+          borderWidth: STROKE,
+        } as CSSProperties
+      }
     />
   );
 }

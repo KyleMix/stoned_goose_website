@@ -36,7 +36,7 @@ export async function generateMetadata(props: {
     description:
       (comedian.bio ? truncateAtWord(comedian.bio, 155) : "") ||
       `${comedian.name}, stand-up comedian in the Stoned Goose Productions rotation.`,
-    alternates: { canonical: `/roster/${comedian.slug}` },
+    alternates: { canonical: `/about/${comedian.slug}` },
   };
 }
 
@@ -58,7 +58,7 @@ export default async function ComedianPage(props: {
     name: comedian.name,
     description: comedian.bio,
     image: `${site.url}${comedian.photo}`,
-    url: `${site.url}/roster/${comedian.slug}`,
+    url: `${site.url}/about/${comedian.slug}`,
     sameAs: [comedian.instagram, comedian.facebook].filter(
       (x): x is string => Boolean(x),
     ),
@@ -71,16 +71,16 @@ export default async function ComedianPage(props: {
         dangerouslySetInnerHTML={{ __html: jsonLdString(personJsonLd) }}
       />
       <JsonLd
-        schema={buildBreadcrumbs(`/roster/${comedian.slug}`, comedian.name)}
+        schema={buildBreadcrumbs(`/about/${comedian.slug}`, comedian.name)}
       />
 
       <section className="border-b border-smoke bg-surface-tuxedo pb-16 pt-32 md:pb-20 md:pt-40">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <Link
-            href="/roster"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
+            href="/about"
+            className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
           >
-            ← The Roster
+            ← About
           </Link>
 
           <div className="mt-10 grid gap-12 md:grid-cols-12 md:gap-16">
@@ -105,7 +105,7 @@ export default async function ComedianPage(props: {
 
             <div className="md:col-span-8">
               <p className="t-eyebrow">
-                The Roster
+                About
               </p>
               <h1 className="t-headline mt-4 display-1">
                 {comedian.name}
@@ -119,7 +119,7 @@ export default async function ComedianPage(props: {
                       href={comedian.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="t-eyebrow text-smoke hover:text-accent-gold"
+                      className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
                     >
                       Instagram ↗
                     </a>
@@ -129,7 +129,7 @@ export default async function ComedianPage(props: {
                       href={comedian.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="t-eyebrow text-smoke hover:text-accent-gold"
+                      className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
                     >
                       Facebook ↗
                     </a>
@@ -202,7 +202,7 @@ export default async function ComedianPage(props: {
             </p>
             <Link
               href="/book"
-              className="inline-flex h-12 shrink-0 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+              className="inline-flex h-12 shrink-0 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
             >
               Book a show ↗
             </Link>

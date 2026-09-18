@@ -16,16 +16,20 @@ type LabelProps = {
   htmlFor: string;
   children: ReactNode;
   required?: boolean;
+  /** Marks the field "(optional)" in the label. */
+  optional?: boolean;
 };
 
-export function FieldLabel({ htmlFor, children, required }: LabelProps) {
+// Baymard's finding is that marking only one side leaves people guessing about
+// the other, so a form that marks required fields marks optional ones too. The
+// asterisk is decorative: the real signal to assistive tech is the input's own
+// `required` attribute, which TextField/TextAreaField set.
+export function FieldLabel({ htmlFor, children, required, optional }: LabelProps) {
   return (
-    <label
-      htmlFor={htmlFor}
-      className="t-eyebrow text-smoke"
-    >
+    <label htmlFor={htmlFor} className="t-ui text-smoke">
       {children}
       {required && <span aria-hidden className="ml-1 text-accent-gold">*</span>}
+      {optional && <span className="ml-2 normal-case tracking-normal">(optional)</span>}
     </label>
   );
 }
@@ -51,6 +55,8 @@ export type TextFieldProps = {
   type?: "text" | "email" | "tel" | "url" | "date";
   placeholder?: string;
   required?: boolean;
+  /** Renders "(optional)" in the label. Purely a labelling hint. */
+  optional?: boolean;
   autoComplete?: string;
   inputMode?: "text" | "email" | "tel" | "numeric" | "decimal" | "search" | "url";
   defaultValue?: string;
@@ -89,6 +95,7 @@ export function TextField({
   type = "text",
   placeholder,
   required,
+  optional,
   autoComplete,
   inputMode,
   defaultValue,
@@ -101,12 +108,13 @@ export function TextField({
 
   return (
     <div className="space-y-2">
-      <FieldLabel htmlFor={id} required={required}>
+      <FieldLabel htmlFor={id} required={required} optional={optional}>
         {label}
       </FieldLabel>
       <input
         id={id}
         type={type}
+        required={required}
         placeholder={placeholder}
         autoComplete={autoComplete}
         inputMode={resolvedInputMode}
@@ -127,6 +135,8 @@ export type TextAreaFieldProps = {
   label: string;
   placeholder?: string;
   required?: boolean;
+  /** Renders "(optional)" in the label. Purely a labelling hint. */
+  optional?: boolean;
   rows?: number;
 };
 
@@ -136,6 +146,7 @@ export function TextAreaField({
   label,
   placeholder,
   required,
+  optional,
   rows = 4,
 }: TextAreaFieldProps) {
   const ctx = useOptionalFormContext();
@@ -145,12 +156,13 @@ export function TextAreaField({
 
   return (
     <div className="space-y-2">
-      <FieldLabel htmlFor={id} required={required}>
+      <FieldLabel htmlFor={id} required={required} optional={optional}>
         {label}
       </FieldLabel>
       <textarea
         id={id}
         placeholder={placeholder}
+        required={required}
         rows={rows}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={error ? errorId : undefined}

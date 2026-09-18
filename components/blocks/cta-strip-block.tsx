@@ -33,7 +33,7 @@ export function CtaStripBlock({
               onClick={() =>
                 track("CTA Click", { cta: `${pageSlug}-cta-strip` })
               }
-              className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
+              className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory"
             >
               {block.primaryCtaLabel}
               <span aria-hidden className="transition-transform group-hover:translate-x-1">
