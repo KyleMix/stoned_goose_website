@@ -34,13 +34,13 @@ export function OpenMicTeaser({ tone = "tuxedo" }: SurfaceTone) {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/open-mics/map"
-                className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                className="inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
               >
                 Open the map ↗
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                className="inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
               >
                 Submit a mic ↗
               </Link>

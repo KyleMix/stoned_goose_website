@@ -74,7 +74,7 @@ export function FacebookPagePlugin() {
             href={site.social.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="t-eyebrow text-smoke hover:text-accent-gold"
+            className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
           >
             Open page ↗
           </FeedLink>

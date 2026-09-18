@@ -18,6 +18,12 @@ type Props = {
   submitLabel?: string;
   /** Overrides the line shown after a successful signup. */
   successBody?: string;
+  /**
+   * "secondary" drops the gold fill and the display-size success state, so the
+   * signup cannot compete with a contact form on the same page. The home page
+   * uses it; standalone pages keep the default.
+   */
+  emphasis?: "default" | "secondary";
 };
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -32,8 +38,10 @@ export function MailingListCapture({
   headline = "Show announcements, presale codes, and the occasional weird thing.",
   submitLabel = "Sign me up",
   successBody = "You're on the list. See you at the next show.",
+  emphasis = "default",
   tone = "tuxedo",
 }: Props & SurfaceTone) {
+  const secondary = emphasis === "secondary";
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -99,7 +107,13 @@ export function MailingListCapture({
             <p className="t-eyebrow">
               {eyebrow}
             </p>
-            <p className="mt-3 t-subhead text-2xl leading-tight md:text-3xl">
+            <p
+              className={
+                secondary
+                  ? "t-body mt-3 text-base leading-snug"
+                  : "mt-3 t-subhead text-2xl leading-tight md:text-3xl"
+              }
+            >
               {headline}
             </p>
           </div>
@@ -116,7 +130,13 @@ export function MailingListCapture({
                 aria-live="polite"
                 className="border-y border-accent-gold py-6 motion-safe:animate-fade-in"
               >
-                <p className="t-subhead text-3xl md:text-4xl">
+                <p
+                  className={
+                    secondary
+                      ? "t-subhead text-xl md:text-2xl"
+                      : "t-subhead text-3xl md:text-4xl"
+                  }
+                >
                   Locked <span className="text-accent-gold">in</span>.
                 </p>
                 <p className="t-body mt-2 text-sm">
@@ -127,9 +147,7 @@ export function MailingListCapture({
               <>
                 <div className="flex flex-col items-stretch gap-4 md:flex-row md:flex-wrap md:items-end">
                   <label className="flex-1 md:min-w-[220px]">
-                    <span className="block t-eyebrow text-smoke">
-                      Email
-                    </span>
+                    <span className="block t-ui text-smoke">Email</span>
                     <input
                       type="email"
                       name="email"
@@ -143,7 +161,11 @@ export function MailingListCapture({
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 bg-accent-gold px-6 t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-50 md:w-auto md:justify-start"
+                    className={`group inline-flex h-12 w-full shrink-0 items-center justify-center gap-3 px-6 t-ui transition-colors disabled:opacity-50 md:w-auto md:justify-start ${
+                      secondary
+                        ? "border border-smoke hover:border-accent-gold hover:text-accent-gold"
+                        : "bg-accent-gold text-surface-tuxedo hover:bg-surface-ivory"
+                    }`}
                   >
                     {status === "loading" ? "Sending..." : submitLabel}
                     <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -161,16 +183,11 @@ export function MailingListCapture({
                 />
                 <input type="hidden" name="page" value={page} />
                 {status === "error" ? (
-                  <p
-                    role="alert"
-                    className="mt-3 t-eyebrow text-smoke"
-                  >
+                  <p role="alert" className="mt-3 t-fine">
                     Something went wrong. Email {site.contact.email} directly.
                   </p>
                 ) : (
-                  <p className="mt-3 t-eyebrow text-smoke">
-                    No spam. Unsubscribe whenever.
-                  </p>
+                  <p className="mt-3 t-fine">No spam. Unsubscribe whenever.</p>
                 )}
               </>
             )}

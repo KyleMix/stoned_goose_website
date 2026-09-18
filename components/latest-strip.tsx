@@ -40,7 +40,7 @@ export function LatestStrip({ limit = 6, tone = "tuxedo" }: Props & SurfaceTone)
           <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
             <Link
               href="/watch"
-              className="t-eyebrow text-smoke hover:text-accent-gold"
+              className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
             >
               See all on Watch ↗
             </Link>
@@ -50,7 +50,7 @@ export function LatestStrip({ limit = 6, tone = "tuxedo" }: Props & SurfaceTone)
               href={site.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="t-eyebrow text-smoke hover:text-accent-gold"
+              className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
             >
               Open Instagram ↗
             </FeedLink>
@@ -128,7 +128,7 @@ function PosterContent({
           {kind}
         </span>
       )}
-      <span className="absolute right-1.5 top-1.5 inline-flex items-center bg-accent-gold px-1.5 py-0.5 t-eyebrow text-surface-tuxedo">
+      <span className="absolute right-1.5 top-1.5 inline-flex items-center bg-accent-gold px-1.5 py-0.5 t-ui text-surface-tuxedo">
         {kind}
       </span>
     </>

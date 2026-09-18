@@ -70,7 +70,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
               <Link
                 href={block.primaryCtaHref}
                 onClick={() => track("CTA Click", { cta: `${pageSlug}-hero-primary` })}
-                className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory"
+                className="group inline-flex h-12 items-center gap-3 bg-accent-gold px-7 text-sm t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory"
               >
                 {block.primaryCtaLabel}
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">
@@ -81,7 +81,7 @@ export function HeroBlock({ block, pageSlug }: { block: HeroBlockData; pageSlug:
             {block.secondaryCtaLabel && block.secondaryCtaHref ? (
               <Link
                 href={block.secondaryCtaHref}
-                className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
+                className="t-ui text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
               >
                 {block.secondaryCtaLabel} ↗
               </Link>

@@ -5,7 +5,7 @@ export const size = ogSize;
 export const contentType = ogContentType;
 export const dynamic = "force-static";
 
-export const alt = "Stoned Goose Productions roster comedian";
+export const alt = "A comedian booked by Stoned Goose Productions";
 
 // Mirrors the page's params, sentinel included, so the static export never
 // sees an empty param set for this route.
@@ -22,7 +22,7 @@ export default async function OpengraphImage({
   const { slug } = await params;
   const comedian = getComedian(slug);
   return ogImageResponse({
-    eyebrow: "The Roster",
-    title: comedian?.name ?? "Roster",
+    eyebrow: "Comics we book",
+    title: comedian?.name ?? "About",
   });
 }

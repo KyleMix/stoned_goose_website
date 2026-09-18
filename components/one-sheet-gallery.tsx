@@ -68,7 +68,7 @@ export function OneSheetGallery({ pages }: Props) {
                 sizes="(min-width: 1024px) 250px, (min-width: 640px) 30vw, 45vw"
                 className="h-auto w-full"
               />
-              <span className="mt-2 block t-eyebrow text-smoke group-hover:text-accent-gold">
+              <span className="mt-2 block t-ui text-smoke group-hover:text-accent-gold">
                 Page {page.page} of {pages.length}
               </span>
               <span className="sr-only">. Enlarge.</span>
@@ -113,7 +113,7 @@ export function OneSheetGallery({ pages }: Props) {
               <Dialog.Close asChild>
                 <button
                   type="button"
-                  className="shrink-0 t-eyebrow text-smoke hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+                  className="shrink-0 t-ui text-smoke hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
                 >
                   Close (esc)
                 </button>
@@ -144,14 +144,14 @@ export function OneSheetGallery({ pages }: Props) {
               <button
                 type="button"
                 onClick={() => step(-1)}
-                className="inline-flex h-11 items-center border border-smoke px-4 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+                className="inline-flex h-11 items-center border border-smoke px-4 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
               >
                 ← Previous page
               </button>
               <button
                 type="button"
                 onClick={() => step(1)}
-                className="inline-flex h-11 items-center border border-smoke px-4 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
+                className="inline-flex h-11 items-center border border-smoke px-4 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-gold"
               >
                 Next page →
               </button>

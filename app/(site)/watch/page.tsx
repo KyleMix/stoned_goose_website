@@ -95,7 +95,7 @@ export default function WatchPage() {
               </p>
               <Link
                 href="/shows"
-                className="t-eyebrow text-smoke hover:text-accent-gold"
+                className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
               >
                 Catch the next one live ↗
               </Link>
@@ -105,7 +105,7 @@ export default function WatchPage() {
               href={featuredSpecial.comedianHandle}
               target="_blank"
               rel="noopener noreferrer"
-              className="t-eyebrow text-smoke hover:text-accent-gold"
+              className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
             >
               {featuredSpecial.title} on Instagram ↗
             </TrackedAnchor>
@@ -135,7 +135,7 @@ export default function WatchPage() {
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:bg-surface-ivory hover:text-surface-tuxedo"
+                className="mt-8 inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:bg-surface-ivory hover:text-surface-tuxedo"
               >
                 Channel on YouTube ↗
               </TrackedAnchor>
@@ -199,7 +199,7 @@ export default function WatchPage() {
               href={site.social.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="t-eyebrow text-smoke hover:text-accent-gold"
+              className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
             >
               YouTube channel ↗
             </TrackedAnchor>
@@ -219,7 +219,7 @@ export default function WatchPage() {
                 href={site.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                className="mt-8 inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
               >
                 Open the channel ↗
               </TrackedAnchor>
@@ -268,7 +268,7 @@ export default function WatchPage() {
                 href={site.social.patreon}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                className="inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
               >
                 Support on Patreon ↗
               </TrackedAnchor>

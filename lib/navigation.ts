@@ -17,7 +17,7 @@ import { nav as cmsNav, footer as cmsFooter, type NavLink } from "@/content/site
 
 // The superset of valid, existing top-level routes. Keep this in sync when
 // adding or removing a page under app/(site). Anchor and query suffixes on a
-// known route (e.g. /book#sponsors) are allowed.
+// known route (e.g. /#contact) are allowed.
 export const KNOWN_ROUTES = new Set<string>([
   "/",
   "/shows",
@@ -31,8 +31,9 @@ export const KNOWN_ROUTES = new Set<string>([
   "/open-mics/terms",
   "/open-mics/delete-account",
   "/watch",
-  "/roster",
+  "/about",
   "/book",
+  "/sponsor",
   "/shop",
   "/contact",
 ]);
@@ -60,7 +61,18 @@ function validateLinks(links: NavLink[], context: string): NavLink[] {
 }
 
 // Primary navigation, validated. Consumed by the desktop and mobile nav.
+//
+// "Book us" is deliberately absent: the header renders it as the one gold
+// button rather than a fifth peer link, so it cannot be edited into the middle
+// of the row from the CMS.
 export const primaryNav: NavLink[] = validateLinks(cmsNav, "primary nav");
+
+// Links the mobile panel carries below the primary four. They are footer-level
+// on desktop, but a phone has no footer in reach, so the panel lists them too.
+export const secondaryNav: NavLink[] = validateLinks(
+  [{ label: "Shop", href: "/shop" }],
+  "secondary nav",
+);
 
 // Footer columns, with each column's links validated the same way so footer
 // and header share one route-truth and one validation pass.

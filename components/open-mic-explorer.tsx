@@ -142,7 +142,7 @@ export function OpenMicExplorer({ mics }: Props) {
                 aria-label="Filter by city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full appearance-none border border-smoke bg-surface-tuxedo py-2.5 pl-3 pr-9 t-eyebrow text-smoke transition-colors hover:border-accent-gold focus:border-accent-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
+                className="h-11 w-full appearance-none border border-smoke bg-surface-tuxedo pl-3 pr-9 t-ui text-smoke transition-colors hover:border-accent-gold focus:border-accent-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
               >
                 <option value="all">All cities</option>
                 {cityGroups.map((g) => (
@@ -173,7 +173,7 @@ export function OpenMicExplorer({ mics }: Props) {
             <button
               type="button"
               onClick={clearAll}
-              className="t-eyebrow text-smoke underline underline-offset-4 transition-colors hover:text-accent-gold"
+              className="t-ui text-smoke underline underline-offset-4 transition-colors hover:text-accent-gold"
             >
               Clear all
             </button>
@@ -197,7 +197,7 @@ export function OpenMicExplorer({ mics }: Props) {
               key={f.key}
               type="button"
               onClick={f.clear}
-              className="inline-flex items-center gap-1.5 border border-accent-gold px-2 py-1 t-eyebrow transition-colors hover:border-accent-gold hover:text-surface-ivory"
+              className="inline-flex items-center gap-1.5 border border-accent-gold px-2 py-1 t-ui transition-colors hover:border-accent-gold hover:text-surface-ivory"
               aria-label={`Remove ${f.label} filter`}
             >
               {f.label}
@@ -243,7 +243,7 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex h-9 items-center border px-3 t-eyebrow transition-colors ${
+      className={`inline-flex h-11 items-center border px-3 t-ui transition-colors ${
         active
           ? "border-accent-gold bg-accent-gold text-surface-tuxedo"
           : "border-smoke text-surface-ivory hover:border-accent-gold hover:text-surface-ivory"

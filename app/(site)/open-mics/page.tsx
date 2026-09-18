@@ -79,7 +79,7 @@ export default function OpenMicsPage() {
             </p>
             <Link
               href={openMicAppMapLink.ctaHref}
-              className="mt-6 inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+              className="mt-6 inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
             >
               {openMicAppMapLink.ctaLabel} ↗
             </Link>
@@ -191,7 +191,7 @@ export default function OpenMicsPage() {
 
           <a
             href={openMicAppOneSheet.pdf.href}
-            className="mt-10 inline-flex min-h-12 items-center border border-smoke px-6 py-3 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+            className="mt-10 inline-flex min-h-12 items-center border border-smoke px-6 py-3 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
           >
             {openMicAppOneSheet.pdf.label} ↓
           </a>
@@ -227,7 +227,7 @@ export default function OpenMicsPage() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
+                  className="inline-flex min-h-[44px] items-center t-ui text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   {link.label} ↗
                 </Link>
@@ -236,7 +236,7 @@ export default function OpenMicsPage() {
             <li>
               <a
                 href={`mailto:${site.contact.email}`}
-                className="t-eyebrow text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
+                className="inline-flex min-h-[44px] items-center t-ui text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
               >
                 {site.contact.email} ↗
               </a>

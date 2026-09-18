@@ -4,29 +4,13 @@
     "kicker": "Comics we've booked, comics we run with, comics we'll book again."
   },
   "about": {
-    "heading": "About the Team",
-    "subhead": "Stoned Goose Productions is a crew of producers, performers, and media pros building cinematic comedy experiences across the Pacific Northwest.",
-    "crewHeading": "Meet the Crew",
-    "crewSubhead": "Faces behind the productions."
+    "heading": "About us",
+    "subhead": "A five-person comedy production company in Olympia, Washington, working across the South Sound.",
+    "story": "Stoned Goose Productions started in January 2025. We produce live stand-up across Olympia, Lacey, Tacoma, and the wider South Sound: booking the lineup, running the room, and handling the parts of a show an audience is never supposed to notice.\n\nWe also work on camera and behind a microphone, producing video and podcasts for comics and for the people who hire us. The Open Mic Explorer is ours too: a map and an app that tracks open mics across the Pacific Northwest, and the video series that goes with it.",
+    "oneLine": "There are five of us. We produce the shows, shoot the video, cut the audio, and answer the email.",
+    "crewHeading": "The crew",
+    "crewSubhead": "The people who do it."
   },
-  "pillars": [
-    {
-      "title": "Production & Ops",
-      "body": "Producers, bookers, and stage managers who keep tours, residencies, and monthly showcases running smoothly."
-    },
-    {
-      "title": "Media Team",
-      "body": "Cinematographers, editors, and photographers crafting specials, podcast visuals, and crisp headshots for every comic."
-    },
-    {
-      "title": "Community & Partners",
-      "body": "Venue partners, sponsors, and collaborators who help us elevate Pacific Northwest comedy together."
-    },
-    {
-      "title": "Creative Lab",
-      "body": "Writers and creative directors shaping new formats, themed shows, and social content that keeps audiences engaged."
-    }
-  ],
   "topSections": [],
   "bottomSections": []
 }

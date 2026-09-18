@@ -52,7 +52,7 @@ export function OpenMicUpdateDialog({ mic }: Props) {
         <button
           type="button"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex h-10 items-center t-eyebrow text-smoke hover:text-accent-gold"
+          className="inline-flex h-11 items-center t-ui text-smoke hover:text-accent-gold"
         >
           Report change ↗
         </button>
@@ -83,7 +83,7 @@ export function OpenMicUpdateDialog({ mic }: Props) {
               <button
                 type="button"
                 aria-label="Close"
-                className="t-eyebrow text-smoke hover:text-accent-gold"
+                className="t-ui text-smoke hover:text-accent-gold"
               >
                 ESC
               </button>

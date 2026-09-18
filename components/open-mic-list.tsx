@@ -122,7 +122,7 @@ function MicRow({
             <span className="t-eyebrow">
               {m.dayTimeDisplay}
             </span>
-            <span className="inline-flex items-center border border-smoke px-1.5 py-0.5 t-eyebrow text-smoke">
+            <span className="inline-flex items-center border border-smoke px-1.5 py-0.5 t-ui text-smoke">
               {freq.label}
               {freq.detail ? (
                 <span className="ml-1 text-smoke">{freq.detail}</span>
@@ -171,7 +171,7 @@ function MicRow({
             type="button"
             onClick={() => onSelect(m.id)}
             aria-pressed={active}
-            className={`inline-flex h-10 items-center border px-4 t-eyebrow transition-colors ${
+            className={`inline-flex h-11 items-center border px-4 t-ui transition-colors ${
               active
                 ? "border-accent-gold text-accent-gold"
                 : "border-smoke text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
@@ -184,12 +184,12 @@ function MicRow({
               href={m.signupDisplay.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 items-center border border-smoke px-4 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+              className="inline-flex h-11 items-center border border-smoke px-4 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
             >
               Signup ↗
             </a>
           ) : m.signupDisplay.kind === "fallback" ? (
-            <span className="inline-flex h-10 items-center t-eyebrow text-smoke">
+            <span className="inline-flex h-11 items-center t-ui text-smoke">
               {SIGNUP_FALLBACK_LABEL}
             </span>
           ) : null}

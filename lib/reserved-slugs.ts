@@ -15,6 +15,8 @@ export const RESERVED_SLUGS: readonly string[] = [
   "shows",
   "watch",
   "roster",
+  "about",
+  "sponsor",
   "open-mics",
   "book",
   "contact",

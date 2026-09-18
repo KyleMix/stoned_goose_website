@@ -26,17 +26,38 @@ export function Footer() {
                 "Stoned Goose." that used to sit under it is gone: the name
                 would have read twice in one block. */}
             <Lockup colorway="gold" width={320} />
-            <p className="mt-4 t-eyebrow text-smoke">
-              {footerCopy.locality}
-            </p>
-            <p className="t-body mt-6 max-w-md text-sm">
-              {site.description}
-            </p>
-            <div className="mt-8 space-y-1 t-eyebrow text-smoke">
-              <p>{site.contact.email}</p>
-              <p>{site.contact.phone}</p>
-              <p>{site.contact.locality}, {site.contact.region}</p>
-            </div>
+            {site.tagline ? (
+              <p className="mt-4 t-ui text-smoke">{site.tagline}</p>
+            ) : null}
+            <p className="t-body mt-6 max-w-md text-sm">{site.description}</p>
+
+            {/* Contact details are content, not labels. They used to render at
+                the eyebrow role: 11px capitals at .26em tracking, which is a
+                hard way to read a phone number and was not a link at all.
+                They are body-size now, and both are tappable. */}
+            <address className="mt-8 not-italic">
+              <ul className="t-body space-y-1 text-sm">
+                <li>
+                  <a
+                    href={`mailto:${site.contact.email}`}
+                    className="inline-flex min-h-[44px] items-center underline decoration-smoke underline-offset-4 transition-colors hover:text-accent-gold hover:decoration-accent-gold"
+                  >
+                    {site.contact.email}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`tel:${site.contact.phoneTel}`}
+                    className="inline-flex min-h-[44px] items-center underline decoration-smoke underline-offset-4 transition-colors hover:text-accent-gold hover:decoration-accent-gold"
+                  >
+                    {site.contact.phone}
+                  </a>
+                </li>
+                <li className="pt-1 text-smoke">
+                  {site.contact.locality}, {site.contact.region}
+                </li>
+              </ul>
+            </address>
           </div>
 
           {footerColumns.map((col) => (
@@ -45,7 +66,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-smoke pt-8">
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+          <div className="flex flex-wrap gap-x-6 gap-y-1">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -55,14 +76,14 @@ export function Footer() {
                 onClick={() =>
                   track("Outbound Click", { destination: s.destination })
                 }
-                className="t-eyebrow text-smoke transition-colors hover:text-accent-gold"
+                className="inline-flex min-h-[44px] items-center t-ui text-smoke transition-colors hover:text-accent-gold"
               >
-                {s.label} <span aria-hidden>↗</span>
+                {s.label} <span aria-hidden className="ml-1">&#8599;</span>
               </a>
             ))}
           </div>
-          <div className="t-eyebrow text-smoke">
-            <p>© {year} Stoned Goose Productions</p>
+          <div className="t-fine">
+            <p>&copy; {year} Stoned Goose Productions</p>
             {footerCopy.creditLine ? (
               footerCopy.creditHref ? (
                 <a
@@ -80,7 +101,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-
     </footer>
   );
 }
@@ -93,16 +113,14 @@ function FooterColumn({
   items: Array<{ label: string; href: string }>;
 }) {
   return (
-    <div className="md:col-span-2">
-      <p className="t-eyebrow text-smoke">
-        {label}
-      </p>
-      <ul className="mt-4 space-y-2">
+    <div className="md:col-span-3">
+      <p className="t-eyebrow">{label}</p>
+      <ul className="mt-4">
         {items.map((it) => (
           <li key={it.href}>
             <Link
               href={it.href}
-              className="text-sm text-surface-ivory transition-colors hover:text-accent-gold"
+              className="inline-flex min-h-[44px] items-center text-sm text-surface-ivory transition-colors hover:text-accent-gold"
             >
               {it.label}
             </Link>

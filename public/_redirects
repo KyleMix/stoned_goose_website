@@ -5,10 +5,13 @@
 # The CMS lives at /admin (static Sveltia app, public/admin/index.html) and
 # uses hash routing, so it needs no redirect or rewrite here.
 
-# About / team
-/about               /roster              308
-/members             /roster              308
-/comedians           /roster              308
+# About / team. /roster is the old name for this page: it was comedy-industry
+# language for a page whose audience is not in the comedy industry. The arrow
+# on /about used to point the other way.
+/roster              /about                308
+/roster/*            /about                308
+/members             /about                308
+/comedians           /about                308
 
 # Media / watch
 /media               /watch                308
@@ -19,6 +22,6 @@
 /submit              /book                 308
 /comic-submissions   /book                 308
 
-# Sponsor funnel collapsed to anchor on /book
-/sponsor             /book#sponsors        308
-/sponsorships        /book#sponsors        308
+# Sponsors. /sponsor is a real page now rather than an anchor on /book, so
+# these point at it instead of at /book#sponsors.
+/sponsorships        /sponsor              308

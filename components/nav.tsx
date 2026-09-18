@@ -5,38 +5,28 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
-import { primaryNav as nav } from "@/lib/navigation";
-import { upcomingShows } from "@/content/shows";
+import { primaryNav as nav, secondaryNav } from "@/lib/navigation";
 import { track } from "@/lib/analytics";
 import { CartButton } from "@/components/cart/cart-button";
-import { formatShowMonthDay } from "@/lib/dates";
 
-
-/** The marquee line: next show, date and venue. Null when nothing is booked. */
-function nextShowMarquee() {
-  const next = upcomingShows[0];
-  if (!next) return null;
-  const date = formatShowMonthDay(next.start);
-  const venue = next.venue?.name ?? next.venue?.city ?? null;
-  const parts = [date, venue].filter(Boolean);
-  if (!parts.length) return null;
-  return { line: parts.join(" / "), href: next.ticketUrl ?? "/shows" };
-}
+// The header carries four links and one ask.
+//
+// Two things used to live up here and no longer do. The "now playing" ticker
+// was the first of three places the same show appeared on the home page, and
+// the 01-06 numbers in front of each label were a contents-list conceit that
+// cost a beat of reading per link and carried no information.
+//
+// Nav labels run at the .t-ui role rather than .t-eyebrow. At 11px and .26em
+// the links rendered but did not read, which is the practical version of the
+// hidden-navigation problem: NN/g's finding is that navigation people cannot
+// find is navigation people do not use, and on a wide screen a row of pale
+// 11px capitals is close enough to hidden.
 
 export function Nav() {
   const pathname = usePathname();
-  const marquee = nextShowMarquee();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handle = () => setScrolled(window.scrollY > 12);
-    handle();
-    window.addEventListener("scroll", handle, { passive: true });
-    return () => window.removeEventListener("scroll", handle);
-  }, []);
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
@@ -68,147 +58,104 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  function isActive(href: string) {
+    return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+  }
+
   return (
     <>
-    <header className="fixed inset-x-0 top-0 z-50 bg-surface-tuxedo">
-      {/* The marquee board. The brand system is called Marquee, so the header
-          opens the way a theatre marquee does: what is on, and when. It
-          collapses on scroll to give the page back its height, which is the
-          one thing the scroll state is for now. Hidden entirely when the
-          calendar is empty rather than showing a placeholder. */}
-      {marquee ? (
-        <div
-          aria-hidden={scrolled}
-          className={cn(
-            "overflow-hidden border-b border-accent-gold transition-[height,opacity] duration-300",
-            scrolled || open ? "h-0 opacity-0" : "h-9 opacity-100",
-          )}
-        >
+      <header className="fixed inset-x-0 top-0 z-50 bg-surface-tuxedo">
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-2 border-b border-smoke px-5 sm:gap-3 md:h-20 md:gap-6 md:px-10">
           <Link
-            href={marquee.href}
-            tabIndex={scrolled ? -1 : undefined}
-            onClick={() => track("CTA Click", { cta: "nav-marquee" })}
-            className="mx-auto flex h-9 max-w-[1400px] items-center gap-3 px-5 md:px-10"
+            href="/"
+            aria-label={`${site.shortName} home`}
+            className="group inline-flex min-h-[44px] shrink-0 items-center"
           >
-            <span className="t-eyebrow shrink-0">Now playing</span>
-            <span className="t-eyebrow truncate text-surface-ivory">
-              {marquee.line}
-            </span>
-            {/* The whole strip is the link, so this is a desktop affordance
-                only. On a narrow screen it would wrap inside a 36px bar. */}
-            <span aria-hidden className="ml-auto hidden shrink-0 t-eyebrow text-smoke sm:inline">
-              Tickets ↗
+            {/* No mark here on purpose. The lockup's minimum is 281px wide and
+                254px tall, which cannot sit in a 64px bar, and shrinking it past
+                the minimum is the rule this system exists to prevent. A header
+                this size carries the wordmark as type. The lockup runs at full
+                size in the footer. */}
+            <span className="t-subhead text-sm leading-none min-[360px]:text-base sm:text-lg md:text-[1.4rem]">
+              Stoned Goose
+              <span
+                aria-hidden
+                className="transition-[text-decoration-color] group-hover:underline group-hover:decoration-accent-gold group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-accent-gold group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
+              >
+                .
+              </span>
             </span>
           </Link>
-        </div>
-      ) : null}
 
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between border-b border-smoke px-5 md:h-20 md:px-10">
-        <Link
-          href="/"
-          aria-label={`${site.shortName} home`}
-          className="group inline-flex items-center gap-2"
-        >
-          {/* No mark here on purpose. The lockup's minimum is 281px wide and
-              254px tall, which cannot sit in a 64px bar, and shrinking it past
-              the minimum is the rule this system exists to prevent. A header
-              this size carries the wordmark as type. The lockup runs at full
-              size in the footer. */}
-          <span className="t-subhead text-xl leading-none md:text-[1.4rem]">
-            Stoned Goose
-            {/* Punctuation, not an accent. The retired system coloured this
-                period gold; Marquee has no such device, and at subhead size
-                gold is neither a headline nor an eyebrow. */}
-            <span
-              aria-hidden
-              className="transition-[text-decoration-color] group-hover:underline group-hover:decoration-accent-gold group-hover:decoration-2 group-hover:underline-offset-2 group-focus-visible:underline group-focus-visible:decoration-accent-gold group-focus-visible:decoration-2 group-focus-visible:underline-offset-2"
-            >
-              .
-            </span>
-          </span>
-        </Link>
-
-        {/* Numbered like the section indexes used elsewhere on the site, so
-            the header reads as a contents list rather than a row of links.
-            The number is what carries the active state: it goes gold while
-            its label goes ivory, which is the same rest/respond swap the
-            rest of the system uses. */}
-        <nav aria-label="Primary" className="hidden items-center gap-6 md:flex lg:gap-7">
-          {nav.map((item, i) => {
-            const active =
-              pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className="group inline-flex items-baseline gap-1.5"
-              >
-                <span
-                  aria-hidden
+          <nav
+            aria-label="Primary"
+            className="ml-auto hidden items-center gap-7 md:flex lg:gap-9"
+          >
+            {nav.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
-                    "t-eyebrow transition-colors",
-                    active ? "text-accent-gold" : "text-smoke",
-                  )}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span
-                  className={cn(
-                    "t-eyebrow transition-colors group-hover:text-accent-gold",
-                    active ? "text-surface-ivory" : "text-smoke",
+                    "t-ui inline-flex min-h-[44px] items-center transition-colors hover:text-accent-gold",
+                    active && "text-accent-gold",
                   )}
                 >
                   {item.label}
-                </span>
-              </Link>
-            );
-          })}
-          <Link
-            href="/shows"
-            onClick={() => track("CTA Click", { cta: "nav-tickets" })}
-            className="t-eyebrow text-surface-ivory underline underline-offset-4 decoration-accent-gold decoration-2 transition-colors hover:text-accent-gold"
-          >
-            Tickets<span className="text-accent-gold">.</span> ↗
-          </Link>
-        </nav>
+                </Link>
+              );
+            })}
+          </nav>
 
-        <div className="flex items-center gap-2 md:gap-3">
-        <CartButton />
-        <button
-          ref={toggleRef}
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex min-h-[44px] items-center gap-2 border border-smoke px-3 py-2 t-eyebrow text-smoke transition-colors hover:border-accent-gold hover:text-accent-gold md:hidden"
-        >
-          <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
-            <span
-              className={cn(
-                "h-px w-full bg-current transition-all duration-300",
-                open && "translate-y-[5px] rotate-45",
-              )}
-            />
-            <span
-              className={cn(
-                "h-px w-full bg-current transition-opacity duration-300",
-                open && "opacity-0",
-              )}
-            />
-            <span
-              className={cn(
-                "h-px w-full bg-current transition-all duration-300",
-                open && "-translate-y-[5px] -rotate-45",
-              )}
-            />
-          </span>
-          <span>{open ? "Close" : "Menu"}</span>
-        </button>
+          <div className="ml-auto flex items-center gap-2 md:ml-0 md:gap-3">
+            <CartButton />
+
+            {/* The one ask, at every width. It sits outside the mobile panel
+                on purpose: a visitor who wants to hire us should never have to
+                open a menu to find out how. */}
+            <Link
+              href="/book"
+              onClick={() => track("CTA Click", { cta: "nav-book" })}
+              className="inline-flex h-11 shrink-0 items-center whitespace-nowrap bg-accent-gold px-3 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory sm:px-4 md:h-12 md:px-6"
+            >
+              Book us
+            </Link>
+
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 border border-smoke px-3 py-2 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold md:hidden"
+            >
+              <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
+                <span
+                  className={cn(
+                    "h-px w-full bg-current transition-all duration-300",
+                    open && "translate-y-[5px] rotate-45",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "h-px w-full bg-current transition-opacity duration-300",
+                    open && "opacity-0",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "h-px w-full bg-current transition-all duration-300",
+                    open && "-translate-y-[5px] -rotate-45",
+                  )}
+                />
+              </span>
+              <span className="hidden sm:inline">{open ? "Close" : "Menu"}</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
 
       {/* Mobile menu panel. Kept OUTSIDE <header> on purpose: a fixed
           descendant of the header would be positioned against it rather than
@@ -224,53 +171,43 @@ export function Nav() {
       >
         <nav
           aria-label="Mobile primary"
-          className="flex h-full flex-col overflow-y-auto px-6 pb-10 pt-6"
+          className="flex h-full flex-col overflow-y-auto px-6 pb-10 pt-4"
         >
           <ul className="flex flex-col">
-            {nav.map((item, i) => (
+            {[...nav, ...secondaryNav].map((item) => (
               <li key={item.href} className="border-b border-smoke">
                 <Link
                   href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                   onClick={() => setOpen(false)}
-                  className="flex items-baseline justify-between py-3.5"
+                  className={cn(
+                    "flex min-h-[56px] items-center py-3.5 t-subhead text-2xl transition-colors hover:text-accent-gold",
+                    isActive(item.href) && "text-accent-gold",
+                  )}
                 >
-                  <span className="t-subhead text-2xl">
-                    {item.label}
-                  </span>
-                  <span className="t-eyebrow text-smoke">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                  {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-8 space-y-3">
-            {(() => {
-              const next = upcomingShows[0];
-              if (!next) return null;
-              const date = formatShowMonthDay(next.start);
-              const venue = next.venue?.name ?? next.venue?.city ?? null;
-              if (!date && !venue) return null;
-              return (
-                <p className="t-eyebrow text-smoke">
-                  <span className="text-accent-gold">Next on stage. </span>
-                  {[date, venue].filter(Boolean).join(". ")}
-                </p>
-              );
-            })()}
+
+          <div className="mt-8 space-y-4">
             <Link
-              href="/shows"
+              href="/book"
               onClick={() => {
-                track("CTA Click", { cta: "nav-tickets-mobile" });
+                track("CTA Click", { cta: "nav-book-mobile" });
                 setOpen(false);
               }}
-              className="flex h-12 w-full items-center justify-center bg-accent-gold t-eyebrow text-surface-tuxedo"
+              className="flex h-12 w-full items-center justify-center bg-accent-gold t-ui text-surface-tuxedo"
             >
-              Tickets.
+              Book us
             </Link>
-            <p className="t-eyebrow text-smoke">
+            <a
+              href={`mailto:${site.contact.email}`}
+              className="t-body inline-flex min-h-[44px] items-center text-sm text-smoke underline underline-offset-4 hover:text-accent-gold"
+            >
               {site.contact.email}
-            </p>
+            </a>
           </div>
         </nav>
       </div>

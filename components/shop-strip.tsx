@@ -29,7 +29,7 @@ export function ShopStrip({ limit = 3, tone = "tuxedo" }: { limit?: number } & S
           </div>
           <Link
             href="/shop"
-            className="inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+            className="inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
           >
             See the shop ↗
           </Link>

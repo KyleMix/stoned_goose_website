@@ -45,9 +45,9 @@ function targetsForPath(pathname: string): AdminTarget[] {
       { label: "TikTok videos", href: "/admin/#/collections/tiktok" },
     ];
   }
-  if (path === "/roster") {
+  if (path === "/about") {
     return [
-      { label: "Roster copy", href: "/admin/#/collections/site_content/entries/roster_copy", hint: "Comedians intro + About section + pillars" },
+      { label: "About page copy", href: "/admin/#/collections/site_content/entries/roster_copy", hint: "Company story + crew intro + comedians intro" },
       { label: "Comedians", href: "/admin/#/collections/comedians" },
       { label: "Crew members", href: "/admin/#/collections/members" },
     ];
@@ -173,7 +173,7 @@ function EditOverlayInner() {
               </li>
             ))}
           </ul>
-          <div className="border-t border-smoke px-3 py-2 t-eyebrow text-[0.6rem] text-smoke">
+          <div className="border-t border-smoke px-3 py-2 t-ui text-[0.6rem] text-smoke">
             ?edit=0 to hide
           </div>
         </div>
@@ -181,7 +181,7 @@ function EditOverlayInner() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="rounded border border-smoke bg-accent-gold px-3 py-2 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+          className="rounded border border-smoke bg-accent-gold px-3 py-2 t-ui text-surface-tuxedo hover:bg-surface-ivory"
         >
           Edit<span className="text-surface-tuxedo">.</span>
         </button>

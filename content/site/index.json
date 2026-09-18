@@ -36,12 +36,22 @@
   ],
   "press": [],
   "nav": [
-    { "label": "Shows", "href": "/shows" },
-    { "label": "Open Mics", "href": "/open-mics/map" },
-    { "label": "Watch", "href": "/watch" },
-    { "label": "Roster", "href": "/roster" },
-    { "label": "Book Us", "href": "/book" },
-    { "label": "Shop", "href": "/shop" }
+    {
+      "label": "Shows",
+      "href": "/shows"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Open Mics",
+      "href": "/open-mics/map"
+    },
+    {
+      "label": "Watch",
+      "href": "/watch"
+    }
   ],
   "footer": {
     "locality": "Olympia, WA",
@@ -49,29 +59,45 @@
     "creditHref": "",
     "columns": [
       {
-        "heading": "Explore",
+        "heading": "Pages",
         "items": [
-          { "label": "Home", "href": "/" },
-          { "label": "Shows", "href": "/shows" },
-          { "label": "Open Mic Map", "href": "/open-mics/map" },
-          { "label": "The App", "href": "/open-mics" },
-          { "label": "Watch", "href": "/watch" },
-          { "label": "Roster", "href": "/roster" },
-          { "label": "Shop", "href": "/shop" }
+          {
+            "label": "Shows",
+            "href": "/shows"
+          },
+          {
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "label": "Open Mics",
+            "href": "/open-mics/map"
+          },
+          {
+            "label": "Open Mic Explorer app",
+            "href": "/open-mics"
+          },
+          {
+            "label": "Watch",
+            "href": "/watch"
+          },
+          {
+            "label": "Shop",
+            "href": "/shop"
+          }
         ]
       },
       {
-        "heading": "Work With Us",
+        "heading": "Work with us",
         "items": [
-          { "label": "Book Us", "href": "/book" },
-          { "label": "Sponsor a Show", "href": "/book#sponsors" }
-        ]
-      },
-      {
-        "heading": "Connect",
-        "items": [
-          { "label": "Tickets.", "href": "/shows" },
-          { "label": "Contact", "href": "/contact" }
+          {
+            "label": "Book us",
+            "href": "/book"
+          },
+          {
+            "label": "Sponsor a show",
+            "href": "/sponsor"
+          }
         ]
       }
     ]

@@ -33,7 +33,7 @@ The palette, type, and marks are specified. Where taste and the spec disagree, t
 ### Type
 One typeface: Josefin Sans, loaded via `next/font/google` at weights 300 / 400 / 700 only and self-hosted into the static export. The theme replaces `fontFamily` and `fontWeight`, so `font-serif`, `font-mono`, `font-medium` and `font-semibold` do not exist. Fallback chain is Futura, Century Gothic, Arial, sans-serif. No italics: the face is not loaded, so an `italic` class renders a synthesized oblique.
 
-Use the role classes (`.t-headline`, `.t-subhead`, `.t-eyebrow`, `.t-body`, `.t-fine`) or the components in `components/brand/type.tsx`. Never restate a role's weight, case, tracking or color at the call site. Size comes from the display scale (`display-mega/hero/1/2/3`); do not hand-roll a `clamp()`.
+Use the role classes (`.t-headline`, `.t-subhead`, `.t-eyebrow`, `.t-ui`, `.t-body`, `.t-fine`) or the components in `components/brand/type.tsx`. Never restate a role's weight, case, tracking or color at the call site. Size comes from the display scale (`display-mega/hero/1/2/3`); do not hand-roll a `clamp()`.
 
 Color is surface-aware. Wrap a section in `<Surface tone="ivory">` (or set `data-surface="ivory"`) and every role inside flips at once. A bare `bg-surface-ivory` renders a gold headline on ivory, which is 1.88:1 and forbidden.
 
@@ -42,10 +42,11 @@ Color is surface-aware. Wrap a section in `<Surface tone="ivory">` (or set `data
 | Headline | Bold 700 | Uppercase | `tracking-headline` (.04em) | tuxedo on ivory, gold on tuxedo |
 | Subhead | Bold 700 | Uppercase | `tracking-subhead` (.06em) | tuxedo on ivory, ivory on tuxedo |
 | Eyebrow / label | Regular 400 | Uppercase | `tracking-eyebrow` (.26em) | `gold-ink` on ivory, `accent-gold` on tuxedo |
+| UI label | Regular 400 | Uppercase | `tracking-ui` (.08em), 14px | ivory on tuxedo, tuxedo on ivory, gold on hover |
 | Body | Light 300 | Sentence case | normal | tuxedo on ivory, ivory on tuxedo |
 | Fine print | Regular 400 | Sentence case | normal | `smoke` |
 
-Headlines and subheads are always uppercase and letterspaced. Body is always sentence case and Light. Never swap them. Never condense, stretch, or stroke the type. No display font, no monospace. The goose is the fun.
+Headlines and subheads are always uppercase and letterspaced. Body is always sentence case and Light. Never swap them. The eyebrow role is for eyebrows only: anything interactive or readable at content level (nav links, buttons, inline links, form field labels, contact details) takes `.t-ui` or `.t-body`, never `.t-eyebrow`. An 11px label at .26em is not a link. Never condense, stretch, or stroke the type. No display font, no monospace. The goose is the fun.
 
 ### The two marks
 - **Lockup** (goose with joint, wordmark beneath) on anything sold to an audience: home, shows, tickets, merch, the site header. Gold on tuxedo is the hero version.

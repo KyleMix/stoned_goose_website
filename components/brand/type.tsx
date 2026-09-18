@@ -2,7 +2,11 @@ import type { ElementType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * The five type roles of the Marquee system, as components.
+ * The six type roles of the Marquee system, as components.
+ *
+ * Five came with the spec. `.t-ui` was ratified afterwards, because the eyebrow
+ * role had been pressed into service as a link and button label and was not
+ * readable at that job. See app/globals.css for the reasoning.
  *
  * Weight, case, tracking and color belong to the role and are not passed in.
  * Color is surface-aware: the site's default surface is Tuxedo, and a section
@@ -12,7 +16,7 @@ import { cn } from "@/lib/utils";
  * The only knob these expose is `size`, and only where the spec leaves size
  * open. Reach for `className` to set layout (margin, max-width, alignment),
  * never to override weight, case, tracking or color. If a design needs a
- * sixth role, that is a question for the brand, not a prop.
+ * seventh role, that is a question for the brand, not a prop.
  */
 
 type Size = "1" | "2" | "3";
@@ -62,6 +66,15 @@ export function Subhead({
 /** Eyebrow / label. Regular 400, uppercase, +26%. Gold on tuxedo, Dark Gold on ivory. */
 export function Eyebrow({ children, className, as: Tag ="p" }: RoleProps) {
  return <Tag className={cn("t-eyebrow", className)}>{children}</Tag>;
+}
+
+/**
+ * UI label. Regular 400, uppercase, 14px, +8%. Ivory on tuxedo, tuxedo on ivory,
+ * gold on hover. The interactive-label role: nav links, buttons, inline links,
+ * chips, form field labels. Everything an eyebrow was wrongly carrying.
+ */
+export function UiLabel({ children, className, as: Tag = "span" }: RoleProps) {
+  return <Tag className={cn("t-ui", className)}>{children}</Tag>;
 }
 
 /** Body. Light 300, sentence case, normal tracking. Ivory on tuxedo, tuxedo on ivory. */

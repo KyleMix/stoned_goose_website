@@ -67,7 +67,7 @@ export default function OpenMicsMapPage() {
             </p>
             <OpenMicSubmitDialog
               triggerLabel="Submit a mic ↗"
-              triggerClassName="inline-flex h-12 shrink-0 items-center justify-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
+              triggerClassName="inline-flex h-12 shrink-0 items-center justify-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
             />
           </div>
           {mics.length > 0 ? (
@@ -87,7 +87,7 @@ export default function OpenMicsMapPage() {
               </p>
               <Link
                 href="/contact"
-                className="mt-6 inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+                className="mt-6 inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
               >
                 Tell us about a mic ↗
               </Link>
@@ -121,7 +121,7 @@ export default function OpenMicsMapPage() {
             </p>
             <Link
               href="/open-mics"
-              className="mt-6 inline-flex h-12 items-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
+              className="mt-6 inline-flex h-12 items-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold"
             >
               Read about the app ↗
             </Link>
@@ -148,13 +148,13 @@ export default function OpenMicsMapPage() {
               <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
                 <Link
                   href="/contact"
-                  className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory sm:justify-start"
+                  className="inline-flex h-12 items-center justify-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory sm:justify-start"
                 >
                   Send us a tip ↗
                 </Link>
                 <OpenMicSubmitDialog
                   triggerLabel="Submit a mic ↗"
-                  triggerClassName="inline-flex h-12 items-center justify-center border border-smoke px-6 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
+                  triggerClassName="inline-flex h-12 items-center justify-center border border-smoke px-6 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold sm:justify-start"
                 />
               </div>
             </div>

@@ -95,7 +95,7 @@ export function AddToCalendar(props: Props) {
       open={open}
       onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}
     >
-      <summary className="inline-flex h-11 cursor-pointer list-none items-center border border-smoke px-5 t-eyebrow text-surface-ivory hover:border-accent-gold hover:text-accent-gold [&::-webkit-details-marker]:hidden">
+      <summary className="inline-flex h-11 cursor-pointer list-none items-center border border-smoke px-5 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold [&::-webkit-details-marker]:hidden">
         Add to calendar +
       </summary>
       <div className="absolute right-0 z-20 mt-2 w-56 border border-smoke bg-surface-tuxedo">
@@ -106,7 +106,7 @@ export function AddToCalendar(props: Props) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleClick("google")}
-              className="block px-4 py-3 t-eyebrow text-surface-ivory hover:bg-surface-ivory/[0.05] hover:text-accent-gold"
+              className="block px-4 py-3 t-ui text-surface-ivory hover:bg-surface-ivory/[0.05] hover:text-accent-gold"
             >
               Google Calendar ↗
             </a>
@@ -117,7 +117,7 @@ export function AddToCalendar(props: Props) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleClick("outlook")}
-              className="block px-4 py-3 t-eyebrow text-surface-ivory hover:bg-surface-ivory/[0.05] hover:text-accent-gold"
+              className="block px-4 py-3 t-ui text-surface-ivory hover:bg-surface-ivory/[0.05] hover:text-accent-gold"
             >
               Outlook ↗
             </a>
@@ -127,7 +127,7 @@ export function AddToCalendar(props: Props) {
               href={icsUrl}
               download
               onClick={handleClick("ics")}
-              className="block px-4 py-3 t-eyebrow text-surface-ivory hover:bg-surface-ivory/[0.05] hover:text-accent-gold"
+              className="block px-4 py-3 t-ui text-surface-ivory hover:bg-surface-ivory/[0.05] hover:text-accent-gold"
             >
               Apple / iCal (.ics)
             </a>

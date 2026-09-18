@@ -98,7 +98,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           </span>
         )}
         {item.kind === "tiktok" || (item.kind === "instagram" && item.isVideo) ? (
-          <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-eyebrow text-surface-tuxedo">
+          <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-ui text-surface-tuxedo">
             ▸
           </span>
         ) : null}

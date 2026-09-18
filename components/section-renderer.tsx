@@ -9,7 +9,7 @@ import { LatestStrip } from "@/components/latest-strip";
 import { PressStrip } from "@/components/press-strip";
 import { RosterTeaser } from "@/components/roster-teaser";
 import { OpenMicTeaser } from "@/components/open-mic-teaser";
-import { ServicesOverview } from "@/components/services-overview";
+import { ServicesRow } from "@/components/home/services-row";
 import { ShopStrip } from "@/components/shop-strip";
 import type { Block } from "@/lib/blocks";
 
@@ -54,7 +54,7 @@ function BlockSwitch({ block, pageSlug }: { block: Block; pageSlug: string }) {
     case "openMicTeaser":
       return <OpenMicTeaser />;
     case "servicesOverview":
-      return <ServicesOverview />;
+      return <ServicesRow />;
     case "shopStrip":
       return <ShopStrip limit={block.limit} />;
   }

@@ -67,7 +67,7 @@ export function OpenMicSubmitDialog({ triggerLabel, triggerClassName }: Props) {
               <button
                 type="button"
                 aria-label="Close"
-                className="t-eyebrow text-smoke hover:text-accent-gold"
+                className="t-ui text-smoke hover:text-accent-gold"
               >
                 ESC
               </button>

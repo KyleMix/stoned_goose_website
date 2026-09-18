@@ -13,7 +13,7 @@ export function CartButton() {
       type="button"
       onClick={openCart}
       aria-label={`Open cart, ${count} ${count === 1 ? "item" : "items"}`}
-      className="relative inline-flex items-center gap-2 border border-smoke px-2.5 py-1.5 t-eyebrow text-smoke transition-colors hover:border-accent-gold hover:text-accent-gold"
+      className="relative inline-flex items-center gap-2 border border-smoke px-2.5 py-1.5 t-ui text-smoke transition-colors hover:border-accent-gold hover:text-accent-gold"
     >
       <svg
         aria-hidden

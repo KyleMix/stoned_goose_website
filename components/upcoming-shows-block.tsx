@@ -92,7 +92,7 @@ export function UpcomingShowsBlock({ tone = "tuxedo" }: SurfaceTone) {
                               className="object-cover [filter:grayscale(1)_contrast(1.05)] transition-[filter] duration-500 group-hover:[filter:grayscale(0)_contrast(1)]"
                               unoptimized
                             />
-                            <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-eyebrow text-surface-tuxedo">
+                            <span className="absolute right-2 top-2 inline-flex items-center bg-accent-gold px-2 py-0.5 t-ui text-surface-tuxedo">
                               ▸
                             </span>
                           </div>
@@ -123,14 +123,14 @@ export function UpcomingShowsBlock({ tone = "tuxedo" }: SurfaceTone) {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
                 href={showWork ? "/watch" : "/shows"}
-                className="inline-flex h-12 items-center bg-accent-gold px-6 t-eyebrow text-surface-tuxedo hover:bg-surface-ivory"
+                className="inline-flex h-12 items-center bg-accent-gold px-6 t-ui text-surface-tuxedo hover:bg-surface-ivory"
               >
                 {showWork ? "Watch the work ↗" : "See the shows page ↗"}
               </Link>
               {showWork ? (
                 <Link
                   href="/shows"
-                  className="t-eyebrow text-smoke hover:text-accent-gold"
+                  className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
                 >
                   Shows page ↗
                 </Link>
@@ -140,7 +140,7 @@ export function UpcomingShowsBlock({ tone = "tuxedo" }: SurfaceTone) {
                 href={site.social.eventbrite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="t-eyebrow text-smoke hover:text-accent-gold"
+                className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
               >
                 Eventbrite ↗
               </TrackedAnchor>

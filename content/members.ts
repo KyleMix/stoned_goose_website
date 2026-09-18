@@ -1,9 +1,10 @@
 // Members (crew) shim. Reads:
-//   - content/roster-copy/index.json (aboutCopy + pillars share this singleton)
+//   - content/roster-copy/index.json (the /about singleton)
 //   - content/.generated/members-index.json (collection, consolidated at prebuild)
 //
-// Sorted by the `index` display-order field (two-digit string padding the
-// "/01" label on /roster). Draft members are filtered out.
+// Sorted by the `index` display-order field. The number itself is no longer
+// rendered anywhere: it only decides who appears first in the crew grid.
+// Draft members are filtered out.
 
 import rosterCopyData from "./roster-copy/index.json";
 import membersIndex from "./.generated/members-index.json";
@@ -23,10 +24,11 @@ type RosterCopyShape = {
   about?: {
     heading?: string;
     subhead?: string;
+    story?: string;
+    oneLine?: string;
     crewHeading?: string;
     crewSubhead?: string;
   } | null;
-  pillars?: { title: string; body: string }[] | null;
   topSections?: unknown;
   bottomSections?: unknown;
 };
@@ -38,10 +40,11 @@ const copy = rosterCopyData as unknown as RosterCopyShape;
 export const aboutCopy = {
   heading: copy.about?.heading ?? "",
   subhead: copy.about?.subhead ?? "",
+  story: copy.about?.story ?? "",
+  oneLine: copy.about?.oneLine ?? "",
   crewHeading: copy.about?.crewHeading ?? "",
   crewSubhead: copy.about?.crewSubhead ?? "",
 };
-export const pillars = copy.pillars ?? [];
 export const rosterTopSections: Block[] = normaliseBlocks(copy.topSections);
 export const rosterBottomSections: Block[] = normaliseBlocks(copy.bottomSections);
 

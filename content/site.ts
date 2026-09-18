@@ -61,13 +61,15 @@ type SiteShape = {
 // Defaults applied when the CMS JSON has not been edited yet. They mirror
 // what used to be hardcoded in this file so the site keeps working before the
 // first save from /admin.
+// Four links. "Book us" is not in here: it is the header's one gold button,
+// rendered separately so it never reads as a peer of the other four.
+// Shop lives in the footer; it sells to fans, not to the clients this site
+// exists to reach.
 const DEFAULT_NAV: NavLink[] = [
   { label: "Shows", href: "/shows" },
+  { label: "About", href: "/about" },
   { label: "Open Mics", href: "/open-mics/map" },
   { label: "Watch", href: "/watch" },
-  { label: "Roster", href: "/roster" },
-  { label: "Book Us", href: "/book" },
-  { label: "Shop", href: "/shop" },
 ];
 
 const DEFAULT_FOOTER: {
@@ -79,31 +81,27 @@ const DEFAULT_FOOTER: {
   locality: "Olympia, WA",
   creditLine: "Website Design by Kyle Mixon.",
   creditHref: "",
+  // Two columns, not three. "Home" is the logo, "Contact" is the address block
+  // beside these columns, and "Tickets." was a second name for Shows.
+  // "Open Mics" is the map; "Open Mic Explorer app" is the app page. The old
+  // labels made one product look like two.
   columns: [
     {
-      heading: "Explore",
+      heading: "Pages",
       items: [
-        { label: "Home", href: "/" },
         { label: "Shows", href: "/shows" },
-        { label: "Open Mic Map", href: "/open-mics/map" },
-        { label: "The App", href: "/open-mics" },
+        { label: "About", href: "/about" },
+        { label: "Open Mics", href: "/open-mics/map" },
+        { label: "Open Mic Explorer app", href: "/open-mics" },
         { label: "Watch", href: "/watch" },
-        { label: "Roster", href: "/roster" },
         { label: "Shop", href: "/shop" },
       ],
     },
     {
-      heading: "Work With Us",
+      heading: "Work with us",
       items: [
-        { label: "Book Us", href: "/book" },
-        { label: "Sponsor a Show", href: "/book#sponsors" },
-      ],
-    },
-    {
-      heading: "Connect",
-      items: [
-        { label: "Tickets.", href: "/shows" },
-        { label: "Contact", href: "/contact" },
+        { label: "Book us", href: "/book" },
+        { label: "Sponsor a show", href: "/sponsor" },
       ],
     },
   ],

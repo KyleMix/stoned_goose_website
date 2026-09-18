@@ -36,7 +36,7 @@ export function CartDrawer() {
               <button
                 type="button"
                 aria-label="Close cart"
-                className="t-eyebrow text-smoke hover:text-accent-gold"
+                className="t-ui text-smoke hover:text-accent-gold"
               >
                 ESC
               </button>
@@ -110,7 +110,7 @@ export function CartDrawer() {
                           type="button"
                           disabled={busy}
                           onClick={() => removeItem(v.id)}
-                          className="t-eyebrow text-smoke hover:text-accent-gold disabled:opacity-40"
+                          className="t-ui text-smoke hover:text-accent-gold disabled:opacity-40"
                         >
                           Remove
                         </button>
@@ -136,7 +136,7 @@ export function CartDrawer() {
                 type="button"
                 disabled={busy}
                 onClick={checkout}
-                className="mt-4 flex h-12 w-full items-center justify-center bg-accent-gold t-eyebrow text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-60"
+                className="mt-4 flex h-12 w-full items-center justify-center bg-accent-gold t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory disabled:opacity-60"
               >
                 Checkout on Fourthwall ↗
               </button>

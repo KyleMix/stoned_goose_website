@@ -34,8 +34,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/open-mics/terms",
     "/open-mics/delete-account",
     "/watch",
-    "/roster",
+    "/about",
     "/book",
+    "/sponsor",
     "/shop",
     "/contact",
   ];
@@ -46,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map((s) => `/book/${s.slug}`);
   const productRoutes = products.map((p) => `/shop/${p.slug}`);
   const pageRoutes = pages.map((p) => `/${p.slug}`);
-  const epkRoutes = epkComedians.map((c) => `/roster/${c.slug}`);
+  const epkRoutes = epkComedians.map((c) => `/about/${c.slug}`);
   // No fragment entries: crawlers collapse /shows#id to /shows, so anchors
   // would only add noise to the URL set.
 
