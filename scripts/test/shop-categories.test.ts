@@ -79,22 +79,28 @@ function guess(name: string, description?: string): ShopCategory {
 }
 
 const cases: Array<[string, ShopCategory]> = [
+  ["Goose Tee", "Shirts"],
+  ["Goose T-Shirt", "Shirts"],
+  ["Goose Tank Top", "Shirts"],
+  // The garment wins over the fastener: this is a shirt, not a pin.
+  ["Fancy Button Up Goose", "Shirts"],
+  ["Logo Hoodie", "Hoodies"],
+  // A sweatshirt reads as a Hoodie, not a Shirt, whatever the letters spell.
+  ["Goose Crewneck Sweatshirt", "Hoodies"],
   ["Goose Bucket Hat", "Hats"],
   ["Tuque or Something", "Hats"],
   ["Goose Beanie", "Hats"],
-  ["Logo Hoodie", "Tops"],
-  ["Goose Tee", "Tops"],
-  // The garment wins over the fastener: this is a shirt, not a pin.
-  ["Fancy Button Up Goose", "Tops"],
-  ["Goose Joggers", "Bottoms"],
-  ["Goose Sweatpants", "Bottoms"],
+  ["Goose Sweatpants", "Pants"],
+  ["Goose Joggers", "Pants"],
+  ["Goose Sweatshorts", "Shorts"],
+  ["Goose Crew Socks", "Socks"],
   ["Goose Mug", "Drinkware"],
   ["Goose Water Bottle", "Drinkware"],
   ["Goose Can Cooler", "Drinkware"],
   ["Live Local Comedy Sticker", "Stickers and Pins"],
   ["Goose Enamel Pin", "Stickers and Pins"],
   ["Buttons", "Stickers and Pins"],
-  // Nothing in the name or the copy describes a family, so the catch-all.
+  // Nothing in the name describes a family, so the catch-all.
   ["Liquid Holder", "Accessories"],
 ];
 
@@ -111,7 +117,7 @@ assert(
 // And it never overrides a name that already spoke.
 assert(
   guess("Sick Hat", "Printed on the same heavy cotton as our t-shirts.") === "Hats",
-  "vendor copy mentioning t-shirts should not move a hat into Tops",
+  "vendor copy mentioning t-shirts should not move a hat into Shirts",
 );
 
 if (failures > 0) {

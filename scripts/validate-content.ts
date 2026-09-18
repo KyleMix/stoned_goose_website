@@ -302,9 +302,12 @@ const singletons: Record<string, z.ZodTypeAny> = {
               // Mirrors SHOP_CATEGORIES in content/shop.ts and the select
               // options in public/admin/config.yml. All three move together.
               category: z.enum([
+                "Shirts",
+                "Hoodies",
                 "Hats",
-                "Tops",
-                "Bottoms",
+                "Pants",
+                "Shorts",
+                "Socks",
                 "Drinkware",
                 "Stickers and Pins",
                 "Accessories",
