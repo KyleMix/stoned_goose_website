@@ -63,21 +63,39 @@ export function Nav() {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
   }
 
-  // Where the link row opens. Five links, the shrunk wordmark and the gold
-  // button fit a 768px header with 26px to spare, so a tablet keeps the links.
-  // The cart button, which renders only once the storefront token is set,
-  // wants about 100px more than that, and no amount of tightening finds it:
-  // with a cart in the header the row waits for 1024 and 768 gets the panel,
-  // which carries the same five links at a size worth tapping.
+  // The cart button renders only once the storefront token is set, and when it
+  // does the header has to give its width back somewhere. Measured against the
+  // same pages with the cart off, it costs the row 44px on a phone and 87px
+  // from sm up, which is more than the spare space at either end:
   //
-  // Both class strings are written out because Tailwind reads the source, not
-  // the runtime value.
-  const roomForLinks = !cartEnabled();
+  //   768px  five links + wordmark + gold button leave 26px, the cart wants 87
+  //   360px  wordmark + gold button + toggle leave 19px, the cart wants 44
+  //
+  // So the header runs in two configurations. Without a cart nothing changes:
+  // the links open at md and the phone header keeps its gaps and its 16px
+  // wordmark. With one, the links wait for lg and 768 takes the panel, which
+  // carries the same five links at a size worth tapping, and the phone header
+  // tightens its gaps, holds the 14px wordmark to 390 and, under 360, trims
+  // its gutter and the button's padding and shortens the button to "Book".
+  // Every one of those is a real fit problem at that width, measured, not a
+  // precaution.
+  //
+  // The class strings are written out rather than built, because Tailwind
+  // reads the source and never sees a runtime value.
+  const cartInHeader = cartEnabled();
+  const roomForLinks = !cartInHeader;
 
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 bg-surface-tuxedo">
-        <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-2 border-b border-smoke px-5 sm:gap-3 md:h-20 md:gap-6 md:px-10">
+        <div
+          className={cn(
+            "mx-auto flex h-16 max-w-[1400px] items-center border-b border-smoke sm:gap-3 md:h-20 md:gap-6 md:px-10",
+            cartInHeader
+              ? "gap-1 px-4 min-[360px]:gap-1.5 min-[360px]:px-5"
+              : "gap-2 px-5",
+          )}
+        >
           <Link
             href="/"
             aria-label={`${site.shortName} home`}
@@ -88,7 +106,12 @@ export function Nav() {
                 the minimum is the rule this system exists to prevent. A header
                 this size carries the wordmark as type. The lockup runs at full
                 size in the footer. */}
-            <span className="t-subhead text-sm leading-none min-[360px]:text-base sm:text-lg lg:text-[1.4rem]">
+            <span
+              className={cn(
+                "t-subhead text-sm leading-none sm:text-lg lg:text-[1.4rem]",
+                cartInHeader ? "min-[390px]:text-base" : "min-[360px]:text-base",
+              )}
+            >
               Stoned Goose
               <span
                 aria-hidden
@@ -126,7 +149,8 @@ export function Nav() {
 
           <div
             className={cn(
-              "ml-auto flex items-center gap-2",
+              "ml-auto flex items-center",
+              cartInHeader ? "gap-1 min-[360px]:gap-1.5" : "gap-2",
               roomForLinks ? "md:ml-0 md:gap-3" : "lg:ml-0 lg:gap-3",
             )}
           >
@@ -138,9 +162,22 @@ export function Nav() {
             <Link
               href="/book"
               onClick={() => track("CTA Click", { cta: "nav-book" })}
-              className="inline-flex h-11 shrink-0 items-center whitespace-nowrap bg-accent-gold px-3 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory sm:px-4 md:h-12 md:px-6"
+              className={cn(
+                "inline-flex h-11 shrink-0 items-center whitespace-nowrap bg-accent-gold t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory sm:px-4 md:h-12 md:px-6",
+                cartInHeader ? "px-2 min-[360px]:px-3" : "px-3",
+              )}
             >
-              Book us
+              {cartInHeader ? (
+                <>
+                  {/* Under 360px the full label is the last 35px standing
+                      between this row and its own edge. The panel below still
+                      says "Book us" in full. */}
+                  <span className="min-[360px]:hidden">Book</span>
+                  <span className="hidden min-[360px]:inline">Book us</span>
+                </>
+              ) : (
+                "Book us"
+              )}
             </Link>
 
             <button
