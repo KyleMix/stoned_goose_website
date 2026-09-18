@@ -27,7 +27,7 @@ with push access to the repo.
 | `/shows` | Shows copy (singleton), Shows manual (collection) |
 | `/watch` | Watch copy (singleton), News posts (collection), TikTok videos (collection) |
 | `/roster` | Roster copy (singleton), Comedians (collection), Crew members (collection) |
-| `/open-mics/map` | Open mics copy (singleton), Open mics (collection) |
+| `/open-mics` | Open mic page, Log Cabin (singleton) |
 | `/shop` | Shop copy (singleton), Shop products (collection) |
 | `/contact` | Contact page (singleton), Site config (for email / phone) |
 | `/book` | Services (collection), Pricing tiers (collection), Sponsorships (singleton) |
@@ -43,13 +43,12 @@ the JSON directly. Files to know about:
 - `content/site/index.json` ← `Site config`
 - `content/home/index.json` ← `Home page`
 - `content/shows-copy/index.json`, `content/watch-copy/index.json`,
-  `content/roster-copy/index.json`, `content/open-mics-copy/index.json`,
+  `content/roster-copy/index.json`, `content/log-cabin-mic/index.json`,
   `content/shop-copy/index.json`, `content/contact-copy/index.json`,
   `content/sponsorships/index.json` ← matching singletons
 - `content/comedians/<slug>/index.json`, `content/members/<slug>/index.json`,
   `content/services/<slug>/index.json`, `content/pricing-tiers/<slug>/index.json`,
   `content/shows/<slug>/index.json`, `content/shop-products/<slug>/index.json`,
-  `content/open-mics/<slug>/index.json`,
   `content/tiktok/<slug>/index.json` ← collection items
 - `content/news/<slug>/index.mdoc` ← news posts (markdown body + frontmatter)
 
@@ -69,7 +68,7 @@ out of these locations or the shims break.
 ## When the admin can't help
 
 - Generated feeds (Instagram, Facebook, shows-from-Eventbrite,
-  Patreon, Fourthwall, Open Mics) live in `content/.generated/` and
+  Patreon, Fourthwall) live in `content/.generated/` and
   `content/feeds/`. They're rewritten by scripts under `scripts/`. The
   admin doesn't touch them. Run `npm run sync` (or the relevant
   `feeds:*` / `sync:*` script) to refresh.

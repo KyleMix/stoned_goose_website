@@ -53,6 +53,18 @@ type Props = {
    * Neither changes the order.
    */
   layout?: "stack" | "inline";
+  /**
+   * A weekly room has no single date and no doors time: the Log Cabin mic runs
+   * every Monday, sign ups at 6, show 7 to 9. Formatting a date out of
+   * `show.start` there would mean inventing one, and a "next Monday" computed
+   * at build time freezes into the HTML and goes stale by the following week.
+   *
+   * So a recurring room passes the two labels that fill the date and time slots
+   * instead. It fills those slots, it does not add or reorder them: the
+   * sequence below is still date, venue, doors and show time, price, ticket
+   * link. Everything else, venue and price included, still comes off `show`.
+   */
+  recurring?: { date: string; times: string };
   /** Rendered last, after the price. Pass the ticket CTA. */
   ticketAction?: ReactNode;
   className?: string;
@@ -61,17 +73,18 @@ type Props = {
 export function ShowInfoBlock({
   show,
   layout = "stack",
+  recurring,
   ticketAction,
   className,
 }: Props) {
   // Built as an ordered list so the sequence is data, not markup that a future
   // edit can quietly shuffle.
   const rows: { key: string; value: string }[] = [];
-  const date = formatShowDate(show.start);
+  const date = recurring ? recurring.date.trim() : formatShowDate(show.start);
   if (date) rows.push({ key: "date", value: date });
   const venue = venueLine(show);
   if (venue) rows.push({ key: "venue", value: venue });
-  const times = doorsAndShow(show);
+  const times = recurring ? recurring.times.trim() : doorsAndShow(show);
   if (times) rows.push({ key: "times", value: times });
   const price = show.ticketPrice?.trim();
   if (price) rows.push({ key: "price", value: price });

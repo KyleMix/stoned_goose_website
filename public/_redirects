@@ -23,5 +23,13 @@
 /comic-submissions   /book                 308
 
 # Sponsors. /sponsor is a real page now rather than an anchor on /book, so
-# these point at it instead of at /book#sponsors.
+# /sponsorships points at it, and the old /sponsor -> /book#sponsors rule is
+# gone: that URL resolves to a page of its own.
 /sponsorships        /sponsor              308
+
+# The Pacific Northwest open mic map is retired. /open-mics is the Log Cabin
+# Monday mic now. The app pages that lived under this path (privacy, terms,
+# delete-account) are deliberately NOT redirected: the Open Mic Explorer app is
+# dead and never shipped, and pointing a privacy policy at a show listing would
+# be worse than a 404. The 404 page steers "open mic" paths at /open-mics.
+/open-mics/map       /open-mics            308

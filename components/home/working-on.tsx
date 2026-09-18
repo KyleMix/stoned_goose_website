@@ -3,6 +3,7 @@ import { workingOnCopy } from "@/content/home";
 import { upcomingShows } from "@/content/shows";
 import { youtubeVideos } from "@/content/watch";
 import { normalizeCuratedVideos } from "@/lib/videos";
+import { logCabinMic, logCabinMicVenue } from "@/content/log-cabin-mic";
 import { ShowInfoBlock } from "@/components/brand/show-info-block";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 
@@ -78,21 +79,33 @@ export function WorkingOn() {
     );
   }
 
+  // The house mic. This card used to advertise the Pacific Northwest open mic
+  // map, which is retired: /open-mics is our own Monday room now.
   cards.push(
-    <CardShell key="mics" eyebrow="Open Mic Explorer">
+    <CardShell key="mics" eyebrow="Our open mic">
       <h3 className="t-subhead text-xl md:text-2xl">
-        Every open mic in the Pacific Northwest, mapped.
+        {logCabinMic.motto || "Show up, go up."}
       </h3>
       <p className="t-body mt-3 text-sm">
-        New rooms, weekly signups, real addresses. Ours to build and keep
-        current.
+        {[
+          logCabinMic.recurrence,
+          logCabinMicVenue.name
+            ? `at the ${logCabinMicVenue.name}`
+            : null,
+          logCabinMicVenue.city ? `in ${logCabinMicVenue.city}` : null,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        {logCabinMic.signupTime && logCabinMic.showTime
+          ? `. Sign ups at ${logCabinMic.signupTime}, show at ${logCabinMic.showTime}.`
+          : "."}
       </p>
       <div className="mt-auto pt-5">
         <Link
-          href="/open-mics/map"
+          href="/open-mics"
           className="inline-flex min-h-[44px] items-center t-ui text-smoke transition-colors hover:text-accent-gold"
         >
-          Open the map <span aria-hidden className="ml-2">&#8599;</span>
+          How it works <span aria-hidden className="ml-2">&#8599;</span>
         </Link>
       </div>
     </CardShell>,

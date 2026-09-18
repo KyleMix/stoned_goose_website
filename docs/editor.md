@@ -14,7 +14,7 @@ GitHub. Every save commits to the repo and triggers a deploy. Allow
 2. Sign in with the GitHub account that has access to this repo.
 3. You'll see the sidebar listing each content area: Site copy, Pages,
    Comedians, Crew members, Services, Pricing tiers, Shows, Shop products,
-   Open mics, TikTok videos.
+   TikTok videos.
 
 ## Add a new page
 
@@ -53,13 +53,12 @@ different title.
 | Latest social strip | Pulls the latest Instagram / TikTok / News items. Pick how many to show. |
 | Press quote strip | Reuses the press quotes from Site config. |
 | Roster grid teaser | Comedian portrait grid. Pick how many to show. |
-| Open mic teaser | The small open-mic-night highlight from the home page. |
 | Services overview | The "What we do" overview block. |
 | Shop strip | A few product cards from the shop. |
 
 ## Customize an existing marketing page
 
-`Home`, `Shows`, `Watch`, `Roster`, and `Open mics` each have two block
+`Home`, `Shows`, `Watch`, `Roster`, and `Open mic` each have two block
 arrays exposed in their singleton: **Top sections** (rendered just below the
 page header / hero) and **Bottom sections** (rendered near the bottom, just
 above the mailing list capture). Use these to drop in new blocks without

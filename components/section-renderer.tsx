@@ -8,7 +8,6 @@ import { UpcomingShowsBlock } from "@/components/upcoming-shows-block";
 import { LatestStrip } from "@/components/latest-strip";
 import { PressStrip } from "@/components/press-strip";
 import { RosterTeaser } from "@/components/roster-teaser";
-import { OpenMicTeaser } from "@/components/open-mic-teaser";
 import { ServicesRow } from "@/components/home/services-row";
 import { ShopStrip } from "@/components/shop-strip";
 import type { Block } from "@/lib/blocks";
@@ -51,8 +50,6 @@ function BlockSwitch({ block, pageSlug }: { block: Block; pageSlug: string }) {
       return <PressStrip />;
     case "rosterTeaser":
       return <RosterTeaser limit={block.limit} />;
-    case "openMicTeaser":
-      return <OpenMicTeaser />;
     case "servicesOverview":
       return <ServicesRow />;
     case "shopStrip":

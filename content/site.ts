@@ -68,7 +68,7 @@ type SiteShape = {
 const DEFAULT_NAV: NavLink[] = [
   { label: "Shows", href: "/shows" },
   { label: "About", href: "/about" },
-  { label: "Open Mics", href: "/open-mics/map" },
+  { label: "Open Mic", href: "/open-mics" },
   { label: "Watch", href: "/watch" },
 ];
 
@@ -83,16 +83,14 @@ const DEFAULT_FOOTER: {
   creditHref: "",
   // Two columns, not three. "Home" is the logo, "Contact" is the address block
   // beside these columns, and "Tickets." was a second name for Shows.
-  // "Open Mics" is the map; "Open Mic Explorer app" is the app page. The old
-  // labels made one product look like two.
+  // "Open Mic" is the Log Cabin room, the only one we run.
   columns: [
     {
       heading: "Pages",
       items: [
         { label: "Shows", href: "/shows" },
         { label: "About", href: "/about" },
-        { label: "Open Mics", href: "/open-mics/map" },
-        { label: "Open Mic Explorer app", href: "/open-mics" },
+        { label: "Open Mic", href: "/open-mics" },
         { label: "Watch", href: "/watch" },
         { label: "Shop", href: "/shop" },
       ],

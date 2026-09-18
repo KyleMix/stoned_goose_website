@@ -52,10 +52,9 @@ function targetsForPath(pathname: string): AdminTarget[] {
       { label: "Crew members", href: "/admin/#/collections/members" },
     ];
   }
-  if (path === "/open-mics/map") {
+  if (path === "/open-mics") {
     return [
-      { label: "Open mics copy", href: "/admin/#/collections/site_content/entries/open_mics_copy" },
-      { label: "Open mics", href: "/admin/#/collections/open_mics" },
+      { label: "Log Cabin open mic", href: "/admin/#/collections/site_content/entries/log_cabin_mic" },
     ];
   }
   if (path === "/shop") {

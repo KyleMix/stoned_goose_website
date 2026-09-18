@@ -214,7 +214,7 @@ export default function ShowsPage() {
                   Meet the crew ↗
                 </Link>
                 <Link
-                  href="/open-mics/map"
+                  href="/open-mics"
                   className="inline-flex min-h-[44px] items-center t-ui text-smoke underline-offset-4 hover:text-accent-gold hover:underline"
                 >
                   Hit an open mic ↗

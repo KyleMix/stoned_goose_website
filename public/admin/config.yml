@@ -220,11 +220,6 @@ collections:
                 widget: object
                 fields:
                   - { name: limit, label: How many comedians, widget: number, default: 8, value_type: int, min: 1, max: 16 }
-              - name: openMicTeaser
-                label: Open mic highlight (fills itself)
-                widget: object
-                fields:
-                  - { name: note, label: Note to self (not shown on the site), widget: string, required: false, hint: 'Shows the next open mic automatically. Nothing to fill in.' }
               - name: servicesOverview
                 label: What we do overview (fills itself)
                 widget: object
@@ -427,21 +422,53 @@ collections:
           - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
-      # ---------- Open mics copy ----------
-      - name: open_mics_copy
-        label: Open mics page copy
-        file: content/open-mics-copy/index.json
+      # ---------- Open mic (Log Cabin) ----------
+      # The whole of /open-mics. Leave a field empty and the page renders
+      # nothing for it rather than guessing: an unstated cover charge stays
+      # unstated.
+      - name: log_cabin_mic
+        label: Open mic page (Log Cabin)
+        file: content/log-cabin-mic/index.json
         fields:
+          - { name: eyebrow, label: Tiny top line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+          - { name: titleLead, label: Title, first part, widget: string, required: false, hint: 'e.g. "Log Cabin". Shown in ivory.' }
+          - { name: titleEmphasis, label: Title, gold part, widget: string, required: false, hint: 'e.g. "Comedy". Shown in gold.' }
+          - { name: titleTrail, label: Title, last part, widget: string, required: false, hint: 'e.g. "Open Mic". Shown in ivory.' }
           - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: kicker, label: Small print line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - name: disclaimer
-            label: Disclaimer box (top of /open-mics/map)
+          - { name: recurrence, label: How often, as shown, widget: string, required: false, hint: 'Written out, e.g. "Every Monday". This is the first line of the show info.' }
+          - name: venue
+            label: Venue
             widget: object
             required: false
             fields:
-              - { name: eyebrow, label: Tiny top line, widget: string, required: false }
-              - { name: body, label: Body, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'The not-affiliated / check-before-you-drive notice. Clearing this hides the box entirely.' }
-              - { name: footnote, label: Footnote, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: name, label: Venue name, widget: string, required: false }
+              - { name: address, label: Street address, widget: string, required: false, hint: 'e.g. 7035 Pacific Ave SE' }
+              - { name: city, label: City, widget: string, required: false }
+              - { name: region, label: State, widget: string, required: false, hint: 'e.g. WA' }
+              - { name: postalCode, label: ZIP, widget: string, required: false }
+              - { name: mapUrl, label: Directions link, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'The Get directions button. Clearing this hides the button.' }
+          - { name: signupTime, label: Sign up time, widget: string, required: false, hint: 'Written out, e.g. "6:00 PM".' }
+          - { name: showTime, label: Show time, widget: string, required: false, hint: 'Written out, e.g. "7:00 PM".' }
+          - { name: endTime, label: End time, widget: string, required: false, hint: 'Written out, e.g. "9:00 PM". Leave empty to show only a start time.' }
+          - { name: price, label: Cover, widget: string, required: false, hint: 'Only fill this in if there is one. Empty means the page shows no price line at all, which is what you want for a free mic.' }
+          - { name: motto, label: Motto, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'e.g. "Show up, go up."' }
+          - { name: host, label: Hosted by, widget: string, required: false }
+          - name: poster
+            label: Poster
+            widget: object
+            required: false
+            fields:
+              - { name: src, label: Image, widget: image, required: false, media_folder: /public/images/open-mics, public_folder: '' }
+              - { name: alt, label: Alt text, widget: string, required: false, hint: 'Describe what the poster says, for screen readers and search.' }
+          - name: howItWorks
+            label: How it works steps
+            label_singular: Step
+            widget: list
+            required: false
+            summary: '{{fields.heading}}'
+            fields:
+              - { name: heading, label: Heading, widget: string, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
@@ -793,47 +820,6 @@ collections:
       - { name: imageAlt, label: Image alt text, widget: string, required: false }
       - { name: name, label: Product name (only for new products), widget: string, required: false, hint: 'Leave blank on existing products. The display name comes from the folder name.' }
       - { name: draft, label: Hide from /shop, widget: boolean, default: false }
-
-  # ------------------------------------------------------------------ #
-  # Open mics.                                                          #
-  # ------------------------------------------------------------------ #
-  - name: open_mics
-    label: Open mics
-    label_singular: Open mic
-    description: Every mic on the /open-mics/map map and list. Keep details current; comics drive to these.
-    folder: content/open-mics
-    path: '{{slug}}/index'
-    extension: json
-    format: json
-    identifier_field: name
-    slug: '{{fields.venue}}-{{fields.city}}-{{fields.day}}'
-    create: true
-    summary: '{{fields.name}} ({{fields.city}}, {{fields.day}})'
-    sortable_fields:
-      fields: [name, city, day]
-      default:
-        field: name
-        direction: ascending
-    view_groups:
-      - label: By day
-        field: day
-      - label: By city
-        field: city
-    fields:
-      - { name: name, label: Mic name, widget: string, hint: 'What it is called, e.g. "Big Time Comedy Open Mic".' }
-      - { name: venue, label: Venue, widget: string }
-      - { name: address, label: Street address, widget: string, required: false, hint: 'e.g. 4133 University Way NE, Seattle, WA 98105. Helps the map pin land right.' }
-      - { name: city, label: City, widget: string }
-      - { name: region, label: State, widget: select, default: WA, options: [{ label: Washington, value: WA }, { label: Oregon, value: OR }] }
-      - { name: day, label: Day of the week, widget: select, default: Monday, options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] }
-      - { name: time, label: Time, as shown, widget: string, required: false, hint: 'Written out, e.g. "Signup 7:30 PM, mic at 8".' }
-      - { name: frequency, label: How often, widget: select, default: weekly, options: [{ label: Weekly, value: weekly }, { label: Every other week, value: biweekly }, { label: Monthly, value: monthly }] }
-      - { name: weeks, label: Which weeks of the month, widget: select, multiple: true, required: false, options: ['1st', '2nd', '3rd', '4th', Last], hint: 'Only for every-other-week or monthly mics, e.g. "1st" and "3rd". Leave empty for weekly.' }
-      - { name: host, label: Host, widget: string, required: false }
-      - { name: signupUrl, label: Signup link or instructions, widget: string, required: false, pattern: ['^(https?://\S+|\S+(\s+\S+)+)$', 'Paste a full https:// link, or write plain instructions like "Host makes the list".'], hint: 'Link to the signup form or Facebook event. Plain instructions also work, they render as a note instead of a link.' }
-      - { name: notes, label: Notes, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Anything a comic should know before driving out, e.g. "Music mic, comedy tolerated".' }
-      - { name: lat, label: Latitude (map position), widget: number, value_type: float, required: false, hint: 'Decimal, e.g. 47.6062. Get both numbers by right-clicking the venue in Google Maps.' }
-      - { name: lng, label: Longitude (map position), widget: number, value_type: float, required: false, hint: 'Decimal, e.g. -122.3321.' }
 
   # ------------------------------------------------------------------ #
   # TikTok videos.                                                      #
