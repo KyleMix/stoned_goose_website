@@ -9,7 +9,7 @@ import { primaryNav as nav, secondaryNav } from "@/lib/navigation";
 import { track } from "@/lib/analytics";
 import { CartButton } from "@/components/cart/cart-button";
 
-// The header carries four links and one ask.
+// The header carries five links and one ask.
 //
 // Two things used to live up here and no longer do. The "now playing" ticker
 // was the first of three places the same show appeared on the home page, and
@@ -87,9 +87,15 @@ export function Nav() {
             </span>
           </Link>
 
+          {/* The row opens at lg, not md. Five links, the wordmark, the cart
+              and the gold button do not fit 768px together: measured at that
+              width the fifth link runs the row past the header edge, and the
+              cart button, which renders only once the storefront token is
+              set, takes another 100px on top. A tablet gets the panel, which
+              carries the same five links at a size worth tapping. */}
           <nav
             aria-label="Primary"
-            className="ml-auto hidden items-center gap-7 md:flex lg:gap-9"
+            className="ml-auto hidden items-center gap-5 lg:flex lg:gap-9"
           >
             {nav.map((item) => {
               const active = isActive(item.href);
@@ -99,7 +105,7 @@ export function Nav() {
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "t-ui inline-flex min-h-[44px] items-center transition-colors hover:text-accent-gold",
+                    "t-ui inline-flex min-h-[44px] items-center whitespace-nowrap transition-colors hover:text-accent-gold",
                     active && "text-accent-gold",
                   )}
                 >
@@ -109,7 +115,7 @@ export function Nav() {
             })}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2 md:ml-0 md:gap-3">
+          <div className="ml-auto flex items-center gap-2 lg:ml-0 lg:gap-3">
             <CartButton />
 
             {/* The one ask, at every width. It sits outside the mobile panel
@@ -129,7 +135,7 @@ export function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 border border-smoke px-3 py-2 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold md:hidden"
+              className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 border border-smoke px-3 py-2 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold lg:hidden"
             >
               <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
                 <span
@@ -163,7 +169,7 @@ export function Nav() {
       <div
         ref={panelRef}
         className={cn(
-          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:hidden",
+          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:top-20 lg:hidden",
           open
             ? "[clip-path:inset(0_0_0_0)] opacity-100"
             : "pointer-events-none [clip-path:inset(0_0_100%_0)] opacity-0",

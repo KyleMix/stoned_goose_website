@@ -64,10 +64,19 @@ function validateLinks(links: NavLink[], context: string): NavLink[] {
 // of the row from the CMS.
 export const primaryNav: NavLink[] = validateLinks(cmsNav, "primary nav");
 
-// Links the mobile panel carries below the primary four. They are footer-level
+// Links the mobile panel carries below the primary ones. They are footer-level
 // on desktop, but a phone has no footer in reach, so the panel lists them too.
+//
+// Anything the CMS has already put in the primary nav drops out here, because
+// the panel renders both lists in sequence and Shop, which moved up into the
+// header, would otherwise appear twice. The list is empty as things stand, and
+// it stays so the next footer-level link has somewhere to go.
+const SECONDARY_LINKS: NavLink[] = [{ label: "Shop", href: "/shop" }];
+
 export const secondaryNav: NavLink[] = validateLinks(
-  [{ label: "Shop", href: "/shop" }],
+  SECONDARY_LINKS.filter(
+    (link) => !primaryNav.some((item) => item.href === link.href),
+  ),
   "secondary nav",
 );
 
