@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-18T10:21:38.502Z",
+  "fetchedAt": "2026-09-18T20:15:27.618Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-09-17 20:00:00-comedy-show-comedian-jt-tomlinson-sept-17th-at-laughs-comedy",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Comedian JT Tomlinson Sept 17th at Laughs Comedy",
-      "start": "2026-09-17T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-comedian-jt-tomlinson-sept-17th-at-laughs-comedy-tickets-1998968295984",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-jt-tomlinson-sep26-v2.png"
-    },
     {
       "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
       "clubSlug": "laughs-comedy-club",
