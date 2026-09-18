@@ -40,7 +40,7 @@ explanation, like a ticket link needing to start with https://.
 
 - **Site copy**: the words on the main screens. Home page, Site config
   (brand, contact info, social links, menu, footer), and the copy for the
-  Shows, Watch, Roster, Open mics, Shop, and Contact pages. Sponsorship
+  Shows, Watch, Roster, Open mic, Shop, and Contact pages. Sponsorship
   packages and the pro comedy club list live here too.
 - **Shows and events**: your shows. Covered above.
 - **Pro calendar extras**: hand-added shows for the regional pro comedy
@@ -55,8 +55,6 @@ explanation, like a ticket link needing to start with https://.
   /book recommends.
 - **Shop products (manual backup)**: a hand-kept product list for /shop.
   When the Fourthwall sync is connected, the live store replaces it.
-- **Open mics**: every mic on the /open-mics/map map and list. Comics drive to
-  these, so keep days and times honest.
 - **TikTok videos**: hand-picked clips for the Latest strip on the home page.
 - **News posts**: announcement cards on /watch and the home Latest strip.
 - **Extra pages**: standalone pages built from blocks. A page titled "About"

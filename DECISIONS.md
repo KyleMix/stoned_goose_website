@@ -36,6 +36,12 @@ Autonomous judgment calls made during the 2026-07-03 full-site pass, with one-li
 - Phase 6: Removed the unused `RESERVED_SLUG_ERROR` export, added a reserved-slugs sync test (every app/(site) route folder must be in RESERVED_SLUGS), and wired `npm run test` into CI, which previously never ran the smoke tests.
 - Phase 6: Left the husky pre-commit hook as lint-staged only; adding a pre-push typecheck is a workflow-preference call for the owner (CI already enforces typecheck).
 
+- Open mics retirement: /open-mics is now only the Log Cabin Comedy Open Mic, our own Monday room. The Pacific Northwest map (85 crowd-sourced records, Leaflet, marker clustering, the submit and update dialogs, the Google Sheet sync and the quality report) and the Open Mic Explorer app announcement were both removed at the owner's direction. Times, venue and motto come off the poster the owner supplied; the old CMS record said "biweekly" and the poster says every Monday, so the poster won.
+- Open mics retirement: dropped `leaflet`, `leaflet.markercluster` and their types. /open-mics fell from ~180 kB first load to 142 kB, and the map bundle left the shared chunks.
+- Open mics retirement: the app's store-required pages (/open-mics/privacy, /open-mics/terms, the static /open-mics/delete-account) and its deep-link files (/.well-known/apple-app-site-association, assetlinks.json) went with it. Safe because the app never shipped: there is no store listing pointing at those URLs. They are deliberately not redirected, since aiming a privacy policy at a show listing is worse than a 404. /open-mics/map IS redirected 308 to /open-mics in all three host configs, because that URL had real traffic.
+- Open mics retirement: `ShowInfoBlock` gained an optional `recurring` prop. A weekly room has no single date, and a "next Monday" computed at build time freezes into a static export and goes stale in a week. The prop fills the date and time slots without adding or reordering any, so the mandated sequence (date, venue, doors and show time, price, ticket link) is unchanged.
+- Open mics retirement: the mic page states no cover charge. The poster does not name a price, and the house rule forbids inventing one, so the CMS price field is empty and renders no price row at all.
+
 ## Deferred - needs human review
 
 - **Publishing the /calendar route (pro shows).** A synced, ticketed calendar of 60+ regional pro shows exists behind the underscore-private `app/(site)/_calendar` folder, deliberately unpublished via `lib/navigation.ts`. Publishing it would change site IA and surface scraped third-party content (with known HTML-entity bugs in titles). That is an owner-level product decision, so it stays dark; the entity-decoding bug is noted so titles are clean whenever it ships.
@@ -84,6 +90,7 @@ statuses live in CMS_AUDIT.md; this is the why.
 - Phase 5: The end-to-end test entries (one per collection, saved exactly as Sveltia writes them, including null for cleared optional fields) exposed two real bugs that only a genuine CMS save would hit: the shims' JSON type casts failed to compile against null-valued fields, and the news frontmatter parser turned "key: null" into the literal string "null". Both fixed (null-tolerant casts plus coercions; YAML null spellings treated as absent). This validated the whole pass: the editor's first real save would previously have broken the deploy.
 - Phase 5: Corrected the TikTok collection description after render verification: clips appear in the home Latest strip (and the Latest social posts block), not on /watch as the old docs claimed. The shim now also prefers the typed title over de-slugging the folder name.
 - Phase 5: CMS_GUIDE.md is the canonical editor guide; the three older overlapping docs (docs/EDITING.md, docs/editor.md, docs/editing-content.md) got a pointer banner instead of deletion, since they hold detail (block library tables, workflows) still worth keeping.
+
 
 ## Deferred - needs human review (CMS pass)
 

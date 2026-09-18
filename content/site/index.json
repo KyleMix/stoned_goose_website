@@ -3,7 +3,7 @@
   "shortName": "Stoned Goose",
   "tagline": "LIVE. LOCAL. COMEDY.",
   "url": "https://www.stonedgooseproductions.com",
-  "description": "Live shows, comedy production, podcast and media work, and the Open Mic Explorer for the Pacific Northwest. Based in Olympia, working across Lacey, Tacoma, and the South Sound.",
+  "description": "Live shows, comedy production, podcast and media work, and a weekly comedy open mic at the Log Cabin Bar & Grill. Based in Olympia, working across Lacey, Tacoma, and the South Sound.",
   "contact": {
     "email": "kyle@stonedgooseproductions.com",
     "phone": "(360) 323-0667",
@@ -37,7 +37,7 @@
   "press": [],
   "nav": [
     { "label": "Shows", "href": "/shows" },
-    { "label": "Open Mics", "href": "/open-mics/map" },
+    { "label": "Open Mic", "href": "/open-mics" },
     { "label": "Watch", "href": "/watch" },
     { "label": "Roster", "href": "/roster" },
     { "label": "Book Us", "href": "/book" },
@@ -53,8 +53,7 @@
         "items": [
           { "label": "Home", "href": "/" },
           { "label": "Shows", "href": "/shows" },
-          { "label": "Open Mic Map", "href": "/open-mics/map" },
-          { "label": "The App", "href": "/open-mics" },
+          { "label": "Open Mic", "href": "/open-mics" },
           { "label": "Watch", "href": "/watch" },
           { "label": "Roster", "href": "/roster" },
           { "label": "Shop", "href": "/shop" }

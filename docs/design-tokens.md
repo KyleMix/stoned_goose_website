@@ -402,7 +402,7 @@ New sections should pick one of these rather than a raw `py-*` value.
 ## Radius
 
 The brand is sharp-cornered: borders and surfaces use the default `0` radius.
-The only intentional curves are Leaflet map pins. Do not add rounded corners to
+The only intentional curve is the monocle ring. Do not add rounded corners to
 cards, buttons, or inputs.
 
 ## Forbidden

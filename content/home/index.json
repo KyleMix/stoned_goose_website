@@ -11,10 +11,10 @@
       "href": "/shows"
     },
     "secondary": {
-      "title": "Open Mic Map",
-      "body": "Find an open mic in the Pacific Northwest. New rooms, weekly signups, mapped.",
-      "label": "Find a mic",
-      "href": "/open-mics/map"
+      "title": "Open Mic.",
+      "body": "Our own room, every Monday at the Log Cabin Bar & Grill in Olympia. Sign ups at 6, show at 7.",
+      "label": "Show up, go up",
+      "href": "/open-mics"
     },
     "tertiary": [
       {

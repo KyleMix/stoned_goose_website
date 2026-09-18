@@ -10,20 +10,13 @@
     { "source": "/submit", "destination": "/book", "permanent": true },
     { "source": "/comic-submissions", "destination": "/book", "permanent": true },
     { "source": "/sponsor", "destination": "/book#sponsors", "permanent": true },
-    { "source": "/sponsorships", "destination": "/book#sponsors", "permanent": true }
+    { "source": "/sponsorships", "destination": "/book#sponsors", "permanent": true },
+    { "source": "/open-mics/map", "destination": "/open-mics", "permanent": true }
   ],
   "headers": [
     {
       "source": "/:path*/opengraph-image-:hash",
       "headers": [{ "key": "Content-Type", "value": "image/png" }]
-    },
-    {
-      "source": "/.well-known/apple-app-site-association",
-      "headers": [{ "key": "Content-Type", "value": "application/json" }]
-    },
-    {
-      "source": "/.well-known/assetlinks.json",
-      "headers": [{ "key": "Content-Type", "value": "application/json" }]
     }
   ]
 }

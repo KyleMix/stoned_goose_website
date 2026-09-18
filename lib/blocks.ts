@@ -57,7 +57,6 @@ export type UpcomingShowsBlockData = { type: "upcomingShows" };
 export type LatestSocialBlock = { type: "latestSocial"; limit: number };
 export type PressStripBlock = { type: "pressStrip" };
 export type RosterTeaserBlock = { type: "rosterTeaser"; limit: number };
-export type OpenMicTeaserBlock = { type: "openMicTeaser" };
 export type ServicesOverviewBlock = { type: "servicesOverview" };
 export type ShopStripBlock = { type: "shopStrip"; limit: number };
 
@@ -72,7 +71,6 @@ export type Block =
   | LatestSocialBlock
   | PressStripBlock
   | RosterTeaserBlock
-  | OpenMicTeaserBlock
   | ServicesOverviewBlock
   | ShopStripBlock;
 
@@ -162,9 +160,6 @@ export function normaliseBlocks(raw: unknown): Block[] {
         break;
       case "rosterTeaser":
         out.push({ type: "rosterTeaser", limit: n(v.limit, 8) });
-        break;
-      case "openMicTeaser":
-        out.push({ type: "openMicTeaser" });
         break;
       case "servicesOverview":
         out.push({ type: "servicesOverview" });

@@ -22,3 +22,10 @@
 # Sponsor funnel collapsed to anchor on /book
 /sponsor             /book#sponsors        308
 /sponsorships        /book#sponsors        308
+
+# The Pacific Northwest open mic map is retired. /open-mics is the Log Cabin
+# Monday mic now. The app pages that lived under this path (privacy, terms,
+# delete-account) are deliberately NOT redirected: the Open Mic Explorer app is
+# dead and never shipped, and pointing a privacy policy at a show listing would
+# be worse than a 404. The 404 page steers "open mic" paths at /open-mics.
+/open-mics/map       /open-mics            308

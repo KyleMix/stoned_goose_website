@@ -179,7 +179,7 @@ components import. Don't edit copy in components, it isn't there.
 Editor-created pages live at `/<slug>` (e.g. `/about`, `/faq`) and are
 composed in the admin from a block library: hero, rich text, image, video,
 CTA, mailing list, plus reusable blocks like Upcoming shows and Latest social.
-Each major marketing page (home, shows, watch, roster, open-mics) also exposes
+Each major marketing page (home, shows, watch, roster, open-mic) also exposes
 `Top sections` and `Bottom sections` arrays so the same blocks can be dropped
 into the core pages without code. See [`docs/editor.md`](docs/editor.md) for
 the step-by-step. New blocks are added in

@@ -70,7 +70,6 @@ const BLOCK_TYPES = [
   "latestSocial",
   "pressStrip",
   "rosterTeaser",
-  "openMicTeaser",
   "servicesOverview",
   "shopStrip",
 ] as const;
@@ -240,12 +239,39 @@ const singletons: Record<string, z.ZodTypeAny> = {
     })
     .strict(),
 
-  "open-mics-copy/index.json": z
+  // The Log Cabin Monday mic, the whole of /open-mics. Times and price are
+  // free text so the page can print them exactly as the poster does. Price is
+  // optional and empty by default: an unstated cover stays unstated rather
+  // than being guessed at, and an empty string renders no price row.
+  "log-cabin-mic/index.json": z
     .object({
+      eyebrow: opt(str),
+      titleLead: opt(str),
+      titleEmphasis: opt(str),
+      titleTrail: opt(str),
       subhead: opt(str),
-      kicker: opt(str),
-      disclaimer: opt(
-        z.object({ eyebrow: opt(str), body: opt(str), footnote: opt(str) }).strict(),
+      recurrence: opt(str),
+      venue: opt(
+        z
+          .object({
+            name: opt(str),
+            address: opt(str),
+            city: opt(str),
+            region: opt(str),
+            postalCode: opt(str),
+            mapUrl: opt(httpsUrl),
+          })
+          .strict(),
+      ),
+      signupTime: opt(str),
+      showTime: opt(str),
+      endTime: opt(str),
+      price: opt(str),
+      motto: opt(str),
+      host: opt(str),
+      poster: opt(z.object({ src: opt(str), alt: opt(str) }).strict()),
+      howItWorks: opt(
+        z.array(z.object({ heading: str, body: str }).strict()),
       ),
       topSections: blocks,
       bottomSections: blocks,
@@ -442,43 +468,6 @@ const collections: Record<string, z.ZodTypeAny> = {
       image: opt(httpsUrl),
       imageAlt: opt(str),
       draft: opt(bool),
-    })
-    .strict(),
-
-  "open-mics": z
-    .object({
-      name: str.min(1),
-      venue: str.min(1),
-      address: opt(str),
-      city: str.min(1),
-      region: z.enum(["WA", "OR"]),
-      lat: opt(z.number()),
-      lng: opt(z.number()),
-      day: z.enum([
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ]),
-      frequency: z.enum(["weekly", "biweekly", "monthly"]),
-      weeks: opt(z.array(z.enum(["1st", "2nd", "3rd", "4th", "Last"]))),
-      time: opt(str),
-      host: opt(str),
-      // Mirrors classifySignup in lib/open-mics/normalize.ts: a real link, or
-      // descriptive instructions (must contain a space so it renders as a
-      // note). Bare non-URL tokens render as a broken-link fallback.
-      signupUrl: opt(
-        z
-          .string()
-          .regex(
-            /^(https?:\/\/\S+|\S+(\s+\S+)+)$/,
-            'must be a full https:// link, or plain instructions like "Host makes the list"',
-          ),
-      ),
-      notes: opt(str),
     })
     .strict(),
 

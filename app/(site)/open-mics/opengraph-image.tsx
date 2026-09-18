@@ -2,16 +2,16 @@ import { ogContentType, ogImageResponse, ogSize } from "@/lib/og-template";
 
 export const dynamic = "force-static";
 
-// The map kept the card it was drawn for (app/(site)/open-mics/map). This one
-// is the app announcement, so a shared /open-mics link previews the app and not
-// the Pacific Northwest map.
-export const alt = "Open Mic Explorer, the app. Coming soon.";
+// /open-mics is the Log Cabin Monday mic now. The card it used to carry was
+// drawn for the Open Mic Explorer app, which is dead.
+export const alt =
+  "Log Cabin Comedy Open Mic. Every Monday in Olympia. Sign ups 6 PM, show 7 PM.";
 export const size = ogSize;
 export const contentType = ogContentType;
 
 export default function OpengraphImage() {
   return ogImageResponse({
-    eyebrow: "Open Mic Explorer / Coming soon",
-    title: "The App",
+    eyebrow: "Every Monday / Log Cabin Bar & Grill",
+    title: "Open Mic",
   });
 }
