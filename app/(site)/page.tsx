@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/home/hero";
 import { AboutBlock } from "@/components/home/about-block";
 import { ServicesRow } from "@/components/home/services-row";
-import { WorkingOn } from "@/components/home/working-on";
-import { PeopleStrip } from "@/components/home/people-strip";
+import { ShopStrip } from "@/components/shop-strip";
 import { ContactBlock } from "@/components/home/contact-block";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { SectionRenderer } from "@/components/section-renderer";
@@ -18,14 +17,19 @@ export const metadata: Metadata = {
 };
 
 // The page has one job: get a visitor to contact us. Everything here either
-// makes that decision easier (who we are, what we do, who we work with, what
-// we are doing right now) or is the ask itself.
+// makes that decision easier (who we are, what we do, what we sell) or is the
+// ask itself.
 //
 // What came off: the header ticker, the word marquee, three rotating bumper
-// interludes, the full services list, the merch grid, the social feed strip
-// and the press strip. Twelve rendered bands became seven, the next show went
-// from appearing three times to once, and the page gained the contact form it
-// never had.
+// interludes, the full services list, the social feed strip, the press strip,
+// the "what we are working on" band and the "who we work with" portrait wall.
+// The last two each restated a whole page: the next show, the latest video and
+// the mic all live on /shows, /watch and /open-mics, and the crew and roster
+// are the entire content of /about.
+//
+// The merch strip came back in their place. It is the one band on the page
+// that sells something a visitor can buy on the spot, and it keeps the shop
+// from living in the footer alone.
 //
 // The removed components are all still in the tree and still available as CMS
 // section blocks, so any of them can be put back from /admin without a deploy.
@@ -42,11 +46,9 @@ export default function HomePage() {
       {/* What we do. */}
       <ServicesRow />
 
-      {/* What we are working on. The next show appears here and nowhere else. */}
-      <WorkingOn />
-
-      {/* Who we work with. */}
-      <PeopleStrip />
+      {/* What we sell. Ivory, so it reads as a break between two tuxedo
+          bands rather than a fourth screen of the same section. */}
+      <ShopStrip tone="ivory" limit={3} />
 
       {/* The ask. Every CTA above lands here. */}
       <ContactBlock />

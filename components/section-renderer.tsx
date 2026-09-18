@@ -10,6 +10,8 @@ import { PressStrip } from "@/components/press-strip";
 import { RosterTeaser } from "@/components/roster-teaser";
 import { ServicesRow } from "@/components/home/services-row";
 import { ShopStrip } from "@/components/shop-strip";
+import { WorkingOn } from "@/components/home/working-on";
+import { PeopleStrip } from "@/components/home/people-strip";
 import type { Block } from "@/lib/blocks";
 
 export function SectionRenderer({
@@ -54,5 +56,9 @@ function BlockSwitch({ block, pageSlug }: { block: Block; pageSlug: string }) {
       return <ServicesRow />;
     case "shopStrip":
       return <ShopStrip limit={block.limit} />;
+    case "workingOn":
+      return <WorkingOn />;
+    case "peopleStrip":
+      return <PeopleStrip />;
   }
 }

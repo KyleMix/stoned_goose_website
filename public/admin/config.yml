@@ -102,7 +102,7 @@ collections:
             label: What we are working on section (headings only)
             widget: object
             required: false
-            hint: 'The cards fill themselves from the next show, the latest video, and the open mic map.'
+            hint: 'Headings for the optional "What we are working on" section. The home page no longer shows it: add it back under Extra sections if you want it. The cards fill themselves from the next show, the latest video and the open mic.'
             fields:
               - { name: eyebrow, label: Tiny top line, widget: string, required: false }
               - { name: heading, label: Heading, widget: string, required: false }
@@ -110,7 +110,7 @@ collections:
             label: Who we work with section (headings only)
             widget: object
             required: false
-            hint: 'The portraits fill from Crew members and Comedians. Edit those, not this.'
+            hint: 'Headings for the optional "Who we work with" section. The home page no longer shows it: the crew and the roster live on the About page, and you can add the section back under Extra sections. The portraits fill from Crew members and Comedians. Edit those, not this.'
             fields:
               - { name: eyebrow, label: Tiny top line, widget: string, required: false }
               - { name: heading, label: Heading, widget: string, required: false }
@@ -230,6 +230,16 @@ collections:
                 widget: object
                 fields:
                   - { name: limit, label: How many products, widget: number, default: 3, value_type: int, min: 1, max: 8 }
+              - name: workingOn
+                label: What we are working on cards (fills itself)
+                widget: object
+                fields:
+                  - { name: note, label: Note to self (not shown on the site), widget: string, required: false, hint: 'The cards fill from the next show, the latest video and the open mic. Headings come from Home page copy. Nothing to fill in.' }
+              - name: peopleStrip
+                label: Who we work with portraits (fills itself)
+                widget: object
+                fields:
+                  - { name: note, label: Note to self (not shown on the site), widget: string, required: false, hint: 'The portraits fill from Crew members and Comedians. Headings come from Home page copy. Nothing to fill in.' }
           - name: bottomSections
             label: Extra sections, bottom (below the mailing list, above the outro)
             widget: list
