@@ -41,7 +41,7 @@ Counting only bands that actually render today:
 | 1 | Hero | `hero.tsx` | Primary CTA is "Browse Shows". **Show instance 2 of 3** |
 | 2 | Word marquee | `marquee.tsx` | 9 scrolling words |
 | 3 | Bumper: clarification | `rotating-bumper.tsx` | "Disclosure / we made it on purpose" |
-| — | `topSections` | `section-renderer.tsx` | Empty in CMS |
+| - | `topSections` | `section-renderer.tsx` | Empty in CMS |
 | 4 | Shows | `upcoming-shows-block.tsx` | **Show instance 3 of 3** |
 | 5 | Open Mic Explorer | `open-mic-teaser.tsx` | 4 mics, ivory |
 | 6 | Video grid | `video-strip.tsx` | 5 clips |
@@ -49,10 +49,10 @@ Counting only bands that actually render today:
 | 8 | Bumper: aside | `rotating-bumper.tsx` | "There is more to this than shows. See the menu." |
 | 9 | Services | `services-overview.tsx` | "We do four things", ivory |
 | 10 | Shop | `shop-strip.tsx` | 3 products |
-| — | Press | `press-strip.tsx` | **Renders nothing**, press array is empty |
-| — | Mission | inline in `page.tsx` | **Renders nothing**, `show: false` |
+| - | Press | `press-strip.tsx` | **Renders nothing**, press array is empty |
+| - | Mission | inline in `page.tsx` | **Renders nothing**, `show: false` |
 | 11 | Newsletter | `mailing-list-capture.tsx` | ivory |
-| — | `bottomSections` | `section-renderer.tsx` | Empty in CMS |
+| - | `bottomSections` | `section-renderer.tsx` | Empty in CMS |
 | 12 | Bumper: outro | `rotating-bumper.tsx` | "More shows on the calendar." |
 
 **12 rendered bands plus the header ticker. Zero contact form. One booking
@@ -733,7 +733,7 @@ Jumps to `/#contact`.
 
 ### New files
 
-- `components/booking-enquiry.tsx` — the one shared contact form
+- `components/booking-enquiry.tsx`: the one shared contact form
 - `components/home/hero.tsx` (rewrite of `components/hero.tsx`)
 - `components/home/about-block.tsx`
 - `components/home/working-on.tsx`
@@ -741,7 +741,7 @@ Jumps to `/#contact`.
 - `components/home/contact-block.tsx`
 - `components/crew-grid.tsx`
 - `components/comics-grid.tsx`
-- `components/icons/social.tsx` — two inline SVGs
+- `components/icons/social.tsx`: two inline SVGs
 - `app/(site)/about/page.tsx`, `about/opengraph-image.tsx`, `about/[slug]/page.tsx`, `about/[slug]/opengraph-image.tsx`
 - `app/(site)/sponsor/page.tsx`, `sponsor/opengraph-image.tsx`
 
