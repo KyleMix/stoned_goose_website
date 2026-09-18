@@ -1,6 +1,11 @@
 # Site simplification: audit, research, and proposal
 
-Status: **Phase 1 and Phase 2 complete. Awaiting approval before any code changes.**
+Status: **All three phases complete and implemented.**
+
+Phases 1 and 2 below are the audit and the proposal, kept as written so the
+reasoning behind each decision stays on the record. Every recommendation in
+Phase 2 was approved. See the end of this file for what changed against the
+plan during implementation.
 
 Goal restated: the site exists to get Stoned Goose work. Every page leads toward
 contacting us. The two supporting jobs are showing our people and showing what
@@ -884,10 +889,72 @@ on `/book` pointing sponsors at `/sponsor` for a release or two.
 
 ---
 
-# Phase 3, for reference. Not started.
+# Phase 3. Implemented.
 
-On approval: implement, fix the INTROCALL and "Tickets." typos, strip `/0N`
-numbering sitewide, meet WCAG AA contrast and 44px targets, update schema,
-sitemap, metadata, CMS config and redirects, run lint + typecheck + test +
-build, test the form end to end (success, validation errors, honeypot), check
-`/`, `/book` and `/about` at 375 / 768 / 1280, and finish with a changelog.
+## Decisions taken
+
+| Question | Answer |
+|---|---|
+| Sixth type role (`.t-ui`) | Approved. 14px / .08em uppercase, surface-aware. |
+| Services: 3 or 4 | 4. `film-your-comedy-set` published. |
+| Spam protection | Honeypot plus a submit-time trap. No Turnstile, no Worker. |
+| `/roster` to `/about` | Approved, with 308s. |
+| Build Your Show | Removed. |
+| Sponsor tiers | Moved to `/sponsor`. |
+| Kyle's title | Co-Founder & Producer, matching Joseph and Brendan. |
+| Phone on the home page | Yes, the number already published in the footer. |
+| Inline SVG social glyphs | Yes. |
+| Newsletter | Kept, as a slim secondary strip. |
+| Next show placement | Once, in "what we are working on". Hero links to /shows. |
+
+## What changed against the plan during implementation
+
+1. **The header overflowed its viewport below 768px.** Not in the original
+   brief and not visible in the PDFs. The bar measured 445px of content inside
+   a 375px viewport, hidden by `body { overflow-x: hidden }`. The wordmark now
+   steps down on a phone, the menu button drops its word below 640px, and the
+   gaps tighten. Verified at 320, 375, 768 and 1280.
+2. **The monocle ring gained a `sizeSm` prop.** The 420px ring sized for a
+   1400px hero swept straight through the new value-proposition copy on a
+   375px screen. It renders at 200px below the md breakpoint instead.
+3. **`/contact` was folded onto the shared form too.** The plan had it keeping
+   its own. Four pages now render one `<BookingEnquiry />` rather than three
+   variations plus a holdout.
+4. **The eyebrow-to-UI-role sweep went sitewide**, not just to the three pages
+   in scope. 34 files carried `.t-eyebrow` on a button or a link.
+5. **Tap targets were fixed beyond the three pages.** `/shows`, `/watch`,
+   `/shop` and the open mic pages had standalone links at 20px and controls at
+   36-40px. All of our own markup now clears 44px.
+6. **`ServicesOverview` was deleted rather than edited.** The CMS "what we do"
+   section block now renders the same `ServicesRow` the home page uses, so
+   there is one services list in the codebase instead of two that drifted.
+7. **`hero.italicLine` ("lights on. jokes loaded.") retired.** It held the slot
+   the value proposition now occupies. The previously unrendered `site.tagline`
+   took its place in the footer. Flagged for a decision on where, if anywhere,
+   the original line should live.
+
+## Verification
+
+`npm run lint`, `npm run typecheck`, `npm test` and `npm run build` all pass.
+
+- Contrast audited programmatically across 11 routes at 375, 768 and 1280.
+  Zero failures.
+- Tap targets audited the same way. Everything in our own markup clears 44px.
+  The only remaining sub-44px controls are Leaflet's own zoom buttons and
+  attribution links on `/open-mics/map`, which are vendor internals.
+- Contact form tested end to end: empty submit, invalid email, too-short
+  message, honeypot, time trap, a real submission with the payload verified,
+  and a 500 from the endpoint.
+- Redirects confirmed against the built export: `/roster` and `/sponsorships`
+  both 308 correctly.
+
+## Still open
+
+1. **The Cal.com embed on `/book` is untested.** The sandbox blocks cal.com, so
+   only its loading placeholder was ever rendered. Worth one click-through
+   after deploy.
+2. **`images.unoptimized: true` means no `srcset`.** `/about` ships roughly
+   2.3MB of portraits because every browser downloads the full 1000px source.
+   `sizes` is set correctly throughout so it works the day optimization is
+   enabled, but the setting was left alone in this pass.
+3. **Where "lights on. jokes loaded." should live**, if anywhere.
