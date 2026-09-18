@@ -78,12 +78,30 @@ function autoCategory(name: string): ShopCategory | null {
   return null;
 }
 
+// The Fourthwall slug in a product URL is not always the slug the entry is
+// filed under: the CMS derives its folder name from the product name, so
+// "80's Goose" files as 80-s-goose while Fourthwall serves it at 80s-goose.
+// A category tagged against either spelling has to find the product.
+function urlSlug(url: string): string {
+  const match = url.match(/\/products\/([^/?#]+)/);
+  return match ? match[1].toLowerCase() : "";
+}
+
 export function categorize(product: Product): ShopCategory {
   return (
     assignmentMap.get(product.slug.toLowerCase()) ??
+    assignmentMap.get(urlSlug(product.url)) ??
     autoCategory(product.name) ??
     "Accessories"
   );
+}
+
+// A product is sold out only when the sync gave us variants and every one of
+// them is unavailable. Manual entries carry no variants, so they never claim
+// stock they cannot know about.
+export function isSoldOut(product: Product): boolean {
+  const variants = product.variants ?? [];
+  return variants.length > 0 && variants.every((v) => !v.available);
 }
 
 // Group products into the fixed category order, dropping empty sections.
@@ -116,6 +134,17 @@ function titleCase(slug: string): string {
   const minor = /^(of|and|the|for|to|a|an|in|on|at|by|with|or|up)$/i;
   return slug
     .split(/[-\s]+/)
+    // A slug loses the apostrophe but keeps the split: "Brendan's Fart Hat"
+    // files as brendan-s-fart-hat. A lone "s" after a word is that apostrophe,
+    // so put it back rather than printing "Brendan S Fart Hat".
+    .reduce<string[]>((words, part) => {
+      if (part.toLowerCase() === "s" && words.length > 0) {
+        words[words.length - 1] += "'s";
+        return words;
+      }
+      words.push(part);
+      return words;
+    }, [])
     .map((word, i) => {
       const lower = word.toLowerCase();
       if (i > 0 && minor.test(lower)) return lower;

@@ -119,7 +119,8 @@ export function ShopProductDetail({ product }: { product: Product }) {
       <div className="flex flex-col gap-6">
         {colors.length > 1 ? (
           <div>
-            <p className="t-eyebrow text-smoke">
+            {/* Picker labels are field labels, not eyebrows. */}
+            <p className="t-ui text-smoke">
               Color{color ? `. ${color}` : ""}
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
@@ -152,9 +153,7 @@ export function ShopProductDetail({ product }: { product: Product }) {
 
         {sizes.length > 0 ? (
           <div>
-            <p className="t-eyebrow text-smoke">
-              Size
-            </p>
+            <p className="t-ui text-smoke">Size</p>
             <div className="mt-2 flex flex-wrap gap-2">
               {sizes.map((s) => {
                 const active = s === size;
@@ -288,23 +287,24 @@ function Layout({
         <h1 className="t-subhead display-2 leading-[0.95]">
           {name}
         </h1>
+        {/* The price is a label, not a headline, and gold below headline size
+            on tuxedo is the one pairing the palette rules out. Subhead runs
+            it ivory at the same weight. */}
         {price ? (
-          <p className="t-body mt-4 text-xl font-bold tabular-nums text-accent-gold">
-            {price}
-          </p>
+          <p className="t-subhead mt-4 text-xl tabular-nums">{price}</p>
         ) : null}
 
         <div className="mt-8">{children}</div>
 
         {description ? (
           <div className="mt-10 border-t border-smoke pt-6">
-            <p className="max-w-prose whitespace-pre-line t-subhead text-lg leading-snug md:text-xl">
+            <p className="max-w-prose whitespace-pre-line t-body text-base md:text-lg">
               {description}
             </p>
           </div>
         ) : null}
 
-        <p className="mt-10 t-eyebrow text-smoke">
+        <p className="mt-10 t-fine">
           Checkout, sizing, and shipping handled by Fourthwall.
         </p>
       </div>

@@ -8,8 +8,9 @@ import { site } from "@/content/site";
 import { primaryNav as nav, secondaryNav } from "@/lib/navigation";
 import { track } from "@/lib/analytics";
 import { CartButton } from "@/components/cart/cart-button";
+import { cartEnabled } from "@/lib/fourthwall-storefront";
 
-// The header carries four links and one ask.
+// The header carries five links and one ask.
 //
 // Two things used to live up here and no longer do. The "now playing" ticker
 // was the first of three places the same show appeared on the home page, and
@@ -62,10 +63,39 @@ export function Nav() {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
   }
 
+  // The cart button renders only once the storefront token is set, and when it
+  // does the header has to give its width back somewhere. Measured against the
+  // same pages with the cart off, it costs the row 44px on a phone and 87px
+  // from sm up, which is more than the spare space at either end:
+  //
+  //   768px  five links + wordmark + gold button leave 26px, the cart wants 87
+  //   360px  wordmark + gold button + toggle leave 19px, the cart wants 44
+  //
+  // So the header runs in two configurations. Without a cart nothing changes:
+  // the links open at md and the phone header keeps its gaps and its 16px
+  // wordmark. With one, the links wait for lg and 768 takes the panel, which
+  // carries the same five links at a size worth tapping, and the phone header
+  // tightens its gaps, holds the 14px wordmark to 390 and, under 360, trims
+  // its gutter and the button's padding and shortens the button to "Book".
+  // Every one of those is a real fit problem at that width, measured, not a
+  // precaution.
+  //
+  // The class strings are written out rather than built, because Tailwind
+  // reads the source and never sees a runtime value.
+  const cartInHeader = cartEnabled();
+  const roomForLinks = !cartInHeader;
+
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 bg-surface-tuxedo">
-        <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-2 border-b border-smoke px-5 sm:gap-3 md:h-20 md:gap-6 md:px-10">
+        <div
+          className={cn(
+            "mx-auto flex h-16 max-w-[1400px] items-center border-b border-smoke sm:gap-3 md:h-20 md:gap-6 md:px-10",
+            cartInHeader
+              ? "gap-1 px-4 min-[360px]:gap-1.5 min-[360px]:px-5"
+              : "gap-2 px-5",
+          )}
+        >
           <Link
             href="/"
             aria-label={`${site.shortName} home`}
@@ -76,7 +106,12 @@ export function Nav() {
                 the minimum is the rule this system exists to prevent. A header
                 this size carries the wordmark as type. The lockup runs at full
                 size in the footer. */}
-            <span className="t-subhead text-sm leading-none min-[360px]:text-base sm:text-lg md:text-[1.4rem]">
+            <span
+              className={cn(
+                "t-subhead text-sm leading-none sm:text-lg lg:text-[1.4rem]",
+                cartInHeader ? "min-[390px]:text-base" : "min-[360px]:text-base",
+              )}
+            >
               Stoned Goose
               <span
                 aria-hidden
@@ -89,7 +124,10 @@ export function Nav() {
 
           <nav
             aria-label="Primary"
-            className="ml-auto hidden items-center gap-7 md:flex lg:gap-9"
+            className={cn(
+              "ml-auto hidden items-center gap-5 lg:gap-9",
+              roomForLinks ? "md:flex" : "lg:flex",
+            )}
           >
             {nav.map((item) => {
               const active = isActive(item.href);
@@ -99,7 +137,7 @@ export function Nav() {
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "t-ui inline-flex min-h-[44px] items-center transition-colors hover:text-accent-gold",
+                    "t-ui inline-flex min-h-[44px] items-center whitespace-nowrap transition-colors hover:text-accent-gold",
                     active && "text-accent-gold",
                   )}
                 >
@@ -109,7 +147,13 @@ export function Nav() {
             })}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2 md:ml-0 md:gap-3">
+          <div
+            className={cn(
+              "ml-auto flex items-center",
+              cartInHeader ? "gap-1 min-[360px]:gap-1.5" : "gap-2",
+              roomForLinks ? "md:ml-0 md:gap-3" : "lg:ml-0 lg:gap-3",
+            )}
+          >
             <CartButton />
 
             {/* The one ask, at every width. It sits outside the mobile panel
@@ -118,9 +162,22 @@ export function Nav() {
             <Link
               href="/book"
               onClick={() => track("CTA Click", { cta: "nav-book" })}
-              className="inline-flex h-11 shrink-0 items-center whitespace-nowrap bg-accent-gold px-3 t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory sm:px-4 md:h-12 md:px-6"
+              className={cn(
+                "inline-flex h-11 shrink-0 items-center whitespace-nowrap bg-accent-gold t-ui text-surface-tuxedo transition-colors hover:bg-surface-ivory sm:px-4 md:h-12 md:px-6",
+                cartInHeader ? "px-2 min-[360px]:px-3" : "px-3",
+              )}
             >
-              Book us
+              {cartInHeader ? (
+                <>
+                  {/* Under 360px the full label is the last 35px standing
+                      between this row and its own edge. The panel below still
+                      says "Book us" in full. */}
+                  <span className="min-[360px]:hidden">Book</span>
+                  <span className="hidden min-[360px]:inline">Book us</span>
+                </>
+              ) : (
+                "Book us"
+              )}
             </Link>
 
             <button
@@ -129,7 +186,10 @@ export function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 border border-smoke px-3 py-2 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold md:hidden"
+              className={cn(
+                "inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 border border-smoke px-3 py-2 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold",
+                roomForLinks ? "md:hidden" : "lg:hidden",
+              )}
             >
               <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
                 <span
@@ -163,7 +223,8 @@ export function Nav() {
       <div
         ref={panelRef}
         className={cn(
-          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:hidden",
+          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:top-20",
+          roomForLinks ? "md:hidden" : "lg:hidden",
           open
             ? "[clip-path:inset(0_0_0_0)] opacity-100"
             : "pointer-events-none [clip-path:inset(0_0_100%_0)] opacity-0",

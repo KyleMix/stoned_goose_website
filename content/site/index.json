@@ -51,6 +51,10 @@
     {
       "label": "Watch",
       "href": "/watch"
+    },
+    {
+      "label": "Shop",
+      "href": "/shop"
     }
   ],
   "footer": {

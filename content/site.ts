@@ -61,15 +61,18 @@ type SiteShape = {
 // Defaults applied when the CMS JSON has not been edited yet. They mirror
 // what used to be hardcoded in this file so the site keeps working before the
 // first save from /admin.
-// Four links. "Book us" is not in here: it is the header's one gold button,
-// rendered separately so it never reads as a peer of the other four.
-// Shop lives in the footer; it sells to fans, not to the clients this site
-// exists to reach.
+// Five links. "Book us" is not in here: it is the header's one gold button,
+// rendered separately so it never reads as a peer of the others.
+// Shop used to be footer-only, on the reasoning that it sells to fans and this
+// site exists to reach clients. It is in the header now: a merch shop nobody
+// can find from the top of the page is a merch shop nobody buys from, and it
+// still sits last, after the four links that do the booking work.
 const DEFAULT_NAV: NavLink[] = [
   { label: "Shows", href: "/shows" },
   { label: "About", href: "/about" },
   { label: "Open Mic", href: "/open-mics" },
   { label: "Watch", href: "/watch" },
+  { label: "Shop", href: "/shop" },
 ];
 
 const DEFAULT_FOOTER: {
