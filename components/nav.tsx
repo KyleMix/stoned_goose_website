@@ -8,6 +8,7 @@ import { site } from "@/content/site";
 import { primaryNav as nav, secondaryNav } from "@/lib/navigation";
 import { track } from "@/lib/analytics";
 import { CartButton } from "@/components/cart/cart-button";
+import { cartEnabled } from "@/lib/fourthwall-storefront";
 
 // The header carries five links and one ask.
 //
@@ -62,6 +63,17 @@ export function Nav() {
     return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
   }
 
+  // Where the link row opens. Five links, the shrunk wordmark and the gold
+  // button fit a 768px header with 26px to spare, so a tablet keeps the links.
+  // The cart button, which renders only once the storefront token is set,
+  // wants about 100px more than that, and no amount of tightening finds it:
+  // with a cart in the header the row waits for 1024 and 768 gets the panel,
+  // which carries the same five links at a size worth tapping.
+  //
+  // Both class strings are written out because Tailwind reads the source, not
+  // the runtime value.
+  const roomForLinks = !cartEnabled();
+
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 bg-surface-tuxedo">
@@ -76,7 +88,7 @@ export function Nav() {
                 the minimum is the rule this system exists to prevent. A header
                 this size carries the wordmark as type. The lockup runs at full
                 size in the footer. */}
-            <span className="t-subhead text-sm leading-none min-[360px]:text-base sm:text-lg md:text-[1.4rem]">
+            <span className="t-subhead text-sm leading-none min-[360px]:text-base sm:text-lg lg:text-[1.4rem]">
               Stoned Goose
               <span
                 aria-hidden
@@ -87,15 +99,12 @@ export function Nav() {
             </span>
           </Link>
 
-          {/* The row opens at lg, not md. Five links, the wordmark, the cart
-              and the gold button do not fit 768px together: measured at that
-              width the fifth link runs the row past the header edge, and the
-              cart button, which renders only once the storefront token is
-              set, takes another 100px on top. A tablet gets the panel, which
-              carries the same five links at a size worth tapping. */}
           <nav
             aria-label="Primary"
-            className="ml-auto hidden items-center gap-5 lg:flex lg:gap-9"
+            className={cn(
+              "ml-auto hidden items-center gap-5 lg:gap-9",
+              roomForLinks ? "md:flex" : "lg:flex",
+            )}
           >
             {nav.map((item) => {
               const active = isActive(item.href);
@@ -115,7 +124,12 @@ export function Nav() {
             })}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2 lg:ml-0 lg:gap-3">
+          <div
+            className={cn(
+              "ml-auto flex items-center gap-2",
+              roomForLinks ? "md:ml-0 md:gap-3" : "lg:ml-0 lg:gap-3",
+            )}
+          >
             <CartButton />
 
             {/* The one ask, at every width. It sits outside the mobile panel
@@ -135,7 +149,10 @@ export function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 border border-smoke px-3 py-2 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold lg:hidden"
+              className={cn(
+                "inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center gap-2 border border-smoke px-3 py-2 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold",
+                roomForLinks ? "md:hidden" : "lg:hidden",
+              )}
             >
               <span aria-hidden className="flex h-3 w-5 flex-col justify-between">
                 <span
@@ -169,7 +186,8 @@ export function Nav() {
       <div
         ref={panelRef}
         className={cn(
-          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:top-20 lg:hidden",
+          "fixed inset-0 top-16 z-40 origin-top bg-surface-tuxedo transition-[clip-path,opacity] duration-500 md:top-20",
+          roomForLinks ? "md:hidden" : "lg:hidden",
           open
             ? "[clip-path:inset(0_0_0_0)] opacity-100"
             : "pointer-events-none [clip-path:inset(0_0_100%_0)] opacity-0",
