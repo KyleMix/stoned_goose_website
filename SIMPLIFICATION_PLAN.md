@@ -1,15 +1,17 @@
 # Site simplification: audit, research, and proposal
 
-Status: **All three phases complete and implemented.**
+Status: **Shipped.** PR #162 (the simplification) and PR #163 (a home page
+trim plus a CI fix) are both merged.
 
-Phases 1 and 2 below are the audit and the proposal, kept as written so the
-reasoning behind each decision stays on the record. Every recommendation in
-Phase 2 was approved. See the end of this file for what changed against the
-plan during implementation.
+**Read Phases 1 and 2 as a dated snapshot, not as current documentation.**
+They describe the site as it stood on 18 September 2026, before any of this
+work, and they are kept verbatim so the reasoning behind each decision stays on
+the record. The route map in 1.1 and the section table in 1.2 are both
+historical: several of those routes no longer exist. Phase 3 at the end of this
+file is the only part that describes the site as it actually is.
 
 Goal restated: the site exists to get Stoned Goose work. Every page leads toward
-contacting us. The two supporting jobs are showing our people and showing what
-we are working on now. Anything else comes off the homepage.
+contacting us.
 
 ---
 
@@ -889,7 +891,39 @@ on `/book` pointing sponsors at `/sponsor` for a release or two.
 
 ---
 
-# Phase 3. Implemented.
+# Phase 3. As shipped.
+
+## The site now
+
+| Route | Purpose |
+|---|---|
+| `/` | Home. Hero, about us, what we do, contact, newsletter. |
+| `/shows` | Show calendar |
+| `/about` | Company story, crew grid, comics grid, contact CTA. Was `/roster`. |
+| `/about/[slug]` | Comedian EPK. Still generates zero pages: no comedian has a bio or reel. |
+| `/open-mics` | The Log Cabin Comedy Open Mic, our own Monday room. |
+| `/watch` | Video |
+| `/book` | Intro call, what we do, enquiry form. |
+| `/book/[slug]` | 4 service briefs, all published. |
+| `/sponsor` | Sponsor tiers, enquiry form, logo strip. New. |
+| `/shop`, `/shop/[slug]` | Fourthwall merch |
+| `/contact` | Contact page, same shared form. |
+| `/[slug]` | CMS "extra pages" |
+| `/_calendar` | Unpublished. The leading underscore keeps it out of the router. |
+| `/admin` | Sveltia CMS |
+
+The home page is five sections: hero, about us, what we do, contact,
+newsletter. It was twelve rendered bands plus a header ticker.
+
+| | Before | After |
+|---|---|---|
+| Home page sections | 12 | **5** |
+| Times the next show appears on the home page | 3 | **0**, it lives on `/shows` |
+| Contact forms on the home page | 0 | **1** |
+| Home page height, desktop | n/a | **4006px** |
+| Home page height, 375px | n/a | **5434px** |
+| `/book` sections | 6 | **4** |
+| `/book` distinct CTAs | 7+ | **2** |
 
 ## Decisions taken
 
@@ -905,56 +939,83 @@ on `/book` pointing sponsors at `/sponsor` for a release or two.
 | Phone on the home page | Yes, the number already published in the footer. |
 | Inline SVG social glyphs | Yes. |
 | Newsletter | Kept, as a slim secondary strip. |
-| Next show placement | Once, in "what we are working on". Hero links to /shows. |
+| "What we are working on" and "Who we work with" on the home page | **Cut after review.** See 3 below. |
 
-## What changed against the plan during implementation
+## What changed against the plan
 
-1. **The header overflowed its viewport below 768px.** Not in the original
+1. **Main retired the open mic map and the Explorer app mid-flight.** PR #161
+   landed while this branch was open: it deleted the Pacific Northwest map, the
+   Leaflet explorer, the app announcement and the app's legal pages, and made
+   `/open-mics` the Log Cabin Monday mic. That collided with the nav, the
+   footer, the routing table and a home page card built against the old
+   structure. All of main's deletions were taken unchanged; the nav and footer
+   were reconciled to point at `/open-mics`; and three pieces of copy that
+   claimed the map and app as ours were rewritten to name the Log Cabin room.
+2. **The proposal's "what we are working on" row was built, then cut.** It
+   shipped in #162 as one band of three cards (next show, latest video, our
+   open mic). On review it read as a preview of pages that already exist, so
+   #163 removed it along with the "who we work with" crew and comics strip.
+   Both sections' content lives on `/shows`, `/watch`, `/open-mics` and
+   `/about`, each one click from the nav. The home page lost about 40% of its
+   height in both directions and the contact form moved that much closer to the
+   top.
+3. **The header overflowed its viewport below 768px.** Not in the original
    brief and not visible in the PDFs. The bar measured 445px of content inside
    a 375px viewport, hidden by `body { overflow-x: hidden }`. The wordmark now
    steps down on a phone, the menu button drops its word below 640px, and the
    gaps tighten. Verified at 320, 375, 768 and 1280.
-2. **The monocle ring gained a `sizeSm` prop.** The 420px ring sized for a
+4. **The monocle ring gained a `sizeSm` prop.** The 420px ring sized for a
    1400px hero swept straight through the new value-proposition copy on a
    375px screen. It renders at 200px below the md breakpoint instead.
-3. **`/contact` was folded onto the shared form too.** The plan had it keeping
+5. **`/contact` was folded onto the shared form too.** The plan had it keeping
    its own. Four pages now render one `<BookingEnquiry />` rather than three
    variations plus a holdout.
-4. **The eyebrow-to-UI-role sweep went sitewide**, not just to the three pages
+6. **The eyebrow-to-UI-role sweep went sitewide**, not just to the three pages
    in scope. 34 files carried `.t-eyebrow` on a button or a link.
-5. **Tap targets were fixed beyond the three pages.** `/shows`, `/watch`,
+7. **Tap targets were fixed beyond the three pages.** `/shows`, `/watch`,
    `/shop` and the open mic pages had standalone links at 20px and controls at
    36-40px. All of our own markup now clears 44px.
-6. **`ServicesOverview` was deleted rather than edited.** The CMS "what we do"
-   section block now renders the same `ServicesRow` the home page uses, so
-   there is one services list in the codebase instead of two that drifted.
-7. **`hero.italicLine` ("lights on. jokes loaded.") retired.** It held the slot
+8. **`ServicesOverview` was deleted rather than edited.** The CMS "what we do"
+   section block renders the same `ServicesRow` the home page uses, so there is
+   one services list in the codebase instead of two that drifted.
+9. **`hero.italicLine` ("lights on. jokes loaded.") retired.** It held the slot
    the value proposition now occupies. The previously unrendered `site.tagline`
-   took its place in the footer. Flagged for a decision on where, if anywhere,
-   the original line should live.
+   took its place in the footer. Still awaiting a decision on where, if
+   anywhere, the original line should live.
+10. **The rename broke Lighthouse CI, and the breakage merged.** `.lighthouserc.json`
+    still collected `roster.html`, which the static export no longer emits. The
+    check failed on #162's own head at 19:26:35 with `Status code: 404`, and
+    #162 merged at 19:26:59, twenty-four seconds later, so the failure was
+    never read. #163 points the matrix at `about.html` and adds `sponsor.html`.
+    Without it, Lighthouse would have failed on every subsequent pull request.
 
 ## Verification
 
 `npm run lint`, `npm run typecheck`, `npm test` and `npm run build` all pass.
 
-- Contrast audited programmatically across 11 routes at 375, 768 and 1280.
-  Zero failures.
-- Tap targets audited the same way. Everything in our own markup clears 44px.
-  The only remaining sub-44px controls are Leaflet's own zoom buttons and
-  attribution links on `/open-mics/map`, which are vendor internals.
-- Contact form tested end to end: empty submit, invalid email, too-short
+- **Contrast and tap targets** audited programmatically across 11 routes at
+  375, 768 and 1280. Zero failures on both, with nothing left to except: the
+  Leaflet zoom and attribution controls that were the one outstanding item went
+  with the map.
+- **Lighthouse**, run locally against a fresh export (`lhci autorun` then
+  `lhci assert`): 8 URLs, 24 runs, exit 0. Median category scores are 1.00
+  everywhere except best-practices on `/book` and `/watch`, both 0.96. `/about`
+  holds 1.00 performance with all 32 comic portraits on it.
+- **Contact form** tested end to end: empty submit, invalid email, too-short
   message, honeypot, time trap, a real submission with the payload verified,
   and a 500 from the endpoint.
-- Redirects confirmed against the built export: `/roster` and `/sponsorships`
-  both 308 correctly.
+- **Redirects** confirmed against the built export: `/roster`, `/sponsorships`
+  and `/open-mics/map` all 308 correctly.
 
 ## Still open
 
-1. **The Cal.com embed on `/book` is untested.** The sandbox blocks cal.com, so
-   only its loading placeholder was ever rendered. Worth one click-through
-   after deploy.
-2. **`images.unoptimized: true` means no `srcset`.** `/about` ships roughly
-   2.3MB of portraits because every browser downloads the full 1000px source.
+1. **The Cal.com embed on `/book` has never been seen rendering.** Every test
+   environment used here blocks cal.com, so only its loading placeholder ever
+   appeared. It needs one click-through against the deployed site.
+2. **`images.unoptimized: true` means `next/image` emits no `srcset`.** Every
+   browser downloads the full 1000px source. This now only affects `/about`,
+   which carries all 32 comic portraits, and Lighthouse still scores it 1.00 on
+   the desktop preset, so it is a latent cost rather than a current problem.
    `sizes` is set correctly throughout so it works the day optimization is
-   enabled, but the setting was left alone in this pass.
+   enabled.
 3. **Where "lights on. jokes loaded." should live**, if anywhere.
