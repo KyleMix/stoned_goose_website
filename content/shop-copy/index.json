@@ -50,11 +50,23 @@
     },
     {
       "slug": "sock-o",
-      "category": "Bottoms"
+      "category": "Accessories"
     },
     {
       "slug": "shoe-underwear",
-      "category": "Bottoms"
+      "category": "Accessories"
+    },
+    {
+      "slug": "booootle",
+      "category": "Drinkware"
+    },
+    {
+      "slug": "coffe",
+      "category": "Drinkware"
+    },
+    {
+      "slug": "liquid-holder",
+      "category": "Drinkware"
     }
   ]
 }

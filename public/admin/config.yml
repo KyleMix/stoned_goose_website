@@ -474,7 +474,7 @@ collections:
             hint: 'Tag products into shop sections. Slug is the part after /shop/ in the product URL. Untagged products fall back to a keyword guess.'
             fields:
               - { name: slug, label: Product slug, widget: string, hint: 'e.g. joke-book' }
-              - { name: category, label: Category, widget: select, options: [Hats, Tops, Bottoms, Accessories] }
+              - { name: category, label: Category, widget: select, options: [Hats, Tops, Bottoms, Drinkware, 'Stickers and Pins', Accessories] }
 
       # ---------- Contact page ----------
       - name: contact_copy
