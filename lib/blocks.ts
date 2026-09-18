@@ -59,8 +59,6 @@ export type PressStripBlock = { type: "pressStrip" };
 export type RosterTeaserBlock = { type: "rosterTeaser"; limit: number };
 export type ServicesOverviewBlock = { type: "servicesOverview" };
 export type ShopStripBlock = { type: "shopStrip"; limit: number };
-export type WorkingOnBlock = { type: "workingOn" };
-export type PeopleStripBlock = { type: "peopleStrip" };
 
 export type Block =
   | HeroBlock
@@ -74,9 +72,7 @@ export type Block =
   | PressStripBlock
   | RosterTeaserBlock
   | ServicesOverviewBlock
-  | ShopStripBlock
-  | WorkingOnBlock
-  | PeopleStripBlock;
+  | ShopStripBlock;
 
 // Raw shape accepted: { type, ...fields } as written by Sveltia's
 // variable-type lists.
@@ -170,12 +166,6 @@ export function normaliseBlocks(raw: unknown): Block[] {
         break;
       case "shopStrip":
         out.push({ type: "shopStrip", limit: n(v.limit, 3) });
-        break;
-      case "workingOn":
-        out.push({ type: "workingOn" });
-        break;
-      case "peopleStrip":
-        out.push({ type: "peopleStrip" });
         break;
       default:
         // Unknown block type. Likely a schema change ahead of a deploy.

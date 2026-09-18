@@ -25,8 +25,6 @@ type HomeShape = {
   };
   about: SectionCopy & { ctaLabel: string; ctaHref: string };
   services: SectionCopy;
-  workingOn: SectionCopy;
-  people: SectionCopy;
   contact: SectionCopy;
   marqueeWords: string[];
   bumpers: Record<"clarification" | "aside" | "outro", BumperVariant[]>;
@@ -49,8 +47,6 @@ const raw = homeData as unknown as {
     ctaHref?: string;
   } | null;
   services?: { eyebrow?: string; heading?: string } | null;
-  workingOn?: { eyebrow?: string; heading?: string } | null;
-  people?: { eyebrow?: string; heading?: string } | null;
   contact?: { eyebrow?: string; heading?: string; body?: string } | null;
   marqueeWords?: string[] | null;
   bumpers?: Partial<
@@ -88,16 +84,6 @@ export const about: HomeShape["about"] = {
 export const servicesCopy: HomeShape["services"] = {
   eyebrow: raw.services?.eyebrow ?? "What we do",
   heading: raw.services?.heading ?? "",
-};
-
-export const workingOnCopy: HomeShape["workingOn"] = {
-  eyebrow: raw.workingOn?.eyebrow ?? "Right now",
-  heading: raw.workingOn?.heading ?? "",
-};
-
-export const peopleCopy: HomeShape["people"] = {
-  eyebrow: raw.people?.eyebrow ?? "Who we work with",
-  heading: raw.people?.heading ?? "",
 };
 
 export const contactCopy: HomeShape["contact"] = {

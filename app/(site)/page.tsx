@@ -16,23 +16,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// The page has one job: get a visitor to contact us. Everything here either
-// makes that decision easier (who we are, what we do, what we sell) or is the
-// ask itself.
+// The page has one job: get a visitor to contact us. Who we are, what we do,
+// what we sell, and the ask. Nothing else.
 //
-// What came off: the header ticker, the word marquee, three rotating bumper
-// interludes, the full services list, the social feed strip, the press strip,
-// the "what we are working on" band and the "who we work with" portrait wall.
-// The last two each restated a whole page: the next show, the latest video and
-// the mic all live on /shows, /watch and /open-mics, and the crew and roster
-// are the entire content of /about.
+// The "what we are working on" row (next show, latest video, our open mic) and
+// the "who we work with" strip (crew and comics) are gone. Every item in them
+// already has a page of its own, and a home page that previews four other
+// pages is four more chances to leave before reaching the form. /shows,
+// /watch, /open-mics and /about each own their content now, reached from the
+// nav, from the hero's secondary link, and from the About block's button.
 //
-// The merch strip came back in their place. It is the one band on the page
-// that sells something a visitor can buy on the spot, and it keeps the shop
-// from living in the footer alone.
-//
-// The removed components are all still in the tree and still available as CMS
-// section blocks, so any of them can be put back from /admin without a deploy.
+// The merch strip is the one preview that stays, because it is not a preview:
+// it is the only band on the page selling something a visitor can buy on the
+// spot, and without it the shop lives in the footer alone.
 export default function HomePage() {
   return (
     <>

@@ -20,7 +20,7 @@ export function ServicesRow() {
       className="section-y border-b border-smoke bg-surface-tuxedo"
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <div className="grid gap-10 md:grid-cols-12 md:items-end">
+        <div className="grid gap-10 md:grid-cols-12 md:items-start">
           <div className="md:col-span-4">
             <p className="t-eyebrow">{servicesCopy.eyebrow}</p>
             <h2 id="home-services" className="t-headline mt-4 display-1">
