@@ -5,40 +5,60 @@
   "storeUrl": "https://stoned-goose-productions-zgm-shop.fourthwall.com",
   "categoryAssignments": [
     {
-      "slug": "short-fancy-button-goose",
-      "category": "Tops"
+      "slug": "80s-goose",
+      "category": "Shirts"
     },
     {
       "slug": "f-kin-hippies",
-      "category": "Tops"
-    },
-    {
-      "slug": "80s-goose",
-      "category": "Tops"
+      "category": "Shirts"
     },
     {
       "slug": "the-goose-is-loose",
-      "category": "Tops"
-    },
-    {
-      "slug": "sandlot-metal-goose",
-      "category": "Tops"
-    },
-    {
-      "slug": "one-with-the-goose",
-      "category": "Tops"
-    },
-    {
-      "slug": "dead-stoned",
-      "category": "Tops"
+      "category": "Shirts"
     },
     {
       "slug": "metal-goose",
-      "category": "Tops"
+      "category": "Shirts"
+    },
+    {
+      "slug": "sandlot-metal-goose",
+      "category": "Shirts"
+    },
+    {
+      "slug": "one-with-the-goose",
+      "category": "Shirts"
+    },
+    {
+      "slug": "dead-stoned",
+      "category": "Shirts"
     },
     {
       "slug": "og-bigboychest",
-      "category": "Tops"
+      "category": "Shirts"
+    },
+    {
+      "slug": "short-fancy-button-goose",
+      "category": "Shirts"
+    },
+    {
+      "slug": "logo-hoodie",
+      "category": "Hoodies"
+    },
+    {
+      "slug": "logo-hoodless-hoodie",
+      "category": "Hoodies"
+    },
+    {
+      "slug": "sick-hat",
+      "category": "Hats"
+    },
+    {
+      "slug": "brendans-fart-hat",
+      "category": "Hats"
+    },
+    {
+      "slug": "puffy-hat",
+      "category": "Hats"
     },
     {
       "slug": "tuque-or-something",
@@ -46,15 +66,51 @@
     },
     {
       "slug": "chonchos-sweats",
-      "category": "Bottoms"
-    },
-    {
-      "slug": "sock-o",
-      "category": "Bottoms"
+      "category": "Pants"
     },
     {
       "slug": "shoe-underwear",
-      "category": "Bottoms"
+      "category": "Socks"
+    },
+    {
+      "slug": "sock-o",
+      "category": "Socks"
+    },
+    {
+      "slug": "booootle",
+      "category": "Drinkware"
+    },
+    {
+      "slug": "coffe",
+      "category": "Drinkware"
+    },
+    {
+      "slug": "liquid-holder",
+      "category": "Drinkware"
+    },
+    {
+      "slug": "buttons",
+      "category": "Stickers and Pins"
+    },
+    {
+      "slug": "live-local-comedy-sticker",
+      "category": "Stickers and Pins"
+    },
+    {
+      "slug": "brendan-sticky",
+      "category": "Stickers and Pins"
+    },
+    {
+      "slug": "brendan-sticky-2",
+      "category": "Stickers and Pins"
+    },
+    {
+      "slug": "portrait-tote",
+      "category": "Accessories"
+    },
+    {
+      "slug": "joke-book",
+      "category": "Accessories"
     }
   ]
 }

@@ -299,7 +299,19 @@ const singletons: Record<string, z.ZodTypeAny> = {
           z
             .object({
               slug: str,
-              category: z.enum(["Hats", "Tops", "Bottoms", "Accessories"]),
+              // Mirrors SHOP_CATEGORIES in content/shop.ts and the select
+              // options in public/admin/config.yml. All three move together.
+              category: z.enum([
+                "Shirts",
+                "Hoodies",
+                "Hats",
+                "Pants",
+                "Shorts",
+                "Socks",
+                "Drinkware",
+                "Stickers and Pins",
+                "Accessories",
+              ]),
             })
             .strict(),
         ),

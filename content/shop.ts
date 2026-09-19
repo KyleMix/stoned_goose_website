@@ -52,8 +52,24 @@ type ShopCopy = {
 
 export const shopCopy = shopCopyData as ShopCopy;
 
-// Fixed display order for the stacked /shop sections.
-export const SHOP_CATEGORIES = ["Hats", "Tops", "Bottoms", "Accessories"] as const;
+// Fixed display order for the /shop filter row. Apparel head to toe, then the
+// non-apparel families, then the catch-all. Accessories stays last: anything
+// that matches nothing lands there, so it must not sit between two real
+// categories.
+//
+// Plain retail words only, and the garment a shopper would name. "Shirts" and
+// "Hoodies" beat one "Tops" chip holding both, because nobody shops for a top.
+export const SHOP_CATEGORIES = [
+  "Shirts",
+  "Hoodies",
+  "Hats",
+  "Pants",
+  "Shorts",
+  "Socks",
+  "Drinkware",
+  "Stickers and Pins",
+  "Accessories",
+] as const;
 export type ShopCategory = (typeof SHOP_CATEGORIES)[number];
 
 // Manual slug -> category map, edited in the CMS (Shop copy > Category
@@ -66,16 +82,55 @@ for (const a of shopCopy.categoryAssignments ?? []) {
   }
 }
 
-function autoCategory(name: string): ShopCategory | null {
-  const n = name.toLowerCase();
-  if (/\b(hat|cap|beanie|snapback|trucker|bucket|visor)\b/.test(n)) return "Hats";
-  if (
-    /(hoodie|sweatshirt|crew\s?neck|t-?shirt|\btee\b|\btank\b|jacket|long\s?sleeve|jersey|pullover|\btop\b)/.test(n)
-  )
-    return "Tops";
-  if (/(jogger|sweatpant|sweatshort|\bshorts?\b|\bpants?\b|leggings|\bbottoms?\b)/.test(n))
-    return "Bottoms";
+// Keyword rules for products nobody has tagged yet, in precedence order.
+// Precedence carries the ambiguous words: a sweatshirt is a Hoodie rather than
+// a Shirt, and a bottle whose copy mentions a screw cap is Drinkware rather
+// than a hat. Accessories is the fallback, so no rule describes it.
+//
+// Most of this catalog is named in goose puns ("Booootle", "Shoe Underwear"),
+// which no keyword can read. Those are tagged in the CMS. These rules are the
+// safety net for the next product nobody tags.
+const AUTO_RULES: ReadonlyArray<{ category: ShopCategory; test: RegExp }> = [
+  {
+    category: "Drinkware",
+    test: /(bottle|\bmugs?\b|tumbler|can\s?(cooler|holder)|koozie|coozie|\bcups?\b|\bglass(es)?\b|flask|thermos|drinkware)/,
+  },
+  { category: "Socks", test: /\bsocks?\b/ },
+  {
+    category: "Hoodies",
+    test: /(hoodie|hooded|sweatshirt|crew\s?neck|pullover|zip\s?up|fleece|\bjacket\b)/,
+  },
+  {
+    category: "Shirts",
+    test: /(t-?shirts?|\btees?\b|\btanks?\b|\bshirts?\b|jersey|long\s?sleeve|flannel|button\s?(up|down)|\bpolo\b)/,
+  },
+  { category: "Shorts", test: /(sweatshorts|boardshorts|\bshorts\b|\btrunks\b)/ },
+  {
+    category: "Pants",
+    test: /(jogger|sweatpant|\bpants?\b|leggings|trousers)/,
+  },
+  {
+    category: "Hats",
+    test: /\b(hats?|caps?|beanies?|beanie|snapback|trucker|bucket|visor|tuque|toque)\b/,
+  },
+  {
+    category: "Stickers and Pins",
+    test: /(sticker|sticky|decal|\bpins?\b|\bbuttons?\b|\bpatch(es)?\b)/,
+  },
+];
+
+function matchRules(text: string): ShopCategory | null {
+  const t = text.toLowerCase();
+  for (const rule of AUTO_RULES) if (rule.test.test(t)) return rule.category;
   return null;
+}
+
+// Guess from the product name first, and only fall back to the description
+// when the name says nothing. A name is deliberate; a description is boilerplate
+// the print vendor wrote, so "Sick Hat" must not be re-read as a Shirt because
+// its copy mentions the tee it matches.
+function autoCategory(name: string, description?: string): ShopCategory | null {
+  return matchRules(name) ?? (description ? matchRules(description) : null);
 }
 
 // The Fourthwall slug in a product URL is not always the slug the entry is
@@ -91,7 +146,7 @@ export function categorize(product: Product): ShopCategory {
   return (
     assignmentMap.get(product.slug.toLowerCase()) ??
     assignmentMap.get(urlSlug(product.url)) ??
-    autoCategory(product.name) ??
+    autoCategory(product.name, product.description) ??
     "Accessories"
   );
 }

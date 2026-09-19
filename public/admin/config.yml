@@ -471,10 +471,10 @@ collections:
             widget: list
             required: false
             summary: '{{fields.slug}} -> {{fields.category}}'
-            hint: 'Tag products into shop sections. Slug is the part after /shop/ in the product URL. Untagged products fall back to a keyword guess.'
+            hint: 'Tag products into shop sections. Slug is the part after /products/ in the Fourthwall product URL, which keeps working after a sync. Untagged products fall back to a keyword guess of the name.'
             fields:
               - { name: slug, label: Product slug, widget: string, hint: 'e.g. joke-book' }
-              - { name: category, label: Category, widget: select, options: [Hats, Tops, Bottoms, Accessories] }
+              - { name: category, label: Category, widget: select, options: [Shirts, Hoodies, Hats, Pants, Shorts, Socks, Drinkware, 'Stickers and Pins', Accessories] }
 
       # ---------- Contact page ----------
       - name: contact_copy
