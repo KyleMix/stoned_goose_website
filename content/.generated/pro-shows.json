@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-18T20:15:27.618Z",
+  "fetchedAt": "2026-09-19T10:04:43.938Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
@@ -8,38 +8,6 @@
       "start": "2026-09-18T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comedy-seattle-tickets-1985467938050",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24025_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-09-19T02:00:00Z-ryan-long",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Ryan Long",
-      "start": "2026-09-19T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/360351",
-      "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-19T02:00:00Z-leslie-liao",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Leslie Liao",
-      "start": "2026-09-19T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/370036",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-19T04:30:00Z-leslie-liao",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Leslie Liao",
-      "start": "2026-09-19T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/370037",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90897/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-09-19T04:45:00Z-ryan-long",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Ryan Long",
-      "start": "2026-09-19T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/360353",
-      "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-09-19T22:00:00Z-katie-boyle",
@@ -258,6 +226,22 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/75337/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-10-01T01:30:00Z-sammy-obeid",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Sammy Obeid",
+      "start": "2026-10-01T01:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/365924",
+      "image": "https://files.seatengine.com/talent/headshots/photos/54068/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-01T02:00:00Z-my-straight-friends",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "My Straight Friends",
+      "start": "2026-10-01T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/384308",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95160/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-10-01T02:30:00Z-chris-o-connor",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Chris O'Connor",
@@ -266,12 +250,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/91296/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-10-01T03:45:00Z-sammy-obeid",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Sammy Obeid",
+      "start": "2026-10-01T03:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/387017",
+      "image": "https://files.seatengine.com/talent/headshots/photos/54068/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-01 19:00:00-comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seat",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy show: Comedian Julie Kim Oct. 1st at Laughs Comedy-Seattle",
       "start": "2026-10-01T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seattle-tickets-1999050611191",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-julie-kim-oct26-v2g.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-02T02:00:00Z-radel-ortiz",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Radel Ortiz",
+      "start": "2026-10-02T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/384450",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94739/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-02T02:00:00Z-herman-wrice",
@@ -432,6 +432,14 @@
       "start": "2026-10-14T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/379284",
       "image": "https://files.seatengine.com/talent/headshots/photos/93023/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-15T02:30:00Z-zach-noe-towers",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Zach Noe Towers",
+      "start": "2026-10-15T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/366519",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89930/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
