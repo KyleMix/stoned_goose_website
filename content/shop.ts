@@ -66,6 +66,7 @@ export const SHOP_CATEGORIES = [
   "Pants",
   "Shorts",
   "Socks",
+  "Bags",
   "Drinkware",
   "Stickers and Pins",
   "Accessories",
@@ -96,6 +97,10 @@ const AUTO_RULES: ReadonlyArray<{ category: ShopCategory; test: RegExp }> = [
     test: /(bottle|\bmugs?\b|tumbler|can\s?(cooler|holder)|koozie|coozie|\bcups?\b|\bglass(es)?\b|flask|thermos|drinkware)/,
   },
   { category: "Socks", test: /\bsocks?\b/ },
+  {
+    category: "Bags",
+    test: /(\btotes?\b|\bbags?\b|backpack|\bduffel\b|fanny\s?pack|\bpouch\b)/,
+  },
   {
     category: "Hoodies",
     test: /(hoodie|hooded|sweatshirt|crew\s?neck|pullover|zip\s?up|fleece|\bjacket\b)/,

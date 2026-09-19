@@ -308,6 +308,7 @@ const singletons: Record<string, z.ZodTypeAny> = {
                 "Pants",
                 "Shorts",
                 "Socks",
+                "Bags",
                 "Drinkware",
                 "Stickers and Pins",
                 "Accessories",
