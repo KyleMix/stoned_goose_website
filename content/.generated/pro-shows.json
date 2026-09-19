@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-19T10:04:43.938Z",
+  "fetchedAt": "2026-09-19T19:52:24.146Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-09-18 19:15:00-comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comed",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Luke Severeid Sept. 18th and 19th at Laughs Comedy- Seattle",
-      "start": "2026-09-18T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-luke-severeid-sept-18th-and-19th-at-laughs-comedy-seattle-tickets-1985467938050",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24025_image.png"
-    },
     {
       "id": "tacoma-comedy-club-2026-09-19T22:00:00Z-katie-boyle",
       "clubSlug": "tacoma-comedy-club",
@@ -544,6 +536,14 @@
       "start": "2026-10-31T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese-tickets-1996312495413",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24564_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-04 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
+      "clubSlug": "laughs-comedy-club",
+      "title": "48th Annual Seattle International Comedy Competition @LaughsComedy- Seattle",
+      "start": "2026-11-04T19:30:00",
+      "url": "https://www.eventbrite.com/e/48th-annual-seattle-international-comedy-competition-laughscomedy-seattle-tickets-2001672475257",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-SICC-nov26.png"
     },
     {
       "id": "laughs-comedy-club-2026-11-05 20:00:00-comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-",
