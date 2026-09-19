@@ -106,11 +106,31 @@
     },
     {
       "slug": "portrait-tote",
-      "category": "Accessories"
+      "category": "Bags"
     },
     {
       "slug": "joke-book",
       "category": "Accessories"
+    },
+    {
+      "slug": "comedy-time",
+      "category": "Shirts"
+    },
+    {
+      "slug": "puff-ball-circle-logo",
+      "category": "Hats"
+    },
+    {
+      "slug": "hot-bevvy-goose",
+      "category": "Drinkware"
+    },
+    {
+      "slug": "back-bag",
+      "category": "Bags"
+    },
+    {
+      "slug": "black-back-bag",
+      "category": "Bags"
     }
   ]
 }

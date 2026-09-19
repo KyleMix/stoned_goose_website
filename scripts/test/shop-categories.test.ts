@@ -94,6 +94,8 @@ const cases: Array<[string, ShopCategory]> = [
   ["Goose Joggers", "Pants"],
   ["Goose Sweatshorts", "Shorts"],
   ["Goose Crew Socks", "Socks"],
+  ["Portrait Tote", "Bags"],
+  ["Goose Backpack", "Bags"],
   ["Goose Mug", "Drinkware"],
   ["Goose Water Bottle", "Drinkware"],
   ["Goose Can Cooler", "Drinkware"],
@@ -102,6 +104,7 @@ const cases: Array<[string, ShopCategory]> = [
   ["Buttons", "Stickers and Pins"],
   // Nothing in the name describes a family, so the catch-all.
   ["Liquid Holder", "Accessories"],
+  ["Joke Book", "Accessories"],
 ];
 
 for (const [name, expected] of cases) {
