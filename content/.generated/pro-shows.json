@@ -1,30 +1,6 @@
 {
-  "fetchedAt": "2026-09-19T19:52:24.146Z",
+  "fetchedAt": "2026-09-20T02:44:17.329Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-09-19T22:00:00Z-katie-boyle",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Katie Boyle",
-      "start": "2026-09-19T22:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/369414",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90726/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-19T23:00:00Z-erin-cholakian",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Erin Cholakian",
-      "start": "2026-09-19T23:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377355",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94315/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-09-20T01:00:00Z-ryan-long",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Ryan Long",
-      "start": "2026-09-20T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/360352",
-      "image": "https://files.seatengine.com/talent/headshots/photos/52846/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-09-20T02:00:00Z-leslie-liao",
       "clubSlug": "emerald-city-comedy-club",
@@ -282,6 +258,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24355_image.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-10-03T02:00:00Z-lavell-crawford",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Lavell Crawford",
+      "start": "2026-10-03T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366329",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-10-03T02:00:00Z-justin-silva",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Justin Silva",
@@ -298,12 +282,36 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-10-03T04:45:00Z-lavell-crawford",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Lavell Crawford",
+      "start": "2026-10-03T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366332",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-04T01:00:00Z-lavell-crawford",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Lavell Crawford",
+      "start": "2026-10-04T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366330",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-10-04T02:00:00Z-justin-silva",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Justin Silva",
       "start": "2026-10-04T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/377005",
       "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-04T03:45:00Z-lavell-crawford",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Lavell Crawford",
+      "start": "2026-10-04T03:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366333",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-04T04:30:00Z-justin-silva",
@@ -320,6 +328,14 @@
       "start": "2026-10-04T22:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/383977",
       "image": "https://files.seatengine.com/talent/headshots/photos/94689/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-05T01:00:00Z-lavell-crawford",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Lavell Crawford",
+      "start": "2026-10-05T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/366331",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-06T02:30:00Z-adam-ray",
@@ -442,12 +458,52 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-gwen-rose-oct26.png"
     },
     {
+      "id": "emerald-city-comedy-club-2026-10-16T02:30:00Z-jay-jurden",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jay Jurden",
+      "start": "2026-10-16T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/388369",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-16 19:00:00-comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Erica Rhodes Oct. 16th and 17th at Laughs Comedy- Seattle",
       "start": "2026-10-16T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-seattle-tickets-1985175475286",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-Erica-Rhodes-sep26.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-17T02:00:00Z-jay-jurden",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jay Jurden",
+      "start": "2026-10-17T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/388370",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-17T04:30:00Z-jay-jurden",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jay Jurden",
+      "start": "2026-10-17T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/388371",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-18T02:00:00Z-jay-jurden",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jay Jurden",
+      "start": "2026-10-18T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/388372",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-18T04:30:00Z-jay-jurden",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jay Jurden",
+      "start": "2026-10-18T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/388373",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-18 19:00:00-comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-com",
