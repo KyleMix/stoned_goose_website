@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-09-21T02:41:23.269Z",
+  "fetchedAt": "2026-09-21T11:38:26.712Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-09-21T02:00:00Z-steve-hofstetter",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Steve Hofstetter",
-      "start": "2026-09-21T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/319288",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/10045/full/data?1460521067"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-21T02:00:00Z-wes-barker",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Wes Barker",
-      "start": "2026-09-21T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/367791",
-      "image": "https://files.seatengine.com/talent/headshots/photos/85953/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-09-22 17:30:00-standup-comedy-class-with-andrew-frank",
       "clubSlug": "laughs-comedy-club",
@@ -458,6 +442,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-10-17T23:00:00Z-philip-lindsay",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Philip Lindsay",
+      "start": "2026-10-17T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376454",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92402/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-10-18T02:00:00Z-jay-jurden",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Jay Jurden",
@@ -599,7 +591,7 @@
       "title": "Dungeons and Drag Queens Brunch Show November 15th -Laughs Comedy- Seattle",
       "start": "2026-11-15T13:00:00",
       "url": "https://www.eventbrite.com/e/dungeons-and-drag-queens-brunch-show-november-15th-laughs-comedy-seattle-tickets-1999051552005",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24730_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/laughswide_1080x950_18plus.png"
     },
     {
       "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
