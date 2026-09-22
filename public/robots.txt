@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+# The open mic sign up API. Not a page, and /api/open-mic/export holds comics'
+# contact details behind a token. Nothing here belongs in an index.
+Disallow: /api/
 
 Sitemap: https://www.stonedgooseproductions.com/sitemap.xml

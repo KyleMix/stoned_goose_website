@@ -3,7 +3,7 @@
   "titleLead": "Log Cabin",
   "titleEmphasis": "Comedy",
   "titleTrail": "Open Mic",
-  "subhead": "Our own room, every Monday at the Log Cabin Bar & Grill in Olympia. Sign ups at 6, show at 7. Show up, go up.",
+  "subhead": "Our own room, every Monday at the Log Cabin Bar & Grill in Olympia. Twelve spots, eight minutes each, claimed in advance. No clipboard, no bucket, no standing around hoping.",
   "recurrence": "Every Monday",
   "venue": {
     "name": "Log Cabin Bar & Grill",
@@ -13,24 +13,36 @@
     "postalCode": "98503",
     "mapUrl": "https://maps.google.com/?q=Log+Cabin+Bar+%26+Grill,+7035+Pacific+Ave+SE,+Olympia,+WA+98503"
   },
-  "signupTime": "6:00 PM",
+  "signupTime": "",
   "showTime": "7:00 PM",
   "endTime": "9:00 PM",
   "price": "",
-  "motto": "Show up, go up.",
+  "motto": "Sign up, show up, go up.",
   "host": "Stoned Goose Productions",
   "poster": {
-    "src": "/images/open-mics/log-cabin-open-mic.webp",
-    "alt": "Log Cabin Comedy Open Mic poster. The Stoned Goose lockup above the title, every Monday, sign ups 6 PM, show 7 PM, show up go up, at the Log Cabin Bar & Grill, 7035 Pacific Ave SE, Olympia, WA 98503."
+    "src": "",
+    "alt": "Log Cabin Comedy Open Mic flyer. The Stoned Goose lockup above the title, every Monday, 12 spots at 8 minutes each, sign up online in advance, show 7 PM to 9 PM, at the Log Cabin Bar & Grill, 7035 Pacific Ave SE, Olympia, WA 98503."
+  },
+  "signup": {
+    "eyebrow": "Pre sign up",
+    "heading": "Take a spot.",
+    "body": "Four Mondays are open at a time. Twelve spots a night, eight minutes each. Pick your Monday, leave your name, and the spot is yours. The list closes when it is full, and a new Monday posts every Tuesday morning.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "instagramLabel": "Instagram",
+    "submitLabel": "Take a spot",
+    "privacyNote": "You can see how many spots are left. You cannot see who has them, and neither can anyone else. We keep the list for the night you signed up for and delete it after.",
+    "fullText": "Full",
+    "offlineText": "That did not go through. Try again, or email us and we will put you down by hand:"
   },
   "howItWorks": [
     {
-      "heading": "Sign ups at six.",
-      "body": "Get to the Log Cabin at 6:00 PM and put your name down. That is the whole process. Show up, go up."
+      "heading": "Sign up here.",
+      "body": "Twelve spots per Monday, four Mondays on the list at once. Take one and it is yours. Turn up without one and you are watching, not performing."
     },
     {
-      "heading": "Show at seven.",
-      "body": "Two hours, 7:00 PM to 9:00 PM, every Monday. Bring the new material, the old material, or the bit that died last week."
+      "heading": "Eight minutes.",
+      "body": "Eight, not nine, not a quick one more. Show 7:00 PM to 9:00 PM. Running order goes up the night of, so get there early enough to find out where you are."
     },
     {
       "heading": "Then stay.",

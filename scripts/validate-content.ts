@@ -280,6 +280,26 @@ const singletons: Record<string, z.ZodTypeAny> = {
       motto: opt(str),
       host: opt(str),
       poster: opt(z.object({ src: opt(str), alt: opt(str) }).strict()),
+      // Pre sign up copy only. The format itself (12 spots, 8 minutes, 4
+      // Mondays, the start date) is not editable here: it lives in
+      // lib/open-mic-schedule.ts, which worker/index.ts imports so the cap the
+      // page advertises is the cap the database enforces.
+      signup: opt(
+        z
+          .object({
+            eyebrow: opt(str),
+            heading: opt(str),
+            body: opt(str),
+            nameLabel: opt(str),
+            emailLabel: opt(str),
+            instagramLabel: opt(str),
+            submitLabel: opt(str),
+            privacyNote: opt(str),
+            fullText: opt(str),
+            offlineText: opt(str),
+          })
+          .strict(),
+      ),
       howItWorks: opt(
         z.array(z.object({ heading: str, body: str }).strict()),
       ),

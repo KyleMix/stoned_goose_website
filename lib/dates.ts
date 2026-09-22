@@ -64,3 +64,58 @@ export function formatShowMonthDay(value: string | null | undefined) {
 export function formatMonthDay(value: string | null | undefined) {
   return format(value, { month: "long", day: "numeric" });
 }
+
+/**
+ * "2026-09-28": the civil date `value` falls on in Olympia, not in UTC.
+ *
+ * Everything that rotates the open mic sign up window keys off this. The
+ * window turns over at local midnight on Tuesday, and Olympia is seven or
+ * eight hours behind UTC depending on the season, so `toISOString().slice(0, 10)`
+ * rolls the window over in the late afternoon and does it an hour differently
+ * either side of a DST change. en-CA is used because it is the locale whose
+ * numeric format is already YYYY-MM-DD.
+ *
+ * This is the one place outside the formatters above that is allowed to reach
+ * for Intl, and it pins the zone like they do.
+ */
+export function siteCivilDate(value: Date): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: SITE_TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(value);
+}
+
+/**
+ * Civil date strings ("2026-09-28") from lib/open-mic-schedule.ts, formatted.
+ *
+ * These need their own entry point rather than going through the formatters
+ * above, because `new Date("2026-09-28")` is parsed as UTC midnight and
+ * Olympia is seven hours behind, so the plain formatters render that Monday as
+ * "Sun, Sep 27". Anchoring at UTC noon puts the instant safely inside the
+ * intended day in every US zone.
+ */
+function fromCivil(date: string): string {
+  return `${date}T12:00:00Z`;
+}
+
+/** "Mon, Sep 28" */
+export function formatCivilDateShort(date: string | null | undefined) {
+  if (!date) return null;
+  return format(fromCivil(date), {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+/** "Monday, September 28" */
+export function formatCivilDateLong(date: string | null | undefined) {
+  if (!date) return null;
+  return format(fromCivil(date), {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
+}

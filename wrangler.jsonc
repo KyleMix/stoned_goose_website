@@ -2,14 +2,56 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "stonedgoosewebsite",
   "compatibility_date": "2026-01-01",
-  // Static-assets-only Worker. This site is a Next.js static export (output:
-  // 'export') that writes to /out. There is no server runtime, so we deploy the
-  // directory as Workers Static Assets. Without this file, `wrangler deploy`
-  // auto-detects Next.js and tries to wrap it with OpenNext, which fails because
-  // there is no server build. `_redirects` and `_headers` inside /out are
-  // honored by Workers Static Assets, same as on Pages.
+
+  // Static assets, plus one hand written Worker for the open mic sign up list.
+  //
+  // This site is still a Next.js static export (output: 'export') that writes
+  // to /out, and there is still no server build and no Next adapter. Without
+  // `main` below, `wrangler deploy` auto-detects "Next.js" and tries to wrap
+  // the repo with OpenNext, which fails because there is no server build;
+  // pointing `main` at our own Worker keeps that detection off and is not the
+  // adapter CLAUDE.md rules out.
+  //
+  // `run_worker_first` is the important line. Only /api/* reaches the Worker.
+  // Every page, image and asset is served straight from /out by Workers Static
+  // Assets exactly as before, so the Worker cannot slow down or break the site
+  // it sits in front of. `_redirects` and `_headers` inside /out are honored
+  // the same as on Pages.
+  //
+  // Needs Wrangler 4.20 or newer: `run_worker_first` only accepts a list of
+  // globs from that version on. Deploy with `npx wrangler deploy`.
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./out",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+
+  // The sign up list. Create it once, then paste the id Wrangler prints:
+  //   npx wrangler d1 create stoned-goose-open-mic
+  //   npx wrangler d1 execute stoned-goose-open-mic --remote --file worker/schema.sql
+  // See docs/OPEN_MIC_SIGNUPS.md for the whole setup, including the export
+  // token. TODO: replace the placeholder database_id below with the real one.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "stoned-goose-open-mic",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ],
+
+  // Nightly purge of any Monday that has dropped off the four week list.
+  //
+  // Crons are UTC and Olympia is UTC-7 in summer and UTC-8 in winter, so both
+  // hours are listed: one of the two is local midnight year round and the
+  // other is 1:00 AM. The purge is idempotent, so running it twice a night
+  // costs nothing and means the rotation does not need a DST-aware schedule.
+  "triggers": {
+    "crons": ["0 7 * * *", "0 8 * * *"]
+  },
+
+  "observability": {
+    "enabled": true
   }
 }

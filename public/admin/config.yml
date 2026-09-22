@@ -431,7 +431,7 @@ collections:
               - { name: region, label: State, widget: string, required: false, hint: 'e.g. WA' }
               - { name: postalCode, label: ZIP, widget: string, required: false }
               - { name: mapUrl, label: Directions link, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'The Get directions button. Clearing this hides the button.' }
-          - { name: signupTime, label: Sign up time, widget: string, required: false, hint: 'Written out, e.g. "6:00 PM".' }
+          - { name: signupTime, label: Door time, widget: string, required: false, hint: 'Sign ups are online and in advance now, so leave this empty unless there is a door time worth printing. If you fill it in, the show info line reads "Sign ups <this> / Show ...".' }
           - { name: showTime, label: Show time, widget: string, required: false, hint: 'Written out, e.g. "7:00 PM".' }
           - { name: endTime, label: End time, widget: string, required: false, hint: 'Written out, e.g. "9:00 PM". Leave empty to show only a start time.' }
           - { name: price, label: Cover, widget: string, required: false, hint: 'Only fill this in if there is one. Empty means the page shows no price line at all, which is what you want for a free mic.' }
@@ -442,8 +442,30 @@ collections:
             widget: object
             required: false
             fields:
-              - { name: src, label: Image, widget: image, required: false, media_folder: /public/images/open-mics, public_folder: '' }
-              - { name: alt, label: Alt text, widget: string, required: false, hint: 'Describe what the poster says, for screen readers and search.' }
+              - { name: src, label: Image, widget: image, required: false, media_folder: /public/images/open-mics, public_folder: '', hint: 'Upload the flyer here and it appears on the page. It is empty on purpose while the new pre sign up flyer is made: the old one still says sign ups at 6 PM, which is no longer true, so the page shows no flyer rather than a wrong one. See docs/OPEN_MIC_SIGNUPS.md for what the new flyer needs to say.' }
+              - { name: alt, label: Alt text, widget: string, required: false, hint: 'Describe what the flyer says, for screen readers and search. Update this at the same time as the image.' }
+          # The words around the sign up list. Not the numbers.
+          #
+          # The format (12 spots, 8 minutes, 4 Mondays on the board, the start
+          # date) is set in lib/open-mic-schedule.ts, because the sign up
+          # Worker imports the same file and enforces it. Raising the slot
+          # count here would only make the page advertise a spot the database
+          # then refuses, so the count is not a field. Ask a developer.
+          - name: signup
+            label: Sign up list copy
+            widget: object
+            required: false
+            fields:
+              - { name: eyebrow, label: Tiny top line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: heading, label: Heading, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: body, label: Intro copy, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: nameLabel, label: Name field label, widget: string, required: false }
+              - { name: emailLabel, label: Email field label, widget: string, required: false }
+              - { name: instagramLabel, label: Instagram field label, widget: string, required: false }
+              - { name: submitLabel, label: Submit button text, widget: string, required: false }
+              - { name: privacyNote, label: Privacy note under the board, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Comics see how many spots are left, never who has them. This is where that is said out loud.' }
+              - { name: fullText, label: Label on a full Monday, widget: string, required: false, hint: 'e.g. "Full".' }
+              - { name: offlineText, label: Message when a sign up fails, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Shown with our email address after it, so end on a colon.' }
           - name: howItWorks
             label: How it works steps
             label_singular: Step
