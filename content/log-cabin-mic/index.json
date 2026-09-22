@@ -15,13 +15,13 @@
   },
   "signupTime": "",
   "showTime": "7:00 PM",
-  "endTime": "9:00 PM",
+  "endTime": "",
   "price": "",
   "motto": "Sign up, show up, go up.",
   "host": "Stoned Goose Productions",
   "poster": {
     "src": "",
-    "alt": "Log Cabin Comedy Open Mic flyer. The Stoned Goose lockup above the title, every Monday, 12 spots at 8 minutes each, sign up online in advance, show 7 PM to 9 PM, at the Log Cabin Bar & Grill, 7035 Pacific Ave SE, Olympia, WA 98503."
+    "alt": "Log Cabin Comedy Open Mic flyer. The Stoned Goose lockup above the title, every Monday, 12 spots at 8 minutes each, sign up online in advance, show starts at 7 PM, at the Log Cabin Bar & Grill, 7035 Pacific Ave SE, Olympia, WA 98503."
   },
   "signup": {
     "eyebrow": "Pre sign up",
@@ -42,7 +42,7 @@
     },
     {
       "heading": "Eight minutes.",
-      "body": "Eight, not nine, not a quick one more. Show 7:00 PM to 9:00 PM. Running order goes up the night of, so get there early enough to find out where you are."
+      "body": "Eight, not nine, not a quick one more. Show starts at 7:00 PM. Running order goes up the night of, so get there early enough to find out where you are."
     },
     {
       "heading": "Then stay.",

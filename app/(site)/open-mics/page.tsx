@@ -52,7 +52,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Log Cabin Comedy Open Mic",
-  description: `Stoned Goose runs a comedy open mic every Monday at the Log Cabin Bar & Grill in Olympia. ${MIC_SLOT_COUNT} spots, ${MIC_SPOT_MINUTES} minutes each, signed up in advance. Show 7:00 PM to 9:00 PM.`,
+  description: `Stoned Goose runs a comedy open mic every Monday at the Log Cabin Bar & Grill in Olympia. ${MIC_SLOT_COUNT} spots, ${MIC_SPOT_MINUTES} minutes each, signed up in advance. Show starts at 7:00 PM.`,
   alternates: {
     canonical: "/open-mics",
   },
@@ -80,9 +80,12 @@ export default function OpenMicsPage() {
     ticketPrice: logCabinMic.price,
   };
 
-  // "Show 7:00 PM to 9:00 PM", dropping whatever is unset. `signupTime` is
-  // empty since the format change and the field now reads as a door-time
-  // fallback: sign ups happen here, in advance, not at an hour on the night.
+  // "Show 7:00 PM", and whatever else is set. Both of the other two fields are
+  // empty since the format change and stay that way unless the room states
+  // them: `signupTime` because sign ups happen here, in advance, rather than
+  // at an hour on the night, and `endTime` because the only time the room
+  // publishes now is the start. Fill either in and its half of the line
+  // appears, in the order ShowInfoBlock fixes.
   const signup = logCabinMic.signupTime ? `Sign ups ${logCabinMic.signupTime}` : "";
   const showWindow = logCabinMic.showTime
     ? `Show ${logCabinMic.showTime}${logCabinMic.endTime ? ` to ${logCabinMic.endTime}` : ""}`

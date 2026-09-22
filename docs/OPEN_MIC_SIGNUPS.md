@@ -177,10 +177,13 @@ The Express document to edit:
 Replacing the old sign up line is the only substantive change. Everything else
 on the old flyer is still accurate.
 
-- **Remove:** "Sign ups 6 PM" and anything implying a day-of list.
+- **Remove:** "Sign ups 6 PM" and anything implying a day-of list. Drop the
+  "to 9 PM" end time too.
 - **Add:** `12 SPOTS / 8 MINUTES` and `SIGN UP AT STONEDGOOSEPRODUCTIONS.COM/OPEN-MICS`
-- **Keep:** Log Cabin Comedy Open Mic, Every Monday, Show 7 PM to 9 PM,
-  Log Cabin Bar & Grill, 7035 Pacific Ave SE, Olympia, WA 98503.
+- **Keep:** Log Cabin Comedy Open Mic, Every Monday, Log Cabin Bar & Grill,
+  7035 Pacific Ave SE, Olympia, WA 98503.
+- **One time only:** `SHOW STARTS AT 7 PM`. No sign up time, and no end
+  time: the room publishes the start and nothing else.
 - **Motto:** now "Sign up, show up, go up." (was "Show up, go up.")
 
 Brand rules, same as everywhere:
