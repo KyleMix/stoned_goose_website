@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-21T11:38:26.712Z",
+  "fetchedAt": "2026-09-22T10:43:28.952Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-09-22 17:30:00-standup-comedy-class-with-andrew-frank",
@@ -490,52 +490,12 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-1080x540-alex-falcone-oct26-v3.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-10-24T02:00:00Z-damon-wayans-jr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans Jr.",
-      "start": "2026-10-24T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353926",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-24T04:45:00Z-damon-wayans-jr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans Jr.",
-      "start": "2026-10-24T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353929",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-25T02:00:00Z-damon-wayans-jr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans Jr.",
-      "start": "2026-10-25T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353927",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-25T04:45:00Z-damon-wayans-jr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans Jr.",
-      "start": "2026-10-25T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353930",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
-    },
-    {
       "id": "laughs-comedy-club-2026-10-25 19:00:00-comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy show: Ahamed Weinberg Oct. 25th Sunday at 7pm",
       "start": "2026-10-25T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm-tickets-1991800481859",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24289_image.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-26T01:00:00Z-damon-wayans-jr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans Jr.",
-      "start": "2026-10-26T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353928",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
     },
     {
       "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
@@ -584,6 +544,38 @@
       "start": "2026-11-13T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-heather-shaw-november-13th-and-14th-at-laughs-comedy-seattle-tickets-1985727225586",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23799_image.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-14T03:00:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-14T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364752",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-14T05:45:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-14T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364755",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-15T02:00:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-15T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364753",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-15T04:45:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-15T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364754",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-15 13:00:00-dungeons-and-drag-queens-brunch-show-november-15th-laughs-co",
