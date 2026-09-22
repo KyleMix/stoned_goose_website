@@ -150,16 +150,33 @@ nothing in the logs.
 The rotation takes effect immediately, with no further deploy. The old token
 stops working the moment the new one is stored.
 
-### 4. Lock the sign up form to our own origin
+### 4. Extra origins, if you have any
+
+**Skip this.** You almost certainly do not need it.
+
+The sign up POST is already locked to the host the request arrived on, with no
+configuration: a page on another domain cannot post the form on a visitor's
+behalf, and that holds on every hostname this Worker answers on at once, which
+is the apex, the `www`, `workers.dev`, and any preview URL.
+
+`OPEN_MIC_ALLOWED_ORIGINS` **adds** origins on top of that, comma separated,
+for the case where the form is embedded on a genuinely different domain:
 
 ```sh
 npx wrangler secret put OPEN_MIC_ALLOWED_ORIGINS
-# https://www.stonedgooseproductions.com
+# https://someone-elses-site.example
 ```
 
-Optional. Left unset, the Worker compares the `Origin` header against whatever
-host the request arrived on, which is the same rule with one less thing to
-keep in sync. Set it if the site is ever served from more than one hostname.
+Setting it to our own canonical origin is the one thing not to do. It is
+harmless now, but it was actively broken before: the list used to replace the
+same-host rule instead of adding to it, so naming `https://www.…` refused
+every other hostname, and a comic on the apex domain got "Sign ups only work
+from the site itself" while standing on the real site. If the secret is set to
+our own origin from that era, delete it, it is doing nothing:
+
+```sh
+npx wrangler secret delete OPEN_MIC_ALLOWED_ORIGINS
+```
 
 ### 5. Deploy
 
@@ -323,10 +340,13 @@ says `REPLACE_WITH_D1_DATABASE_ID`. See step 1.
 deployed`.** Run `npx wrangler deploy`, then set the secret. See "Rotating it
 later" above.
 
-**Sign ups 403 from a `workers.dev` URL.** Working as intended.
-`OPEN_MIC_ALLOWED_ORIGINS` names the real hostname, and the Worker refuses a
-POST whose `Origin` is anything else. Reading the counts works from any URL;
-only the write is locked. Test the form on the real domain.
+**Sign ups 403 with "Sign ups only work from the site itself".** The `Origin`
+header did not match the host the request arrived on, and is not in
+`OPEN_MIC_ALLOWED_ORIGINS` either. On a normal deployment this should be
+impossible, so check whether that secret is set to something. If it is set to
+our own origin, delete it: `npx wrangler secret delete
+OPEN_MIC_ALLOWED_ORIGINS`. See step 4. Counts loading fine while sign ups 403
+is the signature of this, since only the write path checks the origin.
 
 **A Monday that has happened is still on the board.** The purge is belt and
 braces, not load bearing: `slots` recomputes the window on every request and

@@ -440,6 +440,77 @@ async function main() {
     { origin: null },
   );
   eq(noOrigin.status, 200, "a request with no Origin header is allowed through");
+
+  // The regression that took the live form down: OPEN_MIC_ALLOWED_ORIGINS set
+  // to the canonical www origin used to REPLACE the same-host rule, so every
+  // other hostname the same Worker answers on was refused. A comic standing on
+  // the real site was told sign ups only work from the real site. The secret
+  // adds to same-host now, it does not replace it.
+  {
+    const one = fresh();
+    one.env.OPEN_MIC_ALLOWED_ORIGINS = "https://www.stonedgooseproductions.com";
+    const res = await signup(one, {
+      date: monday,
+      name: "Same Host",
+      email: "samehost@example.com",
+      instagram: "samehost",
+    });
+    eq(res.status, 200, "the request's own host is allowed even when the list names another");
+  }
+
+  // Same, with no list configured at all.
+  {
+    const one = fresh();
+    one.env.OPEN_MIC_ALLOWED_ORIGINS = undefined;
+    const res = await signup(one, {
+      date: monday,
+      name: "No List",
+      email: "nolist@example.com",
+      instagram: "nolist",
+    });
+    eq(res.status, 200, "same host works with no allowlist configured");
+  }
+
+  // An extra origin really is allowed, however it is spelled.
+  for (const spelling of [
+    "https://preview.example",
+    "https://preview.example/",
+    "preview.example",
+    "https://www.stonedgooseproductions.com, https://preview.example",
+  ]) {
+    const one = fresh();
+    one.env.OPEN_MIC_ALLOWED_ORIGINS = spelling;
+    const res = await signup(
+      one,
+      { date: monday, name: "Preview", email: "p@example.com", instagram: "preview" },
+      { origin: "https://preview.example" },
+    );
+    eq(res.status, 200, `an extra origin configured as "${spelling}" is allowed`);
+  }
+
+  // And a genuinely foreign origin is still refused, list or no list.
+  {
+    const one = fresh();
+    one.env.OPEN_MIC_ALLOWED_ORIGINS = "https://preview.example";
+    const res = await signup(
+      one,
+      { date: monday, name: "Evil", email: "e@example.com", instagram: "evil" },
+      { origin: "https://evil.example" },
+    );
+    eq(res.status, 403, "a foreign origin is still refused when a list is configured");
+    eq(one.db.rows.length, 0, "and stores nothing");
+  }
+
+  // Junk in the Origin header is not a way round the check.
+  {
+    const one = fresh();
+    const res = await signup(
+      one,
+      { date: monday, name: "Junk", email: "j@example.com", instagram: "junk" },
+      { origin: "not-a-url" },
+    );
+    eq(res.status, 403, "an unparseable Origin is refused rather than trusted");
+  }
 }
 
 // ------------------------------------------------------- the cap and dupes

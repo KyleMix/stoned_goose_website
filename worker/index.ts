@@ -94,24 +94,47 @@ function clean(value: unknown, max: number): string {
  * the drive-by case where someone else's page posts the form on a visitor's
  * behalf. A missing Origin is allowed through: curl sends none, and so do a
  * few privacy extensions on same origin requests.
+ *
+ * The rule is "same host as the request that arrived", and
+ * OPEN_MIC_ALLOWED_ORIGINS only ever ADDS to that. It used to replace it, and
+ * that was wrong in the one way that matters: setting the secret to the
+ * canonical `https://www.` origin locked out every other hostname the same
+ * Worker legitimately answers on, so a comic on the apex domain, on a preview
+ * URL, or on workers.dev got "Sign ups only work from the site itself" while
+ * standing on the real site. Same-host is also the stronger of the two checks,
+ * since it cannot drift out of date the way a hand-maintained list does.
+ *
+ * Hosts are compared, not whole origin strings, so a trailing slash or a
+ * scheme mismatch in a configured value is not a lockout. The scheme is not
+ * part of the comparison because this site is https end to end behind
+ * Cloudflare, and an http Origin is a redirect away from being the same site
+ * rather than a different one.
  */
 function originAllowed(request: Request, env: Env): boolean {
   const origin = request.headers.get("Origin");
   if (!origin) return true;
 
-  const allowed = (env.OPEN_MIC_ALLOWED_ORIGINS ?? "")
-    .split(",")
-    .map((o) => o.trim())
-    .filter(Boolean);
-
-  if (allowed.length > 0) return allowed.includes(origin);
-
-  // Unconfigured: fall back to the host this request arrived on.
+  let originHost: string;
   try {
-    return new URL(origin).host === new URL(request.url).host;
+    originHost = new URL(origin).host;
   } catch {
     return false;
   }
+
+  if (originHost === new URL(request.url).host) return true;
+
+  return (env.OPEN_MIC_ALLOWED_ORIGINS ?? "")
+    .split(",")
+    .map((o) => o.trim())
+    .filter(Boolean)
+    .some((allowed) => {
+      try {
+        return new URL(allowed).host === originHost;
+      } catch {
+        // Configured bare, as a hostname rather than an origin.
+        return allowed === originHost;
+      }
+    });
 }
 
 /** Constant time string compare, so a wrong token leaks no length or prefix. */
