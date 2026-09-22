@@ -65,13 +65,23 @@ addresses the database by that id, so the very next command fails with
 `Invalid property: databaseId => Invalid uuid [code: 7400]`, which reads like
 an API problem and is really just the placeholder.
 
-To do both at once, or to recover the id later:
+Read the id back at any time with `npx wrangler d1 list`, then patch the config
+in place:
 
 ```sh
-ID=$(npx wrangler d1 list --json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const m=JSON.parse(s).find(d=>d.name==='stoned-goose-open-mic');if(!m){console.error('not found');process.exit(1)}process.stdout.write(m.uuid||m.id)})") \
-  && sed -i "s/REPLACE_WITH_D1_DATABASE_ID/$ID/" wrangler.jsonc \
-  && grep database_id wrangler.jsonc
+sed -i 's/REPLACE_WITH_D1_DATABASE_ID/<the-uuid>/' wrangler.jsonc
 ```
+
+Or have the shell look it up. Note the quoting: this deliberately contains no
+`!`, because an interactive bash does history expansion inside double quotes
+and mangles any script that has one.
+
+```sh
+ID=$(npx wrangler d1 list --json | node -e "const d=JSON.parse(require('fs').readFileSync(0,'utf8')).find(x=>x.name==='stoned-goose-open-mic');process.stdout.write(d?(d.uuid||d.id):'')")
+test -n "$ID" && sed -i "s/REPLACE_WITH_D1_DATABASE_ID/$ID/" wrangler.jsonc && grep database_id wrangler.jsonc
+```
+
+An empty `$ID` means the database does not exist yet; run the create above.
 
 The id is not a secret. It gets committed, and it has to be, or a deploy from
 anywhere but your own checkout has nothing to bind to.

@@ -28,16 +28,30 @@
     "run_worker_first": ["/api/*"]
   },
 
-  // The sign up list. Create it once, then paste the id Wrangler prints:
+  // The sign up list. Created with:
   //   npx wrangler d1 create stoned-goose-open-mic
   //   npx wrangler d1 execute stoned-goose-open-mic --remote --file worker/schema.sql
   // See docs/OPEN_MIC_SIGNUPS.md for the whole setup, including the export
-  // token. TODO: replace the placeholder database_id below with the real one.
+  // token.
+  //
+  // The id is not a secret and has to be committed: a deploy from CI or from
+  // anyone else's checkout has nothing to bind to without it.
+  //
+  // ONE binding, and no `"remote": true`.
+  //
+  // Answering yes to Wrangler's "for local dev, do you want to connect to the
+  // remote resource" prompt appends a second entry here, pointing a new
+  // binding at this same database with `remote` set. Two things go wrong with
+  // that. The Worker only ever reads `env.DB`, so the second binding is dead
+  // weight that makes it look like the id is configured when `DB` is still
+  // whatever it was. And `remote` sends `wrangler dev` at the production
+  // table, so a test sign up on a laptop lands in the running order next to
+  // real comics. Answer no, and if the block comes back, delete it.
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "stoned-goose-open-mic",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+      "database_id": "195d3bba-c1b0-494a-8924-f678c611cc79"
     }
   ],
 
