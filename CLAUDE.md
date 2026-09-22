@@ -3,6 +3,8 @@
 ## Stack
 Next.js 15 App Router, static export to /out, TypeScript strict, Tailwind v3, Framer Motion, formsubmit.co for forms. Sveltia CMS at /admin writes JSON under content/.
 
+One exception to "no server": `worker/index.ts` is a hand written Cloudflare Worker serving `/api/open-mic/*` (the open mic sign up list, backed by D1). It is scoped to `/api/*` by `assets.run_worker_first` in wrangler.jsonc and renders no pages. It is not a Next adapter, and it is not a precedent for moving page rendering off the static export: anything that renders HTML still goes through the export. See docs/OPEN_MIC_SIGNUPS.md.
+
 ## Run
 - `npm run dev`: local dev
 - `npm run build`: must pass before any commit
@@ -57,7 +59,9 @@ Headlines and subheads are always uppercase and letterspaced. Body is always sen
 - **Never recolor a mark in CSS.** No filter, no mix-blend-mode, no background-color behind a knockout. Every colorway exists as a file.
 - Never place a mark over a photo without a solid tuxedo panel behind it.
 - Don't mix lockup and badge on one page unless it genuinely serves both audiences, and then keep them in separate sections.
-- `/open-mics` is the Log Cabin Comedy Open Mic, our own Monday room, and nothing else. The Pacific Northwest map and the Open Mic Explorer app are both retired: do not bring either back. It is an information utility for comics, not a sales surface, so it carries no page-level mark. The site header lockup is the only brand furniture it needs, and the show poster is the event's own artwork, not a mark placement. Don't add one.
+- `/open-mics` is the Log Cabin Comedy Open Mic, our own Monday room, and nothing else. The Pacific Northwest map and the Open Mic Explorer app are both retired: do not bring either back. It is an information utility for comics, not a sales surface, so it carries no page-level mark. The site header lockup is the only brand furniture it needs, and the show flyer is the event's own artwork, not a mark placement. Don't add one.
+- The mic is **pre sign up** as of 28 September 2026: 12 spots a night, 8 minutes each, 4 Mondays open at a time. Those numbers live in `lib/open-mic-schedule.ts` and are deliberately NOT CMS fields, because `worker/index.ts` imports the same file to enforce the cap. A count the page could raise without the database agreeing would fail on a comic at the point of sign up. Only the copy around the list is editable.
+- Comics see **how many spots are left, never who has them**. The public endpoint returns counts and no endpoint returns a name without the export token. That boundary lives in the Worker, not in the page: never add a client-side filter over a list of names and call it private.
 
 ### The monocle ring
 A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framing a headshot. **One ring per page section, maximum.** Use `<MonocleRing />`: `scripts/test/monocle-ring.test.ts` fails the build on a second ring in one section, so the limit is real rather than advisory.
@@ -77,3 +81,5 @@ A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framin
 
 ## Verify
 After any change: `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build` all pass, and click-through on changed pages works.
+
+The sign up Worker cannot be clicked through without a D1 binding, so it is covered by `scripts/test/open-mic-worker.test.ts` instead, which drives the handler against a stub D1. Change the Worker, run the test.

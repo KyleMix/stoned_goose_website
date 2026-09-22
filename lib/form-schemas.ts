@@ -94,6 +94,40 @@ export const openMicSubmitSchema = z.object({
   email: z.string().trim().email("Use a real email").or(z.literal("")),
 });
 
+// The Log Cabin Monday mic pre sign up. Three fields, because three is what
+// running the night needs: a name for the running order, an email to tell
+// them if the room moves, and the Instagram handle so the show can tag them.
+//
+// The handle is normalised rather than rejected. Comics paste "@name", bare
+// "name", and the profile URL in roughly equal measure, and the URL arrives
+// both with and without a scheme, because that is what "copy link" gives you
+// depending on where you copied it from. Bouncing most of those back as a
+// validation error is a worse form than accepting them all and storing one
+// spelling. worker/index.ts runs the same
+// normalisation server side, because this one can be skipped by posting
+// directly.
+export const openMicSignupSchema = z.object({
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Pick a Monday"),
+  name: z.string().trim().min(2, "Name is required"),
+  email: z.string().trim().email("Use a real email"),
+  instagram: z
+    .string()
+    .trim()
+    .transform((value) =>
+      value
+        .replace(/^(https?:\/\/)?(www\.)?instagram\.com\//i, "")
+        .replace(/^@+/, "")
+        .replace(/\/+$/, ""),
+    )
+    .refine((value) => value.length > 0, "Instagram handle is required")
+    .refine(
+      (value) => /^[A-Za-z0-9._]{1,30}$/.test(value),
+      "Letters, numbers, periods and underscores only",
+    ),
+});
+
 // Named lookup so server components can pass a string instead of a schema
 // instance (Zod objects can't cross the server -> client component boundary).
 export const formSchemas = {
@@ -105,6 +139,7 @@ export const formSchemas = {
   sponsorBooking: sponsorBookingSchema,
   openMicUpdate: openMicUpdateSchema,
   openMicSubmit: openMicSubmitSchema,
+  openMicSignup: openMicSignupSchema,
 } as const;
 
 export type FormSchemaName = keyof typeof formSchemas;

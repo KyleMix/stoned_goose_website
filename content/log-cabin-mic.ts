@@ -40,6 +40,7 @@ type LogCabinMicShape = {
   motto?: string | null;
   host?: string | null;
   poster?: { src?: string | null; alt?: string | null } | null;
+  signup?: Record<string, string | null | undefined> | null;
   howItWorks?: unknown;
   topSections?: unknown;
   bottomSections?: unknown;
@@ -95,6 +96,32 @@ export const logCabinMic = {
 export const logCabinMicPoster = {
   src: text(copy.poster?.src),
   alt: text(copy.poster?.alt),
+};
+
+/**
+ * Words only. The numbers that define the format (twelve spots, eight
+ * minutes, four Mondays, the start date) are NOT here and are not editable in
+ * the CMS: they live in lib/open-mic-schedule.ts, which the sign up Worker
+ * imports too.
+ *
+ * That is deliberate. A slot count an editor could raise to thirteen without
+ * the Worker agreeing would advertise a spot the database refuses to sell, and
+ * the comic would find out at the moment of sign up. One source of truth, and
+ * the surface that can be edited freely is the copy around it.
+ */
+export const logCabinMicSignup = {
+  eyebrow: text(copy.signup?.eyebrow),
+  heading: text(copy.signup?.heading),
+  body: text(copy.signup?.body),
+  nameLabel: text(copy.signup?.nameLabel) || "Name",
+  emailLabel: text(copy.signup?.emailLabel) || "Email",
+  instagramLabel: text(copy.signup?.instagramLabel) || "Instagram",
+  submitLabel: text(copy.signup?.submitLabel) || "Take a spot",
+  privacyNote: text(copy.signup?.privacyNote),
+  fullText: text(copy.signup?.fullText) || "Full",
+  offlineText:
+    text(copy.signup?.offlineText) ||
+    "That did not go through. Try again, or email us:",
 };
 
 export const logCabinMicHowItWorks: HowItWorksStep[] = Array.isArray(

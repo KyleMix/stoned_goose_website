@@ -49,12 +49,35 @@ deploy command is `npx wrangler deploy`.
    - **Deploy command:** `npx wrangler deploy` (the default)
    - **Environment variables:** `NODE_VERSION = 20`.
 3. Deploy. `wrangler.jsonc` tells Wrangler to upload the `./out` directory as
-   static assets (no server runtime).
+   static assets, plus one small Worker scoped to `/api/*`.
 
 > Important: without `wrangler.jsonc`, `wrangler deploy` auto-detects "Next.js"
 > and tries to wrap the app with OpenNext (a server runtime). That fails here,
 > because the site is a static export (`output: "export"`) with no server
 > build. The committed `wrangler.jsonc` is what prevents that.
+
+#### The one Worker route
+
+`wrangler.jsonc` points `main` at [`worker/index.ts`](./worker/index.ts), the
+open mic sign up API. It is not a Next.js adapter and it does not render any
+page: `assets.run_worker_first` scopes it to `/api/*`, so every page, image and
+asset is still served straight from `/out` by Workers Static Assets. The Worker
+needs a **D1 database and two secrets** before a deploy will succeed. Full
+setup is in [docs/OPEN_MIC_SIGNUPS.md](./docs/OPEN_MIC_SIGNUPS.md):
+
+- `npx wrangler d1 create stoned-goose-open-mic`, then paste the id into
+  `wrangler.jsonc` (it ships with a placeholder, and **the deploy fails until
+  you replace it**).
+- `npx wrangler d1 execute stoned-goose-open-mic --remote --file worker/schema.sql`
+- `OPEN_MIC_EXPORT_TOKEN` (required for the CSV export) and optionally
+  `OPEN_MIC_ALLOWED_ORIGINS`, both via `npx wrangler secret put`.
+
+Requires Wrangler **4.20 or newer**.
+
+**Option B (Pages) does not run this Worker.** On Pages, `/open-mics` still
+renders and the page still explains the format, but the board cannot reach
+`/api/open-mic/slots`: it shows "12 spots" instead of live counts and sign ups
+fail into the email fallback. Use Option A while the mic runs on pre sign up.
 
 ### Option B: Pages
 

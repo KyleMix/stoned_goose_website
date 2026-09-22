@@ -55,7 +55,7 @@ type Props = {
   layout?: "stack" | "inline";
   /**
    * A weekly room has no single date and no doors time: the Log Cabin mic runs
-   * every Monday, sign ups at 6, show 7 to 9. Formatting a date out of
+   * every Monday, show at 7. Formatting a date out of
    * `show.start` there would mean inventing one, and a "next Monday" computed
    * at build time freezes into the HTML and goes stale by the following week.
    *
