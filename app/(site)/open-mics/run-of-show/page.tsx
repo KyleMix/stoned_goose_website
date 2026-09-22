@@ -24,8 +24,11 @@ export default function RunOfShowPage() {
   return (
     <section
       data-surface="tuxedo"
+      // Turns on the print rules in app/globals.css, which drop the site
+      // chrome and the on-screen controls and put the list on white paper.
+      data-print-sheet=""
       aria-labelledby="run-of-show"
-      className="min-h-screen bg-surface-tuxedo pb-24 pt-32 md:pt-36"
+      className="min-h-screen bg-surface-tuxedo pb-24 pt-32 md:pt-36 print:pt-0"
     >
       <div className="mx-auto max-w-[900px] px-5 md:px-10">
         <p className="t-eyebrow">Log Cabin open mic</p>

@@ -526,3 +526,86 @@ html body .leaflet-control-zoom-out {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------------------------------------------------------- printing
+
+   The running order, on paper or as a PDF.
+
+   Somebody running the room may want a sheet rather than a phone, and half
+   the people who need this list will reach for "save as PDF" before they
+   reach for a CSV. The browser already does both; it just needs the page to
+   stop being a dark editorial layout first.
+
+   Scoped to the sheet with :has(), so nothing else on the site changes. The
+   run-of-show section carries data-print-sheet.
+
+   Tuxedo does not survive contact with a printer. A full-bleed black page
+   costs a cartridge, and most printers render ivory-on-black as grey mush.
+   So print is black on white: a different medium with different constraints,
+   not a new brand surface. The gold rule stays, because a single hairline
+   costs nothing and keeps the sheet recognisable. */
+@media print {
+  /* html as well as body: the sheet is shorter than a screen once the chrome
+     is gone, and without this the root background shows through underneath as
+     a black band on any printer with background graphics turned on. */
+  html:has([data-print-sheet]),
+  body:has([data-print-sheet]) {
+    background: #fff !important;
+  }
+
+  /* Site chrome, and the controls that only make sense on a screen. */
+  body:has([data-print-sheet]) header,
+  body:has([data-print-sheet]) footer,
+  body:has([data-print-sheet]) [data-print-hide] {
+    display: none !important;
+  }
+
+  [data-print-sheet] {
+    min-height: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    color: #0f0f0f !important;
+  }
+
+  /* The type roles resolve against data-surface, which says tuxedo here.
+     Override the colours rather than the roles: weight, case and tracking are
+     still the brand's. */
+  [data-print-sheet] .t-headline,
+  [data-print-sheet] .t-subhead,
+  [data-print-sheet] .t-body,
+  [data-print-sheet] .t-ui,
+  [data-print-sheet] h1,
+  [data-print-sheet] h2,
+  [data-print-sheet] li,
+  [data-print-sheet] span,
+  [data-print-sheet] p {
+    color: #0f0f0f !important;
+  }
+  [data-print-sheet] .t-eyebrow,
+  [data-print-sheet] .t-fine {
+    color: #55524e !important;
+  }
+  /* Slot numbers keep the gold. They are the one thing the eye needs to find
+     at a glance halfway down a list, and they print legibly on white. */
+  [data-print-sheet] [data-print-slot] {
+    color: #87681f !important;
+  }
+
+  [data-print-sheet] ol,
+  [data-print-sheet] li {
+    border-color: #8c8781 !important;
+  }
+
+  /* A name should never be split across two sheets of paper. */
+  [data-print-sheet] li {
+    break-inside: avoid;
+  }
+
+  [data-print-sheet] a {
+    text-decoration: none !important;
+  }
+
+  @page {
+    margin: 16mm;
+  }
+}

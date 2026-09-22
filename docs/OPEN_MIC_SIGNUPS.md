@@ -266,6 +266,16 @@ and a refresh. No email addresses, ever, whatever the URL says. They can
 bookmark it and it keeps working week to week, because it defaults to the
 front of the window, which on a Monday is that night.
 
+**This is the answer to "can I get it as a PDF".** It is a web page, so
+nobody needs an app or a spreadsheet to open it, and the **Print or save as
+PDF** button on it goes through the browser's own print dialog, where "Save as
+PDF" is a destination on every platform. The sheet prints black on white with
+the site chrome, the date buttons and the refresh stripped out.
+
+Generating a PDF server side was the alternative and is worse: it means a PDF
+library in the Worker, and it means a file that is out of date the moment
+somebody cancels. The link is always the list as it stands.
+
 Set the token once:
 
 ```sh

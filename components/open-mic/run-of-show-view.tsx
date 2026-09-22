@@ -127,7 +127,7 @@ export function RunOfShowView() {
       {/* Which Monday. Rendered as buttons rather than a select so a thumb
           can hit them, and hidden entirely when there is only one. */}
       {data && data.dates.length > 1 ? (
-        <div className="flex flex-wrap gap-2">
+        <div data-print-hide className="flex flex-wrap gap-2">
           {data.dates.map((d) => (
             <button
               key={d.date}
@@ -173,7 +173,10 @@ export function RunOfShowView() {
                   key={spot.slot}
                   className="flex items-baseline gap-5 border-b border-smoke py-4"
                 >
-                  <span className="w-10 shrink-0 text-2xl tabular-nums text-accent-gold md:text-3xl">
+                  <span
+                    data-print-slot
+                    className="w-10 shrink-0 text-2xl tabular-nums text-accent-gold md:text-3xl"
+                  >
                     {spot.slot}
                   </span>
                   <span className="min-w-0 flex-1">
@@ -198,7 +201,10 @@ export function RunOfShowView() {
         </div>
       ) : null}
 
-      <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+      <div
+        data-print-hide
+        className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
+      >
         <button
           type="button"
           onClick={() => void load(date)}
@@ -207,6 +213,20 @@ export function RunOfShowView() {
         >
           {state.status === "loading" ? "Checking..." : "Refresh"}
         </button>
+        {/* The browser's own print dialog, which is also how you get a PDF:
+            every browser offers "Save as PDF" as a destination. Cheaper and
+            more reliable than generating one server side, and it means the
+            sheet is always the list as it stands rather than a file that went
+            stale the moment somebody cancelled. */}
+        {data && data.spots.length > 0 ? (
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="inline-flex h-12 items-center justify-center border border-smoke px-6 t-ui text-surface-ivory transition-colors hover:border-accent-gold hover:text-accent-gold"
+          >
+            Print or save as PDF
+          </button>
+        ) : null}
         {refreshedAt ? (
           <p className="t-fine">Last checked {refreshedAt}.</p>
         ) : null}
@@ -218,7 +238,7 @@ export function RunOfShowView() {
         </p>
       ) : null}
 
-      <p className="t-fine mt-10 max-w-[52ch]">
+      <p data-print-hide className="t-fine mt-10 max-w-[52ch]">
         Comics who cancel drop off this list, so refresh it before you set the
         order. Spot numbers are the order people signed up in, not the order
         they have to go on in.
