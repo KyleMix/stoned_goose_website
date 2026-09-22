@@ -116,6 +116,40 @@ a copy of a secret you cannot read back out of Cloudflare.
 
 Losing it costs one `wrangler secret put`; leaking it costs the list.
 
+### Rotating it later
+
+Do this any time the token has been seen: pasted into a chat, read off a shared
+screen, mailed to somebody, or printed by `openssl` in a terminal whose output
+got copied somewhere.
+
+```sh
+npx wrangler deploy
+
+openssl rand -hex 24 | tr -d '\n' > /tmp/tok
+npx wrangler secret put OPEN_MIC_EXPORT_TOKEN < /tmp/tok
+cat /tmp/tok      # copy into the password manager, then:
+shred -u /tmp/tok
+```
+
+Three things there are load bearing.
+
+The `wrangler deploy` first. Rotating a secret on a Worker whose latest version
+is not the deployed one fails with "Secret edit failed. You attempted to modify
+a secret, but the latest version of your Worker isn't currently deployed." That
+is Cloudflare refusing to deploy a version you did not ask it to deploy, not a
+problem with the secret. Deploying makes latest and deployed the same again.
+`npx wrangler versions secret put` is the other way out, but it writes a new
+version without deploying it, so the new token does not take effect until you
+deploy anyway.
+
+The `tr -d '\n'`. It is what makes the file redirect safe, by stripping the
+newline `openssl` adds. Without it the newline can be stored as part of the
+secret, and since the Worker compares length first, every export 401s with
+nothing in the logs.
+
+The rotation takes effect immediately, with no further deploy. The old token
+stops working the moment the new one is stored.
+
 ### 4. Lock the sign up form to our own origin
 
 ```sh
@@ -284,6 +318,15 @@ prompt, per step 3.
 
 **`Invalid uuid [code: 7400]` from any d1 command.** `wrangler.jsonc` still
 says `REPLACE_WITH_D1_DATABASE_ID`. See step 1.
+
+**`Secret edit failed ... latest version of your Worker isn't currently
+deployed`.** Run `npx wrangler deploy`, then set the secret. See "Rotating it
+later" above.
+
+**Sign ups 403 from a `workers.dev` URL.** Working as intended.
+`OPEN_MIC_ALLOWED_ORIGINS` names the real hostname, and the Worker refuses a
+POST whose `Origin` is anything else. Reading the counts works from any URL;
+only the write is locked. Test the form on the real domain.
 
 **A Monday that has happened is still on the board.** The purge is belt and
 braces, not load bearing: `slots` recomputes the window on every request and
