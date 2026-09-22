@@ -74,11 +74,23 @@ Any long random string. This is the only thing standing between the internet
 and comics' email addresses, so generate it rather than choosing it:
 
 ```sh
-openssl rand -hex 24 | npx wrangler secret put OPEN_MIC_EXPORT_TOKEN
+openssl rand -hex 24
 ```
 
-Keep a copy in a password manager. Losing it costs one `wrangler secret put`;
-leaking it costs the list.
+Copy what it prints, **save it in your password manager**, then paste it when
+this prompts you:
+
+```sh
+npx wrangler secret put OPEN_MIC_EXPORT_TOKEN
+```
+
+Two steps on purpose. Piping `openssl` straight into `wrangler secret put`
+risks storing the trailing newline as part of the secret, and the Worker
+compares the token by exact length before anything else, so the export would
+401 every time with nothing in the logs to say why. It also leaves you without
+a copy of a secret you cannot read back out of Cloudflare.
+
+Losing it costs one `wrangler secret put`; leaking it costs the list.
 
 ### 4. Lock the sign up form to our own origin
 
