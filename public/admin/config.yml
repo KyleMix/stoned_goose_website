@@ -463,7 +463,7 @@ collections:
               - { name: emailLabel, label: Email field label, widget: string, required: false }
               - { name: instagramLabel, label: Instagram field label, widget: string, required: false }
               - { name: submitLabel, label: Submit button text, widget: string, required: false }
-              - { name: privacyNote, label: Privacy note under the board, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Comics see how many spots are left, never who has them. This is where that is said out loud.' }
+              - { name: privacyNote, label: Privacy note under the board, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'What we do with their details, said out loud: counts are public and names are not, the running order is deleted after the night, and we keep name, email and handle on the comedian list for booking. Do not cut the part about the comedian list. We do keep it, and a sign up form that does not say so is telling people something untrue.' }
               - { name: fullText, label: Label on a full Monday, widget: string, required: false, hint: 'e.g. "Full".' }
               - { name: offlineText, label: Message when a sign up fails, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Shown with our email address after it, so end on a colon.' }
           - name: howItWorks

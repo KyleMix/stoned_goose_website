@@ -26,12 +26,12 @@
   "signup": {
     "eyebrow": "Pre sign up",
     "heading": "Take a spot.",
-    "body": "Four Mondays are open at a time. Twelve spots a night, eight minutes each. Pick your Monday, leave your name, and the spot is yours. The list closes when it is full, and a new Monday posts every Tuesday morning.",
+    "body": "Four Mondays are open at a time. Twelve spots a night, eight minutes each. Pick your Monday, leave your name, and the spot is yours. You will get a confirmation email with your spot number. The list closes when it is full, and a new Monday posts every Tuesday morning.",
     "nameLabel": "Name",
     "emailLabel": "Email",
     "instagramLabel": "Instagram",
     "submitLabel": "Take a spot",
-    "privacyNote": "You can see how many spots are left. You cannot see who has them, and neither can anyone else. We keep the list for the night you signed up for and delete it after.",
+    "privacyNote": "You can see how many spots are left. You cannot see who has them, and neither can anyone else. The running order is deleted after the night. We keep your name, email and Instagram handle on our comedian list so we can contact you about bookings and shows. Your confirmation email has a link to come off that list, and a link to release your spot if you cannot make it.",
     "fullText": "Full",
     "offlineText": "That did not go through. Try again, or email us and we will put you down by hand:"
   },

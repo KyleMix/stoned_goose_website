@@ -12,69 +12,14 @@ import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { join, extname } from "node:path";
 import worker from "../worker/index";
+// The same stub the Worker tests drive, so this harness cannot fall behind
+// the queries the Worker actually issues.
+import { FakeD1 } from "./fake-d1";
+
+const db = new FakeD1();
 
 const OUT = join(process.cwd(), "out");
 const PORT = Number(process.env.PORT ?? 4321);
-
-type Row = Record<string, unknown>;
-const rows: Row[] = [];
-
-const db = {
-  prepare(sql: string) {
-    const q = sql.replace(/\s+/g, " ").trim();
-    let bound: unknown[] = [];
-    const stmt = {
-      bind(...v: unknown[]) { bound = v; return stmt; },
-      async all() { return { results: select(q, bound), success: true, meta: { changes: 0, duration: 0 } }; },
-      async first() { return select(q, bound)[0] ?? null; },
-      async run() { return { results: [], success: true, meta: { changes: write(q, bound), duration: 0 } }; },
-    };
-    return stmt;
-  },
-};
-
-function select(q: string, bound: unknown[]): Row[] {
-  if (q.startsWith("SELECT mic_date, COUNT(*)")) {
-    const counts = new Map<string, number>();
-    for (const r of rows) {
-      if ((bound as string[]).includes(r.mic_date as string)) {
-        counts.set(r.mic_date as string, (counts.get(r.mic_date as string) ?? 0) + 1);
-      }
-    }
-    return [...counts].map(([mic_date, taken]) => ({ mic_date, taken }));
-  }
-  if (q.startsWith("SELECT slot, email")) {
-    return rows.filter((r) => r.mic_date === bound[0]).map((r) => ({ slot: r.slot, email: r.email }));
-  }
-  if (q.startsWith("SELECT mic_date, slot, name")) {
-    return rows
-      .filter((r) => (bound as string[]).includes(r.mic_date as string))
-      .sort((a, b) => String(a.mic_date).localeCompare(String(b.mic_date)) || Number(a.slot) - Number(b.slot));
-  }
-  throw new Error(`unhandled select: ${q}`);
-}
-
-function write(q: string, bound: unknown[]): number {
-  if (q.startsWith("INSERT INTO signups")) {
-    const [id, mic_date, slot, name, email, instagram, created_at] = bound as string[];
-    if (rows.some((r) => r.mic_date === mic_date && r.slot === Number(slot))) {
-      throw new Error("UNIQUE constraint failed: signups.mic_date, signups.slot");
-    }
-    if (rows.some((r) => r.mic_date === mic_date && r.email === email)) {
-      throw new Error("UNIQUE constraint failed: signups.mic_date, signups.email");
-    }
-    rows.push({ id, mic_date, slot: Number(slot), name, email, instagram, created_at });
-    return 1;
-  }
-  if (q.startsWith("DELETE FROM signups WHERE mic_date <")) {
-    const before = rows.length;
-    const kept = rows.filter((r) => String(r.mic_date) >= String(bound[0]));
-    rows.length = 0;
-    rows.push(...kept);
-    return before - rows.length;
-  }
-  throw new Error(`unhandled write: ${q}`);
-}
 
 const TYPES: Record<string, string> = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css",
@@ -87,10 +32,41 @@ const env = {
   DB: db,
   ASSETS: { fetch: async () => new Response("not found", { status: 404 }) },
   OPEN_MIC_EXPORT_TOKEN: "local-dev-token",
+  OPEN_MIC_HOST_TOKEN: "local-host-token",
+  // No RESEND_API_KEY on purpose. Local sign ups must not send real email to
+  // whatever address somebody types while clicking around.
 } as never;
 
 createServer(async (req, res) => {
   const url = new URL(req.url ?? "/", `http://127.0.0.1:${PORT}`);
+
+  // Local only, and deliberately not a Worker route. The cancel and removal
+  // tokens are never exposed by any API: they reach a person through their
+  // confirmation email and nowhere else. No email is sent locally, so without
+  // this there is no way to click through those two pages by hand.
+  if (url.pathname === "/__dev/tokens") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify(
+        {
+          signups: db.rows.map((r) => ({
+            date: r.mic_date,
+            slot: r.slot,
+            name: r.name,
+            cancelUrl: `/open-mics/cancel?t=${r.cancel_token}`,
+          })),
+          comedians: db.comedians.map((c) => ({
+            email: c.email,
+            removed: Boolean(c.removed_at),
+            unsubscribeUrl: `/open-mics/unsubscribe?t=${c.unsubscribe_token}`,
+          })),
+        },
+        null,
+        2,
+      ),
+    );
+    return;
+  }
 
   if (url.pathname.startsWith("/api/")) {
     const chunks: Buffer[] = [];
@@ -120,4 +96,10 @@ createServer(async (req, res) => {
   }
   res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
   res.end(await readFile(join(OUT, "404.html")).catch(() => "not found"));
-}).listen(PORT, () => console.log(`open-mic dev server: http://127.0.0.1:${PORT}/open-mics`));
+}).listen(PORT, () => console.log(
+    `open-mic dev server\n`
+      + `  board:     http://127.0.0.1:${PORT}/open-mics\n`
+      + `  host view: http://127.0.0.1:${PORT}/open-mics/run-of-show?token=local-host-token\n`
+      + `  export:    http://127.0.0.1:${PORT}/api/open-mic/export?token=local-dev-token\n`
+      + `  roster:    http://127.0.0.1:${PORT}/api/open-mic/roster?token=local-dev-token`,
+  ));

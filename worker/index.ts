@@ -7,9 +7,29 @@
 // exactly as before (see `assets.run_worker_first` in wrangler.jsonc, which
 // scopes the Worker to /api/*).
 //
-//   GET  /api/open-mic/slots   public. Counts per Monday. Never names.
-//   POST /api/open-mic/signup  public. Takes one spot.
-//   GET  /api/open-mic/export  private. The full list as CSV, token gated.
+//   GET  /api/open-mic/slots        public. Counts per Monday. Never names.
+//   POST /api/open-mic/signup       public. Takes one spot.
+//   GET  /api/open-mic/run-of-show  host token. One night's order, no emails.
+//   GET  /api/open-mic/export       export token. The sign up list as CSV.
+//   GET  /api/open-mic/roster       export token. The comedian roster as CSV.
+//   GET  /api/open-mic/cancel       link token. What this token would release.
+//   POST /api/open-mic/cancel       link token. Releases that spot.
+//   GET  /api/open-mic/unsubscribe  link token. Who this token would remove.
+//   POST /api/open-mic/unsubscribe  link token. Removes them from the roster.
+//
+// Three kinds of credential, on purpose, because they buy different things:
+//
+//   export token  everything, contact details included. One person has it.
+//   host token    one night's running order with no email addresses. Handed to
+//                 whoever is running the room, rotatable without breaking the
+//                 export.
+//   link token    a random string on one row, mailed to the person that row is
+//                 about. Authorises exactly one action on exactly their data.
+//
+// GET never mutates, including on the two link-token routes. Mail clients and
+// link scanners prefetch URLs, so a cancel that happened on GET would release
+// spots by itself. The GET says what the token refers to and a page on the
+// site POSTs to do it.
 //
 // Privacy is the design constraint, not a feature. The room wants comics to
 // see how full a night is without seeing who booked it, so the shape of the
@@ -25,18 +45,51 @@ import {
   MIC_SPOT_MINUTES,
   isMicDateOpen,
   micWindow,
+  type CivilDate,
 } from "../lib/open-mic-schedule";
+import { formatCivilDateLong } from "../lib/dates";
+import { sendConfirmation } from "./email";
+// The venue, the show time and the address the confirmation email quotes come
+// from the same CMS file the page reads, so an edit at /admin moves both. Read
+// defensively: every field in there is clearable by an editor.
+import micCopy from "../content/log-cabin-mic/index.json";
 
 interface Env {
   /** D1 binding. See worker/schema.sql. */
   DB: D1Database;
   /** Static assets binding, /out. */
   ASSETS: Fetcher;
-  /** Shared secret for GET /api/open-mic/export. Set with `wrangler secret put`. */
+  /** Full access: both CSV exports, contact details included. */
   OPEN_MIC_EXPORT_TOKEN?: string;
-  /** Comma separated origins allowed to POST a sign up. */
+  /** One night's running order, no email addresses. For whoever runs the room. */
+  OPEN_MIC_HOST_TOKEN?: string;
+  /** EXTRA origins allowed to POST a sign up. Same-host is always allowed. */
   OPEN_MIC_ALLOWED_ORIGINS?: string;
+  /** Resend API key. Unset means confirmation emails are off. */
+  RESEND_API_KEY?: string;
+  /** e.g. "Log Cabin Open Mic <mic@stonedgooseproductions.com>" */
+  OPEN_MIC_FROM_EMAIL?: string;
+  /** Reply-to on the confirmation, and the address errors point at. */
+  OPEN_MIC_REPLY_TO?: string;
 }
+
+/** A cleared CMS string arrives as null or "". Both mean "not stated". */
+function copyText(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+const VENUE_NAME = copyText(micCopy.venue?.name) || "Log Cabin Bar & Grill";
+const VENUE_ADDRESS =
+  [
+    copyText(micCopy.venue?.address),
+    [copyText(micCopy.venue?.city), copyText(micCopy.venue?.region)]
+      .filter(Boolean)
+      .join(", "),
+    copyText(micCopy.venue?.postalCode),
+  ]
+    .filter(Boolean)
+    .join(", ") || "Olympia, WA";
+const SHOW_TIME = copyText(micCopy.showTime) || "7:00 PM";
 
 // Field limits. Generous enough for real names and short enough that the
 // export stays a spreadsheet rather than somewhere to paste a payload.
@@ -137,6 +190,42 @@ function originAllowed(request: Request, env: Env): boolean {
     });
 }
 
+/**
+ * The token on this request, from either `Authorization: Bearer` or `?token=`.
+ *
+ * The query form exists because both of these links get opened on a phone at
+ * a venue, which is not a place anyone sets a header. The tradeoff is stated
+ * in docs/OPEN_MIC_SIGNUPS.md: a URL carrying a secret lands in history and in
+ * any proxy log on the way. It buys a list that is read only and deleted
+ * weekly, against the alternative of a login screen this site has no server
+ * to host.
+ */
+function suppliedToken(request: Request, url: URL): string {
+  const header = request.headers.get("Authorization") ?? "";
+  if (header.toLowerCase().startsWith("bearer ")) return header.slice(7).trim();
+  return url.searchParams.get("token") ?? "";
+}
+
+/** 401 unless the request carries `expected`. Null `expected` means closed. */
+function requireToken(
+  request: Request,
+  url: URL,
+  expected: string | undefined,
+  realm: string,
+): Response | null {
+  if (!expected) {
+    // An unconfigured credential closes the route rather than opening it.
+    return json({ error: `${realm} is not configured.` }, 503);
+  }
+  const supplied = suppliedToken(request, url);
+  if (!supplied || !secretsMatch(supplied, expected)) {
+    return json({ error: "Not authorised." }, 401, {
+      "WWW-Authenticate": `Bearer realm="${realm}"`,
+    });
+  }
+  return null;
+}
+
 /** Constant time string compare, so a wrong token leaks no length or prefix. */
 function secretsMatch(a: string, b: string): boolean {
   if (a.length !== b.length) return false;
@@ -195,7 +284,41 @@ type SignupBody = {
   elapsedMs?: unknown;
 };
 
-async function handleSignup(request: Request, env: Env): Promise<Response> {
+/**
+ * Put this comic on the roster, or update the row they already have.
+ *
+ * Keyed on email, because that is the thing they will still have in two years
+ * when the name on the form was a stage name and the handle has changed.
+ *
+ * Two fields are deliberately NOT touched on a repeat sign up:
+ * `unsubscribe_token`, so a link in a year-old email keeps working, and
+ * `removed_at`, so signing up again does not quietly put somebody back on a
+ * list they asked to leave. They still get their spot either way. The roster
+ * is a mailing list; the running order is not.
+ */
+async function upsertComedian(
+  env: Env,
+  row: { name: string; email: string; instagram: string; at: string },
+): Promise<void> {
+  await env.DB.prepare(
+    `INSERT INTO comedians
+       (email, name, instagram, first_seen, last_seen, signup_count, unsubscribe_token)
+     VALUES (?, ?, ?, ?, ?, 1, ?)
+     ON CONFLICT(email) DO UPDATE SET
+       name = excluded.name,
+       instagram = excluded.instagram,
+       last_seen = excluded.last_seen,
+       signup_count = comedians.signup_count + 1`,
+  )
+    .bind(row.email, row.name, row.instagram, row.at, row.at, crypto.randomUUID())
+    .run();
+}
+
+async function handleSignup(
+  request: Request,
+  env: Env,
+  ctx: ExecutionContext,
+): Promise<Response> {
   if (!originAllowed(request, env)) {
     return json({ error: "Sign ups only work from the site itself." }, 403);
   }
@@ -281,13 +404,76 @@ async function handleSignup(request: Request, env: Env): Promise<Response> {
     let slot = 1;
     while (used.has(slot)) slot += 1;
 
+    const cancelToken = crypto.randomUUID();
+
     try {
       await env.DB.prepare(
-        `INSERT INTO signups (id, mic_date, slot, name, email, instagram, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO signups
+           (id, mic_date, slot, name, email, instagram, created_at, cancel_token)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       )
-        .bind(crypto.randomUUID(), date, slot, name, email, instagram, createdAt)
+        .bind(
+          crypto.randomUUID(),
+          date,
+          slot,
+          name,
+          email,
+          instagram,
+          createdAt,
+          cancelToken,
+        )
         .run();
+
+      // The spot is theirs from here. Everything below is on a best effort
+      // footing and runs after the response, because none of it is worth
+      // making a comic wait on and none of it is worth failing a sign up over.
+      ctx.waitUntil(
+        (async () => {
+          let unsubscribeToken = "";
+          try {
+            await upsertComedian(env, { name, email, instagram, at: createdAt });
+            const roster = await env.DB.prepare(
+              `SELECT unsubscribe_token FROM comedians WHERE email = ?`,
+            )
+              .bind(email)
+              .first<{ unsubscribe_token: string }>();
+            unsubscribeToken = roster?.unsubscribe_token ?? "";
+          } catch (error) {
+            console.error("open-mic roster", error);
+          }
+
+          // No removal link means no email. A message that tells somebody we
+          // are keeping their details and gives them no way out is worse than
+          // no message, and the on-page confirmation already told them the
+          // thing they actually needed.
+          if (!unsubscribeToken) {
+            console.error("open-mic email: no unsubscribe token, not sending");
+            return;
+          }
+
+          const origin = new URL(request.url).origin;
+          const replyTo =
+            env.OPEN_MIC_REPLY_TO ?? "kyle@stonedgooseproductions.com";
+
+          await sendConfirmation(
+            {
+              to: email,
+              name,
+              dateLabel: formatCivilDateLong(date) ?? date,
+              slot,
+              slotCount: MIC_SLOT_COUNT,
+              spotMinutes: MIC_SPOT_MINUTES,
+              showTime: SHOW_TIME,
+              venue: VENUE_NAME,
+              address: VENUE_ADDRESS,
+              cancelUrl: `${origin}/open-mics/cancel?t=${cancelToken}`,
+              unsubscribeUrl: `${origin}/open-mics/unsubscribe?t=${unsubscribeToken}`,
+              replyTo,
+            },
+            env,
+          );
+        })(),
+      );
 
       return json({
         ok: true,
@@ -343,22 +529,14 @@ function csvCell(value: string): string {
  * put`, and the alternative is a login screen this site has no server to host.
  */
 async function handleExport(request: Request, env: Env): Promise<Response> {
-  const expected = env.OPEN_MIC_EXPORT_TOKEN;
-  if (!expected) {
-    return json({ error: "Export is not configured." }, 503);
-  }
-
   const url = new URL(request.url);
-  const header = request.headers.get("Authorization") ?? "";
-  const supplied = header.toLowerCase().startsWith("bearer ")
-    ? header.slice(7).trim()
-    : (url.searchParams.get("token") ?? "");
-
-  if (!supplied || !secretsMatch(supplied, expected)) {
-    return json({ error: "Not authorised." }, 401, {
-      "WWW-Authenticate": 'Bearer realm="open-mic-export"',
-    });
-  }
+  const denied = requireToken(
+    request,
+    url,
+    env.OPEN_MIC_EXPORT_TOKEN,
+    "open-mic-export",
+  );
+  if (denied) return denied;
 
   const window = micWindow();
   const placeholders = window.map(() => "?").join(", ");
@@ -420,6 +598,228 @@ async function handleExport(request: Request, env: Env): Promise<Response> {
   });
 }
 
+// ------------------------------------------------------- GET run-of-show
+
+/**
+ * One night's running order, for whoever is working the room.
+ *
+ * Slot, name, handle. No email addresses, because the host does not need them
+ * and a link that gets forwarded around a group chat should not carry them.
+ * That is the whole reason this is a separate route with a separate token
+ * rather than a narrower view of the export: a credential that cannot reach
+ * contact details is safe to hand to somebody who is only there on Mondays,
+ * and rotating it when they stop being does not break the export.
+ *
+ * Defaults to the front of the window, which on a Monday is that night.
+ */
+async function handleRunOfShow(request: Request, env: Env): Promise<Response> {
+  const url = new URL(request.url);
+  const denied = requireToken(
+    request,
+    url,
+    env.OPEN_MIC_HOST_TOKEN,
+    "open-mic-host",
+  );
+  if (denied) return denied;
+
+  const window = micWindow();
+  const wanted = url.searchParams.get("date");
+  const date: CivilDate =
+    wanted && window.includes(wanted) ? wanted : window[0];
+
+  const rows = await env.DB.prepare(
+    `SELECT slot, name, instagram FROM signups
+      WHERE mic_date = ? ORDER BY slot ASC`,
+  )
+    .bind(date)
+    .all<{ slot: number; name: string; instagram: string }>();
+
+  return json(
+    {
+      date,
+      dateLabel: formatCivilDateLong(date),
+      slotCount: MIC_SLOT_COUNT,
+      spotMinutes: MIC_SPOT_MINUTES,
+      showTime: SHOW_TIME,
+      venue: VENUE_NAME,
+      taken: rows.results.length,
+      // Every date the token holder may ask for, so the page can offer them
+      // without a second round trip.
+      dates: window.map((d) => ({ date: d, label: formatCivilDateLong(d) })),
+      spots: rows.results,
+    },
+    200,
+    { "X-Robots-Tag": "noindex, nofollow", "Referrer-Policy": "no-referrer" },
+  );
+}
+
+// --------------------------------------------------- cancel / unsubscribe
+
+/** The `t=` link token. Never read from a header: these arrive as URLs. */
+function linkToken(url: URL): string {
+  return (url.searchParams.get("t") ?? "").trim();
+}
+
+async function readLinkToken(request: Request): Promise<string> {
+  // GET carries it in the query, POST in a JSON body, so a scanner following
+  // the link cannot be the thing that performs the action.
+  if (request.method === "GET") return linkToken(new URL(request.url));
+  try {
+    const body = (await request.json()) as { token?: unknown };
+    return typeof body.token === "string" ? body.token.trim() : "";
+  } catch {
+    return "";
+  }
+}
+
+// A UUID, as issued at sign up. Checking the shape first keeps junk out of the
+// query entirely.
+const LINK_TOKEN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/**
+ * "What would this token release?" on GET, "release it" on POST.
+ *
+ * Cancelling deletes the row. The slot goes back into circulation because
+ * handleSignup hands out the lowest free number rather than counting rows, so
+ * a released spot 4 is given to the next comic rather than becoming a hole in
+ * the running order. That behaviour is pinned by a test.
+ */
+async function handleCancel(request: Request, env: Env): Promise<Response> {
+  const token = await readLinkToken(request);
+  if (!LINK_TOKEN.test(token)) {
+    return json({ error: "That link is not valid." }, 400);
+  }
+
+  const row = await env.DB.prepare(
+    `SELECT mic_date, slot, name FROM signups WHERE cancel_token = ?`,
+  )
+    .bind(token)
+    .first<{ mic_date: string; slot: number; name: string }>();
+
+  // Already cancelled, or the night has rotated off and been purged. Either
+  // way there is nothing to release and nothing to apologise for.
+  if (!row) {
+    return json({ found: false, alreadyGone: true }, 200);
+  }
+
+  const detail = {
+    found: true,
+    date: row.mic_date,
+    dateLabel: formatCivilDateLong(row.mic_date),
+    slot: row.slot,
+    name: row.name,
+  };
+
+  if (request.method === "GET") return json(detail);
+
+  await env.DB.prepare(`DELETE FROM signups WHERE cancel_token = ?`)
+    .bind(token)
+    .run();
+
+  return json({ ...detail, cancelled: true });
+}
+
+/**
+ * Off the roster.
+ *
+ * Marks rather than deletes, and blanks the name and handle on the way. The
+ * email stays as the record of the request: without it a sign up next month
+ * would put them straight back onto a list they asked to leave, which is the
+ * failure mode that makes people stop trusting an unsubscribe link. Nothing
+ * that reads the roster returns a row with `removed_at` set.
+ *
+ * Their spot is untouched. Leaving the mailing list is not withdrawing from
+ * the show they signed up for, and quietly cancelling it would be a nasty
+ * surprise. The page says so.
+ */
+async function handleUnsubscribe(
+  request: Request,
+  env: Env,
+): Promise<Response> {
+  const token = await readLinkToken(request);
+  if (!LINK_TOKEN.test(token)) {
+    return json({ error: "That link is not valid." }, 400);
+  }
+
+  const row = await env.DB.prepare(
+    `SELECT email, name, removed_at FROM comedians WHERE unsubscribe_token = ?`,
+  )
+    .bind(token)
+    .first<{ email: string; name: string; removed_at: string | null }>();
+
+  if (!row) {
+    return json({ found: false, alreadyGone: true }, 200);
+  }
+  if (row.removed_at) {
+    return json({ found: true, name: row.name, removed: true, already: true });
+  }
+  if (request.method === "GET") {
+    return json({ found: true, name: row.name, removed: false });
+  }
+
+  await env.DB.prepare(
+    `UPDATE comedians
+        SET removed_at = ?, name = '', instagram = ''
+      WHERE unsubscribe_token = ?`,
+  )
+    .bind(new Date().toISOString(), token)
+    .run();
+
+  return json({ found: true, name: row.name, removed: true });
+}
+
+// ------------------------------------------------------------ GET roster
+
+/** The comedian list as CSV, for booking. Export token, active rows only. */
+async function handleRoster(request: Request, env: Env): Promise<Response> {
+  const url = new URL(request.url);
+  const denied = requireToken(
+    request,
+    url,
+    env.OPEN_MIC_EXPORT_TOKEN,
+    "open-mic-export",
+  );
+  if (denied) return denied;
+
+  const rows = await env.DB.prepare(
+    `SELECT email, name, instagram, first_seen, last_seen, signup_count
+       FROM comedians
+      WHERE removed_at IS NULL
+      ORDER BY last_seen DESC`,
+  ).all<{
+    email: string;
+    name: string;
+    instagram: string;
+    first_seen: string;
+    last_seen: string;
+    signup_count: number;
+  }>();
+
+  const lines = ["Name,Email,Instagram,First signed up,Last signed up,Spots taken"];
+  for (const r of rows.results) {
+    lines.push(
+      [
+        csvCell(r.name),
+        csvCell(r.email),
+        csvCell(r.instagram),
+        csvCell(r.first_seen),
+        csvCell(r.last_seen),
+        String(r.signup_count),
+      ].join(","),
+    );
+  }
+
+  return new Response(`${lines.join("\r\n")}\r\n`, {
+    headers: {
+      "Content-Type": "text/csv; charset=utf-8",
+      "Content-Disposition": `attachment; filename="stoned-goose-comedians.csv"`,
+      "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex, nofollow",
+      "Referrer-Policy": "no-referrer",
+    },
+  });
+}
+
 // ------------------------------------------------------------------- purge
 
 /**
@@ -470,10 +870,31 @@ export default {
         // the cron trigger is paused or the account's cron quota is spent.
         // waitUntil keeps it off the comic's response time.
         ctx.waitUntil(purgePastSignups(env).catch(() => 0));
-        return await handleSignup(request, env);
+        return await handleSignup(request, env, ctx);
+      }
+      if (
+        url.pathname === "/api/open-mic/run-of-show" &&
+        request.method === "GET"
+      ) {
+        return await handleRunOfShow(request, env);
       }
       if (url.pathname === "/api/open-mic/export" && request.method === "GET") {
         return await handleExport(request, env);
+      }
+      if (url.pathname === "/api/open-mic/roster" && request.method === "GET") {
+        return await handleRoster(request, env);
+      }
+      if (
+        url.pathname === "/api/open-mic/cancel" &&
+        (request.method === "GET" || request.method === "POST")
+      ) {
+        return await handleCancel(request, env);
+      }
+      if (
+        url.pathname === "/api/open-mic/unsubscribe" &&
+        (request.method === "GET" || request.method === "POST")
+      ) {
+        return await handleUnsubscribe(request, env);
       }
     } catch (error) {
       // The message can carry SQL and column names. Log it, return nothing.

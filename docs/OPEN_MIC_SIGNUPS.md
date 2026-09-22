@@ -178,7 +178,62 @@ our own origin from that era, delete it, it is doing nothing:
 npx wrangler secret delete OPEN_MIC_ALLOWED_ORIGINS
 ```
 
-### 5. Deploy
+### 5. Confirmation emails (Resend)
+
+Skip this and sign ups still work; comics just get the on-page confirmation
+and nothing in their inbox. **But read the privacy section below before you
+decide to leave it off**: the removal link in that email is the only way a
+comic can get off the roster, and keeping their details with no way out is not
+a position to be in.
+
+1. Sign up at <https://resend.com> and add `stonedgooseproductions.com` as a
+   domain. Free tier is 3,000 a month; this room uses about 50.
+2. Resend prints three DNS records (a `TXT` for SPF, a `CNAME` or `TXT` for
+   DKIM, and usually a DMARC `TXT`). Add them in Cloudflare under DNS for the
+   domain. **Do not skip these.** Unauthenticated mail from your domain goes
+   to spam, and worse, it teaches mailbox providers to distrust the domain
+   your booking email also comes from.
+3. If your email is on Google Workspace, you already have an SPF record. Do
+   not add a second one: a domain with two SPF records fails SPF entirely.
+   Merge Resend's `include:` into the record you have.
+4. Wait for Resend to show the domain as verified, then:
+
+```sh
+npx wrangler secret put RESEND_API_KEY
+# paste the key from the Resend dashboard
+```
+
+Two optional settings, as plain vars rather than secrets, if the defaults are
+wrong:
+
+```sh
+npx wrangler secret put OPEN_MIC_FROM_EMAIL
+# Log Cabin Open Mic <mic@stonedgooseproductions.com>
+npx wrangler secret put OPEN_MIC_REPLY_TO
+# kyle@stonedgooseproductions.com
+```
+
+The address in `OPEN_MIC_FROM_EMAIL` has to be on the domain you verified.
+Sending as `@gmail.com` will be rejected.
+
+Sending is best effort and happens after the response, so a Resend outage
+cannot fail a sign up: the comic has their slot on screen before the email is
+attempted. Failures land in `npx wrangler tail` with Resend's own message,
+which is nearly always an unverified domain.
+
+### 6. The host token
+
+For whoever runs the room. See "Handing the list to whoever is running the
+mic" below.
+
+```sh
+openssl rand -hex 24 | tr -d '\n' > /tmp/host
+npx wrangler secret put OPEN_MIC_HOST_TOKEN < /tmp/host
+cat /tmp/host
+shred -u /tmp/host
+```
+
+### 7. Deploy
 
 ```sh
 npm run build && npx wrangler deploy
@@ -187,7 +242,7 @@ npm run build && npx wrangler deploy
 The nightly purge is a cron trigger in `wrangler.jsonc` and needs nothing else
 switched on.
 
-### 6. Check it end to end
+### 8. Check it end to end
 
 ```sh
 curl -s https://www.stonedgooseproductions.com/api/open-mic/slots
@@ -198,7 +253,32 @@ run it again.
 
 ---
 
-## Getting the list
+## Handing the list to whoever is running the mic
+
+Send them this, with the host token on the end:
+
+```
+https://www.stonedgooseproductions.com/open-mics/run-of-show?token=HOST_TOKEN
+```
+
+A phone-sized running order: slot, name, Instagram handle, a button per Monday
+and a refresh. No email addresses, ever, whatever the URL says. They can
+bookmark it and it keeps working week to week, because it defaults to the
+front of the window, which on a Monday is that night.
+
+Set the token once:
+
+```sh
+openssl rand -hex 24 | tr -d '\n' > /tmp/host
+npx wrangler secret put OPEN_MIC_HOST_TOKEN < /tmp/host
+cat /tmp/host      # this is the one you paste into the link
+shred -u /tmp/host
+```
+
+When somebody stops running the room, rotate just this one and send the new
+link to whoever took over. Your export keeps working throughout.
+
+## Getting the list yourself
 
 Open this in a browser, or `curl` it:
 
@@ -214,6 +294,18 @@ https://www.stonedgooseproductions.com/api/open-mic/export?token=YOUR_TOKEN&date
 
 Columns: `Monday, Slot, Name, Email, Instagram, Signed up`. Slot is the
 position on the running order, 1 to 12, in the order comics signed up.
+
+### The comedian roster
+
+Same token, different route. This is the one that survives the weekly purge:
+
+```
+https://www.stonedgooseproductions.com/api/open-mic/roster?token=YOUR_TOKEN
+```
+
+Columns: `Name, Email, Instagram, First signed up, Last signed up, Spots
+taken`, newest first. `Spots taken` is the useful column when booking: it
+separates the comics who keep turning up from the ones who came once.
 
 The token also works as a header, which is the better habit when you are at a
 terminal anyway:
@@ -233,15 +325,52 @@ rotating it is one command. Do not paste that URL into a group chat.
 ### Privacy, and what it rests on
 
 `GET /api/open-mic/slots` is the only public endpoint, and it returns counts.
-There is no endpoint that returns a name without the export token. That is
-enforced in the Worker, not in the page, because a client side filter is not a
-privacy boundary. `scripts/test/open-mic-worker.test.ts` asserts that the
-public query does not so much as `SELECT` a name or an email.
+No endpoint returns a name without a token. That is enforced in the Worker,
+not in the page, because a client side filter is not a privacy boundary.
+`scripts/test/open-mic-worker.test.ts` asserts that the public query does not
+so much as `SELECT` a name or an email.
 
-Rows are deleted, not archived, once their Monday drops off the board. There
-is no soft delete and no `deleted` flag, because either would mean the site is
-quietly keeping every comic's email forever. If you want a record of who has
-played, export the CSV before the night is over.
+Two lifetimes, and the page states both:
+
+- **The running order** (`signups`) is deleted once its Monday drops off the
+  board. Operational data with an expiry date.
+- **The roster** (`comedians`) is kept. Name, email, handle, first and last
+  seen, and how many spots they have taken, so there is somebody to call when
+  a show needs booking.
+
+Keeping the second one is only defensible because the person handing the
+details over is told it is happening and can get back out. Three things carry
+that, and none of them is optional decoration:
+
+1. The privacy note under the sign up board says the roster exists and what is
+   on it. It is CMS-editable, and the field hint says not to cut that part.
+2. Every confirmation email carries a removal link, plus `List-Unsubscribe`
+   headers so Gmail and Outlook can offer it in their own UI.
+3. Removal is honoured permanently. The row is kept with the name and handle
+   blanked and `removed_at` set, so a sign up next month does not put somebody
+   back on a list they asked to leave. `GET /api/open-mic/roster` never
+   returns a removed row.
+
+If you turn the confirmation email off, you have taken away the only removal
+route a comic has while still keeping their details. Don't.
+
+### The three credentials
+
+| Token | Reaches | Give it to |
+|---|---|---|
+| `OPEN_MIC_EXPORT_TOKEN` | Both CSVs. Names, emails, handles, the roster. | Nobody but you. |
+| `OPEN_MIC_HOST_TOKEN` | One night's running order. Slot, name, handle. **No emails.** | Whoever is running the room. |
+| Link tokens | One row, one action, for the person that row is about. | Mailed automatically. |
+
+The host token is a separate route rather than a narrower view of the export
+on purpose: a credential that physically cannot return contact details is safe
+to hand to somebody who is only around on Mondays, and rotating it when they
+stop being does not break your export.
+
+Link tokens are random UUIDs stored on the row. `GET` on those routes only
+reports what the token refers to; the action needs a `POST`. Mail clients and
+security scanners fetch links nobody clicked, and a cancel on `GET` would
+release spots by itself.
 
 ---
 
@@ -339,6 +468,19 @@ says `REPLACE_WITH_D1_DATABASE_ID`. See step 1.
 **`Secret edit failed ... latest version of your Worker isn't currently
 deployed`.** Run `npx wrangler deploy`, then set the secret. See "Rotating it
 later" above.
+
+**No confirmation email arrives.** `npx wrangler tail`, then take a spot. The
+log says which: `RESEND_API_KEY unset, skipping` means step 5 is not done;
+`resend 403` with a message about the domain means the DNS records are not
+verified yet; `no unsubscribe token, not sending` means the roster write
+failed, so the email was withheld rather than sent without a removal link.
+
+**Email lands in spam.** The DNS records from step 5 are missing, incomplete,
+or there are two SPF records on the domain. Check with
+`dig TXT stonedgooseproductions.com` that exactly one `v=spf1` record exists.
+
+**A cancel link says "Nothing to release".** Already used, or that Monday has
+rotated off the board and been purged. Both are expected.
 
 **Sign ups 403 with "Sign ups only work from the site itself".** The `Origin`
 header did not match the host the request arrived on, and is not in

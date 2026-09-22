@@ -19,6 +19,7 @@
 // Run via `npm test`.
 
 import worker from "../../worker/index";
+import { FakeD1, type Comedian, type Row } from "../fake-d1";
 import { MIC_SLOT_COUNT, addDays, micWindow } from "../../lib/open-mic-schedule";
 
 let failures = 0;
@@ -38,139 +39,20 @@ function eq(actual: unknown, expected: unknown, message: string) {
   );
 }
 
-// ------------------------------------------------------------- the D1 stub
-
-type Row = {
-  id: string;
-  mic_date: string;
-  slot: number;
-  name: string;
-  email: string;
-  instagram: string;
-  created_at: string;
-};
-
-/**
- * Enough of D1 to run the Worker, and no more.
- *
- * The UNIQUE constraints are the point of this stub. They are what makes the
- * Worker's retry loop testable: without them the read-then-write would look
- * correct and a race would hand out a duplicate slot in production.
- */
-class FakeD1 {
-  rows: Row[] = [];
-  /** Queries seen, so a test can assert the Worker never asked for names. */
-  queries: string[] = [];
-
-  prepare(sql: string) {
-    this.queries.push(sql.replace(/\s+/g, " ").trim());
-    const db = this;
-    let bound: unknown[] = [];
-
-    const stmt = {
-      bind(...values: unknown[]) {
-        bound = values;
-        return stmt;
-      },
-      async all<T>() {
-        return { results: db.run_select(sql, bound) as T[], success: true, meta: { changes: 0, duration: 0 } };
-      },
-      async first<T>() {
-        return (db.run_select(sql, bound)[0] ?? null) as T | null;
-      },
-      async run() {
-        const changes = db.run_write(sql, bound);
-        return { results: [], success: true, meta: { changes, duration: 0 } };
-      },
-    };
-    return stmt;
-  }
-
-  private run_select(sql: string, bound: unknown[]): Record<string, unknown>[] {
-    const q = sql.replace(/\s+/g, " ").trim();
-
-    // handleSlots: counts per Monday.
-    if (q.startsWith("SELECT mic_date, COUNT(*)")) {
-      const dates = bound as string[];
-      const counts = new Map<string, number>();
-      for (const r of this.rows) {
-        if (dates.includes(r.mic_date)) {
-          counts.set(r.mic_date, (counts.get(r.mic_date) ?? 0) + 1);
-        }
-      }
-      return [...counts].map(([mic_date, taken]) => ({ mic_date, taken }));
-    }
-
-    // handleSignup: which slots and emails are taken for one Monday.
-    if (q.startsWith("SELECT slot, email")) {
-      const [date] = bound as string[];
-      return this.rows
-        .filter((r) => r.mic_date === date)
-        .map((r) => ({ slot: r.slot, email: r.email }));
-    }
-
-    // handleExport: the full list.
-    if (q.startsWith("SELECT mic_date, slot, name")) {
-      const dates = bound as string[];
-      return this.rows
-        .filter((r) => dates.includes(r.mic_date))
-        .sort((a, b) => a.mic_date.localeCompare(b.mic_date) || a.slot - b.slot)
-        .map((r) => ({
-          mic_date: r.mic_date,
-          slot: r.slot,
-          name: r.name,
-          email: r.email,
-          instagram: r.instagram,
-          created_at: r.created_at,
-        }));
-    }
-
-    throw new Error(`FakeD1: unhandled SELECT: ${q}`);
-  }
-
-  private run_write(sql: string, bound: unknown[]): number {
-    const q = sql.replace(/\s+/g, " ").trim();
-
-    if (q.startsWith("INSERT INTO signups")) {
-      const [id, mic_date, slot, name, email, instagram, created_at] = bound as [
-        string, string, number, string, string, string, string,
-      ];
-      // The two UNIQUE constraints from worker/schema.sql, with the error text
-      // SQLite actually produces, because the Worker branches on it.
-      if (this.rows.some((r) => r.mic_date === mic_date && r.slot === slot)) {
-        throw new Error(
-          "D1_ERROR: UNIQUE constraint failed: signups.mic_date, signups.slot",
-        );
-      }
-      if (this.rows.some((r) => r.mic_date === mic_date && r.email === email)) {
-        throw new Error(
-          "D1_ERROR: UNIQUE constraint failed: signups.mic_date, signups.email",
-        );
-      }
-      this.rows.push({ id, mic_date, slot, name, email, instagram, created_at });
-      return 1;
-    }
-
-    if (q.startsWith("DELETE FROM signups WHERE mic_date <")) {
-      const [cutoff] = bound as string[];
-      const before = this.rows.length;
-      this.rows = this.rows.filter((r) => r.mic_date >= cutoff);
-      return before - this.rows.length;
-    }
-
-    throw new Error(`FakeD1: unhandled write: ${q}`);
-  }
-}
-
 const ORIGIN = "https://www.stonedgooseproductions.com";
 const EXPORT_TOKEN = "test-token-0123456789";
+const HOST_TOKEN = "host-token-98765432101";
 
 /** Mirrors the Env interface in worker/index.ts, secrets optional. */
 type TestEnv = {
   DB: D1Database;
   ASSETS: Fetcher;
   OPEN_MIC_EXPORT_TOKEN?: string;
+  OPEN_MIC_HOST_TOKEN?: string;
   OPEN_MIC_ALLOWED_ORIGINS?: string;
+  RESEND_API_KEY?: string;
+  OPEN_MIC_FROM_EMAIL?: string;
+  OPEN_MIC_REPLY_TO?: string;
 };
 
 function makeEnv(db: FakeD1): TestEnv {
@@ -180,7 +62,11 @@ function makeEnv(db: FakeD1): TestEnv {
       fetch: async () => new Response("static asset", { status: 200 }),
     } as unknown as Fetcher,
     OPEN_MIC_EXPORT_TOKEN: EXPORT_TOKEN,
+    OPEN_MIC_HOST_TOKEN: HOST_TOKEN,
     OPEN_MIC_ALLOWED_ORIGINS: ORIGIN,
+    // No RESEND_API_KEY: sendConfirmation returns early without touching the
+    // network, so the suite never makes a real request. The one test that
+    // checks the email payload stubs fetch and sets the key itself.
   };
 }
 
@@ -748,15 +634,456 @@ async function main() {
   );
 }
 
+// ------------------------------------------------------------- the roster
+
+{
+  const call = fresh();
+  await signup(call, {
+    date: monday,
+    name: "Jess Everett",
+    email: "jess@example.com",
+    instagram: "@jess.everett",
+  });
+
+  eq(call.db.comedians.length, 1, "a sign up puts the comic on the roster");
+  const [c] = call.db.comedians;
+  eq(c.email, "jess@example.com", "keyed on the lowercased email");
+  eq(c.name, "Jess Everett", "with their name");
+  eq(c.instagram, "jess.everett", "and the normalised handle");
+  eq(c.signup_count, 1, "counting one spot so far");
+  eq(c.removed_at, null, "and not removed");
+  assert(Boolean(c.unsubscribe_token), "with a removal token issued up front");
+  eq(c.first_seen, c.last_seen, "first and last seen match on a first sign up");
+
+  const firstToken = c.unsubscribe_token;
+
+  // A second Monday updates the row rather than adding one.
+  await signup(call, {
+    date: secondMonday,
+    name: "Jess Everett-Smith",
+    email: "JESS@example.com",
+    instagram: "jesse",
+  });
+  eq(call.db.comedians.length, 1, "signing up again does not duplicate the roster row");
+  eq(call.db.comedians[0].signup_count, 2, "it increments the spot count");
+  eq(call.db.comedians[0].name, "Jess Everett-Smith", "and takes the newer name");
+  eq(call.db.comedians[0].instagram, "jesse", "and the newer handle");
+  eq(
+    call.db.comedians[0].unsubscribe_token,
+    firstToken,
+    "the removal token is stable, so a link in an old email keeps working",
+  );
+
+  // The roster export.
+  const csv = await (
+    await hit(call, `/api/open-mic/roster?token=${EXPORT_TOKEN}`)
+  ).text();
+  const lines = csv.trim().split("\r\n");
+  eq(
+    lines[0],
+    "Name,Email,Instagram,First signed up,Last signed up,Spots taken",
+    "the roster CSV header",
+  );
+  eq(lines.length, 2, "one row per comic, not per sign up");
+  assert(lines[1].includes('"jess@example.com"'), "with the email for booking");
+  assert(lines[1].endsWith(",2"), "and the spot count as a bare number");
+
+  eq(
+    (await hit(call, "/api/open-mic/roster")).status,
+    401,
+    "the roster needs the export token",
+  );
+  eq(
+    (await hit(call, `/api/open-mic/roster?token=${HOST_TOKEN}`)).status,
+    401,
+    "and the host token does not open it",
+  );
+}
+
+// ------------------------------------------------ the roster survives a purge
+
+{
+  const call = fresh();
+  await signup(call, {
+    date: monday,
+    name: "Long Hauler",
+    email: "long@example.com",
+    instagram: "longhauler",
+  });
+  // Drag the night into the past and purge, the way a week rolling over does.
+  call.db.rows[0].mic_date = pastMonday;
+
+  const pending: Promise<unknown>[] = [];
+  await worker.scheduled(
+    { scheduledTime: Date.now(), cron: "0 7 * * *" },
+    call.env,
+    makeCtx(pending),
+  );
+  await Promise.all(pending);
+
+  eq(call.db.rows.length, 0, "the running order is purged with the night");
+  eq(
+    call.db.comedians.length,
+    1,
+    "but the roster row survives, which is the whole point of it",
+  );
+}
+
+// ---------------------------------------------------------- run of show
+
+{
+  const call = fresh();
+  for (const [i, who] of [
+    ["Min Lin", "minlin"],
+    ["Jess Everett", "jess.everett"],
+  ].entries()) {
+    await signup(call, {
+      date: monday,
+      name: who[0],
+      email: `c${i}@example.com`,
+      instagram: who[1],
+    });
+  }
+
+  eq(
+    (await hit(call, "/api/open-mic/run-of-show")).status,
+    401,
+    "the running order needs a token",
+  );
+  eq(
+    (await hit(call, `/api/open-mic/run-of-show?token=${EXPORT_TOKEN}`)).status,
+    401,
+    "and it is the host token, not the export one",
+  );
+
+  const response = await hit(
+    call,
+    `/api/open-mic/run-of-show?token=${HOST_TOKEN}`,
+  );
+  eq(response.status, 200, "the host token opens it");
+  eq(
+    response.headers.get("X-Robots-Tag"),
+    "noindex, nofollow",
+    "and the response is not indexable",
+  );
+
+  const body = await response.text();
+  const data = JSON.parse(body) as {
+    date: string;
+    taken: number;
+    spots: { slot: number; name: string; instagram: string }[];
+    dates: { date: string }[];
+  };
+  eq(data.date, monday, "defaulting to the front of the window, which is tonight");
+  eq(data.taken, 2, "reporting how many spots are gone");
+  eq(
+    data.spots.map((sp) => [sp.slot, sp.name]),
+    [[1, "Min Lin"], [2, "Jess Everett"]],
+    "in running order",
+  );
+  eq(data.dates.length, 4, "offering all four Mondays so the page needs no second call");
+
+  // THE privacy guarantee for this route. A host link gets forwarded around;
+  // it must not carry twelve people's contact details with it.
+  assert(
+    !body.includes("@example.com"),
+    "the running order must not contain a single email address",
+  );
+  assert(
+    !call.db.queries.some(
+      (query) =>
+        query.startsWith("SELECT slot, name, instagram") && /\bemail\b/.test(query),
+    ),
+    "and the query behind it must not select email",
+  );
+
+  // A date from the window is honoured; one outside it falls back.
+  const other = await hit(
+    call,
+    `/api/open-mic/run-of-show?token=${HOST_TOKEN}&date=${secondMonday}`,
+  );
+  eq(
+    ((await other.json()) as { date: string }).date,
+    secondMonday,
+    "an in-window date is honoured",
+  );
+  const past = await hit(
+    call,
+    `/api/open-mic/run-of-show?token=${HOST_TOKEN}&date=${pastMonday}`,
+  );
+  eq(
+    ((await past.json()) as { date: string }).date,
+    monday,
+    "a date off the board falls back to tonight rather than reaching for it",
+  );
+}
+
+// ------------------------------------------------------------- cancelling
+
+{
+  const call = fresh();
+  for (let i = 1; i <= 3; i += 1) {
+    await signup(call, {
+      date: monday,
+      name: `Comic ${i}`,
+      email: `c${i}@example.com`,
+      instagram: `c${i}`,
+    });
+  }
+  const token = call.db.rows[1].cancel_token as string;
+  assert(Boolean(token), "every sign up gets a cancel token");
+
+  // GET must only report. A mail client prefetching the link cannot be the
+  // thing that releases the spot.
+  const peek = await hit(call, `/api/open-mic/cancel?t=${token}`);
+  eq(peek.status, 200, "GET on a cancel link answers");
+  const detail = (await peek.json()) as { slot: number; name: string; date: string };
+  eq(detail.slot, 2, "and says which spot it would release");
+  eq(detail.name, "Comic 2", "and whose");
+  eq(call.db.rows.length, 3, "and releases nothing, because GET never mutates");
+
+  const done = await hit(call, "/api/open-mic/cancel", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token }),
+  });
+  eq(done.status, 200, "POST releases it");
+  eq(((await done.json()) as { cancelled: boolean }).cancelled, true, "and says so");
+  eq(call.db.rows.length, 2, "the row is gone");
+
+  // And the freed slot is handed out again rather than left as a hole.
+  const replacement = await signup(call, {
+    date: monday,
+    name: "Replacement",
+    email: "new@example.com",
+    instagram: "newcomic",
+  });
+  eq(
+    ((await replacement.json()) as { slot: number }).slot,
+    2,
+    "the released spot goes to the next comic",
+  );
+
+  // Using the link twice is not an error.
+  const again = await hit(call, `/api/open-mic/cancel?t=${token}`);
+  eq(again.status, 200, "a spent cancel link still answers 200");
+  eq(
+    ((await again.json()) as { alreadyGone: boolean }).alreadyGone,
+    true,
+    "and says there is nothing to do",
+  );
+
+  // Junk is refused before it reaches a query.
+  eq(
+    (await hit(call, "/api/open-mic/cancel?t=nonsense")).status,
+    400,
+    "a malformed token is refused",
+  );
+  eq(
+    (await hit(call, "/api/open-mic/cancel")).status,
+    400,
+    "and a missing one too",
+  );
+  // Cancelling does not touch the roster.
+  eq(
+    call.db.comedians.length,
+    4,
+    "releasing a spot leaves the comic on the roster",
+  );
+}
+
+// --------------------------------------------------------- unsubscribing
+
+{
+  const call = fresh();
+  await signup(call, {
+    date: monday,
+    name: "Jess Everett",
+    email: "jess@example.com",
+    instagram: "jess.everett",
+  });
+  const token = call.db.comedians[0].unsubscribe_token;
+
+  const peek = await hit(call, `/api/open-mic/unsubscribe?t=${token}`);
+  eq(peek.status, 200, "GET on a removal link answers");
+  eq(
+    ((await peek.json()) as { removed: boolean }).removed,
+    false,
+    "and reports them as still on the list",
+  );
+  eq(call.db.comedians[0].removed_at, null, "GET removes nobody");
+
+  const done = await hit(call, "/api/open-mic/unsubscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token }),
+  });
+  eq(done.status, 200, "POST removes them");
+  assert(Boolean(call.db.comedians[0].removed_at), "removed_at is stamped");
+  eq(call.db.comedians[0].name, "", "the name is blanked");
+  eq(call.db.comedians[0].instagram, "", "and the handle");
+  eq(
+    call.db.comedians[0].email,
+    "jess@example.com",
+    "the email stays, as the record of the request",
+  );
+
+  // Their spot is untouched. Leaving a mailing list is not withdrawing from
+  // the show, and silently cancelling it would be a nasty surprise.
+  eq(call.db.rows.length, 1, "coming off the list does not cancel their spot");
+
+  // The roster export no longer returns them.
+  const csv = await (
+    await hit(call, `/api/open-mic/roster?token=${EXPORT_TOKEN}`)
+  ).text();
+  eq(csv.trim().split("\r\n").length, 1, "a removed comic is not in the roster CSV");
+  assert(!csv.includes("jess@example.com"), "not even their email");
+
+  // The suppression has to stick, or an unsubscribe link means nothing.
+  await signup(call, {
+    date: secondMonday,
+    name: "Jess Everett",
+    email: "jess@example.com",
+    instagram: "jess.everett",
+  });
+  assert(
+    Boolean(call.db.comedians[0].removed_at),
+    "signing up again does NOT put a removed comic back on the list",
+  );
+  const after = await (
+    await hit(call, `/api/open-mic/roster?token=${EXPORT_TOKEN}`)
+  ).text();
+  assert(
+    !after.includes("jess@example.com"),
+    "and they stay out of the roster export",
+  );
+
+  // Removing twice is idempotent and not an error.
+  const twice = await hit(call, `/api/open-mic/unsubscribe?t=${token}`);
+  eq(
+    ((await twice.json()) as { already: boolean }).already,
+    true,
+    "a spent removal link says so rather than erroring",
+  );
+}
+
+// ----------------------------------------------------- the email payload
+
+{
+  const call = fresh();
+  call.env.RESEND_API_KEY = "re_test_key";
+  call.env.OPEN_MIC_FROM_EMAIL = "Mic <mic@stonedgooseproductions.com>";
+  call.env.OPEN_MIC_REPLY_TO = "kyle@stonedgooseproductions.com";
+
+  const sent: { url: string; body: Record<string, unknown> }[] = [];
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (async (input: string | URL | Request, init?: RequestInit) => {
+    const url = String(input instanceof Request ? input.url : input);
+    if (url.startsWith("https://api.resend.com")) {
+      sent.push({ url, body: JSON.parse(String(init?.body)) });
+      return new Response(JSON.stringify({ id: "stub" }), { status: 200 });
+    }
+    return realFetch(input as never, init);
+  }) as typeof fetch;
+
+  try {
+    await signup(call, {
+      date: monday,
+      name: "Jess Everett",
+      email: "jess@example.com",
+      instagram: "jess.everett",
+    });
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+
+  eq(sent.length, 1, "a sign up sends exactly one email");
+  const body = sent[0].body as {
+    to: string[];
+    from: string;
+    reply_to: string;
+    subject: string;
+    text: string;
+    html: string;
+    headers: Record<string, string>;
+  };
+  eq(body.to, ["jess@example.com"], "to the comic");
+  eq(body.from, "Mic <mic@stonedgooseproductions.com>", "from the configured address");
+  eq(body.reply_to, "kyle@stonedgooseproductions.com", "with a real reply-to");
+  assert(body.subject.includes("You have a spot"), "with a subject that says what it is");
+
+  // The two links are what make the whole retention arrangement honest, so
+  // they are asserted rather than assumed.
+  const cancelUrl = `${ORIGIN}/open-mics/cancel?t=${call.db.rows[0].cancel_token}`;
+  const unsubUrl = `${ORIGIN}/open-mics/unsubscribe?t=${call.db.comedians[0].unsubscribe_token}`;
+  for (const [part, label] of [[body.text, "text"], [body.html, "html"]] as const) {
+    assert(part.includes(cancelUrl), `the ${label} part carries the cancel link`);
+    assert(part.includes(unsubUrl), `the ${label} part carries the removal link`);
+    assert(part.includes("Spot 1 of 12"), `the ${label} part states the spot`);
+    assert(part.includes("8 minutes"), `the ${label} part states the length`);
+    assert(part.includes("7:00 PM"), `the ${label} part states the show time`);
+    assert(
+      part.includes("Log Cabin Bar & Grill") || part.includes("Log Cabin Bar &amp; Grill"),
+      `the ${label} part names the venue`,
+    );
+    assert(
+      part.includes("comedian list"),
+      `the ${label} part says we keep them on a list`,
+    );
+  }
+  eq(
+    body.headers["List-Unsubscribe"],
+    `<${unsubUrl}>`,
+    "and the List-Unsubscribe header points at the same place",
+  );
+  eq(
+    body.headers["List-Unsubscribe-Post"],
+    "List-Unsubscribe=One-Click",
+    "so Gmail and Outlook can offer removal in their own UI",
+  );
+}
+
+// --------------------------------------- no email key is a valid setup
+
+{
+  const call = fresh();
+  call.env.RESEND_API_KEY = undefined;
+  const realFetch = globalThis.fetch;
+  let called = false;
+  globalThis.fetch = (async (input: string | URL | Request, init?: RequestInit) => {
+    if (String(input).startsWith("https://api.resend.com")) called = true;
+    return realFetch(input as never, init);
+  }) as typeof fetch;
+
+  let status = 0;
+  try {
+    status = (
+      await signup(call, {
+        date: monday,
+        name: "No Email",
+        email: "noemail@example.com",
+        instagram: "noemail",
+      })
+    ).status;
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+
+  eq(status, 200, "a sign up works with email switched off");
+  eq(call.db.rows.length, 1, "the spot is still taken");
+  eq(call.db.comedians.length, 1, "and the roster is still written");
+  assert(!called, "and nothing is sent");
+}
+
 // ---------------------------------------------------------------- the purge
 
 {
   const call = fresh();
   // Two nights that have dropped off the board, and one that is still on it.
   call.db.rows.push(
-    { id: "a", mic_date: pastMonday, slot: 1, name: "Gone", email: "gone@example.com", instagram: "gone", created_at: "x" },
-    { id: "b", mic_date: addDays(pastMonday, -7), slot: 1, name: "Older", email: "older@example.com", instagram: "older", created_at: "x" },
-    { id: "c", mic_date: monday, slot: 1, name: "Current", email: "now@example.com", instagram: "now", created_at: "x" },
+    { id: "a", mic_date: pastMonday, slot: 1, name: "Gone", email: "gone@example.com", instagram: "gone", created_at: "x", cancel_token: null },
+    { id: "b", mic_date: addDays(pastMonday, -7), slot: 1, name: "Older", email: "older@example.com", instagram: "older", created_at: "x", cancel_token: null },
+    { id: "c", mic_date: monday, slot: 1, name: "Current", email: "now@example.com", instagram: "now", created_at: "x", cancel_token: null },
   );
 
   const pending: Promise<unknown>[] = [];
@@ -779,6 +1106,7 @@ async function main() {
   call.db.rows.push({
     id: "d", mic_date: pastMonday, slot: 2, name: "Gone Again",
     email: "gone2@example.com", instagram: "gone2", created_at: "x",
+    cancel_token: null,
   });
   await signup(call, {
     date: secondMonday,
@@ -803,7 +1131,7 @@ function await_free_main() {
         process.exit(1);
       }
       console.log(
-        `open-mic-worker test: ${checks} checks pass. Cap, running order, privacy, export and purge all hold.`,
+        `open-mic-worker test: ${checks} checks pass. Cap, running order, privacy, roster retention, the two email links, host view, exports and purge all hold.`,
       );
     },
     (error) => {
