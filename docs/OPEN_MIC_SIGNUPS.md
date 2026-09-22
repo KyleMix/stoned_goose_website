@@ -53,14 +53,28 @@ exactly as before.
 Needs **Wrangler 4.20 or newer** (`run_worker_first` only takes a list of globs
 from that version on).
 
-### 1. Create the database
+### 1. Create the database, and put its id in the config
 
 ```sh
 npx wrangler d1 create stoned-goose-open-mic
 ```
 
-Paste the `database_id` it prints into `wrangler.jsonc`, replacing
-`REPLACE_WITH_D1_DATABASE_ID`. **The deploy will fail until you do.**
+**Then paste the `database_id` it prints into `wrangler.jsonc`, replacing
+`REPLACE_WITH_D1_DATABASE_ID`.** Do not skip to step 2: every later step
+addresses the database by that id, so the very next command fails with
+`Invalid property: databaseId => Invalid uuid [code: 7400]`, which reads like
+an API problem and is really just the placeholder.
+
+To do both at once, or to recover the id later:
+
+```sh
+ID=$(npx wrangler d1 list --json | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const m=JSON.parse(s).find(d=>d.name==='stoned-goose-open-mic');if(!m){console.error('not found');process.exit(1)}process.stdout.write(m.uuid||m.id)})") \
+  && sed -i "s/REPLACE_WITH_D1_DATABASE_ID/$ID/" wrangler.jsonc \
+  && grep database_id wrangler.jsonc
+```
+
+The id is not a secret. It gets committed, and it has to be, or a deploy from
+anywhere but your own checkout has nothing to bind to.
 
 ### 2. Create the table
 
@@ -252,6 +266,14 @@ than the hostname people are actually on. Unset it or fix it.
 
 **The export 503s.** `OPEN_MIC_EXPORT_TOKEN` is not set on the Worker. An
 unconfigured token closes the export rather than opening it.
+
+**The export 401s with the right token.** The stored secret probably has a
+trailing newline, from piping `openssl` into `wrangler secret put`. The Worker
+compares length first, so it never matches. Set it again by pasting at the
+prompt, per step 3.
+
+**`Invalid uuid [code: 7400]` from any d1 command.** `wrangler.jsonc` still
+says `REPLACE_WITH_D1_DATABASE_ID`. See step 1.
 
 **A Monday that has happened is still on the board.** The purge is belt and
 braces, not load bearing: `slots` recomputes the window on every request and
