@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-23T10:34:49.729Z",
+  "fetchedAt": "2026-09-23T20:57:05.633Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-09-22 17:30:00-standup-comedy-class-with-andrew-frank",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Standup Comedy Class with Andrew Frank",
-      "start": "2026-09-22T17:30:00",
-      "url": "https://www.eventbrite.com/e/standup-comedy-class-with-andrew-frank-tickets-1998313610803",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24663_image.png"
-    },
     {
       "id": "emerald-city-comedy-club-2026-09-24T02:30:00Z-chris-vs-the-people",
       "clubSlug": "emerald-city-comedy-club",
