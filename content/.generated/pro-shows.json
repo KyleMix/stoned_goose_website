@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-22T10:43:28.952Z",
+  "fetchedAt": "2026-09-23T10:34:49.729Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-09-22 17:30:00-standup-comedy-class-with-andrew-frank",
@@ -8,14 +8,6 @@
       "start": "2026-09-22T17:30:00",
       "url": "https://www.eventbrite.com/e/standup-comedy-class-with-andrew-frank-tickets-1998313610803",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24663_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-23T02:30:00Z-chaos-crawlers",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Chaos & Crawlers",
-      "start": "2026-09-23T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/374204",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91935/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-09-24T02:30:00Z-chris-vs-the-people",
@@ -472,6 +464,14 @@
       "start": "2026-10-18T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-comedy-tickets-1989420547411",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24133_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-18T23:00:00Z-pinky-patel",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Pinky Patel",
+      "start": "2026-10-18T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/383539",
+      "image": "https://files.seatengine.com/talent/headshots/photos/64496/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-19 18:00:00-let-8217-s-get-social-8211-comedy-class-with-ellen-acuario",
