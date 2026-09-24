@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-23T20:57:05.633Z",
+  "fetchedAt": "2026-09-24T10:53:52.534Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-09-24T02:30:00Z-chris-vs-the-people",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Chris vs. The People",
-      "start": "2026-09-24T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/369625",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91562/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-09-24 20:00:00-comedy-show-comedian-audrey-stewart-at-laughs-comedy",
       "clubSlug": "laughs-comedy-club",
@@ -464,6 +456,14 @@
       "start": "2026-10-18T23:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/383539",
       "image": "https://files.seatengine.com/talent/headshots/photos/64496/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-19T02:30:00Z-dr-kojo",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Dr. Kojo",
+      "start": "2026-10-19T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/383327",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94494/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-19 18:00:00-let-8217-s-get-social-8211-comedy-class-with-ellen-acuario",
