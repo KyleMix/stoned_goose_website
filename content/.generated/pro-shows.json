@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-25T10:56:31.358Z",
+  "fetchedAt": "2026-09-25T20:58:04.176Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-09-24 20:00:00-comedy-show-comedian-audrey-stewart-at-laughs-comedy",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Comedian Audrey Stewart at Laughs Comedy",
-      "start": "2026-09-24T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-comedian-audrey-stewart-at-laughs-comedy-tickets-1998966872727",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-audrey-stewart-sep26-v3.png"
-    },
     {
       "id": "laughs-comedy-club-2026-09-25 19:15:00-comedy-show-lachlan-patterson-at-laughs-comedy-8211-seattle",
       "clubSlug": "laughs-comedy-club",
