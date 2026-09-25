@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-24T10:53:52.534Z",
+  "fetchedAt": "2026-09-25T10:56:31.358Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-09-24 20:00:00-comedy-show-comedian-audrey-stewart-at-laughs-comedy",
@@ -8,22 +8,6 @@
       "start": "2026-09-24T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-audrey-stewart-at-laughs-comedy-tickets-1998966872727",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-audrey-stewart-sep26-v3.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-09-25T02:00:00Z-that-one-mailman-sean-fogelson",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "\"That One Mailman\" Sean Fogelson",
-      "start": "2026-09-25T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/360614",
-      "image": "https://files.seatengine.com/talent/headshots/photos/80160/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-09-25T02:30:00Z-ruby-setnik",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Ruby Setnik",
-      "start": "2026-09-25T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/388248",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95808/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-09-25 19:15:00-comedy-show-lachlan-patterson-at-laughs-comedy-8211-seattle",
@@ -474,12 +458,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24615_image.jpg"
     },
     {
+      "id": "emerald-city-comedy-club-2026-10-21T02:30:00Z-giulio-gallarotti",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Giulio Gallarotti",
+      "start": "2026-10-21T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/380504",
+      "image": "https://files.seatengine.com/talent/headshots/photos/72972/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-22 19:00:00-comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Alex Falcone Oct. 22nd- 24th at Laughs Comedy Club- Seattle",
       "start": "2026-10-22T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club-seattle-tickets-1989409509396",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-1080x540-alex-falcone-oct26-v3.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-alex-falcone-oct26.png"
     },
     {
       "id": "laughs-comedy-club-2026-10-25 19:00:00-comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm",
