@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-27T11:09:04.257Z",
+  "fetchedAt": "2026-09-28T12:33:30.933Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-09-28T02:30:00Z-winston-hodges",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Winston Hodges",
-      "start": "2026-09-28T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376522",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92556/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-09-30T02:30:00Z-peter-antoniou",
       "clubSlug": "emerald-city-comedy-club",
