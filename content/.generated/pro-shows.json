@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-09-29T21:44:53.695Z",
+  "fetchedAt": "2026-09-30T03:20:47.756Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-09-30T02:30:00Z-peter-antoniou",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Peter Antoniou",
-      "start": "2026-09-30T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/369626",
-      "image": "https://files.seatengine.com/talent/headshots/photos/75337/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-10-01T01:30:00Z-sammy-obeid",
       "clubSlug": "tacoma-comedy-club",
@@ -408,6 +400,14 @@
       "start": "2026-10-24T04:15:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/368006",
       "image": "https://files.seatengine.com/talent/headshots/photos/68441/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-24T23:00:00Z-steve-wrigley",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Steve Wrigley",
+      "start": "2026-10-24T23:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/379540",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93390/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-25T02:00:00Z-james-murr-murray",
