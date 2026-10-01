@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-01T03:27:20.604Z",
+  "fetchedAt": "2026-10-01T12:12:20.710Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-10-01T03:45:00Z-sammy-obeid",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Sammy Obeid",
-      "start": "2026-10-01T03:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/387017",
-      "image": "https://files.seatengine.com/talent/headshots/photos/54068/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-10-01 19:00:00-comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seat",
       "clubSlug": "laughs-comedy-club",
