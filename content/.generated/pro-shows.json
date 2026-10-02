@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-01T12:12:20.710Z",
+  "fetchedAt": "2026-10-02T03:28:10.953Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-01 19:00:00-comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seat",
@@ -8,22 +8,6 @@
       "start": "2026-10-01T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seattle-tickets-1999050611191",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-Eventbrite-JulieKim-oct26-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-02T02:00:00Z-radel-ortiz",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Radel Ortiz",
-      "start": "2026-10-02T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/384450",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94739/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-02T02:00:00Z-herman-wrice",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Herman Wrice",
-      "start": "2026-10-02T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/364023",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89212/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
@@ -378,6 +362,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/72972/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-10-21 19:00:00-comedy-class-graduation-show-with-andrew-frank",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Class Graduation Show with Andrew Frank",
+      "start": "2026-10-21T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-andrew-frank-tickets-1998321546539",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/24912_image.png"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-10-22T02:30:00Z-george-civeris",
       "clubSlug": "emerald-city-comedy-club",
       "title": "George Civeris",
@@ -448,6 +440,14 @@
       "start": "2026-10-25T22:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/383978",
       "image": "https://files.seatengine.com/talent/headshots/photos/94690/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-26T02:00:00Z-marie-faustin",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Marie Faustin",
+      "start": "2026-10-26T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/371428",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91205/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
