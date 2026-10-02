@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-02T03:28:10.953Z",
+  "fetchedAt": "2026-10-02T21:41:45.541Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-10-01 19:00:00-comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seat",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Comedian Julie Kim Oct. 1st at Laughs Comedy-Seattle",
-      "start": "2026-10-01T19:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-comedian-julie-kim-oct-1st-at-laughs-comedy-seattle-tickets-1999050611191",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-Eventbrite-JulieKim-oct26-1080.png"
-    },
     {
       "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
       "clubSlug": "laughs-comedy-club",
@@ -31,14 +23,6 @@
       "title": "Justin Silva",
       "start": "2026-10-03T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/377003",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-03T04:30:00Z-justin-silva",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Justin Silva",
-      "start": "2026-10-03T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377004",
       "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
     },
     {
@@ -72,14 +56,6 @@
       "start": "2026-10-04T03:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/366333",
       "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-04T04:30:00Z-justin-silva",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Justin Silva",
-      "start": "2026-10-04T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377006",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-04T22:00:00Z-rocky-horror-drag-brunch",
@@ -263,7 +239,7 @@
       "title": "Comedy show: Comedian Gwen Rose at Laughs Comedy",
       "start": "2026-10-15T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-comedian-gwen-rose-at-laughs-comedy-tickets-1993495355271",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-gwen-rose-oct26.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-GwenRose_SEA-10152026-1080.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-16T02:30:00Z-jay-jurden",
@@ -279,7 +255,7 @@
       "title": "Comedy Show: Erica Rhodes Oct. 16th and 17th at Laughs Comedy- Seattle",
       "start": "2026-10-16T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-seattle-tickets-1985175475286",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/banner-Erica-Rhodes-sep26.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-EricaRhodes_SEA-102026-1080.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-17T02:00:00Z-jay-jurden",
@@ -448,6 +424,14 @@
       "start": "2026-10-26T02:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/371428",
       "image": "https://files.seatengine.com/talent/headshots/photos/91205/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-28T02:30:00Z-jt-parr",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "JT Parr",
+      "start": "2026-10-28T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/377610",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92872/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
