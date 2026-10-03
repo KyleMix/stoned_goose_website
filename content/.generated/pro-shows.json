@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-03T03:12:13.197Z",
+  "fetchedAt": "2026-10-03T10:55:42.552Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
@@ -8,14 +8,6 @@
       "start": "2026-10-02T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-ricky-velez-on-oct2nd-and-3rd-laughs-comedy-club-seattle-tickets-1992391807530",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-Eventbrite-RickyVelez-102026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-03T04:45:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-03T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366332",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
     },
     {
       "id": "tacoma-comedy-club-2026-10-04T01:00:00Z-lavell-crawford",
