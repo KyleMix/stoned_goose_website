@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-03T10:55:42.552Z",
+  "fetchedAt": "2026-10-03T20:27:24.469Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-10-02 19:15:00-comedy-show-ricky-velez-on-oct-2nd-and-3rd-laughs-comedy-clu",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Ricky Velez on Oct.2nd and 3rd -Laughs Comedy Club-Seattle",
-      "start": "2026-10-02T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-ricky-velez-on-oct2nd-and-3rd-laughs-comedy-club-seattle-tickets-1992391807530",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-Eventbrite-RickyVelez-102026-1080.png"
-    },
     {
       "id": "tacoma-comedy-club-2026-10-04T01:00:00Z-lavell-crawford",
       "clubSlug": "tacoma-comedy-club",
@@ -554,12 +546,28 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24348_image.jpg"
     },
     {
+      "id": "laughs-comedy-club-2027-01-29 19:15:00-comedy-show-moshe-kasher-on-jan-29th-and-30th-at-laughs-come",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Moshe Kasher on Jan. 29th and 30th at Laughs Comedy- Seattle",
+      "start": "2027-01-29T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-moshe-kasher-on-jan-29th-and-30th-at-laughs-comedy-seattle-tickets-2002847658261",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/24933_image.png"
+    },
+    {
       "id": "laughs-comedy-club-2027-01-31 19:00:00-comedian-pandji-8211-english-tour-on-jan-31st-at-laughs-come",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedian Pandji &#8211; English Tour on Jan. 31st at Laughs Comedy Club- Seattle",
       "start": "2027-01-31T19:00:00",
       "url": "https://www.eventbrite.com/e/comedian-pandji-english-tour-on-jan-31st-at-laughs-comedy-club-seattle-tickets-1993481255097",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/07/banner-1080x540-pandji-jan27-f1.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-02-05 19:15:00-comedy-show-andy-haynes-on-feb-5-038-6th-at-laughs-comedy-se",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Andy Haynes on Feb. 5 &#038; 6th at Laughs Comedy- Seattle",
+      "start": "2027-02-05T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-andy-haynes-on-feb-5-6th-at-laughs-comedy-seattle-tickets-2002848381424",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/24925_image.jpg"
     },
     {
       "id": "laughs-comedy-club-2027-02-18 20:00:00-comedy-show-comedian-ryan-conner-at-laughs-comedy",
@@ -576,6 +584,14 @@
       "start": "2027-02-19T19:15:00",
       "url": "https://www.eventbrite.com/e/copy-of-comedy-show-sam-jay-on-feb-19th-21st-at-laughs-comedy-seattle-tickets-2001240978639",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24778_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-02-26 19:15:00-comedy-show-jackie-kashian-feb-26th-and-27th-at-laughs-comed",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Jackie Kashian Feb. 26th and 27th at Laughs Comedy- Seattle",
+      "start": "2027-02-26T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-jackie-kashian-feb-26th-and-27th-at-laughs-comedy-seattle-tickets-2002841329331",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/24929_image.jpg"
     },
     {
       "id": "laughs-comedy-club-2027-03-12 19:15:00-comedy-show-irene-tu-on-march-12th-and-13th-at-laughs-comedy",
