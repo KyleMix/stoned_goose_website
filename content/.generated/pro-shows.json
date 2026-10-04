@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-04T03:40:46.970Z",
+  "fetchedAt": "2026-10-04T11:37:45.589Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-10-04T03:45:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-04T03:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366333",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
     {
       "id": "emerald-city-comedy-club-2026-10-04T22:00:00Z-rocky-horror-drag-brunch",
       "clubSlug": "emerald-city-comedy-club",
