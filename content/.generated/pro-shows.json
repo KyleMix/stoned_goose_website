@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-10-03T20:27:24.469Z",
+  "fetchedAt": "2026-10-04T03:40:46.970Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-10-04T01:00:00Z-lavell-crawford",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Lavell Crawford",
-      "start": "2026-10-04T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/366330",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/26943/full/data?1576181193"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-04T02:00:00Z-justin-silva",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Justin Silva",
-      "start": "2026-10-04T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377005",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89209/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-10-04T03:45:00Z-lavell-crawford",
       "clubSlug": "tacoma-comedy-club",
@@ -408,6 +392,14 @@
       "start": "2026-10-29T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-tokyo-kanpai-boys-live-show-is-performed-in-english-tickets-1996311920694",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24560_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-30T02:30:00Z-rayna-greenberg",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Rayna Greenberg",
+      "start": "2026-10-30T02:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/372148",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91459/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-31 19:15:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese",
