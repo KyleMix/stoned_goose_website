@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-05T23:34:10.372Z",
+  "fetchedAt": "2026-10-06T04:10:57.661Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-10-06T02:30:00Z-adam-ray",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Adam Ray",
-      "start": "2026-10-06T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/384654",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94990/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-10-08T02:30:00Z-conor-janda",
       "clubSlug": "emerald-city-comedy-club",
@@ -432,6 +424,14 @@
       "start": "2026-11-06T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/373481",
       "image": "https://files.seatengine.com/talent/headshots/photos/91878/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Perfect Person Live: The Grey Area Tour",
+      "start": "2026-11-11T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/376527",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92571/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-12 19:00:00-comedy-class-graduation-show-with-ellen-acuario",
