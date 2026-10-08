@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-07T03:38:29.448Z",
+  "fetchedAt": "2026-10-08T03:52:27.296Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-10-08T02:30:00Z-conor-janda",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Conor Janda",
-      "start": "2026-10-08T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/379539",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93411/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-comedian-matt-banwart-october-8th-at-laughs-come",
       "clubSlug": "laughs-comedy-club",
@@ -474,6 +466,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24619_image.png"
     },
     {
+      "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Deric Cahill",
+      "start": "2026-11-13T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360842",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-11-13 19:15:00-comedy-show-heather-shaw-november-13th-and-14th-at-laughs-co",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Heather Shaw November 13th and 14th at Laughs Comedy- Seattle",
@@ -488,6 +488,22 @@
       "start": "2026-11-14T03:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/364752",
       "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-14T03:00:00Z-deric-cahill",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Deric Cahill",
+      "start": "2026-11-14T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360843",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-14T05:30:00Z-deric-cahill",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Deric Cahill",
+      "start": "2026-11-14T05:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360844",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-14T05:45:00Z-caroline-rhea",
@@ -506,12 +522,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-11-15T03:00:00Z-deric-cahill",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Deric Cahill",
+      "start": "2026-11-15T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360845",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
+    },
+    {
       "id": "tacoma-comedy-club-2026-11-15T04:45:00Z-caroline-rhea",
       "clubSlug": "tacoma-comedy-club",
       "title": "Caroline Rhea",
       "start": "2026-11-15T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/364754",
       "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-15T05:30:00Z-deric-cahill",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Deric Cahill",
+      "start": "2026-11-15T05:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/360846",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-15 13:00:00-dungeons-and-drag-queens-brunch-show-november-15th-laughs-co",
