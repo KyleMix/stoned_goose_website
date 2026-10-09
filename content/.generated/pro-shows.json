@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-09T03:57:58.745Z",
+  "fetchedAt": "2026-10-09T22:06:13.799Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-10-08 20:00:00-comedy-show-comedian-matt-banwart-october-8th-at-laughs-come",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Comedian Matt Banwart October. 8th at Laughs Comedy",
-      "start": "2026-10-08T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-comedian-matt-banwart-october-8th-at-laughs-comedy-tickets-1999867347070",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-EventBrite-MattBanwart_SEA-10082026-1080.png"
-    },
     {
       "id": "laughs-comedy-club-2026-10-09 19:15:00-comedy-show-amy-miller-oct-9th-and-10th-at-laughs-comedy-sea",
       "clubSlug": "laughs-comedy-club",
@@ -386,12 +378,52 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/91459/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-10-31T02:00:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-10-31T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391192",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-10-31T04:30:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-10-31T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391194",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-10-31 19:15:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy: Tokyo Kanpai Boys Live -Show is performed in Japanese",
       "start": "2026-10-31T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese-tickets-1996312495413",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24564_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-01T02:00:00Z-syndey-castillo",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Syndey Castillo",
+      "start": "2026-11-01T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391190",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96697/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-01T04:30:00Z-syndey-castillo",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Syndey Castillo",
+      "start": "2026-11-01T04:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391191",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96697/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-02T03:00:00Z-carlos-mencia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Carlos Mencia",
+      "start": "2026-11-02T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391193",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-03T03:30:00Z-reem-edan",
@@ -426,36 +458,12 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/91878/full/data"
     },
     {
-      "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Perfect Person Live: The Grey Area Tour",
-      "start": "2026-11-11T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376527",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92571/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-12T03:30:00Z-charles-mcbee",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Charles McBee",
-      "start": "2026-11-12T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/381594",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94003/full/data"
-    },
-    {
       "id": "laughs-comedy-club-2026-11-12 19:00:00-comedy-class-graduation-show-with-ellen-acuario",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Class Graduation Show with Ellen Acuario",
       "start": "2026-11-12T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-ellen-acuario-tickets-1998321585656",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24619_image.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-13T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360842",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-13 19:15:00-comedy-show-heather-shaw-november-13th-and-14th-at-laughs-co",
@@ -474,22 +482,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
-      "id": "emerald-city-comedy-club-2026-11-14T03:00:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-14T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360843",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-14T05:30:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-14T05:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360844",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-11-14T05:45:00Z-caroline-rhea",
       "clubSlug": "tacoma-comedy-club",
       "title": "Caroline Rhea",
@@ -506,28 +498,12 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
-      "id": "emerald-city-comedy-club-2026-11-15T03:00:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-15T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360845",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-11-15T04:45:00Z-caroline-rhea",
       "clubSlug": "tacoma-comedy-club",
       "title": "Caroline Rhea",
       "start": "2026-11-15T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/364754",
       "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-15T05:30:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-15T05:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360846",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-15 13:00:00-dungeons-and-drag-queens-brunch-show-november-15th-laughs-co",
