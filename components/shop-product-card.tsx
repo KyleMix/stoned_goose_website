@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useCallback, useState } from "react";
 import { track } from "@/lib/analytics";
 import { isSoldOut, type Product } from "@/content/shop";
 import { cn } from "@/lib/utils";
@@ -23,6 +24,15 @@ type Props = {
 // drops the panel entirely so its Smoke letter can flip with the section.
 export function ShopProductCard({ product, className }: Props) {
   const soldOut = isSoldOut(product);
+  // A Fourthwall image URL can die (the photo gets replaced, the proxy link
+  // expires). Fall back to the letter tile instead of a broken image icon.
+  // The page is static, so the error can fire before React hydrates and
+  // onError never sees it: the ref catches an image that already failed.
+  const [failed, setFailed] = useState(false);
+  const checkFailed = useCallback((el: HTMLImageElement | null) => {
+    if (el && el.complete && el.naturalWidth === 0) setFailed(true);
+  }, []);
+  const image = failed ? "" : product.image;
 
   return (
     <li className={cn("group", className)}>
@@ -34,19 +44,21 @@ export function ShopProductCard({ product, className }: Props) {
         <div
           className={cn(
             "relative aspect-square w-full overflow-hidden border border-smoke",
-            product.image && "bg-surface-tuxedo",
+            image && "bg-surface-tuxedo",
           )}
         >
-          {product.image ? (
+          {image ? (
             <Image
-              src={product.image}
+              ref={checkFailed}
+              onError={() => setFailed(true)}
+              src={image}
               alt={product.imageAlt || product.name}
               fill
               sizes="(min-width: 1024px) 24vw, (min-width: 640px) 32vw, 45vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             />
           ) : (
-            // No photo synced yet. A typographic tile keeps the product
+            // No photo synced yet, or it failed to load. A typographic tile keeps the product
             // shoppable instead of dropping it out of the grid.
             <span
               aria-hidden

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { Product, ProductVariant } from "@/content/shop";
 import { useCart } from "@/components/cart/cart-context";
 import { track } from "@/lib/analytics";
@@ -240,7 +240,20 @@ function Layout({
   description?: string;
   children: React.ReactNode;
 }) {
-  const main = images[Math.min(imageIndex, images.length - 1)];
+  // Drop any image that fails to load rather than show a broken icon. The
+  // ref catches a failure that landed before hydration, when onError is not
+  // yet attached.
+  const [broken, setBroken] = useState<string[]>([]);
+  const markBroken = useCallback(
+    (src: string) =>
+      setBroken((b) => (b.includes(src) ? b : [...b, src])),
+    [],
+  );
+  const checkBroken = (src: string) => (el: HTMLImageElement | null) => {
+    if (el && el.complete && el.naturalWidth === 0) markBroken(src);
+  };
+  const shown = images.filter((src) => !broken.includes(src));
+  const main = shown[Math.min(imageIndex, shown.length - 1)];
   return (
     <div className="mt-8 grid gap-10 md:grid-cols-2 md:gap-14">
       <div className="flex flex-col gap-3">
@@ -248,6 +261,9 @@ function Layout({
           {main ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
+              key={main}
+              ref={checkBroken(main)}
+              onError={() => markBroken(main)}
               src={main}
               alt={imageAlt}
               width={800}
@@ -256,9 +272,9 @@ function Layout({
             />
           ) : null}
         </div>
-        {images.length > 1 ? (
+        {shown.length > 1 ? (
           <div className="grid grid-cols-4 gap-3">
-            {images.slice(0, 8).map((img, i) => (
+            {shown.slice(0, 8).map((img, i) => (
               <button
                 key={`${img}-${i}`}
                 type="button"
@@ -270,6 +286,8 @@ function Layout({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
+                  ref={checkBroken(img)}
+                  onError={() => markBroken(img)}
                   src={img}
                   alt=""
                   width={200}

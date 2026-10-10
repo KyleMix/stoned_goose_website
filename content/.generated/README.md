@@ -73,3 +73,13 @@ That habit is what turns a bad write into a committed one.
 compares. It names the entries that moved and the command that fixes them. It
 found five open mics deleted through the CMS in `8baa3a0` still sitting in the
 committed index seven weeks later.
+
+## shop-images.json
+
+Written by `sync:shop-images`. When the full Fourthwall catalog sync has no
+credentials, /shop runs off the manual product list, and this file maps each
+manual product slug to the photo named in the og:image tag of its public
+Fourthwall page. It wins over the image URL pasted in the CMS, because a
+pasted imgproxy URL dies once the photo changes on Fourthwall. A failed fetch
+keeps the previous URL, and a scrape where every page returns the same image
+(the store's generic share card) is thrown away.
