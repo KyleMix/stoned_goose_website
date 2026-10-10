@@ -2,6 +2,7 @@
 //   - content/shop-copy/index.json (singleton)
 //   - content/.generated/shop-products-index.json (manual products)
 //   - content/.generated/products.json (sync:fourthwall output)
+//   - content/.generated/shop-images.json (sync:shop-images output)
 //
 // Generated products win when present. Manual entries flagged as draft are
 // filtered out so unfinished listings stay off /shop.
@@ -9,6 +10,7 @@
 import shopCopyData from "./shop-copy/index.json";
 import generatedProducts from "./.generated/products.json";
 import manualIndex from "./.generated/shop-products-index.json";
+import shopImages from "./.generated/shop-images.json";
 
 export type ProductImage = {
   url: string;
@@ -227,7 +229,7 @@ function normalise(p: RawProduct): Product {
     slug: p.slug && p.slug.length > 0 ? p.slug : slugify(name),
     price: p.price ?? "",
     url: p.url ?? "",
-    image: p.image ?? p.images?.[0]?.url ?? "",
+    image: p.image || p.images?.[0]?.url || "",
     imageAlt: p.imageAlt && p.imageAlt.length > 0 ? p.imageAlt : undefined,
     images: p.images && p.images.length > 0 ? p.images : undefined,
     description: p.description && p.description.length > 0 ? p.description : undefined,
@@ -235,9 +237,18 @@ function normalise(p: RawProduct): Product {
   };
 }
 
+// The photo read off the live Fourthwall product page wins over the URL pasted
+// in the CMS. A pasted imgproxy URL stops resolving once the photo is replaced
+// on Fourthwall, and the page is where the editor copied it from anyway. The
+// pasted URL still covers a product the build could not read.
+const liveImages = shopImages as Record<string, string>;
+
 const manualProducts: Product[] = (manualIndex as unknown as RawProduct[])
   .filter((p) => p.draft !== true)
-  .map(normalise);
+  .map((p) => {
+    const live = p.slug ? liveImages[p.slug] : undefined;
+    return normalise(live ? { ...p, image: live } : p);
+  });
 
 const fromGeneratedProducts =
   Array.isArray(generatedProducts) && generatedProducts.length > 0

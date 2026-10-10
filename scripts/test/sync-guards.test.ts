@@ -18,6 +18,7 @@
 
 import { reconcileClub } from "../sync-pro-shows";
 import { hasUpcoming } from "../sync-shows";
+import { extractOgImage, mergeImages } from "../sync-shop-images";
 import type { ProShow } from "../../content/pro-shows";
 import type { Show } from "../../content/shows";
 
@@ -167,6 +168,45 @@ assert(
   ),
   "hasUpcoming: mixed past and future",
 );
+
+// --- sync-shop-images -------------------------------------------------------
+
+{
+  const html = `<head><meta content="https://imgproxy.fourthwall.com/a/b.jpg?x=1&amp;y=2" property="og:image"><meta name="twitter:image" content="https://example.com/t.jpg"></head>`;
+  assertEqual(
+    extractOgImage(html),
+    "https://imgproxy.fourthwall.com/a/b.jpg?x=1&y=2",
+    "extractOgImage: content before property, entities decoded",
+  );
+  assertEqual(
+    extractOgImage(`<meta name="twitter:image" content="https://example.com/t.jpg">`),
+    "https://example.com/t.jpg",
+    "extractOgImage: falls back to twitter:image",
+  );
+  assertEqual(
+    extractOgImage(`<meta property="og:image" content="/relative.jpg">`),
+    null,
+    "extractOgImage: rejects a non-https URL",
+  );
+  assertEqual(extractOgImage("<html></html>"), null, "extractOgImage: no tag");
+}
+
+{
+  const prev = { a: "https://x/a-old.jpg", b: "https://x/b.jpg" };
+  assertEqual(
+    mergeImages(prev, { a: "https://x/a-new.jpg" }).images,
+    { a: "https://x/a-new.jpg", b: "https://x/b.jpg" },
+    "mergeImages: a missed slug keeps its previous URL",
+  );
+  assertEqual(mergeImages(prev, {}).images, prev, "mergeImages: empty scrape keeps all");
+  const generic = mergeImages(prev, {
+    a: "https://x/share.jpg",
+    b: "https://x/share.jpg",
+    c: "https://x/share.jpg",
+  });
+  assertEqual(generic.images, prev, "mergeImages: one shared image is discarded");
+  assert(generic.warning !== null, "mergeImages: shared image warns");
+}
 
 if (failures.length > 0) {
   console.error(
