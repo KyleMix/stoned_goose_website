@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-10T03:42:29.418Z",
+  "fetchedAt": "2026-10-10T11:42:39.150Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-09 19:15:00-comedy-show-amy-miller-oct-9th-and-10th-at-laughs-comedy-sea",
@@ -8,14 +8,6 @@
       "start": "2026-10-09T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-amy-miller-oct-9th-and-10th-at-laughs-comedy-seattle-tickets-2001242791060",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-Eventbrite-AmyMiller-oct26-1080.png"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-10T04:30:00Z-big-jay-oakerson",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Big Jay Oakerson",
-      "start": "2026-10-10T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/353363",
-      "image": "https://files.seatengine.com/talent/headshots/photos/64862/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-10-10T20:30:00Z-love-lies-and-port-charles-with-laura-wright-and-james-patri",
