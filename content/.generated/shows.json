@@ -18,5 +18,25 @@
       "country": "US"
     },
     "source": "eventbrite"
+  },
+  {
+    "id": "eventbrite-2003375088820",
+    "name": "Dustin Anderson Live in Olympia",
+    "summary": "Instagram’s favorite tired husband brings his hilarious take on marriage, kids, and hamster funerals to Olympia for one night only.",
+    "start": "2026-12-12T03:00:00Z",
+    "end": "2026-12-12T05:00:00Z",
+    "url": "https://www.eventbrite.com/e/dustin-anderson-live-in-olympia-tickets-2003375088820",
+    "ticketUrl": "https://www.eventbrite.com/e/dustin-anderson-live-in-olympia-tickets-2003375088820",
+    "status": "ticketed",
+    "ticketPrice": "33.85 USD",
+    "imageUrl": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1195726686%2F2620774005791%2F1%2Foriginal.20261013-203759?crop=focalpoint&fit=crop&h=200&w=450&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.5&fp-y=0.5&s=baab3c39715d48641b71fa15b860a2a7",
+    "venue": {
+      "name": "Eagle's Grand Ballroom and Wedding Venue",
+      "address": "805 4th Avenue East",
+      "city": "Olympia",
+      "region": "WA",
+      "country": "US"
+    },
+    "source": "eventbrite"
   }
 ]
