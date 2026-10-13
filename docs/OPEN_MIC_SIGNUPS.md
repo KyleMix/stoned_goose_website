@@ -59,8 +59,11 @@ from that version on).
 npx wrangler d1 create stoned-goose-open-mic
 ```
 
-Paste the `database_id` it prints into `wrangler.jsonc`, replacing
-`REPLACE_WITH_D1_DATABASE_ID`. **The deploy will fail until you do.**
+In `wrangler.jsonc`, uncomment the `d1_databases` block and paste the
+`database_id` it prints over `PASTE_THE_D1_DATABASE_ID_HERE`. Do both in the
+same commit: a placeholder id fails the whole deploy, not just the sign up
+list. Until the block is uncommented the site deploys normally and
+`/api/open-mic/*` answers 503 "Sign up isn't open yet."
 
 ### 2. Create the table
 
@@ -232,8 +235,9 @@ and in the CMS says Monday and Tuesday out loud.
 ## Troubleshooting
 
 **The board says "12 spots" instead of a count.** The page reached the site
-but not the Worker. Check `npx wrangler tail` and that `database_id` in
-`wrangler.jsonc` is real.
+but not the Worker, or the Worker has no database. Check `npx wrangler tail`,
+that the `d1_databases` block in `wrangler.jsonc` is uncommented, and that its
+`database_id` is real.
 
 **Every sign up 403s.** `OPEN_MIC_ALLOWED_ORIGINS` is set to something other
 than the hostname people are actually on. Unset it or fix it.

@@ -167,7 +167,7 @@ const EXPORT_TOKEN = "test-token-0123456789";
 
 /** Mirrors the Env interface in worker/index.ts, secrets optional. */
 type TestEnv = {
-  DB: D1Database;
+  DB?: D1Database;
   ASSETS: Fetcher;
   OPEN_MIC_EXPORT_TOKEN?: string;
   OPEN_MIC_ALLOWED_ORIGINS?: string;
@@ -249,6 +249,27 @@ async function main() {
 
   const wrongMethod = await hit(call, "/api/open-mic/slots", { method: "POST" });
   eq(wrongMethod.status, 404, "POSTing the read-only slots route is not a route");
+}
+
+// --------------------------------------------------------- no D1 binding
+// wrangler.jsonc ships with the binding commented out until the database
+// exists. The API has to answer, not throw, and the site still serves.
+
+{
+  const call = fresh();
+  delete call.env.DB;
+  const slots = await hit(call, "/api/open-mic/slots");
+  eq(slots.status, 503, "slots with no D1 binding is a 503");
+  const signupRes = await signup(call, { name: "Test", email: "t@example.com", micDate: monday });
+  eq(signupRes.status, 503, "sign up with no D1 binding is a 503");
+  const page = await hit(call, "/shows");
+  eq(page.status, 200, "static pages still serve with no D1 binding");
+  await worker.scheduled(
+    {} as ScheduledController,
+    call.env,
+    makeCtx(call.pending),
+  );
+  eq(call.pending.length, 0, "the nightly purge skips with no D1 binding");
 }
 
 // ------------------------------------------------------------------- slots
