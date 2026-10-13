@@ -28,8 +28,11 @@ import {
 } from "../lib/open-mic-schedule";
 
 interface Env {
-  /** D1 binding. See worker/schema.sql. */
-  DB: D1Database;
+  /**
+   * D1 binding. See worker/schema.sql. Absent until the database is created
+   * and the d1_databases block in wrangler.jsonc is uncommented.
+   */
+  DB?: D1Database;
   /** Static assets binding, /out. */
   ASSETS: Fetcher;
   /** Shared secret for GET /api/open-mic/export. Set with `wrangler secret put`. */
@@ -37,6 +40,9 @@ interface Env {
   /** Comma separated origins allowed to POST a sign up. */
   OPEN_MIC_ALLOWED_ORIGINS?: string;
 }
+
+/** Env once the D1 binding is known to be present. */
+type BoundEnv = Env & { DB: D1Database };
 
 // Field limits. Generous enough for real names and short enough that the
 // export stays a spreadsheet rather than somewhere to paste a payload.
@@ -134,7 +140,7 @@ function secretsMatch(a: string, b: string): boolean {
  * page, because the window is recomputed on every request and the query only
  * asks about the dates in it.
  */
-async function handleSlots(env: Env): Promise<Response> {
+async function handleSlots(env: BoundEnv): Promise<Response> {
   const window = micWindow();
   const placeholders = window.map(() => "?").join(", ");
 
@@ -172,7 +178,7 @@ type SignupBody = {
   elapsedMs?: unknown;
 };
 
-async function handleSignup(request: Request, env: Env): Promise<Response> {
+async function handleSignup(request: Request, env: BoundEnv): Promise<Response> {
   if (!originAllowed(request, env)) {
     return json({ error: "Sign ups only work from the site itself." }, 403);
   }
@@ -319,7 +325,7 @@ function csvCell(value: string): string {
  * that is deleted weekly, the token is rotatable with one `wrangler secret
  * put`, and the alternative is a login screen this site has no server to host.
  */
-async function handleExport(request: Request, env: Env): Promise<Response> {
+async function handleExport(request: Request, env: BoundEnv): Promise<Response> {
   const expected = env.OPEN_MIC_EXPORT_TOKEN;
   if (!expected) {
     return json({ error: "Export is not configured." }, 503);
@@ -407,7 +413,7 @@ async function handleExport(request: Request, env: Env): Promise<Response> {
  * page is showing: the moment a Monday stops being on the list, the next run
  * of this deletes its rows.
  */
-async function purgePastSignups(env: Env): Promise<number> {
+async function purgePastSignups(env: BoundEnv): Promise<number> {
   const [windowStart] = micWindow();
   const result = await env.DB.prepare(`DELETE FROM signups WHERE mic_date < ?`)
     .bind(windowStart)
@@ -438,19 +444,27 @@ export default {
       });
     }
 
+    // No database bound yet. Say so plainly rather than throwing on every
+    // call; the page shows its offline copy.
+    const db = env.DB;
+    if (!db) {
+      return json({ error: "Sign up isn't open yet." }, 503);
+    }
+    const bound: BoundEnv = { ...env, DB: db };
+
     try {
       if (url.pathname === "/api/open-mic/slots" && request.method === "GET") {
-        return await handleSlots(env);
+        return await handleSlots(bound);
       }
       if (url.pathname === "/api/open-mic/signup" && request.method === "POST") {
         // Opportunistic purge, so the list stays correct through a week when
         // the cron trigger is paused or the account's cron quota is spent.
         // waitUntil keeps it off the comic's response time.
-        ctx.waitUntil(purgePastSignups(env).catch(() => 0));
-        return await handleSignup(request, env);
+        ctx.waitUntil(purgePastSignups(bound).catch(() => 0));
+        return await handleSignup(request, bound);
       }
       if (url.pathname === "/api/open-mic/export" && request.method === "GET") {
-        return await handleExport(request, env);
+        return await handleExport(request, bound);
       }
     } catch (error) {
       // The message can carry SQL and column names. Log it, return nothing.
@@ -466,8 +480,10 @@ export default {
     env: Env,
     ctx: ExecutionContext,
   ): Promise<void> {
+    const db = env.DB;
+    if (!db) return;
     ctx.waitUntil(
-      purgePastSignups(env)
+      purgePastSignups({ ...env, DB: db })
         .then((deleted) => {
           if (deleted > 0) console.log(`open-mic purge: ${deleted} rows`);
         })
