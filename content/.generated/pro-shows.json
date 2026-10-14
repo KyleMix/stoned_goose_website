@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-13T06:18:58.592Z",
+  "fetchedAt": "2026-10-14T02:59:26.502Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-10-14T02:30:00Z-maddy-kelly",
@@ -664,6 +664,14 @@
       "start": "2027-02-26T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-jackie-kashian-feb-26th-and-27th-at-laughs-comedy-seattle-tickets-2002841329331",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/24929_image.jpg"
+    },
+    {
+      "id": "laughs-comedy-club-2027-03-11 20:00:00-comedy-show-wyatt-feegrado-march-11th-8pm-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Wyatt Feegrado March 11th 8pm at Laughs Comedy",
+      "start": "2027-03-11T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-wyatt-feegrado-march-11th-8pm-at-laughs-comedy-tickets-2002949093657",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-WyattFeegrado_SEA-03112027-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-03-12 19:15:00-comedy-show-irene-tu-on-march-12th-and-13th-at-laughs-comedy",
