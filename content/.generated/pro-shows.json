@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-14T02:59:26.502Z",
+  "fetchedAt": "2026-10-14T10:58:54.350Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-10-14T02:30:00Z-maddy-kelly",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Maddy Kelly",
-      "start": "2026-10-14T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/379284",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93023/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-10-15T02:30:00Z-zach-noe-towers",
       "clubSlug": "emerald-city-comedy-club",
