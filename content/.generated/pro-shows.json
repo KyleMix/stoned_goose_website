@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-15T02:38:54.518Z",
+  "fetchedAt": "2026-10-15T10:40:09.341Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-10-15T02:30:00Z-zach-noe-towers",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Zach Noe Towers",
-      "start": "2026-10-15T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/366519",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89930/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
       "clubSlug": "laughs-comedy-club",
@@ -536,6 +528,14 @@
       "start": "2026-11-15T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-connor-king-nov-15th-sunday-at-7pm-tickets-2002849145710",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-ConnorKing_SEA-11152026-1080.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-16T03:00:00Z-mark-paul",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Mark Paul",
+      "start": "2026-11-16T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381767",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91741/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
