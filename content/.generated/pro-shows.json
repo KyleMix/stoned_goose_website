@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-14T10:58:54.350Z",
+  "fetchedAt": "2026-10-15T02:38:54.518Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-10-15T02:30:00Z-zach-noe-towers",
@@ -280,14 +280,6 @@
       "start": "2026-10-25T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/353930",
       "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
-    },
-    {
-      "id": "laughs-comedy-club-2026-10-25 19:00:00-comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Ahamed Weinberg Oct. 25th Sunday at 7pm",
-      "start": "2026-10-25T19:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-ahamed-weinberg-oct-25th-sunday-at-7pm-tickets-1991800481859",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/LaughsCC-EventBrite-AhamedWeinberg_SEA-10252026-1080.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-25T22:00:00Z-hocus-pocus-drag-brunch",
