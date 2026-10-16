@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-16T10:27:11.326Z",
+  "fetchedAt": "2026-10-16T20:22:35.270Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Comedian Gwen Rose at Laughs Comedy",
-      "start": "2026-10-15T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-comedian-gwen-rose-at-laughs-comedy-tickets-1993495355271",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-GwenRose_SEA-10152026-1080.png"
-    },
     {
       "id": "laughs-comedy-club-2026-10-16 19:00:00-comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-",
       "clubSlug": "laughs-comedy-club",
