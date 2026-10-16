@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-15T10:40:09.341Z",
+  "fetchedAt": "2026-10-16T02:34:18.444Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-15 20:00:00-comedy-show-comedian-gwen-rose-at-laughs-comedy",
@@ -592,6 +592,14 @@
       "start": "2027-01-08T18:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy-club-seattle-tickets-1989364247015",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner-1080x540-caitlin-pelufo-jan27-f1.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-14 20:00:00-comedy-show-ahamed-weinberg-jan-14th-thursday-at-8pm",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Ahamed Weinberg Jan. 14th Thursday at 8pm",
+      "start": "2027-01-14T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-ahamed-weinberg-jan-14th-thursday-at-8pm-tickets-2003479587378",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-AhamedWeinberg_SEA-01142027-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-01-15 18:00:00-comedy-show-learnmore-jonasi-8211-jan-15th-038-16th-at-laugh",
