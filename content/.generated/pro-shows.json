@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-16T20:22:35.270Z",
+  "fetchedAt": "2026-10-17T02:27:11.949Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-16 19:00:00-comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-",
@@ -130,14 +130,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/94494/full/data"
     },
     {
-      "id": "laughs-comedy-club-2026-10-19 18:00:00-let-8217-s-get-social-8211-comedy-class-with-ellen-acuario",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Let's Get Social &#8211; Comedy Class with Ellen Acuario",
-      "start": "2026-10-19T18:00:00",
-      "url": "https://www.eventbrite.com/e/lets-get-social-comedy-class-with-ellen-acuario-tickets-1998321246642",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24615_image.jpg"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-10-21T02:30:00Z-giulio-gallarotti",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Giulio Gallarotti",
@@ -208,14 +200,6 @@
       "start": "2026-10-24T04:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/353929",
       "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-24T23:00:00Z-steve-wrigley",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Steve Wrigley",
-      "start": "2026-10-24T23:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/379540",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93390/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-10-25T02:00:00Z-damon-wayans-jr",
@@ -402,14 +386,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/94003/full/data"
     },
     {
-      "id": "laughs-comedy-club-2026-11-12 19:00:00-comedy-class-graduation-show-with-ellen-acuario",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Class Graduation Show with Ellen Acuario",
-      "start": "2026-11-12T19:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-class-graduation-show-with-ellen-acuario-tickets-1998321585656",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/08/24619_image.png"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Deric Cahill",
@@ -512,6 +488,14 @@
       "start": "2026-11-16T03:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/381767",
       "image": "https://files.seatengine.com/talent/headshots/photos/91741/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-18T03:30:00Z-chris-turner",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Chris Turner",
+      "start": "2026-11-18T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381940",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94118/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
