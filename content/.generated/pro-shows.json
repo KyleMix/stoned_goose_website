@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-17T02:27:11.949Z",
+  "fetchedAt": "2026-10-17T09:58:49.849Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-16 19:00:00-comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-",
@@ -8,38 +8,6 @@
       "start": "2026-10-16T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-erica-rhodes-oct-16th-and-17th-at-laughs-comedy-seattle-tickets-1985175475286",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-EricaRhodes_SEA-102026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-17T02:00:00Z-rick-glassman",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rick Glassman",
-      "start": "2026-10-17T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/372795",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91565/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-17T02:00:00Z-jay-jurden",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jay Jurden",
-      "start": "2026-10-17T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/388370",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-17T04:30:00Z-jay-jurden",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jay Jurden",
-      "start": "2026-10-17T04:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/388371",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95863/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-17T04:45:00Z-rick-glassman",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rick Glassman",
-      "start": "2026-10-17T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/372797",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91565/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-10-17T22:00:00Z-kevin-james-thornton",
@@ -498,6 +466,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/94118/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-11-19T03:30:00Z-mc-hammersmith",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "MC Hammersmith",
+      "start": "2026-11-19T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/381942",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94119/full/data"
+    },
+    {
       "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Michael Longfellow Nov. 19th &#8211; 21st- Laughs Comedy Seattle",
@@ -616,6 +592,14 @@
       "start": "2027-02-26T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-jackie-kashian-feb-26th-and-27th-at-laughs-comedy-seattle-tickets-2002841329331",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/24929_image.jpg"
+    },
+    {
+      "id": "laughs-comedy-club-2027-03-05 19:15:00-comedy-show-katherine-blanford-on-march-5-038-6th-at-laughs-",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Katherine Blanford on March 5 &#038; 6th at Laughs Comedy- Seattle",
+      "start": "2027-03-05T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-katherine-blanford-on-march-5-6th-at-laughs-comedy-seattle-tickets-2002848552937",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-KatherineBlanford_SEA-032027-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-03-11 20:00:00-comedy-show-wyatt-feegrado-march-11th-8pm-at-laughs-comedy",
