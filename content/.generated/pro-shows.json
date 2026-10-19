@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-18T10:12:10.589Z",
+  "fetchedAt": "2026-10-19T02:40:59.140Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-18 19:00:00-comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-com",
@@ -8,22 +8,6 @@
       "start": "2026-10-18T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-pedro-gonzalez-sunday-oct-18th-at-7pm-laughs-comedy-tickets-1989420547411",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-PedroGonzales-101832026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-18T23:00:00Z-nick-rochefort",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Nick Rochefort",
-      "start": "2026-10-18T23:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/376768",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92403/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-18T23:00:00Z-pinky-patel",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Pinky Patel",
-      "start": "2026-10-18T23:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/383539",
-      "image": "https://files.seatengine.com/talent/headshots/photos/64496/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-10-19T02:00:00Z-scuffed-realtor-live-with-nick-rochefort-and-alex-schultz",
