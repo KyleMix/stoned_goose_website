@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-20T02:53:39.320Z",
+  "fetchedAt": "2026-10-21T10:58:00.361Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-10-21T02:30:00Z-giulio-gallarotti",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Giulio Gallarotti",
-      "start": "2026-10-21T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/380504",
-      "image": "https://files.seatengine.com/talent/headshots/photos/72972/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-10-21 19:00:00-comedy-class-graduation-show-with-andrew-frank",
       "clubSlug": "laughs-comedy-club",
@@ -136,6 +128,14 @@
       "start": "2026-10-28T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/377610",
       "image": "https://files.seatengine.com/talent/headshots/photos/92872/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-10-29T01:00:00Z-osh-70s-bingo-night-fundraiser",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "OSH ’70s Bingo Night Fundraiser",
+      "start": "2026-10-29T01:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/390232",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96410/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-29T02:15:00Z-hocus-pocus-drag-show",
@@ -279,7 +279,7 @@
       "title": "Comedy Show: Heather Shaw November 13th and 14th at Laughs Comedy- Seattle",
       "start": "2026-11-13T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-heather-shaw-november-13th-and-14th-at-laughs-comedy-seattle-tickets-1985727225586",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/04/23799_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-HeatherShaw_SEA-112026-1080.png"
     },
     {
       "id": "tacoma-comedy-club-2026-11-14T03:00:00Z-caroline-rhea",
@@ -416,6 +416,14 @@
       "start": "2026-11-21T05:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/387102",
       "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-22T00:00:00Z-jaime-french",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jaime French",
+      "start": "2026-11-22T00:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/386155",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95334/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-22T03:00:00Z-andrew-dismukes",
