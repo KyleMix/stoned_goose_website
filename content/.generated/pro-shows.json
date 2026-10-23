@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-23T10:49:42.693Z",
+  "fetchedAt": "2026-10-23T20:52:21.156Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-10-22 19:00:00-comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Alex Falcone Oct. 22nd- 24th at Laughs Comedy Club- Seattle",
-      "start": "2026-10-22T19:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club-seattle-tickets-1989409509396",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-AlexFaalcone_SEA-102026-1080.png"
-    },
     {
       "id": "tacoma-comedy-club-2026-10-24T02:00:00Z-damon-wayans-jr",
       "clubSlug": "tacoma-comedy-club",
@@ -448,6 +440,14 @@
       "start": "2026-11-27T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-kevin-sullivan-on-nov-27th-28th-laughs-comedy-club-seattle-tickets-1992374769569",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-kevin-sullivan-nov26-f3.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-03 19:00:00-comedy-show-liz-blanc-on-dec-3rd-at-7pm-at-laughs-comedy-clu",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Liz Blanc on Dec. 3rd at 7pm at Laughs Comedy Club",
+      "start": "2026-12-03T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-liz-blanc-on-dec-3rd-at-7pm-at-laughs-comedy-club-tickets-2002849198869",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/25036_image.png"
     },
     {
       "id": "laughs-comedy-club-2026-12-04 19:15:00-comedy-show-dulc-sloan-on-dec-4th-and-5th-at-laughs-comedy-c",
