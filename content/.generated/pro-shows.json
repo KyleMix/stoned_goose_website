@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-22T21:07:15.025Z",
+  "fetchedAt": "2026-10-23T02:49:53.457Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-22 19:00:00-comedy-show-alex-falcone-oct-22nd-24th-at-laughs-comedy-club",
@@ -138,28 +138,12 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-TokyoKanpaiBoysENG_SEA-102026-1080.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-10-30T02:00:00Z-moshe-kasher",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Moshe Kasher",
-      "start": "2026-10-30T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/379119",
-      "image": "https://files.seatengine.com/talent/headshots/photos/60802/full/data"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-10-30T02:30:00Z-rayna-greenberg",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Rayna Greenberg",
       "start": "2026-10-30T02:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/372148",
       "image": "https://files.seatengine.com/talent/headshots/photos/91459/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-31T02:00:00Z-moshe-kasher",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Moshe Kasher",
-      "start": "2026-10-31T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/379120",
-      "image": "https://files.seatengine.com/talent/headshots/photos/60802/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-10-31T02:00:00Z-carlos-mencia",
@@ -176,14 +160,6 @@
       "start": "2026-10-31T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/391194",
       "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-31T04:45:00Z-moshe-kasher",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Moshe Kasher",
-      "start": "2026-10-31T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/379121",
-      "image": "https://files.seatengine.com/talent/headshots/photos/60802/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-31 19:15:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese",
@@ -250,6 +226,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/91878/full/data"
     },
     {
+      "id": "emerald-city-comedy-club-2026-11-07T03:00:00Z-alaire-thomas",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Alaire Thomas",
+      "start": "2026-11-07T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/393026",
+      "image": "https://files.seatengine.com/talent/headshots/photos/86404/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-08T03:00:00Z-charles-haycock",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Charles Haycock",
@@ -306,6 +290,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-HeatherShaw_SEA-112026-1080.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-14T03:00:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-14T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364752",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-14T03:00:00Z-deric-cahill",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Deric Cahill",
@@ -322,12 +314,36 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-14T05:45:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-14T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364755",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-15T02:00:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-15T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364753",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-15T03:00:00Z-deric-cahill",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Deric Cahill",
       "start": "2026-11-15T03:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/360845",
       "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-15T04:45:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-15T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364754",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-15T05:30:00Z-deric-cahill",
@@ -408,14 +424,6 @@
       "start": "2026-11-21T05:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/387102",
       "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-22T00:00:00Z-jaime-french",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Jaime French",
-      "start": "2026-11-22T00:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/386155",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95334/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-22T03:00:00Z-andrew-dismukes",
