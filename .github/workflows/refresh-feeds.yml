@@ -37,9 +37,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: npm
@@ -79,7 +79,7 @@ jobs:
         run: npm run sync:pro-shows
 
       - name: Commit refreshed feeds
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore(feeds): refresh social content"
           file_pattern: "content/feeds/*.json content/.generated/pro-shows.json content/.generated/shows.json"
