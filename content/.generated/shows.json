@@ -18,5 +18,25 @@
       "country": "US"
     },
     "source": "eventbrite"
+  },
+  {
+    "id": "eventbrite-2003842187926",
+    "name": "Free Stand-Up Comedy Open Mic on Bourbon Street at Ugly Gator Saloon",
+    "summary": "Enjoy free live stand-up at Ugly Gator Saloon, where comics of every experience level can sign up at the door.",
+    "start": "2026-11-12T02:00:00Z",
+    "end": "2026-11-12T04:00:00Z",
+    "url": "https://www.eventbrite.com/e/free-stand-up-comedy-open-mic-on-bourbon-street-at-ugly-gator-saloon-tickets-2003842187926",
+    "ticketUrl": "https://www.eventbrite.com/e/free-stand-up-comedy-open-mic-on-bourbon-street-at-ugly-gator-saloon-tickets-2003842187926",
+    "status": "free",
+    "ticketPrice": "0.00 USD",
+    "imageUrl": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1196475332%2F2620774005791%2F1%2Foriginal.20261023-214954?h=200&w=450&auto=format%2Ccompress&q=75&sharp=10&s=aaedcf893cd6fd6730740ab56af01319",
+    "venue": {
+      "name": "Ugly Gator Saloon",
+      "address": "420 Bourbon Street",
+      "city": "New Orleans",
+      "region": "LA",
+      "country": "US"
+    },
+    "source": "eventbrite"
   }
 ]
