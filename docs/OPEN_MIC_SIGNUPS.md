@@ -1,5 +1,11 @@
 # Open mic pre sign up list
 
+> **Retired from the page, October 2026.** The embedded board was not
+> working, so `/open-mics` now asks comics to DM us on Instagram or email to
+> lock a spot, with show up sign ups at 6:00 PM. See
+> `components/open-mic/message-for-a-spot.tsx`. The Worker below still exists
+> but no page calls it. The rest of this file describes that Worker.
+
 The Log Cabin Comedy Open Mic moved from a clipboard at 6:00 PM to a pre sign
 up list on `/open-mics`, starting **Monday 28 September 2026**.
 
