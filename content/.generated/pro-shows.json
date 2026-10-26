@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-10-25T10:30:21.201Z",
+  "fetchedAt": "2026-10-26T02:36:03.991Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-10-25T22:00:00Z-hocus-pocus-drag-brunch",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Hocus Pocus Drag Brunch",
-      "start": "2026-10-25T22:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/383978",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94690/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-26T01:00:00Z-damon-wayans-jr",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Damon Wayans Jr.",
-      "start": "2026-10-26T01:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353928",
-      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/27188/full/data?1577738605"
-    },
     {
       "id": "emerald-city-comedy-club-2026-10-26T02:00:00Z-marie-faustin",
       "clubSlug": "emerald-city-comedy-club",
@@ -392,6 +376,14 @@
       "start": "2026-11-23T00:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/383540",
       "image": "https://files.seatengine.com/talent/headshots/photos/82992/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-25T03:30:00Z-stormy-daniels",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Stormy Daniels",
+      "start": "2026-11-25T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/371427",
+      "image": "https://files.seatengine.com/talent/headshots/photos/85423/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-11-27 19:15:00-comedy-show-kevin-sullivan-on-nov-27th-038-28th-laughs-comed",
