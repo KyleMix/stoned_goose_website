@@ -59,7 +59,7 @@ export default async function ComedianPage(props: {
     description: comedian.bio,
     image: `${site.url}${comedian.photo}`,
     url: `${site.url}/about/${comedian.slug}`,
-    sameAs: [comedian.instagram, comedian.facebook].filter(
+    sameAs: [comedian.instagram, comedian.facebook, comedian.website].filter(
       (x): x is string => Boolean(x),
     ),
   };
@@ -112,7 +112,7 @@ export default async function ComedianPage(props: {
                 <span className="text-accent-gold">.</span>
               </h1>
 
-              {(comedian.instagram || comedian.facebook) && (
+              {(comedian.instagram || comedian.facebook || comedian.website) && (
                 <div className="mt-6 flex gap-6">
                   {comedian.instagram && (
                     <a
@@ -132,6 +132,16 @@ export default async function ComedianPage(props: {
                       className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
                     >
                       Facebook ↗
+                    </a>
+                  )}
+                  {comedian.website && (
+                    <a
+                      href={comedian.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-[44px] items-center t-ui text-smoke hover:text-accent-gold"
+                    >
+                      Website ↗
                     </a>
                   )}
                 </div>

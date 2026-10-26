@@ -17,6 +17,7 @@ export type Comedian = {
   photoAlt: string;
   instagram?: string;
   facebook?: string;
+  website?: string;
   bio?: string;
   reelUrl?: string;
   credits?: string[];
@@ -49,6 +50,7 @@ type RawComedian = {
   photoAlt?: string;
   instagram?: string;
   facebook?: string;
+  website?: string;
   bio?: string;
   reelUrl?: string;
   credits?: string[];
@@ -71,6 +73,7 @@ export const comedians: Comedian[] = raw
       photoAlt: c.photoAlt && c.photoAlt.length > 0 ? c.photoAlt : `${c.name ?? c.slug ?? ""} portrait`,
       instagram: c.instagram && c.instagram.length > 0 ? c.instagram : undefined,
       facebook: c.facebook && c.facebook.length > 0 ? c.facebook : undefined,
+      website: c.website && c.website.length > 0 ? c.website : undefined,
       bio,
       reelUrl,
       credits,
