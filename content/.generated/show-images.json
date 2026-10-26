@@ -1,4 +1,14 @@
 {
+  "/shows/bourbon-street-open-mic/flyer.webp": {
+    "width": 1500,
+    "height": 2000,
+    "webp": [
+      {
+        "src": "/shows/bourbon-street-open-mic/flyer-816.webp",
+        "width": 816
+      }
+    ]
+  },
   "/shows/dustin-anderson/flyer.png": {
     "width": 816,
     "height": 1056,

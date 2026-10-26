@@ -75,6 +75,14 @@ the CMS, so a comic who comes back is already set up.
 Sharper web copies of the photos and flyer are made automatically a minute or
 two after you save.
 
+## Add a flyer to a show without a headliner
+
+For an open mic or any event that is not a headliner: click **Event
+flyers**, then **Create**. Paste the Eventbrite event ID (the number at the
+end of the event link), upload the flyer, and write what it says in the alt
+text. The flyer shows on that event's card on /shows, with View flyer. It
+drops off with the show.
+
 ## Upload images
 
 Image fields have an upload button; each one tells you the shape and size it

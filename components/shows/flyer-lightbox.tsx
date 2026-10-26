@@ -5,9 +5,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { track } from "@/lib/analytics";
 
 type Props = {
-  /** The headliner's name, for the dialog title and the download filename. */
+  /** The headliner's name or the event title, for the dialog title and the download filename. */
   name: string;
-  /** The PNG original, offered as the download. */
+  /** The original file, offered as the download. */
   href: string;
   /** The rendered flyer, a server-built <ShowPicture />. */
   children: ReactNode;
@@ -21,7 +21,8 @@ type Props = {
  * trigger. The backdrop is a flat tuxedo panel: no blur, no scrim.
  */
 export function FlyerLightbox({ name, href, children }: Props) {
-  const filename = `${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-flyer.png`;
+  const ext = href.match(/\.(png|jpe?g|webp)$/i)?.[1].toLowerCase() ?? "png";
+  const filename = `${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}-flyer.${ext}`;
 
   return (
     <Dialog.Root onOpenChange={(open) => open && track("View Flyer", { name })}>

@@ -30,6 +30,7 @@ import sharp from "sharp";
 const ROOT = process.cwd();
 const PUBLIC = join(ROOT, "public");
 const PERFORMERS = join(ROOT, "content", "performers");
+const EVENT_FLYERS = join(ROOT, "content", "event-flyers");
 const MANIFEST = join(ROOT, "content", ".generated", "show-images.json");
 
 const WIDTHS = {
@@ -63,6 +64,19 @@ function performerImages(): { kind: Kind; src: string }[] {
       const src = data.images?.[kind];
       if (src && src.startsWith("/")) out.push({ kind, src });
     }
+  }
+  return out;
+}
+
+/** Flyers attached to non-headliner events (content/event-flyers). */
+function eventFlyerImages(): { kind: Kind; src: string }[] {
+  if (!existsSync(EVENT_FLYERS)) return [];
+  const out: { kind: Kind; src: string }[] = [];
+  for (const item of readdirSync(EVENT_FLYERS, { withFileTypes: true })) {
+    const file = item.isDirectory() ? join(EVENT_FLYERS, item.name, "index.json") : null;
+    if (!file || !existsSync(file)) continue;
+    const data = JSON.parse(readFileSync(file, "utf8")) as { flyer?: string | null };
+    if (data.flyer && data.flyer.startsWith("/")) out.push({ kind: "flyer", src: data.flyer });
   }
   return out;
 }
@@ -107,7 +121,7 @@ async function processImage(kind: Kind, src: string): Promise<ShowImageEntry | n
 
 async function main() {
   const manifest: Record<string, ShowImageEntry> = {};
-  for (const { kind, src } of performerImages()) {
+  for (const { kind, src } of [...performerImages(), ...eventFlyerImages()]) {
     if (manifest[src]) continue;
     const entry = await processImage(kind, src);
     if (entry) manifest[src] = entry;

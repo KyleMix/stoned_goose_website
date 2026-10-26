@@ -128,6 +128,7 @@ export function buildComedyEvent(show: Show): ComedyEvent {
   if (show.end) event.endDate = show.end;
   if (show.summary) event.description = show.summary;
   if (show.imageUrl) event.image = [absoluteUrl(show.imageUrl)];
+  if (show.flyer) event.image = [absoluteUrl(show.flyer.src)];
 
   // A headliner attached by lib/performer-match.ts: name them as the
   // performer, and use the arch headshot and the flyer the card renders in

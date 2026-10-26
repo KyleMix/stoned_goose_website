@@ -674,6 +674,29 @@ collections:
   # ------------------------------------------------------------------ #
   # Pro shows (manual entries on the /calendar pro comedy grid).        #
   # ------------------------------------------------------------------ #
+  - name: event_flyers
+    label: Event flyers
+    label_singular: Event flyer
+    description: A flyer for a show that is not a headliner, like an open mic. It is attached to the Eventbrite event by ID and shows on that event's card on /shows, with View flyer.
+    folder: content/event-flyers
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: title
+    slug: '{{fields.title}}'
+    create: true
+    summary: '{{fields.title}}'
+    view_filters:
+      - label: Hidden drafts
+        field: draft
+        pattern: true
+    fields:
+      - { name: title, label: Name, widget: string, hint: 'Only for finding it in this list, e.g. "Bourbon Street open mic".' }
+      - { name: eventbriteId, label: Eventbrite event ID, widget: string, pattern: ['^\d+$', 'Digits only. It is the number at the end of the Eventbrite link.'], hint: 'The number at the end of the event link, e.g. 2003842187926.' }
+      - { name: flyer, label: Flyer, widget: image, media_folder: /public/shows/uploads, public_folder: /shows/uploads, hint: 'The flyer image, PNG, JPG or WebP. Portrait is fine.' }
+      - { name: flyerAlt, label: Flyer alt text, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'What the flyer says, for screen readers: the show, date, times, venue, and price.' }
+      - { name: draft, label: Hide from the site, widget: boolean, default: false }
+
   - name: pro_shows
     label: Pro calendar extras
     label_singular: Pro show

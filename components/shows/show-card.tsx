@@ -163,6 +163,15 @@ export function ShowCard({ show }: { show: Show }) {
           sizes="300px"
           className="mx-auto w-full max-w-[300px]"
         />
+      ) : show.flyer ? (
+        // A show with no headliner leads with its own flyer instead. The
+        // flyer is the event's artwork, run as made, not a mark placement.
+        <ShowPicture
+          src={show.flyer.src}
+          alt={show.flyer.alt}
+          sizes="300px"
+          className="mx-auto w-full max-w-[300px]"
+        />
       ) : null}
 
       <h3
@@ -170,7 +179,7 @@ export function ShowCard({ show }: { show: Show }) {
         className={cn(
           "t-subhead text-balance",
           p ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
-          p?.images.arch && "mt-6",
+          (p?.images.arch || show.flyer) && "mt-6",
         )}
       >
         {p ? (
@@ -194,6 +203,12 @@ export function ShowCard({ show }: { show: Show }) {
         <div className="mt-3">
           <FlyerLightbox name={p.name} href={p.images.flyer}>
             <ShowPicture src={p.images.flyer} alt={flyerAlt(show)} sizes="(min-width: 860px) 816px, 100vw" />
+          </FlyerLightbox>
+        </div>
+      ) : show.flyer ? (
+        <div className="mt-3">
+          <FlyerLightbox name={cardTitle(show)} href={show.flyer.src}>
+            <ShowPicture src={show.flyer.src} alt={show.flyer.alt} sizes="(min-width: 860px) 816px, 100vw" />
           </FlyerLightbox>
         </div>
       ) : null}

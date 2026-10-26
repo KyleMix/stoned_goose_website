@@ -19,6 +19,7 @@ on:
       - "public/brand/**"
       - "public/shows/**"
       - "content/performers/**"
+      - "content/event-flyers/**"
   workflow_dispatch:
 
 permissions:

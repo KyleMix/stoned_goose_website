@@ -8,7 +8,7 @@
 //
 // Run: npm test
 
-import { attachPerformers, titleHasName } from "../../lib/performer-match";
+import { attachEventFlyers, attachPerformers, titleHasName } from "../../lib/performer-match";
 import { nameFromTitle, newHeadlinerEntries, slugFor } from "../sync-headliners";
 import type { Show } from "../../content/shows";
 import type { Performer, PerformerDefaults } from "../../content/performers";
@@ -187,6 +187,25 @@ const fulchiron = performer({
 
   const plain = attachPerformers([priced], [], defaults, NOW);
   eq(plain[0].ticketPrice, "$20", "a paid show with no headliner still shows its base price");
+}
+
+// --- event flyers ----------------------------------------------------------
+
+{
+  const mic = event("555", "Free Comedy Open Mic", "2026-11-12T02:00:00Z", "0.00 USD");
+  const headliner = attachPerformers(
+    [event("556", "Matt Ross Live in Olympia", "2027-04-18T02:00:00Z")],
+    [performer({ slug: "matt-ross", name: "Matt Ross" })],
+    defaults,
+    NOW,
+  )[0];
+  const flyers = [
+    { eventbriteId: "555", src: "/shows/mic/flyer.webp", alt: "Mic flyer" },
+    { eventbriteId: "556", src: "/shows/x/flyer.webp", alt: "Should not attach" },
+  ];
+  const out = attachEventFlyers([mic, headliner], flyers);
+  eq(out[0].flyer, { src: "/shows/mic/flyer.webp", alt: "Mic flyer" }, "event flyer attaches by Eventbrite ID");
+  eq(out[1].flyer, undefined, "a headliner keeps its own flyer, not an event flyer");
 }
 
 // --- starter entries from Eventbrite (scripts/sync-headliners.ts) ----------
