@@ -86,7 +86,7 @@ const DEFAULT_FOOTER: {
   creditHref: "",
   // Two columns, not three. "Home" is the logo, "Contact" is the address block
   // beside these columns, and "Tickets." was a second name for Shows.
-  // "Open Mic" is the Log Cabin room, the only one we run.
+  // "Open Mic" is a coming soon page until we find the next room.
   columns: [
     {
       heading: "Pages",

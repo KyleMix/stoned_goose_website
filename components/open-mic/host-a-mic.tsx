@@ -1,8 +1,7 @@
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { site } from "@/content/site";
-import { MIC_SLOT_COUNT, MIC_SPOT_MINUTES } from "@/lib/open-mic-schedule";
 
-export type MessageForASpotCopy = {
+export type HostAMicCopy = {
   eyebrow: string;
   heading: string;
   body: string;
@@ -10,7 +9,7 @@ export type MessageForASpotCopy = {
   emailLabel: string;
   emailSubject: string;
   emailBody: string;
-  walkUpNote: string;
+  comicsNote: string;
 };
 
 /** "stonedgooseproductions" out of the profile URL in content/site. */
@@ -22,16 +21,14 @@ function instagramHandle(profileUrl: string): string {
 }
 
 /**
- * How a comic gets on the Log Cabin list: message us, we lock the spot.
+ * The ask on the coming soon page: venues that want an open mic, message us.
  *
- * This replaced the embedded pre sign up board. Two big buttons, one per
- * channel, each opening a message that is already addressed: ig.me opens a DM
- * thread straight to our account in the Instagram app, and the mailto carries
- * a subject and a short template so a comic only fills in the blanks. Both
- * handles are also printed as plain text for anyone who would rather copy
- * them.
+ * Two big buttons, one per channel, each opening a message that is already
+ * addressed: ig.me opens a DM thread straight to our account in the Instagram
+ * app, and the mailto carries a subject and a short template so a venue only
+ * fills in the blanks. Both are also printed as plain text for copying.
  */
-export function MessageForASpot({ copy }: { copy: MessageForASpotCopy }) {
+export function HostAMic({ copy }: { copy: HostAMicCopy }) {
   const handle = instagramHandle(site.social.instagram);
   const dmUrl = `https://ig.me/m/${handle}`;
   const mailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(
@@ -42,20 +39,17 @@ export function MessageForASpot({ copy }: { copy: MessageForASpotCopy }) {
     <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-12">
       <div className="md:col-span-7">
         {copy.eyebrow ? <p className="t-eyebrow">{copy.eyebrow}</p> : null}
-        <h2 id="log-cabin-signup" className="display-2 mt-4 text-surface-ivory">
+        <h2 id="open-mic-host" className="display-2 mt-4 text-surface-ivory">
           {copy.heading}
         </h2>
-        <p className="t-subhead mt-6 text-xl md:text-2xl">
-          {MIC_SLOT_COUNT} spots, {MIC_SPOT_MINUTES} minutes each
-        </p>
         {copy.body ? (
           <p className="t-body mt-6 max-w-[52ch] text-base md:text-lg">
             {copy.body}
           </p>
         ) : null}
-        {copy.walkUpNote ? (
+        {copy.comicsNote ? (
           <p className="t-body mt-4 max-w-[52ch] text-base md:text-lg">
-            {copy.walkUpNote}
+            {copy.comicsNote}
           </p>
         ) : null}
       </div>

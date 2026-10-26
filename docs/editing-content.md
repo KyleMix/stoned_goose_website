@@ -27,7 +27,7 @@ with push access to the repo.
 | `/shows` | Shows copy (singleton), Shows manual (collection) |
 | `/watch` | Watch copy (singleton), News posts (collection), TikTok videos (collection) |
 | `/roster` | Roster copy (singleton), Comedians (collection), Crew members (collection) |
-| `/open-mics` | Open mic page, Log Cabin (singleton) |
+| `/open-mics` | Open mic page, coming soon (singleton) |
 | `/shop` | Shop copy (singleton), Shop products (collection) |
 | `/contact` | Contact page (singleton), Site config (for email / phone) |
 | `/book` | Services (collection), Pricing tiers (collection), Sponsorships (singleton) |
@@ -43,7 +43,7 @@ the JSON directly. Files to know about:
 - `content/site/index.json` ← `Site config`
 - `content/home/index.json` ← `Home page`
 - `content/shows-copy/index.json`, `content/watch-copy/index.json`,
-  `content/roster-copy/index.json`, `content/log-cabin-mic/index.json`,
+  `content/roster-copy/index.json`, `content/open-mic/index.json`,
   `content/shop-copy/index.json`, `content/contact-copy/index.json`,
   `content/sponsorships/index.json` ← matching singletons
 - `content/comedians/<slug>/index.json`, `content/members/<slug>/index.json`,

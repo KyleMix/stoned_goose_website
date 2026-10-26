@@ -21,7 +21,7 @@ import { nav as cmsNav, footer as cmsFooter, type NavLink } from "@/content/site
 export const KNOWN_ROUTES = new Set<string>([
   "/",
   "/shows",
-  // /open-mics is the Log Cabin Monday mic, and nothing else. It used to hold
+  // /open-mics is the open mic coming soon page, and nothing else. It used to hold
   // the Pacific Northwest map, then the Open Mic Explorer app announcement.
   // The map is retired and the app is dead, so the /open-mics/map,
   // /open-mics/privacy, /open-mics/terms and /open-mics/delete-account routes

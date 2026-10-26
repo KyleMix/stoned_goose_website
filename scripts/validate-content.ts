@@ -267,41 +267,15 @@ const singletons: Record<string, z.ZodTypeAny> = {
     })
     .strict(),
 
-  // The Log Cabin Monday mic, the whole of /open-mics. Times and price are
-  // free text so the page can print them exactly as the poster does. Price is
-  // optional and empty by default: an unstated cover stays unstated rather
-  // than being guessed at, and an empty string renders no price row.
-  "log-cabin-mic/index.json": z
+  // /open-mics, coming soon. The Log Cabin mic is cancelled.
+  "open-mic/index.json": z
     .object({
       eyebrow: opt(str),
       titleLead: opt(str),
       titleEmphasis: opt(str),
       titleTrail: opt(str),
       subhead: opt(str),
-      recurrence: opt(str),
-      venue: opt(
-        z
-          .object({
-            name: opt(str),
-            address: opt(str),
-            city: opt(str),
-            region: opt(str),
-            postalCode: opt(str),
-            mapUrl: opt(httpsUrl),
-          })
-          .strict(),
-      ),
-      signupTime: opt(str),
-      showTime: opt(str),
-      endTime: opt(str),
-      price: opt(str),
-      motto: opt(str),
-      host: opt(str),
-      poster: opt(z.object({ src: opt(str), alt: opt(str) }).strict()),
-      // The words around the "message us" buttons. The format itself (12
-      // spots, 8 minutes) is not editable here: it lives in
-      // lib/open-mic-schedule.ts.
-      signup: opt(
+      host: opt(
         z
           .object({
             eyebrow: opt(str),
@@ -311,12 +285,9 @@ const singletons: Record<string, z.ZodTypeAny> = {
             emailLabel: opt(str),
             emailSubject: opt(str),
             emailBody: opt(str),
-            walkUpNote: opt(str),
+            comicsNote: opt(str),
           })
           .strict(),
-      ),
-      howItWorks: opt(
-        z.array(z.object({ heading: str, body: str }).strict()),
       ),
       topSections: blocks,
       bottomSections: blocks,

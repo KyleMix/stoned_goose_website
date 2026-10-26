@@ -418,51 +418,20 @@ collections:
           - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
-      # ---------- Open mic (Log Cabin) ----------
-      # The whole of /open-mics. Leave a field empty and the page renders
-      # nothing for it rather than guessing: an unstated cover charge stays
-      # unstated.
-      - name: log_cabin_mic
-        label: Open mic page (Log Cabin)
-        file: content/log-cabin-mic/index.json
+      # ---------- Open mic (coming soon) ----------
+      # The whole of /open-mics. The Log Cabin mic is cancelled, so the page
+      # is a coming soon note plus an ask for venues to get in touch.
+      - name: open_mic
+        label: Open mic page (coming soon)
+        file: content/open-mic/index.json
         fields:
           - { name: eyebrow, label: Tiny top line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: titleLead, label: Title, first part, widget: string, required: false, hint: 'e.g. "Log Cabin". Shown in ivory.' }
-          - { name: titleEmphasis, label: Title, gold part, widget: string, required: false, hint: 'e.g. "Comedy". Shown in gold.' }
-          - { name: titleTrail, label: Title, last part, widget: string, required: false, hint: 'e.g. "Open Mic". Shown in ivory.' }
+          - { name: titleLead, label: Title, first part, widget: string, required: false, hint: 'e.g. "Open Mic". Shown in ivory.' }
+          - { name: titleEmphasis, label: Title, gold part, widget: string, required: false, hint: 'e.g. "Coming". Shown in gold.' }
+          - { name: titleTrail, label: Title, last part, widget: string, required: false, hint: 'e.g. "Soon". Shown in ivory.' }
           - { name: subhead, label: Subhead, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - { name: recurrence, label: How often, as shown, widget: string, required: false, hint: 'Written out, e.g. "Every Monday". This is the first line of the show info.' }
-          - name: venue
-            label: Venue
-            widget: object
-            required: false
-            fields:
-              - { name: name, label: Venue name, widget: string, required: false }
-              - { name: address, label: Street address, widget: string, required: false, hint: 'e.g. 7035 Pacific Ave SE' }
-              - { name: city, label: City, widget: string, required: false }
-              - { name: region, label: State, widget: string, required: false, hint: 'e.g. WA' }
-              - { name: postalCode, label: ZIP, widget: string, required: false }
-              - { name: mapUrl, label: Directions link, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'The Get directions button. Clearing this hides the button.' }
-          - { name: signupTime, label: Door time, widget: string, required: false, hint: 'When show up sign ups open on the night, e.g. "6:00 PM". The show info line reads "Sign ups <this> / Show ...".' }
-          - { name: showTime, label: Show time, widget: string, required: false, hint: 'Written out, e.g. "7:00 PM".' }
-          - { name: endTime, label: End time, widget: string, required: false, hint: 'Written out, e.g. "9:00 PM". Leave empty to show only a start time.' }
-          - { name: price, label: Cover, widget: string, required: false, hint: 'Only fill this in if there is one. Empty means the page shows no price line at all, which is what you want for a free mic.' }
-          - { name: motto, label: Motto, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'e.g. "Show up, go up."' }
-          - { name: host, label: Hosted by, widget: string, required: false }
-          - name: poster
-            label: Poster
-            widget: object
-            required: false
-            fields:
-              - { name: src, label: Image, widget: image, required: false, media_folder: /public/images/open-mics, public_folder: '', hint: 'Upload the flyer here and it appears on the page. It should say: every Monday, 12 spots at 8 minutes, message us on Instagram or email to lock a spot, sign ups at 6 PM, show at 7 PM.' }
-              - { name: alt, label: Alt text, widget: string, required: false, hint: 'Describe what the flyer says, for screen readers and search. Update this at the same time as the image.' }
-          # The words around the "message us" buttons. Not the numbers.
-          #
-          # The format (12 spots, 8 minutes) is set in
-          # lib/open-mic-schedule.ts, so the count is not a field. Ask a
-          # developer.
-          - name: signup
-            label: How to get a spot
+          - name: host
+            label: Ask venues to host
             widget: object
             required: false
             fields:
@@ -472,17 +441,8 @@ collections:
               - { name: instagramLabel, label: Instagram button text, widget: string, required: false, hint: 'Opens a DM to our Instagram account.' }
               - { name: emailLabel, label: Email button text, widget: string, required: false, hint: 'Opens an email to the site contact address.' }
               - { name: emailSubject, label: Email subject line, widget: string, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-              - { name: emailBody, label: Email starter text, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Pre filled in the email so a comic only fills in the blanks.' }
-              - { name: walkUpNote, label: Show up sign ups note, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
-          - name: howItWorks
-            label: How it works steps
-            label_singular: Step
-            widget: list
-            required: false
-            summary: '{{fields.heading}}'
-            fields:
-              - { name: heading, label: Heading, widget: string, pattern: ['^[^—]*$', 'No em dashes.'] }
-              - { name: body, label: Body, widget: text, pattern: ['^[^—]*$', 'No em dashes.'] }
+              - { name: emailBody, label: Email starter text, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Pre filled in the email so a venue only fills in the blanks.' }
+              - { name: comicsNote, label: Note for comics, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
           - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
