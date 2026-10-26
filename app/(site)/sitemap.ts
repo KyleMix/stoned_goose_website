@@ -26,8 +26,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/shows",
-    // The Log Cabin Monday mic. The map and the app pages that used to sit
-    // under this path are gone.
+    // Open mic, coming soon. The map and the app pages that used to sit
+    // under this path are gone, and so is the Log Cabin room.
     "/open-mics",
     "/watch",
     "/about",

@@ -54,7 +54,7 @@ function targetsForPath(pathname: string): AdminTarget[] {
   }
   if (path === "/open-mics") {
     return [
-      { label: "Log Cabin open mic", href: "/admin/#/collections/site_content/entries/log_cabin_mic" },
+      { label: "Open mic page", href: "/admin/#/collections/site_content/entries/open_mic" },
     ];
   }
   if (path === "/shop") {
