@@ -3,7 +3,7 @@
 ## Stack
 Next.js 15 App Router, static export to /out, TypeScript strict, Tailwind v3, Framer Motion, formsubmit.co for forms. Sveltia CMS at /admin writes JSON under content/.
 
-One exception to "no server": `worker/index.ts` is a hand written Cloudflare Worker serving `/api/open-mic/*` (the open mic sign up list, backed by D1). It is scoped to `/api/*` by `assets.run_worker_first` in wrangler.jsonc and renders no pages. It is not a Next adapter, and it is not a precedent for moving page rendering off the static export: anything that renders HTML still goes through the export. See docs/OPEN_MIC_SIGNUPS.md.
+`worker/index.ts` is a pass-through Worker that hands every request to the static assets. It exists only so `wrangler deploy` does not auto-detect Next.js. It is not a Next adapter and not a place for server logic: anything that renders HTML goes through the export.
 
 ## Run
 - `npm run dev`: local dev
@@ -60,8 +60,7 @@ Headlines and subheads are always uppercase and letterspaced. Body is always sen
 - Never place a mark over a photo without a solid tuxedo panel behind it.
 - Don't mix lockup and badge on one page unless it genuinely serves both audiences, and then keep them in separate sections.
 - `/open-mics` is the Log Cabin Comedy Open Mic, our own Monday room, and nothing else. The Pacific Northwest map and the Open Mic Explorer app are both retired: do not bring either back. It is an information utility for comics, not a sales surface, so it carries no page-level mark. The site header lockup is the only brand furniture it needs, and the show flyer is the event's own artwork, not a mark placement. Don't add one.
-- The mic has 12 spots a night, 8 minutes each. Comics lock a spot by messaging us on Instagram or by email; whatever is left goes to show up sign ups at 6:00 PM on the night. The embedded sign up board was removed in October 2026 because it was not working: the page is two buttons (`components/open-mic/message-for-a-spot.tsx`), not a form. The numbers live in `lib/open-mic-schedule.ts`; only the copy around the buttons is a CMS field.
-- `worker/index.ts` and its D1 list are no longer linked from any page. Do not re-embed a sign up form without asking.
+- The mic has 12 spots a night, 8 minutes each. Comics lock a spot by messaging us on Instagram or by email; whatever is left goes to show up sign ups at 6:00 PM on the night. The embedded sign up board was removed in October 2026 because it was not working: the page is two buttons (`components/open-mic/message-for-a-spot.tsx`), not a form. The numbers live in `lib/open-mic-schedule.ts`; only the copy around the buttons is a CMS field. The old sign up Worker and its D1 list were deleted too. Do not bring back an embedded sign up form without asking.
 
 ### The monocle ring
 A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framing a headshot. **One ring per page section, maximum.** Use `<MonocleRing />`: `scripts/test/monocle-ring.test.ts` fails the build on a second ring in one section, so the limit is real rather than advisory.
@@ -81,5 +80,3 @@ A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framin
 
 ## Verify
 After any change: `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build` all pass, and click-through on changed pages works.
-
-The sign up Worker cannot be clicked through without a D1 binding, so it is covered by `scripts/test/open-mic-worker.test.ts` instead, which drives the handler against a stub D1. Change the Worker, run the test.
