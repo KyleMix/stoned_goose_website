@@ -129,6 +129,18 @@ export function buildComedyEvent(show: Show): ComedyEvent {
   if (show.summary) event.description = show.summary;
   if (show.imageUrl) event.image = [absoluteUrl(show.imageUrl)];
 
+  // A headliner attached by lib/performer-match.ts: name them as the
+  // performer, and use the arch headshot and the flyer the card renders in
+  // place of Eventbrite's cropped banner.
+  const performer = show.performer;
+  if (performer) {
+    event.performer = { "@type": "Person", name: performer.name };
+    const images = [performer.images.arch, performer.images.flyer]
+      .filter((src): src is string => Boolean(src))
+      .map(absoluteUrl);
+    if (images.length > 0) event.image = images;
+  }
+
   // Only emit a Place when there is a real venue name. A bare "TBD" asserts a
   // location the page does not actually show.
   if (show.venue?.name) {
@@ -148,10 +160,13 @@ export function buildComedyEvent(show: Show): ComedyEvent {
 
   // Offer only when there is a place to buy or RSVP. Price is included only when
   // it parses to a single clean amount; otherwise we keep the offer but drop the
-  // price rather than ship a malformed value.
+  // price rather than ship a malformed value. For a headliner that amount is
+  // the base price from the CMS, the same one the card prints before
+  // "+ Eventbrite fees", never Eventbrite's fee inclusive total.
   const offerUrl = show.ticketUrl ?? show.url;
   if (offerUrl) {
-    const price = parsePrice(show.ticketPrice);
+    const price =
+      show.ticketPrice?.trim().toLowerCase() === "free" ? "0" : parsePrice(show.ticketPrice);
     const offer: Offer = {
       "@type": "Offer",
       url: offerUrl,

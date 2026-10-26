@@ -127,6 +127,54 @@ const bareEvent = plain(buildComedyEvent(bareShow));
 assertTrue(bareEvent.location === undefined, "bare event: no location asserted");
 assertTrue(bareEvent.offers === undefined, "bare event: no offers asserted");
 
+// A headliner show: the performer is named, the images are the arch headshot
+// and the flyer as absolute URLs, and the offer price is the base price from
+// the CMS, not Eventbrite's fee inclusive total.
+const headlinerShow: Show = {
+  ...sampleShow,
+  ticketPrice: "$20",
+  priceNote: "+ Eventbrite fees",
+  performer: {
+    slug: "ryan-oflanagan",
+    name: "Ryan O'Flanagan",
+    eventbriteId: "2003890622796",
+    date: null,
+    priceDisplay: "$20",
+    creditsLabel: "As seen on",
+    credits: ["New Girl"],
+    bio: "",
+    images: {
+      cutout: null,
+      arch: "/shows/ryan-oflanagan/headshot-arch.png",
+      flyer: "/shows/ryan-oflanagan/flyer.png",
+    },
+  },
+};
+const headlinerEvent = plain(buildComedyEvent(headlinerShow));
+assertEqual(
+  headlinerEvent.performer,
+  { "@type": "Person", name: "Ryan O'Flanagan" },
+  "headliner: performer is a Person with the headliner's name",
+);
+assertEqual(
+  headlinerEvent.image,
+  [
+    "https://www.stonedgooseproductions.com/shows/ryan-oflanagan/headshot-arch.png",
+    "https://www.stonedgooseproductions.com/shows/ryan-oflanagan/flyer.png",
+  ],
+  "headliner: image is the arch and the flyer, absolute",
+);
+assertEqual(
+  (headlinerEvent.offers as Record<string, unknown>).price,
+  "20",
+  "headliner: offers.price is the base price",
+);
+assertEqual(
+  (plain(buildComedyEvent({ ...sampleShow, ticketPrice: "Free" })).offers as Record<string, unknown>).price,
+  "0",
+  "free show: offers.price is 0",
+);
+
 // VideoObject: curated clips are normalized with a real derived thumbnail and
 // embed URL. uploadDate is emitted only when the CMS supplies publishedAt.
 const [datedVideo, undatedVideo] = normalizeCuratedVideos([
