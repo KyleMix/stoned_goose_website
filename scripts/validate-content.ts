@@ -418,6 +418,7 @@ const collections: Record<string, z.ZodTypeAny> = {
       photoAlt: opt(str),
       instagram: opt(httpsUrl),
       facebook: opt(httpsUrl),
+      website: opt(httpsUrl),
       bio: opt(str),
       reelUrl: opt(httpsUrl),
       credits: opt(z.array(str)),

@@ -1,7 +1,11 @@
 import Image from "next/image";
 import type { Comedian } from "@/content/comedians";
 import { getPlaceholder } from "@/lib/placeholders";
-import { InstagramIcon, FacebookIcon } from "@/components/icons/social";
+import {
+  InstagramIcon,
+  FacebookIcon,
+  WebsiteIcon,
+} from "@/components/icons/social";
 import { cn } from "@/lib/utils";
 
 // The comics we have booked, as proof rather than as a directory.
@@ -55,7 +59,7 @@ export function ComicsGrid({ comedians, limit }: Props) {
             {c.name}
           </h3>
 
-          {c.instagram || c.facebook ? (
+          {c.instagram || c.facebook || c.website ? (
             <div className="-ml-2 flex items-center">
               {c.instagram ? (
                 <SocialLink
@@ -68,6 +72,11 @@ export function ComicsGrid({ comedians, limit }: Props) {
               {c.facebook ? (
                 <SocialLink href={c.facebook} label={`${c.name} on Facebook`}>
                   <FacebookIcon className="h-5 w-5" />
+                </SocialLink>
+              ) : null}
+              {c.website ? (
+                <SocialLink href={c.website} label={`${c.name}'s website`}>
+                  <WebsiteIcon className="h-5 w-5" />
                 </SocialLink>
               ) : null}
             </div>

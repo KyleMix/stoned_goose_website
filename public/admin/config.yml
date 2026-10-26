@@ -709,6 +709,7 @@ collections:
       - { name: photoAlt, label: Portrait alt text, widget: string, required: false, hint: 'Describe the photo for screen readers, e.g. "Alexa Hansen headshot". Left blank, the site uses the name.' }
       - { name: instagram, label: Instagram URL, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'Full profile link, e.g. https://www.instagram.com/handle.' }
       - { name: facebook, label: Facebook URL, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'] }
+      - { name: website, label: Website URL, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'Their own site, e.g. https://www.example.com.' }
       - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'], hint: 'Filling this in gives the comedian their own EPK page at /about/name.' }
       - { name: reelUrl, label: Reel link (YouTube), widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'A reel also unlocks the EPK page. Full URL like https://www.youtube.com/watch?v=abc12345678.' }
       - name: credits
