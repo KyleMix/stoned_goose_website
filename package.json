@@ -31,7 +31,8 @@
     "brand:generate": "tsx scripts/brand/generate-brand-assets.ts",
     "optimize:images": "tsx scripts/optimize-images.ts",
     "prepare": "husky",
-    "sync:pro-shows": "tsx scripts/sync-pro-shows.ts"
+    "sync:pro-shows": "tsx scripts/sync-pro-shows.ts",
+    "build:show-images": "tsx scripts/build-show-images.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs}": [

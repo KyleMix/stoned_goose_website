@@ -1,0 +1,176 @@
+{
+  "/shows/dustin-anderson/flyer.png": {
+    "width": 816,
+    "height": 1056,
+    "webp": [
+      {
+        "src": "/shows/dustin-anderson/flyer-816.webp",
+        "width": 816
+      }
+    ]
+  },
+  "/shows/dustin-anderson/headshot-arch.png": {
+    "width": 600,
+    "height": 680,
+    "webp": [
+      {
+        "src": "/shows/dustin-anderson/headshot-arch-300.webp",
+        "width": 300
+      },
+      {
+        "src": "/shows/dustin-anderson/headshot-arch-600.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/shows/dustin-anderson/headshot-cutout.png": {
+    "width": 1001,
+    "height": 1400,
+    "webp": [
+      {
+        "src": "/shows/dustin-anderson/headshot-cutout-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/shows/dustin-anderson/headshot-cutout-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/shows/matt-fulchiron/flyer.png": {
+    "width": 816,
+    "height": 1056,
+    "webp": [
+      {
+        "src": "/shows/matt-fulchiron/flyer-816.webp",
+        "width": 816
+      }
+    ]
+  },
+  "/shows/matt-fulchiron/headshot-arch.png": {
+    "width": 600,
+    "height": 680,
+    "webp": [
+      {
+        "src": "/shows/matt-fulchiron/headshot-arch-300.webp",
+        "width": 300
+      },
+      {
+        "src": "/shows/matt-fulchiron/headshot-arch-600.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/shows/matt-fulchiron/headshot-cutout.png": {
+    "width": 809,
+    "height": 1400,
+    "webp": [
+      {
+        "src": "/shows/matt-fulchiron/headshot-cutout-480.webp",
+        "width": 480
+      }
+    ]
+  },
+  "/shows/matt-ross/flyer.png": {
+    "width": 816,
+    "height": 1056,
+    "webp": [
+      {
+        "src": "/shows/matt-ross/flyer-816.webp",
+        "width": 816
+      }
+    ]
+  },
+  "/shows/matt-ross/headshot-arch.png": {
+    "width": 600,
+    "height": 680,
+    "webp": [
+      {
+        "src": "/shows/matt-ross/headshot-arch-300.webp",
+        "width": 300
+      },
+      {
+        "src": "/shows/matt-ross/headshot-arch-600.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/shows/matt-ross/headshot-cutout.png": {
+    "width": 479,
+    "height": 360,
+    "webp": [
+      {
+        "src": "/shows/matt-ross/headshot-cutout-479.webp",
+        "width": 479
+      }
+    ]
+  },
+  "/shows/mike-rainey/flyer.png": {
+    "width": 816,
+    "height": 1056,
+    "webp": [
+      {
+        "src": "/shows/mike-rainey/flyer-816.webp",
+        "width": 816
+      }
+    ]
+  },
+  "/shows/mike-rainey/headshot-arch.png": {
+    "width": 600,
+    "height": 680,
+    "webp": [
+      {
+        "src": "/shows/mike-rainey/headshot-arch-300.webp",
+        "width": 300
+      },
+      {
+        "src": "/shows/mike-rainey/headshot-arch-600.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/shows/mike-rainey/headshot-cutout.png": {
+    "width": 845,
+    "height": 966,
+    "webp": [
+      {
+        "src": "/shows/mike-rainey/headshot-cutout-480.webp",
+        "width": 480
+      }
+    ]
+  },
+  "/shows/ryan-oflanagan/flyer.png": {
+    "width": 816,
+    "height": 1056,
+    "webp": [
+      {
+        "src": "/shows/ryan-oflanagan/flyer-816.webp",
+        "width": 816
+      }
+    ]
+  },
+  "/shows/ryan-oflanagan/headshot-arch.png": {
+    "width": 600,
+    "height": 680,
+    "webp": [
+      {
+        "src": "/shows/ryan-oflanagan/headshot-arch-300.webp",
+        "width": 300
+      },
+      {
+        "src": "/shows/ryan-oflanagan/headshot-arch-600.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/shows/ryan-oflanagan/headshot-cutout.png": {
+    "width": 931,
+    "height": 1400,
+    "webp": [
+      {
+        "src": "/shows/ryan-oflanagan/headshot-cutout-480.webp",
+        "width": 480
+      }
+    ]
+  }
+}
