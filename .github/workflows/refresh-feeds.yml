@@ -1,5 +1,7 @@
 # Refresh social feeds (Instagram, Facebook) and show listings (Eventbrite,
-# Facebook events) every 6 hours.
+# Facebook events) every 6 hours. Also creates Headliners entries for new
+# Eventbrite shows, and redeploys the site the day after a show so it comes
+# off the page.
 #
 # Required repo secrets (Settings -> Secrets and variables -> Actions):
 #   INSTAGRAM_ACCESS_TOKEN        long-lived IG user token (~60 day expiry)
@@ -74,6 +76,20 @@ jobs:
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
 
+      # New Eventbrite headliners get a starter entry in the Headliners
+      # collection (name, slug, event ID) for the owner to add photos to.
+      # Only ever creates files; never touches an existing entry.
+      - name: Create headliner entries for new Eventbrite shows
+        continue-on-error: true
+        run: npm run sync:headliners && npm run content:index
+
+      # Records what /shows lists. It changes only when a show drops off (the
+      # day after its date) or appears, and committing that change is what
+      # redeploys the site. See scripts/snapshot-listings.ts.
+      - name: Snapshot listed shows
+        continue-on-error: true
+        run: npm run snapshot:listings
+
       - name: Fetch pro comedy shows
         continue-on-error: true
         run: npm run sync:pro-shows
@@ -82,4 +98,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(feeds): refresh social content"
-          file_pattern: "content/feeds/*.json content/.generated/pro-shows.json content/.generated/shows.json"
+          file_pattern: "content/feeds/*.json content/.generated/pro-shows.json content/.generated/shows.json content/.generated/listed-shows.json content/.generated/performers-index.json content/performers/**"

@@ -35,6 +35,12 @@ export type Show = {
   ticketUrl?: string | null;
   status?: "ticketed" | "free" | "tba";
   ticketPrice?: string;
+  /**
+   * The base ticket price from Eventbrite's ticket classes, before fees,
+   * e.g. "$20". Written by scripts/sync-shows.ts. ticketPrice is the fee
+   * inclusive minimum Eventbrite reports and is never shown.
+   */
+  basePrice?: string;
   /** Printed after the price, e.g. "+ Eventbrite fees". */
   priceNote?: string;
   doorTime?: string;

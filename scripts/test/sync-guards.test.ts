@@ -17,7 +17,7 @@
 // Run: npm test
 
 import { reconcileClub } from "../sync-pro-shows";
-import { hasUpcoming } from "../sync-shows";
+import { basePriceOf, hasUpcoming } from "../sync-shows";
 import { extractOgImage, mergeImages } from "../sync-shop-images";
 import type { ProShow } from "../../content/pro-shows";
 import type { Show } from "../../content/shows";
@@ -167,6 +167,30 @@ assert(
     NOW_MS,
   ),
   "hasUpcoming: mixed past and future",
+);
+
+// --- basePriceOf: the flyer price, never Eventbrite's total ------------------
+
+assert(
+  basePriceOf({ ticket_classes: [{ cost: { value: 2000, major_value: "20.00", currency: "USD" } }] }) === "$20",
+  "basePriceOf: $20 face value, fees excluded",
+);
+assert(
+  basePriceOf({
+    ticket_classes: [
+      { cost: { value: 3000, currency: "USD" } },
+      { cost: { value: 2250, currency: "USD" } },
+      { hidden: true, cost: { value: 1000, currency: "USD" } },
+      { free: true, cost: { value: 0, currency: "USD" } },
+    ],
+  }) === "$22.50",
+  "basePriceOf: cheapest visible paid class, hidden and free ignored",
+);
+assert(basePriceOf({ ticket_classes: [{ free: true }] }) === null, "basePriceOf: free only, no price");
+assert(basePriceOf({}) === null, "basePriceOf: no ticket classes, no price");
+assert(
+  basePriceOf({ ticket_classes: [{ cost: { major_value: "15.00", currency: "USD" } }] }) === "$15",
+  "basePriceOf: reads major_value when value is missing",
 );
 
 // --- sync-shop-images -------------------------------------------------------

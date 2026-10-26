@@ -11,6 +11,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Show } from "../content/shows";
 import { requireEnv, safeFetch, writeJson } from "./_sync-helpers";
+import { isStillListed } from "../lib/dates";
 
 const OUT_PATH = join(process.cwd(), "content", ".generated", "shows.json");
 
@@ -40,7 +41,17 @@ type EventbriteEvent = {
   ticket_availability?: {
     minimum_ticket_price?: { display?: string };
   } | null;
+  ticket_classes?: EventbriteTicketClass[] | null;
   logo?: { url?: string } | null;
+};
+
+// Only the fields basePriceOf reads. `cost` is the face value before
+// Eventbrite's fees; the fee is a separate field.
+type EventbriteTicketClass = {
+  free?: boolean;
+  hidden?: boolean;
+  donation?: boolean;
+  cost?: { major_value?: string; value?: number; currency?: string } | null;
 };
 
 type EventbriteResponse = {
@@ -48,7 +59,29 @@ type EventbriteResponse = {
   pagination: { has_more_items: boolean; continuation?: string };
 };
 
+/**
+ * The cheapest public ticket's face value, before fees, as the flyer writes
+ * it: "$20", or "$22.50". minimum_ticket_price cannot be used for this, it is
+ * the total with fees (23.18 for a $20 ticket). Null when there is no paid,
+ * visible, USD ticket class to read, so the page shows no price rather than a
+ * guess. Exported for scripts/test/sync-guards.test.ts.
+ */
+export function basePriceOf(evt: Pick<EventbriteEvent, "ticket_classes">): string | null {
+  const cents = (evt.ticket_classes ?? [])
+    .filter((t) => !t.free && !t.hidden && !t.donation && (t.cost?.currency ?? "USD") === "USD")
+    .map((t) =>
+      typeof t.cost?.value === "number"
+        ? t.cost.value
+        : Math.round(Number(t.cost?.major_value) * 100),
+    )
+    .filter((c) => Number.isFinite(c) && c > 0);
+  if (cents.length === 0) return null;
+  const min = Math.min(...cents);
+  return min % 100 === 0 ? `$${min / 100}` : `$${(min / 100).toFixed(2)}`;
+}
+
 function normalize(evt: EventbriteEvent): Show {
+  const basePrice = basePriceOf(evt);
   return {
     id: `eventbrite-${evt.id}`,
     name: evt.name.text,
@@ -59,6 +92,7 @@ function normalize(evt: EventbriteEvent): Show {
     ticketUrl: evt.url,
     status: evt.is_free ? "free" : "ticketed",
     ticketPrice: evt.ticket_availability?.minimum_ticket_price?.display,
+    ...(basePrice ? { basePrice } : {}),
     imageUrl: evt.logo?.url ?? null,
     venue: evt.venue
       ? {
@@ -84,7 +118,7 @@ async function fetchAllEvents(
     const params = new URLSearchParams({
       status: "live",
       order_by: "start_asc",
-      expand: "venue,ticket_availability,logo",
+      expand: "venue,ticket_availability,ticket_classes,logo",
     });
     if (continuation) params.set("continuation", continuation);
     const url = `https://www.eventbriteapi.com/v3/organizers/${organizerId}/events/?${params.toString()}`;
@@ -115,9 +149,10 @@ async function main() {
     return;
   }
 
-  const shows = events
-    .map(normalize)
-    .filter((s) => s.start && new Date(s.start).getTime() > Date.now());
+  // Kept through the show's date and dropped the day after, the same rule the
+  // page uses (lib/dates.ts). The first run after midnight Pacific drops it
+  // from this file, and that commit is what redeploys the site.
+  const shows = events.map(normalize).filter((s) => isStillListed(s.start));
 
   // A 200 carrying zero events is not proof the calendar is empty. A revoked
   // scope, a mistyped organizer id, or a response-shape change all look like
@@ -149,7 +184,7 @@ function readExisting(): Show[] {
 // Exported for scripts/test/sync-guards.test.ts. Past-only listings are
 // genuinely empty and must stay overwritable, or a dead calendar never clears.
 export function hasUpcoming(shows: Show[], now: number = Date.now()): boolean {
-  return shows.some((s) => s.start && new Date(s.start).getTime() > now);
+  return shows.some((s) => isStillListed(s.start, now));
 }
 
 // Only run when executed as a script, so the test can import hasUpcoming
