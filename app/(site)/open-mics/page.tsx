@@ -7,14 +7,9 @@ import { SectionRenderer } from "@/components/section-renderer";
 import { Surface } from "@/components/brand/surface";
 import { MonocleRing } from "@/components/brand/monocle-ring";
 import { ShowInfoBlock } from "@/components/brand/show-info-block";
-import { OpenMicSignupBoard } from "@/components/open-mic/signup-board";
-import { site } from "@/content/site";
+import { MessageForASpot } from "@/components/open-mic/message-for-a-spot";
 import { buildBreadcrumbs } from "@/lib/schema";
-import {
-  MIC_SLOT_COUNT,
-  MIC_SPOT_MINUTES,
-  MIC_WINDOW_WEEKS,
-} from "@/lib/open-mic-schedule";
+import { MIC_SLOT_COUNT, MIC_SPOT_MINUTES } from "@/lib/open-mic-schedule";
 import {
   logCabinMic,
   logCabinMicAddressLine,
@@ -33,12 +28,10 @@ import {
 // the app is dead, so /open-mics is now one room and nothing else. No map, no
 // Leaflet bundle, no third-party listings, no store links.
 //
-// As of the September 2026 format change the room is pre sign up: twelve eight
-// minute spots per Monday, four Mondays open at a time, claimed here instead
-// of on a clipboard at 6:00 PM. The rules and the rolling window live in
-// lib/open-mic-schedule.ts and the list itself lives in D1 behind
-// worker/index.ts. The page shows counts and never names: see the note on
-// <OpenMicSignupBoard />.
+// Twelve eight minute spots per Monday. Comics lock one by messaging us on
+// Instagram or by email, and whatever is left goes to show up sign ups at
+// 6:00 PM on the night. The embedded sign up board is gone: see
+// <MessageForASpot />.
 //
 // Per CLAUDE.md this page is an information utility, not a sales surface: it
 // carries no page-level mark, because the site header lockup is the only brand
@@ -52,7 +45,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Log Cabin Comedy Open Mic",
-  description: `Stoned Goose runs a comedy open mic every Monday at the Log Cabin Bar & Grill in Olympia. ${MIC_SLOT_COUNT} spots, ${MIC_SPOT_MINUTES} minutes each, signed up in advance. Show starts at 7:00 PM.`,
+  description: `Stoned Goose runs a comedy open mic every Monday at the Log Cabin Bar & Grill in Olympia. ${MIC_SLOT_COUNT} spots, ${MIC_SPOT_MINUTES} minutes each. Message us on Instagram or email to lock a spot, or sign up at 6:00 PM. Show starts at 7:00 PM.`,
   alternates: {
     canonical: "/open-mics",
   },
@@ -80,12 +73,9 @@ export default function OpenMicsPage() {
     ticketPrice: logCabinMic.price,
   };
 
-  // "Show 7:00 PM", and whatever else is set. Both of the other two fields are
-  // empty since the format change and stay that way unless the room states
-  // them: `signupTime` because sign ups happen here, in advance, rather than
-  // at an hour on the night, and `endTime` because the only time the room
-  // publishes now is the start. Fill either in and its half of the line
-  // appears, in the order ShowInfoBlock fixes.
+  // "Sign ups 6:00 PM / Show 7:00 PM", and whatever else is set. Leave a field
+  // empty in the CMS and its half of the line disappears, in the order
+  // ShowInfoBlock fixes.
   const signup = logCabinMic.signupTime ? `Sign ups ${logCabinMic.signupTime}` : "";
   const showWindow = logCabinMic.showTime
     ? `Show ${logCabinMic.showTime}${logCabinMic.endTime ? ` to ${logCabinMic.endTime}` : ""}`
@@ -116,34 +106,15 @@ export default function OpenMicsPage() {
 
       <SectionRenderer sections={logCabinMicTopSections} pageSlug="open-mics" />
 
-      {/* The list. First thing under the header, because taking a spot is now
-          the reason a comic opens this page: everything below is detail they
-          only need once they have one. */}
+      {/* How to get a spot. First thing under the header, because that is
+          the reason a comic opens this page. */}
       <section
         data-surface="tuxedo"
         aria-labelledby="log-cabin-signup"
         className="border-b border-smoke bg-surface-tuxedo section-y"
       >
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <OpenMicSignupBoard copy={logCabinMicSignup} />
-
-          {/* The Mondays and the counts both depend on today's date, and this
-              page is built once and cached, so the board needs JavaScript to
-              be correct rather than confidently wrong. Everything else on the
-              page is static. This is the way onto the list without it. */}
-          <noscript>
-            <p className="t-body mt-10 max-w-[52ch] text-base">
-              The sign up board needs JavaScript. Email{" "}
-              <a
-                href={`mailto:${site.contact.email}?subject=Log%20Cabin%20open%20mic%20sign%20up`}
-                className="underline underline-offset-4"
-              >
-                {site.contact.email}
-              </a>{" "}
-              with your name, your Instagram handle and which Monday you want,
-              and we will put you down by hand.
-            </p>
-          </noscript>
+          <MessageForASpot copy={logCabinMicSignup} />
         </div>
       </section>
 
@@ -173,8 +144,7 @@ export default function OpenMicsPage() {
 
             {/* Without a flyer the copy takes the full width rather than
                 sitting in a seven-column column beside nothing. The flyer
-                field is empty on purpose while the new pre sign up artwork is
-                made: see docs/OPEN_MIC_SIGNUPS.md. */}
+                field is empty until a current flyer is uploaded. */}
             <div className={hasPoster ? "md:col-span-7" : "md:col-span-12"}>
               <h2 id="log-cabin-details" className="display-2 text-surface-ivory">
                 {logCabinMic.recurrence}.
@@ -233,11 +203,6 @@ export default function OpenMicsPage() {
                 </li>
               ))}
             </ol>
-            <p className="t-fine mt-12 max-w-[60ch]">
-              {MIC_WINDOW_WEEKS} Mondays are open at a time. When one is done
-              its list is deleted that night, and the next Monday joins the
-              board on Tuesday morning.
-            </p>
           </div>
         </Surface>
       ) : null}

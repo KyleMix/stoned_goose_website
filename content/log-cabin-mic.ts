@@ -99,29 +99,21 @@ export const logCabinMicPoster = {
 };
 
 /**
- * Words only. The numbers that define the format (twelve spots, eight
- * minutes, four Mondays, the start date) are NOT here and are not editable in
- * the CMS: they live in lib/open-mic-schedule.ts, which the sign up Worker
- * imports too.
+ * Words only. The numbers (twelve spots, eight minutes) are NOT here and are
+ * not editable in the CMS: they live in lib/open-mic-schedule.ts.
  *
- * That is deliberate. A slot count an editor could raise to thirteen without
- * the Worker agreeing would advertise a spot the database refuses to sell, and
- * the comic would find out at the moment of sign up. One source of truth, and
- * the surface that can be edited freely is the copy around it.
+ * Spots are locked by messaging us on Instagram or by email. The embedded
+ * sign up board is gone, so these are the words around those two buttons.
  */
 export const logCabinMicSignup = {
   eyebrow: text(copy.signup?.eyebrow),
-  heading: text(copy.signup?.heading),
+  heading: text(copy.signup?.heading) || "Message us. Get a spot.",
   body: text(copy.signup?.body),
-  nameLabel: text(copy.signup?.nameLabel) || "Name",
-  emailLabel: text(copy.signup?.emailLabel) || "Email",
-  instagramLabel: text(copy.signup?.instagramLabel) || "Instagram",
-  submitLabel: text(copy.signup?.submitLabel) || "Take a spot",
-  privacyNote: text(copy.signup?.privacyNote),
-  fullText: text(copy.signup?.fullText) || "Full",
-  offlineText:
-    text(copy.signup?.offlineText) ||
-    "That did not go through. Try again, or email us:",
+  instagramLabel: text(copy.signup?.instagramLabel) || "DM us on Instagram",
+  emailLabel: text(copy.signup?.emailLabel) || "Email us",
+  emailSubject: text(copy.signup?.emailSubject) || "Log Cabin open mic spot",
+  emailBody: copy.signup?.emailBody ?? "",
+  walkUpNote: text(copy.signup?.walkUpNote),
 };
 
 export const logCabinMicHowItWorks: HowItWorksStep[] = Array.isArray(
