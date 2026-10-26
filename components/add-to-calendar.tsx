@@ -16,6 +16,12 @@ type Props = {
   end: string | null;
   /** Display location. e.g. "Capitol Theater, Olympia, WA". */
   location: string;
+  /**
+   * Which edge of the button the menu lines up with. "end" (the default) hangs
+   * it leftwards from a right-aligned button; "start" hangs it rightwards, for
+   * a button at the left edge of a narrow card where "end" would run off it.
+   */
+  menuAlign?: "start" | "end";
 };
 
 function toGoogleDate(iso: string): string {
@@ -49,7 +55,7 @@ function buildOutlookUrl({ title, description, start, end, location }: Omit<Prop
 // Minimal, accessible add-to-calendar dropdown. Plain <details> + <summary>.
 // No new dependency. Three formats: Google, Outlook, .ics download.
 export function AddToCalendar(props: Props) {
-  const { showId, title, description, start, end, location } = props;
+  const { showId, title, description, start, end, location, menuAlign = "end" } = props;
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDetailsElement>(null);
 
@@ -98,7 +104,9 @@ export function AddToCalendar(props: Props) {
       <summary className="inline-flex h-11 cursor-pointer list-none items-center border border-smoke px-5 t-ui text-surface-ivory hover:border-accent-gold hover:text-accent-gold [&::-webkit-details-marker]:hidden">
         Add to calendar +
       </summary>
-      <div className="absolute right-0 z-20 mt-2 w-56 border border-smoke bg-surface-tuxedo">
+      <div
+        className={`absolute ${menuAlign === "start" ? "left-0" : "right-0"} z-20 mt-2 w-56 border border-smoke bg-surface-tuxedo`}
+      >
         <ul className="divide-y divide-smoke">
           <li>
             <a

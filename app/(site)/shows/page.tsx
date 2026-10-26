@@ -12,9 +12,8 @@ import { PageHeader } from "@/components/page-header";
 import { MailingListCapture } from "@/components/mailing-list-capture";
 import { SectionRenderer } from "@/components/section-renderer";
 import { TrackedAnchor } from "@/components/tracked-anchor";
-import { AddToCalendar } from "@/components/add-to-calendar";
-import { ShareButton } from "@/components/share-button";
-import { ShowInfoBlock } from "@/components/brand/show-info-block";
+import { ShowCard } from "@/components/shows/show-card";
+import { HeadlinerHero, HeadlinerStrip } from "@/components/shows/headliner-hero";
 import { formatShowDate } from "@/lib/dates";
 import { FacebookPagePlugin } from "@/components/facebook-page-plugin";
 import { JsonLd } from "@/components/json-ld";
@@ -39,6 +38,12 @@ export default function ShowsPage() {
   // Emit one ItemList of ComedyEvents only when shows exist. No empty ItemList:
   // when the calendar is bare, the page renders only the root Organization.
   const showsItemList = hasShows ? buildShowsItemList(upcomingShows) : null;
+
+  // The soonest headliner gets the hero. It is the next *headliner*, not the
+  // next show: a free open mic can be sooner, and it stays first in the date
+  // ordered grid below. Everything else renders there, in date order.
+  const hero = upcomingShows.find((s) => s.performer) ?? null;
+  const rest = hero ? upcomingShows.filter((s) => s !== hero) : upcomingShows;
 
   return (
     <>
@@ -74,12 +79,19 @@ export default function ShowsPage() {
         </aside>
       ) : null}
 
+      {hero ? (
+        <>
+          <HeadlinerHero show={hero} />
+          <HeadlinerStrip shows={rest} />
+        </>
+      ) : null}
+
       {/* Upcoming list */}
       <section className="section-y border-b border-smoke bg-surface-tuxedo">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-4">
             <h2 className="display-2 text-surface-ivory">
-              Upcoming dates
+              {hero ? "More dates" : "Upcoming dates"}
             </h2>
             <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
               {hasShows ? (
@@ -109,69 +121,15 @@ export default function ShowsPage() {
           </div>
 
           {hasShows ? (
-            <ul className="divide-y divide-smoke border-y border-smoke">
-              {upcomingShows.map((show) => {
-                const status = show.status ?? "tba";
-                const venueLine = [show.venue?.name, show.venue?.city, show.venue?.region]
-                  .filter(Boolean)
-                  .join(" / ");
-                return (
-                  <li
-                    key={show.id}
-                    className="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 py-7"
-                  >
-                    <div className="col-span-12 md:col-span-9">
-                      <h3 className="t-subhead text-2xl md:text-3xl">
-                        {show.name}
-                      </h3>
-                      {/* Date, venue, doors and show, price. Always that
-                          order, here and everywhere else. */}
-                      <ShowInfoBlock show={show} className="mt-3" />
-                      {show.summary && (
-                        <p className="t-body mt-3 max-w-prose text-sm text-smoke">
-                          {show.summary}
-                        </p>
-                      )}
-                    </div>
-                    <div className="col-span-12 flex flex-wrap items-center gap-3 md:col-span-3 md:justify-end">
-                      {show.ticketUrl ? (
-                        <TrackedAnchor
-                          destination="ticketing"
-                          href={show.ticketUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex h-11 items-center bg-accent-gold px-5 t-ui text-surface-tuxedo hover:bg-surface-ivory"
-                        >
-                          Get tickets ↗
-                        </TrackedAnchor>
-                      ) : (
-                        <span className="inline-flex h-11 items-center border border-smoke px-5 t-ui text-smoke">
-                          {status === "free"
-                            ? "Free / at the door"
-                            : "Details soon"}
-                        </span>
-                      )}
-                      {show.start ? (
-                        <AddToCalendar
-                          showId={show.id}
-                          title={show.name}
-                          description={show.summary}
-                          start={show.start}
-                          end={show.end}
-                          location={venueLine}
-                        />
-                      ) : null}
-                      <ShareButton
-                        title={show.name}
-                        text={show.summary}
-                        url={`${site.url}/shows#${show.id}`}
-                        surface="show"
-                      />
-                    </div>
+            rest.length > 0 ? (
+              <ul className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {rest.map((show) => (
+                  <li key={show.id}>
+                    <ShowCard show={show} />
                   </li>
-                );
-              })}
-            </ul>
+                ))}
+              </ul>
+            ) : null
           ) : (
             <div className="border-y border-smoke px-1 py-12 md:py-16">
               <p className="t-eyebrow text-smoke">
