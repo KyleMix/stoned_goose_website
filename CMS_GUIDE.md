@@ -32,8 +32,9 @@ Headliners get the big card on /shows: photo, credits, bio, and flyer.
 
 1. Click **Headliners**, then **Create**.
 2. Fill in the name exactly as it reads in the Eventbrite title, and a link
-   name like `matt-ross`. The card then lives at `/shows#matt-ross`, which is
-   the link to put in the Instagram bio.
+   name like `matt-ross`. The comic gets their own page at
+   `/shows/matt-ross`, which is the link to put in the Instagram bio: shared
+   anywhere, it previews with that comic's photo, date, and venue.
 3. Add the show date, the base price from the flyer (`$20`; the site adds
    "+ Eventbrite fees" itself), the credits, and the bio.
 4. Upload the arch headshot, the cutout, and the flyer under **Images**.
@@ -44,7 +45,7 @@ Headliners get the big card on /shows: photo, credits, bio, and flyer.
    Eventbrite link) and save. The card switches to the live event on the next
    sync, with the real ticket link. No duplicate card.
 
-Past dates drop off the page on their own. Sharper web copies of the photos
+Past dates drop off the page on their own, and so does the comic's page. Sharper web copies of the photos
 and flyer are made automatically a minute or two after you save.
 
 ## Upload images

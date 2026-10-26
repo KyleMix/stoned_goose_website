@@ -432,7 +432,12 @@ const collections: Record<string, z.ZodTypeAny> = {
   performers: z
     .object({
       name: str.min(1),
-      slug: str.regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "slug must be lowercase words joined by hyphens, e.g. matt-ross"),
+      // The slug is the page /shows/<slug>. "og" and "uploads" are already
+      // folders under /shows (share cards, CMS uploads), so a page there would
+      // collide with them.
+      slug: str
+        .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "slug must be lowercase words joined by hyphens, e.g. matt-ross")
+        .refine((s) => !["og", "uploads"].includes(s), "slug \"og\" and \"uploads\" are taken by /shows/og and /shows/uploads"),
       eventbriteId: opt(str.regex(/^\d+$/, "Eventbrite ID is the number at the end of the event link")),
       date: opt(str.regex(/^\d{4}-\d{2}-\d{2}$/, "date must be YYYY-MM-DD")),
       priceDisplay: opt(str.regex(/^\$\d+(\.\d{2})?$/, 'price must be one base price, e.g. "$20"')),

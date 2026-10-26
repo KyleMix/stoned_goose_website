@@ -1,5 +1,5 @@
 import type { Show } from "@/content/shows";
-import { showAnchor } from "@/content/shows";
+import { showAnchor, showPath } from "@/content/shows";
 import { ShowInfoBlock } from "@/components/brand/show-info-block";
 import { formatShowDateBand } from "@/lib/dates";
 import { ShowPicture, showImageSize } from "./show-picture";
@@ -14,11 +14,21 @@ import { Credits, ShowActions, cardTitle, flyerAlt, headshotAlt } from "./show-c
 const MIN_CUTOUT_HEIGHT = 800;
 
 /**
- * The next headliner, larger: cutout headshot over the sunburst on the left,
- * the card's contents on the right. Carries the headliner's anchor, so
- * /shows#slug still lands on them while they are the featured show.
+ * A headliner, larger: cutout headshot over the sunburst on the left, the
+ * card's contents on the right. On /shows it is the next headliner and
+ * carries their anchor, so /shows#slug still lands on them. On the show's own
+ * page (/shows/<slug>) it is the whole page, with the name as the h1.
  */
-export function HeadlinerHero({ show }: { show: Show }) {
+export function HeadlinerHero({
+  show,
+  eyebrow = "Next headliner",
+  headingLevel = "h2",
+}: {
+  show: Show;
+  eyebrow?: string;
+  headingLevel?: "h1" | "h2";
+}) {
+  const Heading = headingLevel;
   const p = show.performer;
   if (!p) return null;
   const anchor = showAnchor(show);
@@ -53,10 +63,10 @@ export function HeadlinerHero({ show }: { show: Show }) {
         ) : null}
 
         <div className="py-10 md:col-span-7 md:py-16">
-          <p className="t-eyebrow">Next headliner</p>
-          <h2 id={`${anchor}-name`} className="t-subhead display-1 mt-3 text-balance">
+          <p className="t-eyebrow">{eyebrow}</p>
+          <Heading id={`${anchor}-name`} className="t-subhead display-1 mt-3 text-balance">
             {cardTitle(show)}
-          </h2>
+          </Heading>
           <Credits show={show} className="mt-4 max-w-2xl" />
 
           <ShowInfoBlock
@@ -89,17 +99,29 @@ export function HeadlinerHero({ show }: { show: Show }) {
  * The other headliners as a row of arch thumbnails, each jumping to its card.
  * The thumbnail is decorative: the link text already names the comic.
  */
-export function HeadlinerStrip({ shows }: { shows: Show[] }) {
+export function HeadlinerStrip({
+  shows,
+  linkTo = "anchor",
+  label = "Also headlining",
+}: {
+  shows: Show[];
+  /** "anchor" jumps to the card on /shows; "page" goes to /shows/<slug>. */
+  linkTo?: "anchor" | "page";
+  label?: string;
+}) {
   const items = shows.filter((s) => s.performer?.images.arch);
   if (items.length === 0) return null;
   return (
     <nav aria-label="More headliners" className="border-b border-smoke bg-surface-tuxedo">
       <div className="mx-auto max-w-[1400px] px-5 py-8 md:px-10">
-        <p className="t-eyebrow">Also headlining</p>
+        <p className="t-eyebrow">{label}</p>
         <ul className="mt-5 flex snap-x gap-5 overflow-x-auto pb-2">
           {items.map((show) => (
             <li key={show.id} className="w-[120px] shrink-0 snap-start">
-              <a href={`#${showAnchor(show)}`} className="group block">
+              <a
+                href={linkTo === "page" ? showPath(show) : `#${showAnchor(show)}`}
+                className="group block"
+              >
                 <ShowPicture src={show.performer!.images.arch!} alt="" sizes="120px" className="w-full" />
                 <span className="t-ui mt-3 block text-balance group-hover:text-accent-gold">
                   {cardTitle(show)}

@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import type { Show } from "@/content/shows";
-import { showAnchor } from "@/content/shows";
+import Link from "next/link";
+import { showAnchor, showPath } from "@/content/shows";
 import { site } from "@/content/site";
 import { ShowInfoBlock } from "@/components/brand/show-info-block";
 import { TrackedAnchor } from "@/components/tracked-anchor";
@@ -127,7 +128,7 @@ export function ShowActions({ show, align }: { show: Show; align: "center" | "st
         <ShareButton
           title={title}
           text={show.summary}
-          url={`${site.url}/shows#${anchor}`}
+          url={`${site.url}${showPath(show)}`}
           surface="show"
         />
       </div>
@@ -172,7 +173,13 @@ export function ShowCard({ show }: { show: Show }) {
           p?.images.arch && "mt-6",
         )}
       >
-        {cardTitle(show)}
+        {p ? (
+          <Link href={showPath(show)} className="hover:text-accent-gold">
+            {cardTitle(show)}
+          </Link>
+        ) : (
+          cardTitle(show)
+        )}
       </h3>
       <Credits show={show} className="mt-3" />
 

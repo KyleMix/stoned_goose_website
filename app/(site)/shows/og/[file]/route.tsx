@@ -1,4 +1,4 @@
-import { upcomingShows, showAnchor } from "@/content/shows";
+import { headlinerShows, showAnchor } from "@/content/shows";
 import { performerOgResponse } from "@/lib/og-performer";
 
 // One share card per upcoming headliner, written at build time to
@@ -7,7 +7,7 @@ import { performerOgResponse } from "@/lib/og-performer";
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
-const headliners = upcomingShows.filter((s) => s.performer);
+const headliners = headlinerShows;
 
 export function generateStaticParams() {
   return headliners.map((s) => ({ file: `${showAnchor(s)}.png` }));

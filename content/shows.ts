@@ -181,3 +181,14 @@ export const upcomingShows: Show[] = attachPerformers(
 export function showAnchor(show: Pick<Show, "id" | "slug">): string {
   return show.slug ?? show.id;
 }
+
+/** Upcoming shows with a headliner attached. Each gets a page at /shows/<slug>. */
+export const headlinerShows: Show[] = upcomingShows.filter((s) => s.performer && s.slug);
+
+/**
+ * Where a show lives: its own page for a headliner, so a shared link
+ * previews with that comic's card, and its anchor on /shows otherwise.
+ */
+export function showPath(show: Pick<Show, "id" | "slug" | "performer">): string {
+  return show.performer && show.slug ? `/shows/${show.slug}` : `/shows#${show.id}`;
+}

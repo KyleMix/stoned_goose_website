@@ -135,6 +135,8 @@ export function buildComedyEvent(show: Show): ComedyEvent {
   const performer = show.performer;
   if (performer) {
     event.performer = { "@type": "Person", name: performer.name };
+    // Headliners have their own page; that is the event's canonical URL.
+    if (show.slug) event.url = `${SITE_URL}/shows/${show.slug}`;
     const images = [performer.images.arch, performer.images.flyer]
       .filter((src): src is string => Boolean(src))
       .map(absoluteUrl);
