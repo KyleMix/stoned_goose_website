@@ -32,7 +32,9 @@
     "optimize:images": "tsx scripts/optimize-images.ts",
     "prepare": "husky",
     "sync:pro-shows": "tsx scripts/sync-pro-shows.ts",
-    "build:show-images": "tsx scripts/build-show-images.ts"
+    "build:show-images": "tsx scripts/build-show-images.ts",
+    "sync:headliners": "tsx scripts/sync-headliners.ts",
+    "snapshot:listings": "tsx scripts/snapshot-listings.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs}": [

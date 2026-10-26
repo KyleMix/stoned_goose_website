@@ -12,16 +12,18 @@
 //      venue and time defaults, with no ticket link until it has an ID. When
 //      the event appears it matches by rule 1 or 2 and this stand in is never
 //      built, so there is no duplicate.
-//   4. Past shows drop off and the rest sort by start time.
+//   4. A show stays listed through its date at the venue and drops off the
+//      next day (isStillListed in lib/dates.ts). The rest sort by start time.
 //
 // Prices. Eventbrite reports the total with fees (23.18 for a $20 ticket), and
-// that is not the price on the flyer. A headliner's show uses the base price
-// from the CMS with "+ Eventbrite fees" after it. Any other Eventbrite show
-// keeps "Free" when it is free and otherwise shows no price, rather than the
-// fee inclusive total.
+// that is not the price on the flyer. Shows sold on Eventbrite print the base
+// price with "+ Eventbrite fees" after it: the headliner's CMS price when one
+// is set (an override), otherwise the base price the sync read from the
+// event's ticket classes. A free show reads "Free". With neither, no price,
+// rather than the fee inclusive total.
 import type { Show } from "@/content/shows";
 import type { Performer, PerformerDefaults } from "@/content/performers";
-import { venueTimeToIso } from "@/lib/dates";
+import { isStillListed, venueTimeToIso } from "@/lib/dates";
 
 export const EVENTBRITE_FEES_NOTE = "+ Eventbrite fees";
 
@@ -74,22 +76,32 @@ function isFreePrice(price: string | undefined) {
 }
 
 function withPerformer(show: Show, performer: Performer, defaults: PerformerDefaults): Show {
+  const priced = withBasePrice(show, performer.priceDisplay);
   return {
-    ...show,
+    ...priced,
     slug: performer.slug,
     performer,
     doorTime: show.doorTime ?? defaults.doors ?? undefined,
-    ticketPrice: performer.priceDisplay ?? undefined,
-    priceNote: performer.priceDisplay ? EVENTBRITE_FEES_NOTE : undefined,
   };
 }
 
-function withoutFeeTotal(show: Show): Show {
-  if (show.source !== "eventbrite") return show;
+/**
+ * The price an Eventbrite show prints: the override when given, else the base
+ * price from the sync, with the fees note; "Free" for a free show; otherwise
+ * nothing. Non-Eventbrite shows keep the price their CMS entry wrote, plus the
+ * override if a headliner set one.
+ */
+function withBasePrice(show: Show, override: string | null): Show {
+  if (show.source !== "eventbrite") {
+    return override ? { ...show, ticketPrice: override, priceNote: EVENTBRITE_FEES_NOTE } : show;
+  }
   if (show.status === "free" || isFreePrice(show.ticketPrice)) {
     return { ...show, ticketPrice: "Free", priceNote: undefined };
   }
-  return { ...show, ticketPrice: undefined, priceNote: undefined };
+  const base = override ?? show.basePrice ?? null;
+  return base
+    ? { ...show, ticketPrice: base, priceNote: EVENTBRITE_FEES_NOTE }
+    : { ...show, ticketPrice: undefined, priceNote: undefined };
 }
 
 /** The card for a headliner whose event is not on Eventbrite yet (rule 3). */
@@ -156,7 +168,7 @@ export function attachPerformers(
 
   const merged = shows.map((show, i) => {
     const p = byShow.get(i);
-    return p ? withPerformer(show, p, defaults) : withoutFeeTotal(show);
+    return p ? withPerformer(show, p, defaults) : withBasePrice(show, null);
   });
 
   for (const p of performers) {
@@ -167,10 +179,7 @@ export function attachPerformers(
 
   // A show with no start cannot be past and cannot be placed, so it sorts last.
   return merged
-    .filter((show) => {
-      const ms = startMs(show);
-      return ms === null || ms > now;
-    })
+    .filter((show) => show.start === null || isStillListed(show.start, now))
     .sort((a, b) => {
       const x = startMs(a);
       const y = startMs(b);

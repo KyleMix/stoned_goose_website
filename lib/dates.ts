@@ -130,3 +130,31 @@ export function venueTimeToIso(date: string, time: string): string | null {
   utc = wall - venueOffsetMs(utc);
   return new Date(utc).toISOString();
 }
+
+/** "2026-12-11": the calendar date at the venue. Sorts as a string. */
+export function venueDateKey(value: string | number | Date | null | undefined): string | null {
+  if (value === null || value === undefined) return null;
+  const d = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(d.getTime())) return null;
+  // en-CA formats as YYYY-MM-DD.
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: SITE_TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(d);
+}
+
+/**
+ * Whether a show is still listed: through the whole of its date at the venue,
+ * gone from the next day. A 7 PM show is still on the page at 11 PM that
+ * night and comes off the morning after, rather than vanishing at curtain.
+ *
+ * The sync, the build, and the stand-in cards all use this one rule, so a
+ * show cannot be dropped by one and kept by another.
+ */
+export function isStillListed(start: string | null | undefined, now: number = Date.now()): boolean {
+  const show = venueDateKey(start);
+  const today = venueDateKey(now);
+  return show !== null && today !== null && show >= today;
+}

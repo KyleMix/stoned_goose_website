@@ -9,6 +9,7 @@
 // Run: npm test
 
 import { attachPerformers, titleHasName } from "../../lib/performer-match";
+import { nameFromTitle, newHeadlinerEntries, slugFor } from "../sync-headliners";
 import type { Show } from "../../content/shows";
 import type { Performer, PerformerDefaults } from "../../content/performers";
 
@@ -164,6 +165,56 @@ const fulchiron = performer({
   eq(shows.map((s) => s.name), ["Open Mic", "Someone Else", "Later"], "past shows drop off, the rest sort by date");
   eq(shows[0].ticketPrice, "Free", "a free Eventbrite show reads Free, not 0.00 USD");
   eq(shows[1].ticketPrice, undefined, "a paid show with no base price shows no fee inclusive total");
+}
+
+{
+  // Fri Dec 11, 7 PM Pacific.
+  const friday = event("7", "Dustin Anderson Live in Olympia", "2026-12-12T03:00:00Z");
+  const at = (iso: string) => attachPerformers([friday], [], defaults, Date.parse(iso)).length;
+  eq(at("2026-12-12T06:30:00Z"), 1, "still listed at 10:30 PM on show night");
+  eq(at("2026-12-12T07:59:00Z"), 1, "still listed at 11:59 PM on show night");
+  eq(at("2026-12-12T08:00:00Z"), 0, "gone at midnight Pacific, the day after");
+}
+
+{
+  const priced = { ...event("8", "Mike Rainey Live in Olympia", "2027-05-09T02:00:00Z"), basePrice: "$20" };
+  const synced = attachPerformers([priced], [performer({ slug: "mike-rainey", name: "Mike Rainey", priceDisplay: null })], defaults, NOW);
+  eq(synced[0].ticketPrice, "$20", "no CMS price: the base price from Eventbrite");
+  eq(synced[0].priceNote, "+ Eventbrite fees", "the Eventbrite base price carries the fees note");
+
+  const overridden = attachPerformers([priced], [performer({ slug: "mike-rainey", name: "Mike Rainey", priceDisplay: "$25" })], defaults, NOW);
+  eq(overridden[0].ticketPrice, "$25", "a CMS price overrides Eventbrite's");
+
+  const plain = attachPerformers([priced], [], defaults, NOW);
+  eq(plain[0].ticketPrice, "$20", "a paid show with no headliner still shows its base price");
+}
+
+// --- starter entries from Eventbrite (scripts/sync-headliners.ts) ----------
+
+eq(nameFromTitle("Ryan O\u2019Flanagan Live in Olympia | Stand-Up Comedy"), "Ryan O'Flanagan", "name from a Live in title");
+eq(slugFor("Ryan O'Flanagan"), "ryan-oflanagan", "slug drops the apostrophe, like the first entries");
+eq(nameFromTitle("Comedy Night Live!"), null, "no Live in, no headliner");
+eq(nameFromTitle("Free Stand-Up Comedy Open Mic on Bourbon Street"), null, "open mic titles are skipped");
+
+{
+  const shows = [
+    event("100", "Josh Johnson Live in Olympia | Stand-Up", "2027-03-01T03:00:00Z"),
+    event("101", "Matt Ross Live in Olympia", "2027-04-18T02:00:00Z"),
+    event("102", "Taylor Tomlinson Live in Olympia", "2027-05-01T02:00:00Z"),
+    event("103", "Old Act Live in Olympia", "2026-01-01T03:00:00Z"),
+    event("104", "Free Comic Live in Olympia", "2027-01-01T03:00:00Z", "0.00 USD"),
+  ];
+  const existing = [
+    { slug: "matt-ross", name: "Matt Ross", eventbriteId: null },
+    { slug: "tt", name: "Someone", eventbriteId: "102" },
+  ];
+  const created = newHeadlinerEntries(shows, existing, new Set(["matt-ross", "tt"]), NOW);
+  eq(created.map((e) => e.slug), ["josh-johnson"], "only the unclaimed, upcoming, paid event gets an entry");
+  eq(created[0].eventbriteId, "100", "the entry links its event by ID");
+  eq([created[0].date, created[0].priceDisplay], [null, null], "date and price stay live from Eventbrite");
+
+  const again = newHeadlinerEntries(shows, [...existing, { slug: "josh-johnson", name: "Josh Johnson", eventbriteId: "100" }], new Set(["matt-ross", "tt", "josh-johnson"]), NOW);
+  eq(again.length, 0, "a second run creates nothing");
 }
 
 if (failures.length > 0) {

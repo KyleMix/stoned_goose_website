@@ -28,25 +28,52 @@ finds shows, the synced list replaces the manual one.
 
 ## Add a headliner
 
-Headliners get the big card on /shows: photo, credits, bio, and flyer.
+Headliners get the big card on /shows: photo, credits, bio, and flyer, plus
+their own page at `/shows/their-name` to put in the Instagram bio. Shared
+anywhere, that page previews with the comic's photo, date, and venue.
+
+### The usual way: let Eventbrite start it
+
+1. Publish the event on Eventbrite with a title like
+   **"Josh Johnson Live in Olympia"** (anything after "Live in" is fine, e.g.
+   "| Stand-Up Comedy at the Eagles"). Free events are skipped.
+2. Within about 6 hours the site creates a **Headliners** entry for that comic
+   on its own, linked to the event.
+3. Open **Headliners**, find the comic, and upload the arch headshot, the
+   cutout, and the flyer under **Images**. Add credits and a bio if you have
+   them. Save.
+
+The date, time, venue, ticket link, and price all come from Eventbrite and
+stay in sync: change them on Eventbrite and the site follows on the next sync.
+The price shown is the ticket's face value from Eventbrite with
+"+ Eventbrite fees" after it. Typing a **Base ticket price** in the CMS
+overrides it.
+
+An event titled any other way (no "Live in") is not picked up. Add that
+headliner by hand as below.
+
+### By hand, before the event is on Eventbrite
 
 1. Click **Headliners**, then **Create**.
-2. Fill in the name exactly as it reads in the Eventbrite title, and a link
-   name like `matt-ross`. The comic gets their own page at
-   `/shows/matt-ross`, which is the link to put in the Instagram bio: shared
-   anywhere, it previews with that comic's photo, date, and venue.
-3. Add the show date, the base price from the flyer (`$20`; the site adds
-   "+ Eventbrite fees" itself), the credits, and the bio.
-4. Upload the arch headshot, the cutout, and the flyer under **Images**.
-5. Leave **Eventbrite event ID** blank if the event is not on Eventbrite yet.
-   The card shows with "Tickets coming soon" and the venue and times from
-   **Site copy > Shows page copy > Headliner show defaults**.
-6. Once the event is live, paste its ID (the number at the end of the
-   Eventbrite link) and save. The card switches to the live event on the next
-   sync, with the real ticket link. No duplicate card.
+2. Fill in the name exactly as it will read in the Eventbrite title, and a
+   link name like `matt-ross`.
+3. Add the show date, the price from the flyer (`$20`), the credits, the bio,
+   and the images.
+4. Leave **Eventbrite event ID** blank. The card shows with "Tickets coming
+   soon" and the venue and times from **Site copy > Shows page copy >
+   Headliner show defaults**.
+5. When the event goes live on Eventbrite it is matched by name (or paste its
+   ID, the number at the end of the Eventbrite link) and the card switches to
+   the live event. No duplicate card, and no second entry.
 
-Past dates drop off the page on their own, and so does the comic's page. Sharper web copies of the photos
-and flyer are made automatically a minute or two after you save.
+### When the show is over
+
+Every show stays on the page through its date and comes off the next morning,
+along with the comic's own page. Nothing to do. The Headliners entry stays in
+the CMS, so a comic who comes back is already set up.
+
+Sharper web copies of the photos and flyer are made automatically a minute or
+two after you save.
 
 ## Upload images
 
