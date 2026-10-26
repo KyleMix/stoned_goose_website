@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Lockup } from "@/components/brand/lockup";
 import { useEffect, useState } from "react";
 import { upcomingShows } from "@/content/shows";
-import { formatShowMonthDay } from "@/lib/dates";
+import { formatShowMonthDay, showTimeZone } from "@/lib/dates";
 
 type Suggestion = { href: string; label: string };
 
@@ -54,7 +54,7 @@ function suggestionsForPath(path: string): Suggestion[] {
 function nextShowLine(): { date: string; venue: string; href: string } | null {
   const next = upcomingShows[0];
   if (!next?.start) return null;
-  const date = formatShowMonthDay(next.start) ?? "Date TBD";
+  const date = formatShowMonthDay(next.start, showTimeZone(next)) ?? "Date TBD";
   const venue = next.venue?.name ?? next.venue?.city ?? "TBD";
   return { date, venue, href: `/shows#${next.id}` };
 }

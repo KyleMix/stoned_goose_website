@@ -11,7 +11,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Show } from "../content/shows";
 import { requireEnv, safeFetch, writeJson } from "./_sync-helpers";
-import { isStillListed } from "../lib/dates";
+import { isStillListed, showTimeZone } from "../lib/dates";
 
 const OUT_PATH = join(process.cwd(), "content", ".generated", "shows.json");
 
@@ -24,7 +24,7 @@ type EventbriteEvent = {
   id: string;
   name: { text: string };
   description: { text: string | null };
-  start: { utc: string | null };
+  start: { utc: string | null; timezone?: string | null };
   end: { utc: string | null };
   url: string | null;
   status: string;
@@ -87,6 +87,7 @@ function normalize(evt: EventbriteEvent): Show {
     name: evt.name.text,
     summary: evt.description?.text ?? "",
     start: evt.start?.utc ?? null,
+    ...(evt.start?.timezone ? { timeZone: evt.start.timezone } : {}),
     end: evt.end?.utc ?? null,
     url: evt.url,
     ticketUrl: evt.url,
@@ -152,7 +153,9 @@ async function main() {
   // Kept through the show's date and dropped the day after, the same rule the
   // page uses (lib/dates.ts). The first run after midnight Pacific drops it
   // from this file, and that commit is what redeploys the site.
-  const shows = events.map(normalize).filter((s) => isStillListed(s.start));
+  const shows = events
+    .map(normalize)
+    .filter((s) => isStillListed(s.start, Date.now(), showTimeZone(s)));
 
   // A 200 carrying zero events is not proof the calendar is empty. A revoked
   // scope, a mistyped organizer id, or a response-shape change all look like
@@ -184,7 +187,7 @@ function readExisting(): Show[] {
 // Exported for scripts/test/sync-guards.test.ts. Past-only listings are
 // genuinely empty and must stay overwritable, or a dead calendar never clears.
 export function hasUpcoming(shows: Show[], now: number = Date.now()): boolean {
-  return shows.some((s) => isStillListed(s.start, now));
+  return shows.some((s) => isStillListed(s.start, now, showTimeZone(s)));
 }
 
 // Only run when executed as a script, so the test can import hasUpcoming

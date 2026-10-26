@@ -23,7 +23,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Show } from "../content/shows";
 import { eventbriteIdOf, normaliseName, titleHasName } from "../lib/performer-match";
-import { isStillListed } from "../lib/dates";
+import { isStillListed, showTimeZone } from "../lib/dates";
 import { writeJson } from "./_sync-helpers";
 
 const ROOT = process.cwd();
@@ -87,7 +87,7 @@ export function newHeadlinerEntries(
 
   for (const show of shows) {
     if (show.source !== "eventbrite" || show.status === "free") continue;
-    if (!isStillListed(show.start, now)) continue;
+    if (!isStillListed(show.start, now, showTimeZone(show))) continue;
     const id = eventbriteIdOf(show);
     if (!id || claimedIds.has(id)) continue;
     if (existing.some((p) => titleHasName(show.name, p.name))) continue;

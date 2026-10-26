@@ -66,7 +66,7 @@ A thin `accent-gold` circle, 3px stroke, bleeding off a section corner or framin
 
 ### Layout
 - Show info renders in this order every time, everywhere: date, venue, doors and show time, price, ticket link. Use `<ShowInfoBlock />`.
-- All date and time formatting goes through `lib/dates.ts`, which pins to `America/Los_Angeles`. Never call `Intl.DateTimeFormat` directly: this is a static export, so an unpinned date is frozen in the build machine's timezone and CI runs in UTC.
+- All date and time formatting goes through `lib/dates.ts`. Never call `Intl.DateTimeFormat` directly: this is a static export, so an unpinned date is frozen in the build machine's timezone and CI runs in UTC. A show renders in its venue's zone: pass `showTimeZone(show)` (Eventbrite's zone, else the venue state's, else `America/Los_Angeles`). Everything else, and any show with no known zone, pins to `America/Los_Angeles`. A show time outside Pacific prints its zone ("8:00 PM CST").
 - Start from an existing primitive. Change the words and the photo, nothing else.
 
 ## House rules

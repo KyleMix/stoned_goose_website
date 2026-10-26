@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import type { Show } from "@/content/shows";
-import { formatShowDateBand, formatShowTime } from "@/lib/dates";
+import { formatShowDateBand, formatShowTime, showTimeZone } from "@/lib/dates";
 import { ogSize } from "@/lib/og-template";
 
 // A headliner's share card, 1200x630, in the flyer's layout: the arch headshot
@@ -47,9 +47,10 @@ export function performerOgResponse(show: Show) {
   const p = show.performer;
   const name = p?.name ?? show.name;
   const arch = p?.images.arch ? dataUrl(p.images.arch) : null;
-  const date = formatShowDateBand(show.start);
+  const tz = showTimeZone(show);
+  const date = formatShowDateBand(show.start, tz);
   const venue = [show.venue?.name, show.venue?.city, show.venue?.region].filter(Boolean).join(", ");
-  const time = formatShowTime(show.start);
+  const time = formatShowTime(show.start, tz);
   const times = [show.doorTime ? `Doors ${show.doorTime}` : null, time ? `Show ${time}` : null]
     .filter(Boolean)
     .join("  ·  ");

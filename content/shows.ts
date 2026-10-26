@@ -22,6 +22,12 @@ export type Show = {
   name: string;
   start: string | null;
   end: string | null;
+  /**
+   * IANA zone the event happens in, as Eventbrite reports it, e.g.
+   * "America/Chicago". Dates and times render in this zone; see
+   * showTimeZone in lib/dates.ts for the fallback when it is missing.
+   */
+  timeZone?: string;
   url: string | null;
   summary: string;
   imageUrl?: string | null;

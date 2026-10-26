@@ -7,7 +7,7 @@ import { ShowInfoBlock } from "@/components/brand/show-info-block";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { AddToCalendar } from "@/components/add-to-calendar";
 import { ShareButton } from "@/components/share-button";
-import { formatShowDateLong, formatShowTime } from "@/lib/dates";
+import { formatShowDateLong, formatShowTime, showTimeZone } from "@/lib/dates";
 import { cn } from "@/lib/utils";
 import { ShowPicture } from "./show-picture";
 import { FlyerLightbox } from "./flyer-lightbox";
@@ -46,7 +46,7 @@ export function Credits({ show, className }: { show: Show; className?: string })
 }
 
 export function headshotAlt(show: Show) {
-  const date = formatShowDateLong(show.start);
+  const date = formatShowDateLong(show.start, showTimeZone(show));
   const name = cardTitle(show);
   return date
     ? `${name}, headlining Stoned Goose Productions on ${date}`
@@ -58,7 +58,8 @@ function venueText(show: Show) {
 }
 
 export function flyerAlt(show: Show) {
-  const time = formatShowTime(show.start);
+  const tz = showTimeZone(show);
+  const time = formatShowTime(show.start, tz);
   const times = [
     show.doorTime ? `doors ${show.doorTime}` : null,
     time ? `show ${time}` : null,
@@ -67,7 +68,7 @@ export function flyerAlt(show: Show) {
     .join(", ");
   return [
     `Show flyer for ${cardTitle(show)}`,
-    formatShowDateLong(show.start),
+    formatShowDateLong(show.start, tz),
     venueText(show),
     times,
   ]

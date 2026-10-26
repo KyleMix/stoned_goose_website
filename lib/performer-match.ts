@@ -24,7 +24,7 @@
 import type { Show } from "@/content/shows";
 import type { Performer, PerformerDefaults } from "@/content/performers";
 import type { EventFlyer } from "@/content/event-flyers";
-import { isStillListed, venueTimeToIso } from "@/lib/dates";
+import { isStillListed, showTimeZone, venueTimeToIso } from "@/lib/dates";
 
 export const EVENTBRITE_FEES_NOTE = "+ Eventbrite fees";
 
@@ -194,7 +194,7 @@ export function attachPerformers(
 
   // A show with no start cannot be past and cannot be placed, so it sorts last.
   return merged
-    .filter((show) => show.start === null || isStillListed(show.start, now))
+    .filter((show) => show.start === null || isStillListed(show.start, now, showTimeZone(show)))
     .sort((a, b) => {
       const x = startMs(a);
       const y = startMs(b);

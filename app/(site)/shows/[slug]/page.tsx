@@ -6,7 +6,7 @@ import { headlinerShows } from "@/content/shows";
 import { JsonLd } from "@/components/json-ld";
 import { HeadlinerHero, HeadlinerStrip } from "@/components/shows/headliner-hero";
 import { buildBreadcrumbs, buildComedyEvent } from "@/lib/schema";
-import { formatShowDateLong, formatShowMonthDay } from "@/lib/dates";
+import { formatShowDateLong, formatShowMonthDay, showTimeZone } from "@/lib/dates";
 import { truncateAtWord } from "@/lib/utils";
 
 // One page per upcoming headliner, so a shared link previews with that
@@ -40,9 +40,10 @@ export async function generateMetadata(props: { params: Promise<Params> }): Prom
 
   const name = show.performer.name;
   const city = show.venue?.city;
-  const day = formatShowMonthDay(show.start);
+  const tz = showTimeZone(show);
+  const day = formatShowMonthDay(show.start, tz);
   const title = [name, city ? `Live in ${city}` : null, day].filter(Boolean).join(", ");
-  const when = formatShowDateLong(show.start);
+  const when = formatShowDateLong(show.start, tz);
   const description = truncateAtWord(
     show.performer.bio ||
       `${name} headlines Stoned Goose Productions${when ? ` on ${when}` : ""}${show.venue?.name ? ` at ${show.venue.name}` : ""}.`,

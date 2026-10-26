@@ -11,6 +11,7 @@
 import { attachEventFlyers, attachPerformers, titleHasName } from "../../lib/performer-match";
 import { nameFromTitle, newHeadlinerEntries, slugFor } from "../sync-headliners";
 import type { Show } from "../../content/shows";
+import { formatShowDateBand, formatShowTime, showTimeZone } from "../../lib/dates";
 import type { Performer, PerformerDefaults } from "../../content/performers";
 
 let passed = 0;
@@ -187,6 +188,26 @@ const fulchiron = performer({
 
   const plain = attachPerformers([priced], [], defaults, NOW);
   eq(plain[0].ticketPrice, "$20", "a paid show with no headliner still shows its base price");
+}
+
+// --- venue time zones -------------------------------------------------------
+
+{
+  // The Bourbon Street mic: 02:00 UTC Nov 12 is 8 PM Wednesday in New Orleans.
+  const nola = { ...event("9", "Open Mic", "2026-11-12T02:00:00Z", "0.00 USD"), venue: { name: "Ugly Gator Saloon", city: "New Orleans", region: "LA" } };
+  const tz = showTimeZone(nola);
+  eq(tz, "America/Chicago", "a Louisiana venue renders in Central");
+  // ICU builds differ on the space before PM (some use U+202F), so compare
+  // with all whitespace normalised.
+  const sp = (v: string | null) => v?.replace(/\s/g, " ") ?? null;
+  eq(sp(formatShowTime(nola.start, tz)), "8:00 PM CST", "New Orleans show reads 8:00 PM, with its zone");
+  eq(formatShowDateBand(nola.start, tz), "Wed · Nov 11, 2026", "and on its own date");
+  eq(showTimeZone({ timeZone: "America/New_York", venue: { region: "LA" } }), "America/New_York", "Eventbrite's zone wins over the state");
+  eq(sp(formatShowTime("2026-12-12T03:00:00Z", showTimeZone({ venue: { region: "WA" } }))), "7:00 PM", "Olympia shows print no zone");
+
+  const at = (iso: string) => attachPerformers([nola], [], defaults, Date.parse(iso)).length;
+  eq(at("2026-11-12T05:59:00Z"), 1, "still listed at 11:59 PM Central");
+  eq(at("2026-11-12T06:00:00Z"), 0, "gone at midnight Central, not midnight Pacific");
 }
 
 // --- event flyers ----------------------------------------------------------
