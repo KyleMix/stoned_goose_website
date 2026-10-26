@@ -26,6 +26,27 @@ The show appears on /shows and in the ticket strip at the top of the home
 page. One thing to know: if the automatic Eventbrite sync is turned on and
 finds shows, the synced list replaces the manual one.
 
+## Add a headliner
+
+Headliners get the big card on /shows: photo, credits, bio, and flyer.
+
+1. Click **Headliners**, then **Create**.
+2. Fill in the name exactly as it reads in the Eventbrite title, and a link
+   name like `matt-ross`. The card then lives at `/shows#matt-ross`, which is
+   the link to put in the Instagram bio.
+3. Add the show date, the base price from the flyer (`$20`; the site adds
+   "+ Eventbrite fees" itself), the credits, and the bio.
+4. Upload the arch headshot, the cutout, and the flyer under **Images**.
+5. Leave **Eventbrite event ID** blank if the event is not on Eventbrite yet.
+   The card shows with "Tickets coming soon" and the venue and times from
+   **Site copy > Shows page copy > Headliner show defaults**.
+6. Once the event is live, paste its ID (the number at the end of the
+   Eventbrite link) and save. The card switches to the live event on the next
+   sync, with the real ticket link. No duplicate card.
+
+Past dates drop off the page on their own. Sharper web copies of the photos
+and flyer are made automatically a minute or two after you save.
+
 ## Upload images
 
 Image fields have an upload button; each one tells you the shape and size it

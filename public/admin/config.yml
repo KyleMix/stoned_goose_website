@@ -358,6 +358,18 @@ collections:
               - { name: code, label: Presale code, widget: string, required: false }
               - { name: expiresAt, label: Code expires, widget: datetime, required: false }
               - { name: venueName, label: Venue name, widget: string, required: false }
+          - name: performerDefaults
+            label: Headliner show defaults
+            widget: object
+            required: false
+            hint: 'Used for every headliner in the Headliners list. A headliner with no Eventbrite event yet takes its venue and times from here.'
+            fields:
+              - { name: venue, label: Venue name, widget: string, required: false }
+              - { name: address, label: Street address, widget: string, required: false }
+              - { name: city, label: City, widget: string, required: false }
+              - { name: region, label: State code, widget: string, required: false, hint: 'Two letters, e.g. WA.' }
+              - { name: doors, label: Doors time, widget: string, required: false, pattern: ['^\d{1,2}:\d{2} (AM|PM)$', 'Write it like 6:00 PM.'] }
+              - { name: show, label: Show time, widget: string, required: false, pattern: ['^\d{1,2}:\d{2} (AM|PM)$', 'Write it like 7:00 PM.'] }
           - { name: topSections, label: 'Extra sections, top', widget: list, required: false, types: *section_types }
           - { name: bottomSections, label: 'Extra sections, bottom', widget: list, required: false, types: *section_types }
 
@@ -649,6 +661,54 @@ collections:
       - { name: imageAlt, label: Poster alt text, widget: string, required: false, hint: 'Describe the poster for screen readers.' }
       - { name: url, label: Event page link, widget: string, required: false, pattern: ['^https://\S+$', 'Must be a full https:// address.'], hint: 'Optional link to a Facebook event or other event page.' }
       - { name: end, label: End time, widget: datetime, required: false, hint: 'Optional. Only used for calendar exports.' }
+      - { name: draft, label: Hide from the site, widget: boolean, default: false }
+
+  # ------------------------------------------------------------------ #
+  # Headliners: photo, credits and flyer attached to a /shows card.     #
+  # ------------------------------------------------------------------ #
+  - name: performers
+    label: Headliners
+    label_singular: Headliner
+    description: The comic's photo, credits, bio and flyer on /shows. A headliner links to its Eventbrite event by ID (or by name in the event title). With no event yet, the card still shows, with Tickets coming soon.
+    folder: content/performers
+    path: '{{slug}}/index'
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.slug}}'
+    create: true
+    summary: "{{fields.name}} · {{fields.date}}"
+    sortable_fields:
+      fields: [date, name]
+      default:
+        field: date
+        direction: ascending
+    view_filters:
+      - label: Hidden drafts
+        field: draft
+        pattern: true
+    fields:
+      - { name: name, label: Name, widget: string, hint: 'Exactly as it appears in the Eventbrite title, e.g. "Ryan O''Flanagan". That is how the card finds its event when there is no ID.' }
+      - { name: slug, label: Link name, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Lowercase words joined by hyphens, e.g. matt-ross.'], hint: 'Makes the link stonedgooseproductions.com/shows#matt-ross for Instagram. Lowercase, hyphens, no spaces.' }
+      - { name: eventbriteId, label: Eventbrite event ID, widget: string, required: false, pattern: ['^\d+$', 'Digits only. It is the number at the end of the Eventbrite link.'], hint: 'The number at the end of the event link, e.g. 2003890952783. Leave blank until the event exists: the card shows Tickets coming soon, then switches to the live event on its own.' }
+      - { name: date, label: Show date, widget: datetime, time_format: false, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD', required: false, hint: 'Only used while there is no Eventbrite event. Once the event is live, its own date and time win. Past dates drop off the page.' }
+      - { name: priceDisplay, label: Base ticket price, widget: string, required: false, pattern: ['^\$\d+(\.\d{2})?$', 'One price with a dollar sign, e.g. $20.'], hint: 'The price on the flyer, e.g. $20. The site adds "+ Eventbrite fees" after it. Leave blank to hide the price.' }
+      - { name: creditsLabel, label: Credits lead in, widget: string, required: false, hint: 'e.g. "As seen on". Leave blank to show the credits on their own.' }
+      - name: credits
+        label: Credits
+        widget: list
+        required: false
+        hint: 'One per line, e.g. "New Girl". Real credits only.'
+        field: { name: credit, label: Credit, widget: string }
+      - { name: bio, label: Bio, widget: text, required: false, pattern: ['^[^—]*$', 'No em dashes.'] }
+      - name: images
+        label: Images
+        widget: object
+        required: false
+        fields:
+          - { name: arch, label: Arch headshot, widget: image, required: false, media_folder: /public/shows/uploads, public_folder: /shows/uploads, hint: 'The headshot in the gold arch frame on black, 600x680 pixels.' }
+          - { name: cutout, label: Cutout headshot, widget: image, required: false, media_folder: /public/shows/uploads, public_folder: /shows/uploads, hint: 'Transparent PNG, background removed, at least 1000 pixels tall. Used when this comic is the next show.' }
+          - { name: flyer, label: Show flyer, widget: image, required: false, media_folder: /public/shows/uploads, public_folder: /shows/uploads, hint: 'The flyer as a PNG, 816x1056, or 1632x2112 for a sharper one.' }
       - { name: draft, label: Hide from the site, widget: boolean, default: false }
 
   # ------------------------------------------------------------------ #

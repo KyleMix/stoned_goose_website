@@ -1,0 +1,21 @@
+{
+  "name": "Dustin Anderson",
+  "slug": "dustin-anderson",
+  "eventbriteId": "2003375088820",
+  "date": "2026-12-11",
+  "priceDisplay": "$30",
+  "creditsLabel": null,
+  "credits": [
+    "Viral videos shared by millions",
+    "Comedian",
+    "Podcaster",
+    "Social media T-shirt salesman"
+  ],
+  "bio": "Family-friendly comedian, podcaster, and self-described social media T-shirt salesman whose viral videos have been shared by millions. His comedy covers marriage, parenting, and what he calls the largest hamster cemetery in North America.",
+  "images": {
+    "cutout": "/shows/dustin-anderson/headshot-cutout.png",
+    "arch": "/shows/dustin-anderson/headshot-arch.png",
+    "flyer": "/shows/dustin-anderson/flyer.png"
+  },
+  "draft": false
+}

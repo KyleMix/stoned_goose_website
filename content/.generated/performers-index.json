@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Dustin Anderson",
+    "slug": "dustin-anderson",
+    "eventbriteId": "2003375088820",
+    "date": "2026-12-11",
+    "priceDisplay": "$30",
+    "creditsLabel": null,
+    "credits": [
+      "Viral videos shared by millions",
+      "Comedian",
+      "Podcaster",
+      "Social media T-shirt salesman"
+    ],
+    "bio": "Family-friendly comedian, podcaster, and self-described social media T-shirt salesman whose viral videos have been shared by millions. His comedy covers marriage, parenting, and what he calls the largest hamster cemetery in North America.",
+    "images": {
+      "cutout": "/shows/dustin-anderson/headshot-cutout.png",
+      "arch": "/shows/dustin-anderson/headshot-arch.png",
+      "flyer": "/shows/dustin-anderson/flyer.png"
+    },
+    "draft": false
+  },
+  {
+    "name": "Matt Fulchiron",
+    "slug": "matt-fulchiron",
+    "eventbriteId": null,
+    "date": "2027-06-19",
+    "priceDisplay": null,
+    "creditsLabel": "As seen on",
+    "credits": [
+      "Comedy Central",
+      "Last Comic Standing",
+      "Your Mom's House",
+      "Tosh.0"
+    ],
+    "bio": "Matt Fulchiron is an odd and uniquely hilarious comedian. Matt has been seen on his own Comedy Central special, Last Comic Standing, Your Mom's House Podcast, Tosh.0, Carson Daly, and The Late Late Show on CBS. He has toured extensively as a headliner, and also as an opening act for both Tom Segura and Daniel Tosh. Matt has an eccentric comedic style that you'll have to see to understand.",
+    "images": {
+      "cutout": "/shows/matt-fulchiron/headshot-cutout.png",
+      "arch": "/shows/matt-fulchiron/headshot-arch.png",
+      "flyer": "/shows/matt-fulchiron/flyer.png"
+    },
+    "draft": false
+  },
+  {
+    "name": "Matt Ross",
+    "slug": "matt-ross",
+    "eventbriteId": "2003890952783",
+    "date": "2027-04-17",
+    "priceDisplay": "$20",
+    "creditsLabel": null,
+    "credits": [
+      "Comedy Mothership regular",
+      "Friendly Fire Pod",
+      "Good Girl Studios"
+    ],
+    "bio": "Austin-based comedian, writer, and actor known for his charming stage persona and sharp joke writing. A paid regular at the Comedy Mothership, co-host of the Friendly Fire Pod with Josh Francis, and co-founder of the sketch group Good Girl Studios.",
+    "images": {
+      "cutout": "/shows/matt-ross/headshot-cutout.png",
+      "arch": "/shows/matt-ross/headshot-arch.png",
+      "flyer": "/shows/matt-ross/flyer.png"
+    },
+    "draft": false
+  },
+  {
+    "name": "Mike Rainey",
+    "slug": "mike-rainey",
+    "eventbriteId": "2003890566628",
+    "date": "2027-05-08",
+    "priceDisplay": "$20",
+    "creditsLabel": "As seen on",
+    "credits": [
+      "Tires (Netflix)",
+      "Delco Proper",
+      "Gilly and Keeves",
+      "Dad Meat Podcast"
+    ],
+    "bio": "Philadelphia comedian seen in Tires on Netflix, Delco Proper on Comedy Central, and Gilly and Keeves. A Skankfest regular, co-host of the Dad Meat podcast, and author of five books, making his Pacific Northwest debut.",
+    "images": {
+      "cutout": "/shows/mike-rainey/headshot-cutout.png",
+      "arch": "/shows/mike-rainey/headshot-arch.png",
+      "flyer": "/shows/mike-rainey/flyer.png"
+    },
+    "draft": false
+  },
+  {
+    "name": "Ryan O'Flanagan",
+    "slug": "ryan-oflanagan",
+    "eventbriteId": "2003890622796",
+    "date": "2027-02-27",
+    "priceDisplay": "$20",
+    "creditsLabel": "As seen on",
+    "credits": [
+      "American Vandal",
+      "New Girl",
+      "Abbott Elementary",
+      "Dave"
+    ],
+    "bio": "Los Angeles-based comedian, actor, and writer. Seen on American Vandal, New Girl, Abbott Elementary, and Dave, with a half-hour Comedy Central special and the Overly Excited Tourist series on Funny or Die.",
+    "images": {
+      "cutout": "/shows/ryan-oflanagan/headshot-cutout.png",
+      "arch": "/shows/ryan-oflanagan/headshot-arch.png",
+      "flyer": "/shows/ryan-oflanagan/flyer.png"
+    },
+    "draft": false
+  }
+]

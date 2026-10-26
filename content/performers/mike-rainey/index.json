@@ -1,0 +1,21 @@
+{
+  "name": "Mike Rainey",
+  "slug": "mike-rainey",
+  "eventbriteId": "2003890566628",
+  "date": "2027-05-08",
+  "priceDisplay": "$20",
+  "creditsLabel": "As seen on",
+  "credits": [
+    "Tires (Netflix)",
+    "Delco Proper",
+    "Gilly and Keeves",
+    "Dad Meat Podcast"
+  ],
+  "bio": "Philadelphia comedian seen in Tires on Netflix, Delco Proper on Comedy Central, and Gilly and Keeves. A Skankfest regular, co-host of the Dad Meat podcast, and author of five books, making his Pacific Northwest debut.",
+  "images": {
+    "cutout": "/shows/mike-rainey/headshot-cutout.png",
+    "arch": "/shows/mike-rainey/headshot-arch.png",
+    "flyer": "/shows/mike-rainey/flyer.png"
+  },
+  "draft": false
+}

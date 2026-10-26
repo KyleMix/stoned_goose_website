@@ -1,0 +1,20 @@
+{
+  "name": "Matt Ross",
+  "slug": "matt-ross",
+  "eventbriteId": "2003890952783",
+  "date": "2027-04-17",
+  "priceDisplay": "$20",
+  "creditsLabel": null,
+  "credits": [
+    "Comedy Mothership regular",
+    "Friendly Fire Pod",
+    "Good Girl Studios"
+  ],
+  "bio": "Austin-based comedian, writer, and actor known for his charming stage persona and sharp joke writing. A paid regular at the Comedy Mothership, co-host of the Friendly Fire Pod with Josh Francis, and co-founder of the sketch group Good Girl Studios.",
+  "images": {
+    "cutout": "/shows/matt-ross/headshot-cutout.png",
+    "arch": "/shows/matt-ross/headshot-arch.png",
+    "flyer": "/shows/matt-ross/flyer.png"
+  },
+  "draft": false
+}

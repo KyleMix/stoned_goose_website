@@ -15,6 +15,14 @@
     "expiresAt": "",
     "venueName": ""
   },
+  "performerDefaults": {
+    "venue": "Eagles Grand Ballroom",
+    "address": "805 4th Avenue East",
+    "city": "Olympia",
+    "region": "WA",
+    "doors": "6:00 PM",
+    "show": "7:00 PM"
+  },
   "topSections": [],
   "bottomSections": []
 }
