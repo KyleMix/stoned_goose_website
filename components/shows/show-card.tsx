@@ -19,14 +19,6 @@ export function cardTitle(show: Show) {
   return show.performer?.name ?? show.name;
 }
 
-/** "As seen on: New Girl · Dave", or the credits alone with no lead in. */
-export function creditsLine(show: Show): string | null {
-  const p = show.performer;
-  if (!p || p.credits.length === 0) return null;
-  const list = p.credits.join(" · ");
-  return p.creditsLabel ? `${p.creditsLabel}: ${list}` : list;
-}
-
 /**
  * The credits as eyebrow type. Each credit is kept whole and the separator
  * rides on the credit before it, so a wrap never strands a "·" or splits
