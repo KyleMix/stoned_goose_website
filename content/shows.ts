@@ -14,13 +14,20 @@ import generatedShows from "./.generated/shows.json";
 import manualIndex from "./.generated/shows-index.json";
 import { normaliseBlocks, type Block } from "@/lib/blocks";
 import { performers, performerDefaults, type Performer } from "./performers";
-import { attachPerformers } from "@/lib/performer-match";
+import { attachEventFlyers, attachPerformers } from "@/lib/performer-match";
+import { eventFlyers } from "./event-flyers";
 
 export type Show = {
   id: string;
   name: string;
   start: string | null;
   end: string | null;
+  /**
+   * IANA zone the event happens in, as Eventbrite reports it, e.g.
+   * "America/Chicago". Dates and times render in this zone; see
+   * showTimeZone in lib/dates.ts for the fallback when it is missing.
+   */
+  timeZone?: string;
   url: string | null;
   summary: string;
   imageUrl?: string | null;
@@ -48,6 +55,8 @@ export type Show = {
   slug?: string;
   /** The headliner attached by lib/performer-match.ts, if any. */
   performer?: Performer;
+  /** A flyer from content/event-flyers, for a show with no headliner. */
+  flyer?: { src: string; alt: string };
   source?: "eventbrite" | "facebook" | "manual" | "performer";
 };
 
@@ -177,10 +186,9 @@ const fromGenerated =
     ? (generatedShows as Show[])
     : null;
 
-export const upcomingShows: Show[] = attachPerformers(
-  fromGenerated ?? manualShows,
-  performers,
-  performerDefaults,
+export const upcomingShows: Show[] = attachEventFlyers(
+  attachPerformers(fromGenerated ?? manualShows, performers, performerDefaults),
+  eventFlyers,
 );
 
 /** The anchor for a show's card on /shows. */

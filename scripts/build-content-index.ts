@@ -37,6 +37,7 @@ const COLLECTIONS: Collection[] = [
   { dir: "content/pages", outFile: "pages-index.json", slugField: "slug" },
   { dir: "content/pro-shows", outFile: "pro-shows-index.json", slugField: "slug" },
   { dir: "content/performers", outFile: "performers-index.json", slugField: "slug" },
+  { dir: "content/event-flyers", outFile: "event-flyers-index.json", slugField: "slug" },
 ];
 
 let total = 0;

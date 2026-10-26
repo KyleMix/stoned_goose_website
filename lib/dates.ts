@@ -7,10 +7,55 @@
 // AND wrong day, on the primary content of the site.
 //
 // Pinning the zone makes the output identical no matter where the build runs.
-// Shows are all Olympia and the South Sound, so the venue zone is the right
-// one to render in: a listing should read in the time the audience will turn
-// up, not the reader's local time.
+// A listing reads in the time the audience will turn up, not the reader's
+// local time, so a show renders in its venue's zone: showTimeZone() below.
+// Most shows are Olympia and the South Sound, so Pacific is the default for
+// everything else (and for any show whose zone is unknown). A show outside
+// Pacific prints its zone with the time ("8:00 PM CST"), because the page is
+// read from Olympia.
 export const SITE_TIME_ZONE = "America/Los_Angeles";
+
+// US state code -> zone, for shows whose zone the sync did not record
+// (manual CMS shows, or synced data from before the sync stored it). States
+// split across zones take their most populous one.
+const STATE_ZONES: Record<string, string> = {
+  WA: "America/Los_Angeles", OR: "America/Los_Angeles", CA: "America/Los_Angeles", NV: "America/Los_Angeles",
+  AZ: "America/Phoenix",
+  ID: "America/Boise", MT: "America/Denver", WY: "America/Denver", UT: "America/Denver", CO: "America/Denver", NM: "America/Denver",
+  ND: "America/Chicago", SD: "America/Chicago", NE: "America/Chicago", KS: "America/Chicago", OK: "America/Chicago",
+  TX: "America/Chicago", MN: "America/Chicago", IA: "America/Chicago", MO: "America/Chicago", AR: "America/Chicago",
+  LA: "America/Chicago", WI: "America/Chicago", IL: "America/Chicago", MS: "America/Chicago", AL: "America/Chicago",
+  TN: "America/Chicago",
+  MI: "America/Detroit", IN: "America/Indiana/Indianapolis", KY: "America/New_York", OH: "America/New_York",
+  GA: "America/New_York", FL: "America/New_York", SC: "America/New_York", NC: "America/New_York",
+  VA: "America/New_York", WV: "America/New_York", DC: "America/New_York", MD: "America/New_York",
+  DE: "America/New_York", PA: "America/New_York", NJ: "America/New_York", NY: "America/New_York",
+  CT: "America/New_York", RI: "America/New_York", MA: "America/New_York", VT: "America/New_York",
+  NH: "America/New_York", ME: "America/New_York",
+  AK: "America/Anchorage", HI: "Pacific/Honolulu",
+};
+
+function isValidZone(zone: string): boolean {
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone: zone });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The zone a show renders in: the one Eventbrite reports for the event, else
+ * the venue state's zone, else Pacific.
+ */
+export function showTimeZone(show: {
+  timeZone?: string | null;
+  venue?: { region?: string | null } | null;
+}): string {
+  if (show.timeZone && isValidZone(show.timeZone)) return show.timeZone;
+  const fromState = STATE_ZONES[show.venue?.region?.trim().toUpperCase() ?? ""];
+  return fromState ?? SITE_TIME_ZONE;
+}
 
 function safeDate(value: string | null | undefined): Date | null {
   if (!value) return null;
@@ -21,33 +66,38 @@ function safeDate(value: string | null | undefined): Date | null {
 function format(
   value: string | null | undefined,
   options: Intl.DateTimeFormatOptions,
+  timeZone: string = SITE_TIME_ZONE,
 ): string | null {
   const d = safeDate(value);
   if (!d) return null;
-  return new Intl.DateTimeFormat("en-US", {
-    ...options,
-    timeZone: SITE_TIME_ZONE,
-  }).format(d);
+  return new Intl.DateTimeFormat("en-US", { ...options, timeZone }).format(d);
 }
 
 /** "Sat, Oct 17, 2026" */
-export function formatShowDate(value: string | null | undefined) {
-  return format(value, {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+export function formatShowDate(value: string | null | undefined, timeZone?: string) {
+  return format(
+    value,
+    { weekday: "short", month: "short", day: "numeric", year: "numeric" },
+    timeZone,
+  );
 }
 
 /** "Sat, Oct 17" for tight spaces. */
-export function formatShowDateShort(value: string | null | undefined) {
-  return format(value, { weekday: "short", month: "short", day: "numeric" });
+export function formatShowDateShort(value: string | null | undefined, timeZone?: string) {
+  return format(value, { weekday: "short", month: "short", day: "numeric" }, timeZone);
 }
 
-/** "7:00 PM" */
-export function formatShowTime(value: string | null | undefined) {
-  return format(value, { hour: "numeric", minute: "2-digit" });
+/** "7:00 PM", or "8:00 PM CST" for a show outside Pacific. */
+export function formatShowTime(value: string | null | undefined, timeZone: string = SITE_TIME_ZONE) {
+  return format(
+    value,
+    {
+      hour: "numeric",
+      minute: "2-digit",
+      ...(timeZone !== SITE_TIME_ZONE ? { timeZoneName: "short" as const } : {}),
+    },
+    timeZone,
+  );
 }
 
 /** "Oct 17, 2026" for posts and non-event dates. */
@@ -56,8 +106,8 @@ export function formatPostDate(value: string | null | undefined) {
 }
 
 /** "Oct 17" for the tightest slots: nav ticker, 404 next-show line. */
-export function formatShowMonthDay(value: string | null | undefined) {
-  return format(value, { month: "short", day: "numeric" });
+export function formatShowMonthDay(value: string | null | undefined, timeZone?: string) {
+  return format(value, { month: "short", day: "numeric" }, timeZone);
 }
 
 /** "October 17" */
@@ -66,20 +116,19 @@ export function formatMonthDay(value: string | null | undefined) {
 }
 
 /** "Sat · Feb 27, 2027" for the date band on a show card. */
-export function formatShowDateBand(value: string | null | undefined) {
-  const weekday = format(value, { weekday: "short" });
-  const date = format(value, { month: "short", day: "numeric", year: "numeric" });
+export function formatShowDateBand(value: string | null | undefined, timeZone?: string) {
+  const weekday = format(value, { weekday: "short" }, timeZone);
+  const date = format(value, { month: "short", day: "numeric", year: "numeric" }, timeZone);
   return weekday && date ? `${weekday} · ${date}` : null;
 }
 
 /** "Friday, December 11, 2026" for alt text, where abbreviations read badly. */
-export function formatShowDateLong(value: string | null | undefined) {
-  return format(value, {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+export function formatShowDateLong(value: string | null | undefined, timeZone?: string) {
+  return format(
+    value,
+    { weekday: "long", month: "long", day: "numeric", year: "numeric" },
+    timeZone,
+  );
 }
 
 // Venue wall clock minus UTC, in ms, at the given instant.
@@ -132,13 +181,16 @@ export function venueTimeToIso(date: string, time: string): string | null {
 }
 
 /** "2026-12-11": the calendar date at the venue. Sorts as a string. */
-export function venueDateKey(value: string | number | Date | null | undefined): string | null {
+export function venueDateKey(
+  value: string | number | Date | null | undefined,
+  timeZone: string = SITE_TIME_ZONE,
+): string | null {
   if (value === null || value === undefined) return null;
   const d = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(d.getTime())) return null;
   // en-CA formats as YYYY-MM-DD.
   return new Intl.DateTimeFormat("en-CA", {
-    timeZone: SITE_TIME_ZONE,
+    timeZone,
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -150,11 +202,18 @@ export function venueDateKey(value: string | number | Date | null | undefined): 
  * gone from the next day. A 7 PM show is still on the page at 11 PM that
  * night and comes off the morning after, rather than vanishing at curtain.
  *
+ * "Its date" and "today" are both read in the venue's zone (pass
+ * showTimeZone(show)), so a New Orleans show comes off at midnight Central.
+ *
  * The sync, the build, and the stand-in cards all use this one rule, so a
  * show cannot be dropped by one and kept by another.
  */
-export function isStillListed(start: string | null | undefined, now: number = Date.now()): boolean {
-  const show = venueDateKey(start);
-  const today = venueDateKey(now);
+export function isStillListed(
+  start: string | null | undefined,
+  now: number = Date.now(),
+  timeZone: string = SITE_TIME_ZONE,
+): boolean {
+  const show = venueDateKey(start, timeZone);
+  const today = venueDateKey(now, timeZone);
   return show !== null && today !== null && show >= today;
 }

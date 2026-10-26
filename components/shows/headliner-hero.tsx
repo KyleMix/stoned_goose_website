@@ -1,7 +1,7 @@
 import type { Show } from "@/content/shows";
 import { showAnchor, showPath } from "@/content/shows";
 import { ShowInfoBlock } from "@/components/brand/show-info-block";
-import { formatShowDateBand } from "@/lib/dates";
+import { formatShowDateBand, showTimeZone } from "@/lib/dates";
 import { ShowPicture, showImageSize } from "./show-picture";
 import { FlyerLightbox } from "./flyer-lightbox";
 import { BioToggle } from "./bio-toggle";
@@ -126,7 +126,7 @@ export function HeadlinerStrip({
                 <span className="t-ui mt-3 block text-balance group-hover:text-accent-gold">
                   {cardTitle(show)}
                 </span>
-                <span className="t-fine mt-1 block">{formatShowDateBand(show.start)}</span>
+                <span className="t-fine mt-1 block">{formatShowDateBand(show.start, showTimeZone(show))}</span>
               </a>
             </li>
           ))}

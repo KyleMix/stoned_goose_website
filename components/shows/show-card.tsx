@@ -7,7 +7,7 @@ import { ShowInfoBlock } from "@/components/brand/show-info-block";
 import { TrackedAnchor } from "@/components/tracked-anchor";
 import { AddToCalendar } from "@/components/add-to-calendar";
 import { ShareButton } from "@/components/share-button";
-import { formatShowDateLong, formatShowTime } from "@/lib/dates";
+import { formatShowDateLong, formatShowTime, showTimeZone } from "@/lib/dates";
 import { cn } from "@/lib/utils";
 import { ShowPicture } from "./show-picture";
 import { FlyerLightbox } from "./flyer-lightbox";
@@ -46,7 +46,7 @@ export function Credits({ show, className }: { show: Show; className?: string })
 }
 
 export function headshotAlt(show: Show) {
-  const date = formatShowDateLong(show.start);
+  const date = formatShowDateLong(show.start, showTimeZone(show));
   const name = cardTitle(show);
   return date
     ? `${name}, headlining Stoned Goose Productions on ${date}`
@@ -58,7 +58,8 @@ function venueText(show: Show) {
 }
 
 export function flyerAlt(show: Show) {
-  const time = formatShowTime(show.start);
+  const tz = showTimeZone(show);
+  const time = formatShowTime(show.start, tz);
   const times = [
     show.doorTime ? `doors ${show.doorTime}` : null,
     time ? `show ${time}` : null,
@@ -67,7 +68,7 @@ export function flyerAlt(show: Show) {
     .join(", ");
   return [
     `Show flyer for ${cardTitle(show)}`,
-    formatShowDateLong(show.start),
+    formatShowDateLong(show.start, tz),
     venueText(show),
     times,
   ]
@@ -163,6 +164,15 @@ export function ShowCard({ show }: { show: Show }) {
           sizes="300px"
           className="mx-auto w-full max-w-[300px]"
         />
+      ) : show.flyer ? (
+        // A show with no headliner leads with its own flyer instead. The
+        // flyer is the event's artwork, run as made, not a mark placement.
+        <ShowPicture
+          src={show.flyer.src}
+          alt={show.flyer.alt}
+          sizes="300px"
+          className="mx-auto w-full max-w-[300px]"
+        />
       ) : null}
 
       <h3
@@ -170,7 +180,7 @@ export function ShowCard({ show }: { show: Show }) {
         className={cn(
           "t-subhead text-balance",
           p ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
-          p?.images.arch && "mt-6",
+          (p?.images.arch || show.flyer) && "mt-6",
         )}
       >
         {p ? (
@@ -194,6 +204,12 @@ export function ShowCard({ show }: { show: Show }) {
         <div className="mt-3">
           <FlyerLightbox name={p.name} href={p.images.flyer}>
             <ShowPicture src={p.images.flyer} alt={flyerAlt(show)} sizes="(min-width: 860px) 816px, 100vw" />
+          </FlyerLightbox>
+        </div>
+      ) : show.flyer ? (
+        <div className="mt-3">
+          <FlyerLightbox name={cardTitle(show)} href={show.flyer.src}>
+            <ShowPicture src={show.flyer.src} alt={show.flyer.alt} sizes="(min-width: 860px) 816px, 100vw" />
           </FlyerLightbox>
         </div>
       ) : null}

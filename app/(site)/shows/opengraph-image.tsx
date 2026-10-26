@@ -1,5 +1,5 @@
 import { upcomingShows } from "@/content/shows";
-import { formatShowDateLong } from "@/lib/dates";
+import { formatShowDateLong, showTimeZone } from "@/lib/dates";
 import { ogContentType, ogImageResponse, ogSize } from "@/lib/og-template";
 import { performerOgResponse } from "@/lib/og-performer";
 
@@ -13,7 +13,7 @@ export const dynamic = "force-static";
 const next = upcomingShows.find((s) => s.performer?.images.arch) ?? null;
 
 export const alt = next
-  ? `${next.performer!.name}, headlining Stoned Goose Productions on ${formatShowDateLong(next.start)}`
+  ? `${next.performer!.name}, headlining Stoned Goose Productions on ${formatShowDateLong(next.start, showTimeZone(next))}`
   : "Stoned Goose Productions upcoming shows";
 export const size = ogSize;
 export const contentType = ogContentType;

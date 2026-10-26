@@ -28,6 +28,15 @@ export function showImageSize(src: string): { width: number; height: number } | 
   return entry ? { width: entry.width, height: entry.height } : null;
 }
 
+// An original that is already WebP and wider than every variant joins the
+// srcset, so a 1500px flyer still serves sharp on a 2x screen.
+function webpSources(src: string, entry: Entry) {
+  const widest = Math.max(0, ...entry.webp.map((v) => v.width));
+  return /\.webp$/i.test(src) && entry.width > widest
+    ? [...entry.webp, { src, width: entry.width }]
+    : entry.webp;
+}
+
 type Props = {
   src: string;
   alt: string;
@@ -45,7 +54,9 @@ export function ShowPicture({ src, alt, sizes, priority = false, className }: Pr
       {entry ? (
         <source
           type="image/webp"
-          srcSet={entry.webp.map((v) => `${v.src} ${v.width}w`).join(", ")}
+          srcSet={webpSources(src, entry)
+            .map((v) => `${v.src} ${v.width}w`)
+            .join(", ")}
           sizes={sizes}
         />
       ) : null}

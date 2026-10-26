@@ -23,7 +23,8 @@
 // rather than the fee inclusive total.
 import type { Show } from "@/content/shows";
 import type { Performer, PerformerDefaults } from "@/content/performers";
-import { isStillListed, venueTimeToIso } from "@/lib/dates";
+import type { EventFlyer } from "@/content/event-flyers";
+import { isStillListed, showTimeZone, venueTimeToIso } from "@/lib/dates";
 
 export const EVENTBRITE_FEES_NOTE = "+ Eventbrite fees";
 
@@ -137,6 +138,20 @@ export function standInShow(performer: Performer, defaults: PerformerDefaults): 
   };
 }
 
+/**
+ * Attaches a flyer from content/event-flyers to the show with the same
+ * Eventbrite ID. Headliners are skipped: their flyer lives on their own entry.
+ */
+export function attachEventFlyers(shows: Show[], flyers: EventFlyer[]): Show[] {
+  if (flyers.length === 0) return shows;
+  return shows.map((show) => {
+    if (show.performer) return show;
+    const id = eventbriteIdOf(show);
+    const f = id ? flyers.find((x) => x.eventbriteId === id) : undefined;
+    return f ? { ...show, flyer: { src: f.src, alt: f.alt } } : show;
+  });
+}
+
 export function attachPerformers(
   shows: Show[],
   performers: Performer[],
@@ -179,7 +194,7 @@ export function attachPerformers(
 
   // A show with no start cannot be past and cannot be placed, so it sorts last.
   return merged
-    .filter((show) => show.start === null || isStillListed(show.start, now))
+    .filter((show) => show.start === null || isStillListed(show.start, now, showTimeZone(show)))
     .sort((a, b) => {
       const x = startMs(a);
       const y = startMs(b);

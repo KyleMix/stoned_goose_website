@@ -400,6 +400,17 @@ const singletons: Record<string, z.ZodTypeAny> = {
 };
 
 const collections: Record<string, z.ZodTypeAny> = {
+  "event-flyers": z
+    .object({
+      title: str.min(1),
+      slug: opt(str),
+      eventbriteId: str.regex(/^\d+$/, "Eventbrite ID is the number at the end of the event link"),
+      flyer: str.min(1),
+      flyerAlt: opt(str),
+      draft: opt(bool),
+    })
+    .strict(),
+
   performers: z
     .object({
       name: str.min(1),

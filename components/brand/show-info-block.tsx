@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Show } from "@/content/shows";
 import { cn } from "@/lib/utils";
-import { formatShowDate, formatShowDateBand, formatShowTime } from "@/lib/dates";
+import { formatShowDate, formatShowDateBand, formatShowTime, showTimeZone } from "@/lib/dates";
 
 /**
  * Show information, in the one order it is ever allowed to appear:
@@ -30,9 +30,9 @@ import { formatShowDate, formatShowDateBand, formatShowTime } from "@/lib/dates"
  * known otherwise. doorTime is free text in the CMS, so it is passed through
  * as written rather than parsed.
  */
-function doorsAndShow(show: Pick<Show, "doorTime" | "start">) {
+function doorsAndShow(show: Pick<Show, "doorTime" | "start" | "timeZone" | "venue">) {
   const doors = show.doorTime?.trim() || null;
-  const showTime = formatShowTime(show.start);
+  const showTime = formatShowTime(show.start, showTimeZone(show));
   if (doors && showTime) return `Doors ${doors} / Show ${showTime}`;
   if (doors) return `Doors ${doors}`;
   if (showTime) return `Show ${showTime}`;
@@ -88,7 +88,7 @@ export function ShowInfoBlock({
   // Built as an ordered list so the sequence is data, not markup that a future
   // edit can quietly shuffle.
   const rows: { key: string; value: string }[] = [];
-  const date = recurring ? recurring.date.trim() : formatShowDate(show.start);
+  const date = recurring ? recurring.date.trim() : formatShowDate(show.start, showTimeZone(show));
   if (date) rows.push({ key: "date", value: date });
   const venue = venueLine(show);
   if (venue) rows.push({ key: "venue", value: venue });
@@ -145,12 +145,13 @@ function MarqueeInfo({
   ticketAction,
   className,
 }: Pick<Props, "show" | "recurring" | "ticketAction" | "className">) {
-  const date = recurring ? recurring.date.trim() : formatShowDateBand(show.start);
+  const tz = showTimeZone(show);
+  const date = recurring ? recurring.date.trim() : formatShowDateBand(show.start, tz);
   const venue = [show.venue?.name, show.venue?.city, show.venue?.region]
     .filter(Boolean)
     .join(", ");
   const doors = recurring ? null : show.doorTime?.trim() || null;
-  const showTime = recurring ? recurring.times.trim() : formatShowTime(show.start);
+  const showTime = recurring ? recurring.times.trim() : formatShowTime(show.start, tz);
   const price = show.ticketPrice?.trim() || null;
   const note = show.priceNote?.trim() || null;
 
