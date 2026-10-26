@@ -1,0 +1,21 @@
+{
+  "name": "Ryan O'Flanagan",
+  "slug": "ryan-oflanagan",
+  "eventbriteId": "2003890622796",
+  "date": "2027-02-27",
+  "priceDisplay": "$20",
+  "creditsLabel": "As seen on",
+  "credits": [
+    "American Vandal",
+    "New Girl",
+    "Abbott Elementary",
+    "Dave"
+  ],
+  "bio": "Los Angeles-based comedian, actor, and writer. Seen on American Vandal, New Girl, Abbott Elementary, and Dave, with a half-hour Comedy Central special and the Overly Excited Tourist series on Funny or Die.",
+  "images": {
+    "cutout": "/shows/ryan-oflanagan/headshot-cutout.png",
+    "arch": "/shows/ryan-oflanagan/headshot-arch.png",
+    "flyer": "/shows/ryan-oflanagan/flyer.png"
+  },
+  "draft": false
+}

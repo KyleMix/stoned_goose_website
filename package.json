@@ -14,7 +14,7 @@
     "serve:out": "node scripts/serve-out.mjs",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx scripts/test/schema.test.ts && tsx scripts/test/reserved-slugs.test.ts && tsx scripts/test/brand-assets.test.ts && tsx scripts/test/monocle-ring.test.ts && tsx scripts/test/shop-categories.test.ts && tsx scripts/test/sync-guards.test.ts && tsx scripts/test/content-index-drift.test.ts && npm run content:validate",
+    "test": "tsx scripts/test/schema.test.ts && tsx scripts/test/performer-match.test.ts && tsx scripts/test/reserved-slugs.test.ts && tsx scripts/test/brand-assets.test.ts && tsx scripts/test/monocle-ring.test.ts && tsx scripts/test/shop-categories.test.ts && tsx scripts/test/sync-guards.test.ts && tsx scripts/test/content-index-drift.test.ts && npm run content:validate",
     "analyze": "ANALYZE=true next build",
     "sync": "npm run sync:shows && npm run sync:facebook-events && npm run sync:fourthwall && npm run sync:shop-images && npm run sync:patreon && npm run sync:pro-shows",
     "sync:shows": "tsx scripts/sync-shows.ts",
@@ -31,7 +31,8 @@
     "brand:generate": "tsx scripts/brand/generate-brand-assets.ts",
     "optimize:images": "tsx scripts/optimize-images.ts",
     "prepare": "husky",
-    "sync:pro-shows": "tsx scripts/sync-pro-shows.ts"
+    "sync:pro-shows": "tsx scripts/sync-pro-shows.ts",
+    "build:show-images": "tsx scripts/build-show-images.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs}": [

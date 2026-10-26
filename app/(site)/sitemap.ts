@@ -4,6 +4,7 @@ import { services } from "@/content/services";
 import { products } from "@/content/shop";
 import { pages } from "@/content/pages";
 import { epkComedians } from "@/content/comedians";
+import { headlinerShows } from "@/content/shows";
 import { youtubeVideos } from "@/content/watch";
 import { normalizeCuratedVideos } from "@/lib/videos";
 
@@ -44,6 +45,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const productRoutes = products.map((p) => `/shop/${p.slug}`);
   const pageRoutes = pages.map((p) => `/${p.slug}`);
   const epkRoutes = epkComedians.map((c) => `/about/${c.slug}`);
+  // One page per upcoming headliner. Past shows drop off with the page.
+  const showRoutes = headlinerShows.map((s) => `/shows/${s.slug}`);
   // No fragment entries: crawlers collapse /shows#id to /shows, so anchors
   // would only add noise to the URL set.
 
@@ -53,6 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...productRoutes,
     ...pageRoutes,
     ...epkRoutes,
+    ...showRoutes,
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified,

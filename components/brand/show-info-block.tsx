@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Show } from "@/content/shows";
 import { cn } from "@/lib/utils";
-import { formatShowDate, formatShowTime } from "@/lib/dates";
+import { formatShowDate, formatShowDateBand, formatShowTime } from "@/lib/dates";
 
 /**
  * Show information, in the one order it is ever allowed to appear:
@@ -21,7 +21,8 @@ import { formatShowDate, formatShowTime } from "@/lib/dates";
  * build machine's clock.
  *
  * Missing fields are skipped rather than filled in. No invented prices or
- * times: a show with no price shows no price row.
+ * times: a show with no price shows no price row. A price with a `priceNote`
+ * ("+ Eventbrite fees") always prints the note with it, in every layout.
  */
 
 /**
@@ -38,6 +39,11 @@ function doorsAndShow(show: Pick<Show, "doorTime" | "start">) {
   return null;
 }
 
+function withNote(price: string, note: string | undefined) {
+  const n = note?.trim();
+  return n ? `${price} ${n}` : price;
+}
+
 function venueLine(show: Pick<Show, "venue">) {
   const parts = [show.venue?.name, show.venue?.city, show.venue?.region].filter(
     Boolean,
@@ -50,9 +56,11 @@ type Props = {
   /**
    * "stack" gives one row per field, for posters and event pages.
    * "inline" runs the first four as a single wrapped line, for dense cards.
-   * Neither changes the order.
+   * "marquee" is the /shows card, set like the flyers: a gold ruled date band,
+   * the venue, then doors, show and tickets as three columns.
+   * None of them changes the order.
    */
-  layout?: "stack" | "inline";
+  layout?: "stack" | "inline" | "marquee";
   /**
    * A weekly room has no single date and no doors time: the Log Cabin mic runs
    * every Monday, show at 7. Formatting a date out of
@@ -87,7 +95,18 @@ export function ShowInfoBlock({
   const times = recurring ? recurring.times.trim() : doorsAndShow(show);
   if (times) rows.push({ key: "times", value: times });
   const price = show.ticketPrice?.trim();
-  if (price) rows.push({ key: "price", value: price });
+  if (price) rows.push({ key: "price", value: withNote(price, show.priceNote) });
+
+  if (layout === "marquee") {
+    return (
+      <MarqueeInfo
+        show={show}
+        recurring={recurring}
+        ticketAction={ticketAction}
+        className={className}
+      />
+    );
+  }
 
   const inline = layout === "inline";
 
@@ -107,6 +126,73 @@ export function ShowInfoBlock({
             )}
           </div>
         ))}
+      </dl>
+      {ticketAction}
+    </div>
+  );
+}
+
+/**
+ * The flyer layout. Same sequence as every other layout: date, venue, doors
+ * and show time, price, ticket link. Only the setting changes.
+ *
+ * The date band is gold rules with gold headline type, not a gold fill: the
+ * flyers print it on a gold bar, but on this site gold is never a background.
+ */
+function MarqueeInfo({
+  show,
+  recurring,
+  ticketAction,
+  className,
+}: Pick<Props, "show" | "recurring" | "ticketAction" | "className">) {
+  const date = recurring ? recurring.date.trim() : formatShowDateBand(show.start);
+  const venue = [show.venue?.name, show.venue?.city, show.venue?.region]
+    .filter(Boolean)
+    .join(", ");
+  const doors = recurring ? null : show.doorTime?.trim() || null;
+  const showTime = recurring ? recurring.times.trim() : formatShowTime(show.start);
+  const price = show.ticketPrice?.trim() || null;
+  const note = show.priceNote?.trim() || null;
+
+  const columns = [
+    doors ? { key: "doors", label: "Doors", value: doors } : null,
+    showTime ? { key: "show", label: "Show", value: showTime } : null,
+    price ? { key: "price", label: "Tickets", value: price, note } : null,
+  ].filter((c): c is { key: string; label: string; value: string; note?: string | null } =>
+    Boolean(c),
+  );
+
+  return (
+    <div className={cn("flex flex-col gap-5", className)}>
+      <dl className="flex flex-col gap-4">
+        {date ? (
+          <div className="border-y border-accent-gold py-2.5">
+            <dt className="sr-only">Date</dt>
+            <dd className="t-headline text-xl md:text-2xl">{date}</dd>
+          </div>
+        ) : null}
+        {venue ? (
+          <div>
+            <dt className="sr-only">Venue</dt>
+            <dd className="t-body text-sm">{venue}</dd>
+          </div>
+        ) : null}
+        {columns.length > 0 ? (
+          <div
+            className={cn(
+              "grid divide-x divide-smoke",
+              columns.length === 3 ? "grid-cols-3" : columns.length === 2 ? "grid-cols-2" : "grid-cols-1",
+            )}
+          >
+            {columns.map((c) => (
+              <div key={c.key} className="px-3 first:pl-0 last:pr-0">
+                <dt className="t-eyebrow">{c.label}</dt>
+                <dd className="t-subhead mt-1 text-base md:text-lg">{c.value}</dd>
+                {c.note ? <dd className="t-fine mt-0.5">{c.note}</dd> : null}
+              </div>
+            ))}
+          </div>
+        ) : null}
       </dl>
       {ticketAction}
     </div>

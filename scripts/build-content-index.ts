@@ -36,6 +36,7 @@ const COLLECTIONS: Collection[] = [
   { dir: "content/tiktok", outFile: "tiktok-index.json", slugField: "slug" },
   { dir: "content/pages", outFile: "pages-index.json", slugField: "slug" },
   { dir: "content/pro-shows", outFile: "pro-shows-index.json", slugField: "slug" },
+  { dir: "content/performers", outFile: "performers-index.json", slugField: "slug" },
 ];
 
 let total = 0;
@@ -63,7 +64,10 @@ for (const col of COLLECTIONS) {
       }
       if (!entryPath || !slug) continue;
       const data = JSON.parse(readFileSync(entryPath, "utf8")) as Record<string, unknown>;
-      if (col.slugField) data[col.slugField] = slug;
+      // The folder name is the slug unless the entry carries its own. Only
+      // performers have a slug field: it is the /shows#anchor, and editing it
+      // in the CMS does not rename the folder, so the field has to win.
+      if (col.slugField && !data[col.slugField]) data[col.slugField] = slug;
       entries.push(data);
     }
   }

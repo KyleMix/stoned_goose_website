@@ -1,0 +1,21 @@
+{
+  "name": "Matt Fulchiron",
+  "slug": "matt-fulchiron",
+  "eventbriteId": null,
+  "date": "2027-06-19",
+  "priceDisplay": null,
+  "creditsLabel": "As seen on",
+  "credits": [
+    "Comedy Central",
+    "Last Comic Standing",
+    "Your Mom's House",
+    "Tosh.0"
+  ],
+  "bio": "Matt Fulchiron is an odd and uniquely hilarious comedian. Matt has been seen on his own Comedy Central special, Last Comic Standing, Your Mom's House Podcast, Tosh.0, Carson Daly, and The Late Late Show on CBS. He has toured extensively as a headliner, and also as an opening act for both Tom Segura and Daniel Tosh. Matt has an eccentric comedic style that you'll have to see to understand.",
+  "images": {
+    "cutout": "/shows/matt-fulchiron/headshot-cutout.png",
+    "arch": "/shows/matt-fulchiron/headshot-arch.png",
+    "flyer": "/shows/matt-fulchiron/flyer.png"
+  },
+  "draft": false
+}

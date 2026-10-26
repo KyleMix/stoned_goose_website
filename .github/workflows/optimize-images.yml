@@ -4,7 +4,9 @@
 # optimized version back, so the host's build sees the lighter file.
 #
 # Triggers on push to any branch when files under public/images/** or
-# public/brand/** change. The optimizer is idempotent: if a file is already
+# public/brand/** change, or when a headliner or its images change
+# (content/performers/**, public/shows/**), which also rebuilds the headliner
+# WebP variants and their manifest. The optimizer is idempotent: if a file is already
 # under target width and weight, it skips. So this safely re-runs without
 # bloating commits.
 
@@ -15,6 +17,8 @@ on:
     paths:
       - "public/images/**"
       - "public/brand/**"
+      - "public/shows/**"
+      - "content/performers/**"
   workflow_dispatch:
 
 permissions:
@@ -46,8 +50,13 @@ jobs:
       - name: Optimize images
         run: npm run optimize:images
 
+      # Headliner photos and flyers keep their PNG originals; this adds WebP
+      # copies next to them and records the sizes the /shows page reads.
+      - name: Build headliner WebP variants
+        run: npm run build:show-images
+
       - name: Commit optimized images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(images): auto-optimize uploads [skip optimize]"
-          file_pattern: "public/images/** public/brand/**"
+          file_pattern: "public/images/** public/brand/** public/shows/** content/.generated/show-images.json"

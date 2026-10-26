@@ -52,6 +52,12 @@ const parseableDate = z.string().refine((v) => !Number.isNaN(Date.parse(v)), {
   message: "must be a date the site can parse (the CMS date picker writes these)",
 });
 
+// "7:00 PM". Performer show times are turned into a real start time, so they
+// have to parse rather than be free text.
+const clockTime = z
+  .string()
+  .regex(/^\d{1,2}:\d{2} (AM|PM)$/, 'must be a time like "7:00 PM"');
+
 const bool = z.boolean();
 const str = z.string();
 
@@ -210,6 +216,18 @@ const singletons: Record<string, z.ZodTypeAny> = {
             code: opt(str),
             expiresAt: opt(parseableDate),
             venueName: opt(str),
+          })
+          .strict(),
+      ),
+      performerDefaults: opt(
+        z
+          .object({
+            venue: opt(str),
+            address: opt(str),
+            city: opt(str),
+            region: opt(str),
+            doors: opt(clockTime),
+            show: opt(clockTime),
           })
           .strict(),
       ),
@@ -411,6 +429,28 @@ const singletons: Record<string, z.ZodTypeAny> = {
 };
 
 const collections: Record<string, z.ZodTypeAny> = {
+  performers: z
+    .object({
+      name: str.min(1),
+      // The slug is the page /shows/<slug>. "og" and "uploads" are already
+      // folders under /shows (share cards, CMS uploads), so a page there would
+      // collide with them.
+      slug: str
+        .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "slug must be lowercase words joined by hyphens, e.g. matt-ross")
+        .refine((s) => !["og", "uploads"].includes(s), "slug \"og\" and \"uploads\" are taken by /shows/og and /shows/uploads"),
+      eventbriteId: opt(str.regex(/^\d+$/, "Eventbrite ID is the number at the end of the event link")),
+      date: opt(str.regex(/^\d{4}-\d{2}-\d{2}$/, "date must be YYYY-MM-DD")),
+      priceDisplay: opt(str.regex(/^\$\d+(\.\d{2})?$/, 'price must be one base price, e.g. "$20"')),
+      creditsLabel: opt(str),
+      credits: opt(z.array(str)),
+      bio: opt(str),
+      images: opt(
+        z.object({ cutout: opt(str), arch: opt(str), flyer: opt(str) }).strict(),
+      ),
+      draft: opt(bool),
+    })
+    .strict(),
+
   comedians: z
     .object({
       name: str.min(1),
