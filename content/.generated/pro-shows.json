@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-27T03:10:27.745Z",
+  "fetchedAt": "2026-10-27T11:22:39.996Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-10-28T02:30:00Z-jt-parr",
@@ -186,12 +186,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/86404/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-07T03:30:00Z-susan-rice",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Susan Rice",
+      "start": "2026-11-07T03:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/352691",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
+    },
+    {
       "id": "tacoma-comedy-club-2026-11-07T05:45:00Z-are-you-garbage",
       "clubSlug": "tacoma-comedy-club",
       "title": "Are You Garbage?",
       "start": "2026-11-07T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/386570",
       "image": "https://files.seatengine.com/talent/headshots/photos/95020/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-07T05:45:00Z-susan-rice",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Susan Rice",
+      "start": "2026-11-07T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/352694",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-08T02:00:00Z-are-you-garbage",
@@ -210,6 +226,22 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/97107/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-08T03:30:00Z-susan-rice",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Susan Rice",
+      "start": "2026-11-08T03:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/352692",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-08T04:45:00Z-are-you-garbage",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Are You Garbage?",
+      "start": "2026-11-08T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/386571",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95020/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-08T05:30:00Z-charles-haycock",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Charles Haycock",
@@ -218,12 +250,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/97107/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-08T05:45:00Z-susan-rice",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Susan Rice",
+      "start": "2026-11-08T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/352695",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-08T22:00:00Z-dolly-parton-tribute-drag-brunch",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Dolly Parton Tribute Drag Brunch",
       "start": "2026-11-08T22:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/391195",
       "image": "https://files.seatengine.com/talent/headshots/photos/96699/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-09T03:30:00Z-susan-rice",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Susan Rice",
+      "start": "2026-11-09T03:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/352693",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
