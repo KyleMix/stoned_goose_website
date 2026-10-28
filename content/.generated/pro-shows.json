@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-10-27T11:22:39.996Z",
+  "fetchedAt": "2026-10-28T03:24:38.974Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-10-28T02:30:00Z-jt-parr",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "JT Parr",
-      "start": "2026-10-28T02:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/377610",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92872/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-10-29T01:00:00Z-osh-70s-bingo-night-fundraiser",
       "clubSlug": "tacoma-comedy-club",
@@ -208,6 +200,14 @@
       "start": "2026-11-07T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/352694",
       "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-07T22:00:00Z-stone-cold-the-jackal-holiday-show",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Stone Cold & The Jackal Holiday Show",
+      "start": "2026-11-07T22:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364972",
+      "image": "https://files.seatengine.com/talent/headshots/photos/90965/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-08T02:00:00Z-are-you-garbage",
@@ -464,6 +464,38 @@
       "start": "2026-11-27T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-kevin-sullivan-on-nov-27th-28th-laughs-comedy-club-seattle-tickets-1992374769569",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/banner-1080x540-kevin-sullivan-nov26-f3.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-28T03:00:00Z-ben-palmer",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ben Palmer",
+      "start": "2026-11-28T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391317",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-28T05:30:00Z-ben-palmer",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ben Palmer",
+      "start": "2026-11-28T05:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391316",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-29T03:00:00Z-ben-palmer",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ben Palmer",
+      "start": "2026-11-29T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391318",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-29T05:30:00Z-ben-palmer",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Ben Palmer",
+      "start": "2026-11-29T05:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391319",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-12-03 19:00:00-comedy-show-liz-blanc-on-dec-3rd-at-7pm-at-laughs-comedy-clu",
