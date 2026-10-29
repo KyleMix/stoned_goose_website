@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-29T12:04:52.714Z",
+  "fetchedAt": "2026-10-29T22:16:55.794Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
@@ -48,14 +48,6 @@
       "start": "2026-10-31T04:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/391194",
       "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-10-31T04:45:00Z-moshe-kasher",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Moshe Kasher",
-      "start": "2026-10-31T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/379121",
-      "image": "https://files.seatengine.com/talent/headshots/photos/60802/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-10-31 19:15:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-japanese",
@@ -154,14 +146,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/91878/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-11-07T03:00:00Z-are-you-garbage",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Are You Garbage?",
-      "start": "2026-11-07T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/386568",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95020/full/data"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-11-07T03:00:00Z-alaire-thomas",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Alaire Thomas",
@@ -176,14 +160,6 @@
       "start": "2026-11-07T03:30:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/352691",
       "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-07T05:45:00Z-are-you-garbage",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Are You Garbage?",
-      "start": "2026-11-07T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/386570",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95020/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-07T05:45:00Z-susan-rice",
@@ -202,14 +178,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/90965/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-11-08T02:00:00Z-are-you-garbage",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Are You Garbage?",
-      "start": "2026-11-08T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/386569",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95020/full/data"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-11-08T03:00:00Z-charles-haycock",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Charles Haycock",
@@ -224,14 +192,6 @@
       "start": "2026-11-08T03:30:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/352692",
       "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-08T04:45:00Z-are-you-garbage",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Are You Garbage?",
-      "start": "2026-11-08T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/386571",
-      "image": "https://files.seatengine.com/talent/headshots/photos/95020/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-08T05:30:00Z-charles-haycock",
@@ -256,6 +216,14 @@
       "start": "2026-11-08T22:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/391195",
       "image": "https://files.seatengine.com/talent/headshots/photos/96699/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-09T02:00:00Z-chad-goes-deep-chill-towards-enlightenment",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Chad Goes Deep: Chill Towards Enlightenment",
+      "start": "2026-11-09T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/388041",
+      "image": "https://files.seatengine.com/talent/headshots/photos/88104/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-09T03:30:00Z-susan-rice",
@@ -506,6 +474,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24094_image.png"
     },
     {
+      "id": "laughs-comedy-club-2026-12-06 19:00:00-comedy-dopamine-dealers-sun-dec-6th-7-pm-presented-by-luke-s",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy DOPAMINE DEALERS -Sun. Dec. 6th @ 7 PM -Presented by Luke Severeid",
+      "start": "2026-12-06T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-dopamine-dealers-sun-dec-6th-7-pm-presented-by-luke-severeid-tickets-2004085736386",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/banner-dopamine-dealers-jan27-1080.png"
+    },
+    {
       "id": "laughs-comedy-club-2026-12-10 20:00:00-comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy Show: Fahim Anwar Dec. 10th-12th at Laughs Comedy Club- Seattle",
@@ -640,6 +616,14 @@
       "start": "2027-01-15T18:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-learnmore-jonasi-jan-15th-16th-at-laughs-comedy-seattle-tickets-1985178919588",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/06/24348_image.jpg"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-21 20:00:00-comedy-show-ricci-armani-jan-21st-thursday-at-8pm-laughs-com",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Ricci Armani Jan. 21st Thursday at 8pm-Laughs Comedy Seattle",
+      "start": "2027-01-21T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-ricci-armani-jan-21st-thursday-at-8pm-laughs-comedy-seattle-tickets-2004029968583",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-RicciArmani-01212027-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-01-29 19:15:00-comedy-show-moshe-kasher-on-jan-29th-and-30th-at-laughs-come",
