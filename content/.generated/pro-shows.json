@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-29T03:47:51.487Z",
+  "fetchedAt": "2026-10-29T12:04:52.714Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-10-29 20:00:00-comedy-tokyo-kanpai-boys-live-show-is-performed-in-english",
@@ -608,6 +608,14 @@
       "start": "2027-01-01T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-raanan-hershberg-jan-1st-and-2nd-at-laughs-comedy-seattle-tickets-2002843045464",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-RaananHershberg_SEA-012027-1080.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-01-05 17:30:00-standup-comedy-class-with-andrew-frank",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Standup Comedy Class with Andrew Frank",
+      "start": "2027-01-05T17:30:00",
+      "url": "https://www.eventbrite.com/e/standup-comedy-class-with-andrew-frank-tickets-2004049058682",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/25057_image.png"
     },
     {
       "id": "laughs-comedy-club-2027-01-08 18:00:00-comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy",
