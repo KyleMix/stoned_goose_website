@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-10-30T21:52:30.358Z",
+  "fetchedAt": "2026-10-31T03:33:58.077Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-10-31T02:00:00Z-moshe-kasher",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Moshe Kasher",
-      "start": "2026-10-31T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/379120",
-      "image": "https://files.seatengine.com/talent/headshots/photos/60802/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-10-31T02:00:00Z-carlos-mencia",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Carlos Mencia",
-      "start": "2026-10-31T02:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/391192",
-      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-10-31T04:30:00Z-carlos-mencia",
       "clubSlug": "emerald-city-comedy-club",
