@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-11-02T03:45:49.349Z",
+  "fetchedAt": "2026-11-02T14:25:38.794Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-11-02T03:00:00Z-carlos-mencia",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Carlos Mencia",
-      "start": "2026-11-02T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/391193",
-      "image": "https://files.seatengine.com/talent/headshots/photos/71821/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-11-03T03:00:00Z-jason-salmon",
       "clubSlug": "tacoma-comedy-club",
@@ -31,7 +23,7 @@
       "title": "Comedy Show: Brian Simpson November 5th -7th at Laughs Comedy- Seattle",
       "start": "2026-11-05T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-seattle-tickets-1984930653016",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/03/banner-1080x540-brian-simpson-nov26.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-BrianSimpson_SEA-112026-1080.png"
     },
     {
       "id": "tacoma-comedy-club-2026-11-06T03:00:00Z-jason-salmon",
