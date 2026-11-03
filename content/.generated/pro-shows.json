@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-03T13:25:02.771Z",
+  "fetchedAt": "2026-11-03T22:47:43.941Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-04 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
@@ -146,6 +146,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/97474/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leah-bonnema-the-evolution-of-a-people-pleaser-if-that-s-oka",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Leah Bonnema - The Evolution of a People Pleaser (If That’s Okay with You)",
+      "start": "2026-11-13T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/380204",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93524/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Deric Cahill",
@@ -162,6 +170,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-HeatherShaw_SEA-112026-1080.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-14T03:00:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-14T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364752",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-14T03:00:00Z-deric-cahill",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Deric Cahill",
@@ -176,6 +192,14 @@
       "start": "2026-11-14T05:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/360844",
       "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-14T05:45:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-14T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364755",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-15T03:00:00Z-deric-cahill",
@@ -463,7 +487,7 @@
       "title": "Comedy Show: Josh Ocean Thomas on Dec. 18th &#038; 19th- Laughs Comedy- Seattle",
       "start": "2026-12-18T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-josh-ocean-thomas-on-dec-18th-19th-laughs-comedy-seattle-tickets-2004028812124",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-JoshOceanThomas_SEA-122026-1080.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-JoshOceanThomas_SEA-122026-f1-1080.png"
     },
     {
       "id": "tacoma-comedy-club-2026-12-19T03:00:00Z-hans-kim",
@@ -543,7 +567,7 @@
       "title": "New Year's Eve Comedy Show at Laughs Comedy Club Seattle (2 shows)",
       "start": "2026-12-31T19:00:00",
       "url": "https://www.eventbrite.com/e/new-years-eve-comedy-show-at-laughs-comedy-club-seattle-2-shows-tickets-2004030545308",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-AuggieSmithNYE_SEA-12312026-1080.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-AuggieSmithNYE_SEA-12312026-f1-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-01-01 19:15:00-comedy-show-raanan-hershberg-jan-1st-and-2nd-at-laughs-comed",
