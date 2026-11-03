@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T14:25:38.794Z",
+  "fetchedAt": "2026-11-03T00:17:09.396Z",
   "shows": [
     {
       "id": "tacoma-comedy-club-2026-11-03T03:00:00Z-jason-salmon",
@@ -458,6 +458,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89871/full/data"
     },
     {
+      "id": "laughs-comedy-club-2026-12-18 19:15:00-comedy-show-josh-ocean-thomas-on-dec-18th-038-19th-laughs-co",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Josh Ocean Thomas on Dec. 18th &#038; 19th- Laughs Comedy- Seattle",
+      "start": "2026-12-18T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-josh-ocean-thomas-on-dec-18th-19th-laughs-comedy-seattle-tickets-2004028812124",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-JoshOceanThomas_SEA-122026-1080.png"
+    },
+    {
       "id": "tacoma-comedy-club-2026-12-19T03:00:00Z-hans-kim",
       "clubSlug": "tacoma-comedy-club",
       "title": "Hans Kim",
@@ -528,6 +536,14 @@
       "start": "2026-12-20T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-daniel-bridge-gadd-at-laughs-comedy-club-on-dec-20th-tickets-1993496130590",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-DanielBridgeGadd_SEA-12202026-1080.png"
+    },
+    {
+      "id": "laughs-comedy-club-2026-12-31 19:00:00-new-year-8217-s-eve-comedy-show-at-laughs-comedy-club-seattl",
+      "clubSlug": "laughs-comedy-club",
+      "title": "New Year's Eve Comedy Show at Laughs Comedy Club Seattle (2 shows)",
+      "start": "2026-12-31T19:00:00",
+      "url": "https://www.eventbrite.com/e/new-years-eve-comedy-show-at-laughs-comedy-club-seattle-2-shows-tickets-2004030545308",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-AuggieSmithNYE_SEA-12312026-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-01-01 19:15:00-comedy-show-raanan-hershberg-jan-1st-and-2nd-at-laughs-comed",
