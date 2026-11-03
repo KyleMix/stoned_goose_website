@@ -1,21 +1,13 @@
 {
-  "fetchedAt": "2026-11-03T00:17:09.396Z",
+  "fetchedAt": "2026-11-03T13:25:02.771Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-11-03T03:00:00Z-jason-salmon",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Jason Salmon",
-      "start": "2026-11-03T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/390154",
-      "image": "https://files.seatengine.com/talent/headshots/photos/86154/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-11-04 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
       "clubSlug": "laughs-comedy-club",
       "title": "48th Annual Seattle International Comedy Competition @LaughsComedy- Seattle",
       "start": "2026-11-04T19:30:00",
       "url": "https://www.eventbrite.com/e/48th-annual-seattle-international-comedy-competition-laughscomedy-seattle-tickets-2001672475257",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/banner-21-SICC-nov26.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-SICC_SEA-112027-1080.png"
     },
     {
       "id": "laughs-comedy-club-2026-11-05 20:00:00-comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-",
@@ -144,6 +136,14 @@
       "start": "2026-11-12T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/381594",
       "image": "https://files.seatengine.com/talent/headshots/photos/94003/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leyla-ingalls",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Leyla Ingalls",
+      "start": "2026-11-13T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/382106",
+      "image": "https://files.seatengine.com/talent/headshots/photos/97474/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
