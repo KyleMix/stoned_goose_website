@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-03T22:47:43.941Z",
+  "fetchedAt": "2026-11-04T04:16:52.397Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-04 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
@@ -202,12 +202,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-15T02:00:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-15T02:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364753",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-15T03:00:00Z-deric-cahill",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Deric Cahill",
       "start": "2026-11-15T03:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/360845",
       "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-15T04:45:00Z-caroline-rhea",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Caroline Rhea",
+      "start": "2026-11-15T04:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/364754",
+      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-15T05:30:00Z-deric-cahill",
@@ -456,6 +472,14 @@
       "start": "2026-12-07T03:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/370031",
       "image": "https://files.seatengine.com/talent/headshots/photos/85718/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-09T03:30:00Z-malcolm-cills",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Malcolm Cills",
+      "start": "2026-12-09T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/391189",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96695/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-12-10 20:00:00-comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-",
