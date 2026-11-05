@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T13:36:24.908Z",
+  "fetchedAt": "2026-11-05T04:34:34.431Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-04 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
@@ -712,6 +712,14 @@
       "start": "2027-03-12T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-irene-tu-on-march-12th-and-13th-at-laughs-comedy-seattle-tickets-2002318474458",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-Eventbrite-IreneTu-feb27-1080.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-03-14 19:00:00-comedy-show-vincent-bryant-march-14th-sunday-at-7pm",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Vincent Bryant March 14th- Sunday at 7pm",
+      "start": "2027-03-14T19:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-vincent-bryant-march-14th-sunday-at-7pm-tickets-2003695752935",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-VincentBryant_SEA-03142027-1080.png"
     }
   ]
 }
