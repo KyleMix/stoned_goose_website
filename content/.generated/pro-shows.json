@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-05T04:34:34.431Z",
+  "fetchedAt": "2026-11-05T13:49:32.173Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-04 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
@@ -138,20 +138,20 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/94003/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leah-bonnema-the-evolution-of-a-people-pleaser-if-that-s-oka",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Leah Bonnema - The Evolution of a People Pleaser (If That’s Okay with You)",
-      "start": "2026-11-13T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/380204",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93524/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leyla-ingalls",
       "clubSlug": "tacoma-comedy-club",
       "title": "Leyla Ingalls",
       "start": "2026-11-13T03:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/382106",
       "image": "https://files.seatengine.com/talent/headshots/photos/97474/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leah-bonnema-the-evolution-of-a-people-pleaser-if-that-s-oka",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Leah Bonnema - The Evolution of a People Pleaser (If That’s Okay with You)",
+      "start": "2026-11-13T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/380204",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93524/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
