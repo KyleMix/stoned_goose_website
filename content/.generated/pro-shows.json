@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-05T23:08:02.411Z",
+  "fetchedAt": "2026-11-06T04:32:44.527Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-05 20:00:00-comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-",
@@ -8,22 +8,6 @@
       "start": "2026-11-05T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-brian-simpson-november-5th-7th-at-laughs-comedy-seattle-tickets-1984930653016",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-BrianSimpson_SEA-112026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-06T03:00:00Z-jason-salmon",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Jason Salmon",
-      "start": "2026-11-06T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364088",
-      "image": "https://files.seatengine.com/talent/headshots/photos/86154/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-06T03:30:00Z-yvette-segan",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Yvette Segan",
-      "start": "2026-11-06T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/373481",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91878/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-07T03:00:00Z-alaire-thomas",
@@ -112,6 +96,14 @@
       "start": "2026-11-11T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/376527",
       "image": "https://files.seatengine.com/talent/headshots/photos/92571/full/data"
+    },
+    {
+      "id": "laughs-comedy-club-2026-11-11 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
+      "clubSlug": "laughs-comedy-club",
+      "title": "48th Annual Seattle International Comedy Competition @LaughsComedy- Seattle",
+      "start": "2026-11-11T19:30:00",
+      "url": "https://www.eventbrite.com/e/48th-annual-seattle-international-comedy-competition-laughscomedy-seattle-tickets-2001672475257",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-SICC_SEA-112027-1080.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-12T03:30:00Z-charles-mcbee",
@@ -464,6 +456,14 @@
       "start": "2026-12-09T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/391189",
       "image": "https://files.seatengine.com/talent/headshots/photos/96695/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-10T03:30:00Z-nori-reed-nori-is-present-live-at-emerald-city-comedy-club",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Nori Reed: Nori Is Present LIVE at Emerald City Comedy Club",
+      "start": "2026-12-10T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/371817",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91391/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-12-10 20:00:00-comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-",
