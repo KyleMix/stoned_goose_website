@@ -1,30 +1,6 @@
 {
-  "fetchedAt": "2026-11-07T03:59:59.543Z",
+  "fetchedAt": "2026-11-07T12:14:00.583Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-11-07T03:00:00Z-alaire-thomas",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Alaire Thomas",
-      "start": "2026-11-07T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/393026",
-      "image": "https://files.seatengine.com/talent/headshots/photos/86404/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-07T03:30:00Z-susan-rice",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Susan Rice",
-      "start": "2026-11-07T03:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/352691",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-07T05:45:00Z-susan-rice",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Susan Rice",
-      "start": "2026-11-07T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/352694",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-11-08T03:00:00Z-charles-haycock",
       "clubSlug": "emerald-city-comedy-club",
@@ -472,6 +448,46 @@
       "start": "2026-12-10T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-seattle-tickets-1989421356832",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24098_image.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-11T03:30:00Z-natasha-leggero",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Natasha Leggero",
+      "start": "2026-12-11T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/387107",
+      "image": "https://files.seatengine.com/talent/headshots/photos/59490/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-12T03:00:00Z-natasha-leggero",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Natasha Leggero",
+      "start": "2026-12-12T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/387108",
+      "image": "https://files.seatengine.com/talent/headshots/photos/59490/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-12T05:30:00Z-natasha-leggero",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Natasha Leggero",
+      "start": "2026-12-12T05:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/387109",
+      "image": "https://files.seatengine.com/talent/headshots/photos/59490/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-13T03:00:00Z-natasha-leggero",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Natasha Leggero",
+      "start": "2026-12-13T03:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/387110",
+      "image": "https://files.seatengine.com/talent/headshots/photos/59490/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-13T05:30:00Z-natasha-leggero",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Natasha Leggero",
+      "start": "2026-12-13T05:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/387111",
+      "image": "https://files.seatengine.com/talent/headshots/photos/59490/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-12-18T03:00:00Z-hans-kim",
