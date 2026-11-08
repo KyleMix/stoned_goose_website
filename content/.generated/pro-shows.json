@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-07T12:14:00.583Z",
+  "fetchedAt": "2026-11-08T03:45:14.558Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-11-08T03:00:00Z-charles-haycock",
@@ -200,6 +200,14 @@
       "start": "2026-11-15T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-connor-king-nov-15th-sunday-at-7pm-tickets-2002849145710",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-ConnorKing_SEA-11152026-1080.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-16T00:00:00Z-scott-losse",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Scott Losse",
+      "start": "2026-11-16T00:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/377096",
+      "image": "https://files.seatengine.com/talent/headshots/photos/79079/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-16T03:00:00Z-mark-paul",
