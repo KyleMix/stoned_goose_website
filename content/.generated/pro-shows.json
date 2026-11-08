@@ -1,38 +1,6 @@
 {
-  "fetchedAt": "2026-11-08T03:45:14.558Z",
+  "fetchedAt": "2026-11-08T12:34:38.963Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-11-08T03:00:00Z-charles-haycock",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Charles Haycock",
-      "start": "2026-11-08T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/392935",
-      "image": "https://files.seatengine.com/talent/headshots/photos/97107/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-08T03:30:00Z-susan-rice",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Susan Rice",
-      "start": "2026-11-08T03:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/352692",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-08T05:30:00Z-charles-haycock",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Charles Haycock",
-      "start": "2026-11-08T05:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/392936",
-      "image": "https://files.seatengine.com/talent/headshots/photos/97107/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-08T05:45:00Z-susan-rice",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Susan Rice",
-      "start": "2026-11-08T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/352695",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-11-08T22:00:00Z-dolly-parton-tribute-drag-brunch",
       "clubSlug": "emerald-city-comedy-club",
@@ -90,20 +58,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-Friendsgiving_SEA-11122026-1080.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leah-bonnema-the-evolution-of-a-people-pleaser-if-that-s-oka",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Leah Bonnema - The Evolution of a People Pleaser (If That’s Okay with You)",
-      "start": "2026-11-13T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/380204",
-      "image": "https://files.seatengine.com/talent/headshots/photos/93524/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leyla-ingalls",
       "clubSlug": "tacoma-comedy-club",
       "title": "Leyla Ingalls",
       "start": "2026-11-13T03:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/382106",
       "image": "https://files.seatengine.com/talent/headshots/photos/97474/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leah-bonnema-the-evolution-of-a-people-pleaser-if-that-s-oka",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Leah Bonnema - The Evolution of a People Pleaser (If That’s Okay with You)",
+      "start": "2026-11-13T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/380204",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93524/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
@@ -226,6 +194,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/94118/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-19T03:00:00Z-keith-pedro",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Keith Pedro",
+      "start": "2026-11-19T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/384462",
+      "image": "https://files.seatengine.com/talent/headshots/photos/94843/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-19T03:30:00Z-mc-hammersmith",
       "clubSlug": "emerald-city-comedy-club",
       "title": "MC Hammersmith",
@@ -240,6 +216,14 @@
       "start": "2026-11-19T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-michael-longfellow-nov-19th-21st-laughs-comedy-seattle-tickets-1979024327036",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/01/23398_image.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-20T03:00:00Z-jamie-wolf",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Jamie Wolf",
+      "start": "2026-11-20T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/381982",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84384/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-20T03:30:00Z-don-mcmillan-2-0-now-powered-by-ai",
