@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-11-09T03:57:49.004Z",
+  "fetchedAt": "2026-11-09T14:52:03.297Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-11-09T03:30:00Z-susan-rice",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Susan Rice",
-      "start": "2026-11-09T03:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/352693",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79519/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
       "clubSlug": "emerald-city-comedy-club",
@@ -199,7 +191,7 @@
       "title": "Comedy Show: Michael Longfellow Nov. 19th &#8211; 21st- Laughs Comedy Seattle",
       "start": "2026-11-19T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-michael-longfellow-nov-19th-21st-laughs-comedy-seattle-tickets-1979024327036",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/01/23398_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-MichaelLongfellow_SEA-112026-1080.png"
     },
     {
       "id": "tacoma-comedy-club-2026-11-20T03:00:00Z-jamie-wolf",
@@ -250,6 +242,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-21T05:45:00Z-rachel-feinstein",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Rachel Feinstein",
+      "start": "2026-11-21T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375422",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-22T00:00:00Z-jaime-french",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Jaime French",
@@ -264,6 +264,14 @@
       "start": "2026-11-22T03:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/387103",
       "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-22T03:30:00Z-rachel-feinstein",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Rachel Feinstein",
+      "start": "2026-11-22T03:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375421",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-22T05:30:00Z-andrew-dismukes",
@@ -607,7 +615,7 @@
       "title": "Comedy Show: Caitlin Peluffo Jan 8th and 9th at Laughs Comedy Club- Seattle",
       "start": "2027-01-08T18:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-caitlin-peluffo-jan-8th-and-9th-at-laughs-comedy-club-seattle-tickets-1989364247015",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/banner-1080x540-caitlin-pelufo-jan27-f1.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-CaitlinPeluffo_SEA-012027-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-01-14 20:00:00-comedy-show-ahamed-weinberg-jan-14th-thursday-at-8pm",
