@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-10T14:04:19.002Z",
+  "fetchedAt": "2026-11-10T22:43:34.156Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
@@ -304,6 +304,14 @@
       "start": "2026-11-25T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/371427",
       "image": "https://files.seatengine.com/talent/headshots/photos/85423/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-11-26T03:30:00Z-thanksgiving-eve-comedy-bash",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Thanksgiving Eve Comedy Bash",
+      "start": "2026-11-26T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/395123",
+      "image": "https://files.seatengine.com/talent/headshots/photos/71594/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-27T02:00:00Z-closed-for-thanskgiving",
