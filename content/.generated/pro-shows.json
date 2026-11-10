@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-09T14:52:03.297Z",
+  "fetchedAt": "2026-11-10T14:04:19.002Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
@@ -280,6 +280,14 @@
       "start": "2026-11-22T05:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/387104",
       "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-22T05:45:00Z-rachel-feinstein",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Rachel Feinstein",
+      "start": "2026-11-22T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375423",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-23T00:00:00Z-musical-monday",
