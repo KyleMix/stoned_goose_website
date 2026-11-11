@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-10T22:43:34.156Z",
+  "fetchedAt": "2026-11-11T04:01:42.850Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
@@ -432,6 +432,14 @@
       "start": "2026-12-06T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-dopamine-dealers-sun-dec-6th-7-pm-presented-by-luke-severeid-tickets-2004085736386",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/banner-dopamine-dealers-jan27-1080.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-06T22:00:00Z-shrek-christmas-drag-brunch",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Shrek Christmas Drag Brunch",
+      "start": "2026-12-06T22:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/395183",
+      "image": "https://files.seatengine.com/talent/headshots/photos/97834/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-12-07T03:00:00Z-craig-robinson",
