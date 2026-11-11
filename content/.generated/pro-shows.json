@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-11-11T04:01:42.850Z",
+  "fetchedAt": "2026-11-11T13:21:52.231Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-11-11T03:30:00Z-perfect-person-live-the-grey-area-tour",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Perfect Person Live: The Grey Area Tour",
-      "start": "2026-11-11T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376527",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92571/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-11-11 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
       "clubSlug": "laughs-comedy-club",
@@ -218,6 +210,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/83335/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-21T03:00:00Z-eddie-griffin",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Eddie Griffin",
+      "start": "2026-11-21T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/390928",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-21T03:00:00Z-andrew-dismukes",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Andrew Dismukes",
@@ -250,12 +250,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-21T05:45:00Z-eddie-griffin",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Eddie Griffin",
+      "start": "2026-11-21T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/390930",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-22T00:00:00Z-jaime-french",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Jaime French",
       "start": "2026-11-22T00:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/386155",
       "image": "https://files.seatengine.com/talent/headshots/photos/95334/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-22T03:00:00Z-eddie-griffin",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Eddie Griffin",
+      "start": "2026-11-22T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/390929",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-22T03:00:00Z-andrew-dismukes",
@@ -288,6 +304,14 @@
       "start": "2026-11-22T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/375423",
       "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-22T05:45:00Z-eddie-griffin",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Eddie Griffin",
+      "start": "2026-11-22T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/390931",
+      "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-23T00:00:00Z-musical-monday",
@@ -704,6 +728,14 @@
       "start": "2027-02-19T19:15:00",
       "url": "https://www.eventbrite.com/e/copy-of-comedy-show-sam-jay-on-feb-19th-21st-at-laughs-comedy-seattle-tickets-2001240978639",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24778_image.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-02-25 20:00:00-comedy-show-comedian-atheer-yacoub-at-laughs-comedy-club",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Comedian Atheer Yacoub at Laughs Comedy Club",
+      "start": "2027-02-25T20:00:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-comedian-atheer-yacoub-at-laughs-comedy-club-tickets-2004695232405",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/25144_image.png"
     },
     {
       "id": "laughs-comedy-club-2027-02-26 19:15:00-comedy-show-jackie-kashian-feb-26th-and-27th-at-laughs-comed",
