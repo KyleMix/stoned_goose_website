@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-11T23:57:02.027Z",
+  "fetchedAt": "2026-11-12T05:12:30.083Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-11 19:30:00-48th-annual-seattle-international-comedy-competition-laughsc",
@@ -10,14 +10,6 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-SICC_SEA-112027-1080.png"
     },
     {
-      "id": "emerald-city-comedy-club-2026-11-12T03:30:00Z-charles-mcbee",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Charles McBee",
-      "start": "2026-11-12T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/381594",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94003/full/data"
-    },
-    {
       "id": "laughs-comedy-club-2026-11-12 20:00:00-friendsgiving-at-laughs-a-stacked-comedy-lineup",
       "clubSlug": "laughs-comedy-club",
       "title": "Friendsgiving at Laughs: A Stacked Comedy Lineup",
@@ -26,20 +18,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-Friendsgiving_SEA-11122026-1080.png"
     },
     {
-      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leyla-ingalls",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Leyla Ingalls",
-      "start": "2026-11-13T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/382106",
-      "image": "https://files.seatengine.com/talent/headshots/photos/97474/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leah-bonnema-the-evolution-of-a-people-pleaser-if-that-s-oka",
       "clubSlug": "tacoma-comedy-club",
       "title": "Leah Bonnema - The Evolution of a People Pleaser (If That’s Okay with You)",
       "start": "2026-11-13T03:00:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/380204",
       "image": "https://files.seatengine.com/talent/headshots/photos/93524/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-13T03:00:00Z-leyla-ingalls",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Leyla Ingalls",
+      "start": "2026-11-13T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/382106",
+      "image": "https://files.seatengine.com/talent/headshots/photos/97474/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-13T03:30:00Z-deric-cahill",
