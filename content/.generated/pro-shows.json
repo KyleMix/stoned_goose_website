@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-13T23:07:09.585Z",
+  "fetchedAt": "2026-11-14T04:24:11.767Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-13 19:15:00-comedy-show-heather-shaw-november-13th-and-14th-at-laughs-co",
@@ -8,22 +8,6 @@
       "start": "2026-11-13T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-heather-shaw-november-13th-and-14th-at-laughs-comedy-seattle-tickets-1985727225586",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-HeatherShaw_SEA-112026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-14T03:00:00Z-caroline-rhea",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Caroline Rhea",
-      "start": "2026-11-14T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364752",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-14T03:00:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-14T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360843",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-14T05:30:00Z-deric-cahill",
@@ -210,6 +194,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-21T23:00:00Z-ify-nwadiwe",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Ify Nwadiwe",
+      "start": "2026-11-21T23:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/388085",
+      "image": "https://files.seatengine.com/talent/headshots/photos/91743/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-22T00:00:00Z-jaime-french",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Jaime French",
@@ -264,6 +256,14 @@
       "start": "2026-11-22T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/390931",
       "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-22T23:00:00Z-native-american-comedy-jam",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Native American Comedy Jam",
+      "start": "2026-11-22T23:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/394610",
+      "image": "https://files.seatengine.com/talent/headshots/photos/97607/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-23T00:00:00Z-musical-monday",
