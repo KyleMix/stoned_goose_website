@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-11-14T21:53:22.362Z",
+  "fetchedAt": "2026-11-15T04:09:06.946Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-11-15T02:00:00Z-caroline-rhea",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Caroline Rhea",
-      "start": "2026-11-15T02:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364753",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-15T03:00:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-15T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360845",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-11-15T04:45:00Z-caroline-rhea",
       "clubSlug": "tacoma-comedy-club",
@@ -280,6 +264,14 @@
       "start": "2026-11-27T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-kevin-sullivan-on-nov-27th-28th-laughs-comedy-club-seattle-tickets-1992374769569",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-KevinSullivan_SEA-112026-1080.png"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-28T03:00:00Z-gabriel-rutledge",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Gabriel Rutledge",
+      "start": "2026-11-28T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/370337",
+      "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-28T03:00:00Z-ben-palmer",
