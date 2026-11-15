@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-11-15T04:09:06.946Z",
+  "fetchedAt": "2026-11-15T13:17:46.235Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-11-15T04:45:00Z-caroline-rhea",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Caroline Rhea",
-      "start": "2026-11-15T04:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/364754",
-      "image": "https://files.seatengine.com/talent/headshots/photos/89538/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-15T05:30:00Z-deric-cahill",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Deric Cahill",
-      "start": "2026-11-15T05:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/360846",
-      "image": "https://files.seatengine.com/talent/headshots/photos/88465/full/data"
-    },
     {
       "id": "laughs-comedy-club-2026-11-15 13:00:00-dungeons-and-drag-queens-brunch-show-november-15th-laughs-co",
       "clubSlug": "laughs-comedy-club",
@@ -290,6 +274,22 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-11-28T05:45:00Z-gabriel-rutledge",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Gabriel Rutledge",
+      "start": "2026-11-28T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/370340",
+      "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-29T03:00:00Z-gabriel-rutledge",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Gabriel Rutledge",
+      "start": "2026-11-29T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/370338",
+      "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-11-29T03:00:00Z-ben-palmer",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Ben Palmer",
@@ -304,6 +304,22 @@
       "start": "2026-11-29T05:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/391319",
       "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-29T05:45:00Z-gabriel-rutledge",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Gabriel Rutledge",
+      "start": "2026-11-29T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/370341",
+      "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-30T03:00:00Z-gabriel-rutledge",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Gabriel Rutledge",
+      "start": "2026-11-30T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/370339",
+      "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-12-03T03:30:00Z-aaron-weber",
@@ -472,6 +488,14 @@
       "start": "2026-12-15T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/386396",
       "image": "https://files.seatengine.com/talent/headshots/photos/95335/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-16T03:30:00Z-jerry-garcia",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Jerry Garcia",
+      "start": "2026-12-16T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/388932",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96005/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-12-18T03:00:00Z-hans-kim",
