@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-15T13:17:46.235Z",
+  "fetchedAt": "2026-11-16T04:08:07.625Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-15 13:00:00-dungeons-and-drag-queens-brunch-show-november-15th-laughs-co",
@@ -16,22 +16,6 @@
       "start": "2026-11-15T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-connor-king-nov-15th-sunday-at-7pm-tickets-2002849145710",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-ConnorKing_SEA-11152026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-16T00:00:00Z-scott-losse",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Scott Losse",
-      "start": "2026-11-16T00:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/377096",
-      "image": "https://files.seatengine.com/talent/headshots/photos/79079/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-16T03:00:00Z-mark-paul",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Mark Paul",
-      "start": "2026-11-16T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/381767",
-      "image": "https://files.seatengine.com/talent/headshots/photos/91741/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-11-18T03:30:00Z-chris-turner",
@@ -496,6 +480,14 @@
       "start": "2026-12-16T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/388932",
       "image": "https://files.seatengine.com/talent/headshots/photos/96005/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-17T03:30:00Z-eddie-pepitone",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Eddie Pepitone",
+      "start": "2026-12-17T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/388837",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95989/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-12-18T03:00:00Z-hans-kim",
