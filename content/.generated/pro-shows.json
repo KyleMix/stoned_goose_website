@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-11-16T14:27:35.346Z",
+  "fetchedAt": "2026-11-17T01:24:04.378Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-11-15 19:00:00-comedy-show-connor-king-nov-15th-8211-sunday-at-7pm",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy show: Connor King Nov. 15th &#8211; Sunday at 7pm",
-      "start": "2026-11-15T19:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-connor-king-nov-15th-sunday-at-7pm-tickets-2002849145710",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-ConnorKing_SEA-11152026-1080.png"
-    },
     {
       "id": "emerald-city-comedy-club-2026-11-18T03:30:00Z-chris-turner",
       "clubSlug": "emerald-city-comedy-club",
@@ -407,7 +399,7 @@
       "title": "Comedy Show: Fahim Anwar Dec. 10th-12th at Laughs Comedy Club- Seattle",
       "start": "2026-12-10T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-fahim-anwar-dec-10th-12th-at-laughs-comedy-club-seattle-tickets-1989421356832",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/05/24098_image.png"
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-FahimAnwar_SEA-122026-1080.png"
     },
     {
       "id": "emerald-city-comedy-club-2026-12-11T03:30:00Z-natasha-leggero",
