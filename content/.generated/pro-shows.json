@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-18T14:56:12.279Z",
+  "fetchedAt": "2026-11-18T23:48:38.818Z",
   "shows": [
     {
       "id": "tacoma-comedy-club-2026-11-19T03:00:00Z-keith-pedro",
@@ -648,6 +648,14 @@
       "start": "2027-02-05T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-andy-haynes-on-feb-5-6th-at-laughs-comedy-seattle-tickets-2002848381424",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/24925_image.jpg"
+    },
+    {
+      "id": "laughs-comedy-club-2027-02-12 19:15:00-comedy-show-julia-hladkowicz-8211-feb-12th-and-13th-8211-lau",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy show: Julia Hladkowicz &#8211; Feb. 12th and 13th &#8211; Laughs Comedy Seattle",
+      "start": "2027-02-12T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-julia-hladkowicz-feb-12th-and-13th-laughs-comedy-seattle-tickets-2004739750560",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-JuliaHladkowicz_SEA-022027-1080.png"
     },
     {
       "id": "laughs-comedy-club-2027-02-18 20:00:00-comedy-show-comedian-ryan-conner-at-laughs-comedy",
