@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-11-17T01:24:04.378Z",
+  "fetchedAt": "2026-11-18T14:56:12.279Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-11-18T03:30:00Z-chris-turner",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Chris Turner",
-      "start": "2026-11-18T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/381940",
-      "image": "https://files.seatengine.com/talent/headshots/photos/94118/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-11-19T03:00:00Z-keith-pedro",
       "clubSlug": "tacoma-comedy-club",
