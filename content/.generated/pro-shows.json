@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-19T05:23:10.404Z",
+  "fetchedAt": "2026-11-20T00:07:42.392Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
@@ -690,20 +690,20 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-WyattFeegrado_SEA-03112027-1080.png"
     },
     {
-      "id": "laughs-comedy-club-2027-03-12 19:15:00-comedy-show-irene-tu-on-march-12th-and-13th-at-laughs-comedy",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Irene Tu on March 12th and 13th at Laughs Comedy- Seattle",
-      "start": "2027-03-12T19:15:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-irene-tu-on-march-12th-and-13th-at-laughs-comedy-seattle-tickets-2002318474458",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/LaughsCC-Eventbrite-IreneTu-feb27-1080.png"
-    },
-    {
       "id": "laughs-comedy-club-2027-03-14 19:00:00-comedy-show-vincent-bryant-march-14th-sunday-at-7pm",
       "clubSlug": "laughs-comedy-club",
       "title": "Comedy show: Vincent Bryant March 14th- Sunday at 7pm",
       "start": "2027-03-14T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-vincent-bryant-march-14th-sunday-at-7pm-tickets-2003695752935",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-Eventbrite-VincentBryant_SEA-03142027-1080.png"
+    },
+    {
+      "id": "laughs-comedy-club-2027-03-26 19:15:00-comedy-show-irene-tu-on-march-26th-and-27th-at-laughs-comedy",
+      "clubSlug": "laughs-comedy-club",
+      "title": "Comedy Show: Irene Tu on March 26th and 27th at Laughs Comedy- Seattle",
+      "start": "2027-03-26T19:15:00",
+      "url": "https://www.eventbrite.com/e/comedy-show-irene-tu-on-march-26th-and-27th-at-laughs-comedy-seattle-tickets-2002318474458",
+      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/09/24831_image.jpg"
     }
   ]
 }
