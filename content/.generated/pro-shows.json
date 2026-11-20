@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-20T00:07:42.392Z",
+  "fetchedAt": "2026-11-20T14:44:13.282Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
@@ -8,30 +8,6 @@
       "start": "2026-11-19T20:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-michael-longfellow-nov-19th-21st-laughs-comedy-seattle-tickets-1979024327036",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-MichaelLongfellow_SEA-112026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-20T03:00:00Z-jamie-wolf",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Jamie Wolf",
-      "start": "2026-11-20T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/381982",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84384/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-20T03:30:00Z-rachel-feinstein",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rachel Feinstein",
-      "start": "2026-11-20T03:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/375419",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-20T03:30:00Z-don-mcmillan-2-0-now-powered-by-ai",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Don McMillan 2.0* *Now Powered By AI",
-      "start": "2026-11-20T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/376476",
-      "image": "https://files.seatengine.com/talent/headshots/photos/83335/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-21T03:00:00Z-eddie-griffin",
@@ -66,20 +42,20 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-11-21T05:45:00Z-rachel-feinstein",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rachel Feinstein",
-      "start": "2026-11-21T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/375422",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-11-21T05:45:00Z-eddie-griffin",
       "clubSlug": "tacoma-comedy-club",
       "title": "Eddie Griffin",
       "start": "2026-11-21T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/390930",
       "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-21T05:45:00Z-rachel-feinstein",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Rachel Feinstein",
+      "start": "2026-11-21T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375422",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-21T23:00:00Z-ify-nwadiwe",
@@ -130,20 +106,20 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-11-22T05:45:00Z-rachel-feinstein",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rachel Feinstein",
-      "start": "2026-11-22T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/375423",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
-    },
-    {
       "id": "tacoma-comedy-club-2026-11-22T05:45:00Z-eddie-griffin",
       "clubSlug": "tacoma-comedy-club",
       "title": "Eddie Griffin",
       "start": "2026-11-22T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/390931",
       "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-22T05:45:00Z-rachel-feinstein",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Rachel Feinstein",
+      "start": "2026-11-22T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/375423",
+      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-22T23:00:00Z-native-american-comedy-jam",
@@ -544,6 +520,22 @@
       "start": "2026-12-20T19:00:00",
       "url": "https://www.eventbrite.com/e/comedy-show-daniel-bridge-gadd-at-laughs-comedy-club-on-dec-20th-tickets-1993496130590",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/10/LaughsCC-EventBrite-DanielBridgeGadd_SEA-12202026-1080.png"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-25T02:00:00Z-closed-for-christmas",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Closed for Christmas",
+      "start": "2026-12-25T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/392459",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/29841/full/data?1603548838"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-26T02:00:00Z-closed-for-christmas",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Closed for Christmas",
+      "start": "2026-12-26T02:00:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/392460",
+      "image": "https://s3.amazonaws.com/seat-engine-files-production/talent/headshots/photos/29841/full/data?1603548838"
     },
     {
       "id": "laughs-comedy-club-2026-12-31 19:00:00-new-year-8217-s-eve-comedy-show-at-laughs-comedy-club-seattl",
