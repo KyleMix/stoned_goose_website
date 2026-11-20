@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-11-20T14:44:13.282Z",
+  "fetchedAt": "2026-11-20T23:34:12.725Z",
   "shows": [
-    {
-      "id": "laughs-comedy-club-2026-11-19 20:00:00-comedy-show-michael-longfellow-nov-19th-8211-21st-laughs-com",
-      "clubSlug": "laughs-comedy-club",
-      "title": "Comedy Show: Michael Longfellow Nov. 19th &#8211; 21st- Laughs Comedy Seattle",
-      "start": "2026-11-19T20:00:00",
-      "url": "https://www.eventbrite.com/e/comedy-show-michael-longfellow-nov-19th-21st-laughs-comedy-seattle-tickets-1979024327036",
-      "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-MichaelLongfellow_SEA-112026-1080.png"
-    },
     {
       "id": "tacoma-comedy-club-2026-11-21T03:00:00Z-eddie-griffin",
       "clubSlug": "tacoma-comedy-club",
