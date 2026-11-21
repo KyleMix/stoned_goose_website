@@ -1,38 +1,6 @@
 {
-  "fetchedAt": "2026-11-21T05:03:03.377Z",
+  "fetchedAt": "2026-11-21T14:00:19.383Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-11-21T03:30:00Z-rachel-feinstein",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rachel Feinstein",
-      "start": "2026-11-21T03:30:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/375420",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-21T05:30:00Z-andrew-dismukes",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Andrew Dismukes",
-      "start": "2026-11-21T05:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/387102",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-21T05:45:00Z-eddie-griffin",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Eddie Griffin",
-      "start": "2026-11-21T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/390930",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-21T05:45:00Z-rachel-feinstein",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rachel Feinstein",
-      "start": "2026-11-21T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/375422",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-11-21T23:00:00Z-ify-nwadiwe",
       "clubSlug": "tacoma-comedy-club",
@@ -208,6 +176,14 @@
       "start": "2026-11-29T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/370341",
       "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-11-30T00:00:00Z-teachers-gone-bad-bingo-edition",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Teachers Gone Bad: Bingo Edition",
+      "start": "2026-11-30T00:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/391242",
+      "image": "https://files.seatengine.com/talent/headshots/photos/96698/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-30T03:00:00Z-gabriel-rutledge",
