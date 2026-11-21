@@ -1,22 +1,6 @@
 {
-  "fetchedAt": "2026-11-20T23:34:12.725Z",
+  "fetchedAt": "2026-11-21T05:03:03.377Z",
   "shows": [
-    {
-      "id": "tacoma-comedy-club-2026-11-21T03:00:00Z-eddie-griffin",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Eddie Griffin",
-      "start": "2026-11-21T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/390928",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-21T03:00:00Z-andrew-dismukes",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Andrew Dismukes",
-      "start": "2026-11-21T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/387101",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-11-21T03:30:00Z-rachel-feinstein",
       "clubSlug": "tacoma-comedy-club",
