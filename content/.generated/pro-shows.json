@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-21T14:00:19.383Z",
+  "fetchedAt": "2026-11-21T22:41:53.656Z",
   "shows": [
     {
       "id": "tacoma-comedy-club-2026-11-21T23:00:00Z-ify-nwadiwe",
@@ -378,14 +378,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/95989/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-12-18T03:00:00Z-hans-kim",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Hans Kim",
-      "start": "2026-12-18T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353283",
-      "image": "https://files.seatengine.com/talent/headshots/photos/45413/full/data"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-12-18T03:30:00Z-craig-conant",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Craig Conant",
@@ -400,14 +392,6 @@
       "start": "2026-12-18T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-josh-ocean-thomas-on-dec-18th-19th-laughs-comedy-seattle-tickets-2004028812124",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-JoshOceanThomas_SEA-122026-f1-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-12-19T03:00:00Z-hans-kim",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Hans Kim",
-      "start": "2026-12-19T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353284",
-      "image": "https://files.seatengine.com/talent/headshots/photos/45413/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-12-19T03:00:00Z-craig-conant",
@@ -426,22 +410,6 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/89871/full/data"
     },
     {
-      "id": "tacoma-comedy-club-2026-12-19T05:45:00Z-hans-kim",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Hans Kim",
-      "start": "2026-12-19T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353286",
-      "image": "https://files.seatengine.com/talent/headshots/photos/45413/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-12-20T03:00:00Z-hans-kim",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Hans Kim",
-      "start": "2026-12-20T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353285",
-      "image": "https://files.seatengine.com/talent/headshots/photos/45413/full/data"
-    },
-    {
       "id": "emerald-city-comedy-club-2026-12-20T03:00:00Z-craig-conant",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Craig Conant",
@@ -456,14 +424,6 @@
       "start": "2026-12-20T05:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/360841",
       "image": "https://files.seatengine.com/talent/headshots/photos/89871/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-12-20T05:45:00Z-hans-kim",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Hans Kim",
-      "start": "2026-12-20T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/353287",
-      "image": "https://files.seatengine.com/talent/headshots/photos/45413/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-12-20 19:00:00-comedy-show-daniel-bridge-gadd-at-laughs-comedy-club-on-dec-",
