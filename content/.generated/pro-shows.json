@@ -1,30 +1,6 @@
 {
-  "fetchedAt": "2026-11-22T04:27:10.043Z",
+  "fetchedAt": "2026-11-22T13:53:42.513Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-11-22T05:30:00Z-andrew-dismukes",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Andrew Dismukes",
-      "start": "2026-11-22T05:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/387104",
-      "image": "https://files.seatengine.com/talent/headshots/photos/90416/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-22T05:45:00Z-eddie-griffin",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Eddie Griffin",
-      "start": "2026-11-22T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/390931",
-      "image": "https://files.seatengine.com/talent/headshots/photos/92554/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-22T05:45:00Z-rachel-feinstein",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Rachel Feinstein",
-      "start": "2026-11-22T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/375423",
-      "image": "https://files.seatengine.com/talent/headshots/photos/84386/full/data"
-    },
     {
       "id": "tacoma-comedy-club-2026-11-22T23:00:00Z-native-american-comedy-jam",
       "clubSlug": "tacoma-comedy-club",
@@ -234,6 +210,14 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/85718/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-12-05T05:45:00Z-aaron-weber",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Aaron Weber",
+      "start": "2026-12-05T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/359844",
+      "image": "https://files.seatengine.com/talent/headshots/photos/52836/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-12-06T03:00:00Z-craig-robinson",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Craig Robinson",
@@ -242,12 +226,28 @@
       "image": "https://files.seatengine.com/talent/headshots/photos/85718/full/data"
     },
     {
+      "id": "tacoma-comedy-club-2026-12-06T03:30:00Z-aaron-weber",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Aaron Weber",
+      "start": "2026-12-06T03:30:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/359843",
+      "image": "https://files.seatengine.com/talent/headshots/photos/52836/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-12-06T05:30:00Z-craig-robinson",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Craig Robinson",
       "start": "2026-12-06T05:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/370034",
       "image": "https://files.seatengine.com/talent/headshots/photos/85718/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-12-06T05:45:00Z-aaron-weber",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Aaron Weber",
+      "start": "2026-12-06T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/359845",
+      "image": "https://files.seatengine.com/talent/headshots/photos/52836/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-12-06 19:00:00-comedy-dopamine-dealers-sun-dec-6th-7-pm-presented-by-luke-s",
@@ -456,6 +456,14 @@
       "start": "2026-12-28T03:00:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/395802",
       "image": "https://files.seatengine.com/talent/headshots/photos/91737/full/data"
+    },
+    {
+      "id": "emerald-city-comedy-club-2026-12-31T03:30:00Z-janine-harouni",
+      "clubSlug": "emerald-city-comedy-club",
+      "title": "Janine Harouni",
+      "start": "2026-12-31T03:30:00Z",
+      "url": "https://www.emeraldcitycomedy.com/shows/387271",
+      "image": "https://files.seatengine.com/talent/headshots/photos/95568/full/data"
     },
     {
       "id": "laughs-comedy-club-2026-12-31 19:00:00-new-year-8217-s-eve-comedy-show-at-laughs-comedy-club-seattl",
