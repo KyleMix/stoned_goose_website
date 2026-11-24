@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-23T05:02:34.616Z",
+  "fetchedAt": "2026-11-24T16:49:50.877Z",
   "shows": [
     {
       "id": "emerald-city-comedy-club-2026-11-25T03:30:00Z-stormy-daniels",
@@ -170,6 +170,14 @@
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-DulceSloan_SEA-122026-1080.png"
     },
     {
+      "id": "tacoma-comedy-club-2026-12-05T03:00:00Z-michael-blackson",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Michael Blackson",
+      "start": "2026-12-05T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/363335",
+      "image": "https://files.seatengine.com/talent/headshots/photos/76194/full/data"
+    },
+    {
       "id": "emerald-city-comedy-club-2026-12-05T03:00:00Z-craig-robinson",
       "clubSlug": "emerald-city-comedy-club",
       "title": "Craig Robinson",
@@ -200,6 +208,14 @@
       "start": "2026-12-05T05:45:00Z",
       "url": "https://www.tacomacomedyclub.com/shows/359844",
       "image": "https://files.seatengine.com/talent/headshots/photos/52836/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-12-05T05:45:00Z-michael-blackson",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Michael Blackson",
+      "start": "2026-12-05T05:45:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/363337",
+      "image": "https://files.seatengine.com/talent/headshots/photos/76194/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-12-06T03:00:00Z-craig-robinson",
