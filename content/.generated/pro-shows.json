@@ -1,14 +1,6 @@
 {
-  "fetchedAt": "2026-11-24T16:49:50.877Z",
+  "fetchedAt": "2026-11-25T16:37:29.034Z",
   "shows": [
-    {
-      "id": "emerald-city-comedy-club-2026-11-25T03:30:00Z-stormy-daniels",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Stormy Daniels",
-      "start": "2026-11-25T03:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/371427",
-      "image": "https://files.seatengine.com/talent/headshots/photos/85423/full/data"
-    },
     {
       "id": "emerald-city-comedy-club-2026-11-26T03:30:00Z-thanksgiving-eve-comedy-bash",
       "clubSlug": "emerald-city-comedy-club",
