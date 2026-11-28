@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-27T15:57:09.065Z",
+  "fetchedAt": "2026-11-28T14:52:59.756Z",
   "shows": [
     {
       "id": "laughs-comedy-club-2026-11-27 19:15:00-comedy-show-kevin-sullivan-on-nov-27th-038-28th-laughs-comed",
@@ -8,38 +8,6 @@
       "start": "2026-11-27T19:15:00",
       "url": "https://www.eventbrite.com/e/comedy-show-kevin-sullivan-on-nov-27th-28th-laughs-comedy-club-seattle-tickets-1992374769569",
       "image": "https://laughscomedyclub.com/wp-content/uploads/2026/11/LaughsCC-Eventbrite-KevinSullivan_SEA-112026-1080.png"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-28T03:00:00Z-gabriel-rutledge",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Gabriel Rutledge",
-      "start": "2026-11-28T03:00:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/370337",
-      "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-28T03:00:00Z-ben-palmer",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Ben Palmer",
-      "start": "2026-11-28T03:00:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/391317",
-      "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
-    },
-    {
-      "id": "emerald-city-comedy-club-2026-11-28T05:30:00Z-ben-palmer",
-      "clubSlug": "emerald-city-comedy-club",
-      "title": "Ben Palmer",
-      "start": "2026-11-28T05:30:00Z",
-      "url": "https://www.emeraldcitycomedy.com/shows/391316",
-      "image": "https://files.seatengine.com/talent/headshots/photos/96722/full/data"
-    },
-    {
-      "id": "tacoma-comedy-club-2026-11-28T05:45:00Z-gabriel-rutledge",
-      "clubSlug": "tacoma-comedy-club",
-      "title": "Gabriel Rutledge",
-      "start": "2026-11-28T05:45:00Z",
-      "url": "https://www.tacomacomedyclub.com/shows/370340",
-      "image": "https://files.seatengine.com/talent/headshots/photos/53791/full/data"
     },
     {
       "id": "tacoma-comedy-club-2026-11-29T03:00:00Z-gabriel-rutledge",
@@ -272,6 +240,14 @@
       "start": "2026-12-09T03:30:00Z",
       "url": "https://www.emeraldcitycomedy.com/shows/391189",
       "image": "https://files.seatengine.com/talent/headshots/photos/96695/full/data"
+    },
+    {
+      "id": "tacoma-comedy-club-2026-12-10T03:00:00Z-casey-frey",
+      "clubSlug": "tacoma-comedy-club",
+      "title": "Casey Frey",
+      "start": "2026-12-10T03:00:00Z",
+      "url": "https://www.tacomacomedyclub.com/shows/386017",
+      "image": "https://files.seatengine.com/talent/headshots/photos/93754/full/data"
     },
     {
       "id": "emerald-city-comedy-club-2026-12-10T03:30:00Z-nori-reed-nori-is-present-live-at-emerald-city-comedy-club",
